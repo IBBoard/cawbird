@@ -310,6 +310,7 @@ continuous_cb (RestProxyCall *call,
                GObject       *weak_object,
                gpointer       user_data)
 {
+  return;
   CbUserStream *self = user_data;
 
   if (buf == NULL)
@@ -456,6 +457,7 @@ continuous_cb (RestProxyCall *call,
 void
 cb_user_stream_start (CbUserStream *self)
 {
+  return;
   g_debug ("%u Starting stream for %s", self->state, self->account_name);
 
   g_assert (self->proxy_data_set);
@@ -482,6 +484,7 @@ cb_user_stream_start (CbUserStream *self)
 
 void cb_user_stream_stop (CbUserStream *self)
 {
+  return;
   g_debug ("%u Stopping %s's stream", self->state, self->account_name);
 
   cb_clear_source (&self->network_timeout_id);
