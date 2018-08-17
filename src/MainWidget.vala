@@ -57,16 +57,18 @@ public class MainWidget : Gtk.Box {
 
     stack.add (stack_impostor);
 
-    pages     = new IPage[9];
+    pages     = new IPage[11];
     pages[0]  = new HomeTimeline (Page.STREAM, account);
     pages[1]  = new MentionsTimeline (Page.MENTIONS, account);
     pages[2]  = new FavoritesTimeline (Page.FAVORITES, account);
-    pages[3]  = new ListsPage (Page.LISTS, account);
-    pages[4]  = new FilterPage (Page.FILTERS, account);
-    pages[5]  = new SearchPage (Page.SEARCH, account);
-    pages[6]  = new ProfilePage (Page.PROFILE, account);
-    pages[7]  = new TweetInfoPage (Page.TWEET_INFO, account);
-    pages[8] = new ListStatusesPage (Page.LIST_STATUSES, account);
+    pages[3]  = new DMThreadsPage (Page.DM_THREADS, account);
+    pages[4]  = new ListsPage (Page.LISTS, account);
+    pages[5]  = new FilterPage (Page.FILTERS, account);
+    pages[6]  = new SearchPage (Page.SEARCH, account);
+    pages[7]  = new ProfilePage (Page.PROFILE, account);
+    pages[8]  = new TweetInfoPage (Page.TWEET_INFO, account);
+    pages[9]  = new DMPage (Page.DM, account);
+    pages[10] = new ListStatusesPage (Page.LIST_STATUSES, account);
 
     /* Initialize all containers */
     for (int i = 0; i < pages.length; i++) {

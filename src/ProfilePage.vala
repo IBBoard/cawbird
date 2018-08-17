@@ -711,7 +711,12 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
   }
 
   private void write_dm_activated (GLib.SimpleAction a, GLib.Variant? v) {
-    //TODO: See whether we can make this a link to the web
+    var bundle = new Cb.Bundle ();
+    bundle.put_int64 (DMPage.KEY_SENDER_ID, user_id);
+    bundle.put_string (DMPage.KEY_SCREEN_NAME, screen_name);
+    bundle.put_string (DMPage.KEY_USER_NAME, name);
+    bundle.put_string (DMPage.KEY_AVATAR_URL, avatar_url.replace ("_bigger", "_normal"));
+    main_window.main_widget.switch_page (Page.DM, bundle);
   }
 
   private void tweet_to_activated (GLib.SimpleAction a, GLib.Variant? v) {
