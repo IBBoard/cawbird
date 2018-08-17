@@ -33,7 +33,6 @@ public class Corebird : Gtk.Application {
     {"show-shortcuts",    show_shortcuts_activated         },
     {"quit",              quit_application                 },
     {"show-about-dialog", about_activated                  },
-    {"show-dm-thread",    show_dm_thread,           "(xx)" },
     {"show-window",       show_window,              "x"    },
     {"mark-read",         mark_read_activated,      "(xx)" },
     {"reply-to-tweet",    reply_to_tweet_activated, "(xx)" },
@@ -496,35 +495,6 @@ public class Corebird : Gtk.Application {
     } else {
       acc.uninit ();
       this.active_accounts.remove (acc);
-    }
-  }
-
-  /********************************************************/
-
-  private void show_dm_thread (GLib.SimpleAction a, GLib.Variant? value) {
-    // Values: Account id, sender_id
-    int64 account_id = value.get_child_value (0).get_int64 ();
-    int64 sender_id  = value.get_child_value (1).get_int64 ();
-    MainWindow main_window;
-    if (is_window_open_for_user_id (account_id, out main_window)) {
-      var bundle = new Cb.Bundle ();
-      bundle.put_int64 (DMPage.KEY_SENDER_ID, sender_id);
-      main_window.main_widget.switch_page (Page.DM, bundle);
-      main_window.present ();
-    } else {
-      var account = Account.query_account_by_id (account_id);
-      if (account == null) {
-        /* Security measure, should never happen. */
-        critical ("No account with id %s found", account_id.to_string ());
-        return;
-      }
-      main_window = new MainWindow (this, account);
-      this.add_window (main_window);
-      var bundle = new Cb.Bundle ();
-      bundle.put_int64 (DMPage.KEY_SENDER_ID, sender_id);
-      main_window.main_widget.switch_page (Page.DM, bundle);
-
-      main_window.show_all ();
     }
   }
 
