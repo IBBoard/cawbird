@@ -32,15 +32,17 @@ struct _CbUserStream
 {
   GObject parent_instance;
 
-  GString *data;
   GPtrArray *receivers;
   RestProxy *proxy;
-  RestProxyCall *proxy_call;
   GNetworkMonitor *network_monitor;
 
   guint network_timeout_id;
   guint heartbeat_timeout_id;
   guint network_changed_id;
+
+  gint64 last_home_id;
+  guint timeline_timeout;
+  GCancellable* home_cancellable;
 
   char *account_name;
 
