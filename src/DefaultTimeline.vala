@@ -15,7 +15,7 @@
  *  along with corebird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public abstract class DefaultTimeline : ScrollWidget, IPage, Cb.MessageReceiver {
+public abstract class DefaultTimeline : ScrollWidget, IPage {
   public const int REST = 25;
   protected bool initialized = false;
   public int id                          { get; set; }
@@ -41,7 +41,6 @@ public abstract class DefaultTimeline : ScrollWidget, IPage, Cb.MessageReceiver 
   public unowned Account account;
   protected BadgeRadioButton radio_button;
   protected uint tweet_remove_timeout = 0;
-  protected uint tweet_fetch_timeout = 0;
   protected abstract string function     { get;      }
   protected bool loading = false;
   protected Gtk.Widget? last_focus_widget = null;
@@ -86,7 +85,6 @@ public abstract class DefaultTimeline : ScrollWidget, IPage, Cb.MessageReceiver 
 
     if (!initialized) {
       load_newest ();
-      schedule_load_newer ();
 
       if (!Settings.auto_scroll_on_new_tweets ()) {
         /* we are technically not scrolling up, but due to missing content,
@@ -159,11 +157,6 @@ public abstract class DefaultTimeline : ScrollWidget, IPage, Cb.MessageReceiver 
     if (tweet_remove_timeout > 0) {
       GLib.Source.remove (tweet_remove_timeout);
       tweet_remove_timeout = 0;
-    }
-
-    if (tweet_fetch_timeout > 0) {
-      GLib.Source.remove (tweet_fetch_timeout);
-      tweet_fetch_timeout = 0;
     }
 
     base.destroy ();
@@ -306,8 +299,6 @@ public abstract class DefaultTimeline : ScrollWidget, IPage, Cb.MessageReceiver 
     return false;
   }
 
-  public abstract void stream_message_received (Cb.StreamMessageType type, Json.Node root);
-
   private void stream_resumed_cb () {
     if (this.tweet_list.model.get_n_items () == 0)
       return;
@@ -351,67 +342,6 @@ public abstract class DefaultTimeline : ScrollWidget, IPage, Cb.MessageReceiver 
     });
   }
 
-async void load_newer() {
-  var is_first_load = tweet_list.model.get_n_items () == 0;
-  int requested_tweet_count = is_first_load ? 28 : 200;
-  var call = account.proxy.new_call ();
-  call.set_function (this.function);
-  call.set_method("GET");
-  call.add_param ("count", requested_tweet_count.to_string ());
-  call.add_param ("contributor_details", "true");
-  call.add_param ("include_my_retweet", "true");
-  call.add_param ("tweet_mode", "extended");
-
-  if (!is_first_load) {
-    //debug("Calling %s?since_id=%lld", this.function, tweet_list.model.max_id);
-    call.add_param ("since_id", tweet_list.model.max_id.to_string ());
-  }
-
-  Json.Node? root_node = null;
-  try {
-    root_node = yield Cb.Utils.load_threaded_async (call, null);
-  } catch (GLib.Error e) {
-    message (e.message);
-    tweet_list.set_error ("%s\n%s".printf (_("Could not load tweets"), e.message));
-    return;
-  }
-
-  var root = root_node.get_array();
-  var root_length = root.get_length ();
-
-  if (root_length == 0 && is_first_load) {
-    tweet_list.set_empty ();
-    schedule_load_newer ();
-    return;
-  }
-
-  // Results seem to come back with the highest ID first, so we need to
-  // load in inverse order so that we're "streaming" in chronological order
-  for (uint i = root_length; i > 0; i--) {
-    var node = root.get_element (i - 1);
-    //Json.Generator gen = new Json.Generator();
-	  //gen.set_root(node);
-    //string data = gen.to_data(null);
-    //debug("Content: %s", data);
-    this.stream_message_received (Cb.StreamMessageType.TWEET, node);
-  }
-
-  if (root_length == requested_tweet_count && !is_first_load) {
-    // We got a full quota - check if there are more
-    load_newer ();
-  } else {
-    schedule_load_newer ();
-  }
-}
-
-async void schedule_load_newer () {
-  // Cap is 15 calls per 15 minutes, so poll every 2 minutes
-  // - https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-home_timeline
-  tweet_fetch_timeout = GLib.Timeout.add (60 * 1000 * 2, () => {
-    load_newer();
-    return GLib.Source.REMOVE;
-    });
-}
 
   /**
    * Default implementation for loading the newest tweets
