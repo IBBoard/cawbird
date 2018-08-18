@@ -170,7 +170,8 @@ public class MainWidget : Gtk.Box {
 
     /* on_join first, then set_visible_child so the new page is still !child-visible,
        so e.g. GtkStack transitions inside the page aren't animated */
-    page.on_join (page_id, args);
+    // XXX: Disabled because polling should make it redundant
+    //page.on_join (page_id, args);
     stack.set_visible_child (pages[page_id]);
     ((MainWindow)this.parent).set_window_title (page.get_title (), stack.transition_type);
 

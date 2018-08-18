@@ -93,7 +93,6 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
         mark_seen (-1);
       }
 
-      account.user_stream.resumed.connect (stream_resumed_cb);
       initialized = true;
     }
 
@@ -298,50 +297,6 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
 
     return false;
   }
-
-  private void stream_resumed_cb () {
-    if (this.tweet_list.model.get_n_items () == 0)
-      return;
-
-    var call = account.proxy.new_call ();
-    call.set_function (this.function);
-    call.set_method ("GET");
-    call.add_param ("count", "1");
-    call.add_param ("since_id", (this.tweet_list.model.max_id + 1).to_string ());
-    call.add_param ("trim_user", "true");
-    call.add_param ("contributor_details", "false");
-    call.add_param ("include_entities", "false");
-    call.invoke_async.begin (null, (o, res) => {
-      try {
-        call.invoke_async.end (res);
-      } catch (GLib.Error e) {
-        tweet_list.model.clear ();
-        load_newest ();
-        warning (e.message);
-        return;
-      }
-
-      var parser = new Json.Parser ();
-      try {
-        parser.load_from_data (call.get_payload ());
-      } catch (GLib.Error e) {
-        tweet_list.model.clear ();
-        this.unread_count = 0;
-        warning (e.message);
-        load_newest ();
-        return;
-      }
-
-      var root_arr = parser.get_root ().get_array ();
-      if (root_arr.get_length () > 0) {
-        this.tweet_list.model.clear ();
-        this.unread_count = 0;
-        this.load_newest ();
-      }
-
-    });
-  }
-
 
   /**
    * Default implementation for loading the newest tweets
