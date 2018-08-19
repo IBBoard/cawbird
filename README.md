@@ -1,6 +1,6 @@
 # Corebird 1.7.4 (Polling)
 
-**Note: Due to changes in Twitter's APIs, Corebird now refreshes approximately every 2 minutes and cannot read DMs**
+**Note: Due to changes in Twitter's APIs, this polling version of Corebird does not have all of the features that it used to**
 
 
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=baedert&url=http://github.com/baedert/corebird&title=corebird&language=vala&tags=github&category=software) [![Supprt Corebird on Patreon](https://baedert.org/patreon-donate-yellow.svg)](https://patreon.com/baedert)
@@ -27,6 +27,22 @@
   - `q`  - quote
   - `dd` - delete
   - `Return` - Show tweet details
+
+## Limitations
+
+Due to [changes in the Twitter API](https://developer.twitter.com/en/docs/accounts-and-users/subscribe-account-activity/migration/introduction), Corebird now has the following limitations:
+
+ * Corebird will update every two minutes
+ * Corebird cannot (yet) read DMs
+ * Corebird no longer gets notified of the following, which will be refreshed on restart:
+   * Unfavourite
+   * Follow/Unfollow
+   * Block/Unblock
+   * Mute/Unmute
+   * DM deletion
+   * Some list changes
+
+All limitations (except pending DM support) are limitations imposed by Twitter and are not the fault of the Corebird client.
 
 ## Translations
 
