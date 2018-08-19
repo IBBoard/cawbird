@@ -260,7 +260,7 @@ load_timeline_tweets (gpointer user_data)
   CbUserStream *self = user_data;
 
   if (self->home_cancellable && ! g_cancellable_is_cancelled(self->home_cancellable)) {
-    g_debug ("Cancelling existing cancellable");
+    g_debug ("Cancelling existing mentions cancellable");
     g_cancellable_cancel(self->home_cancellable);
   }
 
@@ -276,7 +276,6 @@ load_timeline_tweets (gpointer user_data)
   rest_proxy_call_add_param (proxy_call, "tweet_mode", "extended");
 
   if (!is_first_load) {
-    //g_debug("Calling %s?since_id=%lld", this.function, tweet_list.model.max_id);
     char since_id [20];
     sprintf(since_id, "%ld", self->last_home_id);
     rest_proxy_call_add_param(proxy_call, "since_id", since_id);
@@ -303,7 +302,6 @@ load_mentions_tweets_done  (GObject *source_object,
   if (error != NULL)
     {
       g_warning ("%s: %s", __FUNCTION__, error->message);
-      //g_warning ("\n%s\n", data);
       return;
     }
 
@@ -329,7 +327,7 @@ load_mentions_tweets (gpointer user_data)
   CbUserStream *self = user_data;
 
   if (self->mentions_cancellable && ! g_cancellable_is_cancelled(self->mentions_cancellable)) {
-    g_debug ("Cancelling existing cancellable");
+    g_debug ("Cancelling existing mentions cancellable");
     g_cancellable_cancel(self->mentions_cancellable);
   }
 
@@ -343,7 +341,6 @@ load_mentions_tweets (gpointer user_data)
   rest_proxy_call_add_param (proxy_call, "include_entities", "true");
 
   if (!is_first_load) {
-    //g_debug("Calling %s?since_id=%lld", this.function, tweet_list.model.max_id);
     char since_id [20];
     sprintf(since_id, "%ld", self->last_mentions_id);
     rest_proxy_call_add_param(proxy_call, "since_id", since_id);
@@ -370,7 +367,6 @@ load_favourited_tweets_done  (GObject *source_object,
   if (error != NULL)
     {
       g_warning ("%s: %s", __FUNCTION__, error->message);
-      //g_warning ("\n%s\n", data);
       return;
     }
 
@@ -396,21 +392,20 @@ load_favourited_tweets (gpointer user_data)
   CbUserStream *self = user_data;
 
   if (self->favourited_cancellable && ! g_cancellable_is_cancelled(self->favourited_cancellable)) {
-    g_debug ("Cancelling existing cancellable");
+    g_debug ("Cancelling existing favourites cancellable");
     g_cancellable_cancel(self->favourited_cancellable);
   }
 
   gboolean is_first_load = self->last_favourited_id == 0;
   char* requested_tweet_count = is_first_load ? "28" : "200";
   RestProxyCall *proxy_call = rest_proxy_new_call (self->proxy);
-  g_debug("Loading mention tweets");
+  g_debug("Loading favourited tweets");
   rest_proxy_call_set_function (proxy_call, "1.1/favorites/list.json");
   rest_proxy_call_set_method (proxy_call, "GET");
   rest_proxy_call_add_param (proxy_call, "count", requested_tweet_count);
   rest_proxy_call_add_param (proxy_call, "include_entities", "true");
 
   if (!is_first_load) {
-    //g_debug("Calling %s?since_id=%lld", this.function, tweet_list.model.max_id);
     char since_id [20];
     sprintf(since_id, "%ld", self->last_favourited_id);
     rest_proxy_call_add_param(proxy_call, "since_id", since_id);
@@ -437,9 +432,9 @@ cb_user_stream_start (CbUserStream *self)
     self->mentions_timeout = g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, 60 * 2, load_mentions_tweets, self, NULL);
   }
   if (!self->favourited_timeout) {
-    g_debug("Loading mention tweets on start");
+    g_debug("Loading favourited tweets on start");
     load_favourited_tweets (self);
-    g_debug("Adding timeout for mentions");
+    g_debug("Adding timeout for favourites");
     self->favourited_timeout = g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, 60 * 2, load_favourited_tweets, self, NULL);
   }
 }
