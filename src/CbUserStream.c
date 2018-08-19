@@ -217,6 +217,7 @@ stream_tweet (CbUserStream *self,
   }
 }
 
+// TODO: Refactor a common "load_tweets_done" that parses, sets the last ID and sends the right message type
 void
 load_timeline_tweets_done  (GObject *source_object,
                         GAsyncResult *result,
@@ -240,7 +241,7 @@ load_timeline_tweets_done  (GObject *source_object,
   root_arr = json_node_get_array (root_node);
   len = json_array_get_length (root_arr);
 
-  g_debug ("Got %d tweets", len);
+  g_debug ("Got %d timeline tweets", len);
 
   for (guint i = len; i > 0; i--) {
     JsonNode *node = json_array_get_element (root_arr, i - 1);
@@ -282,9 +283,74 @@ load_timeline_tweets (gpointer user_data)
   }
 
   self->home_cancellable = g_cancellable_new();
-  //GTask *task;
-  //task = g_task_new (proxy_call, self->home_cancellable, stream_tweets, self);
   cb_utils_load_threaded_async (proxy_call, self->home_cancellable, load_timeline_tweets_done, self);
+  return TRUE;
+}
+
+void
+load_mentions_tweets_done  (GObject *source_object,
+                        GAsyncResult *result,
+                        gpointer user_data) {
+  CbUserStream *self = user_data;
+  GError *error = NULL;
+
+  JsonNode *root_node;
+  JsonArray *root_arr;
+  guint len;
+
+  root_node = cb_utils_load_threaded_finish (result, &error);
+
+  if (error != NULL)
+    {
+      g_warning ("%s: %s", __FUNCTION__, error->message);
+      //g_warning ("\n%s\n", data);
+      return;
+    }
+
+  root_arr = json_node_get_array (root_node);
+  len = json_array_get_length (root_arr);
+
+  g_debug ("Got %d mention tweets", len);
+
+  for (guint i = len; i > 0; i--) {
+    JsonNode *node = json_array_get_element (root_arr, i - 1);
+    JsonObject *obj = json_node_get_object (node);
+    self->last_mentions_id = json_object_get_int_member (obj, "id");
+    stream_tweet(self, CB_STREAM_MESSAGE_MENTION, node);
+  }
+
+  g_cancellable_cancel(self->mentions_cancellable);
+  self->mentions_cancellable = NULL;
+}
+
+gboolean
+load_mentions_tweets (gpointer user_data)
+{
+  CbUserStream *self = user_data;
+
+  if (self->mentions_cancellable && ! g_cancellable_is_cancelled(self->mentions_cancellable)) {
+    g_debug ("Cancelling existing cancellable");
+    g_cancellable_cancel(self->mentions_cancellable);
+  }
+
+  gboolean is_first_load = self->last_mentions_id == 0;
+  char* requested_tweet_count = is_first_load ? "28" : "200";
+  RestProxyCall *proxy_call = rest_proxy_new_call (self->proxy);
+  g_debug("Loading mention tweets");
+  rest_proxy_call_set_function (proxy_call, "1.1/statuses/mentions_timeline.json");
+  rest_proxy_call_set_method (proxy_call, "GET");
+  rest_proxy_call_add_param (proxy_call, "count", requested_tweet_count);
+  rest_proxy_call_add_param (proxy_call, "include_entities", "true");
+
+  if (!is_first_load) {
+    //g_debug("Calling %s?since_id=%lld", this.function, tweet_list.model.max_id);
+    char since_id [20];
+    sprintf(since_id, "%ld", self->last_mentions_id);
+    rest_proxy_call_add_param(proxy_call, "since_id", since_id);
+  }
+
+  self->mentions_cancellable = g_cancellable_new();
+  cb_utils_load_threaded_async (proxy_call, self->mentions_cancellable, load_mentions_tweets_done, self);
   return TRUE;
 }
 
@@ -297,6 +363,12 @@ cb_user_stream_start (CbUserStream *self)
     g_debug("Adding timeout for timeline");
     self->timeline_timeout = g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, 60 * 2, load_timeline_tweets, self, NULL);
   }
+  if (!self->mentions_timeout) {
+    g_debug("Loading mention tweets on start");
+    load_mentions_tweets (self);
+    g_debug("Adding timeout for mentions");
+    self->mentions_timeout = g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, 60 * 2, load_mentions_tweets, self, NULL);
+  }
 }
 
 void cb_user_stream_stop (CbUserStream *self)
@@ -304,6 +376,10 @@ void cb_user_stream_stop (CbUserStream *self)
   if (self->timeline_timeout) {
     g_source_remove (self->timeline_timeout);
     self->timeline_timeout = 0;
+  }
+  if (self->mentions_timeout) {
+    g_source_remove (self->mentions_timeout);
+    self->mentions_timeout = 0;
   }
 }
 

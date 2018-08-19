@@ -42,7 +42,11 @@ struct _CbUserStream
 
   gint64 last_home_id;
   guint timeline_timeout;
-  GCancellable* home_cancellable;
+  GCancellable *home_cancellable;
+
+  gint64 last_mentions_id;
+  guint mentions_timeout;
+  GCancellable *mentions_cancellable;
 
   char *account_name;
 

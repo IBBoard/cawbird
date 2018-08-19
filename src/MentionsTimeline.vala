@@ -29,7 +29,7 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
   }
 
   private void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
-    if (type == Cb.StreamMessageType.TWEET) {
+    if (type == Cb.StreamMessageType.MENTION) {
       add_tweet (root);
     } else if (type == Cb.StreamMessageType.DELETE) {
       int64 id = root.get_object ().get_object_member ("delete")
@@ -55,9 +55,7 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
       return;
     }
 
-
-
-    if (root.get_string_member ("full_text").contains ("@" + account.screen_name)) {
+    if (root.get_string_member ("text").contains ("@" + account.screen_name)) {
       GLib.DateTime now = new GLib.DateTime.now_local ();
       var t = new Cb.Tweet ();
       t.load_from_json (root_node, account.id, now);
