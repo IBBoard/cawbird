@@ -30,13 +30,8 @@ class FavoritesTimeline : Cb.MessageReceiver, DefaultTimeline {
 
   private void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
     if (type == Cb.StreamMessageType.EVENT_FAVORITE) {
-      Json.Node tweet_obj = root.get_object ().get_member ("target_object");
+      Json.Node tweet_obj = root;
       int64 tweet_id = tweet_obj.get_object ().get_int_member ("id");
-
-      // the source object is a user object indicating who made the favorite
-      Json.Object source_obj = root.get_object ().get_object_member ("source");
-      if (source_obj.get_int_member ("id") != account.id)
-        return;
 
       Cb.Tweet? existing_tweet = this.tweet_list.model.get_for_id (tweet_id, 0);
       if (existing_tweet != null) {
