@@ -84,7 +84,6 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
       return;
 
     if (!initialized) {
-      load_newest ();
 
       if (!Settings.auto_scroll_on_new_tweets ()) {
         /* we are technically not scrolling up, but due to missing content,
