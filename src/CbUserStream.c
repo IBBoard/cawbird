@@ -349,6 +349,7 @@ load_mentions_tweets (gpointer user_data)
   rest_proxy_call_set_method (proxy_call, "GET");
   rest_proxy_call_add_param (proxy_call, "count", requested_tweet_count);
   rest_proxy_call_add_param (proxy_call, "include_entities", "true");
+  rest_proxy_call_add_param (proxy_call, "tweet_mode", "extended");
 
   if (!is_first_load) {
     char since_id [20];
@@ -419,6 +420,7 @@ load_favourited_tweets (gpointer user_data)
   rest_proxy_call_set_method (proxy_call, "GET");
   rest_proxy_call_add_param (proxy_call, "count", requested_tweet_count);
   rest_proxy_call_add_param (proxy_call, "include_entities", "true");
+  rest_proxy_call_add_param (proxy_call, "tweet_mode", "extended");
 
   if (!is_first_load) {
     char since_id [20];

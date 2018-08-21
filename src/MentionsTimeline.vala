@@ -56,7 +56,7 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
       return;
     }
 
-    if (root.get_string_member ("text").contains ("@" + account.screen_name)) {
+    if (root.get_string_member ("full_text").contains ("@" + account.screen_name)) {
       GLib.DateTime now = new GLib.DateTime.now_local ();
       var t = new Cb.Tweet ();
       t.load_from_json (root_node, account.id, now);
