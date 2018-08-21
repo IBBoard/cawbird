@@ -45,6 +45,7 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
   protected bool loading = false;
   protected Gtk.Widget? last_focus_widget = null;
   private double last_value = 0.0;
+  protected bool preload_is_complete = false;
 
 
   public DefaultTimeline (int id) {
@@ -84,7 +85,6 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
       return;
 
     if (!initialized) {
-
       if (!Settings.auto_scroll_on_new_tweets ()) {
         /* we are technically not scrolling up, but due to missing content,
            we can't really not be scrolled up...
@@ -95,7 +95,7 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
       initialized = true;
     }
 
-    if (Settings.auto_scroll_on_new_tweets ()) {
+    if (Settings.auto_scroll_on_new_tweets () && scrolled_up) {
       mark_seen (-1);
     }
 

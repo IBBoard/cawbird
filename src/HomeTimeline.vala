@@ -31,6 +31,8 @@ public class HomeTimeline : Cb.MessageReceiver, DefaultTimeline {
   public void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
     if (type == Cb.StreamMessageType.TWEET) {
       add_tweet (root);
+    } else if (type == Cb.StreamMessageType.TIMELINE_LOADED) {
+      this.preload_is_complete = true;
     } else if (type == Cb.StreamMessageType.DELETE) {
       int64 id = root.get_object ().get_object_member ("delete")
                      .get_object_member ("status").get_int_member ("id");
@@ -98,7 +100,8 @@ public class HomeTimeline : Cb.MessageReceiver, DefaultTimeline {
                 (t.retweeted_tweet != null && t.retweeted_tweet.author.id == account.id) ||
                 (this.scrolled_up  &&
                  main_window.cur_page_id == this.id &&
-                 auto_scroll));
+                 auto_scroll) ||
+                ! preload_is_complete);
 
     bool focused = tweet_list.get_first_visible_row () != null &&
                    tweet_list.get_first_visible_row ().is_focus;
@@ -115,7 +118,7 @@ public class HomeTimeline : Cb.MessageReceiver, DefaultTimeline {
         base.scroll_up (t);
       }
 
-      if (!t.get_seen ())
+      if (!t.get_seen () && preload_is_complete)
         this.unread_count ++;
     } else {
       t.set_seen (true);
@@ -131,8 +134,9 @@ public class HomeTimeline : Cb.MessageReceiver, DefaultTimeline {
       return;
 
     // We never show any notifications if auto-scroll-on-new-tweet is enabled
+    // or if it's our tweet or an initial load
     int stack_size = Settings.get_tweet_stack_count ();
-    if (t.get_user_id () == account.id || auto_scroll)
+    if (t.get_user_id () == account.id || auto_scroll || !preload_is_complete)
       return;
 
     if (stack_size == 1 && !auto_scroll) {

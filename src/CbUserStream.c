@@ -242,12 +242,17 @@ load_timeline_tweets_done  (GObject *source_object,
   len = json_array_get_length (root_arr);
 
   g_debug ("Got %d timeline tweets", len);
+  gboolean first_load = self->last_home_id == 0;
 
   for (guint i = len; i > 0; i--) {
     JsonNode *node = json_array_get_element (root_arr, i - 1);
     JsonObject *obj = json_node_get_object (node);
     self->last_home_id = json_object_get_int_member (obj, "id");
     stream_tweet(self, CB_STREAM_MESSAGE_TWEET, node);
+  }
+
+  if (first_load) {
+    stream_tweet (self, CB_STREAM_MESSAGE_TIMELINE_LOADED, json_node_new(JSON_NODE_NULL));
   }
 
   g_cancellable_cancel(self->home_cancellable);
@@ -309,12 +314,17 @@ load_mentions_tweets_done  (GObject *source_object,
   len = json_array_get_length (root_arr);
 
   g_debug ("Got %d mention tweets", len);
+  gboolean first_load = self->last_mentions_id == 0;
 
   for (guint i = len; i > 0; i--) {
     JsonNode *node = json_array_get_element (root_arr, i - 1);
     JsonObject *obj = json_node_get_object (node);
     self->last_mentions_id = json_object_get_int_member (obj, "id");
     stream_tweet(self, CB_STREAM_MESSAGE_MENTION, node);
+  }
+
+  if (first_load) {
+    stream_tweet (self, CB_STREAM_MESSAGE_MENTIONS_LOADED, json_node_new(JSON_NODE_NULL));
   }
 
   g_cancellable_cancel(self->mentions_cancellable);
@@ -374,12 +384,17 @@ load_favourited_tweets_done  (GObject *source_object,
   len = json_array_get_length (root_arr);
 
   g_debug ("Got %d favourited tweets", len);
+  gboolean first_load = self->last_favourited_id == 0;
 
   for (guint i = len; i > 0; i--) {
     JsonNode *node = json_array_get_element (root_arr, i - 1);
     JsonObject *obj = json_node_get_object (node);
     self->last_favourited_id = json_object_get_int_member (obj, "id");
     stream_tweet(self, CB_STREAM_MESSAGE_EVENT_FAVORITE, node);
+  }
+
+  if (first_load) {
+    stream_tweet (self, CB_STREAM_MESSAGE_FAVORITES_LOADED, json_node_new(JSON_NODE_NULL));
   }
 
   g_cancellable_cancel(self->favourited_cancellable);
@@ -419,21 +434,22 @@ load_favourited_tweets (gpointer user_data)
 void
 cb_user_stream_start (CbUserStream *self)
 {
+  g_debug("Loading timeline tweets on start");
+  load_timeline_tweets (self);
+  g_debug("Loading mention tweets on start");
+  load_mentions_tweets (self);
+  g_debug("Loading favourited tweets on start");
+  load_favourited_tweets (self);
+
   if (!self->timeline_timeout) {
-    g_debug("Loading timeline tweets on start");
-    load_timeline_tweets (self);
     g_debug("Adding timeout for timeline");
     self->timeline_timeout = g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, 60 * 2, load_timeline_tweets, self, NULL);
   }
   if (!self->mentions_timeout) {
-    g_debug("Loading mention tweets on start");
-    load_mentions_tweets (self);
     g_debug("Adding timeout for mentions");
     self->mentions_timeout = g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, 60 * 2, load_mentions_tweets, self, NULL);
   }
   if (!self->favourited_timeout) {
-    g_debug("Loading favourited tweets on start");
-    load_favourited_tweets (self);
     g_debug("Adding timeout for favourites");
     self->favourited_timeout = g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, 60 * 2, load_favourited_tweets, self, NULL);
   }

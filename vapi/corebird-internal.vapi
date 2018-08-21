@@ -43,7 +43,11 @@ namespace Cb {
     EVENT_MUTE,
     EVENT_UNMUTE,
     EVENT_USER_UPDATE,
-    EVENT_QUOTED_TWEET
+    EVENT_QUOTED_TWEET,
+
+    TIMELINE_LOADED,
+    MENTIONS_LOADED,
+    FAVORITES_LOADED
   }
 
   [CCode (cprefix = "CbMedia_", lower_case_cprefix = "cb_media_", cheader_filename = "CbMedia.h")]
