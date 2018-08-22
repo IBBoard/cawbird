@@ -20,6 +20,7 @@
 
 #include <glib-object.h>
 #include "CbTweet.h"
+#include "CbUserStream.h"
 #include "rest/rest-proxy.h"
 
 G_BEGIN_DECLS
@@ -38,6 +39,7 @@ struct _CbComposeJob
   GObject parent_instance;
 
   ImageUpload image_uploads[4];
+  CbUserStream *user_stream;
   RestProxy *account_proxy;
   RestProxy *upload_proxy;
   gint64 reply_id;
@@ -51,7 +53,8 @@ struct _CbComposeJob
 typedef struct _CbComposeJob CbComposeJob;
 
 
-CbComposeJob *cb_compose_job_new                (RestProxy            *account_proxy,
+CbComposeJob *cb_compose_job_new                (CbUserStream         *user_stream,
+                                                 RestProxy            *account_proxy,
                                                  RestProxy            *upload_proxy,
                                                  GCancellable         *cancellable);
 void          cb_compose_job_upload_image_async (CbComposeJob         *self,

@@ -138,6 +138,7 @@ cb_compose_job_finalize (GObject *object)
       image_upload_free (upload);
     }
 
+  g_clear_object (&self->user_stream);
   g_clear_object (&self->account_proxy);
   g_clear_object (&self->upload_proxy);
   g_clear_object (&self->cancellable);
@@ -178,12 +179,14 @@ cb_compose_job_init (CbComposeJob *self)
 }
 
 CbComposeJob *
-cb_compose_job_new (RestProxy    *account_proxy,
+cb_compose_job_new (CbUserStream *user_stream,
+                    RestProxy    *account_proxy,
                     RestProxy    *upload_proxy,
                     GCancellable *cancellable)
 {
   CbComposeJob *self = CB_COMPOSE_JOB (g_object_new (CB_TYPE_COMPOSE_JOB, NULL));
 
+  g_set_object (&self->user_stream, user_stream);
   g_set_object (&self->account_proxy, account_proxy);
   g_set_object (&self->upload_proxy, upload_proxy);
   g_set_object (&self->cancellable, cancellable);
@@ -376,7 +379,8 @@ send_tweet_call_completed_cb (GObject      *source_object,
                               gpointer      user_data)
 {
   RestProxyCall *call = REST_PROXY_CALL (source_object);
-  GTask *send_task = user_data;
+  CbComposeJob *self = CB_COMPOSE_JOB (user_data);
+  GTask *send_task = self->send_task;
   GError *error = NULL;
 
   rest_proxy_call_invoke_finish (call, result, &error);
@@ -387,6 +391,8 @@ send_tweet_call_completed_cb (GObject      *source_object,
     }
   else
     {
+      const gchar *data = rest_proxy_call_get_payload (call);
+      cb_user_stream_inject_tweet (self->user_stream, CB_STREAM_MESSAGE_TWEET, data);
       g_task_return_boolean (send_task, TRUE);
     }
 
@@ -417,7 +423,7 @@ do_send (CbComposeJob *self)
   rest_proxy_call_invoke_async (self->send_call,
                                 self->cancellable,
                                 send_tweet_call_completed_cb,
-                                self->send_task);
+                                self);
 }
 
 void

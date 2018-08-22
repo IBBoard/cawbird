@@ -76,6 +76,9 @@ void           cb_user_stream_start          (CbUserStream *self);
 void           cb_user_stream_stop           (CbUserStream *self);
 void           cb_user_stream_push_data      (CbUserStream *self,
                                               const char   *data);
+void           cb_user_stream_inject_tweet   (CbUserStream *self,
+                                            CbStreamMessageType  message_type,
+                                            const gchar *content)
 
 G_END_DECLS;
 

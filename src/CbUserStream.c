@@ -217,6 +217,25 @@ stream_tweet (CbUserStream *self,
   }
 }
 
+void
+cb_user_stream_inject_tweet (CbUserStream *self,
+              CbStreamMessageType  message_type,
+              const gchar *content) {
+  JsonParser *parser;
+  JsonNode *root_node;
+  GError *error = NULL;
+
+  parser = json_parser_new ();
+  json_parser_load_from_data (parser, content, -1, &error);
+  if (error)
+    {
+      g_warning("Failed to parse %s", content);
+      return;
+    }
+  root_node = json_parser_get_root (parser);
+  stream_tweet (self, message_type, root_node);
+}
+
 // TODO: Refactor a common "load_tweets_done" that parses, sets the last ID and sends the right message type
 void
 load_timeline_tweets_done  (GObject *source_object,
