@@ -302,33 +302,8 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
    * from the given function of the twitter api.
    */
   protected async void load_newest_internal () {
-    int requested_tweet_count = 28;
-    var call = account.proxy.new_call ();
-    call.set_function (this.function);
-    call.set_method("GET");
-    call.add_param ("count", requested_tweet_count.to_string ());
-    call.add_param ("contributor_details", "true");
-    call.add_param ("include_my_retweet", "true");
-    call.add_param ("tweet_mode", "extended");
-    call.add_param ("max_id", (tweet_list.model.min_id - 1).to_string ());
-
-    Json.Node? root_node = null;
-    try {
-      root_node = yield Cb.Utils.load_threaded_async (call, null);
-    } catch (GLib.Error e) {
-      message (e.message);
-      tweet_list.set_error ("%s\n%s".printf (_("Could not load tweets"), e.message));
-      return;
-    }
-
-    var root = root_node.get_array();
-    if (root.get_length () == 0) {
-      tweet_list.set_empty ();
-      return;
-    }
-    TweetUtils.work_array (root,
-                           tweet_list,
-                           account);
+    // This should now be unnecessary since the change to stream-by-polling
+    return;
   }
 
   /**
