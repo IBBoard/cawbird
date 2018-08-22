@@ -234,7 +234,6 @@ load_timeline_tweets_done  (GObject *source_object,
   if (error != NULL)
     {
       g_warning ("%s: %s", __FUNCTION__, error->message);
-      //g_warning ("\n%s\n", data);
       return;
     }
 
