@@ -222,12 +222,11 @@ insert_sorted (CbTweetModel *self,
 
           if (cur->id > tweet->id && next->id < tweet->id)
             {
-              insert_pos = i + 1;
+              insert_pos = i;
               break;
             }
           else if (cur->id == tweet->id)
             {
-              g_debug("Found duplicate tweet on insert: %ld", tweet->id);
               // We found a duplicate! Could be caused by injecting the user's own tweet,
               // so ignore it
               break;
