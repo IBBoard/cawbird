@@ -443,6 +443,7 @@ cb_compose_job_send_async (CbComposeJob        *self,
   rest_proxy_call_set_function (call, "1.1/statuses/update.json");
   rest_proxy_call_set_method (call, "POST");
   rest_proxy_call_add_param (call, "auto_populate_reply_metadata", "true");
+  rest_proxy_call_add_param (call, "tweet_mode", "extended");
 
   if (self->reply_id != 0)
     {
