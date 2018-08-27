@@ -200,6 +200,11 @@ stream_tweet (CbUserStream *self,
               JsonNode            *node) {
   guint i;
 
+  if (message_type == CB_STREAM_MESSAGE_UNSUPPORTED) {
+    g_debug ("Skipped unsupported message on stream @%s\n", self->account_name);
+    return;
+  }
+
 #if DEBUG
   g_print ("Message with type %d on stream @%s\n", message_type, self->account_name);
 
@@ -452,6 +457,91 @@ load_favourited_tweets (gpointer user_data)
 }
 
 void
+load_dm_tweets_done  (GObject *source_object,
+                        GAsyncResult *result,
+                        gpointer user_data) {
+  CbUserStream *self = user_data;
+  GError *error = NULL;
+
+  JsonNode *root_node;
+  JsonObject *root_obj;
+  JsonArray *root_arr;
+  guint len;
+
+  root_node = cb_utils_load_threaded_finish (result, &error);
+
+  if (error != NULL)
+    {
+      g_warning ("%s: %s", __FUNCTION__, error->message);
+      return;
+    }
+
+#if DEBUG
+  g_print ("DMs on @%s\n", self->account_name);
+
+  JsonGenerator *gen = json_generator_new ();
+  json_generator_set_root (gen, root_node);
+  json_generator_set_pretty (gen, TRUE);
+  gchar *json_dump = json_generator_to_data (gen, NULL);
+  g_print ("%s", json_dump);
+  g_print("Done DMs");
+#endif
+
+  root_obj = json_node_get_object (root_node);
+  root_arr = json_object_get_array_member(root_obj, "events");
+  len = json_array_get_length (root_arr);
+
+  g_debug ("Got %d DMs", len);
+
+  for (guint i = len; i > 0; i--) {
+    JsonNode *node = json_array_get_element (root_arr, i - 1);
+    JsonObject *obj = json_node_get_object (node);
+    int message_type = CB_STREAM_MESSAGE_UNSUPPORTED;
+    const gchar *type = json_object_get_string_member(obj, "type");
+    g_debug("DM type: %s", type);
+
+    if (strcmp(type, "message_create") == 0) {
+      message_type = CB_STREAM_MESSAGE_DIRECT_MESSAGE;
+    }
+
+    gint64 id = strtol (json_object_get_string_member (obj, "id"), NULL, 10);
+
+    if (id <= self->last_dm_id) {
+      // DMs behave differently to other "timelines" so we need to ignore messages we've seen
+      // And we assume we've seen it if it has an older ID
+      return;
+    }
+
+    self->last_dm_id = id;
+    stream_tweet (self, message_type, node);
+  }
+
+  g_cancellable_cancel(self->dm_cancellable);
+  self->dm_cancellable = NULL;
+}
+
+gboolean
+load_dm_tweets (gpointer user_data)
+{
+  CbUserStream *self = user_data;
+
+  if (self->dm_cancellable && ! g_cancellable_is_cancelled(self->dm_cancellable)) {
+    g_debug ("Cancelling existing cancellable");
+    g_cancellable_cancel(self->dm_cancellable);
+  }
+
+  RestProxyCall *proxy_call = rest_proxy_new_call (self->proxy);
+  g_debug("Loading DM tweets");
+  rest_proxy_call_set_function (proxy_call, "1.1/direct_messages/events/list.json");
+  rest_proxy_call_set_method (proxy_call, "GET");
+  rest_proxy_call_add_param (proxy_call, "count", "50");
+
+  self->dm_cancellable = g_cancellable_new();
+  cb_utils_load_threaded_async (proxy_call, self->dm_cancellable, load_dm_tweets_done, self);
+  return TRUE;
+}
+
+void
 cb_user_stream_start (CbUserStream *self)
 {
   g_debug("Loading timeline tweets on start");
@@ -460,6 +550,8 @@ cb_user_stream_start (CbUserStream *self)
   load_mentions_tweets (self);
   g_debug("Loading favourited tweets on start");
   load_favourited_tweets (self);
+  g_debug("Loading DMs on start");
+  load_dm_tweets (self);
 
   if (!self->timeline_timeout) {
     g_debug("Adding timeout for timeline");
@@ -472,6 +564,10 @@ cb_user_stream_start (CbUserStream *self)
   if (!self->favourited_timeout) {
     g_debug("Adding timeout for favourites");
     self->favourited_timeout = g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, 60 * 2, load_favourited_tweets, self, NULL);
+  }
+  if (!self->dm_timeout) {
+    g_debug("Adding timeout for DMs");
+    self->dm_timeout = g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, 60 * 2, load_dm_tweets, self, NULL);
   }
 }
 
@@ -488,6 +584,10 @@ void cb_user_stream_stop (CbUserStream *self)
   if (self->favourited_timeout) {
     g_source_remove (self->favourited_timeout);
     self->favourited_timeout = 0;
+  }
+  if (self->dm_timeout) {
+    g_source_remove (self->dm_timeout);
+    self->dm_timeout = 0;
   }
 }
 

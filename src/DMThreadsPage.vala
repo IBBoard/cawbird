@@ -168,7 +168,7 @@ class DMThreadsPage : IPage, Cb.MessageReceiver, ScrollWidget {
   }
   public void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
     if (type == Cb.StreamMessageType.DIRECT_MESSAGE) {
-      var obj = root.get_object ().get_object_member ("direct_message");
+      var obj = root.get_object ();
       this.manager.insert_message (obj);
     }
   }

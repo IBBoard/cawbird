@@ -43,6 +43,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
 
   public int64 user_id;
   private int64 lowest_id = int64.MAX;
+  private int64 highest_id = int64.MIN;
   private bool was_scrolled_down = false;
 
   public DMPage (int id, Account account) {
@@ -52,7 +53,6 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     messages_list.set_sort_func (twitter_item_sort_func_inv);
     placeholder_box.show ();
     messages_list.set_placeholder(placeholder_box);
-    scroll_widget.scrolled_to_start.connect (load_older);
     text_view.size_allocate.connect (() => {
       if (was_scrolled_down)
         scroll_widget.scroll_down_next (false, false);
@@ -67,137 +67,97 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
   }
 
   public void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
+    // FIXME: This won't work because of how we fake-stream rather than loading old messages
+    /* Writing with ourselves, we have the message already */
+    /*if (this.user_id == this.account.id) {
+      debug("DM to self - ignoring");
+      return;
+    }*/
+
     if (type == Cb.StreamMessageType.DIRECT_MESSAGE) {
-      // Arriving new dms get already cached in the DMThreadsPage
-      var obj = root.get_object ().get_object_member ("direct_message");
+      handle_dm (type, root);
+    }
+  }
 
+  private async void handle_dm (Cb.StreamMessageType type, Json.Node root) {
+    Json.Object dm_obj = root.get_object ();
+    int64 dm_id = int64.parse(dm_obj.get_string_member ("id"));
 
-      /* XXX Replace this with local entity parsing */
-      if (obj.get_int_member ("sender_id") == account.id &&
-          obj.has_member ("entities")) {
-        var entries = messages_list.get_children ();
+    if (dm_id <= highest_id) {
+      // Already seen it
+      return;
+    }
 
-        int64 dm_id = obj.get_int_member ("id");
+    highest_id = dm_id;
 
-        foreach (var entry in entries) {
-          var e = (DMListEntry) entry;
-          if (e.user_id == account.id &&
-              e.id == -1) {
+    Json.Object dm_msg = dm_obj.get_object_member ("message_create");
+    int64 sender_id  = int64.parse(dm_msg.get_string_member ("sender_id"));
+    int64 recipient_id = int64.parse(dm_msg.get_object_member ("target").get_string_member ("recipient_id"));
 
-            var text = obj.get_string_member ("text");
-            var urls = obj.get_object_member ("entities").get_array_member ("urls");
-            var url_list = new Cb.TextEntity[urls.get_length ()];
-            urls.foreach_element((arr, index, node) => {
-              var url = node.get_object();
-              string expanded_url = url.get_string_member("expanded_url");
+    /* Only handle DMs for our current chat */
+    if (sender_id != this.user_id && recipient_id != this.user_id)
+      return;
 
-              Json.Array indices = url.get_array_member ("indices");
-              expanded_url = expanded_url.replace("&", "&amp;");
-              url_list[index] = Cb.TextEntity() {
-                from = (int)indices.get_int_element (0),
-                to   = (int)indices.get_int_element (1) ,
-                target = expanded_url,
-                display_text = url.get_string_member ("display_url")
-              };
-            });
-            e.text = Cb.TextTransform.text (text,
-                                            url_list,
-                                            0, 0, 0);
+    Json.Object dm_msg_data = dm_msg.get_object_member ("message_data");
 
-            e.id = dm_id;
-            break;
-          }
+    var text = dm_msg_data.get_string_member ("text");
+    if (dm_msg_data.has_member ("entities")) {
+      var urls = dm_msg_data.get_object_member ("entities").get_array_member ("urls");
+      var url_list = new Cb.TextEntity[urls.get_length ()];
+      urls.foreach_element((arr, index, node) => {
+        var url = node.get_object();
+        string expanded_url = url.get_string_member("expanded_url");
+
+        Json.Array indices = url.get_array_member ("indices");
+        url_list[index] = Cb.TextEntity() {
+          from = (uint)indices.get_int_element (0),
+          to   = (uint)indices.get_int_element (1) ,
+          target = expanded_url.replace ("&", "&amp;"),
+          tooltip_text = expanded_url,
+          display_text = url.get_string_member ("display_url")
+        };
+      });
+      text = Cb.TextTransform.text (text,
+                                    url_list,
+                                    0, 0, 0);
+    }
+
+    string? sender_user_name = yield Twitter.get ().get_user_name (account, sender_id);
+    string? sender_screen_name = yield Twitter.get ().get_screen_name (account, sender_id);
+
+    if (sender_id == account.id) {
+      // Find the sent entry and fill in the missing details
+      var entries = messages_list.get_children ();
+
+      foreach (var entry in entries) {
+        var e = (DMListEntry) entry;
+        // XXX This assumes that we only have one "-1" ID, or that we always hit them in the right order
+        // It is possible for a user to send multiple DMs before we poll, though.
+        if (e.user_id == account.id && e.id == -1) {
+          e.text = text;
+          e.id = dm_id;
+          break;
         }
       }
 
-
-      /* Only handle DMs from the user we are currently chatting with */
-      if (obj.get_int_member ("sender_id") != this.user_id)
-        return;
-
-      /* Writing with ourselves, we have the message already */
-      if (this.user_id == this.account.id)
-        return;
-
-      var text = obj.get_string_member ("text");
-      if (obj.has_member ("entities")) {
-        var urls = obj.get_object_member ("entities").get_array_member ("urls");
-        var url_list = new Cb.TextEntity[urls.get_length ()];
-        urls.foreach_element((arr, index, node) => {
-          var url = node.get_object();
-          string expanded_url = url.get_string_member("expanded_url");
-
-          Json.Array indices = url.get_array_member ("indices");
-          url_list[index] = Cb.TextEntity() {
-            from = (uint)indices.get_int_element (0),
-            to   = (uint)indices.get_int_element (1) ,
-            target = expanded_url.replace ("&", "&amp;"),
-            tooltip_text = expanded_url,
-            display_text = url.get_string_member ("display_url")
-          };
-        });
-        text = Cb.TextTransform.text (text,
-                                      url_list,
-                                      0, 0, 0);
-      }
-
-      var sender = obj.get_object_member ("sender");
+      return;
+    }
+    else {
+      // Add a new entry
       var new_msg = new DMListEntry ();
+      new_msg.id = dm_id;
       new_msg.text = text;
-      new_msg.name = sender.get_string_member ("name");
-      new_msg.screen_name = sender.get_string_member ("screen_name");
-      new_msg.timestamp = Cb.Utils.parse_date (obj.get_string_member ("created_at")).to_unix ();
+      new_msg.name = sender_user_name;
+      new_msg.screen_name = sender_screen_name;
+      new_msg.timestamp = int64.parse(dm_obj.get_string_member ("created_timestamp")) / 1000;
       new_msg.main_window = main_window;
-      new_msg.user_id = sender.get_int_member ("id");
+      new_msg.user_id = sender_id;
       new_msg.update_time_delta ();
-      new_msg.load_avatar (sender.get_string_member ("profile_image_url"));
+      new_msg.load_avatar (yield Twitter.get ().get_avatar_url (account, sender_id));
       messages_list.add (new_msg);
       if (scroll_widget.scrolled_down)
         scroll_widget.scroll_down_next ();
     }
-  }
-
-  private void load_older () {
-    var now = new GLib.DateTime.now_local ();
-    scroll_widget.balance_next_upper_change (TOP);
-    // Load messages
-    // TODO: Fix code duplication
-    var query = account.db.select ("dms")
-                          .cols ("from_id", "to_id", "text", "from_name", "from_screen_name",
-                                 "timestamp", "id");
-
-    if (user_id == account.id)
-      query.where (@"`from_id`='$user_id' AND `to_id`='$user_id' AND `id` < '$lowest_id'");
-    else
-      query.where (@"(`from_id`='$user_id' OR `to_id`='$user_id') AND `id` < '$lowest_id'");
-
-      query.order ("timestamp DESC")
-           .limit (35)
-           .run ((vals) => {
-      int64 id = int64.parse (vals[6]);
-      if (id < lowest_id)
-        lowest_id = id;
-
-      var entry = new DMListEntry ();
-      entry.id = id;
-      entry.user_id = int64.parse (vals[0]);
-      entry.timestamp = int64.parse (vals[5]);
-      entry.text = vals[2];
-      entry.name = vals[3];
-      entry.screen_name = vals[4];
-      entry.main_window = main_window;
-      entry.update_time_delta (now);
-      Twitter.get ().load_avatar_for_user_id.begin (account,
-                                                    entry.user_id,
-                                                    48 * this.get_scale_factor (),
-                                                    (obj, res) => {
-        Cairo.Surface? s = Twitter.get ().load_avatar_for_user_id.end (res);
-        entry.avatar = s;
-      });
-      messages_list.add (entry);
-      return true;
-    });
-
   }
 
   public void on_join (int page_id, Cb.Bundle? args) {

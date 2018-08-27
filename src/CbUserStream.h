@@ -52,6 +52,10 @@ struct _CbUserStream
   guint favourited_timeout;
   GCancellable *favourited_cancellable;
 
+  gint64 last_dm_id;
+  guint dm_timeout;
+  GCancellable *dm_cancellable;
+
   char *account_name;
 
   guint state;
