@@ -228,11 +228,10 @@ public class Twitter : GLib.Object {
     Json.Node? root = null;
     try {
       root = yield Cb.Utils.load_threaded_async (call, null);
+      this.user_json_cache[user_id] = root;
     } catch (GLib.Error e) {
       warning (e.message);
     }
-
-    this.user_json_cache[user_id] = root;
 
     return root;
   }
