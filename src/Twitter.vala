@@ -231,10 +231,6 @@ public class Twitter : GLib.Object {
     } catch (GLib.Error e) {
       warning (e.message);
     }
-    Json.Generator gen = new Json.Generator();
-    gen.set_root(root);
-    string data = gen.to_data(null);
-    print("++UserData++ %s\n", data);
 
     this.user_json_cache[user_id] = root;
 
