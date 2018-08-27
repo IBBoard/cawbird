@@ -498,7 +498,6 @@ load_dm_tweets_done  (GObject *source_object,
     JsonObject *obj = json_node_get_object (node);
     int message_type = CB_STREAM_MESSAGE_UNSUPPORTED;
     const gchar *type = json_object_get_string_member(obj, "type");
-    g_debug("DM type: %s", type);
 
     if (strcmp(type, "message_create") == 0) {
       message_type = CB_STREAM_MESSAGE_DIRECT_MESSAGE;
@@ -513,6 +512,7 @@ load_dm_tweets_done  (GObject *source_object,
     }
 
     self->last_dm_id = id;
+    g_debug("New DM with type: %s", type);
     stream_tweet (self, message_type, node);
   }
 
