@@ -35,6 +35,7 @@ public class Twitter : GLib.Object {
   public static Cairo.Surface no_avatar;
   public static Gdk.Pixbuf no_banner;
   private Cb.AvatarCache avatar_cache;
+  private GLib.HashTable<int64?, Json.Node> user_json_cache;
 
   public void init () {
     try {
@@ -48,6 +49,7 @@ public class Twitter : GLib.Object {
     }
 
     this.avatar_cache = new Cb.AvatarCache ();
+    this.user_json_cache = new HashTable<int64?, Json.Node>(GLib.int_hash, GLib.int_equal);
   }
 
   public void ref_avatar (Cairo.Surface surface) {
@@ -105,26 +107,11 @@ public class Twitter : GLib.Object {
 
     this.avatar_cache.add (user_id, null, null);
 
-    // We first need to get the avatar url for the given user id...
-    var call = account.proxy.new_call ();
-    call.set_function ("1.1/users/show.json");
-    call.set_method ("GET");
-    call.add_param ("user_id", user_id.to_string ());
-    call.add_param ("include_entities", "false");
+    string avatar_url = yield this.get_user_string_member (account, user_id, "profile_image_url");
 
-    Json.Node? root = null;
-    try {
-      root = yield Cb.Utils.load_threaded_async (call, null);
-    } catch (GLib.Error e) {
-      warning (e.message);
+    if (avatar_url == null) {
       return null;
     }
-
-    if (root == null)
-      return null;
-
-    var root_obj = root.get_object ();
-    string avatar_url = root_obj.get_string_member ("profile_image_url");
 
     this.avatar_cache.set_url (user_id, avatar_url);
 
@@ -205,4 +192,52 @@ public class Twitter : GLib.Object {
     }
   }
 
+  public async string get_user_name (Account account, int64 user_id) {
+    return yield get_user_string_member (account, user_id, "name");
+  }
+
+  public async string get_screen_name (Account account, int64 user_id) {
+    return yield get_user_string_member (account, user_id, "screen_name");
+  }
+
+  public async string get_avatar_url (Account account, int64 user_id) {
+    return yield get_user_string_member (account, user_id, "profile_image_url_https");
+  }
+
+  private async string get_user_string_member (Account account, int64 user_id, string field_name) {
+    Json.Node? user_json = yield get_user_json (account.proxy, user_id);
+    string username = null;
+    if (user_json != null) {
+      username = user_json.get_object ().get_string_member (field_name);
+    }
+    return username;
+  }
+
+  private async Json.Node? get_user_json (Rest.OAuthProxy proxy, int64 user_id) {
+    if (this.user_json_cache.contains (user_id)) {
+      return this.user_json_cache[user_id];
+    }
+
+    // We first need to get the avatar url for the given user id...
+    var call = proxy.new_call ();
+    call.set_function ("1.1/users/show.json");
+    call.set_method ("GET");
+    call.add_param ("user_id", user_id.to_string ());
+    call.add_param ("include_entities", "false");
+
+    Json.Node? root = null;
+    try {
+      root = yield Cb.Utils.load_threaded_async (call, null);
+    } catch (GLib.Error e) {
+      warning (e.message);
+    }
+    Json.Generator gen = new Json.Generator();
+    gen.set_root(root);
+    string data = gen.to_data(null);
+    print("++UserData++ %s\n", data);
+
+    this.user_json_cache[user_id] = root;
+
+    return root;
+  }
 }
