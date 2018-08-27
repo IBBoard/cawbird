@@ -491,6 +491,9 @@ load_dm_tweets_done  (GObject *source_object,
   root_arr = json_object_get_array_member(root_obj, "events");
   len = json_array_get_length (root_arr);
 
+  // TODO: Look for a "next_cursor" and load older DMs
+  // https://developer.twitter.com/en/docs/direct-messages/sending-and-receiving/api-reference/list-events
+
   g_debug ("Got %d DMs", len);
 
   for (guint i = len; i > 0; i--) {
