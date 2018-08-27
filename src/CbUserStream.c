@@ -508,7 +508,7 @@ load_dm_tweets_done  (GObject *source_object,
     if (id <= self->last_dm_id) {
       // DMs behave differently to other "timelines" so we need to ignore messages we've seen
       // And we assume we've seen it if it has an older ID
-      return;
+      continue;
     }
 
     self->last_dm_id = id;
