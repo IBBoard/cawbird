@@ -49,6 +49,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
   public DMPage (int id, Account account) {
     this.id = id;
     this.account = account;
+    send_button.sensitive = false;
     text_view.buffer.changed.connect (recalc_length);
     messages_list.set_sort_func (twitter_item_sort_func_inv);
     placeholder_box.show ();
@@ -296,7 +297,8 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
 
   private void recalc_length () {
     uint text_length = text_view.buffer.text.length;
-    send_button.sensitive = text_length > 0;
+    // TODO: Re-enable send button when we have new API sending working!
+    send_button.sensitive = false;//text_length > 0;
   }
 
 
