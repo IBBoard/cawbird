@@ -33,7 +33,6 @@
 Due to [changes in the Twitter API](https://developer.twitter.com/en/docs/accounts-and-users/subscribe-account-activity/migration/introduction), Corebird now has the following limitations:
 
  * Corebird will update every two minutes
- * Corebird cannot (yet) read DMs
  * Corebird no longer gets notified of the following, which will be refreshed on restart:
    * Unfavourite
    * Follow/Unfollow
