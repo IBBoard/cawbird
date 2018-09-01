@@ -54,6 +54,7 @@ libcorebird_la_VALASOURCES = \
 	FilterPage.vala \
 	UserEventReceiver.vala \
 	DMManager.vala \
+	OAuthProxyCallWithBody.vala \
 	widgets/TweetListBox.vala \
 	widgets/MaxSizeContainer.vala \
 	widgets/ScrollWidget.vala \
