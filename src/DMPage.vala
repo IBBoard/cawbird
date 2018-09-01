@@ -261,11 +261,29 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     entry.avatar = account.avatar;
     entry.update_time_delta ();
     messages_list.add (entry);
-    var call = account.proxy.new_call ();
-    call.set_function ("1.1/direct_messages/new.json");
+
+    var gen = new Json.Generator();
+    var root = new Json.Node(Json.NodeType.OBJECT);
+    var object = new Json.Object();
+    root.set_object(object);
+    gen.set_root(root);
+    var event = new Json.Object();
+    object.set_object_member("event", event);
+    event.set_string_member("type", "message_create");
+    var msg_create = new Json.Object();
+    event.set_object_member("message_create", msg_create);
+    var target = new Json.Object();
+    msg_create.set_object_member("target", target);
+    target.set_string_member("recipient_id", user_id.to_string());
+    var msg_data = new Json.Object();
+    msg_create.set_object_member("message_data", msg_data);
+    msg_data.set_string_member("text", text_view.buffer.text);
+    string json_dump = gen.to_data (null);
+
+    var call = new OAuthProxyCallWithBody(account.proxy, json_dump);
+    call.set_function ("1.1/direct_messages/events/new.json");
     call.set_method ("POST");
-    call.add_param ("user_id", user_id.to_string ());
-    call.add_param ("text", text_view.buffer.text);
+
     call.invoke_async.begin (null, (obj, res) => {
       try {
         call.invoke_async.end (res);
@@ -298,7 +316,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
   private void recalc_length () {
     uint text_length = text_view.buffer.text.length;
     // TODO: Re-enable send button when we have new API sending working!
-    send_button.sensitive = false;//text_length > 0;
+    send_button.sensitive = text_length > 0;
   }
 
 
