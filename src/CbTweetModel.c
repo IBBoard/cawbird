@@ -218,7 +218,7 @@ insert_sorted (CbTweetModel *self,
       for (i = 1; i < self->tweets->len; i ++)
         {
           CbTweet *cur = next;
-          CbTweet *next = g_ptr_array_index (self->tweets, i);
+          next = g_ptr_array_index (self->tweets, i);
 
           if (cur->id > tweet->id && next->id < tweet->id)
             {
