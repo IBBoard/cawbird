@@ -15,6 +15,7 @@
  *  along with corebird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "corebird.h"
 #include "CbUserStream.h"
 #include "CbUtils.h"
 #include "rest/rest/oauth-proxy.h"
@@ -228,6 +229,7 @@ cb_user_stream_inject_tweet (CbUserStream *self,
               const gchar *content) {
   JsonParser *parser;
   JsonNode *root_node;
+  JsonObject *root_obj;
   GError *error = NULL;
 
   parser = json_parser_new ();
@@ -238,6 +240,60 @@ cb_user_stream_inject_tweet (CbUserStream *self,
       return;
     }
   root_node = json_parser_get_root (parser);
+  root_obj = json_node_get_object (root_node);
+
+  if (json_object_has_member (root_obj, "quoted_status_permalink"))
+    {
+      // Quote tweets don't include the quoted tweet URL in the returned text, but they do when they come in the timeline
+      // So we need to fudge it here and add the URL entity and the text before we send it to the app
+      JsonObject *entities;
+      JsonArray *urls;
+      JsonObject *permalink = json_object_get_object_member (root_obj, "quoted_status_permalink");
+      const gchar *quoted_url = json_object_get_string_member (permalink, "url");
+      entities      = json_object_get_object_member (root_obj, "entities");
+      urls          = json_object_get_array_member (entities, "urls");
+      gboolean url_found = FALSE;
+
+      for (guint i  = 0, p = json_array_get_length (urls); i < p; i ++)
+        {
+          JsonObject *url_obj = json_node_get_object (json_array_get_element (urls, i));
+          const char *url = json_object_get_string_member (url_obj, "url");
+
+          if (!g_strcmp0 (url, quoted_url))
+            {
+              url_found = TRUE;
+              break;
+            }
+        }
+
+      if (!url_found)
+        {
+          // Get the old text length
+          JsonArray *display_range = json_object_get_array_member (root_obj, "display_text_range");
+
+          // Create and set the new text
+          gchar *new_full_text = g_strdup_printf ("%s %s", json_object_get_string_member (root_obj, "full_text"), quoted_url);
+          json_object_set_string_member (root_obj, "full_text", new_full_text);
+          guint64 new_length = strlen (new_full_text);
+          g_free (new_full_text);
+
+          // Build the URL entity
+          JsonObject *url_obj = json_object_new ();
+          json_object_set_string_member (url_obj, "url", quoted_url);
+          json_object_set_string_member (url_obj, "expanded_url", json_object_get_string_member (permalink, "expanded"));
+          json_object_set_string_member (url_obj, "display_url", json_object_get_string_member (permalink, "display"));
+          JsonArray *indicies = json_array_sized_new (2);
+          json_array_add_int_element (indicies, json_array_get_int_element (display_range, 1) + 1); // Add one for the space
+          json_array_add_int_element (indicies, new_length);
+          json_object_set_array_member (url_obj, "indices", indicies);
+          json_array_add_object_element (urls, url_obj);
+
+          // Update the text length
+          json_array_remove_element (display_range, 1);
+          json_array_add_int_element (display_range, new_length);
+        }
+    }
+
   stream_tweet (self, message_type, root_node);
 }
 
