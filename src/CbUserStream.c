@@ -21,6 +21,8 @@
 #include "rest/rest/oauth-proxy.h"
 #include <string.h>
 
+#define short_url_length 23
+
 G_DEFINE_TYPE (CbUserStream, cb_user_stream, G_TYPE_OBJECT);
 
 
@@ -270,11 +272,13 @@ cb_user_stream_inject_tweet (CbUserStream *self,
         {
           // Get the old text length
           JsonArray *display_range = json_object_get_array_member (root_obj, "display_text_range");
+          guint64 old_length = json_array_get_int_element (display_range, 1);
 
           // Create and set the new text
           gchar *new_full_text = g_strdup_printf ("%s %s", json_object_get_string_member (root_obj, "full_text"), quoted_url);
           json_object_set_string_member (root_obj, "full_text", new_full_text);
-          guint64 new_length = strlen (new_full_text);
+          guint64 old_length_with_space = old_length + 1;
+          guint64 new_length = old_length_with_space + short_url_length;
           g_free (new_full_text);
 
           // Build the URL entity
@@ -283,7 +287,7 @@ cb_user_stream_inject_tweet (CbUserStream *self,
           json_object_set_string_member (url_obj, "expanded_url", json_object_get_string_member (permalink, "expanded"));
           json_object_set_string_member (url_obj, "display_url", json_object_get_string_member (permalink, "display"));
           JsonArray *indicies = json_array_sized_new (2);
-          json_array_add_int_element (indicies, json_array_get_int_element (display_range, 1) + 1); // Add one for the space
+          json_array_add_int_element (indicies, old_length_with_space);
           json_array_add_int_element (indicies, new_length);
           json_object_set_array_member (url_obj, "indices", indicies);
           json_array_add_object_element (urls, url_obj);
