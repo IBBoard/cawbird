@@ -73,8 +73,8 @@
 .inline-media:hover {
   opacity: 1.0;
   box-shadow: none;
-  border-top: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-top: 2px solid @theme_selected_bg_color;
+  border-bottom: 2px solid @theme_selected_bg_color;
 }
 
 .image-success {
@@ -178,7 +178,7 @@
 }
 
 .pixbuf-button:hover {
-  border: 1px solid #4a90d9;
+  border: 1px solid @theme_selected_bg_color;
 }
 
 .pixbuf-button:active {
@@ -189,7 +189,7 @@
   background-image: none;
 }
 replyindicator {
-  background-color: #4a90d9;
+  background-color: @theme_selected_bg_color;
 }
 
 .profile-button {
@@ -207,7 +207,7 @@ replyindicator {
   background-image: none;
   background-color: transparent;
   color: inherit;
-  border-bottom: 2px solid #4a90d9;
+  border-bottom: 2px solid @theme_selected_bg_color;
 }
 
 .profile-button:hover {

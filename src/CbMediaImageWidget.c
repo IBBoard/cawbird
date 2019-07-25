@@ -112,12 +112,12 @@ cb_media_image_widget_new (CbMedia *media)
   img_width  = cairo_image_surface_get_width (media->surface);
   img_height = cairo_image_surface_get_height (media->surface);
 
-  win_width = 800;
-  win_height = 600;
+  win_width = gdk_screen_get_width (gdk_screen_get_default ()) * 0.95;
+  win_height = gdk_screen_get_height (gdk_screen_get_default ()) * 0.95;
 
   /* TODO: Replace the GdkScreen usage here */
 
-  if (img_width <= gdk_screen_get_width (gdk_screen_get_default ()) * 0.9)
+  if (img_width <= win_width)
     {
       win_width = img_width;
       g_object_set (self,
@@ -125,7 +125,7 @@ cb_media_image_widget_new (CbMedia *media)
                     NULL);
     }
 
-  if (img_height <= gdk_screen_get_height (gdk_screen_get_default ()) * 0.9)
+  if (img_height <= win_height)
     {
       win_height = img_height;
       g_object_set (self,
