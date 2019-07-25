@@ -675,9 +675,8 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
         this.main_window.main_widget.remove_current_page ();
       }
     } else if (type == Cb.StreamMessageType.EVENT_FAVORITE) {
-      int64 id = root.get_object ().get_object_member ("target_object").get_int_member ("id");
-      int64 source_id = root.get_object ().get_object_member ("source").get_int_member ("id");
-      if (source_id == account.id && id == this.tweet_id) {
+      int64 id = root.get_object ().get_int_member ("id");
+      if (id == this.tweet_id) {
         this.values_set = false;
         this.favorite_button.active = true;
         this.tweet.favorite_count ++;

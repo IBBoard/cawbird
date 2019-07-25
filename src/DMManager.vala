@@ -58,6 +58,14 @@ public class DMManager : GLib.Object {
     return this.threads_model.has_thread (user_id);
   }
 
+  public bool has_dm (int64 dm_id) {
+    int64 id = account.db.select ("dms")
+                          .cols ("id")
+                          .where_eqi ("id", dm_id)
+                          .once_i64 ();
+    return id == dm_id;
+  }
+
   public int reset_unread_count (int64 user_id) {
     if (!threads_model.has_thread (user_id)) {
       debug ("No thread found for user id %s", user_id.to_string ());
@@ -81,89 +89,27 @@ public class DMManager : GLib.Object {
   }
 
   public async void load_newest_dms () {
-    var collect_obj = new Collect (2);
-    collect_obj.finished.connect (() => {
-      load_newest_dms.callback ();
-    });
-
-    int64 max_received_id = account.db.select ("dms").cols ("id")
-                               .where_eqi ("to_id", account.id)
-                               .order ("id DESC").limit (1).once_i64 ();
-    int64 max_sent_id = account.db.select ("dms").cols ("id")
-                               .where_eqi ("from_id", account.id)
-                               .order ("id DESC").limit (1).once_i64 ();
-
-
-    var call = account.proxy.new_call ();
-    call.set_function ("1.1/direct_messages.json");
-    call.set_method ("GET");
-    call.add_param ("skip_status", "true");
-    call.add_param ("since_id", max_received_id.to_string ());
-    call.add_param ("count", "200");
-    call.add_param ("full_text", "true");
-    Cb.Utils.load_threaded_async.begin (call, null, (obj, res) => {
-      try {
-        Json.Node? root = Cb.Utils.load_threaded_async.end (res);
-        on_dm_result (root, true);
-      } catch (GLib.Error e) {
-        warning (e.message);
-      }
-      collect_obj.emit ();
-    });
-
-    var sent_call = account.proxy.new_call ();
-    sent_call.set_function ("1.1/direct_messages/sent.json");
-    sent_call.add_param ("skip_status", "true");
-    sent_call.add_param ("since_id", max_sent_id.to_string ());
-    sent_call.add_param ("count", "200");
-    sent_call.add_param ("full_text", "true");
-    sent_call.set_method ("GET");
-    Cb.Utils.load_threaded_async.begin (sent_call, null, (obj, res) => {
-      try {
-        Json.Node? root = Cb.Utils.load_threaded_async.end (res);
-        on_dm_result (root, false);
-      } catch (GLib.Error e) {
-        warning (e.message);
-      }
-      collect_obj.emit ();
-    });
-
-    yield;
-  }
-
-  private void on_dm_result (Json.Node? root, bool received) {
-    var root_arr = root.get_array ();
-    debug ("sent: %u", root_arr.get_length ());
-    if (root_arr.get_length () > 0) {
-      account.db.begin_transaction ();
-      root_arr.foreach_element ((arr, pos, node) => {
-        var dm_obj = node.get_object ();
-        if (dm_obj.get_int_member ("sender_id") == account.id) {
-          if (received) {
-            update_thread (dm_obj, true);
-          } else if (dm_obj.get_int_member ("recipient_id") != account.id) {
-            save_message (dm_obj, true);
-          }
-        } else {
-          update_thread (dm_obj, true);
-        }
-      });
-      account.db.end_transaction ();
-    }
   }
 
   public void insert_message (Json.Object dm_obj) {
-    update_thread (dm_obj, false);
+    update_thread (dm_obj);
   }
 
-  private void update_thread (Json.Object dm_obj, bool initial) {
-    int64 recipient_id = dm_obj.get_int_member ("recipient_id");
-    int64 sender_id  = dm_obj.get_int_member ("sender_id");
-    int64 message_id = dm_obj.get_int_member ("id");
+  private async void update_thread (Json.Object dm_obj) {
+    Json.Object dm_msg = dm_obj.get_object_member ("message_create");
+    int64 message_id = int64.parse(dm_obj.get_string_member ("id"));
 
-    string source_text = dm_obj.get_string_member ("text");
+    if (has_dm (message_id)) {
+      // The API now returns all recent DMs, and we can't say "since", so we have to
+      // check whether the ID exists each time
+      return;
+    }
 
-    var urls = dm_obj.get_object_member ("entities").get_array_member ("urls");
+    int64 recipient_id = int64.parse(dm_msg.get_object_member ("target").get_string_member ("recipient_id"));
+    int64 sender_id  = int64.parse(dm_msg.get_string_member ("sender_id"));
+    Json.Object dm_msg_data = dm_msg.get_object_member ("message_data");
+    string source_text = dm_msg_data.get_string_member ("text");
+    var urls = dm_msg_data.get_object_member ("entities").get_array_member ("urls");
     var url_list = new Cb.TextEntity[urls.get_length ()];
     urls.foreach_element((arr, index, node) => {
       var url = node.get_object();
@@ -183,6 +129,12 @@ public class DMManager : GLib.Object {
                                          url_list,
                                          Cb.TransformFlags.EXPAND_LINKS,
                                          0, 0);
+
+    string? sender_user_name = yield Twitter.get ().get_user_name (account, sender_id);
+    string? sender_screen_name = yield Twitter.get ().get_screen_name (account, sender_id);
+    string? recipient_user_name = yield Twitter.get ().get_user_name (account, recipient_id);
+    string? recipient_screen_name = yield Twitter.get ().get_screen_name (account, recipient_id);
+
     int64 thread_user_id = 0;
     string? thread_screen_name = null;
     string? thread_user_name = null;
@@ -192,14 +144,12 @@ public class DMManager : GLib.Object {
        User  -> User */
     if (sender_id == account.id) {
       thread_user_id = recipient_id;
-      thread_screen_name = dm_obj.get_string_member ("recipient_screen_name");
-      thread_user_name = dm_obj.get_object_member ("recipient").get_string_member ("name")
-                                                               .strip ().replace ("&", "&amp;");
+      thread_user_name = recipient_user_name;
+      thread_screen_name = recipient_screen_name;
     } else {
       thread_user_id = sender_id;
-      thread_screen_name = dm_obj.get_string_member ("sender_screen_name");
-      thread_user_name = dm_obj.get_object_member ("sender").get_string_member ("name")
-                                                               .strip ().replace ("&", "&amp;");
+      thread_user_name = sender_user_name;
+      thread_screen_name = sender_screen_name;
     }
 
     if (!threads_model.has_thread (thread_user_id)) {
@@ -232,62 +182,24 @@ public class DMManager : GLib.Object {
 
     account.user_counter.user_seen (thread_user_id, thread_screen_name, thread_user_name);
 
-    /* This will exctract the json data again, etc. but it's still easier than
-     * replacing entities here... */
-    save_message (dm_obj, initial);
-  }
-
-
-  private void save_message (Json.Object dm_obj, bool initial) {
-    Json.Object sender = dm_obj.get_object_member ("sender");
-    Json.Object recipient = dm_obj.get_object_member ("recipient");
-    int64 sender_id = dm_obj.get_int_member ("sender_id");
-    int64 dm_id  = dm_obj.get_int_member ("id");
-    string text = dm_obj.get_string_member ("text");
-
-    if (dm_obj.has_member ("entities")) {
-      var urls = dm_obj.get_object_member ("entities").get_array_member ("urls");
-      var url_list = new Cb.TextEntity[urls.get_length ()];
-      urls.foreach_element((arr, index, node) => {
-        var url = node.get_object();
-        string expanded_url = url.get_string_member("expanded_url");
-
-        Json.Array indices = url.get_array_member ("indices");
-        url_list[index] = Cb.TextEntity() {
-          from = (uint)indices.get_int_element (0),
-          to   = (uint)indices.get_int_element (1) ,
-          target = expanded_url.replace ("&", "&amp;"),
-          tooltip_text = expanded_url,
-          display_text = url.get_string_member ("display_url")
-        };
-      });
-      text = Cb.TextTransform.text (text,
-                                    url_list,
-                                    0,
-                                    0,
-                                    0);
-    }
-
-    account.db.insert ("dms").vali64 ("id", dm_id)
+    account.db.insert ("dms").vali64 ("id", message_id)
               .vali64 ("from_id", sender_id)
-              .vali64 ("to_id", dm_obj.get_int_member ("recipient_id"))
-              .val ("from_screen_name", dm_obj.get_string_member ("sender_screen_name"))
-              .val ("to_screen_name", dm_obj.get_string_member ("recipient_screen_name"))
-              .val ("from_name", sender.get_string_member ("name"))
-              .val ("to_name", recipient.get_string_member ("name"))
-              .vali64 ("timestamp", Cb.Utils.parse_date (dm_obj.get_string_member ("created_at")).to_unix ())
+              .vali64 ("to_id", recipient_id)
+              .val ("from_screen_name", sender_screen_name)
+              .val ("to_screen_name", recipient_screen_name)
+              .val ("from_name", sender_user_name)
+              .val ("to_name", recipient_user_name)
+              // Note: We now get time stamps in milliseconds from the API!
+              .vali64 ("timestamp", int64.parse(dm_obj.get_string_member ("created_timestamp")) / 1000)
               .val ("text", text)
               .run ();
-
-    /* We do NOT update last_message of the maybe-existing thread here, since
-       we are already doing that for received messages and don't need to do it
-       for sent ones. */
 
     /* Update unread count for the thread */
     if (sender_id != account.id && threads_model.has_thread (sender_id)) {
       DMThread thread = threads_model.get_thread (sender_id);
       threads_model.increase_unread_count (sender_id);
-      this.message_received (thread, text, initial);
+      //TODO: Check whether the third parameter matters here
+      this.message_received (thread, text, false);
       this.thread_changed (thread);
     }
   }

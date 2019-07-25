@@ -26,6 +26,7 @@ namespace Cb {
     DIRECT_MESSAGE,
 
     TWEET,
+    MENTION,
     EVENT_LIST_CREATED,
     EVENT_LIST_DESTROYED,
     EVENT_LIST_UPDATED,
@@ -42,7 +43,11 @@ namespace Cb {
     EVENT_MUTE,
     EVENT_UNMUTE,
     EVENT_USER_UPDATE,
-    EVENT_QUOTED_TWEET
+    EVENT_QUOTED_TWEET,
+
+    TIMELINE_LOADED,
+    MENTIONS_LOADED,
+    FAVORITES_LOADED
   }
 
   [CCode (cprefix = "CbMedia_", lower_case_cprefix = "cb_media_", cheader_filename = "CbMedia.h")]
@@ -395,7 +400,7 @@ namespace Cb {
   public class ComposeJob : GLib.Object {
     public signal void image_upload_progress (string a, double d);
     public signal void image_upload_finished (string a, string? b);
-    public ComposeJob (Rest.Proxy proxy, Rest.Proxy proxy2, GLib.Cancellable cancellable);
+    public ComposeJob (Cb.UserStream user_stream, Rest.Proxy proxy, Rest.Proxy proxy2, GLib.Cancellable cancellable);
     public void set_reply_id (int64 id);
     public void set_quoted_tweet (Cb.Tweet t);
     public void set_text (string s);

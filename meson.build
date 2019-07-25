@@ -77,6 +77,7 @@ corebird_lib_sources = files([
   'src/MainWindow.vala',
   'src/MentionsTimeline.vala',
   'src/NotificationManager.vala',
+  'src/OAuthProxyCallWithBody.vala',
   'src/ProfilePage.vala',
   'src/SearchPage.vala',
   'src/Settings.vala',

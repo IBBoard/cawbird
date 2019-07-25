@@ -29,21 +29,22 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
   }
 
   private void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
-    if (type == Cb.StreamMessageType.TWEET) {
+    if (type == Cb.StreamMessageType.MENTION) {
       add_tweet (root);
+    } else if (type == Cb.StreamMessageType.MENTIONS_LOADED) {
+      this.preload_is_complete = true;
     } else if (type == Cb.StreamMessageType.DELETE) {
       int64 id = root.get_object ().get_object_member ("delete")
                      .get_object_member ("status").get_int_member ("id");
       delete_tweet (id);
     } else if (type == Cb.StreamMessageType.EVENT_FAVORITE) {
-      int64 id = root.get_object ().get_object_member ("target_object").get_int_member ("id");
+      int64 id = root.get_object ().get_int_member ("id");
       toggle_favorite (id, true);
     } else if (type == Cb.StreamMessageType.EVENT_UNFAVORITE) {
       int64 id = root.get_object ().get_object_member ("target_object").get_int_member ("id");
       toggle_favorite (id, false);
     }
   }
-
 
   private void add_tweet (Json.Node root_node) {
     /* Mark tweets as seen the user has already replied to */
@@ -55,9 +56,7 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
       return;
     }
 
-
-
-    if (root.get_string_member ("text").contains ("@" + account.screen_name)) {
+    if (root.get_string_member ("full_text").contains ("@" + account.screen_name)) {
       GLib.DateTime now = new GLib.DateTime.now_local ();
       var t = new Cb.Tweet ();
       t.load_from_json (root_node, account.id, now);
@@ -74,14 +73,16 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
         return;
 
       this.balance_next_upper_change (TOP);
-      t.set_seen (false);
+      if (preload_is_complete)
+        t.set_seen (false);
       tweet_list.model.add (t);
 
 
       base.scroll_up (t);
-      this.unread_count ++;
+      if (preload_is_complete)
+        this.unread_count ++;
 
-      if (Settings.notify_new_mentions ()) {
+      if (preload_is_complete && Settings.notify_new_mentions ()) {
         string text;
         if (t.retweeted_tweet != null)
           text = Utils.unescape_html (t.retweeted_tweet.text);

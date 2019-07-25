@@ -213,15 +213,22 @@ insert_sorted (CbTweetModel *self,
       /* This case should be relatively rare in real life since
        * we only ever add tweets at the top or bottom of a list */
       int i;
+      CbTweet *next = g_ptr_array_index (self->tweets, 0);
 
-      for (i = 0; i < self->tweets->len - 1; i ++)
+      for (i = 1; i < self->tweets->len; i ++)
         {
-          CbTweet *cur = g_ptr_array_index (self->tweets, i);
-          CbTweet *next = g_ptr_array_index (self->tweets, i + 1);
+          CbTweet *cur = next;
+          next = g_ptr_array_index (self->tweets, i);
 
-          if (cur->id >= tweet->id && next->id <= tweet->id)
+          if (cur->id > tweet->id && next->id < tweet->id)
             {
-              insert_pos = i + 1;
+              insert_pos = i;
+              break;
+            }
+          else if (cur->id == tweet->id)
+            {
+              // We found a duplicate! Could be caused by injecting the user's own tweet,
+              // so ignore it
               break;
             }
         }

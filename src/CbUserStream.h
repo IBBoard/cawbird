@@ -32,15 +32,29 @@ struct _CbUserStream
 {
   GObject parent_instance;
 
-  GString *data;
   GPtrArray *receivers;
   RestProxy *proxy;
-  RestProxyCall *proxy_call;
   GNetworkMonitor *network_monitor;
 
   guint network_timeout_id;
   guint heartbeat_timeout_id;
   guint network_changed_id;
+
+  gint64 last_home_id;
+  guint timeline_timeout;
+  GCancellable *home_cancellable;
+
+  gint64 last_mentions_id;
+  guint mentions_timeout;
+  GCancellable *mentions_cancellable;
+
+  gint64 last_favourited_id;
+  guint favourited_timeout;
+  GCancellable *favourited_cancellable;
+
+  gint64 last_dm_id;
+  guint dm_timeout;
+  GCancellable *dm_cancellable;
 
   char *account_name;
 
@@ -66,6 +80,9 @@ void           cb_user_stream_start          (CbUserStream *self);
 void           cb_user_stream_stop           (CbUserStream *self);
 void           cb_user_stream_push_data      (CbUserStream *self,
                                               const char   *data);
+void           cb_user_stream_inject_tweet   (CbUserStream *self,
+                                            CbStreamMessageType  message_type,
+                                            const gchar *content)
 
 G_END_DECLS;
 
