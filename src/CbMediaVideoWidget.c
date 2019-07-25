@@ -358,11 +358,11 @@ cb_media_video_widget_new (CbMedia *media)
   monitor_width = gdk_screen_get_width (gdk_screen_get_default ());
   monitor_height = gdk_screen_get_height (gdk_screen_get_default ());
 
-  if (width > monitor_width * 0.9)
-    scale_x = (monitor_width * 0.9) / width;
+  if (width > monitor_width * 0.95)
+    scale_x = (monitor_width * 0.95) / width;
 
-  if (height > monitor_height * 0.9)
-    scale_y = (monitor_height * 0.9) / height;
+  if (height > monitor_height * 0.95)
+    scale_y = (monitor_height * 0.95) / height;
 
   scale = MIN (scale_x, scale_y);
 
