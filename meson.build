@@ -8,6 +8,9 @@ gnome = import('gnome')
 srcdir = include_directories('src')
 restdir = include_directories('src/rest/')
 
+# This is apparently bad practice, but it solves our "undefined reference to symbol 'floor@@GLIBC_2.2.5'" build problem
+cc = meson.get_compiler('c')
+libm = cc.find_library('m', required : false)
 
 min_glib_version = '2.44'
 
@@ -22,7 +25,8 @@ cb_deps = [
   gtk_dep,
   json_dep,
   sql_dep,
-  soup_dep
+  soup_dep,
+  libm
 ]
 
 # Options
@@ -114,6 +118,7 @@ corebird_lib_sources = files([
   'src/widgets/AvatarBannerWidget.vala',
   'src/widgets/AvatarWidget.vala',
   'src/widgets/BadgeRadioButton.vala',
+  'src/widgets/ChildSizedScroller.vala',
   'src/widgets/CompletionTextView.vala',
   'src/widgets/ComposeImageManager.vala',
   'src/widgets/CropWidget.vala',
