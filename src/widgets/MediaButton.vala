@@ -180,10 +180,10 @@ private class MediaButton : Gtk.Widget {
     scale = this.get_allocated_width () / (double) this._media.width;
 
     if (scale > 1) {
-      height = int.min (this._media.height, (int) Math.floor ((this.get_allocated_width () / 4.0) * 3));
+      height = int.min (this._media.height, (int) Math.floor ((this.get_allocated_width () / 9.0) * 16));
       scale = 1;
     } else {
-      height = (int) Math.floor (double.min (this._media.height * scale, (this._media.width * scale / 4.0) * 3));
+      height = (int) Math.floor (double.min (this._media.height * scale, (this._media.width * scale / 9.0) * 16));
     }
   }
 
@@ -353,9 +353,9 @@ private class MediaButton : Gtk.Widget {
     if (restrict_height) {
       height = int.min (media_height, MAX_HEIGHT);
     } else if (scale > 1) {
-      height = int.min (media_height, (int) Math.floor ((width / 4.0) * 3));
+      height = int.min (media_height, (int) Math.floor ((width / 9.0) * 16));
     } else {
-      height = (int) Math.floor (double.min (media_height * scale, (media_width * scale / 4.0) * 3));
+      height = (int) Math.floor (double.min (media_height * scale, (media_width * scale / 9.0) * 16));
     }
 
     minimum = natural = height;
@@ -375,7 +375,7 @@ private class MediaButton : Gtk.Widget {
       media_height = this._media.height;
     }
 
-    int max_width = (int) Math.floor ((height / 3.0) * 4);
+    int max_width = (int) Math.floor ((height / 16.0) * 9);
     int width = int.min (media_width, max_width);
     minimum = int.min (media_width, MIN_WIDTH);
     natural = width;
