@@ -518,7 +518,14 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     favorite_button.active = tweet.is_flag_set (Cb.TweetState.FAVORITED);
     avatar_image.verified  = tweet.is_flag_set (Cb.TweetState.VERIFIED);
 
-    set_source_link (tweet.id, tweet.get_screen_name ());
+    // Linking to a RT in New Twitter gives you a "RT …" page with no apparent way to get
+    // to the original tweet, therefore we need to link to the RTed tweet to be useful.
+    // Also, this used to mix the RT ID with the RTed username, which was wrong.
+    if (tweet.retweeted_tweet != null) {
+      set_source_link (tweet.retweeted_tweet.id, tweet.retweeted_tweet.author.screen_name);
+    } else {
+      set_source_link (tweet.source_tweet.id, tweet.source_tweet.author.screen_name);
+    }
 
     if ((tweet.retweeted_tweet != null &&
          tweet.retweeted_tweet.reply_id != 0) ||
