@@ -27,6 +27,7 @@ typedef struct {
   gsize start_character_index;
   gsize length_in_bytes;
   gsize length_in_characters;
+  gsize length_in_weighted_characters;
 } Token;
 
 #ifdef LIBTL_DEBUG
@@ -180,7 +181,8 @@ emplace_token (GArray     *array,
                const char *token_start,
                gsize       token_length,
                gsize       start_character_index,
-               gsize       length_in_characters)
+               gsize       length_in_characters,
+               gsize       length_in_weighted_characters)
 {
   Token *t;
 
@@ -192,6 +194,7 @@ emplace_token (GArray     *array,
   t->length_in_bytes = token_length;
   t->start_character_index = start_character_index;
   t->length_in_characters = length_in_characters;
+  t->length_in_weighted_characters = length_in_weighted_characters;
 }
 
 static inline void
@@ -211,11 +214,13 @@ emplace_entity_for_tokens (GArray      *array,
   e->start = tokens[start_token_index].start;
   e->length_in_bytes = 0;
   e->length_in_characters = 0;
+  e->length_in_weighted_characters = 0;
   e->start_character_index = tokens[start_token_index].start_character_index;
 
   for (i = start_token_index; i <= end_token_index; i ++) {
     e->length_in_bytes += tokens[i].length_in_bytes;
     e->length_in_characters += tokens[i].length_in_characters;
+    e->length_in_weighted_characters += tokens[i].length_in_weighted_characters;
   }
 }
 
@@ -339,6 +344,25 @@ entity_length_in_characters (const TlEntity *e)
   }
 }
 
+static gsize
+weighted_length_for_character (gunichar ch)
+{
+  // Based on https://developer.twitter.com/en/docs/developer-utilities/twitter-text
+  // then the following ranges count as "1", everything else is "2":
+  //   * 0 - 4351 (Latin through to Georgian)
+  //   * 8192 - 8205 (Unicode spaces)
+  //   * 8208 - 8223 (Unicode hyphens and smart quotes)
+  //   * 8242 - 8247 (Prime marks)
+  if ((ch >= 0    && ch <= 4351) ||
+      (ch >= 8192 && ch <= 8205) ||
+      (ch >= 8208 && ch <= 8223) ||
+      (ch >= 8424 && ch <= 8247)) {
+    return 1;
+  } else {
+    return 2;
+  }
+}
+
 /*
  * tokenize:
  *
@@ -357,19 +381,21 @@ tokenize (const char *input,
     gunichar cur_char = g_utf8_get_char (p);
     gsize cur_length = 0;
     gsize length_in_chars = 0;
+    gsize length_in_weighted_chars = 0;
     guint last_token_type = 0;
 
     /* If this char already splits, it's a one-char token */
     if (char_splits (cur_char)) {
       const char *old_p = p;
       p = g_utf8_next_char (p);
-      emplace_token (tokens, cur_start, p - old_p, cur_character_index, 1);
+      emplace_token (tokens, cur_start, p - old_p, cur_character_index, 1, weighted_length_for_character (cur_char));
       cur_character_index ++;
       continue;
     }
 
     last_token_type = token_type_from_char (cur_char);
     do {
+      length_in_weighted_chars += weighted_length_for_character (cur_char);
       const char *old_p = p;
       p = g_utf8_next_char (p);
       cur_char = g_utf8_get_char (p);
@@ -382,7 +408,7 @@ tokenize (const char *input,
     } while (!char_splits (cur_char) &&
              p - input < (long)length_in_bytes);
 
-    emplace_token (tokens, cur_start, cur_length, cur_character_index, length_in_chars);
+    emplace_token (tokens, cur_start, cur_length, cur_character_index, length_in_chars, length_in_weighted_chars);
 
     cur_character_index += length_in_chars;
   }
@@ -877,6 +903,85 @@ tl_count_characters_n (const char *input,
   entities = parse (token_array, n_tokens, FALSE, NULL);
 
   length = count_entities_in_characters (entities);
+  g_array_free (entities, TRUE);
+  g_free ((char *)token_array);
+
+  return length;
+}
+
+static inline gsize
+entity_length_in_weighted_characters (const TlEntity *e)
+{
+  switch (e->type) {
+    case TL_ENT_LINK:
+      return LINK_LENGTH;
+
+    default:
+      return e->length_in_weighted_characters;
+  }
+}
+
+static gsize
+count_entities_in_weighted_characters (GArray *entities)
+{
+  guint i;
+  gsize sum = 0;
+
+  for (i = 0; i < entities->len; i ++) {
+    const TlEntity *e = &g_array_index (entities, TlEntity, i);
+
+    sum += entity_length_in_weighted_characters (e);
+  }
+
+  return sum;
+}
+
+/*
+ * tl_count_weighted_chararacters:
+ * input: (nullable): NUL-terminated tweet text
+ *
+ * Returns: The length of @input, in Twitter's weighted characters.
+ */
+gsize
+tl_count_weighted_characters (const char *input)
+{
+  if (input == NULL || input[0] == '\0') {
+    return 0;
+  }
+
+  return tl_count_weighted_characters_n (input, strlen (input));
+}
+
+/*
+ * tl_count_weighted_characters_n:
+ * input: (nullable): Text to measure
+ * length_in_bytes: Length of @input, in bytes.
+ *
+ * Returns: The length of @input, in characters.
+ */
+gsize
+tl_count_weighted_characters_n (const char *input,
+                       gsize       length_in_bytes)
+{
+  GArray *tokens;
+  const Token *token_array;
+  gsize n_tokens;
+  GArray *entities;
+  gsize length;
+
+  if (input == NULL || input[0] == '\0') {
+    return 0;
+  }
+
+  // From here on, input/length_in_bytes are trusted to be OK
+  tokens = tokenize (input, length_in_bytes);
+
+  n_tokens = tokens->len;
+  token_array = (const Token *)g_array_free (tokens, FALSE);
+
+  entities = parse (token_array, n_tokens, FALSE, NULL);
+
+  length = count_entities_in_weighted_characters (entities);
   g_array_free (entities, TRUE);
   g_free ((char *)token_array);
 
