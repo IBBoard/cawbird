@@ -76,6 +76,7 @@ libcorebird_la_VALASOURCES = \
 	widgets/CompletionTextView.vala \
 	widgets/LazyMenuButton.vala \
 	widgets/ImpostorWidget.vala \
+	widgets/ChildSizedScroller.vala \
 	widgets/FollowButton.vala \
 	widgets/MediaButton.vala \
 	widgets/ComposeImageManager.vala \
