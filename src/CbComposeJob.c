@@ -463,7 +463,31 @@ cb_compose_job_send_async (CbComposeJob        *self,
 
       g_assert (self->reply_id == 0);
 
-      rest_proxy_call_take_param (call, "attachment_url", quoted_url);
+      guint i;
+      guint upload_count = 0;
+
+      for (i = 0; i < MAX_UPLOADS; i++)
+        {
+          const ImageUpload *upload = &self->image_uploads[i];
+
+          if (upload->filename == NULL)
+            {
+              break;
+            }
+
+          upload_count ++;
+        }
+
+      if (upload_count == 0)
+        {
+          rest_proxy_call_take_param (call, "attachment_url", quoted_url);
+        }
+      else
+        {
+          char *new_text = g_strconcat (self->text, " ", quoted_url, (char *)0);
+          g_free(self->text);
+          self->text = new_text;
+        }
     }
 
   rest_proxy_call_take_param (call, "status", g_steal_pointer (&self->text));

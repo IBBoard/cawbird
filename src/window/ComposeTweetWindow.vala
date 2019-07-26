@@ -137,8 +137,6 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     if (mode == Mode.QUOTE) {
       assert (reply_to != null);
       this.title_label.label = _("Quote tweet");
-      add_image_button.sensitive = false;
-      fav_image_button.sensitive = false;
     }
 
     /* Let the text view immediately grab the keyboard focus */
@@ -212,6 +210,8 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     string text = tweet_text.buffer.get_text (start, end, true);
 
     int length = (int)Tl.count_characters (text);
+    if (compose_image_manager.n_images > 0 && mode == Mode.QUOTE)
+      length += 1 + Twitter.short_url_length;
     length_label.label = (Cb.Tweet.MAX_LENGTH - length).to_string ();
 
     if (length > 0 && length <= Cb.Tweet.MAX_LENGTH ||
