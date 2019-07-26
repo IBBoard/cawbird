@@ -31,6 +31,8 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   [GtkChild]
   private AvatarWidget avatar_image;
   [GtkChild]
+  private ChildSizedScroller scroller;
+  [GtkChild]
   private Gtk.Label text_label;
   [GtkChild]
   private Gtk.Label rt_label;
@@ -204,6 +206,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       mm_widget.window = main_window;
 
       if (text_label.label.length == 0 && tweet.quoted_tweet == null) {
+        scroller.visible = false;
         if (this.media_stack == null)
           this.grid.child_set (mm_widget, "top-attach", 2);
         else

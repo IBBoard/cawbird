@@ -55,6 +55,10 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
   private Gtk.Box main_box;
   [GtkChild]
   private MultiMediaWidget mm_widget;
+  // If we don't have the scroller property then the app crashes,
+  // but if we do then we get an "unused" compiler warning!
+  [GtkChild]
+  private ChildSizedScroller scroller;
   [GtkChild]
   private Gtk.Label text_label;
   [GtkChild]
