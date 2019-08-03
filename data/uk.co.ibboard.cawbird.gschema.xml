@@ -1,0 +1,118 @@
+<schemalist>
+  <enum id="uk.co.ibboard.cawbird.tweet-stack">
+    <value nick="Never"    value="0"  />
+    <value nick="Every"    value="1"  />
+    <value nick="Stack 5"  value="5"  />
+    <value nick="Stack 10" value="10" />
+    <value nick="Stack 25" value="25" />
+    <value nick="Stack 50" value="50" />
+  </enum>
+
+  <enum id="uk.co.ibboard.cawbird.media-visibility">
+    <value nick="Show" value="1" />
+    <value nick="Hide" value="2" />
+    <value nick="Hide in Timeline" value="3" />
+
+  </enum>
+
+  <schema id="uk.co.ibboard.cawbird"
+      path="/uk.co.ibboard.cawbird/"
+      gettext-domain="cawbird">
+
+    <key name="use-dark-theme" type="b">
+      <default>false</default>
+      <summary>Specifies if Cawbird should request to use the dark variant of the gtk theme</summary>
+      <description></description>
+    </key>
+
+    <key name="new-tweets-notify" enum="uk.co.ibboard.cawbird.tweet-stack">
+      <default>"Never"</default>
+      <summary>If/when the user should be notified about new tweets</summary>
+      <description>
+      </description>
+    </key>
+    <key name="new-mentions-notify" type="b">
+      <default>true</default>
+      <summary>Whether the user should be notified when another user mentions them in a tweet</summary>
+      <description></description>
+    </key>
+    <key name="new-dms-notify" type="b">
+      <default>true</default>
+      <summary>Whether the user should be notified when another user writes them a direct message</summary>
+      <description></description>
+    </key>
+    <key name="startup-accounts" type="as">
+      <default>[""]</default>
+      <summary>List of accounts which will be opened when Cawbird is started.</summary>
+      <description></description>
+    </key>
+    <key name="auto-scroll-on-new-tweets" type="b">
+      <default>false</default>
+    </key>
+    <key name="max-media-size" type="d">
+      <default>2.0</default>
+      <summary>Maximum size of inline media to download, in Megabytes.</summary>
+    </key>
+    <key name="sidebar-visible" type="b">
+      <default>true</default>
+      <summary>Whether to show the topbar or not</summary>
+    </key>
+    <key name="accel-compose-tweet" type="s">
+      <default>"&lt;Control&gt;T"</default>
+      <summary>The accelerator to press in order to bring the ComposeTweetWindow up.
+               Must be parseable with gtk_accelerator_parse
+      </summary>
+    </key>
+    <key name="accel-toggle-sidebar" type="s">
+      <default>"&lt;Control&gt;&lt;Shift&gt;S"</default>
+      <summary>Accelerator to press in order to show/hide the sidebar</summary>
+    </key>
+    <key name="accel-show-settings" type="s">
+      <default>"&lt;Control&gt;&lt;Shift&gt;P"</default>
+      <summary>Accelerator to show the settings window</summary>
+    </key>
+    <key name="accel-show-account-dialog" type="s">
+      <default>"&lt;Control&gt;P"</default>
+      <summary>Accelerator to show the account dialog</summary>
+    </key>
+    <key name="accel-show-account-list" type="s">
+      <default>"&lt;Control&gt;K"</default>
+      <summary>Accelerator to show the account list (popover)</summary>
+    </key>
+    <key name="window-geometry" type="a{s(iiii)}">
+      <default>{}</default>
+      <summary></summary>
+    </key>
+    <key name="settings-geometry" type="(iiii)">
+      <default>(0,0,500,300)</default>
+      <summary>Size and position of the settings dialog</summary>
+    </key>
+    <key type="s" name="consumer-key">
+      <default>"Vf9torDW2ZOw32DfhUtI9csL8"</default>
+      <summary>The application's oauth consumer key.</summary>
+    </key>
+    <key type="s" name="consumer-secret">
+      <default>"18BEr1mdDH46cJhw5mUMwHe2TiBExOopEDxFbPzfJrlnFuvZJ2"</default>
+      <summary>The application's oauth consumer secret</summary>
+    </key>
+    <key type="b" name="round-avatars">
+      <default>false</default>
+    </key>
+    <key type="b" name="double-click-activation">
+      <default>false</default>
+      <summary>Whether or not to use double-click activation in tweet timelines</summary>
+    </key>
+    <key type="u" name="text-transform-flags">
+      <default>1</default>
+      <summary>Bitfield for text transformations</summary>
+    </key>
+    <key type="b" name="hide-nsfw-content">
+      <default>true</default>
+      <summary>Whether to hide images marked as inappropriate by default or not</summary>
+    </key>
+    <key name="media-visibility" enum="uk.co.ibboard.cawbird.media-visibility">
+      <default>"Show"</default>
+      <summary>When to show media attached to tweets</summary>
+    </key>
+  </schema>
+</schemalist>
