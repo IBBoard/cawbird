@@ -15,7 +15,7 @@
     <child>
       <object class="GtkImage">
         <property name="visible">1</property>
-        <property name="icon-name">corebird</property>
+        <property name="icon-name">cawbird</property>
         <property name="halign">center</property>
         <property name="margin-bottom">24</property>
         <property name="pixel-size">128</property>
@@ -44,7 +44,7 @@
             <child>
               <object class="GtkLabel">
                 <property name="visible">1</property>
-                <property name="label" translatable="yes">To authenticate Corebird, you need a PIN from twitter.com with the account you wish to add</property>
+                <property name="label" translatable="yes">To authenticate Cawbird, you need a PIN from twitter.com with the account you wish to add</property>
                 <property name="xalign">0</property>
                 <property name="max-width-chars">20</property>
                 <property name="width-chars">20</property>

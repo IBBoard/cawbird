@@ -1,21 +1,21 @@
-/*  This file is part of corebird, a Gtk+ linux Twitter client.
- *  Copyright (C) 2013 Timm Bäder
+/*  This file is part of Cawbird, a Gtk+ linux Twitter client forked from Corebird.
+ *  Copyright (C) 2013 Timm Bäder (Corebird)
  *
- *  corebird is free software: you can redistribute it and/or modify
+ *  Cawbird is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  corebird is distributed in the hope that it will be useful,
+ *  Cawbird is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with corebird.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with cawbird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-[GtkTemplate (ui = "/org/baedert/corebird/ui/account-create-widget.ui")]
+[GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/account-create-widget.ui")]
 class AccountCreateWidget : Gtk.Box {
   [GtkChild]
   private Gtk.Entry pin_entry;
@@ -30,13 +30,13 @@ class AccountCreateWidget : Gtk.Box {
   [GtkChild]
   private Gtk.Stack content_stack;
   private unowned Account acc;
-  private unowned Corebird corebird;
+  private unowned Cawbird cawbird;
   private unowned MainWindow main_window;
   public signal void result_received (bool result, Account acc);
 
-  public AccountCreateWidget (Account acc, Corebird corebird, MainWindow main_window) {
+  public AccountCreateWidget (Account acc, Cawbird cawbird, MainWindow main_window) {
     this.acc = acc;
-    this.corebird = corebird;
+    this.cawbird = cawbird;
     this.main_window = main_window;
     info_label.label = "%s <a href=\"https://twitter.com/signup\">%s</a>"
                        .printf (_("Don’t have a Twitter account yet?"), _("Create one"));
@@ -46,7 +46,7 @@ class AccountCreateWidget : Gtk.Box {
 
   public void open_pin_request_site () {
     acc.init_proxy (false, true);
-
+    
     acc.proxy.request_token_async.begin ("oauth/request_token", "oob", null, (obj, res) => {
       try {
         acc.proxy.request_token_async.end (res);
@@ -137,7 +137,7 @@ class AccountCreateWidget : Gtk.Box {
           .val ("token_secret", acc.proxy.token_secret)
           .run ();
     acc.init_proxy (true, true);
-    corebird.account_added (acc);
+    cawbird.account_added (acc);
     result_received (true, acc);
   }
 

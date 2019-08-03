@@ -98,7 +98,7 @@
             <child>
               <object class="GtkImage">
                 <property name="visible">1</property>
-                <property name="icon-name">corebird-new-window-symbolic</property>
+                <property name="icon-name">cawbird-new-window-symbolic</property>
               </object>
             </child>
           </object>
@@ -122,7 +122,7 @@
             <child>
               <object class="GtkImage">
                 <property name="visible">1</property>
-                <property name="icon-name">corebird-profile-symbolic</property>
+                <property name="icon-name">cawbird-profile-symbolic</property>
               </object>
             </child>
           </object>

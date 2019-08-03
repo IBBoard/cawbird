@@ -1,5 +1,5 @@
 /*  This file is part of libtweetlength
- *  Copyright (C) 2017 Timm Bäder
+ *  Copyright (C) 2017 Timm Bäder (Corebird)
  *
  *  libtweetlength is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by

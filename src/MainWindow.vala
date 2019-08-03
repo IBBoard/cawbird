@@ -1,18 +1,18 @@
-/*  This file is part of corebird, a Gtk+ linux Twitter client.
- *  Copyright (C) 2013 Timm Bäder
+/*  This file is part of Cawbird, a Gtk+ linux Twitter client forked from Corebird.
+ *  Copyright (C) 2013 Timm Bäder (Corebird)
  *
- *  corebird is free software: you can redistribute it and/or modify
+ *  Cawbird is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  corebird is distributed in the hope that it will be useful,
+ *  Cawbird is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with corebird.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with cawbird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 public class MainWindow : Gtk.ApplicationWindow {
@@ -64,11 +64,11 @@ public class MainWindow : Gtk.ApplicationWindow {
 
     /* Create widgets */
     this.set_show_menubar (false);
-    this.set_icon_name ("corebird");
+    this.set_icon_name ("cawbird");
     this.delete_event.connect (window_delete_cb);
 
     this.headerbar = new Gtk.HeaderBar ();
-    headerbar.set_title ("Corebird");
+    headerbar.set_title ("Cawbird");
     headerbar.set_show_close_button (true);
 
     this.title_stack = new Gtk.Stack ();
@@ -95,7 +95,7 @@ public class MainWindow : Gtk.ApplicationWindow {
     account_button.show_all ();
     header_box.add (account_button);
     this.compose_tweet_button = new Gtk.ToggleButton ();
-    compose_tweet_button.add (new Gtk.Image.from_icon_name ("corebird-compose-symbolic",
+    compose_tweet_button.add (new Gtk.Image.from_icon_name ("cawbird-compose-symbolic",
                                                             Gtk.IconSize.BUTTON));
     compose_tweet_button.set_tooltip_text (_("Compose Tweet"));
     compose_tweet_button.set_action_name ("win.compose-tweet");
@@ -149,7 +149,7 @@ public class MainWindow : Gtk.ApplicationWindow {
       account_list.add (e);
     }
 
-    ((Corebird)app).account_added.connect ((new_acc) => {
+    ((Cawbird)app).account_added.connect ((new_acc) => {
       var entries = account_list.get_children ();
       foreach (Gtk.Widget ule in entries)
         if (ule is UserListEntry &&
@@ -169,7 +169,7 @@ public class MainWindow : Gtk.ApplicationWindow {
       ule.show ();
     });
 
-    ((Corebird)app).account_removed.connect ((acc) => {
+    ((Cawbird)app).account_removed.connect ((acc) => {
       var entries = account_list.get_children ();
       foreach (Gtk.Widget ule in entries)
         if (ule is UserListEntry &&
@@ -218,7 +218,7 @@ public class MainWindow : Gtk.ApplicationWindow {
       remove (get_child ());
     }
 
-    Corebird cb = (Corebird) GLib.Application.get_default ();
+    Cawbird cb = (Cawbird) GLib.Application.get_default ();
 
     if (account != null && account.screen_name != Account.DUMMY) {
       header_box.show ();
@@ -233,7 +233,7 @@ public class MainWindow : Gtk.ApplicationWindow {
       });
 
       account.info_changed.connect (account_info_changed);
-      this.set_title ("Corebird - @%s".printf (account.screen_name));
+      this.set_title ("Cawbird - @%s".printf (account.screen_name));
 
       cb.account_window_changed (old_user_id, account.id);
 
@@ -262,8 +262,8 @@ public class MainWindow : Gtk.ApplicationWindow {
 
       this.account = acc_;
 
-      this.title_label.label = "Corebird";
-      this.set_title ("Corebird");
+      this.title_label.label = "Cawbird";
+      this.set_title ("Cawbird");
 
       Account.add_account (acc_);
       var create_widget = new AccountCreateWidget (acc_, cb, this);
@@ -294,7 +294,7 @@ public class MainWindow : Gtk.ApplicationWindow {
     }
     var e = (UserListEntry)row;
     int64 user_id = e.user_id;
-    Corebird cb = (Corebird)this.get_application ();
+    Cawbird cb = (Cawbird)this.get_application ();
 
     MainWindow? account_window = null;
     if (user_id == this.account.id ||
@@ -471,7 +471,7 @@ public class MainWindow : Gtk.ApplicationWindow {
                                      Cairo.Surface small_avatar,
                                      Cairo.Surface avatar) {
     this.set_window_title (main_widget.get_page (main_widget.cur_page_id).get_title ());
-    this.set_title ("Corebird - @%s".printf (screen_name));
+    this.set_title ("Cawbird - @%s".printf (screen_name));
   }
 
   /**

@@ -3,7 +3,7 @@ AM_CPPFLAGS = \
 	-include $(CONFIG_HEADER) \
 	-DDATADIR=\"$(datadir)\" \
 	-DPKGDATADIR=\"$(pkgdatadir)\" \
-	-DG_LOG_DOMAIN=\"corebird\" \
+	-DG_LOG_DOMAIN=\"cawbird\" \
 	-I$(top_srcdir)/src/rest/
 
 
@@ -15,24 +15,24 @@ AM_VALAFLAGS = \
 	--vapidir $(top_srcdir)/vapi \
 	--basedir $(srcdir) \
 	--directory $(builddir) \
-	--gresources $(top_srcdir)/corebird.gresource.xml \
-	-D G_LOG_DOMAIN=\"corebird\" \
+	--gresources $(top_srcdir)/cawbird.gresource.xml \
+	-D G_LOG_DOMAIN=\"cawbird\" \
 	$(top_srcdir)/vapi/config.vapi \
-	$(top_srcdir)/vapi/corebird-internal.vapi \
+	$(top_srcdir)/vapi/cawbird-internal.vapi \
 	$(top_srcdir)/vapi/rest-0.7.vapi \
 	$(top_srcdir)/vapi/libtl.vapi \
 	-C \
 	$(NULL)
 
 BUILT_SOURCES = \
-	corebird.h \
-	corebird-resources.c
+	cawbird.h \
+	cawbird-resources.c
 
-bin_PROGRAMS = corebird
-noinst_LTLIBRARIES = libcorebird.la
+bin_PROGRAMS = cawbird
+noinst_LTLIBRARIES = libcawbird.la
 
-libcorebird_la_VALASOURCES = \
-	Corebird.vala \
+libcawbird_la_VALASOURCES = \
+	Cawbird.vala \
 	MainWindow.vala \
 	MainWidget.vala \
 	Account.vala \
@@ -114,15 +114,15 @@ libcorebird_la_VALASOURCES = \
 	async/Collect.vala \
 	model/DMThreadsModel.vala
 
-nodist_libcorebird_la_SOURCES = \
-	libcorebird_la_vala.stamp \
-	$(libcorebird_la_VALASOURCES:.vala=.c)
+nodist_libcawbird_la_SOURCES = \
+	libcawbird_la_vala.stamp \
+	$(libcawbird_la_VALASOURCES:.vala=.c)
 
-corebird.h corebird.vapi: libcorebird_la_vala.stamp
-$(libcorebird_la_VALASOURCES:.vala=.c): libcorebird_la_vala.stamp
+cawbird.h cawbird.vapi: libcawbird_la_vala.stamp
+$(libcawbird_la_VALASOURCES:.vala=.c): libcawbird_la_vala.stamp
 
 
-libcorebird_la_SOURCES = \
+libcawbird_la_SOURCES = \
 	CbMedia.c \
 	CbMedia.h \
 	CbMediaDownloader.c \
@@ -195,57 +195,57 @@ libcorebird_la_SOURCES = \
 
 
 
-libcorebird_la_vala.stamp: $(libcorebird_la_VALASOURCES) Makefile
+libcawbird_la_vala.stamp: $(libcawbird_la_VALASOURCES) Makefile
 	@$(VALAC) \
 		$(AM_VALAFLAGS) $(CB_VALA_FLAGS) \
-		-H corebird.h \
-		--library corebird \
-		--vapi corebird.vapi \
+		-H cawbird.h \
+		--library cawbird \
+		--vapi cawbird.vapi \
 		$(filter %.vala %.c,$^)
 	touch $@
 
-libcorebird_la_LIBADD = $(CB_LIBS)
+libcawbird_la_LIBADD = $(CB_LIBS)
 
-corebird_VALASOURCES = \
+cawbird_VALASOURCES = \
 	main.vala
 
 
-nodist_corebird_SOURCES = \
-	corebird_vala.stamp \
-	corebird-resources.c \
-	$(corebird_VALASOURCES:.vala=.c)
+nodist_cawbird_SOURCES = \
+	cawbird_vala.stamp \
+	cawbird-resources.c \
+	$(cawbird_VALASOURCES:.vala=.c)
 
-corebird_LDADD = \
+cawbird_LDADD = \
 	$(CB_LIBS) \
-	$(builddir)/libcorebird.la
+	$(builddir)/libcawbird.la
 
-corebird_VALAFLAGS = \
+cawbird_VALAFLAGS = \
 	$(CB_VALA_FLAGS) \
-	corebird.vapi
+	cawbird.vapi
 
-$(corebird_VALASOURCES:.vala=.c): corebird_vala.stamp
+$(cawbird_VALASOURCES:.vala=.c): cawbird_vala.stamp
 
-corebird_vala.stamp: $(builddir)/libcorebird.la $(builddir)/corebird.vapi $(corebird_VALASOURCES) Makefile
+cawbird_vala.stamp: $(builddir)/libcawbird.la $(builddir)/cawbird.vapi $(cawbird_VALASOURCES) Makefile
 	@$(VALAC) \
 		$(AM_VALAFLAGS) $(CB_VALA_FLAGS) \
-		--pkg corebird \
+		--pkg cawbird \
 		$(filter %.vala %.c,$^)
 	touch $@
 
-resource_deps = $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies --sourcedir=$(top_srcdir) $(top_srcdir)/corebird.gresource.xml)
-corebird-resources.c: $(top_srcdir)/corebird.gresource.xml $(resource_deps) Makefile
-	XMLLINT=$(XMLLINT) $(GLIB_COMPILE_RESOURCES) --target $@ --generate --sourcedir=$(top_srcdir) --c-name corebird $<
+resource_deps = $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies --sourcedir=$(top_srcdir) $(top_srcdir)/cawbird.gresource.xml)
+cawbird-resources.c: $(top_srcdir)/cawbird.gresource.xml $(resource_deps) Makefile
+	XMLLINT=$(XMLLINT) $(GLIB_COMPILE_RESOURCES) --target $@ --generate --sourcedir=$(top_srcdir) --c-name cawbird $<
 
 CLEANFILES = \
-	libcorebird_la_vala.stamp \
-	corebird_vala.stamp \
-	$(libcorebird_la_VALASOURCES:.vala=.c) \
-	$(nodist_corebird_SOURCES) \
-	corebird.vapi \
-	corebird.h
+	libcawbird_la_vala.stamp \
+	cawbird_vala.stamp \
+	$(libcawbird_la_VALASOURCES:.vala=.c) \
+	$(nodist_cawbird_SOURCES) \
+	cawbird.vapi \
+	cawbird.h
 
 EXTRA_DIST = \
-	$(libcorebird_la_VALASOURCES) \
-	$(corebird_VALASOURCES) \
-	$(corebird_SOURCES) \
+	$(libcawbird_la_VALASOURCES) \
+	$(cawbird_VALASOURCES) \
+	$(cawbird_SOURCES) \
 	$(resource_deps)

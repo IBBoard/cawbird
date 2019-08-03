@@ -345,6 +345,7 @@ oauth_proxy_call_parse_token_response (OAuthProxyCall *call)
   g_free (priv->token_secret);
   priv->token = g_strdup (g_hash_table_lookup (form, "oauth_token"));
   priv->token_secret = g_strdup (g_hash_table_lookup (form, "oauth_token_secret"));
+  g_debug("Got token %s", priv->token);
   /* This header should only exist for request_token replies, but its easier just to always check it */
   priv->oauth_10a = g_hash_table_lookup (form, "oauth_callback_confirmed") != NULL;
 

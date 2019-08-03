@@ -1,9 +1,9 @@
-# Corebird 1.7.4 (Polling)
+# Cawbird 1.0
 
-**Note: Due to changes in Twitter's APIs, this polling version of Corebird does not have all of the features that it used to**
+Cawbird is a fork of the [Corebird Twitter client from Baedert](https://corebird.baedert.org/), which became unsupported after Twitter disabled the streaming API.
 
-
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=baedert&url=http://github.com/baedert/corebird&title=corebird&language=vala&tags=github&category=software) [![Supprt Corebird on Patreon](https://baedert.org/patreon-donate-yellow.svg)](https://patreon.com/baedert)
+Cawbird works with the new APIs and includes a few fixes and modifications that have historically been patched in to IBBoard's custom Corebird build on
+[his Open Build Service account](https://build.opensuse.org/project/show/home:IBBoard:desktop).
 
 ## Shortcuts
 
@@ -30,10 +30,10 @@
 
 ## Limitations
 
-Due to [changes in the Twitter API](https://developer.twitter.com/en/docs/accounts-and-users/subscribe-account-activity/migration/introduction), Corebird now has the following limitations:
+Due to [changes in the Twitter API](https://developer.twitter.com/en/docs/accounts-and-users/subscribe-account-activity/migration/introduction), Cawbird has the following limitations:
 
- * Corebird will update every two minutes
- * Corebird no longer gets notified of the following, which will be refreshed on restart:
+ * Cawbird will update every two minutes
+ * Cawbird does not get notified of the following, which will be refreshed on restart:
    * Unfavourite
    * Follow/Unfollow
    * Block/Unblock
@@ -41,11 +41,11 @@ Due to [changes in the Twitter API](https://developer.twitter.com/en/docs/accoun
    * DM deletion
    * Some list changes
 
-All limitations (except pending DM support) are limitations imposed by Twitter and are not the fault of the Corebird client.
+All limitations are limitations imposed by Twitter and are not the fault of the Cawbird client.
 
 ## Translations
 
-  Since February 2014, there's a [Corebird project on Transifex](https://www.transifex.com/projects/p/corebird)
+  Since February 2014, there has been a [Corebird project on Transifex](https://www.transifex.com/projects/p/corebird). Cawbird is currently still using those translations.
 
 ## Contributing
 
@@ -75,9 +75,8 @@ If you pass `--disable-video` to the configure script, you don't need any gstrea
 ## Compiling
 
 ```
-./autogen.sh --prefix=/usr
-make
-make install
+meson build
+ninja -C build
 ```
 
-Corebird installs its application icon into `/usr/share/icons/hicolor/`, so an appropriate call to `gtk-update-icon-cache` might be needed.
+Cawbird installs its application icon into `/usr/share/icons/hicolor/`, so an appropriate call to `gtk-update-icon-cache` might be needed.

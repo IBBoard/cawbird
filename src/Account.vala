@@ -1,18 +1,18 @@
-/*  This file is part of corebird, a Gtk+ linux Twitter client.
- *  Copyright (C) 2013 Timm Bäder
+/*  This file is part of Cawbird, a Gtk+ linux Twitter client forked from Corebird.
+ *  Copyright (C) 2013 Timm Bäder (Corebird)
  *
- *  corebird is free software: you can redistribute it and/or modify
+ *  Cawbird is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  corebird is distributed in the hope that it will be useful,
+ *  Cawbird is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with corebird.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with cawbird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 public class Account : GLib.Object {
@@ -327,7 +327,7 @@ public class Account : GLib.Object {
           critical (e.message);
         }
         this.avatar_url = url;
-        Corebird.db.update ("accounts").val ("avatar_url", url).where_eqi ("id", id).run ();
+        Cawbird.db.update ("accounts").val ("avatar_url", url).where_eqi ("id", id).run ();
         update_avatar.callback ();
       });
       yield;
@@ -348,7 +348,7 @@ public class Account : GLib.Object {
                        .val ("screen_name", screen_name)
                        .val ("name", name)
                        .run ();
-    Corebird.db.replace ("accounts").vali64 ("id", id)
+    Cawbird.db.replace ("accounts").vali64 ("id", id)
                                     .val ("screen_name", screen_name)
                                     .val ("name", name)
                                     .val ("avatar_url", avatar_url)
@@ -577,13 +577,13 @@ public class Account : GLib.Object {
   }
 
   /**
-   * Look up the accounts. Each account has a <id>.db in ~/.corebird/accounts/
+   * Look up the accounts. Each account has a <id>.db in ~/.config/cawbird/accounts/
    * The accounts are initialized with only their screen_name and their ID.
    */
   private static void lookup_accounts () {
     assert (accounts == null);
     accounts = new GLib.GenericArray<Account> ();
-    Corebird.db.select ("accounts").cols ("id", "screen_name", "name", "avatar_url").run ((vals) => {
+    Cawbird.db.select ("accounts").cols ("id", "screen_name", "name", "avatar_url").run ((vals) => {
       Account acc = new Account (int64.parse(vals[0]), vals[1], vals[2]);
       acc.avatar_url = vals[3];
       acc.load_avatar ();

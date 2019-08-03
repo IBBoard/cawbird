@@ -3080,18 +3080,18 @@ const string REPLY = """
   "user" : {
     "id" : 2877682863,
     "id_str" : "2877682863",
-    "name" : "Corebird",
-    "screen_name" : "corebirdclient",
+    "name" : "Cawbird",
+    "screen_name" : "cawbirdclient",
     "location" : "",
-    "description" : "If there's no bug report for it, it doesn't exist.\n\nThis account is run by a highly-paid intern, not @baedert himself.\n\nStill not CoreBird. Or @Corebird.",
+    "description" : "If there's no bug report for it, it doesn't exist.\n\nThis account is run by a highly-paid intern, not @baedert himself.\n\nStill not Cawbird. Or @Cawbird.",
     "url" : "https://t.co/yGvX7Nf6i3",
     "entities" : {
       "url" : {
         "urls" : [
           {
             "url" : "https://t.co/yGvX7Nf6i3",
-            "expanded_url" : "http://corebird.baedert.org",
-            "display_url" : "corebird.baedert.org",
+            "expanded_url" : "http://cawbird.baedert.org",
+            "display_url" : "cawbird.baedert.org",
             "indices" : [
               0,
               23
@@ -3489,7 +3489,7 @@ const string REPLY3 = """
   "created_at" : "Mon Apr 24 11:40:53 +0000 2017",
   "id" : 856473014560591872,
   "id_str" : "856473014560591872",
-  "full_text" : "RT @corebirdgtk: @baedert and @corebirdclient so?",
+  "full_text" : "RT @cawbirdgtk: @baedert and @cawbirdclient so?",
   "truncated" : false,
   "display_text_range" : [
     0,
@@ -3502,7 +3502,7 @@ const string REPLY3 = """
     ],
     "user_mentions" : [
       {
-        "screen_name" : "corebirdgtk",
+        "screen_name" : "cawbirdgtk",
         "name" : "Z??!@*(&*²³¤²³¤",
         "id" : 993713617,
         "id_str" : "993713617",
@@ -3522,8 +3522,8 @@ const string REPLY3 = """
         ]
       },
       {
-        "screen_name" : "corebirdclient",
-        "name" : "Corebird",
+        "screen_name" : "cawbirdclient",
+        "name" : "Cawbird",
         "id" : 2877682863,
         "id_str" : "2877682863",
         "indices" : [
@@ -3545,7 +3545,7 @@ const string REPLY3 = """
     "id" : 993713617,
     "id_str" : "993713617",
     "name" : "Z??!@*(&*²³¤²³¤",
-    "screen_name" : "corebirdgtk",
+    "screen_name" : "cawbirdgtk",
     "location" : "",
     "description" : "&lt;asdf",
     "url" : null,
@@ -3598,7 +3598,7 @@ const string REPLY3 = """
     "created_at" : "Mon Apr 24 11:35:17 +0000 2017",
     "id" : 856471602883686400,
     "id_str" : "856471602883686400",
-    "full_text" : "@baedert and @corebirdclient so?",
+    "full_text" : "@baedert and @cawbirdclient so?",
     "truncated" : false,
     "display_text_range" : [
       9,
@@ -3621,8 +3621,8 @@ const string REPLY3 = """
           ]
         },
         {
-          "screen_name" : "corebirdclient",
-          "name" : "Corebird",
+          "screen_name" : "cawbirdclient",
+          "name" : "Cawbird",
           "id" : 2877682863,
           "id_str" : "2877682863",
           "indices" : [
@@ -3639,12 +3639,12 @@ const string REPLY3 = """
     "in_reply_to_status_id_str" : "853198126106148864",
     "in_reply_to_user_id" : 993713617,
     "in_reply_to_user_id_str" : "993713617",
-    "in_reply_to_screen_name" : "corebirdgtk",
+    "in_reply_to_screen_name" : "cawbirdgtk",
     "user" : {
       "id" : 993713617,
       "id_str" : "993713617",
       "name" : "Z??!@*(&*²³¤²³¤",
-      "screen_name" : "corebirdgtk",
+      "screen_name" : "cawbirdgtk",
       "location" : "",
       "description" : "&lt;asdf",
       "url" : null,

@@ -43,4 +43,4 @@ CREATE TABLE IF NOT EXISTS `user_cache`(
   score INTEGER (11)
 );
 
-INSERT INTO `user_cache` (id, screen_name, name, score) VALUES ('2877682863', 'corebirdclient', 'Corebird', 10);
+INSERT INTO `user_cache` (id, screen_name, name, score) VALUES ('1154759406329966593', 'cawbirdclient', 'Cawbird', 10);

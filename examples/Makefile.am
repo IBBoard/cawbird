@@ -14,16 +14,16 @@ AM_VALAFLAGS = \
 	--enable-experimental \
 	--vapidir $(top_builddir)/src \
 	--vapidir $(top_srcdir)/vapi \
-	--pkg corebird-internal \
-	--pkg corebird \
+	--pkg cawbird-internal \
+	--pkg cawbird \
 	--enable-deprecated \
-	--gresources $(top_srcdir)/corebird.gresource.xml \
+	--gresources $(top_srcdir)/cawbird.gresource.xml \
 	-C \
 	-g
 
-resource_deps = $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies --sourcedir=$(top_srcdir) $(top_srcdir)/corebird.gresource.xml)
-corebird-resources.c: $(top_srcdir)/corebird.gresource.xml $(resource_deps) Makefile
-	XMLLINT=$(XMLLINT) $(GLIB_COMPILE_RESOURCES) --target $@ --generate --sourcedir=$(top_srcdir) --c-name corebird $<
+resource_deps = $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies --sourcedir=$(top_srcdir) $(top_srcdir)/cawbird.gresource.xml)
+cawbird-resources.c: $(top_srcdir)/cawbird.gresource.xml $(resource_deps) Makefile
+	XMLLINT=$(XMLLINT) $(GLIB_COMPILE_RESOURCES) --target $@ --generate --sourcedir=$(top_srcdir) --c-name cawbird $<
 
 
 noinst_bin_PROGRAMS = \
@@ -32,10 +32,10 @@ noinst_bin_PROGRAMS = \
 
 noinst_bindir = $(abs_top_builddir)
 
-tweetstates_SOURCES = tweetstates.vala corebird-resources.c
-tweetstates_LDADD = $(CB_LIBS) $(top_builddir)/src/libcorebird.la
+tweetstates_SOURCES = tweetstates.vala cawbird-resources.c
+tweetstates_LDADD = $(CB_LIBS) $(top_builddir)/src/libcawbird.la
 
-accountdialog_SOURCES = accountdialog.vala corebird-resources.c
-accountdialog_LDADD = $(CB_LIBS) $(top_builddir)/src/libcorebird.la
+accountdialog_SOURCES = accountdialog.vala cawbird-resources.c
+accountdialog_LDADD = $(CB_LIBS) $(top_builddir)/src/libcawbird.la
 
-CLEANFILES = corebird-resources.c
+CLEANFILES = cawbird-resources.c

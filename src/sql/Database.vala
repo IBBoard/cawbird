@@ -1,25 +1,25 @@
-/*  This file is part of corebird, a Gtk+ linux Twitter client.
- *  Copyright (C) 2013 Timm Bäder
+/*  This file is part of Cawbird, a Gtk+ linux Twitter client forked from Corebird.
+ *  Copyright (C) 2013 Timm Bäder (Corebird)
  *
- *  corebird is free software: you can redistribute it and/or modify
+ *  Cawbird is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  corebird is distributed in the hope that it will be useful,
+ *  Cawbird is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with corebird.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with cawbird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 namespace Sql {
-  public const int    COREBIRD_SQL_VERSION = 2;
-  public const string COREBIRD_INIT_FILE = "/org/baedert/corebird/sql/init/Create.%d.sql";
+  public const int    CAWBIRD_SQL_VERSION = 2;
+  public const string CAWBIRD_INIT_FILE = "/uk/co/ibboard/cawbird/sql/init/Create.%d.sql";
   public const int    ACCOUNTS_SQL_VERSION = 3;
-  public const string ACCOUNTS_INIT_FILE = "/org/baedert/corebird/sql/accounts/Create.%d.sql";
+  public const string ACCOUNTS_INIT_FILE = "/uk/co/ibboard/cawbird/sql/accounts/Create.%d.sql";
 
   private const int STOP     = -1;
   private const int CONTINUE =  0;

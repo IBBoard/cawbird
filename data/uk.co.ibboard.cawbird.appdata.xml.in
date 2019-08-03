@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2013 Ryan Lerch <ryanlerch@fedoraproject.org> -->
 <component type="desktop">
-  <id>org.baedert.corebird.desktop</id>
-  <name>Corebird</name>
+  <id>uk.co.ibboard.cawbird.desktop</id>
+  <name>Cawbird</name>
   <summary>Twitter Client</summary>
   <metadata_license>CC0-1.0</metadata_license>
-  <translation type="gettext">corebird</translation>
+  <translation type="gettext">cawbird</translation>
   <description>
     <p>
-   Corebird is a native GTK+ twitter client that provides vital features such as Direct Messages (DMs), tweet notifications, conversation views.
+   Cawbird is a native GTK+ twitter client that provides vital features such as Direct Messages (DMs), tweet notifications, conversation views.
   </p>
     <p>
    Additional features include local viewing of videos, multiple inline images, Lists, Filters, multiple accounts, etc.
   </p>
   </description>
-  <url type="homepage">https://corebird.baedert.org/</url>
+  <url type="homepage">https://cawbird.baedert.org/</url>
   <screenshots>
     <screenshot height="450" width="800" type="default">
-      <image>https://corebird.baedert.org/appdata/1.5/1.png</image>
-      <caption>Generic timeline view when using Corebird</caption>
+      <image>https://cawbird.baedert.org/appdata/1.5/1.png</image>
+      <caption>Generic timeline view when using Cawbird</caption>
     </screenshot>
     <screenshot height="450" width="800">
-      <image>https://corebird.baedert.org/appdata/1.5/2.png</image>
+      <image>https://cawbird.baedert.org/appdata/1.5/2.png</image>
       <caption>Typical Twitter profile</caption>
     </screenshot>
     <screenshot height="450" width="800">
-      <image>https://corebird.baedert.org/appdata/1.5/3.png</image>
+      <image>https://cawbird.baedert.org/appdata/1.5/3.png</image>
       <caption>Account settings can be configured</caption>
     </screenshot>
   </screenshots>
@@ -40,13 +40,13 @@
 
   <developer_name>Timm Bäder</developer_name>
 
-  <url type="bugtracker">https://github.com/baedert/corebird/issues</url>
+  <url type="bugtracker">https://github.com/baedert/cawbird/issues</url>
 
   <url type="donation">https://flattr.com/profile/baedert</url>
 
   <releases>
     <release version="1.7.3" date="2017-11-19">
-      <p>Changes in Corebird 1.7.3:</p>
+      <p>Changes in Cawbird 1.7.3:</p>
       <ul>
         <li>Increase maximum tweet length to 280 characters</li>
         <li>Increase maximum name length to 50 characters and improve certain parts of the UI to cope better with longer names</li>
@@ -56,7 +56,7 @@
     </release>
 
     <release version="1.7.2" date="2017-11-04">
-      <p>Changes in Corebird 1.7.2:</p>
+      <p>Changes in Cawbird 1.7.2:</p>
       <ul>
         <li>Fix window cancel button label mixup</li>
         <li>Fix potential crash when composing a tweet (#779)</li>
@@ -67,7 +67,7 @@
     </release>
 
     <release version="1.7" date="2017-10-28">
-      <p>Changes in Corebird 1.7:</p>
+      <p>Changes in Cawbird 1.7:</p>
       <ul>
         <li>Hashtags and Mentions in profile desriptions are now clickable</li>
         <li>The mention-completion when composing a new tweet now fetches unknown users from the twitter server</li>
@@ -83,7 +83,7 @@
     </release>
 
     <release version="1.5" date="2017-05-02">
-      <p>Changes in Corebird 1.5:</p>
+      <p>Changes in Cawbird 1.5:</p>
       <ul>Media attached to tweets can be downloaded using Right Click and selecting "save as"</ul>
       <ul>Profiles use the profile background color set in the Twitter settings if no banner is set</ul>
       <ul>Support sending Direct Messages to oneself</ul>
@@ -99,7 +99,7 @@
   </releases>
 
   <provides>
-    <binary>corebird</binary>
+    <binary>cawbird</binary>
   </provides>
 
 </component>

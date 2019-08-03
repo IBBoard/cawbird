@@ -1,21 +1,21 @@
-/*  This file is part of corebird, a Gtk+ linux Twitter client.
- *  Copyright (C) 2013 Timm Bäder
+/*  This file is part of Cawbird, a Gtk+ linux Twitter client forked from Corebird.
+ *  Copyright (C) 2013 Timm Bäder (Corebird)
  *
- *  corebird is free software: you can redistribute it and/or modify
+ *  Cawbird is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  corebird is distributed in the hope that it will be useful,
+ *  Cawbird is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with corebird.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with cawbird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-[GtkTemplate (ui = "/org/baedert/corebird/ui/account-dialog.ui")]
+[GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/account-dialog.ui")]
 public class AccountDialog : Gtk.Window {
   private const int MAX_DESCRIPTION_LENGTH = 160;
   private const string PAGE_NORMAL = "normal";
@@ -253,7 +253,7 @@ public class AccountDialog : Gtk.Window {
     FileUtils.remove (Dirs.config (@"accounts/$(acc_id).db"));
     FileUtils.remove (Dirs.config (@"accounts/$(acc_id).png"));
     FileUtils.remove (Dirs.config (@"accounts/$(acc_id)_small.png"));
-    Corebird.db.exec (@"DELETE FROM `accounts` WHERE `id`='$(acc_id)';");
+    Cawbird.db.exec (@"DELETE FROM `accounts` WHERE `id`='$(acc_id)';");
 
     /* Remove account from startup accounts, if it's in there */
     string[] startup_accounts = Settings.get ().get_strv ("startup-accounts");
@@ -267,7 +267,7 @@ public class AccountDialog : Gtk.Window {
         Settings.get ().set_strv ("startup-accounts", sa_new);
       }
 
-    Corebird cb = (Corebird) GLib.Application.get_default ();
+    Cawbird cb = (Cawbird) GLib.Application.get_default ();
 
     /* Handle windows, i.e. if this MainWindow is the last open one,
        we want to use it to show the "new account" UI, otherwise we

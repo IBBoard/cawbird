@@ -150,7 +150,7 @@
                     <child>
                       <object class="GtkImage">
                         <property name="visible">1</property>
-                        <property name="icon-name">corebird-conversation-symbolic</property>
+                        <property name="icon-name">cawbird-conversation-symbolic</property>
                         <property name="icon-size">1</property>
                         <property name="valign">start</property>
                       </object>
@@ -262,7 +262,7 @@
                     <child>
                       <object class="GtkImage">
                         <property name="visible">1</property>
-                        <property name="icon-name">corebird-retweet-symbolic</property>
+                        <property name="icon-name">cawbird-retweet-symbolic</property>
                         <property name="icon-size">1</property>
                       </object>
                     </child>
@@ -287,7 +287,7 @@
                     <child>
                       <object class="GtkImage">
                         <property name="visible">1</property>
-                        <property name="icon-name">corebird-favorite-symbolic</property>
+                        <property name="icon-name">cawbird-favorite-symbolic</property>
                         <property name="icon-size">1</property>
                       </object>
                     </child>

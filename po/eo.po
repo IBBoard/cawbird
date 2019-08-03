@@ -1,76 +1,76 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Timm Bäder
-# This file is distributed under the same license as the corebird package.
+# This file is distributed under the same license as the cawbird package.
 #
 # Translators:
 # Iris Ilexiris <iris.ilexiris@gmail.com>, 2017-2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Corebird\n"
-"Report-Msgid-Bugs-To: https://github.com/baedert/corebird/issues/new\n"
+"Project-Id-Version: Cawbird\n"
+"Report-Msgid-Bugs-To: https://github.com/baedert/cawbird/issues/new\n"
 "POT-Creation-Date: 2017-10-22 12:02+0200\n"
 "PO-Revision-Date: 2018-02-06 18:45+0000\n"
 "Last-Translator: Iris Ilexiris <iris.ilexiris@gmail.com>\n"
-"Language-Team: Esperanto (http://www.transifex.com/corebird/corebird/language/eo/)\n"
+"Language-Team: Esperanto (http://www.transifex.com/cawbird/cawbird/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: eo\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/org.baedert.corebird.appdata.xml.in:5
-#: data/org.baedert.corebird.desktop.in:3
-msgid "Corebird"
-msgstr "Corebird"
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:5
+#: data/uk.co.ibboard.cawbird.desktop.in:3
+msgid "Cawbird"
+msgstr "Cawbird"
 
-#: data/org.baedert.corebird.appdata.xml.in:6
-#: data/org.baedert.corebird.desktop.in:4
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:6
+#: data/uk.co.ibboard.cawbird.desktop.in:4
 msgid "Twitter Client"
 msgstr "Tviterokliento"
 
-#: data/org.baedert.corebird.appdata.xml.in:10
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:10
 msgid ""
-"Corebird is a native GTK+ twitter client that provides vital features such "
+"Cawbird is a native GTK+ twitter client that provides vital features such "
 "as Direct Messages (DMs), tweet notifications, conversation views."
-msgstr "Corebird estas denaska GTK+ kliento por Tvitero. Ĝi enhavas gravajn eblecojn—ekzemple tujmesaĝoj, tvitavizoj, kaj vidigo de interparoloj."
+msgstr "Cawbird estas denaska GTK+ kliento por Tvitero. Ĝi enhavas gravajn eblecojn—ekzemple tujmesaĝoj, tvitavizoj, kaj vidigo de interparoloj."
 
-#: data/org.baedert.corebird.appdata.xml.in:13
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:13
 msgid ""
 "Additional features include local viewing of videos, multiple inline images,"
 " Lists, Filters, multiple accounts, etc."
 msgstr "Aliaj eblecoj estas vidigi filmeton kaj plurajn bildojn loke. Ankaŭ, listoj, filtriloj, pluraj kontoj, ktp."
 
-#: data/org.baedert.corebird.appdata.xml.in:21
-msgid "Generic timeline view when using Corebird"
-msgstr "Malpreciza kronologovidigo kiam Corebird uzata"
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:21
+msgid "Generic timeline view when using Cawbird"
+msgstr "Malpreciza kronologovidigo kiam Cawbird uzata"
 
-#: data/org.baedert.corebird.appdata.xml.in:25
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:25
 msgid "Typical Twitter profile"
 msgstr "Malpreciza Tviteroprofilo"
 
-#: data/org.baedert.corebird.appdata.xml.in:29
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:29
 msgid "Account settings can be configured"
 msgstr "Konto agordoj povas agordanta"
 
-#: data/org.baedert.corebird.appdata.xml.in:41
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:41
 msgid "Timm Bäder"
 msgstr "Timm Bäder"
 
-#: data/org.baedert.corebird.desktop.in:5
+#: data/uk.co.ibboard.cawbird.desktop.in:5
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Uzi Tviteron simila al normala komputerprogramo"
 
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or
 #. localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.baedert.corebird.desktop.in:7
+#: data/uk.co.ibboard.cawbird.desktop.in:7
 msgid "twitter;"
 msgstr "twitter;tvitero;"
 
 #. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon
 #. file name)!
-#: data/org.baedert.corebird.desktop.in:11
-msgid "corebird"
-msgstr "corebird"
+#: data/uk.co.ibboard.cawbird.desktop.in:11
+msgid "cawbird"
+msgstr "cawbird"
 
 #. TRANSLATORS: This is the start of a "Replying to" line in a tweet
 #: src/CbUtils.c:177 src/TweetInfoPage.vala:525
@@ -449,9 +449,9 @@ msgstr "Kodaĵo ekzistas jam"
 
 #: src/window/SettingsDialog.vala:85
 msgid ""
-"Hey, check out this new #Corebird version! \\ (•◡•) / #cool "
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
 "#newisalwaysbetter"
-msgstr "Saluton! Vidu ĉi tiun novan version de #Corebird! \\ (•◡•) / #mojose #novaĉiamplibonas"
+msgstr "Saluton! Vidu ĉi tiun novan version de #Cawbird! \\ (•◡•) / #mojose #novaĉiamplibonas"
 
 #: src/window/UserListDialog.vala:40
 msgid "Add to or Remove User From List"
@@ -462,8 +462,8 @@ msgid "You have no lists."
 msgstr "Vi havas nenio listojn."
 
 #: ui/about-dialog.ui:5
-msgid "About Corebird"
-msgstr "Pri Corebird"
+msgid "About Cawbird"
+msgstr "Pri Cawbird"
 
 #: ui/account-create-widget.ui:28
 msgid "New Account"
@@ -471,9 +471,9 @@ msgstr "Nova konto"
 
 #: ui/account-create-widget.ui:47
 msgid ""
-"To authenticate Corebird, you need a PIN from twitter.com with the account "
+"To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
-msgstr "Por verigi Corebird-on, vi bezonas PIN-on el twitter.com por la konto vi deziras aldoni."
+msgstr "Por verigi Cawbird-on, vi bezonas PIN-on el twitter.com por la konto vi deziras aldoni."
 
 #: ui/account-create-widget.ui:58
 msgid "Request PIN"

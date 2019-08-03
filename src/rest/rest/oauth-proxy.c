@@ -232,6 +232,7 @@ oauth_proxy_new (const char *consumer_key,
                  const gchar *url_format,
                  gboolean binding_required)
 {
+  g_debug("New proxy consumer-key: %s", consumer_key);
   return g_object_new (OAUTH_TYPE_PROXY,
                        "consumer-key", consumer_key,
                        "consumer-secret", consumer_secret,
@@ -269,6 +270,7 @@ oauth_proxy_new_with_token (const char *consumer_key,
                             const gchar *url_format,
                             gboolean binding_required)
 {
+  g_debug("New with token consumer-key: %s", consumer_key);
   return g_object_new (OAUTH_TYPE_PROXY,
                        "consumer-key", consumer_key,
                        "consumer-secret", consumer_secret,
@@ -284,6 +286,7 @@ request_token_cb (GObject      *source_object,
                   GAsyncResult *result,
                   gpointer      user_data)
 {
+  g_debug("Token request complete");
   GTask *task = G_TASK (user_data);
   RestProxyCall *call = REST_PROXY_CALL (source_object);
   GError *error = NULL;
@@ -333,6 +336,8 @@ oauth_proxy_request_token_async (OAuthProxy          *proxy,
   call = rest_proxy_new_call (REST_PROXY (proxy));
   rest_proxy_call_set_function (call, function ? function : "request_token");
   rest_proxy_call_set_method (call, "POST");
+  OAuthProxyPrivate *priv = PROXY_GET_PRIVATE (proxy);
+  g_debug("Requesting token for %s", priv->consumer_key);
 
   if (callback_uri)
     rest_proxy_call_add_param (call, "oauth_callback", callback_uri);
@@ -601,6 +606,7 @@ oauth_proxy_new_echo_proxy (OAuthProxy  *proxy,
   g_return_val_if_fail (url_format, NULL);
 
   priv = PROXY_GET_PRIVATE (proxy);
+  g_debug("Echo proxy key: %s", priv->consumer_key);
 
   echo_proxy = g_object_new (OAUTH_TYPE_PROXY,
                              "url-format", url_format,

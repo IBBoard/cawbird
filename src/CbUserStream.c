@@ -1,21 +1,21 @@
-/*  This file is part of corebird, a Gtk+ linux Twitter client.
- *  Copyright (C) 2017 Timm Bäder
+/*  This file is part of Cawbird, a Gtk+ linux Twitter client forked from Corebird.
+ *  Copyright (C) 2017 Timm Bäder (Corebird)
  *
- *  corebird is free software: you can redistribute it and/or modify
+ *  Cawbird is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  corebird is distributed in the hope that it will be useful,
+ *  Cawbird is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with corebird.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with cawbird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "corebird.h"
+#include "cawbird.h"
 #include "CbUserStream.h"
 #include "CbUtils.h"
 #include "rest/rest/oauth-proxy.h"
@@ -137,16 +137,16 @@ cb_user_stream_init (CbUserStream *self)
 
   if (self->stresstest)
     {
-      self->proxy = oauth_proxy_new ("0rvHLdbzRULZd5dz6X1TUA",
-                                     "oGrvd6654nWLhzLcJywSW3pltUfkhP4BnraPPVNhHtY",
+      self->proxy = oauth_proxy_new ("Vf9torDW2ZOw32DfhUtI9csL8",
+                                     "18BEr1mdDH46cJhw5mUMwHe2TiBExOopEDxFbPzfJrlnFuvZJ2",
                                      "https://api.twitter.com/",
                                      FALSE);
     }
   else
     {
       /* TODO: We should be getting these from the settings */
-      self->proxy = oauth_proxy_new ("0rvHLdbzRULZd5dz6X1TUA",
-                                     "oGrvd6654nWLhzLcJywSW3pltUfkhP4BnraPPVNhHtY",
+      self->proxy = oauth_proxy_new ("Vf9torDW2ZOw32DfhUtI9csL8",
+                                     "18BEr1mdDH46cJhw5mUMwHe2TiBExOopEDxFbPzfJrlnFuvZJ2",
                                      "https://api.twitter.com/",
                                      FALSE);
     }

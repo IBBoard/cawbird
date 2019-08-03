@@ -1,77 +1,77 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Timm Bäder
-# This file is distributed under the same license as the corebird package.
+# This file is distributed under the same license as the cawbird package.
 #
 # Translators:
 # Med Touhami MAHDI <dragnucs@legtux.org>, 2014
 # mohammadA <mohammadAbdulhadi1@gmail.com>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Corebird\n"
-"Report-Msgid-Bugs-To: https://github.com/baedert/corebird/issues/new\n"
+"Project-Id-Version: Cawbird\n"
+"Report-Msgid-Bugs-To: https://github.com/baedert/cawbird/issues/new\n"
 "POT-Creation-Date: 2017-10-22 12:02+0200\n"
 "PO-Revision-Date: 2018-01-08 14:04+0000\n"
 "Last-Translator: mohammadA <mohammadAbdulhadi1@gmail.com>\n"
-"Language-Team: Arabic (http://www.transifex.com/corebird/corebird/language/ar/)\n"
+"Language-Team: Arabic (http://www.transifex.com/cawbird/cawbird/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: data/org.baedert.corebird.appdata.xml.in:5
-#: data/org.baedert.corebird.desktop.in:3
-msgid "Corebird"
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:5
+#: data/uk.co.ibboard.cawbird.desktop.in:3
+msgid "Cawbird"
 msgstr ""
 
-#: data/org.baedert.corebird.appdata.xml.in:6
-#: data/org.baedert.corebird.desktop.in:4
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:6
+#: data/uk.co.ibboard.cawbird.desktop.in:4
 msgid "Twitter Client"
 msgstr "عامل تويتر"
 
-#: data/org.baedert.corebird.appdata.xml.in:10
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:10
 msgid ""
-"Corebird is a native GTK+ twitter client that provides vital features such "
+"Cawbird is a native GTK+ twitter client that provides vital features such "
 "as Direct Messages (DMs), tweet notifications, conversation views."
 msgstr "كوربرد عميل تويتر GTK+ أصيل يوفّر ميزات حيوية مثل الرسائل المباشرة  والإخطار بالتغريدات وعرض المحادثات."
 
-#: data/org.baedert.corebird.appdata.xml.in:13
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:13
 msgid ""
 "Additional features include local viewing of videos, multiple inline images,"
 " Lists, Filters, multiple accounts, etc."
 msgstr ""
 
-#: data/org.baedert.corebird.appdata.xml.in:21
-msgid "Generic timeline view when using Corebird"
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:21
+msgid "Generic timeline view when using Cawbird"
 msgstr ""
 
-#: data/org.baedert.corebird.appdata.xml.in:25
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:25
 msgid "Typical Twitter profile"
 msgstr ""
 
-#: data/org.baedert.corebird.appdata.xml.in:29
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:29
 msgid "Account settings can be configured"
 msgstr ""
 
-#: data/org.baedert.corebird.appdata.xml.in:41
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:41
 msgid "Timm Bäder"
 msgstr ""
 
-#: data/org.baedert.corebird.desktop.in:5
+#: data/uk.co.ibboard.cawbird.desktop.in:5
 msgid "Use Twitter from within a normal desktop application"
 msgstr ""
 
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or
 #. localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.baedert.corebird.desktop.in:7
+#: data/uk.co.ibboard.cawbird.desktop.in:7
 msgid "twitter;"
 msgstr ""
 
 #. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon
 #. file name)!
-#: data/org.baedert.corebird.desktop.in:11
-msgid "corebird"
-msgstr "corebird"
+#: data/uk.co.ibboard.cawbird.desktop.in:11
+msgid "cawbird"
+msgstr "cawbird"
 
 #. TRANSLATORS: This is the start of a "Replying to" line in a tweet
 #: src/CbUtils.c:177 src/TweetInfoPage.vala:525
@@ -470,7 +470,7 @@ msgstr ""
 
 #: src/window/SettingsDialog.vala:85
 msgid ""
-"Hey, check out this new #Corebird version! \\ (•◡•) / #cool "
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
 "#newisalwaysbetter"
 msgstr ""
 
@@ -483,7 +483,7 @@ msgid "You have no lists."
 msgstr ""
 
 #: ui/about-dialog.ui:5
-msgid "About Corebird"
+msgid "About Cawbird"
 msgstr "حول كوربرد"
 
 #: ui/account-create-widget.ui:28
@@ -492,7 +492,7 @@ msgstr "حساب جديد"
 
 #: ui/account-create-widget.ui:47
 msgid ""
-"To authenticate Corebird, you need a PIN from twitter.com with the account "
+"To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
 msgstr ""
 

@@ -193,7 +193,7 @@ void main (string[] args) {
 const string DM_DATA1=  """
 {"direct_message":{"id":905788395095457796,"id_str":"905788395095457796","text":"SUP
   FEGET","sender":{"id":11805587900,"id_str":"11805587900","name":"Schupp &
-    Wupp","screen_name":"baedert","location":null,"url":"http:\/\/corebird.baedert.org","description":"Corebird
+    Wupp","screen_name":"baedert","location":null,"url":"http:\/\/cawbird.baedert.org","description":"Cawbird
     developer by night, silently judging people on the train by
     day.","protected":false,"followers_count":221,"friends_count":70,"listed_count":4,"created_at":"Sat Feb 27
     13:13:34 +0000
@@ -203,7 +203,7 @@ const string DM_DATA1=  """
 const string DM_DATA2=  """
 {"direct_message":{"id":905788395095457797,"id_str":"905788395095457797","text":"Foo",
   "sender":{"id":11805587900,"id_str":"11805587900","name":"Schupp &
-    Wupp","screen_name":"baedert","location":null,"url":"http:\/\/corebird.baedert.org","description":"Corebird
+    Wupp","screen_name":"baedert","location":null,"url":"http:\/\/cawbird.baedert.org","description":"Cawbird
     developer by night, silently judging people on the train by
     day.","protected":false,"followers_count":221,"friends_count":70,"listed_count":4,"created_at":"Sat Feb 27
     13:13:34 +0000
@@ -213,7 +213,7 @@ const string DM_DATA2=  """
 const string DM_DATA3 =  """
 {"direct_message":{"id":905788395095457797,"id_str":"905788395095457798","text":"Foo2",
   "sender":{"id":146929708900,"id_str":"11805587900","name":"Schupp &
-    Wupp","screen_name":"baedert","location":null,"url":"http:\/\/corebird.baedert.org","description":"Corebird
+    Wupp","screen_name":"baedert","location":null,"url":"http:\/\/cawbird.baedert.org","description":"Cawbird
     developer by night, silently judging people on the train by
     day.","protected":false,"followers_count":221,"friends_count":70,"listed_count":4,"created_at":"Sat Feb 27
     13:13:34 +0000
@@ -234,8 +234,8 @@ const string DM_DATA4 =
          "name":"Schupp & Wupp",
          "screen_name":"baedert",
          "location":null,
-         "url":"http:\/\/corebird.baedert.org",
-         "description":"Corebird developer by night, silently judging people on the train by day.",
+         "url":"http:\/\/cawbird.baedert.org",
+         "description":"Cawbird developer by night, silently judging people on the train by day.",
          "protected":false,
          "followers_count":221,
          "friends_count":70,

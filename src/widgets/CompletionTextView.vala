@@ -1,18 +1,18 @@
-/*  This file is part of corebird, a Gtk+ linux Twitter client.
- *  Copyright (C) 2013 Timm Bäder
+/*  This file is part of Cawbird, a Gtk+ linux Twitter client forked from Corebird.
+ *  Copyright (C) 2013 Timm Bäder (Corebird)
  *
- *  corebird is free software: you can redistribute it and/or modify
+ *  Cawbird is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  corebird is distributed in the hope that it will be useful,
+ *  Cawbird is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with corebird.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with cawbird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 class CompletionTextView : Gtk.TextView {
@@ -145,7 +145,7 @@ class CompletionTextView : Gtk.TextView {
       cursor_word_start.forward_char ();
     }
 
-    string? snippet = Corebird.snippet_manager.get_snippet (cursor_word.strip ());
+    string? snippet = Cawbird.snippet_manager.get_snippet (cursor_word.strip ());
 
     if (snippet == null) {
       debug ("No snippet for cursor_word '%s' found.", cursor_word);
@@ -167,7 +167,7 @@ class CompletionTextView : Gtk.TextView {
   }
 
   private inline bool snippets_configured () {
-    return Corebird.snippet_manager.n_snippets () > 0;
+    return Cawbird.snippet_manager.n_snippets () > 0;
   }
 
   private void select_completion_row (Gtk.ListBoxRow? row) {
@@ -292,7 +292,7 @@ class CompletionTextView : Gtk.TextView {
           break;
 
         case Tl.EntityType.TEXT:
-          if (Corebird.snippet_manager.has_snippet_n (e.start, e.length_in_bytes)) {
+          if (Cawbird.snippet_manager.has_snippet_n (e.start, e.length_in_bytes)) {
             buffer.apply_tag_by_name (NO_SPELL_CHECK, e_start_iter, e_end_iter);
             buffer.apply_tag_by_name ("snippet", e_start_iter, e_end_iter);
           }
@@ -512,7 +512,7 @@ class UserCompletionRow : Gtk.ListBoxRow {
   static construct {
     try {
       verified_surface = Gdk.cairo_surface_create_from_pixbuf (
-          new Gdk.Pixbuf.from_resource ("/org/baedert/corebird/data/verified-small.png"),
+          new Gdk.Pixbuf.from_resource ("/uk/co/ibboard/cawbird/data/verified-small.png"),
           1, null);
     } catch (GLib.Error e) {
       error (e.message);

@@ -1,21 +1,21 @@
-/*  This file is part of corebird, a Gtk+ linux Twitter client.
- *  Copyright (C) 2013 Timm Bäder
+/*  This file is part of Cawbird, a Gtk+ linux Twitter client forked from Corebird.
+ *  Copyright (C) 2013 Timm Bäder (Corebird)
  *
- *  corebird is free software: you can redistribute it and/or modify
+ *  Cawbird is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  corebird is distributed in the hope that it will be useful,
+ *  Cawbird is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with corebird.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with cawbird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-[GtkTemplate (ui = "/org/baedert/corebird/ui/settings-dialog.ui")]
+[GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/settings-dialog.ui")]
 class SettingsDialog : Gtk.Window {
   [GtkChild]
   private Gtk.Switch on_new_mentions_switch;
@@ -48,7 +48,7 @@ class SettingsDialog : Gtk.Window {
 
   private bool block_flag_emission = false;
 
-  public SettingsDialog (Corebird application) {
+  public SettingsDialog (Cawbird application) {
     this.application = application;
 
     // Notifications Page
@@ -79,13 +79,13 @@ class SettingsDialog : Gtk.Window {
     sample_tweet.source_tweet = Cb.MiniTweet();
     sample_tweet.source_tweet.author = Cb.UserIdentity() {
       id = 12,
-      screen_name = "corebirdclient",
-      user_name = "Corebird"
+      screen_name = "cawbirdclient",
+      user_name = "Cawbird"
     };
-    string sample_text = _("Hey, check out this new #Corebird version! \\ (•◡•) / #cool #newisalwaysbetter");
+    string sample_text = _("Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter");
     Cairo.Surface? avatar_surface = null;
     try {
-      var a = Gtk.IconTheme.get_default ().load_icon ("corebird",
+      var a = Gtk.IconTheme.get_default ().load_icon ("cawbird",
                                                       48 * this.get_scale_factor (),
                                                       Gtk.IconLookupFlags.FORCE_SIZE);
       avatar_surface = Gdk.cairo_surface_create_from_pixbuf (a, this.get_scale_factor (), this.get_window ());
@@ -148,7 +148,7 @@ class SettingsDialog : Gtk.Window {
 
 
     // Fill snippet list box
-    Corebird.snippet_manager.query_snippets ((key, value) => {
+    Cawbird.snippet_manager.query_snippets ((key, value) => {
       var e = new SnippetListEntry ((string)key, (string)value);
       e.show_all ();
       snippet_list_box.add (e);

@@ -1,5 +1,5 @@
-project('Corebird', ['vala', 'c'],
-        version: '1.7.4',
+project('Cawbird', ['vala', 'c'],
+        version: '1.0',
         default_options: [
           'buildtype=debug'
         ])
@@ -37,9 +37,9 @@ enable_examples = get_option('examples')
 
 # Project arguments
 
-add_project_arguments('-DGETTEXT_PACKAGE="corebird"', language: 'c')
+add_project_arguments('-DGETTEXT_PACKAGE="cawbird"', language: 'c')
 add_project_arguments('-DDATADIR="' + get_option('datadir') + '"', language: 'c')
-add_project_arguments('-DG_LOG_DOMAIN="corebird"', language: 'c')
+add_project_arguments('-DG_LOG_DOMAIN="cawbird"', language: 'c')
 add_project_arguments('--enable-deprecated', language: 'vala')
 add_project_arguments('-D', 'GTK322', language: 'vala')
 
@@ -64,9 +64,9 @@ if (enable_spellcheck)
 endif
 
 
-corebird_lib_sources = files([
+cawbird_lib_sources = files([
   'src/Account.vala',
-  'src/Corebird.vala',
+  'src/Cawbird.vala',
   'src/DMManager.vala',
   'src/DMPage.vala',
   'src/DMThreadsPage.vala',
@@ -187,15 +187,15 @@ corebird_lib_sources = files([
   'src/libtl/libtweetlength.c',
 
   # Vapi files
-  'vapi/corebird-internal.vapi',
+  'vapi/cawbird-internal.vapi',
   'vapi/rest-0.7.vapi',
   'vapi/libtl.vapi'
 ])
 
 # glib resources
 cb_resources = gnome.compile_resources(
-  'corebird_resources',
-  'corebird.gresource.xml',
+  'cawbird_resources',
+  'cawbird.gresource.xml',
 )
 
 # config.h
@@ -208,15 +208,15 @@ configure_file(
 
 # library (for unit tests)
 cb_lib = static_library(
-  'corebird',
-  corebird_lib_sources,
+  'cawbird',
+  cawbird_lib_sources,
   dependencies: cb_deps,
   include_directories: [srcdir, restdir],
   vala_args: [
     meson.source_root() + '/vapi/config.vapi',
     '--target-glib=' + min_glib_version,
     '--vapidir=' + meson.source_root() + '/vapi/',
-    '--gresources=' + meson.source_root() + '/corebird.gresource.xml',
+    '--gresources=' + meson.source_root() + '/cawbird.gresource.xml',
   ],
   c_args: [
     '-Werror=implicit-function-declaration'
@@ -231,13 +231,13 @@ cb_dep = declare_dependency(
 
 # actual executable
 executable(
-  'corebird',
+  'cawbird',
   'src/main.vala',
   cb_resources,
   dependencies: cb_dep,
   include_directories: srcdir,
   vala_args: [
-    meson.source_root() + '/vapi/corebird-internal.vapi',
+    meson.source_root() + '/vapi/cawbird-internal.vapi',
     meson.source_root() + '/vapi/rest-0.7.vapi',
     meson.source_root() + '/vapi/libtl.vapi',
   ],

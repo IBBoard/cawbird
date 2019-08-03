@@ -2,11 +2,11 @@ iconprefix=$(datarootdir)/icons/hicolor/
 SUBDIRS = hicolor
 
 desktopdir = $(datarootdir)/applications
-desktop_in_files = org.baedert.corebird.desktop.in
+desktop_in_files = uk.co.ibboard.cawbird.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 appdatadir = $(datarootdir)/metainfo
-appdata_in_files = org.baedert.corebird.appdata.xml.in
+appdata_in_files = uk.co.ibboard.cawbird.appdata.xml.in
 appdata_DATA = $(appdata_in_files:.xml.in=.xml)
 
 %.desktop: %.desktop.in
@@ -17,9 +17,9 @@ appdata_DATA = $(appdata_in_files:.xml.in=.xml)
 	msgfmt --xml -d $(top_srcdir)/po \
 	--template $< -o $@
 
-man_MANS = corebird.1
+man_MANS = cawbird.1
 
-gsettings_SCHEMAS = org.baedert.corebird.gschema.xml
+gsettings_SCHEMAS = uk.co.ibboard.cawbird.gschema.xml
 @GSETTINGS_RULES@
 
 gschemas.compiled: Makefile $(gsettings_SCHEMAS:.xml=.valid)
@@ -27,24 +27,24 @@ gschemas.compiled: Makefile $(gsettings_SCHEMAS:.xml=.valid)
 
 
 dbusservicedir = $(datadir)/dbus-1/services
-dbusservice_DATA = org.baedert.corebird.service
+dbusservice_DATA = uk.co.ibboard.cawbird.service
 
-org.baedert.corebird.service: Makefile
+uk.co.ibboard.cawbird.service: Makefile
 	$(AM_V_GEN) (echo '[D-BUS Service]'; \
-		echo 'Name=org.baedert.corebird'; \
-		echo 'Exec=${bindir}/corebird --gapplication-service') > $@.tmp && \
+		echo 'Name=uk.co.ibboard.cawbird'; \
+		echo 'Exec=${bindir}/cawbird --gapplication-service') > $@.tmp && \
 		mv $@.tmp $@
 
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
 	$(appdata_in_files) \
-	org.baedert.corebird.gschema.xml \
+	uk.co.ibboard.cawbird.gschema.xml \
 	$(man_MANS)
 
 CLEANFILES = \
 	gschemas.compiled \
-	org.baedert.corebird.gschema.valid \
+	uk.co.ibboard.cawbird.gschema.valid \
 	$(desktop_DATA) \
 	$(dbusservice_DATA) \
 	$(appdata_DATA)

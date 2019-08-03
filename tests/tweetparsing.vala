@@ -351,7 +351,7 @@ const string TD3 =
     "id" : 993713617,
     "id_str" : "993713617",
     "name" : "Core Bird",
-    "screen_name" : "corebirdgtk",
+    "screen_name" : "cawbirdgtk",
     "location" : "",
     "description" : "",
     "url" : null,
@@ -453,7 +453,7 @@ const string TD4 =
     "id" : 993713617,
     "id_str" : "993713617",
     "name" : "Core Bird",
-    "screen_name" : "corebirdgtk",
+    "screen_name" : "cawbirdgtk",
     "location" : "",
     "description" : "",
     "url" : null,
@@ -561,7 +561,7 @@ const string TD4 =
 // """
 
 const string TD5 =  """
-{ "created_at":"Fri Sep 30 16:45:16 +0000 2016", "id":781897715399532544, "id_str":"781897715399532544", "text":"RT @oscaron: Okay folks! I\|ve decided to donate all profits from the #400LBHACKER shirt to @Hak4Kidz and @EFF \n\nPlease RT!\u2026 ", "source":"Corebird\u003c\/a\u003e", "truncated":false, "in_reply_to_status_id":null, "in_reply_to_status_id_str":null, "in_reply_to_user_id":null, "in_reply_to_user_id_str":null, "in_reply_to_screen_name":null, "user":{ "id":993713617, "id_str":"993713617", "name":"Core & Bird", "screen_name":"corebirdgtk", "location":null, "url":null, "description":null, "protected":true, "verified":false, "followers_count":3, "friends_count":4, "listed_count":0, "favourites_count":9, "statuses_count":845, "created_at":"Thu Dec 06 19:47:16 +0000 2012", "utc_offset":7200, "time_zone":"Amsterdam", "geo_enabled":false, "lang":"en", "contributors_enabled":false, "is_translator":false, "profile_background_color":"C0DEED", "profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png", "profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png", "profile_background_tile":false, "profile_link_color":"0084B4", "profile_sidebar_border_color":"C0DEED", "profile_sidebar_fill_color":"DDEEF6", "profile_text_color":"333333", "profile_use_background_image":true, "profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/655270693341417472\/h6BbZKJy_normal.png", "profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/655270693341417472\/h6BbZKJy_normal.png", "profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/993713617\/1413106147", "default_profile":true, "default_profile_image":false, "following":null, "follow_request_sent":null, "notifications":null }, "geo":null, "coordinates":null, "place":null, "contributors":null, "retweeted_status":{ "created_at":"Wed Sep 28 14:23:49 +0000 2016", "id":781137340962004992, "id_str":"781137340962004992", "text":"Okay folks! I\|ve decided to donate all profits from the #400LBHACKER shirt to @Hak4Kidz and @EFF \n\nPlease RT!\u2026 https:\/\/t.co\/V2vE2q8ol0", "display_text_range":[ 0, 140 ], "source":"\u003ca href=\"https:\/\/about.twitter.com\/products\/tweetdeck\" rel=\"nofollow\"\u003eTweetDeck\u003c\/a\u003e", "truncated":true, "in_reply_to_status_id":null, "in_reply_to_status_id_str":null, "in_reply_to_user_id":null, "in_reply_to_user_id_str":null, "in_reply_to_screen_name":null, "user":{ "id":16156052, "id_str":"16156052", "name":"Oscaron \u2615", "screen_name":"oscaron", "location":"Galactic Sector ZZ9 Plural Z A", "url":"http:\/\/goo.gl\/skGJRQ", "description":"Tech Alchemist, Infosec Enthusiast. NOT a \|Cybersecurity Expert\|. My views = My views. Trigger warnings: ALL. All stories exaggerated.", "protected":false, "verified":false, "followers_count":1391, "friends_count":762, "listed_count":105, "favourites_count":18359, "statuses_count":49369, "created_at":"Sat Sep 06 12:36:08 +0000 2008", "utc_offset":-14400, "time_zone":"Eastern Time (US & Canada)", "geo_enabled":false, "lang":"en", "contributors_enabled":false, "is_translator":false, "profile_background_color":"131516", "profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme14\/bg.gif", "profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme14\/bg.gif", "profile_background_tile":true, "profile_link_color":"5E2F00", "profile_sidebar_border_color":"FFFFFF", "profile_sidebar_fill_color":"EFEFEF", "profile_text_color":"333333", "profile_use_background_image":true, "profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/773567191832821761\/2ndP1v95_normal.jpg", "profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/773567191832821761\/2ndP1v95_normal.jpg", "profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/16156052\/1404228988", "default_profile":false, "default_profile_image":false, "following":null, "follow_request_sent":null, "notifications":null }, "geo":null, "coordinates":null, "place":null, "contributors":null, "is_quote_status":false, "extended_tweet":{ "full_text":"Okay folks! I\|ve decided to donate all profits from the #400LBHACKER shirt to @Hak4Kidz and @EFF \n\nPlease RT!\n\nhttps:\/\/t.co\/AP7qFSdYp0 https:\/\/t.co\/WtprxUumEE", "display_text_range":[ 0, 134 ], "entities":{ "hashtags":[ { "text":"400LBHACKER", "indices":[ 56, 68 ] } ], "urls":[ { "url":"https:\/\/t.co\/AP7qFSdYp0", "expanded_url":"https:\/\/teespring.com\/400lbhacker#pid=2&cid=2397&sid=front", "display_url":"teespring.com\/400lbhacker#pi\u2026", "indices":[ 111, 134 ] } ], "user_mentions":[ { "screen_name":"Hak4Kidz", "name":"Hak4Kidz", "id":2262322964, "id_str":"2262322964", "indices":[ 78, 87 ] }, { "screen_name":"EFF", "name":"EFF", "id":4816, "id_str":"4816", "indices":[ 92, 96 ] } ], "symbols":[ ], "media":[ { "id":781137070484054016, "id_str":"781137070484054016", "indices":[ 135, 158 ], "media_url":"http:\/\/pbs.twimg.com\/media\/CtcoBucXYAAs4rs.jpg", "media_url_https":"https:\/\/pbs.twimg.com\/media\/CtcoBucXYAAs4rs.jpg", "url":"https:\/\/t.co\/WtprxUumEE", "display_url":"pic.twitter.com\/WtprxUumEE", "expanded_url":"https:\/\/twitter.com\/oscaron\/status\/781137340962004992\/photo\/1", "type":"photo", "sizes":{ "medium":{ "w":480, "h":571, "resize":"fit" }, "large":{ "w":480, "h":571, "resize":"fit" }, "thumb":{ "w":150, "h":150, "resize":"crop" }, "small":{ "w":480, "h":571, "resize":"fit" } } }, { "id":781137082697805824, "id_str":"781137082697805824", "indices":[ 135, 158 ], "media_url":"http:\/\/pbs.twimg.com\/media\/CtcoCb8WcAATK4y.jpg", "media_url_https":"https:\/\/pbs.twimg.com\/media\/CtcoCb8WcAATK4y.jpg", "url":"https:\/\/t.co\/WtprxUumEE", "display_url":"pic.twitter.com\/WtprxUumEE", "expanded_url":"https:\/\/twitter.com\/oscaron\/status\/781137340962004992\/photo\/1", "type":"photo", "sizes":{ "medium":{ "w":480, "h":571, "resize":"fit" }, "large":{ "w":480, "h":571, "resize":"fit" }, "thumb":{ "w":150, "h":150, "resize":"crop" }, "small":{ "w":480, "h":571, "resize":"fit" } } } ] }, "extended_entities":{ "media":[ { "id":781137070484054016, "id_str":"781137070484054016", "indices":[ 135, 158 ], "media_url":"http:\/\/pbs.twimg.com\/media\/CtcoBucXYAAs4rs.jpg", "media_url_https":"https:\/\/pbs.twimg.com\/media\/CtcoBucXYAAs4rs.jpg", "url":"https:\/\/t.co\/WtprxUumEE", "display_url":"pic.twitter.com\/WtprxUumEE", "expanded_url":"https:\/\/twitter.com\/oscaron\/status\/781137340962004992\/photo\/1", "type":"photo", "sizes":{ "medium":{ "w":480, "h":571, "resize":"fit" }, "large":{ "w":480, "h":571, "resize":"fit" }, "thumb":{ "w":150, "h":150, "resize":"crop" }, "small":{ "w":480, "h":571, "resize":"fit" } } }, { "id":781137082697805824, "id_str":"781137082697805824", "indices":[ 135, 158 ], "media_url":"http:\/\/pbs.twimg.com\/media\/CtcoCb8WcAATK4y.jpg", "media_url_https":"https:\/\/pbs.twimg.com\/media\/CtcoCb8WcAATK4y.jpg", "url":"https:\/\/t.co\/WtprxUumEE", "display_url":"pic.twitter.com\/WtprxUumEE", "expanded_url":"https:\/\/twitter.com\/oscaron\/status\/781137340962004992\/photo\/1", "type":"photo", "sizes":{ "medium":{ "w":480, "h":571, "resize":"fit" }, "large":{ "w":480, "h":571, "resize":"fit" }, "thumb":{ "w":150, "h":150, "resize":"crop" }, "small":{ "w":480, "h":571, "resize":"fit" } } } ] } }, "retweet_count":355, "favorite_count":308, "entities":{ "hashtags":[ { "text":"400LBHACKER", "indices":[ 56, 68 ] } ], "urls":[ { "url":"https:\/\/t.co\/V2vE2q8ol0", "expanded_url":"https:\/\/twitter.com\/i\/web\/status\/781137340962004992", "display_url":"twitter.com\/i\/web\/status\/7\u2026", "indices":[ 111, 134 ] } ], "user_mentions":[ { "screen_name":"Hak4Kidz", "name":"Hak4Kidz", "id":2262322964, "id_str":"2262322964", "indices":[ 78, 87 ] }, { "screen_name":"EFF", "name":"EFF", "id":4816, "id_str":"4816", "indices":[ 92, 96 ] } ], "symbols":[ ] }, "favorited":false, "retweeted":false, "possibly_sensitive":false, "filter_level":"low", "lang":"en" }, "is_quote_status":false, "retweet_count":0, "favorite_count":0, "entities":{ "hashtags":[ { "text":"400LBHACKER", "indices":[ 69, 81 ] } ], "urls":[ { "url":"", "expanded_url":null, "indices":[ 124, 124 ] } ], "user_mentions":[ { "screen_name":"oscaron", "name":"Oscaron \u2615", "id":16156052, "id_str":"16156052", "indices":[ 3, 11 ] }, { "screen_name":"Hak4Kidz", "name":"Hak4Kidz", "id":2262322964, "id_str":"2262322964", "indices":[ 91, 100 ] }, { "screen_name":"EFF", "name":"EFF", "id":4816, "id_str":"4816", "indices":[ 105, 109 ] } ], "symbols":[ ] }, "favorited":false, "retweeted":false, "filter_level":"low", "lang":"en", "timestamp_ms":"1475253916965" }
+{ "created_at":"Fri Sep 30 16:45:16 +0000 2016", "id":781897715399532544, "id_str":"781897715399532544", "text":"RT @oscaron: Okay folks! I\|ve decided to donate all profits from the #400LBHACKER shirt to @Hak4Kidz and @EFF \n\nPlease RT!\u2026 ", "source":"Cawbird\u003c\/a\u003e", "truncated":false, "in_reply_to_status_id":null, "in_reply_to_status_id_str":null, "in_reply_to_user_id":null, "in_reply_to_user_id_str":null, "in_reply_to_screen_name":null, "user":{ "id":993713617, "id_str":"993713617", "name":"Core & Bird", "screen_name":"cawbirdgtk", "location":null, "url":null, "description":null, "protected":true, "verified":false, "followers_count":3, "friends_count":4, "listed_count":0, "favourites_count":9, "statuses_count":845, "created_at":"Thu Dec 06 19:47:16 +0000 2012", "utc_offset":7200, "time_zone":"Amsterdam", "geo_enabled":false, "lang":"en", "contributors_enabled":false, "is_translator":false, "profile_background_color":"C0DEED", "profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png", "profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png", "profile_background_tile":false, "profile_link_color":"0084B4", "profile_sidebar_border_color":"C0DEED", "profile_sidebar_fill_color":"DDEEF6", "profile_text_color":"333333", "profile_use_background_image":true, "profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/655270693341417472\/h6BbZKJy_normal.png", "profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/655270693341417472\/h6BbZKJy_normal.png", "profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/993713617\/1413106147", "default_profile":true, "default_profile_image":false, "following":null, "follow_request_sent":null, "notifications":null }, "geo":null, "coordinates":null, "place":null, "contributors":null, "retweeted_status":{ "created_at":"Wed Sep 28 14:23:49 +0000 2016", "id":781137340962004992, "id_str":"781137340962004992", "text":"Okay folks! I\|ve decided to donate all profits from the #400LBHACKER shirt to @Hak4Kidz and @EFF \n\nPlease RT!\u2026 https:\/\/t.co\/V2vE2q8ol0", "display_text_range":[ 0, 140 ], "source":"\u003ca href=\"https:\/\/about.twitter.com\/products\/tweetdeck\" rel=\"nofollow\"\u003eTweetDeck\u003c\/a\u003e", "truncated":true, "in_reply_to_status_id":null, "in_reply_to_status_id_str":null, "in_reply_to_user_id":null, "in_reply_to_user_id_str":null, "in_reply_to_screen_name":null, "user":{ "id":16156052, "id_str":"16156052", "name":"Oscaron \u2615", "screen_name":"oscaron", "location":"Galactic Sector ZZ9 Plural Z A", "url":"http:\/\/goo.gl\/skGJRQ", "description":"Tech Alchemist, Infosec Enthusiast. NOT a \|Cybersecurity Expert\|. My views = My views. Trigger warnings: ALL. All stories exaggerated.", "protected":false, "verified":false, "followers_count":1391, "friends_count":762, "listed_count":105, "favourites_count":18359, "statuses_count":49369, "created_at":"Sat Sep 06 12:36:08 +0000 2008", "utc_offset":-14400, "time_zone":"Eastern Time (US & Canada)", "geo_enabled":false, "lang":"en", "contributors_enabled":false, "is_translator":false, "profile_background_color":"131516", "profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme14\/bg.gif", "profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme14\/bg.gif", "profile_background_tile":true, "profile_link_color":"5E2F00", "profile_sidebar_border_color":"FFFFFF", "profile_sidebar_fill_color":"EFEFEF", "profile_text_color":"333333", "profile_use_background_image":true, "profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/773567191832821761\/2ndP1v95_normal.jpg", "profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/773567191832821761\/2ndP1v95_normal.jpg", "profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/16156052\/1404228988", "default_profile":false, "default_profile_image":false, "following":null, "follow_request_sent":null, "notifications":null }, "geo":null, "coordinates":null, "place":null, "contributors":null, "is_quote_status":false, "extended_tweet":{ "full_text":"Okay folks! I\|ve decided to donate all profits from the #400LBHACKER shirt to @Hak4Kidz and @EFF \n\nPlease RT!\n\nhttps:\/\/t.co\/AP7qFSdYp0 https:\/\/t.co\/WtprxUumEE", "display_text_range":[ 0, 134 ], "entities":{ "hashtags":[ { "text":"400LBHACKER", "indices":[ 56, 68 ] } ], "urls":[ { "url":"https:\/\/t.co\/AP7qFSdYp0", "expanded_url":"https:\/\/teespring.com\/400lbhacker#pid=2&cid=2397&sid=front", "display_url":"teespring.com\/400lbhacker#pi\u2026", "indices":[ 111, 134 ] } ], "user_mentions":[ { "screen_name":"Hak4Kidz", "name":"Hak4Kidz", "id":2262322964, "id_str":"2262322964", "indices":[ 78, 87 ] }, { "screen_name":"EFF", "name":"EFF", "id":4816, "id_str":"4816", "indices":[ 92, 96 ] } ], "symbols":[ ], "media":[ { "id":781137070484054016, "id_str":"781137070484054016", "indices":[ 135, 158 ], "media_url":"http:\/\/pbs.twimg.com\/media\/CtcoBucXYAAs4rs.jpg", "media_url_https":"https:\/\/pbs.twimg.com\/media\/CtcoBucXYAAs4rs.jpg", "url":"https:\/\/t.co\/WtprxUumEE", "display_url":"pic.twitter.com\/WtprxUumEE", "expanded_url":"https:\/\/twitter.com\/oscaron\/status\/781137340962004992\/photo\/1", "type":"photo", "sizes":{ "medium":{ "w":480, "h":571, "resize":"fit" }, "large":{ "w":480, "h":571, "resize":"fit" }, "thumb":{ "w":150, "h":150, "resize":"crop" }, "small":{ "w":480, "h":571, "resize":"fit" } } }, { "id":781137082697805824, "id_str":"781137082697805824", "indices":[ 135, 158 ], "media_url":"http:\/\/pbs.twimg.com\/media\/CtcoCb8WcAATK4y.jpg", "media_url_https":"https:\/\/pbs.twimg.com\/media\/CtcoCb8WcAATK4y.jpg", "url":"https:\/\/t.co\/WtprxUumEE", "display_url":"pic.twitter.com\/WtprxUumEE", "expanded_url":"https:\/\/twitter.com\/oscaron\/status\/781137340962004992\/photo\/1", "type":"photo", "sizes":{ "medium":{ "w":480, "h":571, "resize":"fit" }, "large":{ "w":480, "h":571, "resize":"fit" }, "thumb":{ "w":150, "h":150, "resize":"crop" }, "small":{ "w":480, "h":571, "resize":"fit" } } } ] }, "extended_entities":{ "media":[ { "id":781137070484054016, "id_str":"781137070484054016", "indices":[ 135, 158 ], "media_url":"http:\/\/pbs.twimg.com\/media\/CtcoBucXYAAs4rs.jpg", "media_url_https":"https:\/\/pbs.twimg.com\/media\/CtcoBucXYAAs4rs.jpg", "url":"https:\/\/t.co\/WtprxUumEE", "display_url":"pic.twitter.com\/WtprxUumEE", "expanded_url":"https:\/\/twitter.com\/oscaron\/status\/781137340962004992\/photo\/1", "type":"photo", "sizes":{ "medium":{ "w":480, "h":571, "resize":"fit" }, "large":{ "w":480, "h":571, "resize":"fit" }, "thumb":{ "w":150, "h":150, "resize":"crop" }, "small":{ "w":480, "h":571, "resize":"fit" } } }, { "id":781137082697805824, "id_str":"781137082697805824", "indices":[ 135, 158 ], "media_url":"http:\/\/pbs.twimg.com\/media\/CtcoCb8WcAATK4y.jpg", "media_url_https":"https:\/\/pbs.twimg.com\/media\/CtcoCb8WcAATK4y.jpg", "url":"https:\/\/t.co\/WtprxUumEE", "display_url":"pic.twitter.com\/WtprxUumEE", "expanded_url":"https:\/\/twitter.com\/oscaron\/status\/781137340962004992\/photo\/1", "type":"photo", "sizes":{ "medium":{ "w":480, "h":571, "resize":"fit" }, "large":{ "w":480, "h":571, "resize":"fit" }, "thumb":{ "w":150, "h":150, "resize":"crop" }, "small":{ "w":480, "h":571, "resize":"fit" } } } ] } }, "retweet_count":355, "favorite_count":308, "entities":{ "hashtags":[ { "text":"400LBHACKER", "indices":[ 56, 68 ] } ], "urls":[ { "url":"https:\/\/t.co\/V2vE2q8ol0", "expanded_url":"https:\/\/twitter.com\/i\/web\/status\/781137340962004992", "display_url":"twitter.com\/i\/web\/status\/7\u2026", "indices":[ 111, 134 ] } ], "user_mentions":[ { "screen_name":"Hak4Kidz", "name":"Hak4Kidz", "id":2262322964, "id_str":"2262322964", "indices":[ 78, 87 ] }, { "screen_name":"EFF", "name":"EFF", "id":4816, "id_str":"4816", "indices":[ 92, 96 ] } ], "symbols":[ ] }, "favorited":false, "retweeted":false, "possibly_sensitive":false, "filter_level":"low", "lang":"en" }, "is_quote_status":false, "retweet_count":0, "favorite_count":0, "entities":{ "hashtags":[ { "text":"400LBHACKER", "indices":[ 69, 81 ] } ], "urls":[ { "url":"", "expanded_url":null, "indices":[ 124, 124 ] } ], "user_mentions":[ { "screen_name":"oscaron", "name":"Oscaron \u2615", "id":16156052, "id_str":"16156052", "indices":[ 3, 11 ] }, { "screen_name":"Hak4Kidz", "name":"Hak4Kidz", "id":2262322964, "id_str":"2262322964", "indices":[ 91, 100 ] }, { "screen_name":"EFF", "name":"EFF", "id":4816, "id_str":"4816", "indices":[ 105, 109 ] } ], "symbols":[ ] }, "favorited":false, "retweeted":false, "filter_level":"low", "lang":"en", "timestamp_ms":"1475253916965" }
 """;
 
 
@@ -702,7 +702,7 @@ const string TD6 =
     "id" : 993713617,
     "id_str" : "993713617",
     "name" : "Z??!@*(&*²³¤²³¤",
-    "screen_name" : "corebirdgtk",
+    "screen_name" : "cawbirdgtk",
     "location" : "",
     "description" : "&lt;asdf",
     "url" : null,
@@ -951,15 +951,15 @@ const string TD6 =
         "name" : "Schupp & Wupp",
         "screen_name" : "baedert",
         "location" : "",
-        "description" : "Corebird developer by night, silently judging people on the train by day.",
+        "description" : "Cawbird developer by night, silently judging people on the train by day.",
         "url" : "https://t.co/yGvX7Nf6i3",
         "entities" : {
           "url" : {
             "urls" : [
               {
                 "url" : "https://t.co/yGvX7Nf6i3",
-                "expanded_url" : "http://corebird.baedert.org",
-                "display_url" : "corebird.baedert.org",
+                "expanded_url" : "http://cawbird.baedert.org",
+                "display_url" : "cawbird.baedert.org",
                 "indices" : [
                   0,
                   23
@@ -1445,7 +1445,7 @@ const string TD8 = """
   "created_at" : "Mon Apr 24 11:40:53 +0000 2017",
   "id" : 856473014560591872,
   "id_str" : "856473014560591872",
-  "full_text" : "RT @corebirdgtk: @baedert and @corebirdclient so?",
+  "full_text" : "RT @cawbirdgtk: @baedert and @cawbirdclient so?",
   "truncated" : false,
   "display_text_range" : [
     0,
@@ -1458,7 +1458,7 @@ const string TD8 = """
     ],
     "user_mentions" : [
       {
-        "screen_name" : "corebirdgtk",
+        "screen_name" : "cawbirdgtk",
         "name" : "Z??!@*(&*²³¤²³¤",
         "id" : 993713617,
         "id_str" : "993713617",
@@ -1478,8 +1478,8 @@ const string TD8 = """
         ]
       },
       {
-        "screen_name" : "corebirdclient",
-        "name" : "Corebird",
+        "screen_name" : "cawbirdclient",
+        "name" : "Cawbird",
         "id" : 2877682863,
         "id_str" : "2877682863",
         "indices" : [
@@ -1501,7 +1501,7 @@ const string TD8 = """
     "id" : 993713617,
     "id_str" : "993713617",
     "name" : "Z??!@*(&*²³¤²³¤",
-    "screen_name" : "corebirdgtk",
+    "screen_name" : "cawbirdgtk",
     "location" : "",
     "description" : "&lt;asdf",
     "url" : null,
@@ -1554,7 +1554,7 @@ const string TD8 = """
     "created_at" : "Mon Apr 24 11:35:17 +0000 2017",
     "id" : 856471602883686400,
     "id_str" : "856471602883686400",
-    "full_text" : "@baedert and @corebirdclient so?",
+    "full_text" : "@baedert and @cawbirdclient so?",
     "truncated" : false,
     "display_text_range" : [
       9,
@@ -1577,8 +1577,8 @@ const string TD8 = """
           ]
         },
         {
-          "screen_name" : "corebirdclient",
-          "name" : "Corebird",
+          "screen_name" : "cawbirdclient",
+          "name" : "Cawbird",
           "id" : 2877682863,
           "id_str" : "2877682863",
           "indices" : [
@@ -1595,12 +1595,12 @@ const string TD8 = """
     "in_reply_to_status_id_str" : "853198126106148864",
     "in_reply_to_user_id" : 993713617,
     "in_reply_to_user_id_str" : "993713617",
-    "in_reply_to_screen_name" : "corebirdgtk",
+    "in_reply_to_screen_name" : "cawbirdgtk",
     "user" : {
       "id" : 993713617,
       "id_str" : "993713617",
       "name" : "Z??!@*(&*²³¤²³¤",
-      "screen_name" : "corebirdgtk",
+      "screen_name" : "cawbirdgtk",
       "location" : "",
       "description" : "&lt;asdf",
       "url" : null,
@@ -2166,7 +2166,7 @@ void media_count () {
   var root = parser.get_root ();
 
   t.load_from_json (root, 0, now);
-  assert (t.get_screen_name () == "corebirdgtk");
+  assert (t.get_screen_name () == "cawbirdgtk");
   assert (t.get_medias ().length == 2);
 }
 
@@ -2184,7 +2184,7 @@ void double_media () {
 
   t.load_from_json (root, 0, now);
 
-  // See https://github.com/baedert/corebird/issues/627
+  // See https://github.com/baedert/cawbird/issues/627
   // If this was still a problem, the following call would make this test crash
   t.get_filter_text ();
 }
@@ -2276,22 +2276,22 @@ void rt_reply () {
 
   /*
    * The loaded tweet is a retweet of a tweet that replies
-   * to 2 users (namely @corebirdgtk and @baedert).
+   * to 2 users (namely @cawbirdgtk and @baedert).
    * @baedert is mentioned directly in the tweet text, before the display_range_start
-   * and @corebirdgtk as the in_reply_to_screen_name embedded in the retweeted tweet.
+   * and @cawbirdgtk as the in_reply_to_screen_name embedded in the retweeted tweet.
    *
    * The result we want is that the CbTweet is a reply to all the
-   * users the retweeted tweet was a reply to, so both @corebirdgtk and @baedert.
+   * users the retweeted tweet was a reply to, so both @cawbirdgtk and @baedert.
    */
   assert (t.retweeted_tweet.reply_users.length == 2);
-  /* It's a direct reply to @corebirdgtk, so that should be first */
-  assert (t.retweeted_tweet.reply_users[0].screen_name == "corebirdgtk");
+  /* It's a direct reply to @cawbirdgtk, so that should be first */
+  assert (t.retweeted_tweet.reply_users[0].screen_name == "cawbirdgtk");
   assert (t.retweeted_tweet.reply_users[1].screen_name == "baedert");
 
   /* Consequently, the ones returned by get_reply_users should be the same. */
   var reply_users = t.get_reply_users ();
   assert (reply_users.length == 2);
-  assert (reply_users[0].screen_name == "corebirdgtk");
+  assert (reply_users[0].screen_name == "cawbirdgtk");
   assert (reply_users[1].screen_name == "baedert");
 }
 

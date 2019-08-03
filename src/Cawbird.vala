@@ -1,23 +1,23 @@
-/*  This file is part of corebird, a Gtk+ linux Twitter client.
- *  Copyright (C) 2013 Timm Bäder
+/*  This file is part of Cawbird, a Gtk+ linux Twitter client forked from Corebird.
+ *  Copyright (C) 2013 Timm Bäder (Corebird)
  *
- *  corebird is free software: you can redistribute it and/or modify
+ *  Cawbird is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  corebird is distributed in the hope that it will be useful,
+ *  Cawbird is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with corebird.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with cawbird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 bool STRESSTEST = false;
 
-public class Corebird : Gtk.Application {
+public class Cawbird : Gtk.Application {
   public static Sql.Database db;
   public static Cb.SnippetManager snippet_manager;
   public signal void account_added (Account acc);
@@ -44,17 +44,17 @@ public class Corebird : Gtk.Application {
 
 
 
-  public Corebird () {
-    GLib.Object(application_id:   "org.baedert.corebird",
+  public Cawbird () {
+    GLib.Object(application_id:   "uk.co.ibboard.cawbird",
                 flags:            ApplicationFlags.HANDLES_COMMAND_LINE);
                 //register_session: true);
     active_accounts = new GLib.GenericArray<Account> ();
 
     /* Create the directories here already since the database below needs it */
     Dirs.create_dirs ();
-    db = new Sql.Database (Dirs.config ("Corebird.db"),
-                           Sql.COREBIRD_INIT_FILE,
-                           Sql.COREBIRD_SQL_VERSION);
+    db = new Sql.Database (Dirs.config ("Cawbird.db"),
+                           Sql.CAWBIRD_INIT_FILE,
+                           Sql.CAWBIRD_SQL_VERSION);
 
     snippet_manager = new Cb.SnippetManager (db.get_sqlite_db ());
   }
@@ -119,7 +119,7 @@ public class Corebird : Gtk.Application {
         /* Starting as a service adds an extra hold() */
         this.release ();
       } else {
-        warning ("--stop-service passed, but corebird has not been started as a service");
+        warning ("--stop-service passed, but cawbird has not been started as a service");
       }
     } else if (print_startup_accounts) {
       string[] startup_accounts = Settings.get ().get_strv ("startup-accounts");
@@ -188,21 +188,21 @@ public class Corebird : Gtk.Application {
   }
 
   private void show_shortcuts_activated () {
-    var builder = new Gtk.Builder.from_resource ("/org/baedert/corebird/ui/shortcuts-window.ui");
+    var builder = new Gtk.Builder.from_resource ("/uk/co/ibboard/cawbird/ui/shortcuts-window.ui");
     var shortcuts_window = (Gtk.Window) builder.get_object ("shortcuts_window");
     shortcuts_window.show ();
   }
 
   public override void startup () {
     base.startup ();
-    this.set_resource_base_path ("/org/baedert/corebird");
+    this.set_resource_base_path ("/uk/co/ibboard/cawbird");
 
     typeof (LazyMenuButton).ensure ();
     typeof (FavImageView).ensure ();
     typeof (Cb.EmojiChooser).ensure ();
 
 #if DEBUG
-    GLib.Environment.set_variable ("G_MESSAGES_DEBUG", "corebird", true);
+    GLib.Environment.set_variable ("G_MESSAGES_DEBUG", "cawbird", true);
 #endif
 
     debug ("startup");

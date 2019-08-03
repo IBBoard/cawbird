@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=uk.co.ibboard.cawbird
+Exec=@bindir@/cawbird --gapplication-service

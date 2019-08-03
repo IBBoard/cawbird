@@ -1,4 +1,4 @@
-AC_INIT([corebird],[1.7.4],[mail@baedert.org])
+AC_INIT([cawbird],[1.0],[cawbird@ibboard.co.uk])
 
 AC_PREREQ([2.65])
 
@@ -169,7 +169,7 @@ AC_OUTPUT
 VALAC_VERSION=$($VALAC --version)
 
 echo "
-                Corebird  $VERSION
+                Cawbird  $VERSION
                   Prefix: ${prefix}
            Vala Compiler: ${VALAC} ${CB_VALA_FLAGS}
            valac version: ${VALAC_VERSION}
