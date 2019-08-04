@@ -205,7 +205,7 @@ private class MediaButton : Gtk.Widget {
       ct.save ();
       ct.rectangle (0, 0, widget_width, widget_height);
       ct.scale (scale, scale);
-      double draw_y = -(((media.height * scale) - draw_height) / 2);
+      double draw_y = -Math.floor(((media.height * scale) - draw_height) / 2);
       ct.set_source_surface (media.surface, draw_x / scale, draw_y / scale);
       ct.paint_with_alpha (this.media_alpha);
       ct.restore ();
