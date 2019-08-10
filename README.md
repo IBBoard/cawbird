@@ -3,7 +3,39 @@
 Cawbird is a fork of the [Corebird Twitter client from Baedert](https://corebird.baedert.org/), which became unsupported after Twitter disabled the streaming API.
 
 Cawbird works with the new APIs and includes a few fixes and modifications that have historically been patched in to IBBoard's custom Corebird build on
-[his Open Build Service account](https://build.opensuse.org/project/show/home:IBBoard:desktop).
+[his personal Open Build Service account](https://build.opensuse.org/project/show/home:IBBoard:desktop).
+
+## Packaging and installation
+
+Official packages are built in the [Cawbird Open Build Service project](https://build.opensuse.org/project/show/home:IBBoard:cawbird). They can be installed from the [Cawbird download page](https://software.opensuse.org//download.html?project=home%3AIBBoard%3Acawbird&package=cawbird) (Note: CentOS is listed under Fedora)
+
+
+**[Install Cawbird](https://software.opensuse.org//download.html?project=home%3AIBBoard%3Acawbird&package=cawbird)**
+
+
+Packages currently exist for:
+
+ * openSUSE
+   * openSUSE Tumbleweed
+   * openSUSE Leap 15
+   * openSUSE Leap 15.1
+ * Fedora
+   * Fedora 29
+   * Fedora 30
+ * CentOS
+   * CentOS 7
+
+The following distros should be supported in future:
+ * Ubuntu
+   * Ubuntu 18.04 (Bionic Beaver)
+   * Ubuntu 19.04 (Disco Dingo)
+   * Ubuntu 19.10 (Eoan Ermine)
+
+Twitter uses specific codecs for videos. These are provided by `libav` and are not included in the core repositories of many distros. The following additional repositories are known to include the required libraries:
+
+ * openSUSE - [Packman](http://packman.links2linux.org/)
+ * Fedora/CentOS - [RPMFusion](https://rpmfusion.org/)
+
 
 ## Shortcuts
 
@@ -68,7 +100,7 @@ All limitations are limitations imposed by Twitter and are not the fault of the 
  - `gst-libav-1.0` (disable via --disable-video, default enabled)
  - `gspell-1 >= 1.2` (for spellchecking, disable via --disable-spellcheck, default enabled)
 
-Note that the above packages are just rough estimations, the actual package names on your distribution may vary.
+Note that the above packages are just rough estimations, the actual package names on your distribution may vary and may require additional repositories (e.g. RPMFusion in Fedora, or Packman in openSUSE)
 
 If you pass `--disable-video` to the configure script, you don't need any gstreamer dependency but won't be able to view any videos.
 
