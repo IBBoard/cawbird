@@ -24,17 +24,19 @@ Packages currently exist for:
    * Fedora 30
  * CentOS
    * CentOS 7
-
-The following distros should be supported in future:
  * Ubuntu
    * Ubuntu 18.04 (Bionic Beaver)
    * Ubuntu 19.04 (Disco Dingo)
+
+The following distros should be supported in future:
+ * Ubuntu
    * Ubuntu 19.10 (Eoan Ermine)
 
 Twitter uses specific codecs for videos. These are provided by `libav` and are not included in the core repositories of many distros. The following additional repositories are known to include the required libraries:
 
  * openSUSE - [Packman](http://packman.links2linux.org/)
  * Fedora/CentOS - [RPMFusion](https://rpmfusion.org/)
+ * Ubuntu - Universe
 
 
 ## Shortcuts
@@ -84,8 +86,21 @@ All limitations are limitations imposed by Twitter and are not the fault of the 
   All contributions are welcome (artwork, design, code, just ideas, etc.) but if you're planning to
   actively change something bigger, talk to me first.
 
+## Compiling Cawbird
 
-## Dependencies
+### Compiling
+
+Cawbird uses the Meson build system rather than the more archaic autoconf/make combination. Building is as simple as:
+
+```
+meson build
+ninja -C build
+```
+
+Cawbird installs its application icon into `/usr/share/icons/hicolor/`, so an appropriate call to `gtk-update-icon-cache` might be needed.
+
+### Dependencies
+
  - `gtk+-3.0 >= 3.20`
  - `glib-2.0 >= 2.44`
  - `json-glib-1.0`
@@ -103,12 +118,3 @@ All limitations are limitations imposed by Twitter and are not the fault of the 
 Note that the above packages are just rough estimations, the actual package names on your distribution may vary and may require additional repositories (e.g. RPMFusion in Fedora, or Packman in openSUSE)
 
 If you pass `--disable-video` to the configure script, you don't need any gstreamer dependency but won't be able to view any videos.
-
-## Compiling
-
-```
-meson build
-ninja -C build
-```
-
-Cawbird installs its application icon into `/usr/share/icons/hicolor/`, so an appropriate call to `gtk-update-icon-cache` might be needed.
