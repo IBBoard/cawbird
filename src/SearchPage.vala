@@ -161,7 +161,7 @@ class SearchPage : IPage, Gtk.Box {
 
     q += " -rt";
 
-    this.search_query    = GLib.Uri.escape_string (q);
+    this.search_query    = q;
     this.user_page       = 1;
     this.lowest_tweet_id = int64.MAX-1;
 
