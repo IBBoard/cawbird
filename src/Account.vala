@@ -18,6 +18,7 @@
 public class Account : GLib.Object {
   public const string DUMMY = "screen_name";
   public int64 id;
+  public int64 migration_date;
   public Sql.Database db;
   public string screen_name;
   public string name;
@@ -44,6 +45,7 @@ public class Account : GLib.Object {
     this.id = id;
     this.screen_name = screen_name;
     this.name = name;
+    this.migration_date = -1;
     this.filters = new GLib.GenericArray<Cb.Filter> ();
     this.event_receiver = new UserEventReceiver (this);
     this.notifications = new NotificationManager (this);
@@ -63,6 +65,14 @@ public class Account : GLib.Object {
                                 Sql.ACCOUNTS_SQL_VERSION);
     user_counter = new Cb.UserCounter ();
     this.load_filters ();
+
+    if (this.migration_date < 0) {
+      this.migration_date = Cawbird.db.select ("accounts") .cols ("migrated") .where_eqi ("id", this.id) .once_i64 ();
+    }
+
+    if (this.migration_date == 0) {
+      this.migrate_from_corebird ();
+    }
   }
 
   /**
@@ -559,6 +569,19 @@ public class Account : GLib.Object {
     return false;
   }
 
+  private void migrate_from_corebird () {
+    var corebird_db_path = Dirs.corebird_config (@"accounts/$id.db");
+
+    if (GLib.FileUtils.test (corebird_db_path, GLib.FileTest.EXISTS)) {
+      debug ("Migrating settings");
+      var corebird_db = new Sql.Database (corebird_db_path, "", 1); // Use version 1 to prevent updating
+      // TODO: migrate old settings, DMs, etc
+    } else {
+      debug ("No Corebird account to migrate");
+    }
+    //Cawbird.db.update ("accounts").vali64 ("migrated", GLib.get_real_time ()).where_eqi ("id", this.id).run ();
+  }
+
   /** Static stuff ********************************************************************/
   private static GLib.GenericArray<Account>? accounts = null;
 
@@ -583,10 +606,11 @@ public class Account : GLib.Object {
   private static void lookup_accounts () {
     assert (accounts == null);
     accounts = new GLib.GenericArray<Account> ();
-    Cawbird.db.select ("accounts").cols ("id", "screen_name", "name", "avatar_url").run ((vals) => {
+    Cawbird.db.select ("accounts").cols ("id", "screen_name", "name", "avatar_url", "migrated").run ((vals) => {
       Account acc = new Account (int64.parse(vals[0]), vals[1], vals[2]);
       acc.avatar_url = vals[3];
       acc.load_avatar ();
+      acc.migration_date = int64.parse(vals[4]);
       accounts.add (acc);
       return true;
     });
