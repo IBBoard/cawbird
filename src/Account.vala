@@ -575,11 +575,54 @@ public class Account : GLib.Object {
     if (GLib.FileUtils.test (corebird_db_path, GLib.FileTest.EXISTS)) {
       debug ("Migrating settings");
       var corebird_db = new Sql.Database (corebird_db_path, "", 1); // Use version 1 to prevent updating
-      // TODO: migrate old settings, DMs, etc
+
+      // Migrate DM history - they're unique by ID
+      // But avatar URLs can be (always are?) null so we need to null-coallesce them
+      corebird_db.select ("dm_threads").cols ("user_id", "name", "screen_name", "last_message", "last_message_id", "avatar_url").run ((vals) => {
+        this.db.insert_ignore ("dm_threads").vali64 ("user_id", int64.parse(vals[0]))
+                                            .val ("name", vals[1])
+                                            .val ("screen_name", vals[2])
+                                            .val ("last_message", vals[3])
+                                            .vali64 ("last_message_id", int64.parse(vals[4]))
+                                            .val ("avatar_url", vals[5] ?? "")
+                                            .run ();
+        return true;
+      });
+      corebird_db.select ("dms").cols ("from_id", "to_id", "from_screen_name", "to_screen_name", "from_name", "to_name", "timestamp", "avatar_url", "id", "text").run ((vals) => {
+        this.db.insert_ignore ("dms").vali64 ("from_id", int64.parse(vals[0]))
+                                     .vali64 ("to_id", int64.parse(vals[1]))
+                                     .val ("from_screen_name", vals[2])
+                                     .val ("to_screen_name", vals[3])
+                                     .val ("from_name", vals[4])
+                                     .val ("to_name", vals[5])
+                                     .vali ("timestamp", int.parse(vals[6]))
+                                     .val ("avatar_url", vals[7] ?? "")
+                                     .vali64 ("id", int64.parse(vals[8]))
+                                     .val ("text", vals[9])
+                                     .run ();
+        return true;
+      });
+
+      // Filter IDs could change if people made new ones, so we just work with content
+      corebird_db.select ("filters").cols ("content").run ((vals) => {
+        var filter_match_count = this.db.select ("filters") .count ("id") .where_eq ("content", vals[0]).once_i64 ();
+
+        if (filter_match_count == 0) {
+          Utils.create_persistent_filter (vals[0], this);
+        }
+        //Else the user put the filter back already
+
+        return true;
+      });
+
+      // Common is common and pre-populated
+      // Info is account info, which is pre-populated
+      // User_cache can be rebuilt
     } else {
       debug ("No Corebird account to migrate");
     }
-    //Cawbird.db.update ("accounts").vali64 ("migrated", GLib.get_real_time ()).where_eqi ("id", this.id).run ();
+
+    Cawbird.db.update ("accounts").vali64 ("migrated", GLib.get_real_time ()).where_eqi ("id", this.id).run ();
   }
 
   /** Static stuff ********************************************************************/
