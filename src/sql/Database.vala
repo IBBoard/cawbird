@@ -65,13 +65,19 @@ public class Database : GLib.Object {
   }
 
   public Sql.InsertStatement insert (string table_name) {
-    var stmt = new InsertStatement (table_name);
+    var stmt = new InsertStatement (table_name, InsertType.FAIL);
+    stmt.db = db;
+    return stmt;
+  }
+
+  public Sql.InsertStatement insert_ignore (string table_name) {
+    var stmt = new InsertStatement (table_name, InsertType.IGNORE);
     stmt.db = db;
     return stmt;
   }
 
   public Sql.InsertStatement replace (string table_name) {
-    var stmt = new InsertStatement (table_name, true);
+    var stmt = new InsertStatement (table_name, InsertType.REPLACE);
     stmt.db = db;
     return stmt;
 
