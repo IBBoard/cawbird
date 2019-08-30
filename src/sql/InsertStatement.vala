@@ -16,8 +16,6 @@
  */
 
 namespace Sql {
-  public delegate bool SelectCallback (string[] vals);
-
   public class InsertStatement : GLib.Object {
     public unowned Sqlite.Database db;
     private StringBuilder query_builder  = new StringBuilder ();
