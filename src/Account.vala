@@ -573,7 +573,6 @@ public class Account : GLib.Object {
     var corebird_db_path = Dirs.corebird_config (@"accounts/$id.db");
 
     if (GLib.FileUtils.test (corebird_db_path, GLib.FileTest.EXISTS)) {
-      debug ("Migrating settings");
       var corebird_db = new Sql.Database (corebird_db_path, "", 1); // Use version 1 to prevent updating
 
       // Migrate DM history - they're unique by ID
@@ -618,10 +617,10 @@ public class Account : GLib.Object {
       // Common is common and pre-populated
       // Info is account info, which is pre-populated
       // User_cache can be rebuilt
-    } else {
-      debug ("No Corebird account to migrate");
     }
+    // Else no Corebird account to migrate
 
+    // Set the migrated value so that we don't try again
     Cawbird.db.update ("accounts").vali64 ("migrated", GLib.get_real_time ()).where_eqi ("id", this.id).run ();
   }
 
