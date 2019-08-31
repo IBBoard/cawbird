@@ -16,17 +16,20 @@
  */
 
 namespace Sql {
+  public delegate bool SelectCallback (string[] vals);
+
   public class SelectStatement : GLib.Object {
     public unowned Sqlite.Database db;
     private StringBuilder query_builder = new StringBuilder ();
     private string table_name;
 
     public SelectStatement (string table_name) {
+      query_builder.append ("SELECT ");
       this.table_name = table_name;
     }
     public SelectStatement cols (string first, ...) {
       var arg_list = va_list ();
-      query_builder.append ("SELECT `").append (first).append ("`");
+      query_builder.append ("`").append (first).append ("`");
       for (string? arg = arg_list.arg<string> (); arg != null; arg = arg_list.arg<string> ()) {
         query_builder.append (", `").append (arg).append ("`");
       }
@@ -34,8 +37,19 @@ namespace Sql {
       return this;
     }
 
+    public SelectStatement count (string col) {
+      query_builder.append ("count(`").append (col).append ("`)");
+      query_builder.append (" FROM `").append (table_name).append ("`");
+      return this;
+    }
+
     public SelectStatement where (string stmt) {
       query_builder.append (" WHERE ").append (stmt);
+      return this;
+    }
+
+    public SelectStatement where_eq (string field, string val) {
+      query_builder.append (" WHERE `").append (field).append ("` = '").append (val).append ("'");
       return this;
     }
 

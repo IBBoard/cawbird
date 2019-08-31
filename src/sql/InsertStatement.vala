@@ -16,7 +16,14 @@
  */
 
 namespace Sql {
-  public delegate bool SelectCallback (string[] vals);
+  /**
+   * What to do in case of key collision during INSERT - fail, replace or ignore
+   */
+  public enum InsertType {
+    FAIL,
+    REPLACE,
+    IGNORE
+  }
 
   public class InsertStatement : GLib.Object {
     public unowned Sqlite.Database db;
@@ -24,11 +31,14 @@ namespace Sql {
     private GLib.GenericArray<string> bindings = new GLib.GenericArray<string>();
     private bool ran = false;
 
-    public InsertStatement (string table_name, bool replace = false) {
-      if (replace)
+    public InsertStatement (string table_name, InsertType ins_type) {
+      if (ins_type == InsertType.REPLACE) {
         query_builder.append ("INSERT OR REPLACE INTO `");
-      else
+      } else if (ins_type == InsertType.IGNORE) {
+        query_builder.append ("INSERT OR IGNORE INTO `");
+      } else {
         query_builder.append ("INSERT INTO `");
+      }
       query_builder.append (table_name).append ("` (");
     }
 

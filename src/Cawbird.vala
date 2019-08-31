@@ -56,6 +56,30 @@ public class Cawbird : Gtk.Application {
                            Sql.CAWBIRD_INIT_FILE,
                            Sql.CAWBIRD_SQL_VERSION);
 
+    var migrations = db.select ("info") .count ("key") .where_eq ("key", "migration").once_i64 ();
+
+    if (migrations == 0) {
+      var corebird_db_path = Dirs.corebird_config (@"Corebird.db");
+
+      if (GLib.FileUtils.test (corebird_db_path, GLib.FileTest.EXISTS)) {
+        var corebird_db = new Sql.Database (corebird_db_path, "", 1); // Use version 1 to prevent updating
+
+        // Snippet IDs could change if people made new ones, so we just work with content
+        corebird_db.select ("snippets").cols ("key", "value").run ((vals) => {
+          var snippet_match_count = db.select ("snippets").count ("id").where_eq ("key", vals[0]).once_i64 ();
+
+          if (snippet_match_count == 0) {
+            db.insert ("snippets") .val ("key", vals[0]).val ("value", vals[1]). run();
+          }
+          //Else the user recreated the snippet already
+
+          return true;
+        });
+      }
+
+      db.insert_ignore ("info").val ("key", "migration").val ("value", GLib.get_real_time ().to_string ()).run ();
+    }
+
     snippet_manager = new Cb.SnippetManager (db.get_sqlite_db ());
   }
 

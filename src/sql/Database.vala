@@ -16,7 +16,7 @@
  */
 
 namespace Sql {
-  public const int    CAWBIRD_SQL_VERSION = 2;
+  public const int    CAWBIRD_SQL_VERSION = 3;
   public const string CAWBIRD_INIT_FILE = "/uk/co/ibboard/cawbird/sql/init/Create.%d.sql";
   public const int    ACCOUNTS_SQL_VERSION = 3;
   public const string ACCOUNTS_INIT_FILE = "/uk/co/ibboard/cawbird/sql/accounts/Create.%d.sql";
@@ -65,13 +65,19 @@ public class Database : GLib.Object {
   }
 
   public Sql.InsertStatement insert (string table_name) {
-    var stmt = new InsertStatement (table_name);
+    var stmt = new InsertStatement (table_name, InsertType.FAIL);
+    stmt.db = db;
+    return stmt;
+  }
+
+  public Sql.InsertStatement insert_ignore (string table_name) {
+    var stmt = new InsertStatement (table_name, InsertType.IGNORE);
     stmt.db = db;
     return stmt;
   }
 
   public Sql.InsertStatement replace (string table_name) {
-    var stmt = new InsertStatement (table_name, true);
+    var stmt = new InsertStatement (table_name, InsertType.REPLACE);
     stmt.db = db;
     return stmt;
 

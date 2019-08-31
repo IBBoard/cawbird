@@ -18,6 +18,7 @@
 public class Account : GLib.Object {
   public const string DUMMY = "screen_name";
   public int64 id;
+  public int64 migration_date;
   public Sql.Database db;
   public string screen_name;
   public string name;
@@ -44,6 +45,7 @@ public class Account : GLib.Object {
     this.id = id;
     this.screen_name = screen_name;
     this.name = name;
+    this.migration_date = -1;
     this.filters = new GLib.GenericArray<Cb.Filter> ();
     this.event_receiver = new UserEventReceiver (this);
     this.notifications = new NotificationManager (this);
@@ -63,6 +65,14 @@ public class Account : GLib.Object {
                                 Sql.ACCOUNTS_SQL_VERSION);
     user_counter = new Cb.UserCounter ();
     this.load_filters ();
+
+    if (this.migration_date < 0) {
+      this.migration_date = Cawbird.db.select ("accounts") .cols ("migrated") .where_eqi ("id", this.id) .once_i64 ();
+    }
+
+    if (this.migration_date == 0) {
+      this.migrate_from_corebird ();
+    }
   }
 
   /**
@@ -559,6 +569,61 @@ public class Account : GLib.Object {
     return false;
   }
 
+  private void migrate_from_corebird () {
+    var corebird_db_path = Dirs.corebird_config (@"accounts/$id.db");
+
+    if (GLib.FileUtils.test (corebird_db_path, GLib.FileTest.EXISTS)) {
+      var corebird_db = new Sql.Database (corebird_db_path, "", 1); // Use version 1 to prevent updating
+
+      // Migrate DM history - they're unique by ID
+      // But avatar URLs can be (always are?) null so we need to null-coallesce them
+      corebird_db.select ("dm_threads").cols ("user_id", "name", "screen_name", "last_message", "last_message_id", "avatar_url").run ((vals) => {
+        this.db.insert_ignore ("dm_threads").vali64 ("user_id", int64.parse(vals[0]))
+                                            .val ("name", vals[1])
+                                            .val ("screen_name", vals[2])
+                                            .val ("last_message", vals[3])
+                                            .vali64 ("last_message_id", int64.parse(vals[4]))
+                                            .val ("avatar_url", vals[5] ?? "")
+                                            .run ();
+        return true;
+      });
+      corebird_db.select ("dms").cols ("from_id", "to_id", "from_screen_name", "to_screen_name", "from_name", "to_name", "timestamp", "avatar_url", "id", "text").run ((vals) => {
+        this.db.insert_ignore ("dms").vali64 ("from_id", int64.parse(vals[0]))
+                                     .vali64 ("to_id", int64.parse(vals[1]))
+                                     .val ("from_screen_name", vals[2])
+                                     .val ("to_screen_name", vals[3])
+                                     .val ("from_name", vals[4])
+                                     .val ("to_name", vals[5])
+                                     .vali ("timestamp", int.parse(vals[6]))
+                                     .val ("avatar_url", vals[7] ?? "")
+                                     .vali64 ("id", int64.parse(vals[8]))
+                                     .val ("text", vals[9])
+                                     .run ();
+        return true;
+      });
+
+      // Filter IDs could change if people made new ones, so we just work with content
+      corebird_db.select ("filters").cols ("content").run ((vals) => {
+        var filter_match_count = this.db.select ("filters") .count ("id") .where_eq ("content", vals[0]).once_i64 ();
+
+        if (filter_match_count == 0) {
+          Utils.create_persistent_filter (vals[0], this);
+        }
+        //Else the user put the filter back already
+
+        return true;
+      });
+
+      // Common is common and pre-populated
+      // Info is account info, which is pre-populated
+      // User_cache can be rebuilt
+    }
+    // Else no Corebird account to migrate
+
+    // Set the migrated value so that we don't try again
+    Cawbird.db.update ("accounts").vali64 ("migrated", GLib.get_real_time ()).where_eqi ("id", this.id).run ();
+  }
+
   /** Static stuff ********************************************************************/
   private static GLib.GenericArray<Account>? accounts = null;
 
@@ -583,10 +648,11 @@ public class Account : GLib.Object {
   private static void lookup_accounts () {
     assert (accounts == null);
     accounts = new GLib.GenericArray<Account> ();
-    Cawbird.db.select ("accounts").cols ("id", "screen_name", "name", "avatar_url").run ((vals) => {
+    Cawbird.db.select ("accounts").cols ("id", "screen_name", "name", "avatar_url", "migrated").run ((vals) => {
       Account acc = new Account (int64.parse(vals[0]), vals[1], vals[2]);
       acc.avatar_url = vals[3];
       acc.load_avatar ();
+      acc.migration_date = int64.parse(vals[4]);
       accounts.add (acc);
       return true;
     });

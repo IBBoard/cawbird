@@ -17,6 +17,7 @@
 
 namespace Dirs {
   static string? config_dir = null;
+  static string? corebird_config_dir = null;
 
 
   public void create_dirs () {
@@ -25,14 +26,26 @@ namespace Dirs {
     create_folder (config ("image-favorites/"));
   }
 
+  public string corebird_config (string path) {
+    if (corebird_config_dir == null) {
+      corebird_config_dir = _config (path, "corebird");
+    }
+    return corebird_config_dir + path;
+  }
+
   public string config (string path) {
     if (config_dir == null) {
-      config_dir = GLib.Environment.get_home_dir () + "/.cawbird/";
-      if (!GLib.FileUtils.test (config_dir, GLib.FileTest.EXISTS)) {
-        config_dir = GLib.Environment.get_user_config_dir () + "/cawbird/";
-      }
+      config_dir = _config (path, "cawbird");
     }
     return config_dir + path;
+  }
+
+  private string _config (string path, string app_name) {
+    string dir = GLib.Environment.get_home_dir () + "/." + app_name + "/";
+    if (!GLib.FileUtils.test (dir, GLib.FileTest.EXISTS)) {
+      dir = GLib.Environment.get_user_config_dir () + "/" + app_name + "/";
+    }
+    return dir;
   }
 
   private void create_folder (string path) {
