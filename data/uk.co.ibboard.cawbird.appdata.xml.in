@@ -14,18 +14,19 @@
    Additional features include local viewing of videos, multiple inline images, Lists, Filters, multiple accounts, etc.
   </p>
   </description>
-  <url type="homepage">https://cawbird.baedert.org/</url>
+  <url type="homepage">https://ibboard.co.uk/cawbird/</url>
+  <launchable type="desktop-id">uk.co.ibboard.cawbird.desktop</launchable>
   <screenshots>
     <screenshot height="450" width="800" type="default">
-      <image>https://cawbird.baedert.org/appdata/1.5/1.png</image>
+      <image>https://ibboard.co.uk/cawbird/appdata/screenshot1.jpg</image>
       <caption>Generic timeline view when using Cawbird</caption>
     </screenshot>
     <screenshot height="450" width="800">
-      <image>https://cawbird.baedert.org/appdata/1.5/2.png</image>
+      <image>https://ibboard.co.uk/cawbird/appdata/screenshot2.jpg</image>
       <caption>Typical Twitter profile</caption>
     </screenshot>
     <screenshot height="450" width="800">
-      <image>https://cawbird.baedert.org/appdata/1.5/3.png</image>
+      <image>https://ibboard.co.uk/cawbird/appdata/screenshot3.jpg</image>
       <caption>Account settings can be configured</caption>
     </screenshot>
   </screenshots>
@@ -34,67 +35,31 @@
     <kudo>HiDpiIcon</kudo>
     <kudo>ModernToolkit</kudo>
   </kudos>
-  <update_contact>ryanlerch@fedoraproject.org</update_contact>
+  <update_contact>cawbird@ibboard.co.uk</update_contact>
 
   <project_license>GPL-3.0+</project_license>
 
-  <developer_name>Timm Bäder</developer_name>
+  <developer_name>IBBoard</developer_name>
 
   <url type="bugtracker">https://github.com/ibboard/cawbird/issues</url>
 
-  <url type="donation">https://flattr.com/profile/baedert</url>
-
   <releases>
-    <release version="1.7.3" date="2017-11-19">
-      <p>Changes in Cawbird 1.7.3:</p>
+    <release version="1.0.1" date="2019-08-31">
+      <p>Changes in Cawbird 1.0.1:</p>
       <ul>
-        <li>Increase maximum tweet length to 280 characters</li>
-        <li>Increase maximum name length to 50 characters and improve certain parts of the UI to cope better with longer names</li>
-        <li>Fix the emoji button not showing up in the compose window</li>
-        <li>Update translations</li>
+        <li>Fix search with non-alphanumeric characters</li>
+        <li>Redesign logo in a Tango style</li>
+        <li>Migrates DMs, filters and snippets from old Corebird accounts</li>
       </ul>
     </release>
-
-    <release version="1.7.2" date="2017-11-04">
-      <p>Changes in Cawbird 1.7.2:</p>
+    <release version="1.0" date="2019-08-04">
+      <p>Changes in Cawbird 1.0:</p>
       <ul>
-        <li>Fix window cancel button label mixup</li>
-        <li>Fix potential crash when composing a tweet (#779)</li>
-        <li>Fix abort when trying to detect emoji support (#781)</li>
-        <li>Fix spell checking</li>
-        <li>Update translations</li>
+        <li>First release after forking from Corebird</li>
+        <li>Supports new non-streaming API</li>
+        <li>Incorporates UI tweaks and customisations</li>
+        <li>Fixes source links for New Twitter web interface changes</li>
       </ul>
-    </release>
-
-    <release version="1.7" date="2017-10-28">
-      <p>Changes in Cawbird 1.7:</p>
-      <ul>
-        <li>Hashtags and Mentions in profile desriptions are now clickable</li>
-        <li>The mention-completion when composing a new tweet now fetches unknown users from the twitter server</li>
-        <li>Videos larger than the screen size are now getting scaled down while playing</li>
-        <li>Profiles now indicate when an account is suspended</li>
-        <li>Profiles handle protected accounts better when trying to access followers/following users, etc.</li>
-        <li>The compose window now allows tweets with just media attached but not text</li>
-        <li>Improve the hashtag/mention/link detection when composing a new tweet</li>
-        <li>The compose dialog now shows an emoji chooser. This is only available starting GTK+ 3.22.19 and the emojis will only be rendered with color if you have the needed cairo version installed, as well as an emoji font.</li>
-        <li>Fixed a bug that led to wrong Direct Message info being inserted into the database</li>
-        <li>Fixed a bug that resulted in broken files when downloading instagram images</li>
-      </ul>
-    </release>
-
-    <release version="1.5" date="2017-05-02">
-      <p>Changes in Cawbird 1.5:</p>
-      <ul>Media attached to tweets can be downloaded using Right Click and selecting "save as"</ul>
-      <ul>Profiles use the profile background color set in the Twitter settings if no banner is set</ul>
-      <ul>Support sending Direct Messages to oneself</ul>
-      <ul>The tweet compose window now features a "favorite image" view that allows users to save often sent images and quickly add them to tweets</ul>
-      <ul>The media dialog now shows Previous/Next buttons to quickly switch between multiple media attachments of a tweet></ul>
-      <ul>The Vine support has been removed since the project is discontinued</ul>
-      <ul>Allow text selection in Direct Messages</ul>
-      <ul>New --account parameter allows opening the window for the given account only</ul>
-      <ul>Support tweets with up to 50 replied-to users.</ul>
-      <ul>Add back verified icons next to user avatars</ul>
-      <ul>Redesigned account creation UI</ul>
     </release>
   </releases>
 
