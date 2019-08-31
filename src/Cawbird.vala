@@ -56,7 +56,7 @@ public class Cawbird : Gtk.Application {
                            Sql.CAWBIRD_INIT_FILE,
                            Sql.CAWBIRD_SQL_VERSION);
 
-    var migrations = db.select ("status") .count ("migrated") .once_i64 ();
+    var migrations = db.select ("info") .count ("key") .where_eq ("key", "migration").once_i64 ();
 
     if (migrations == 0) {
       var corebird_db_path = Dirs.corebird_config (@"Corebird.db");
@@ -77,7 +77,7 @@ public class Cawbird : Gtk.Application {
         });
       }
 
-      db.insert ("status") .vali64 ("migrated", GLib.get_real_time ()).run ();
+      db.insert_ignore ("info").val ("key", "migration").val ("value", GLib.get_real_time ().to_string ()).run ();
     }
 
     snippet_manager = new Cb.SnippetManager (db.get_sqlite_db ());
