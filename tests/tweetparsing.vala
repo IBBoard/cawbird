@@ -2184,7 +2184,7 @@ void double_media () {
 
   t.load_from_json (root, 0, now);
 
-  // See https://github.com/baedert/cawbird/issues/627
+  // See https://github.com/baedert/corebird/issues/627
   // If this was still a problem, the following call would make this test crash
   t.get_filter_text ();
 }
