@@ -58,6 +58,7 @@ When a tweet is focused (via keynav):
 * `q`  - quote
 * `dd` - delete
 * `Return` - Show tweet details
+* `k` - Print tweet details to stdout (debug builds)
 
 ## Limitations
 
