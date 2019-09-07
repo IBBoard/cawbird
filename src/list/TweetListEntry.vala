@@ -395,7 +395,16 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       return;
 
     favorite_button.sensitive = false;
-    TweetUtils.set_favorite_status.begin (account, tweet, favorite_button.active, () => {
+    TweetUtils.set_favorite_status.begin (account, tweet, favorite_button.active, (obj, res) => {
+      var success = TweetUtils.set_favorite_status.end (res);
+      if (success) {
+        if (shows_actions) {
+          toggle_mode ();
+        }
+      } else {
+        favorite_button.active = tweet.is_flag_set (Cb.TweetState.RETWEETED);
+      }
+
       favorite_button.sensitive = true;
     });
     if (shows_actions)

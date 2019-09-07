@@ -40,8 +40,14 @@ namespace TweetUtils {
    * @param account The account to (un)favorite from
    * @param tweet The tweet to (un)favorite
    * @param status %true to favorite the tweet, %false to unfavorite it.
+   * @return True if favourited status was successfully changed, else False
    */
-  async void set_favorite_status (Account account, Cb.Tweet tweet, bool status) {
+  async bool set_favorite_status (Account account, Cb.Tweet tweet, bool status) {
+    if (tweet.is_flag_set (Cb.TweetState.FAVORITED) == status) {
+      // We are already in the right state, so we didn't change it
+      return false;
+    }
+
     var call = account.proxy.new_call();
     if (status)
       call.set_function ("1.1/favorites/create.json");
@@ -50,21 +56,28 @@ namespace TweetUtils {
 
     call.set_method ("POST");
     call.add_param ("id", tweet.id.to_string ());
+
+    var success = false;
     call.invoke_async.begin (null, (obj, res) => {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
         Utils.show_error_object (call.get_payload (), e.message,
                                  GLib.Log.LINE, GLib.Log.FILE);
+        success = false;
+        set_favorite_status.callback ();
+        return;
       }
       if (status)
         tweet.set_flag (Cb.TweetState.FAVORITED);
       else
         tweet.unset_flag (Cb.TweetState.FAVORITED);
 
+      success = true;
       set_favorite_status.callback ();
     });
     yield;
+    return success;
   }
 
   /**
