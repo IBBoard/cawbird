@@ -73,8 +73,14 @@ namespace TweetUtils {
    * @param account The account to (un)retweet from
    * @param tweet The tweet to (un)retweet
    * @param status %true to retweet it, false to unretweet it.
+   * @return True if retweet status was successfully changed, else False
    */
-  async void set_retweet_status (Account account, Cb.Tweet tweet, bool status) {
+  async bool set_retweet_status (Account account, Cb.Tweet tweet, bool status) {
+    if (tweet.is_flag_set (Cb.TweetState.RETWEETED) == status) {
+      // We are already in the right state, so we didn't change it
+      return false;
+    }
+    
     var call = account.proxy.new_call ();
     call.set_method ("POST");
     if (status)
@@ -82,13 +88,16 @@ namespace TweetUtils {
     else
       call.set_function (@"1.1/statuses/destroy/$(tweet.my_retweet).json");
 
-    debug (Cb.Utils.rest_proxy_call_to_string (call));
+    var success = false;
     call.invoke_async.begin (null, (obj, res) => {
       try{
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
         Utils.show_error_object (call.get_payload (), e.message,
                                  GLib.Log.LINE, GLib.Log.FILE);
+        success = false;
+        set_retweet_status.callback ();
+        return;
       }
       unowned string back = call.get_payload();
       var parser = new Json.Parser ();
@@ -108,9 +117,11 @@ namespace TweetUtils {
         critical (e.message);
         critical (back);
       }
+      success = true;
       set_retweet_status.callback ();
     });
     yield;
+    return success;
   }
 
   /**

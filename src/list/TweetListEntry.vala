@@ -375,11 +375,18 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       return;
 
     retweet_button.sensitive = false;
-    TweetUtils.set_retweet_status.begin (account, tweet, retweet_button.active, () => {
+    TweetUtils.set_retweet_status.begin (account, tweet, retweet_button.active, (obj, res) => {
+      var success = TweetUtils.set_retweet_status.end (res);
+      if (success) {
+        if (shows_actions) {
+          toggle_mode ();
+        }
+      } else {
+        retweet_button.active = tweet.is_flag_set (Cb.TweetState.RETWEETED);
+      }
+
       retweet_button.sensitive = true;
     });
-    if (shows_actions)
-      toggle_mode ();
   }
 
   [GtkCallback]

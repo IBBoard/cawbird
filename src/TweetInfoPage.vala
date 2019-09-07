@@ -283,14 +283,22 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       return;
 
     retweet_button.sensitive = false;
-    if (retweet_button.active)
-      this.tweet.retweet_count ++;
-    else
-      this.tweet.retweet_count --;
 
-    this.update_rt_fav_labels ();
+    TweetUtils.set_retweet_status.begin (account, tweet, retweet_button.active, (obj, res) => {
+      var success = TweetUtils.set_retweet_status.end (res);
 
-    TweetUtils.set_retweet_status.begin (account, tweet, retweet_button.active, () => {
+      if (success) {
+        if (tweet.is_flag_set (Cb.TweetState.RETWEETED)) {
+          this.tweet.retweet_count ++;
+        } else {
+          this.tweet.retweet_count --;
+        }
+
+        this.update_rt_fav_labels ();
+      } else {
+        retweet_button.active = tweet.is_flag_set (Cb.TweetState.RETWEETED);
+      }
+
       retweet_button.sensitive = true;
     });
   }
