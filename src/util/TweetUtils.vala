@@ -21,17 +21,30 @@ namespace TweetUtils {
    *
    * @param account The account to delete the tweet from
    * @param tweet the tweet to delete
+   * @return True if tweet was successfully deleted, else False
    */
-  async void delete_tweet (Account account, Cb.Tweet tweet) {
+  async bool delete_tweet (Account account, Cb.Tweet tweet) {
     var call = account.proxy.new_call ();
     call.set_method ("POST");
     call.set_function ("1.1/statuses/destroy/"+tweet.id.to_string ()+".json");
     call.add_param ("id", tweet.id.to_string ());
+    var success = false;
     call.invoke_async.begin (null, (obj, res) => {
-      try { call.invoke_async.end (res);} catch (GLib.Error e) { critical (e.message);}
+      try {
+        call.invoke_async.end (res);
+      } catch (GLib.Error e) {
+        Utils.show_error_object (call.get_payload (), e.message,
+                                 GLib.Log.LINE, GLib.Log.FILE);
+        success = false;
+        delete_tweet.callback ();
+        return;
+      }
+      // TODO: Inject a deletion
+      success = true;
       delete_tweet.callback ();
     });
     yield;
+    return success;
   }
 
   /**

@@ -308,8 +308,14 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       return; // Nope.
 
     if (delete_first_activated) {
-      TweetUtils.delete_tweet.begin (account, tweet, () => {
-        sensitive = false;
+      TweetUtils.delete_tweet.begin (account, tweet, (obj, res) => {
+        var success = TweetUtils.delete_tweet.end (res);
+        if (success) {
+          sensitive = false;
+          if (shows_actions) {
+            toggle_mode ();
+          }
+        }
       });
     } else
       delete_first_activated = true;

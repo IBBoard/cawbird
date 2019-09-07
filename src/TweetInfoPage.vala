@@ -649,8 +649,11 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       return;
     }
 
-    this.main_window.main_widget.remove_current_page ();
-    TweetUtils.delete_tweet.begin (account, tweet, () => {
+    TweetUtils.delete_tweet.begin (account, tweet, (obj, res) => {
+      var success = TweetUtils.delete_tweet.end (res);
+      if (success) {
+        this.main_window.main_widget.remove_current_page ();
+      }
     });
   }
 
