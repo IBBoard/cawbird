@@ -33,6 +33,12 @@ This fetches tweets on a schedule through polling, but still feeds them to the r
 
 The `stream_tweet()` function iterates through all registered message receivers and dispatches the JSON node to each one in turn. These listeners implement `Cb.MessageReceiver` (in Vala) and are generally components like the `HomeTimeline`, `MentionsTimeline` and `DMThreadsPage`. Each receiver then implements the required method, which normally includes a series of `if (type == Cb.StreamMessageType.XXX) { … }` statements to ensure that only the required messages are handle (e.g. `MentionsTimeline` adds `Cb.StreamMessageType.MENTION` and deletes `Cb.StreamMessageType.DELETE`). This also means that we can pass all messages to all listeners and not worry about whether each listener is getting all the messages that it needs.
 
+### Injecting tweets
+
+In addition to streaming the real tweets received from Twitter, we sometimes want to inject our own tweets. This is particularly useful when composing tweets, because Twitter returns the JSON of the tweet that we just created and so we can show it before it arrives in the next poll. This makes it easier to compose threads.
+
+Tweet injection is performed through the `cb_user_stream_inject_tweet()` function, which handles some special cases to make sure that the tweet is correct and fully formed.
+
 ## RT/Like/etc from user actions
 
 The control flow for the RT, Like and other actions in TweetUtils is normally:
