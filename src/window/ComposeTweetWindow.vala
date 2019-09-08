@@ -64,7 +64,10 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
   private Cb.EmojiChooser? emoji_chooser = null;
   private Gtk.Button? emoji_button = null;
   private unowned Account account;
-  private unowned Cb.Tweet reply_to;
+  private unowned MainWindow main_window;
+  private Cb.Tweet reply_to;
+  private int64 reply_to_id = 0;
+  private bool reply_to_loaded = false;
   private Mode mode;
   private GLib.Cancellable? cancellable;
   private Gtk.ListBox? reply_list = null;
@@ -76,6 +79,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
                              Cb.Tweet?   reply_to = null,
                              Mode        mode = Mode.NORMAL) {
     this.set_show_menubar (false);
+    this.main_window = parent;
     this.account = acc;
     this.reply_to = reply_to;
     this.mode = mode;
@@ -102,10 +106,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       this.compose_image_manager.end_progress (path, error_msg);
     });
 
-    if (this.mode == Mode.REPLY)
-      this.compose_job.set_reply_id (this.reply_to.id);
-    else if (this.mode == Mode.QUOTE)
-      this.compose_job.set_quoted_tweet (this.reply_to);
+    load_tweet ();
 
     avatar_image.surface = acc.avatar;
     acc.notify["avatar"].connect (() => {
@@ -120,23 +121,6 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     if (parent != null) {
       this.set_transient_for (parent);
       this.set_modal (true);
-    }
-
-    if (mode != Mode.NORMAL) {
-      reply_list = new Gtk.ListBox ();
-      reply_list.selection_mode = Gtk.SelectionMode.NONE;
-      TweetListEntry reply_entry = new TweetListEntry (reply_to, parent, acc, true);
-      reply_entry.activatable = false;
-      reply_entry.read_only = true;
-      reply_entry.show ();
-      reply_list.add (reply_entry);
-      reply_list.show ();
-      content_grid.attach (reply_list, 0, 0, 2, 1);
-    }
-
-    if (mode == Mode.QUOTE) {
-      assert (reply_to != null);
-      this.title_label.label = _("Quote tweet");
     }
 
     /* Let the text view immediately grab the keyboard focus */
@@ -181,13 +165,6 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
 
     this.add_accel_group (ag);
 
-    string? last_tweet = account.db.select ("info").cols ("last_tweet").once_string ();
-    if (last_tweet != null && last_tweet.length > 0 &&
-        tweet_text.get_buffer ().text.length == 0) {
-      this.tweet_text.get_buffer ().text = last_tweet;
-    }
-
-
     var image_target_list = new Gtk.TargetList (null);
     image_target_list.add_text_targets (0);
 
@@ -202,6 +179,72 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     }
 
     this.set_default_size (DEFAULT_WIDTH, (int)(DEFAULT_WIDTH / 2.5));
+  }
+
+  private async void load_tweet () {
+    string? last_tweet = account.db.select ("info").cols ("last_tweet").once_string ();
+    if (last_tweet != null && last_tweet.length > 0 &&
+        tweet_text.get_buffer ().text.length == 0) {
+      this.tweet_text.get_buffer ().text = last_tweet;
+    }
+
+    this.update_send_button_sensitivity ();
+
+    int64 last_reply_id = account.db.select ("info").cols ("last_tweet_reply_id").once_i64 ();
+    int64 last_quote_id = account.db.select ("info").cols ("last_tweet_quote_id").once_i64 ();
+    var candidate_mode = Mode.NORMAL;
+
+    if (this.reply_to != null) {
+      this.reply_to_id = this.reply_to.id;
+      this.reply_to_loaded = true;
+    }
+    else if (last_reply_id != 0) {
+      this.reply_to_id = last_reply_id;
+      candidate_mode = Mode.REPLY;
+    }
+    else if (last_quote_id != 0){
+      this.reply_to_id = last_quote_id;
+      candidate_mode = Mode.QUOTE;
+    }
+    // Else it's a new tweet
+
+    if (this.reply_to == null && this.reply_to_id > 0) {
+      this.reply_to = yield TweetUtils.get_tweet (account, this.reply_to_id);
+
+      if (this.reply_to == null) {
+        // FIXME: Translate
+        // FIXME: We should probably pass "this" as the transient_for, but that results in an unresponsive dialog
+        Utils.show_error_dialog ("No such tweet: %lld".printf(this.reply_to_id));
+        return;
+      }
+
+      // Don't set the mode until now in case fetching the tweet fails
+      // If we set it earlier then we get segfaults when code assumes this.reply_to is set.
+      this.mode = candidate_mode;
+      this.reply_to_loaded = true;
+    }
+
+    if (this.mode == Mode.REPLY)
+      this.compose_job.set_reply_id (this.reply_to.id);
+    else if (this.mode == Mode.QUOTE)
+      this.compose_job.set_quoted_tweet (this.reply_to);
+
+    if (mode != Mode.NORMAL) {
+      reply_list = new Gtk.ListBox ();
+      reply_list.selection_mode = Gtk.SelectionMode.NONE;
+      TweetListEntry reply_entry = new TweetListEntry (reply_to, main_window, account, true);
+      reply_entry.activatable = false;
+      reply_entry.read_only = true;
+      reply_entry.show ();
+      reply_list.add (reply_entry);
+      reply_list.show ();
+      content_grid.attach (reply_list, 0, 0, 2, 1);
+    }
+
+    if (mode == Mode.QUOTE) {
+      assert (reply_to != null);
+      this.title_label.label = _("Quote tweet");
+    }
   }
 
   private void update_send_button_sensitivity () {
@@ -241,30 +284,60 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     tweet_text.buffer.get_end_iter (out end);
     this.compose_job.set_text (tweet_text.buffer.get_text (start, end, true));
 
+    /* Save the tweet in case sending fails */
+    this.save_last_tweet ();
+
     this.compose_job.send_async.begin (this.cancellable, (obj, res) => {
       bool success = false;
       try {
        success = this.compose_job.send_async.end (res);
       } catch (GLib.Error e) {
         warning (e.message);
+        // FIXME: We should probably pass "this" as the transient_for, but that results in an unresponsive dialog
+        Utils.show_error_dialog (e.message);
       }
       debug ("Tweet sent.");
       if (success) {
-        /* Reset last_tweet */
-        account.db.update ("info").val ("last_tweet", "").run ();
+        this.clear_last_tweet ();
+        this.destroy ();
       } else {
-        /* Better save this tweet */
-        this.save_last_tweet ();
+        // FIXME: Translate
+        // FIXME: We should probably pass "this" as the transient_for, but that results in an unresponsive dialog
+        Utils.show_error_dialog ("Failed to send tweet");
       }
-      this.destroy ();
     });
   }
 
   private void save_last_tweet () {
-    if (this.reply_to == null) {
-      string text = tweet_text.buffer.text;
-      account.db.update ("info").val ("last_tweet", text).run ();
+    int64 last_reply_id = 0;
+    int64 last_quote_id = 0;
+
+    // FIXME: If the tweet failed to load then these modes aren't set!
+    if (this.mode == Mode.REPLY) {
+      last_reply_id = this.reply_to_id;
     }
+    else if (this.mode == Mode.QUOTE) {
+      last_quote_id = this.reply_to_id;
+    }
+
+    string text = tweet_text.buffer.text;
+
+    if (reply_to_loaded) {
+      account.db.update ("info").val ("last_tweet", text)
+                                .vali64 ("last_tweet_reply_id", last_reply_id)
+                                .vali64 ("last_tweet_quote_id", last_quote_id)
+                                .run ();
+    } else {
+      account.db.update ("info").val ("last_tweet", text)
+                                .run ();
+    }
+  }
+
+  private void clear_last_tweet () {
+    account.db.update ("info").val ("last_tweet", "")
+                              .vali64 ("last_tweet_reply_id", 0)
+                              .vali64 ("last_tweet_quote_id", 0)
+                              .run ();
   }
 
   [GtkCallback]
@@ -281,7 +354,29 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       if (this.cancellable != null) {
         this.cancellable.cancel ();
       }
-      this.save_last_tweet ();
+
+      Gtk.TextIter start, end;
+      tweet_text.buffer.get_bounds (out start, out end);
+      string text = tweet_text.buffer.get_text (start, end, true);
+
+      if (text != "") {
+        var messagedialog = new Gtk.MessageDialog (this,
+                                                   Gtk.DialogFlags.MODAL,
+                                                   Gtk.MessageType.WARNING,
+                                                   Gtk.ButtonsType.YES_NO,
+                                                   "Save unsent tweet?");
+        // XXX: Is this going to be an annoying default (and/or implementation)?
+        messagedialog.set_default_response (Gtk.ResponseType.YES);
+        int response = messagedialog.run ();
+        messagedialog.destroy ();
+
+        if (response == Gtk.ResponseType.NO) {
+          clear_last_tweet ();
+        } else {
+          save_last_tweet ();
+        }
+      }
+
       destroy ();
     }
   }

@@ -17,6 +17,54 @@
 
 namespace TweetUtils {
   /**
+   * Fetches the given tweet by ID.
+   *
+   * Note: This should not be used frequently as we should (in most situations)
+   * have all of the information that we need already.
+   *
+   * @param account The account to fetch the tweet as
+   * @param tweet_id The ID of the tweet to fetch
+   * @return the tweet object or null if it failed
+   */
+  async Cb.Tweet? get_tweet (Account account, int64 tweet_id) {
+    if (tweet_id <= 0) {
+      return null;
+    }
+
+    var call = account.proxy.new_call ();
+    call.set_method ("GET");
+    call.set_function ("1.1/statuses/show.json");
+    call.add_param ("id", tweet_id.to_string ());
+    call.add_param ("include_my_retweet", "true");
+    call.add_param ("tweet_mode", "extended");
+    Cb.Tweet? tweet = null;
+
+    call.invoke_async.begin (null, (obj, res) => {
+      try {
+        call.invoke_async.end (res);
+      } catch (GLib.Error e) {
+        get_tweet.callback ();
+        return;
+      }
+
+      unowned string content = call.get_payload();
+      var parser = new Json.Parser ();
+      try {
+        parser.load_from_data (content);
+        var now = new GLib.DateTime.now_local ();
+        tweet = new Cb.Tweet ();
+        tweet.load_from_json (parser.get_root (), account.id, now);
+      } catch (GLib.Error e) {
+        critical (e.message);
+        critical (content);
+      }
+      get_tweet.callback ();
+    });
+    yield;
+    return tweet;
+  }
+
+  /**
    * Deletes the given tweet.
    *
    * @param account The account to delete the tweet from
