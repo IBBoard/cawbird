@@ -408,13 +408,11 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
           toggle_mode ();
         }
       } else {
-        favorite_button.active = tweet.is_flag_set (Cb.TweetState.RETWEETED);
+        favorite_button.active = tweet.is_flag_set (Cb.TweetState.FAVORITED);
       }
 
       favorite_button.sensitive = true;
     });
-    if (shows_actions)
-      toggle_mode ();
   }
 
   [GtkCallback]
