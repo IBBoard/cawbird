@@ -326,4 +326,10 @@ class ComposeImageManager : Gtk.Container {
       close_buttons.get (i).set_sensitive (false);
     }
   }
+
+  public void sensitivize_buttons () {
+    for (int i = 0; i < close_buttons.length; i ++) {
+      close_buttons.get (i).set_sensitive (true);
+    }
+  }
 }

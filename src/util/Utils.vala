@@ -170,6 +170,8 @@ namespace Utils {
                                         Gtk.MessageType.ERROR, Gtk.ButtonsType.OK,
                                         "%s", message);
 
+    dialog.set_modal (true);
+
     /* Hacky way to get the label selectable */
     ((Gtk.Label)(((Gtk.Container)dialog.get_message_area ()).get_children ().nth_data (0))).set_selectable (true);
 

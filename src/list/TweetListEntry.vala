@@ -309,7 +309,12 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
     if (delete_first_activated) {
       TweetUtils.delete_tweet.begin (account, tweet, (obj, res) => {
-        var success = TweetUtils.delete_tweet.end (res);
+        var success = false;
+        try {
+          success = TweetUtils.delete_tweet.end (res);
+        } catch (GLib.Error e) {
+          Utils.show_error_dialog (e.message, main_window);
+        }
         if (success) {
           sensitive = false;
           if (shows_actions) {
@@ -382,7 +387,12 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
     retweet_button.sensitive = false;
     TweetUtils.set_retweet_status.begin (account, tweet, retweet_button.active, (obj, res) => {
-      var success = TweetUtils.set_retweet_status.end (res);
+      var success = false;
+      try {
+        success = TweetUtils.set_retweet_status.end (res);
+      } catch (GLib.Error e) {
+        Utils.show_error_dialog (e.message, main_window);
+      }
       if (success) {
         if (shows_actions) {
           toggle_mode ();
@@ -402,7 +412,12 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
     favorite_button.sensitive = false;
     TweetUtils.set_favorite_status.begin (account, tweet, favorite_button.active, (obj, res) => {
-      var success = TweetUtils.set_favorite_status.end (res);
+      var success = false;
+      try {
+        success = TweetUtils.set_favorite_status.end (res);
+      } catch (GLib.Error e) {
+        Utils.show_error_dialog (e.message, main_window);
+      }
       if (success) {
         if (shows_actions) {
           toggle_mode ();

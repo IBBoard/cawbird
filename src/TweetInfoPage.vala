@@ -275,8 +275,12 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     favorite_button.sensitive = false;
 
     TweetUtils.set_favorite_status.begin (account, tweet, favorite_button.active, (obj, res) => {
-      var success = TweetUtils.set_favorite_status.end (res);
-
+      var success = false;
+      try {
+        success = TweetUtils.set_favorite_status.end (res);
+      } catch (GLib.Error e) {
+        Utils.show_error_dialog (e.message, main_window);
+      }
       if (success) {
         if (tweet.is_flag_set (Cb.TweetState.FAVORITED)) {
           this.tweet.favorite_count ++;
@@ -301,8 +305,12 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     retweet_button.sensitive = false;
 
     TweetUtils.set_retweet_status.begin (account, tweet, retweet_button.active, (obj, res) => {
-      var success = TweetUtils.set_retweet_status.end (res);
-
+      var success = false;
+      try {
+        success = TweetUtils.set_retweet_status.end (res);
+      } catch (GLib.Error e) {
+        Utils.show_error_dialog (e.message, main_window);
+      }
       if (success) {
         if (tweet.is_flag_set (Cb.TweetState.RETWEETED)) {
           this.tweet.retweet_count ++;
@@ -650,7 +658,12 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     }
 
     TweetUtils.delete_tweet.begin (account, tweet, (obj, res) => {
-      var success = TweetUtils.delete_tweet.end (res);
+      var success = false;
+      try {
+        success = TweetUtils.delete_tweet.end (res);
+      } catch (GLib.Error e) {
+        Utils.show_error_dialog (e.message, main_window);
+      }
       if (success) {
         this.main_window.main_widget.remove_current_page ();
       }

@@ -213,8 +213,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
 
       if (this.reply_to == null) {
         // FIXME: Translate
-        // FIXME: We should probably pass "this" as the transient_for, but that results in an unresponsive dialog
-        Utils.show_error_dialog ("No such tweet: %lld".printf(this.reply_to_id));
+        Utils.show_error_dialog ("No such tweet: %lld".printf(this.reply_to_id), this);
         return;
       }
 
@@ -266,19 +265,35 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     }
   }
 
+  private void set_sending_state (bool sending) {
+    if (sending) {
+      title_stack.visible_child = title_spinner;
+      title_spinner.start ();
+      compose_image_manager.insensitivize_buttons ();
+      send_button.sensitive = false;
+    } else {
+      title_stack.visible_child = title_label;
+      title_spinner.stop ();
+      compose_image_manager.sensitivize_buttons ();
+      update_send_button_sensitivity ();
+    }
+
+    tweet_text.sensitive = !sending;
+    fav_image_button.sensitive = !sending;
+    add_image_button.sensitive = !sending;
+
+    if (emoji_button != null)
+    {
+      emoji_button.sensitive = !sending;
+    }
+  }
+
   [GtkCallback]
   private void start_send_tweet () {
     if (!send_button.sensitive)
       return;
 
-    title_stack.visible_child = title_spinner;
-    title_spinner.start ();
-    send_button.sensitive = false;
-    tweet_text.sensitive = false;
-    fav_image_button.sensitive = false;
-    add_image_button.sensitive = false;
-    compose_image_manager.insensitivize_buttons ();
-
+    set_sending_state (true);
     Gtk.TextIter start, end;
     tweet_text.buffer.get_start_iter (out start);
     tweet_text.buffer.get_end_iter (out end);
@@ -292,18 +307,19 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       try {
        success = this.compose_job.send_async.end (res);
       } catch (GLib.Error e) {
-        warning (e.message);
-        // FIXME: We should probably pass "this" as the transient_for, but that results in an unresponsive dialog
-        Utils.show_error_dialog (e.message);
+        warning ("Error %ld.%ld (%s.%d): %s", e.domain, e.code, GLib.Log.FILE, GLib.Log.LINE, e.message);
+        Utils.show_error_dialog (e.message, this);
+        set_sending_state (false);
+        return;
       }
       debug ("Tweet sent.");
       if (success) {
         this.clear_last_tweet ();
         this.destroy ();
       } else {
+        set_sending_state (false);
         // FIXME: Translate
-        // FIXME: We should probably pass "this" as the transient_for, but that results in an unresponsive dialog
-        Utils.show_error_dialog ("Failed to send tweet");
+        Utils.show_error_dialog ("Failed to send tweet", this);
       }
     });
   }

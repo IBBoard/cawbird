@@ -71,19 +71,19 @@ namespace TweetUtils {
    * @param tweet the tweet to delete
    * @return True if tweet was successfully deleted, else False
    */
-  async bool delete_tweet (Account account, Cb.Tweet tweet) {
+  async bool delete_tweet (Account account, Cb.Tweet tweet) throws GLib.Error {
     var call = account.proxy.new_call ();
     call.set_method ("POST");
     call.set_function ("1.1/statuses/destroy/"+tweet.id.to_string ()+".json");
     call.add_param ("id", tweet.id.to_string ());
     var success = false;
+    GLib.Error? err = null;
     call.invoke_async.begin (null, (obj, res) => {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_object (call.get_payload (), e.message,
-                                 GLib.Log.LINE, GLib.Log.FILE);
-        success = false;
+        warning ("Exception: %s in %s:%d", e.message, GLib.Log.FILE, GLib.Log.LINE);
+        err = e;
         delete_tweet.callback ();
         return;
       }
@@ -92,6 +92,9 @@ namespace TweetUtils {
       delete_tweet.callback ();
     });
     yield;
+    if (err != null) {
+      throw err;
+    }
     return success;
   }
 
@@ -103,7 +106,7 @@ namespace TweetUtils {
    * @param status %true to favorite the tweet, %false to unfavorite it.
    * @return True if favourited status was successfully changed, else False
    */
-  async bool set_favorite_status (Account account, Cb.Tweet tweet, bool status) {
+  async bool set_favorite_status (Account account, Cb.Tweet tweet, bool status) throws GLib.Error {
     if (tweet.is_flag_set (Cb.TweetState.FAVORITED) == status) {
       // We are already in the right state, so we didn't change it
       return false;
@@ -119,13 +122,13 @@ namespace TweetUtils {
     call.add_param ("id", tweet.id.to_string ());
 
     var success = false;
+    GLib.Error? err = null;
     call.invoke_async.begin (null, (obj, res) => {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_object (call.get_payload (), e.message,
-                                 GLib.Log.LINE, GLib.Log.FILE);
-        success = false;
+        warning ("Exception: %s in %s:%d", e.message, GLib.Log.FILE, GLib.Log.LINE);
+        err = e;
         set_favorite_status.callback ();
         return;
       }
@@ -138,6 +141,9 @@ namespace TweetUtils {
       set_favorite_status.callback ();
     });
     yield;
+    if (err != null) {
+      throw err;
+    }
     return success;
   }
 
@@ -149,7 +155,7 @@ namespace TweetUtils {
    * @param status %true to retweet it, false to unretweet it.
    * @return True if retweet status was successfully changed, else False
    */
-  async bool set_retweet_status (Account account, Cb.Tweet tweet, bool status) {
+  async bool set_retweet_status (Account account, Cb.Tweet tweet, bool status) throws GLib.Error {
     if (tweet.is_flag_set (Cb.TweetState.RETWEETED) == status) {
       // We are already in the right state, so we didn't change it
       return false;
@@ -163,13 +169,13 @@ namespace TweetUtils {
       call.set_function (@"1.1/statuses/destroy/$(tweet.my_retweet).json");
 
     var success = false;
+    GLib.Error? err = null;
     call.invoke_async.begin (null, (obj, res) => {
       try{
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_object (call.get_payload (), e.message,
-                                 GLib.Log.LINE, GLib.Log.FILE);
-        success = false;
+        warning ("Exception: %s in %s:%d", e.message, GLib.Log.FILE, GLib.Log.LINE);
+        err = e;
         set_retweet_status.callback ();
         return;
       }
@@ -188,13 +194,18 @@ namespace TweetUtils {
         else
           tweet.unset_flag (Cb.TweetState.RETWEETED);
       } catch (GLib.Error e) {
-        critical (e.message);
-        critical (back);
+        warning ("Exception: %s in %s:%d", e.message, GLib.Log.FILE, GLib.Log.LINE);
+        info (back);
+        err = e;
+        return;
       }
       success = true;
       set_retweet_status.callback ();
     });
     yield;
+    if (err != null) {
+      throw err;
+    }
     return success;
   }
 
