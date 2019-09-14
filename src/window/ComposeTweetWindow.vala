@@ -106,7 +106,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       this.compose_image_manager.end_progress (path, error_msg);
     });
 
-    load_tweet ();
+    load_tweet.begin ();
 
     avatar_image.surface = acc.avatar;
     acc.notify["avatar"].connect (() => {
