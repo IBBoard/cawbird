@@ -244,7 +244,12 @@ cb_user_stream_inject_tweet (CbUserStream *self,
   root_node = json_parser_get_root (parser);
   root_obj = json_node_get_object (root_node);
 
-  if (json_object_has_member (root_obj, "quoted_status_permalink"))
+  if (json_object_has_member (root_obj, "event"))
+    {
+      // We've got a single DM, which is wrapped, so unwrap it
+      root_node = json_object_get_member (root_obj, "event");
+    }
+  else if (json_object_has_member (root_obj, "quoted_status_permalink"))
     {
       // Quote tweets don't include the quoted tweet URL in the returned text, but they do when they come in the timeline
       // So we need to fudge it here and add the URL entity and the text before we send it to the app
