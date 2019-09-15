@@ -396,6 +396,7 @@ send_tweet_call_completed_cb (GObject      *source_object,
       g_task_return_boolean (send_task, TRUE);
     }
 
+  self->send_task = NULL;
   g_object_unref (send_task);
 }
 
