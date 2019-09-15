@@ -26,7 +26,7 @@ namespace TweetUtils {
    * @param tweet_id The ID of the tweet to fetch
    * @return the tweet object or null if it failed
    */
-  async Cb.Tweet? get_tweet (Account account, int64 tweet_id) {
+  async Cb.Tweet? get_tweet (Account account, int64 tweet_id) throws GLib.Error {
     if (tweet_id <= 0) {
       return null;
     }
@@ -38,29 +38,29 @@ namespace TweetUtils {
     call.add_param ("include_my_retweet", "true");
     call.add_param ("tweet_mode", "extended");
     Cb.Tweet? tweet = null;
+    GLib.Error? err = null;
 
     call.invoke_async.begin (null, (obj, res) => {
       try {
         call.invoke_async.end (res);
-      } catch (GLib.Error e) {
-        get_tweet.callback ();
-        return;
-      }
-
-      unowned string content = call.get_payload();
-      var parser = new Json.Parser ();
-      try {
+        unowned string content = call.get_payload();
+        var parser = new Json.Parser ();
+        debug ("Load tweet got: %s", content);
         parser.load_from_data (content);
         var now = new GLib.DateTime.now_local ();
         tweet = new Cb.Tweet ();
         tweet.load_from_json (parser.get_root (), account.id, now);
+        get_tweet.callback ();
       } catch (GLib.Error e) {
-        critical (e.message);
-        critical (content);
+        err = e;
+        get_tweet.callback ();
+        return;
       }
-      get_tweet.callback ();
     });
     yield;
+    if (err != null) {
+      throw err;
+    }
     return tweet;
   }
 

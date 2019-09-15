@@ -209,18 +209,44 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     // Else it's a new tweet
 
     if (this.reply_to == null && this.reply_to_id > 0) {
-      this.reply_to = yield TweetUtils.get_tweet (account, this.reply_to_id);
+      string error_reason = "Unknown error";
 
-      if (this.reply_to == null) {
-        // FIXME: Translate
-        Utils.show_error_dialog ("No such tweet: %lld".printf(this.reply_to_id), this);
-        return;
+      try {
+        this.reply_to = yield TweetUtils.get_tweet (account, this.reply_to_id);
+      }
+      catch (GLib.Error e) {
+        error_reason = e.message;
+        warning (e.message);
       }
 
-      // Don't set the mode until now in case fetching the tweet fails
-      // If we set it earlier then we get segfaults when code assumes this.reply_to is set.
-      this.mode = candidate_mode;
-      this.reply_to_loaded = true;
+      if (this.reply_to == null) {
+        string message = candidate_mode == Mode.QUOTE ? "Error fetching quoted tweet: %s\n\nSave unsent tweet?" :
+                                                        "Error fetching reply tweet: %s\n\nSave unsent tweet?";
+        var messagedialog = new Gtk.MessageDialog (this,
+                                                  Gtk.DialogFlags.MODAL,
+                                                  Gtk.MessageType.WARNING,
+                                                  Gtk.ButtonsType.YES_NO,
+                                                  message.printf (error_reason));
+        messagedialog.set_default_response (Gtk.ResponseType.YES);
+        int response = messagedialog.run ();
+        messagedialog.destroy ();
+
+        if (response == Gtk.ResponseType.NO) {
+          set_text ("");
+          this.reply_to_id = 0;
+          clear_last_tweet ();
+        }
+        else {
+          // We're in an invalid state - all we can do is close and let the user try again later
+          this.close ();
+        }
+      }
+      else {
+        // Don't set the mode until now in case fetching the tweet fails
+        // If we set it earlier then we get segfaults when code assumes this.reply_to is set.
+        this.mode = candidate_mode;
+        this.reply_to_loaded = true;
+      }
     }
 
     if (this.mode == Mode.REPLY)
@@ -344,6 +370,8 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
                                 .vali64 ("last_tweet_quote_id", last_quote_id)
                                 .run ();
     } else {
+      // Don't overwrite the last_tweet_{reply,quote}_id because it didn't load properly
+      // and we don't want to lose it
       account.db.update ("info").val ("last_tweet", text)
                                 .run ();
     }
@@ -376,21 +404,10 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       string text = tweet_text.buffer.get_text (start, end, true);
 
       if (text != "") {
-        var messagedialog = new Gtk.MessageDialog (this,
-                                                   Gtk.DialogFlags.MODAL,
-                                                   Gtk.MessageType.WARNING,
-                                                   Gtk.ButtonsType.YES_NO,
-                                                   "Save unsent tweet?");
-        // XXX: Is this going to be an annoying default (and/or implementation)?
-        messagedialog.set_default_response (Gtk.ResponseType.YES);
-        int response = messagedialog.run ();
-        messagedialog.destroy ();
-
-        if (response == Gtk.ResponseType.NO) {
-          clear_last_tweet ();
-        } else {
           save_last_tweet ();
-        }
+      }
+      else {
+        clear_last_tweet ();
       }
 
       destroy ();
