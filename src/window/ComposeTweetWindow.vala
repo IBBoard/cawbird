@@ -333,7 +333,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       try {
        success = this.compose_job.send_async.end (res);
       } catch (GLib.Error e) {
-        warning ("Error %ld.%ld (%s.%d): %s", e.domain, e.code, GLib.Log.FILE, GLib.Log.LINE, e.message);
+        warning ("Error %s.%ld: %s", e.domain.to_string (), e.code, e.message);
         Utils.show_error_dialog (e.message, this);
         set_sending_state (false);
         return;
