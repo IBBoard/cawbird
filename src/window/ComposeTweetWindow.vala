@@ -188,12 +188,25 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       this.tweet_text.get_buffer ().text = last_tweet;
     }
 
+    string[] failed_paths = {};
+
     for (uint i = 0; i < Cb.ComposeJob.MAX_UPLOADS; i++) {
       string? image_path = account.db.select ("info").cols ("last_tweet_image_%u".printf(i + 1)).once_string ();
 
       if (image_path != null && image_path.length > 0){
-        load_image (image_path);
+        try {
+          load_image (image_path);
+        }
+        catch (GLib.Error e) {
+          failed_paths += image_path;
+        }
       }
+    }
+
+    if (failed_paths.length > 0) {
+      stack.visible_child = image_error_grid;
+      image_error_label.label = _("Failed to load %u images: %s").printf(failed_paths.length, string.joinv(", ", failed_paths));
+      cancel_button.label = _("Back");
     }
 
     int64 last_reply_id = account.db.select ("info").cols ("last_tweet_reply_id").once_i64 ();
@@ -457,27 +470,28 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
 
     if (filechooser.run () == Gtk.ResponseType.ACCEPT) {
       var filename = filechooser.get_filename ();
-      load_image (filename);
+      try {
+        load_image (filename);
+      }
+      catch (GLib.Error e) {
+        // TODO: Proper error checking/reporting
+        // But it shouldn't happen because we only just picked it, so the file info
+        // should just work
+        warning ("%s (%s)", e.message, filename);
+      }
     }
 
     update_send_button_sensitivity ();
   }
 
-  private void load_image (string filename) {
+  private void load_image (string filename) throws GLib.Error {
     debug ("Loading %s", filename);
 
     /* Get file size */
     var file = GLib.File.new_for_path (filename);
-    GLib.FileInfo info;
-    try {
-      info = file.query_info (GLib.FileAttribute.STANDARD_TYPE + "," +
-                              GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," +
-                              GLib.FileAttribute.STANDARD_SIZE, 0);
-    } catch (GLib.Error e) {
-      warning ("%s (%s)", e.message, filename);
-      // TODO: Proper error checking
-      return;
-    }
+    GLib.FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_TYPE + "," +
+                                          GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," +
+                                          GLib.FileAttribute.STANDARD_SIZE, 0);
 
     if (!info.get_content_type ().has_prefix ("image/")) {
       stack.visible_child = image_error_grid;
