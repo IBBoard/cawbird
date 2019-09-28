@@ -163,6 +163,11 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       update_send_button_sensitivity ();
     });
 
+    this.compose_image_manager.image_reloaded.connect ((path) => {
+      this.compose_job.abort_image_upload (path);
+      this.compose_job.upload_image_async (path);
+    });
+
     this.add_accel_group (ag);
 
     var image_target_list = new Gtk.TargetList (null);
