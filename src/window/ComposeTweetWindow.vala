@@ -188,7 +188,13 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       this.tweet_text.get_buffer ().text = last_tweet;
     }
 
-    this.update_send_button_sensitivity ();
+    for (uint i = 0; i < Cb.ComposeJob.MAX_UPLOADS; i++) {
+      string? image_path = account.db.select ("info").cols ("last_tweet_image_%u".printf(i + 1)).once_string ();
+
+      if (image_path != null && image_path.length > 0){
+        load_image (image_path);
+      }
+    }
 
     int64 last_reply_id = account.db.select ("info").cols ("last_tweet_reply_id").once_i64 ();
     int64 last_quote_id = account.db.select ("info").cols ("last_tweet_quote_id").once_i64 ();
@@ -270,6 +276,8 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       assert (reply_to != null);
       this.title_label.label = _("Quote tweet");
     }
+
+    this.update_send_button_sensitivity ();
   }
 
   private void update_send_button_sensitivity () {
@@ -363,24 +371,33 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     }
 
     string text = tweet_text.buffer.text;
+    var query = account.db.update ("info").val ("last_tweet", text);
+    var image_count = compose_job.get_n_filepaths ();
+
+    for (var i = 0; i < image_count; i++) {
+      query.val ("last_tweet_image_%u".printf(i + 1), compose_job.get_filepath (i));
+    }
+    for (var i = image_count; i < Twitter.max_media_per_upload; i++) {
+      query.val ("last_tweet_image_%u".printf(i + 1), "");
+    }
 
     if (reply_to_loaded) {
-      account.db.update ("info").val ("last_tweet", text)
-                                .vali64 ("last_tweet_reply_id", last_reply_id)
-                                .vali64 ("last_tweet_quote_id", last_quote_id)
-                                .run ();
-    } else {
-      // Don't overwrite the last_tweet_{reply,quote}_id because it didn't load properly
-      // and we don't want to lose it
-      account.db.update ("info").val ("last_tweet", text)
-                                .run ();
+      // Only overwrite the last_tweet_{reply,quote}_id if it loaded properly
+      query.vali64 ("last_tweet_reply_id", last_reply_id)
+           .vali64 ("last_tweet_quote_id", last_quote_id);
     }
+
+    query.run();
   }
 
   private void clear_last_tweet () {
     account.db.update ("info").val ("last_tweet", "")
                               .vali64 ("last_tweet_reply_id", 0)
                               .vali64 ("last_tweet_quote_id", 0)
+                              .val ("last_tweet_image_1", "")
+                              .val ("last_tweet_image_2", "")
+                              .val ("last_tweet_image_3", "")
+                              .val ("last_tweet_image_4", "")
                               .run ();
   }
 
@@ -403,7 +420,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       tweet_text.buffer.get_bounds (out start, out end);
       string text = tweet_text.buffer.get_text (start, end, true);
 
-      if (text != "") {
+      if (text != "" || compose_job.get_n_filepaths () > 0) {
           save_last_tweet ();
       }
       else {
@@ -440,53 +457,57 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
 
     if (filechooser.run () == Gtk.ResponseType.ACCEPT) {
       var filename = filechooser.get_filename ();
-      debug ("Loading %s", filename);
-
-      /* Get file size */
-      var file = GLib.File.new_for_path (filename);
-      GLib.FileInfo info;
-      try {
-        info = file.query_info (GLib.FileAttribute.STANDARD_TYPE + "," +
-                                GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," +
-                                GLib.FileAttribute.STANDARD_SIZE, 0);
-      } catch (GLib.Error e) {
-        warning ("%s (%s)", e.message, filename);
-        // TODO: Proper error checking
-        return;
-      }
-
-      if (!info.get_content_type ().has_prefix ("image/")) {
-        stack.visible_child = image_error_grid;
-        image_error_label.label = _("Selected file is not an image.");
-        cancel_button.label = _("Back");
-        send_button.sensitive = false;
-      } else if (info.get_size () > Twitter.MAX_BYTES_PER_IMAGE) {
-        stack.visible_child = image_error_grid;
-        image_error_label.label = _("The selected image is too big. The maximum file size per image is %'d MB")
-                                  .printf (Twitter.MAX_BYTES_PER_IMAGE / 1024 / 1024);
-        cancel_button.label = _("Back");
-        send_button.sensitive = false;
-      } else if (filename.has_suffix (".gif") &&
-                 this.compose_image_manager.n_images > 0) {
-        stack.visible_child = image_error_grid;
-        image_error_label.label = _("Only one GIF file per tweet is allowed.");
-        cancel_button.label = _("Back");
-        send_button.sensitive = false;
-      } else {
-        this.compose_image_manager.show ();
-        this.compose_image_manager.load_image (filename, null);
-        this.compose_job.upload_image_async (filename);
-        if (this.compose_image_manager.n_images > 0) {
-          fav_image_view.set_gifs_enabled (false);
-        }
-        if (this.compose_image_manager.full) {
-          this.add_image_button.sensitive = false;
-          this.fav_image_button.sensitive = false;
-        }
-      }
+      load_image (filename);
     }
 
     update_send_button_sensitivity ();
+  }
+
+  private void load_image (string filename) {
+    debug ("Loading %s", filename);
+
+    /* Get file size */
+    var file = GLib.File.new_for_path (filename);
+    GLib.FileInfo info;
+    try {
+      info = file.query_info (GLib.FileAttribute.STANDARD_TYPE + "," +
+                              GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," +
+                              GLib.FileAttribute.STANDARD_SIZE, 0);
+    } catch (GLib.Error e) {
+      warning ("%s (%s)", e.message, filename);
+      // TODO: Proper error checking
+      return;
+    }
+
+    if (!info.get_content_type ().has_prefix ("image/")) {
+      stack.visible_child = image_error_grid;
+      image_error_label.label = _("Selected file is not an image.");
+      cancel_button.label = _("Back");
+      send_button.sensitive = false;
+    } else if (info.get_size () > Twitter.MAX_BYTES_PER_IMAGE) {
+      stack.visible_child = image_error_grid;
+      image_error_label.label = _("The selected image is too big. The maximum file size per image is %'d MB")
+                                .printf (Twitter.MAX_BYTES_PER_IMAGE / 1024 / 1024);
+      cancel_button.label = _("Back");
+      send_button.sensitive = false;
+    } else if (filename.has_suffix (".gif") &&
+               this.compose_image_manager.n_images > 0) {
+      stack.visible_child = image_error_grid;
+      image_error_label.label = _("Only one GIF file per tweet is allowed.");
+      cancel_button.label = _("Back");
+      send_button.sensitive = false;
+    } else {
+      this.compose_image_manager.show ();
+      this.compose_image_manager.load_image (filename, null);
+      this.compose_job.upload_image_async (filename);
+      if (this.compose_image_manager.n_images > 0) {
+        fav_image_view.set_gifs_enabled (false);
+      }
+      if (this.compose_image_manager.full) {
+        this.add_image_button.sensitive = false;
+        this.fav_image_button.sensitive = false;
+      }
+    }
   }
 
   [GtkCallback]
