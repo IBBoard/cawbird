@@ -227,10 +227,8 @@ namespace TweetUtils {
 
   public void handle_media_click (Cb.Tweet   t,
                                   MainWindow window,
-                                  int        index,
-                                  double     px = 0.0,
-                                  double     py = 0.0) {
-    MediaDialog media_dialog = new MediaDialog (t, index, px, py);
+                                  int        index) {
+    MediaDialog media_dialog = new MediaDialog (t, index);
     media_dialog.set_transient_for (window);
     media_dialog.set_modal (true);
     media_dialog.show ();
