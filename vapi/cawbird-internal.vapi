@@ -390,6 +390,7 @@ namespace Cb {
     public void start ();
     public void stop ();
     public void set_proxy_data (string a, string b);
+    public void inject_tweet (Cb.StreamMessageType message_type, string content);
 
     public signal void interrupted ();
     public signal void resumed ();
