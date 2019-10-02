@@ -94,16 +94,21 @@ namespace TweetUtils {
       var parser = new Json.Parser ();
       try {
         parser.load_from_data (back);
+        string message = back;
+        Cb.StreamMessageType message_type;
         if (status) {
           int64 new_id = parser.get_root ().get_object ().get_int_member ("id");
           tweet.my_retweet = new_id;
-        } else {
-          tweet.my_retweet = 0;
-        }
-        if (status)
           tweet.set_flag (Cb.TweetState.RETWEETED);
-        else
+          message_type = Cb.StreamMessageType.TWEET;
+        } else {
+          message_type = Cb.StreamMessageType.DELETE;
+          message = @"{ \"delete\":{ \"status\":{ \"id\":$(tweet.my_retweet), \"id_str\":\"$(tweet.my_retweet)\", \"user_id\":$(account.id), \"user_id_str\":\"$(account.id)\" } } }";
+          tweet.my_retweet = 0;
           tweet.unset_flag (Cb.TweetState.RETWEETED);
+        }
+        // FIXME: If we RT, un-RT and then RT again then we don't get a new tweet
+        account.user_stream.inject_tweet(message_type, message);
       } catch (GLib.Error e) {
         critical (e.message);
         critical (back);
