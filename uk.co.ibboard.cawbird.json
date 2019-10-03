@@ -1,10 +1,10 @@
 {
   "app-id":"uk.co.ibboard.cawbird",
   "runtime":"org.gnome.Platform",
-  "runtime-version":"master",
+  "runtime-version":"3.34",
   "sdk":"org.gnome.Sdk",
   "command":"cawbird",
-  "desktop-file-name-prefix": "(Development) ",
+  "desktop-file-name-prefix":"(Development) ",
   "rename-icon":"cawbird",
   "copy-icon":true,
   "finish-args":[
@@ -31,6 +31,13 @@
     "/share/man",
     "/share/vala"
   ],
+  "add-extensions":{
+    "org.freedesktop.Platform.ffmpeg-full":{
+      "directory":"lib/ffmpeg",
+      "version":"19.08",
+      "add-ld-path":"."
+    }
+  },
   "modules":[
     {
       "name":"enchant",
@@ -69,6 +76,12 @@
         {
           "type":"dir",
           "path":"."
+        },
+        {
+          "type":"shell",
+          "commands":[
+            "mkdir /app/lib/ffmpeg"
+          ]
         }
       ]
     }
