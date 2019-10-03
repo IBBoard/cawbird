@@ -68,6 +68,12 @@ public class HomeTimeline : Cb.MessageReceiver, DefaultTimeline {
     /* We don't use the set_state version from Cb.TweetModel here since
        we just decide the initial visibility of the tweet */
     if (t.retweeted_tweet != null) {
+      if (t.source_tweet.author.id == account.id) {
+        // Don't show our own RTs if we inject them, because Twitter
+        // doesn't provide them in a normal home timeline request
+        return;
+      }
+
       t.set_flag (get_rt_flags (t));
 
       /* CbTweet#get_user_id () returns the retweeted user's id in case it's a retweet,
