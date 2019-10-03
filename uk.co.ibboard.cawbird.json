@@ -4,6 +4,7 @@
   "runtime-version":"master",
   "sdk":"org.gnome.Sdk",
   "command":"cawbird",
+  "desktop-file-name-prefix": "(Development) ",
   "rename-icon":"cawbird",
   "copy-icon":true,
   "finish-args":[
