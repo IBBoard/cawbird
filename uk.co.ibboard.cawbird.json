@@ -1,12 +1,12 @@
 {
-  "app-id": "uk.co.ibboard.cawbird",
-  "runtime": "org.gnome.Platform",
-  "runtime-version": "3.32",
-  "sdk" : "org.gnome.Sdk",
-  "command" : "cawbird",
-  "rename-icon" : "cawbird",
-  "copy-icon" : true,
-  "finish-args" : [
+  "app-id":"uk.co.ibboard.cawbird",
+  "runtime":"org.gnome.Platform",
+  "runtime-version":"master",
+  "sdk":"org.gnome.Sdk",
+  "command":"cawbird",
+  "rename-icon":"cawbird",
+  "copy-icon":true,
+  "finish-args":[
     "--share=ipc",
     "--share=network",
     "--socket=x11",
@@ -14,50 +14,79 @@
     "--socket=pulseaudio",
     "--filesystem=home"
   ],
-  "build-options" : {
-    "cflags" : "-O2 -g"
+  "build-options":{
+    "cflags":"-O2 -g"
   },
-  "cleanup" : [
-    "/include", "/share/gir-1.0",
-    "/lib/pkgconfig", "/lib/girepository-1.0",
-    "/share/vala-0.34", "/bin/vala*", "/bin/vapi*",
-    "/share/devhelp", "/share/aclocal", "/lib/*.la",
-    "/lib/libvala*", "/lib/vala-0.34",
-    "/share/gtk-doc", "/share/man", "/share/vala"
+  "cleanup":[
+    "/include",
+    "/share/gir-1.0",
+    "/lib/pkgconfig",
+    "/lib/girepository-1.0",
+    "/share/vala-0.34",
+    "/bin/vala*",
+    "/bin/vapi*",
+    "/share/devhelp",
+    "/share/aclocal",
+    "/lib/*.la",
+    "/lib/libvala*",
+    "/lib/vala-0.34",
+    "/share/gtk-doc",
+    "/share/man",
+    "/share/vala"
   ],
-  "modules" : [
+  "modules":[
     {
-      "name" : "gst-libav",
-      "cleanup" : ["*.la"],
-      "sources" : [
+      "name":"gst-libav",
+      "cleanup":[
+        "*.la"
+      ],
+      "sources":[
         {
-            "type" : "archive",
-            "url" : "https://gstreamer.freedesktop.org/src/gst-libav/gst-libav-1.14.4.tar.xz",
-            "sha256" : "dfd78591901df7853eab7e56a86c34a1b03635da0d3d56b89aa577f1897865da"
+          "type":"archive",
+          "url":"https://gstreamer.freedesktop.org/src/gst-libav/gst-libav-1.16.1.tar.xz",
+          "sha256":"e8a5748ae9a4a7be9696512182ea9ffa6efe0be9b7976916548e9d4381ca61c4"
         }
       ]
     },
     {
-      "name" : "gspell",
-      "config-opts" : ["--enable-vala=yes"],
-      "sources" : [
+      "name":"enchant",
+      "config-opts":[
+        "--disable-static",
+        "--with-myspell-dir=/usr/share/hunspell"
+      ],
+      "cleanup":[
+        "/bin"
+      ],
+      "sources":[
         {
-            "type" : "archive",
-            "url" : "https://download.gnome.org/sources/gspell/1.8/gspell-1.8.1.tar.xz",
-            "sha256" : "819a1d23c7603000e73f5e738bdd284342e0cd345fb0c7650999c31ec741bbe5"
+          "type":"archive",
+          "url":"https://github.com/AbiWord/enchant/releases/download/enchant-1-6-1/enchant-1.6.1.tar.gz",
+          "sha256":"bef0d9c0fef2e4e8746956b68e4d6c6641f6b85bd2908d91731efb68eba9e3f5"
         }
       ]
     },
     {
-      "name" : "cawbird",
-      "buildsystem": "meson",
-      "sources" : [
+      "name":"gspell",
+      "config-opts":[
+        "--enable-vala=yes"
+      ],
+      "sources":[
         {
-          "type" : "git",
-          "url" : "https://github.com/IBBoard/cawbird.git"
+          "type":"archive",
+          "url":"https://download.gnome.org/sources/gspell/1.8/gspell-1.8.2.tar.xz",
+          "sha256":"bb9195c3a95bacf556d0203e9691f7489e0d3bc5ae1e5a440c89b2f2435d3ed6"
+        }
+      ]
+    },
+    {
+      "name":"cawbird",
+      "buildsystem":"meson",
+      "sources":[
+        {
+          "type":"git",
+          "url":"https://github.com/IBBoard/cawbird.git"
         }
       ]
     }
   ]
 }
-
