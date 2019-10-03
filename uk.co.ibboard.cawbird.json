@@ -12,7 +12,7 @@
     "--socket=x11",
     "--socket=wayland",
     "--socket=pulseaudio",
-    "--filesystem=home",
+    "--filesystem=home"
   ],
   "build-options" : {
     "cflags" : "-O2 -g"
