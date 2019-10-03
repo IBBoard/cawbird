@@ -83,8 +83,8 @@
       "buildsystem":"meson",
       "sources":[
         {
-          "type":"git",
-          "url":"https://github.com/IBBoard/cawbird.git"
+          "type":"dir",
+          "path":"."
         }
       ]
     }
