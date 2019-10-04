@@ -31,13 +31,6 @@
     "/share/man",
     "/share/vala"
   ],
-  "add-extensions":{
-    "org.freedesktop.Platform.ffmpeg-full":{
-      "directory":"lib/ffmpeg",
-      "version":"19.08",
-      "add-ld-path":"."
-    }
-  },
   "modules":[
     "modules/gst-plugins-ugly.json",
     "modules/gst-plugins-bad.json",
@@ -77,13 +70,7 @@
       "sources":[
         {
           "type":"dir",
-          "path":"."
-        },
-        {
-          "type":"shell",
-          "commands":[
-            "mkdir /app/lib/ffmpeg"
-          ]
+          "path":".."
         }
       ]
     }

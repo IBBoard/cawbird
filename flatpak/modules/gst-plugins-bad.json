@@ -1,0 +1,14 @@
+{
+    "name": "gst-plugins-bad",
+    "buildsystem": "meson",
+    "cleanup": [ "/bin/*webrtc*", "/bin/crossfade", "/bin/tsparser", "/bin/playout" ],
+    "config-opts": [ "-Dopenh264=disabled" ],
+    "sources": [
+        {
+            "type": "git",
+            "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad.git",
+            "tag": "1.16.0",
+            "commit": "5fde70bb63a1cbf6f734fb2429e74ffb53126217"
+        }
+    ]
+}

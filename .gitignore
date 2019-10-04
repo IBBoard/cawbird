@@ -63,5 +63,5 @@ src/corebird.h
 src/corebird.vapi
 build/
 libcorebird.vapi
-_build
-.flatpak-builder
+flatpak/_build
+flatpak/.flatpak-builder
