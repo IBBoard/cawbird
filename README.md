@@ -1,4 +1,4 @@
-# Cawbird 1.0.1
+# Cawbird 1.0.2
 
 Cawbird is a fork of the [Corebird Twitter client from Baedert](https://corebird.baedert.org/), which became unsupported after Twitter disabled the streaming API.
 

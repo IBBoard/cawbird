@@ -44,6 +44,16 @@
   <url type="bugtracker">https://github.com/ibboard/cawbird/issues</url>
 
   <releases>
+    <release version="1.0.2" date="2019-10-05">
+      <p>Changes in Cawbird 1.0.2:</p>
+      <ul>
+        <li>Handle TLS errors that we're getting from Twitter and GnuTLS</li>
+        <li>Add initial Flatpak manifest (thanks to @p1u3o)</li>
+        <li>Keep retweet status in sync across pages</li>
+        <li>Fix building on newer versions of Vala (thanks to @lucaswerkmeister)</li>
+        <li>Make image click positioning behaviour consistent</li>
+      </ul>
+    </release>
     <release version="1.0.1" date="2019-08-31">
       <p>Changes in Cawbird 1.0.1:</p>
       <ul>
