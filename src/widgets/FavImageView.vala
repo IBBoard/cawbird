@@ -56,7 +56,7 @@ class FavImageView : Gtk.Box {
 
     Gtk.drag_dest_set (this,
                        Gtk.DestDefaults.ALL,
-                       null,
+                       new Gtk.TargetEntry[0],
                        Gdk.DragAction.COPY);
     Gtk.drag_dest_set_target_list (this, image_target_list);
 
