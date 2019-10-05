@@ -42,8 +42,6 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
   private DMPlaceholderBox placeholder_box = new DMPlaceholderBox ();
 
   public int64 user_id;
-  private int64 lowest_id = int64.MAX;
-  private int64 highest_id = int64.MIN;
   private bool was_scrolled_down = false;
 
   public DMPage (int id, Account account) {
@@ -68,28 +66,36 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
   }
 
   public void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
-    // FIXME: This won't work because of how we fake-stream rather than loading old messages
-    /* Writing with ourselves, we have the message already */
-    /*if (this.user_id == this.account.id) {
-      debug("DM to self - ignoring");
-      return;
-    }*/
-
     if (type == Cb.StreamMessageType.DIRECT_MESSAGE) {
-      handle_dm (type, root);
+      handle_dm.begin (type, root);
     }
+  }
+
+  private bool has_dm (int64 dm_id) {
+    bool found = false;
+    List<weak Gtk.Widget> dm_entries = messages_list.get_children ();
+    uint length = dm_entries.length ();
+    unowned List<weak Gtk.Widget> current = dm_entries.last ();
+
+    for (uint i = 0; i < length; i++) {
+      if (((DMListEntry)current.data).id == dm_id) {
+        found = true;
+        break;
+      }
+
+      current = current.nth_prev (1);
+    }
+
+    return found;
   }
 
   private async void handle_dm (Cb.StreamMessageType type, Json.Node root) {
     Json.Object dm_obj = root.get_object ();
     int64 dm_id = int64.parse(dm_obj.get_string_member ("id"));
 
-    if (dm_id <= highest_id) {
-      // Already seen it
+    if (has_dm (dm_id)) {
       return;
     }
-
-    highest_id = dm_id;
 
     Json.Object dm_msg = dm_obj.get_object_member ("message_create");
     int64 sender_id  = int64.parse(dm_msg.get_string_member ("sender_id"));
@@ -125,40 +131,28 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
 
     string? sender_user_name = yield Twitter.get ().get_user_name (account, sender_id);
     string? sender_screen_name = yield Twitter.get ().get_screen_name (account, sender_id);
+    int64 timestamp = int64.parse(dm_obj.get_string_member ("created_timestamp")) / 1000;
+    yield add_entry (dm_id, sender_id, recipient_id, text, sender_user_name, sender_screen_name, timestamp);
+  }
 
-    if (sender_id == account.id) {
-      // Find the sent entry and fill in the missing details
-      var entries = messages_list.get_children ();
+  private async void add_entry (int64 dm_id, int64 sender_id, int64 recipient_id,
+                          string text,
+                          string sender_user_name, string sender_screen_name,
+                          int64 timestamp) {
+    var new_msg = new DMListEntry ();
+    new_msg.id = dm_id;
+    new_msg.text = text;
+    new_msg.name = sender_user_name;
+    new_msg.screen_name = sender_screen_name;
+    new_msg.timestamp = timestamp;
+    new_msg.main_window = main_window;
+    new_msg.user_id = sender_id;
+    new_msg.update_time_delta ();
+    new_msg.load_avatar (yield Twitter.get ().get_avatar_url (account, sender_id));
+    messages_list.add (new_msg);
 
-      foreach (var entry in entries) {
-        var e = (DMListEntry) entry;
-        // XXX This assumes that we only have one "-1" ID, or that we always hit them in the right order
-        // It is possible for a user to send multiple DMs before we poll, though.
-        if (e.user_id == account.id && e.id == -1) {
-          e.text = text;
-          e.id = dm_id;
-          break;
-        }
-      }
-
-      return;
-    }
-    else {
-      // Add a new entry
-      var new_msg = new DMListEntry ();
-      new_msg.id = dm_id;
-      new_msg.text = text;
-      new_msg.name = sender_user_name;
-      new_msg.screen_name = sender_screen_name;
-      new_msg.timestamp = int64.parse(dm_obj.get_string_member ("created_timestamp")) / 1000;
-      new_msg.main_window = main_window;
-      new_msg.user_id = sender_id;
-      new_msg.update_time_delta ();
-      new_msg.load_avatar (yield Twitter.get ().get_avatar_url (account, sender_id));
-      messages_list.add (new_msg);
-      if (scroll_widget.scrolled_down)
-        scroll_widget.scroll_down_next ();
-    }
+    if (scroll_widget.scrolled_down)
+      scroll_widget.scroll_down_next ();
   }
 
   public void on_join (int page_id, Cb.Bundle? args) {
@@ -166,11 +160,12 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     if (user_id == 0)
       return;
 
-    this.lowest_id = int64.MAX;
     this.user_id = user_id;
     string screen_name;
     string name = null;
     if ((screen_name = args.get_string (KEY_SCREEN_NAME)) != null) {
+      // If the screen name is set then it's a new conversation
+      // So show the placeholder with name and avatar
       name = args.get_string (KEY_USER_NAME);
       placeholder_box.user_id = user_id;
       placeholder_box.screen_name = screen_name;
@@ -188,7 +183,6 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     DMThreadsPage threads_page = ((DMThreadsPage)main_window.get_page (Page.DM_THREADS));
     threads_page.adjust_unread_count_for_user_id (user_id);
 
-    var now = new GLib.DateTime.now_local ();
     // Load messages
     var query = account.db.select ("dms")
                            .cols ("from_id", "to_id", "text", "from_name", "from_screen_name",
@@ -202,31 +196,12 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
          .limit (35)
          .run ((vals) => {
       int64 id = int64.parse (vals[6]);
-      if (id < lowest_id)
-        lowest_id = id;
-
-      var entry = new DMListEntry ();
-      entry.id = id;
-      entry.user_id = int64.parse (vals[0]);
-      entry.timestamp = int64.parse (vals[5]);
-      entry.text = vals[2];
-      entry.name = vals[3];
+      add_entry.begin (id, int64.parse (vals[0]), int64.parse (vals[1]), vals[2], vals[3], vals[4], int64.parse (vals[5]));
       name = vals[3];
-      entry.screen_name = vals[4];
       screen_name = vals[4];
-      entry.main_window = main_window;
-      entry.update_time_delta (now);
-      Twitter.get ().load_avatar_for_user_id.begin (account,
-                                                    entry.user_id,
-                                                    48 * this.get_scale_factor (),
-                                                    (obj, res) => {
-        Cairo.Surface? s = Twitter.get ().load_avatar_for_user_id.end (res);
-        entry.avatar = s;
-      });
-      messages_list.add (entry);
       return true;
     });
-
+    
     account.user_counter.user_seen (user_id, screen_name, name);
 
     scroll_widget.scroll_down_next (false, true);
@@ -242,25 +217,12 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     if (text_view.buffer.text.length == 0)
       return;
 
+    send_button.sensitive = false;
     // Withdraw the notification if there is one
     DMThreadsPage threads_page = ((DMThreadsPage)main_window.get_page (Page.DM_THREADS));
     string notification_id = threads_page.get_notification_id_for_user_id (this.user_id);
     if (notification_id != null)
       GLib.Application.get_default ().withdraw_notification (notification_id);
-
-
-    // Just add the entry now
-    DMListEntry entry = new DMListEntry ();
-    entry.id = -1;
-    entry.user_id = account.id;
-    entry.screen_name = account.screen_name;
-    entry.timestamp = new GLib.DateTime.now_local ().to_unix ();
-    entry.text = GLib.Markup.escape_text (text_view.buffer.text);
-    entry.main_window = main_window;
-    entry.name = account.name;
-    entry.avatar = account.avatar;
-    entry.update_time_delta ();
-    messages_list.add (entry);
 
     var gen = new Json.Generator();
     var root = new Json.Node(Json.NodeType.OBJECT);
@@ -286,20 +248,18 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
 
     call.invoke_async.begin (null, (obj, res) => {
       try {
+        send_button.sensitive = true;
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
         Utils.show_error_object (call.get_payload (), e.message,
                                  GLib.Log.LINE, GLib.Log.FILE, this.main_window);
         return;
       }
+
+      unowned string back = call.get_payload();
+      account.user_stream.inject_tweet (Cb.StreamMessageType.DIRECT_MESSAGE, back);
+      text_view.buffer.text = "";
     });
-
-    // clear the text entry
-    text_view.buffer.text = "";
-
-    // Scroll down
-    if (scroll_widget.scrolled_down)
-      scroll_widget.scroll_down_next ();
   }
 
   [GtkCallback]

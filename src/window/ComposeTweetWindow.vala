@@ -64,7 +64,10 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
   private Cb.EmojiChooser? emoji_chooser = null;
   private Gtk.Button? emoji_button = null;
   private unowned Account account;
-  private unowned Cb.Tweet reply_to;
+  private unowned MainWindow main_window;
+  private Cb.Tweet reply_to;
+  private int64 reply_to_id = 0;
+  private bool reply_to_loaded = false;
   private Mode mode;
   private GLib.Cancellable? cancellable;
   private Gtk.ListBox? reply_list = null;
@@ -76,6 +79,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
                              Cb.Tweet?   reply_to = null,
                              Mode        mode = Mode.NORMAL) {
     this.set_show_menubar (false);
+    this.main_window = parent;
     this.account = acc;
     this.reply_to = reply_to;
     this.mode = mode;
@@ -102,10 +106,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       this.compose_image_manager.end_progress (path, error_msg);
     });
 
-    if (this.mode == Mode.REPLY)
-      this.compose_job.set_reply_id (this.reply_to.id);
-    else if (this.mode == Mode.QUOTE)
-      this.compose_job.set_quoted_tweet (this.reply_to);
+    load_tweet.begin ();
 
     avatar_image.surface = acc.avatar;
     acc.notify["avatar"].connect (() => {
@@ -120,23 +121,6 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     if (parent != null) {
       this.set_transient_for (parent);
       this.set_modal (true);
-    }
-
-    if (mode != Mode.NORMAL) {
-      reply_list = new Gtk.ListBox ();
-      reply_list.selection_mode = Gtk.SelectionMode.NONE;
-      TweetListEntry reply_entry = new TweetListEntry (reply_to, parent, acc, true);
-      reply_entry.activatable = false;
-      reply_entry.read_only = true;
-      reply_entry.show ();
-      reply_list.add (reply_entry);
-      reply_list.show ();
-      content_grid.attach (reply_list, 0, 0, 2, 1);
-    }
-
-    if (mode == Mode.QUOTE) {
-      assert (reply_to != null);
-      this.title_label.label = _("Quote tweet");
     }
 
     /* Let the text view immediately grab the keyboard focus */
@@ -179,14 +163,12 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       update_send_button_sensitivity ();
     });
 
+    this.compose_image_manager.image_reloaded.connect ((path) => {
+      this.compose_job.abort_image_upload (path);
+      this.compose_job.upload_image_async (path);
+    });
+
     this.add_accel_group (ag);
-
-    string? last_tweet = account.db.select ("info").cols ("last_tweet").once_string ();
-    if (last_tweet != null && last_tweet.length > 0 &&
-        tweet_text.get_buffer ().text.length == 0) {
-      this.tweet_text.get_buffer ().text = last_tweet;
-    }
-
 
     var image_target_list = new Gtk.TargetList (null);
     image_target_list.add_text_targets (0);
@@ -202,6 +184,118 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     }
 
     this.set_default_size (DEFAULT_WIDTH, (int)(DEFAULT_WIDTH / 2.5));
+  }
+
+  private async void load_tweet () {
+    string? last_tweet = account.db.select ("info").cols ("last_tweet").once_string ();
+    if (last_tweet != null && last_tweet.length > 0 &&
+        tweet_text.get_buffer ().text.length == 0) {
+      this.tweet_text.get_buffer ().text = last_tweet;
+    }
+
+    string[] failed_paths = {};
+
+    for (uint i = 0; i < Cb.ComposeJob.MAX_UPLOADS; i++) {
+      string? image_path = account.db.select ("info").cols ("last_tweet_image_%u".printf(i + 1)).once_string ();
+
+      if (image_path != null && image_path.length > 0){
+        try {
+          load_image (image_path);
+        }
+        catch (GLib.Error e) {
+          failed_paths += image_path;
+        }
+      }
+    }
+
+    if (failed_paths.length > 0) {
+      stack.visible_child = image_error_grid;
+      image_error_label.label = _("Failed to load %u images: %s").printf(failed_paths.length, string.joinv(", ", failed_paths));
+      cancel_button.label = _("Back");
+    }
+
+    int64 last_reply_id = account.db.select ("info").cols ("last_tweet_reply_id").once_i64 ();
+    int64 last_quote_id = account.db.select ("info").cols ("last_tweet_quote_id").once_i64 ();
+    var candidate_mode = Mode.NORMAL;
+
+    if (this.reply_to != null) {
+      this.reply_to_id = this.reply_to.id;
+      this.reply_to_loaded = true;
+    }
+    else if (last_reply_id != 0) {
+      this.reply_to_id = last_reply_id;
+      candidate_mode = Mode.REPLY;
+    }
+    else if (last_quote_id != 0){
+      this.reply_to_id = last_quote_id;
+      candidate_mode = Mode.QUOTE;
+    }
+    // Else it's a new tweet
+
+    if (this.reply_to == null && this.reply_to_id > 0) {
+      string error_reason = "Unknown error";
+
+      try {
+        this.reply_to = yield TweetUtils.get_tweet (account, this.reply_to_id);
+      }
+      catch (GLib.Error e) {
+        error_reason = e.message;
+        warning (e.message);
+      }
+
+      if (this.reply_to == null) {
+        string message = candidate_mode == Mode.QUOTE ? "Error fetching quoted tweet: %s\n\nSave unsent tweet?" :
+                                                        "Error fetching reply tweet: %s\n\nSave unsent tweet?";
+        var messagedialog = new Gtk.MessageDialog (this,
+                                                  Gtk.DialogFlags.MODAL,
+                                                  Gtk.MessageType.WARNING,
+                                                  Gtk.ButtonsType.YES_NO,
+                                                  message.printf (error_reason));
+        messagedialog.set_default_response (Gtk.ResponseType.YES);
+        int response = messagedialog.run ();
+        messagedialog.destroy ();
+
+        if (response == Gtk.ResponseType.NO) {
+          set_text ("");
+          this.reply_to_id = 0;
+          clear_last_tweet ();
+        }
+        else {
+          // We're in an invalid state - all we can do is close and let the user try again later
+          this.close ();
+        }
+      }
+      else {
+        // Don't set the mode until now in case fetching the tweet fails
+        // If we set it earlier then we get segfaults when code assumes this.reply_to is set.
+        this.mode = candidate_mode;
+        this.reply_to_loaded = true;
+      }
+    }
+
+    if (this.mode == Mode.REPLY)
+      this.compose_job.set_reply_id (this.reply_to.id);
+    else if (this.mode == Mode.QUOTE)
+      this.compose_job.set_quoted_tweet (this.reply_to);
+
+    if (mode != Mode.NORMAL) {
+      reply_list = new Gtk.ListBox ();
+      reply_list.selection_mode = Gtk.SelectionMode.NONE;
+      TweetListEntry reply_entry = new TweetListEntry (reply_to, main_window, account, true);
+      reply_entry.activatable = false;
+      reply_entry.read_only = true;
+      reply_entry.show ();
+      reply_list.add (reply_entry);
+      reply_list.show ();
+      content_grid.attach (reply_list, 0, 0, 2, 1);
+    }
+
+    if (mode == Mode.QUOTE) {
+      assert (reply_to != null);
+      this.title_label.label = _("Quote tweet");
+    }
+
+    this.update_send_button_sensitivity ();
   }
 
   private void update_send_button_sensitivity () {
@@ -223,48 +317,106 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     }
   }
 
+  private void set_sending_state (bool sending) {
+    if (sending) {
+      title_stack.visible_child = title_spinner;
+      title_spinner.start ();
+      compose_image_manager.insensitivize_buttons ();
+      send_button.sensitive = false;
+    } else {
+      title_stack.visible_child = title_label;
+      title_spinner.stop ();
+      compose_image_manager.sensitivize_buttons ();
+      update_send_button_sensitivity ();
+    }
+
+    tweet_text.sensitive = !sending;
+    fav_image_button.sensitive = !sending;
+    add_image_button.sensitive = !sending;
+
+    if (emoji_button != null)
+    {
+      emoji_button.sensitive = !sending;
+    }
+  }
+
   [GtkCallback]
   private void start_send_tweet () {
     if (!send_button.sensitive)
       return;
 
-    title_stack.visible_child = title_spinner;
-    title_spinner.start ();
-    send_button.sensitive = false;
-    tweet_text.sensitive = false;
-    fav_image_button.sensitive = false;
-    add_image_button.sensitive = false;
-    compose_image_manager.insensitivize_buttons ();
-
+    set_sending_state (true);
     Gtk.TextIter start, end;
     tweet_text.buffer.get_start_iter (out start);
     tweet_text.buffer.get_end_iter (out end);
     this.compose_job.set_text (tweet_text.buffer.get_text (start, end, true));
+
+    /* Save the tweet in case sending fails */
+    this.save_last_tweet ();
 
     this.compose_job.send_async.begin (this.cancellable, (obj, res) => {
       bool success = false;
       try {
        success = this.compose_job.send_async.end (res);
       } catch (GLib.Error e) {
-        warning (e.message);
+        warning ("Error %s.%ld: %s", e.domain.to_string (), e.code, e.message);
+        Utils.show_error_dialog (e.message, this);
+        set_sending_state (false);
+        return;
       }
       debug ("Tweet sent.");
       if (success) {
-        /* Reset last_tweet */
-        account.db.update ("info").val ("last_tweet", "").run ();
+        this.clear_last_tweet ();
+        this.destroy ();
       } else {
-        /* Better save this tweet */
-        this.save_last_tweet ();
+        set_sending_state (false);
+        // FIXME: Translate
+        Utils.show_error_dialog ("Failed to send tweet", this);
       }
-      this.destroy ();
     });
   }
 
   private void save_last_tweet () {
-    if (this.reply_to == null) {
-      string text = tweet_text.buffer.text;
-      account.db.update ("info").val ("last_tweet", text).run ();
+    int64 last_reply_id = 0;
+    int64 last_quote_id = 0;
+
+    // FIXME: If the tweet failed to load then these modes aren't set!
+    if (this.mode == Mode.REPLY) {
+      last_reply_id = this.reply_to_id;
     }
+    else if (this.mode == Mode.QUOTE) {
+      last_quote_id = this.reply_to_id;
+    }
+
+    string text = tweet_text.buffer.text;
+    var query = account.db.update ("info").val ("last_tweet", text);
+    var image_count = compose_job.get_n_filepaths ();
+
+    for (var i = 0; i < image_count; i++) {
+      query.val ("last_tweet_image_%u".printf(i + 1), compose_job.get_filepath (i));
+    }
+    for (var i = image_count; i < Twitter.max_media_per_upload; i++) {
+      query.val ("last_tweet_image_%u".printf(i + 1), "");
+    }
+
+    if (reply_to_loaded) {
+      // Only overwrite the last_tweet_{reply,quote}_id if it loaded properly
+      query.vali64 ("last_tweet_reply_id", last_reply_id)
+           .vali64 ("last_tweet_quote_id", last_quote_id);
+    }
+
+    query.run();
+  }
+
+  private void clear_last_tweet () {
+    account.db.update ("info").val ("last_tweet", "")
+                              .vali64 ("last_tweet_reply_id", 0)
+                              .vali64 ("last_tweet_quote_id", 0)
+                              .val ("last_tweet_image_1", "")
+                              .val ("last_tweet_image_2", "")
+                              .val ("last_tweet_image_3", "")
+                              .val ("last_tweet_image_4", "")
+                              .run ();
   }
 
   [GtkCallback]
@@ -281,7 +433,18 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       if (this.cancellable != null) {
         this.cancellable.cancel ();
       }
-      this.save_last_tweet ();
+
+      Gtk.TextIter start, end;
+      tweet_text.buffer.get_bounds (out start, out end);
+      string text = tweet_text.buffer.get_text (start, end, true);
+
+      if (text != "" || compose_job.get_n_filepaths () > 0) {
+          save_last_tweet ();
+      }
+      else {
+        clear_last_tweet ();
+      }
+
       destroy ();
     }
   }
@@ -312,53 +475,58 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
 
     if (filechooser.run () == Gtk.ResponseType.ACCEPT) {
       var filename = filechooser.get_filename ();
-      debug ("Loading %s", filename);
-
-      /* Get file size */
-      var file = GLib.File.new_for_path (filename);
-      GLib.FileInfo info;
       try {
-        info = file.query_info (GLib.FileAttribute.STANDARD_TYPE + "," +
-                                GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," +
-                                GLib.FileAttribute.STANDARD_SIZE, 0);
-      } catch (GLib.Error e) {
-        warning ("%s (%s)", e.message, filename);
-        // TODO: Proper error checking
-        return;
+        load_image (filename);
       }
-
-      if (!info.get_content_type ().has_prefix ("image/")) {
-        stack.visible_child = image_error_grid;
-        image_error_label.label = _("Selected file is not an image.");
-        cancel_button.label = _("Back");
-        send_button.sensitive = false;
-      } else if (info.get_size () > Twitter.MAX_BYTES_PER_IMAGE) {
-        stack.visible_child = image_error_grid;
-        image_error_label.label = _("The selected image is too big. The maximum file size per image is %'d MB")
-                                  .printf (Twitter.MAX_BYTES_PER_IMAGE / 1024 / 1024);
-        cancel_button.label = _("Back");
-        send_button.sensitive = false;
-      } else if (filename.has_suffix (".gif") &&
-                 this.compose_image_manager.n_images > 0) {
-        stack.visible_child = image_error_grid;
-        image_error_label.label = _("Only one GIF file per tweet is allowed.");
-        cancel_button.label = _("Back");
-        send_button.sensitive = false;
-      } else {
-        this.compose_image_manager.show ();
-        this.compose_image_manager.load_image (filename, null);
-        this.compose_job.upload_image_async (filename);
-        if (this.compose_image_manager.n_images > 0) {
-          fav_image_view.set_gifs_enabled (false);
-        }
-        if (this.compose_image_manager.full) {
-          this.add_image_button.sensitive = false;
-          this.fav_image_button.sensitive = false;
-        }
+      catch (GLib.Error e) {
+        // TODO: Proper error checking/reporting
+        // But it shouldn't happen because we only just picked it, so the file info
+        // should just work
+        warning ("%s (%s)", e.message, filename);
       }
     }
 
     update_send_button_sensitivity ();
+  }
+
+  private void load_image (string filename) throws GLib.Error {
+    debug ("Loading %s", filename);
+
+    /* Get file size */
+    var file = GLib.File.new_for_path (filename);
+    GLib.FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_TYPE + "," +
+                                          GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," +
+                                          GLib.FileAttribute.STANDARD_SIZE, 0);
+
+    if (!info.get_content_type ().has_prefix ("image/")) {
+      stack.visible_child = image_error_grid;
+      image_error_label.label = _("Selected file is not an image.");
+      cancel_button.label = _("Back");
+      send_button.sensitive = false;
+    } else if (info.get_size () > Twitter.MAX_BYTES_PER_IMAGE) {
+      stack.visible_child = image_error_grid;
+      image_error_label.label = _("The selected image is too big. The maximum file size per image is %'d MB")
+                                .printf (Twitter.MAX_BYTES_PER_IMAGE / 1024 / 1024);
+      cancel_button.label = _("Back");
+      send_button.sensitive = false;
+    } else if (filename.has_suffix (".gif") &&
+               this.compose_image_manager.n_images > 0) {
+      stack.visible_child = image_error_grid;
+      image_error_label.label = _("Only one GIF file per tweet is allowed.");
+      cancel_button.label = _("Back");
+      send_button.sensitive = false;
+    } else {
+      this.compose_image_manager.show ();
+      this.compose_image_manager.load_image (filename, null);
+      this.compose_job.upload_image_async (filename);
+      if (this.compose_image_manager.n_images > 0) {
+        fav_image_view.set_gifs_enabled (false);
+      }
+      if (this.compose_image_manager.full) {
+        this.add_image_button.sensitive = false;
+        this.fav_image_button.sensitive = false;
+      }
+    }
   }
 
   [GtkCallback]

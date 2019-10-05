@@ -17,21 +17,85 @@
 
 namespace TweetUtils {
   /**
+   * Fetches the given tweet by ID.
+   *
+   * Note: This should not be used frequently as we should (in most situations)
+   * have all of the information that we need already.
+   *
+   * @param account The account to fetch the tweet as
+   * @param tweet_id The ID of the tweet to fetch
+   * @return the tweet object or null if it failed
+   */
+  async Cb.Tweet? get_tweet (Account account, int64 tweet_id) throws GLib.Error {
+    if (tweet_id <= 0) {
+      return null;
+    }
+
+    var call = account.proxy.new_call ();
+    call.set_method ("GET");
+    call.set_function ("1.1/statuses/show.json");
+    call.add_param ("id", tweet_id.to_string ());
+    call.add_param ("include_my_retweet", "true");
+    call.add_param ("tweet_mode", "extended");
+    Cb.Tweet? tweet = null;
+    GLib.Error? err = null;
+
+    call.invoke_async.begin (null, (obj, res) => {
+      try {
+        call.invoke_async.end (res);
+        unowned string content = call.get_payload();
+        var parser = new Json.Parser ();
+        debug ("Load tweet got: %s", content);
+        parser.load_from_data (content);
+        var now = new GLib.DateTime.now_local ();
+        tweet = new Cb.Tweet ();
+        tweet.load_from_json (parser.get_root (), account.id, now);
+        get_tweet.callback ();
+      } catch (GLib.Error e) {
+        err = e;
+        get_tweet.callback ();
+        return;
+      }
+    });
+    yield;
+    if (err != null) {
+      throw err;
+    }
+    return tweet;
+  }
+
+  /**
    * Deletes the given tweet.
    *
    * @param account The account to delete the tweet from
    * @param tweet the tweet to delete
+   * @return True if tweet was successfully deleted, else False
    */
-  async void delete_tweet (Account account, Cb.Tweet tweet) {
+  async bool delete_tweet (Account account, Cb.Tweet tweet) throws GLib.Error {
     var call = account.proxy.new_call ();
     call.set_method ("POST");
     call.set_function ("1.1/statuses/destroy/"+tweet.id.to_string ()+".json");
     call.add_param ("id", tweet.id.to_string ());
+    var success = false;
+    GLib.Error? err = null;
     call.invoke_async.begin (null, (obj, res) => {
-      try { call.invoke_async.end (res);} catch (GLib.Error e) { critical (e.message);}
+      try {
+        call.invoke_async.end (res);
+      } catch (GLib.Error e) {
+        warning ("Exception: %s in %s:%d", e.message, GLib.Log.FILE, GLib.Log.LINE);
+        err = e;
+        delete_tweet.callback ();
+        return;
+      }
+      // TODO: Inject a deletion
+      success = true;
       delete_tweet.callback ();
     });
     yield;
+    if (err != null) {
+      throw err;
+    }
+    return success;
   }
 
   /**
@@ -40,8 +104,14 @@ namespace TweetUtils {
    * @param account The account to (un)favorite from
    * @param tweet The tweet to (un)favorite
    * @param status %true to favorite the tweet, %false to unfavorite it.
+   * @return True if favourited status was successfully changed, else False
    */
-  async void set_favorite_status (Account account, Cb.Tweet tweet, bool status) {
+  async bool set_favorite_status (Account account, Cb.Tweet tweet, bool status) throws GLib.Error {
+    if (tweet.is_flag_set (Cb.TweetState.FAVORITED) == status) {
+      // We are already in the right state, so we didn't change it
+      return false;
+    }
+
     var call = account.proxy.new_call();
     if (status)
       call.set_function ("1.1/favorites/create.json");
@@ -50,21 +120,31 @@ namespace TweetUtils {
 
     call.set_method ("POST");
     call.add_param ("id", tweet.id.to_string ());
+
+    var success = false;
+    GLib.Error? err = null;
     call.invoke_async.begin (null, (obj, res) => {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_object (call.get_payload (), e.message,
-                                 GLib.Log.LINE, GLib.Log.FILE);
+        warning ("Exception: %s in %s:%d", e.message, GLib.Log.FILE, GLib.Log.LINE);
+        err = e;
+        set_favorite_status.callback ();
+        return;
       }
       if (status)
         tweet.set_flag (Cb.TweetState.FAVORITED);
       else
         tweet.unset_flag (Cb.TweetState.FAVORITED);
 
+      success = true;
       set_favorite_status.callback ();
     });
     yield;
+    if (err != null) {
+      throw err;
+    }
+    return success;
   }
 
   /**
@@ -73,8 +153,14 @@ namespace TweetUtils {
    * @param account The account to (un)retweet from
    * @param tweet The tweet to (un)retweet
    * @param status %true to retweet it, false to unretweet it.
+   * @return True if retweet status was successfully changed, else False
    */
-  async void set_retweet_status (Account account, Cb.Tweet tweet, bool status) {
+  async bool set_retweet_status (Account account, Cb.Tweet tweet, bool status) throws GLib.Error {
+    if (tweet.is_flag_set (Cb.TweetState.RETWEETED) == status) {
+      // We are already in the right state, so we didn't change it
+      return false;
+    }
+    
     var call = account.proxy.new_call ();
     call.set_method ("POST");
     if (status)
@@ -84,13 +170,16 @@ namespace TweetUtils {
     call.add_param ("tweet_mode", "extended");
     call.add_param ("include_my_retweet", "true");
 
-    debug (Cb.Utils.rest_proxy_call_to_string (call));
+    var success = false;
+    GLib.Error? err = null;
     call.invoke_async.begin (null, (obj, res) => {
       try{
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_object (call.get_payload (), e.message,
-                                 GLib.Log.LINE, GLib.Log.FILE);
+        warning ("Exception: %s in %s:%d", e.message, GLib.Log.FILE, GLib.Log.LINE);
+        err = e;
+        set_retweet_status.callback ();
+        return;
       }
       unowned string back = call.get_payload();
       var parser = new Json.Parser ();
@@ -113,12 +202,19 @@ namespace TweetUtils {
 
         account.user_stream.inject_tweet(message_type, message);
       } catch (GLib.Error e) {
-        critical (e.message);
-        critical (back);
+        warning ("Exception: %s in %s:%d", e.message, GLib.Log.FILE, GLib.Log.LINE);
+        info (back);
+        err = e;
+        return;
       }
+      success = true;
       set_retweet_status.callback ();
     });
     yield;
+    if (err != null) {
+      throw err;
+    }
+    return success;
   }
 
   /**

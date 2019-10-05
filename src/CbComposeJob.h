@@ -28,6 +28,8 @@ G_BEGIN_DECLS
 #define CB_TYPE_COMPOSE_JOB (cb_compose_job_get_type ())
 G_DECLARE_FINAL_TYPE (CbComposeJob, cb_compose_job, CB, COMPOSE_JOB, GObject);
 
+#define MAX_UPLOADS 4
+
 typedef struct {
   GCancellable *cancellable;
   char *filename;
@@ -38,7 +40,7 @@ struct _CbComposeJob
 {
   GObject parent_instance;
 
-  ImageUpload image_uploads[4];
+  ImageUpload image_uploads[MAX_UPLOADS];
   CbUserStream *user_stream;
   RestProxy *account_proxy;
   RestProxy *upload_proxy;
@@ -74,6 +76,9 @@ void          cb_compose_job_send_async         (CbComposeJob         *self,
 gboolean      cb_compose_job_send_finish        (CbComposeJob          *self,
                                                  GAsyncResult          *result,
                                                  GError               **error);
+guint         cb_compose_job_get_n_filepaths    (CbComposeJob          *self);
+const char*   cb_compose_job_get_filepath       (CbComposeJob          *self,
+                                                 guint                  pos);
 
 G_END_DECLS
 

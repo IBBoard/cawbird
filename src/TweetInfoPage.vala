@@ -265,14 +265,34 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
   [GtkCallback]
   private void favorite_button_toggled_cb () {
+    toggle_favorite_status ();
+  }
+
+  private void toggle_favorite_status () {
     if (!values_set)
       return;
 
     favorite_button.sensitive = false;
 
-    this.update_rt_fav_labels ();
+    TweetUtils.set_favorite_status.begin (account, tweet, favorite_button.active, (obj, res) => {
+      var success = false;
+      try {
+        success = TweetUtils.set_favorite_status.end (res);
+      } catch (GLib.Error e) {
+        Utils.show_error_dialog (e.message, main_window);
+      }
+      if (success) {
+        if (tweet.is_flag_set (Cb.TweetState.FAVORITED)) {
+          this.tweet.favorite_count ++;
+        } else {
+          this.tweet.favorite_count --;
+        }
 
-    TweetUtils.set_favorite_status.begin (account, tweet, favorite_button.active, () => {
+        this.update_rt_fav_labels ();
+      } else {
+        favorite_button.active = tweet.is_flag_set (Cb.TweetState.FAVORITED);
+      }
+
       favorite_button.sensitive = true;
     });
   }
@@ -283,14 +303,26 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       return;
 
     retweet_button.sensitive = false;
-    if (retweet_button.active)
-      this.tweet.retweet_count ++;
-    else
-      this.tweet.retweet_count --;
 
-    this.update_rt_fav_labels ();
+    TweetUtils.set_retweet_status.begin (account, tweet, retweet_button.active, (obj, res) => {
+      var success = false;
+      try {
+        success = TweetUtils.set_retweet_status.end (res);
+      } catch (GLib.Error e) {
+        Utils.show_error_dialog (e.message, main_window);
+      }
+      if (success) {
+        if (tweet.is_flag_set (Cb.TweetState.RETWEETED)) {
+          this.tweet.retweet_count ++;
+        } else {
+          this.tweet.retweet_count --;
+        }
 
-    TweetUtils.set_retweet_status.begin (account, tweet, retweet_button.active, () => {
+        this.update_rt_fav_labels ();
+      } else {
+        retweet_button.active = tweet.is_flag_set (Cb.TweetState.RETWEETED);
+      }
+
       retweet_button.sensitive = true;
     });
   }
@@ -613,21 +645,10 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
   }
 
   private void favorite_activated () {
-    if (!values_set || !favorite_button.sensitive)
+    if (!favorite_button.sensitive)
       return;
 
-    bool favoriting = !favorite_button.active;
-
-    favorite_button.sensitive = false;
-
-    this.update_rt_fav_labels ();
-
-    TweetUtils.set_favorite_status.begin (account, tweet, favoriting, () => {
-      favorite_button.sensitive = true;
-      values_set = false;
-      favorite_button.active = favoriting;
-      values_set = true;
-    });
+    toggle_favorite_status ();
   }
 
   private void delete_activated () {
@@ -636,8 +657,16 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       return;
     }
 
-    this.main_window.main_widget.remove_current_page ();
-    TweetUtils.delete_tweet.begin (account, tweet, () => {
+    TweetUtils.delete_tweet.begin (account, tweet, (obj, res) => {
+      var success = false;
+      try {
+        success = TweetUtils.delete_tweet.end (res);
+      } catch (GLib.Error e) {
+        Utils.show_error_dialog (e.message, main_window);
+      }
+      if (success) {
+        this.main_window.main_widget.remove_current_page ();
+      }
     });
   }
 

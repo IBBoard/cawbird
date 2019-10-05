@@ -400,6 +400,8 @@ namespace Cb {
   [CCode (cprefix = "CbComposeJob_", lower_case_cprefix = "cb_compose_job_", cheader_filename =
           "CbComposeJob.h")]
   public class ComposeJob : GLib.Object {
+    [CCode (cname="MAX_UPLOADS")]
+    public static int MAX_UPLOADS;
     public signal void image_upload_progress (string a, double d);
     public signal void image_upload_finished (string a, string? b);
     public ComposeJob (Cb.UserStream user_stream, Rest.Proxy proxy, Rest.Proxy proxy2, GLib.Cancellable cancellable);
@@ -409,6 +411,9 @@ namespace Cb {
     public void upload_image_async (string p);
     public void abort_image_upload (string s);
     public async bool send_async (GLib.Cancellable c) throws GLib.Error;
+    // https://wiki.gnome.org/Projects/Vala/ManualBindings#Array_Lengths
+    public uint get_n_filepaths();
+    public unowned string? get_filepath (uint pos);
   }
 
   [CCode (cprefix = "CbUserCompletionModel_", lower_case_cprefix = "cb_user_completion_model_", cheader_filename =

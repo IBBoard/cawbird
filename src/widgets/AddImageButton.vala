@@ -15,7 +15,7 @@
  *  along with cawbird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class AddImageButton : Gtk.Widget {
+class AddImageButton : Gtk.Button {
   private const int MIN_WIDTH  = 40;
   private const int MAX_HEIGHT = 150;
   private const int MIN_HEIGHT = 100;

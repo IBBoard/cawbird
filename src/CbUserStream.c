@@ -25,6 +25,10 @@
 
 G_DEFINE_TYPE (CbUserStream, cb_user_stream, G_TYPE_OBJECT);
 
+gboolean load_timeline_tweets (gpointer user_data);
+gboolean load_mentions_tweets (gpointer user_data);
+gboolean load_favourited_tweets (gpointer user_data);
+gboolean load_dm_tweets (gpointer user_data);
 
 enum {
   INTERRUPTED,
@@ -244,7 +248,12 @@ cb_user_stream_inject_tweet (CbUserStream *self,
   root_node = json_parser_get_root (parser);
   root_obj = json_node_get_object (root_node);
 
-  if (json_object_has_member (root_obj, "quoted_status_permalink"))
+  if (json_object_has_member (root_obj, "event"))
+    {
+      // We've got a single DM, which is wrapped, so unwrap it
+      root_node = json_object_get_member (root_obj, "event");
+    }
+  else if (json_object_has_member (root_obj, "quoted_status_permalink"))
     {
       // Quote tweets don't include the quoted tweet URL in the returned text, but they do when they come in the timeline
       // So we need to fudge it here and add the URL entity and the text before we send it to the app
@@ -317,7 +326,11 @@ load_timeline_tweets_done  (GObject *source_object,
 
   if (error != NULL)
     {
-      g_warning ("%s: %s", __FUNCTION__, error->message);
+      g_warning ("%s: %s (%s - %d)", __FUNCTION__, error->message, g_quark_to_string (error->domain), error->code);
+      if (error->domain == REST_PROXY_ERROR && error->code == REST_PROXY_ERROR_SSL) {
+        g_debug ("Reloading timeline on SSL failure");
+        load_timeline_tweets (self);
+      }
       return;
     }
 
@@ -348,7 +361,7 @@ load_timeline_tweets (gpointer user_data)
   CbUserStream *self = user_data;
 
   if (self->home_cancellable && ! g_cancellable_is_cancelled(self->home_cancellable)) {
-    g_debug ("Cancelling existing mentions cancellable");
+    g_debug ("Cancelling existing timeline cancellable");
     g_cancellable_cancel(self->home_cancellable);
   }
 
@@ -389,7 +402,11 @@ load_mentions_tweets_done  (GObject *source_object,
 
   if (error != NULL)
     {
-      g_warning ("%s: %s", __FUNCTION__, error->message);
+      g_warning ("%s: %s (%s - %d)", __FUNCTION__, error->message, g_quark_to_string (error->domain), error->code);
+      if (error->domain == REST_PROXY_ERROR && error->code == REST_PROXY_ERROR_SSL) {
+        g_debug ("Reloading mentions on SSL failure");
+        load_mentions_tweets (self);
+      }
       return;
     }
 
@@ -462,7 +479,11 @@ load_favourited_tweets_done  (GObject *source_object,
 
   if (error != NULL)
     {
-      g_warning ("%s: %s", __FUNCTION__, error->message);
+      g_warning ("%s: %s (%s - %d)", __FUNCTION__, error->message, g_quark_to_string (error->domain), error->code);
+      if (error->domain == REST_PROXY_ERROR && error->code == REST_PROXY_ERROR_SSL) {
+        g_debug ("Reloading favorited on SSL failure");
+        load_favourited_tweets (self);
+      }
       return;
     }
 
@@ -536,7 +557,11 @@ load_dm_tweets_done  (GObject *source_object,
 
   if (error != NULL)
     {
-      g_warning ("%s: %s", __FUNCTION__, error->message);
+      g_warning ("%s: %s (%s - %d)", __FUNCTION__, error->message, g_quark_to_string (error->domain), error->code);
+      if (error->domain == REST_PROXY_ERROR && error->code == REST_PROXY_ERROR_SSL) {
+        g_debug ("Reloading DMs on SSL failure");
+        load_dm_tweets (self);
+      }
       return;
     }
 

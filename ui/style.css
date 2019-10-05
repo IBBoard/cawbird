@@ -101,6 +101,18 @@
   -gtk-icon-source: -gtk-icontheme("dialog-error-symbolic");
 }
 
+.image-error:hover {
+  box-shadow: none;
+  background-image: none;
+  border-radius: 0px;
+  border: none;
+  background-color: transparent;
+
+  color: white;
+  background-color: alpha (red, 0.5);
+  -gtk-icon-source: -gtk-icontheme("view-refresh-symbolic");
+}
+
 
 .retweet-button:hover,
 .retweet-button:checked {

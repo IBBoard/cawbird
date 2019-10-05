@@ -21,8 +21,6 @@
 
 G_DEFINE_TYPE (CbComposeJob, cb_compose_job, G_TYPE_OBJECT);
 
-#define MAX_UPLOADS 4
-
 static void do_send (CbComposeJob *self);
 
 
@@ -102,6 +100,50 @@ cancelled_cb (GCancellable *cancellable,
           g_cancellable_cancel (upload->cancellable);
         }
     }
+}
+
+guint
+cb_compose_job_get_n_filepaths (CbComposeJob *self)
+{
+  guint i;
+  guint n = 0;
+
+  for (i = 0; i < MAX_UPLOADS; i ++)
+    {
+      const ImageUpload *upload = &self->image_uploads[i];
+
+      if (upload->filename != NULL)
+        n ++;
+    }
+
+  return n;
+}
+
+//FIXME: This is inefficient, but C is awkward and won't deal with arrays of strings nicely
+const char*
+cb_compose_job_get_filepath (CbComposeJob *self, guint pos)
+{
+  guint i;
+  guint n = 0;
+  char* filename = NULL;
+
+  for (i = 0; i < MAX_UPLOADS; i ++)
+    {
+      const ImageUpload *upload = &self->image_uploads[i];
+
+      if (upload->filename != NULL)
+        {
+          if (n == pos)
+            {
+              filename = upload->filename;
+              break;
+            }
+
+          n ++;
+        }
+    }
+
+  return filename;
 }
 
 static guint
@@ -396,6 +438,7 @@ send_tweet_call_completed_cb (GObject      *source_object,
       g_task_return_boolean (send_task, TRUE);
     }
 
+  self->send_task = NULL;
   g_object_unref (send_task);
 }
 

@@ -46,6 +46,7 @@ class ComposeImageManager : Gtk.Container {
   }
 
   public signal void image_removed (string image_path);
+  public signal void image_reloaded (string image_path);
 
   construct {
     this.buttons = new GLib.GenericArray<AddImageButton> ();
@@ -78,6 +79,16 @@ class ComposeImageManager : Gtk.Container {
     });
 
     aib.start_remove ();
+  }
+
+  private void reupload_image_cb (Gtk.Button source) {
+    AddImageButton aib = (AddImageButton) source;
+    if (!aib.get_style_context ().has_class ("image-error")) {
+      return;
+    }
+
+    aib.clicked.disconnect (reupload_image_cb);
+    this.image_reloaded (aib.image_path);
   }
 
   // GtkContainer API {{{
@@ -308,13 +319,17 @@ class ComposeImageManager : Gtk.Container {
     for (int i = 0; i < buttons.length; i ++) {
       var btn = buttons.get (i);
       if (btn.image_path == image_path) {
-        btn.get_style_context ().remove_class ("image-progress");
+        var style_context = btn.get_style_context ();
+        style_context.remove_class ("image-progress");
 
         if (error_message == null) {
-          btn.get_style_context ().add_class ("image-success");
+          style_context.add_class ("image-success");
+          style_context.remove_class ("image-error");
         } else {
           warning ("%s: %s", image_path, error_message);
-          btn.get_style_context ().add_class ("image-error");
+          style_context.add_class ("image-error");
+          style_context.remove_class ("image-success");
+          btn.clicked.connect (reupload_image_cb);
         }
         break;
       }
@@ -324,6 +339,12 @@ class ComposeImageManager : Gtk.Container {
   public void insensitivize_buttons () {
     for (int i = 0; i < close_buttons.length; i ++) {
       close_buttons.get (i).set_sensitive (false);
+    }
+  }
+
+  public void sensitivize_buttons () {
+    for (int i = 0; i < close_buttons.length; i ++) {
+      close_buttons.get (i).set_sensitive (true);
     }
   }
 }

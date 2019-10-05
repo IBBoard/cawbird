@@ -308,8 +308,19 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       return; // Nope.
 
     if (delete_first_activated) {
-      TweetUtils.delete_tweet.begin (account, tweet, () => {
-        sensitive = false;
+      TweetUtils.delete_tweet.begin (account, tweet, (obj, res) => {
+        var success = false;
+        try {
+          success = TweetUtils.delete_tweet.end (res);
+        } catch (GLib.Error e) {
+          Utils.show_error_dialog (e.message, main_window);
+        }
+        if (success) {
+          sensitive = false;
+          if (shows_actions) {
+            toggle_mode ();
+          }
+        }
       });
     } else
       delete_first_activated = true;
@@ -375,11 +386,23 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       return;
 
     retweet_button.sensitive = false;
-    TweetUtils.set_retweet_status.begin (account, tweet, retweet_button.active, () => {
+    TweetUtils.set_retweet_status.begin (account, tweet, retweet_button.active, (obj, res) => {
+      var success = false;
+      try {
+        success = TweetUtils.set_retweet_status.end (res);
+      } catch (GLib.Error e) {
+        Utils.show_error_dialog (e.message, main_window);
+      }
+      if (success) {
+        if (shows_actions) {
+          toggle_mode ();
+        }
+      } else {
+        retweet_button.active = tweet.is_flag_set (Cb.TweetState.RETWEETED);
+      }
+
       retweet_button.sensitive = true;
     });
-    if (shows_actions)
-      toggle_mode ();
   }
 
   [GtkCallback]
@@ -388,11 +411,23 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       return;
 
     favorite_button.sensitive = false;
-    TweetUtils.set_favorite_status.begin (account, tweet, favorite_button.active, () => {
+    TweetUtils.set_favorite_status.begin (account, tweet, favorite_button.active, (obj, res) => {
+      var success = false;
+      try {
+        success = TweetUtils.set_favorite_status.end (res);
+      } catch (GLib.Error e) {
+        Utils.show_error_dialog (e.message, main_window);
+      }
+      if (success) {
+        if (shows_actions) {
+          toggle_mode ();
+        }
+      } else {
+        favorite_button.active = tweet.is_flag_set (Cb.TweetState.FAVORITED);
+      }
+
       favorite_button.sensitive = true;
     });
-    if (shows_actions)
-      toggle_mode ();
   }
 
   [GtkCallback]
@@ -454,7 +489,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   private void delete_activated () {
     delete_first_activated = true;
     delete_tweet ();
-    toggle_mode ();
   }
 
   [GtkCallback]
