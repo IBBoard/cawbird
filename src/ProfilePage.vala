@@ -859,8 +859,14 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       this.tweet_list.model.add (tweet);
     }
     else if (type == Cb.StreamMessageType.DELETE) {
-      int64 id = root_node.get_object ().get_object_member ("delete")
-                          .get_object_member ("status").get_int_member ("id");
+      var status = root_node.get_object ().get_object_member ("delete").get_object_member ("status");
+      int64 user_id = status.get_int_member ("user_id");
+
+      if (user_id != this.user_id) {
+        return;
+      }
+
+      int64 id = status.get_int_member ("id");
       bool was_seen;
       this.tweet_list.model.delete_id (id, out was_seen);
     }
