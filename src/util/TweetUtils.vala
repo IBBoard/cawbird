@@ -87,7 +87,7 @@ namespace TweetUtils {
         delete_tweet.callback ();
         return;
       }
-      // TODO: Inject a deletion
+      inject_deletion (tweet.id, account);
       success = true;
       delete_tweet.callback ();
     });
@@ -193,11 +193,10 @@ namespace TweetUtils {
           tweet.set_flag (Cb.TweetState.RETWEETED);
           message_type = Cb.StreamMessageType.TWEET;
         } else {
-          account.user_stream.inject_tweet (Cb.StreamMessageType.RT_DELETE, message);
-          message_type = Cb.StreamMessageType.DELETE;
-          message = @"{ \"delete\":{ \"status\":{ \"id\":$(tweet.my_retweet), \"id_str\":\"$(tweet.my_retweet)\", \"user_id\":$(account.id), \"user_id_str\":\"$(account.id)\" } } }";
+          inject_deletion(tweet.my_retweet, account);
           tweet.my_retweet = 0;
           tweet.unset_flag (Cb.TweetState.RETWEETED);
+          message_type = Cb.StreamMessageType.RT_DELETE;
         }
 
         account.user_stream.inject_tweet(message_type, message);
@@ -215,6 +214,11 @@ namespace TweetUtils {
       throw err;
     }
     return success;
+  }
+
+  private void inject_deletion (int64 id, Account account) {
+    var message = @"{ \"delete\":{ \"status\":{ \"id\":$(id), \"id_str\":\"$(id)\", \"user_id\":$(account.id), \"user_id_str\":\"$(account.id)\" } } }";
+    account.user_stream.inject_tweet(Cb.StreamMessageType.DELETE, message);
   }
 
   /**
