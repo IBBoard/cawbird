@@ -80,7 +80,7 @@ namespace TweetUtils {
     if (status)
       call.set_function (@"1.1/statuses/retweet/$(tweet.id).json");
     else
-      call.set_function (@"1.1/statuses/destroy/$(tweet.my_retweet).json");
+      call.set_function (@"1.1/statuses/unretweet/$(tweet.my_retweet).json");
 
     debug (Cb.Utils.rest_proxy_call_to_string (call));
     call.invoke_async.begin (null, (obj, res) => {
