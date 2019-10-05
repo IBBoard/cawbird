@@ -29,7 +29,17 @@ class FavoritesTimeline : Cb.MessageReceiver, DefaultTimeline {
   }
 
   private void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
-    if (type == Cb.StreamMessageType.EVENT_FAVORITE) {
+    if (type == Cb.StreamMessageType.TWEET) {    
+      if (!root.get_object ().get_null_member ("retweeted_status")) {
+        Utils.set_rt_from_tweet (root, this.tweet_list.model, this.account);
+      }      
+    } else if (type == Cb.StreamMessageType.DELETE) {
+      int64 id = root.get_object ().get_object_member ("delete")
+                     .get_object_member ("status").get_int_member ("id");
+      delete_tweet (id);
+    } else if (type == Cb.StreamMessageType.RT_DELETE) {
+      Utils.unrt_tweet (root, this.tweet_list.model);
+    } else if (type == Cb.StreamMessageType.EVENT_FAVORITE) {
       Json.Node tweet_obj = root;
       int64 tweet_id = tweet_obj.get_object ().get_int_member ("id");
 

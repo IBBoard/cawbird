@@ -29,7 +29,9 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
   }
 
   private void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
-    if (type == Cb.StreamMessageType.MENTION) {
+    if (type == Cb.StreamMessageType.TWEET) {
+      Utils.set_rt_from_tweet (root, this.tweet_list.model, this.account);
+    } else if (type == Cb.StreamMessageType.MENTION) {
       add_tweet (root);
     } else if (type == Cb.StreamMessageType.MENTIONS_LOADED) {
       this.preload_is_complete = true;
@@ -37,6 +39,8 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
       int64 id = root.get_object ().get_object_member ("delete")
                      .get_object_member ("status").get_int_member ("id");
       delete_tweet (id);
+    } else if (type == Cb.StreamMessageType.RT_DELETE) {
+      Utils.unrt_tweet (root, this.tweet_list.model);
     } else if (type == Cb.StreamMessageType.EVENT_FAVORITE) {
       int64 id = root.get_object ().get_int_member ("id");
       toggle_favorite (id, true);
@@ -49,6 +53,11 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
   private void add_tweet (Json.Node root_node) {
     /* Mark tweets as seen the user has already replied to */
     var root = root_node.get_object ();
+    
+    if (!root.get_null_member ("retweeted_status")) {
+      Utils.set_rt_from_tweet (root_node, this.tweet_list.model, this.account);
+    }
+
     var author = root.get_object_member ("user");
     if (author.get_int_member ("id") == account.id &&
         !root.get_null_member ("in_reply_to_status_id")) {

@@ -431,6 +431,8 @@ load_mentions_tweets (gpointer user_data)
   rest_proxy_call_set_function (proxy_call, "1.1/statuses/mentions_timeline.json");
   rest_proxy_call_set_method (proxy_call, "GET");
   rest_proxy_call_add_param (proxy_call, "count", requested_tweet_count);
+  rest_proxy_call_add_param (proxy_call, "contributor_details", "true");
+  rest_proxy_call_add_param (proxy_call, "include_my_retweet", "true");
   rest_proxy_call_add_param (proxy_call, "include_entities", "true");
   rest_proxy_call_add_param (proxy_call, "tweet_mode", "extended");
 
@@ -502,6 +504,8 @@ load_favourited_tweets (gpointer user_data)
   rest_proxy_call_set_function (proxy_call, "1.1/favorites/list.json");
   rest_proxy_call_set_method (proxy_call, "GET");
   rest_proxy_call_add_param (proxy_call, "count", requested_tweet_count);
+  rest_proxy_call_add_param (proxy_call, "contributor_details", "true");
+  rest_proxy_call_add_param (proxy_call, "include_my_retweet", "true");
   rest_proxy_call_add_param (proxy_call, "include_entities", "true");
   rest_proxy_call_add_param (proxy_call, "tweet_mode", "extended");
 

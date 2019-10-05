@@ -846,6 +846,8 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
   public void stream_message_received (Cb.StreamMessageType type,
                                        Json.Node         root_node) {
     if (type == Cb.StreamMessageType.TWEET) {
+      Utils.set_rt_from_tweet (root_node, this.tweet_list.model, this.account);
+
       var obj = root_node.get_object ();
       var user = obj.get_object_member ("user");
       if (user.get_int_member ("id") != this.user_id)
@@ -861,7 +863,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     else if (type == Cb.StreamMessageType.DELETE) {
       var status = root_node.get_object ().get_object_member ("delete").get_object_member ("status");
       int64 user_id = status.get_int_member ("user_id");
-
+      
       if (user_id != this.user_id) {
         return;
       }
@@ -869,6 +871,8 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       int64 id = status.get_int_member ("id");
       bool was_seen;
       this.tweet_list.model.delete_id (id, out was_seen);
+    } else if (type == Cb.StreamMessageType.RT_DELETE) {
+      Utils.unrt_tweet (root_node, this.tweet_list.model);
     }
   }
 

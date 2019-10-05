@@ -133,6 +133,42 @@ inline double ease_out_cubic (double t) {
 
 namespace Utils {
   /**
+   * Removes the retweet flag from a tweet in a model based on a new "un-retweeted" message
+   */
+  public void unrt_tweet (Json.Node obj, Cb.TweetModel model) {
+    int64 tweet_id = obj.get_object ().get_int_member ("id");
+
+    Cb.Tweet? existing_tweet = model.get_for_id (tweet_id, 0);
+    if (existing_tweet != null) {
+      model.unset_tweet_flag (existing_tweet, Cb.TweetState.RETWEETED);
+    }
+  }
+
+  /**
+   * Sets the retweet flag for a tweet in a model based on a new tweet message
+   */
+  public void set_rt_from_tweet (Json.Node root, Cb.TweetModel model, Account account) {
+    var obj = root.get_object ();
+
+    if (obj.get_null_member ("retweeted_status")) {
+      return;
+    }
+
+    var rt_status = obj.get_object_member ("retweeted_status");
+    var rt_author = rt_status.get_object_member ("user").get_int_member ("id");
+
+    if (rt_author != account.id) {
+      return;
+    }
+    
+    int64 tweet_id = rt_status.get_int_member ("id");
+
+    Cb.Tweet? existing_tweet = model.get_for_id (tweet_id, 0);
+    if (existing_tweet != null) {
+      model.set_tweet_flag (existing_tweet, Cb.TweetState.RETWEETED);
+    }
+  }
+  /**
    * Calculates an easily human-readable version of the time difference between
    * time and now.
    * Example: "5m" or "3h" or "26m" or "16 Nov"

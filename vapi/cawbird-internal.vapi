@@ -17,6 +17,7 @@ namespace Cb {
     UNSUPPORTED,
     DELETE,
     DM_DELETE,
+    RT_DELETE,
     SCRUB_GEO,
     LIMIT,
     DISCONNECT,

@@ -81,6 +81,8 @@ namespace TweetUtils {
       call.set_function (@"1.1/statuses/retweet/$(tweet.id).json");
     else
       call.set_function (@"1.1/statuses/unretweet/$(tweet.my_retweet).json");
+    call.add_param ("tweet_mode", "extended");
+    call.add_param ("include_my_retweet", "true");
 
     debug (Cb.Utils.rest_proxy_call_to_string (call));
     call.invoke_async.begin (null, (obj, res) => {
@@ -102,6 +104,7 @@ namespace TweetUtils {
           tweet.set_flag (Cb.TweetState.RETWEETED);
           message_type = Cb.StreamMessageType.TWEET;
         } else {
+          account.user_stream.inject_tweet (Cb.StreamMessageType.RT_DELETE, message);
           message_type = Cb.StreamMessageType.DELETE;
           message = @"{ \"delete\":{ \"status\":{ \"id\":$(tweet.my_retweet), \"id_str\":\"$(tweet.my_retweet)\", \"user_id\":$(account.id), \"user_id_str\":\"$(account.id)\" } } }";
           tweet.my_retweet = 0;

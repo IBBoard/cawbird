@@ -37,6 +37,8 @@ public class HomeTimeline : Cb.MessageReceiver, DefaultTimeline {
       int64 id = root.get_object ().get_object_member ("delete")
                      .get_object_member ("status").get_int_member ("id");
       delete_tweet (id);
+    } else if (type == Cb.StreamMessageType.RT_DELETE) {
+      Utils.unrt_tweet (root, this.tweet_list.model);
     } else if (type == Cb.StreamMessageType.EVENT_FAVORITE) {
       int64 id = root.get_object ().get_int_member ("id");
       toggle_favorite (id, true);
@@ -70,7 +72,9 @@ public class HomeTimeline : Cb.MessageReceiver, DefaultTimeline {
     if (t.retweeted_tweet != null) {
       if (t.source_tweet.author.id == account.id) {
         // Don't show our own RTs if we inject them, because Twitter
-        // doesn't provide them in a normal home timeline request
+        // doesn't provide them in a normal home timeline request.
+        // But we should update the RT status.
+        Utils.set_rt_from_tweet (obj, this.tweet_list.model, this.account);
         return;
       }
 
