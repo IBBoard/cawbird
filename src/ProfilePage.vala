@@ -217,6 +217,9 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       if (e.message == "Forbidden") {
         loading_error_label.label = _("Suspended Account");
         loading_stack.visible_child = loading_error_label;
+      } else if (e.domain == Rest.ProxyError.quark() && e.code == Rest.ProxyError.SSL) {
+        debug ("Reloading user profile on SSL failure");
+        load_profile_data (user_id);
       } else {
         warning (e.message);
       }
@@ -438,6 +441,12 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
         warning (e.message);
       }
       tweet_list.set_empty ();
+
+      if (e.domain == Rest.ProxyError.quark() && e.code == Rest.ProxyError.SSL) {
+        debug ("Reloading user timeline on SSL failure");
+        load_tweets ();
+      }
+
       return;
     }
 
