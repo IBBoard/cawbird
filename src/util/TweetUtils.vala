@@ -107,7 +107,7 @@ namespace TweetUtils {
           tweet.my_retweet = 0;
           tweet.unset_flag (Cb.TweetState.RETWEETED);
         }
-        // FIXME: If we RT, un-RT and then RT again then we don't get a new tweet
+
         account.user_stream.inject_tweet(message_type, message);
       } catch (GLib.Error e) {
         critical (e.message);
