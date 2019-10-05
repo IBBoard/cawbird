@@ -65,7 +65,7 @@ When a tweet is focused (via keynav):
 Due to [changes in the Twitter API](https://developer.twitter.com/en/docs/accounts-and-users/subscribe-account-activity/migration/introduction), Cawbird has the following limitations:
 
 * Cawbird will update every two minutes
-* Cawbird does not get notified of the following, which will be refreshed on restart:
+* Cawbird does not get notified of the following actions when performed outside Cawbird, which will be refreshed on restart:
   * Unfavourite
   * Follow/Unfollow
   * Block/Unblock
@@ -74,6 +74,10 @@ Due to [changes in the Twitter API](https://developer.twitter.com/en/docs/accoun
   * Some list changes
 
 All limitations are limitations imposed by Twitter and are not the fault of the Cawbird client.
+
+## Known issues
+
+Due to a [bug in GnuTLS](https://gitlab.com/gnutls/gnutls/issues/841#note_225110002), Cawbird is currently suffering from occasional TLS errors. These are being handled under [Cawbird bug 9](https://github.com/IBBoard/cawbird/issues/9) to handle them when they do. A future version of GnuTLS should resolve the underlying problem.
 
 ## Translations
 
