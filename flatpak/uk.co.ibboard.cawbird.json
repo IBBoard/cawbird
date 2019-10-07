@@ -5,7 +5,6 @@
   "sdk":"org.gnome.Sdk",
   "command":"cawbird",
   "desktop-file-name-prefix":"(Development) ",
-  "copy-icon":true,
   "finish-args":[
     "--share=ipc",
     "--share=network",
@@ -31,7 +30,6 @@
     "/share/vala"
   ],
   "modules":[
-    "modules/gst-plugins-ugly.json",
     "modules/gst-plugins-bad.json",
     {
       "name":"enchant",
