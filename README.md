@@ -26,6 +26,10 @@ Packages currently exist for:
   * Ubuntu 18.04 (Bionic Beaver)
   * Ubuntu 19.04 (Disco Dingo)
 
+### In official repositories:
+
+- [Fedora (30+)](https://apps.fedoraproject.org/packages/cawbird): `sudo dnf install cawbird`
+
 The following distros should be supported in future:
 
 * Ubuntu
