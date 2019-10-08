@@ -1,33 +1,11 @@
 {
+    /* There seems to be a regression in mpegtsdemux 1.16.1 that causes videos to freeze */
     "name": "gst-plugins-bad",
     "buildsystem": "meson",
-    "cleanup": [ "/bin/*webrtc*", "/bin/crossfade", "/bin/tsparser", "/bin/playout" ],
-    "config-opts": [ 
-      "-Dopenh264=disabled",
-      "-Dwebrtc=disabled",
-      "-Dwebrtcdsp=disabled",
-      "-Ddvb=disabled",
-      "-Ddvbsuboverlay=disabled",
-      "-Dcamerabin2=disabled",
-      "-Dmxf=disabled",
-      "-Dttml=disabled",
-      "-Dipcpipeline=disabled",
-      "-Dvideoparsers=disabled",
-      "-Dclosedcaption=disabled",
-      "-Ddecklink=disabled",
-      "-Ddtls=disabled",
-      "-Dcurl=disabled",
-      "-Dgeometrictransform=disabled",
-      "-Ddvdspu=disabled",
-      "-Dsiren=disabled",
-      "-Dvulkan=disabled",
-      "-Dsmoothstreaming=disabled",
-      "-Dopenal=disabled",
-      "-Dopenjpeg=disabled",
-      "-Dcoloreffects=disabled",
-      "-Dfaceoverlay=disabled",
-      "-Dbayer=disabled",
-      "-Did3tag=disabled"
+    "no-make-install": true,
+    "make-args": ["gst/mpegtsdemux/libgstmpegtsdemux.so"],
+    "post-install": [
+      "install -Dm644 --target-directory=/app/lib/gstreamer-1.0 gst/mpegtsdemux/libgstmpegtsdemux.so"
     ],
     "sources": [
         {
