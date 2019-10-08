@@ -1,5 +1,4 @@
 {
-    /* There seems to be a regression in mpegtsdemux 1.16.1 that causes videos to freeze */
     "name": "gst-plugins-bad",
     "buildsystem": "meson",
     "no-make-install": true,
@@ -11,8 +10,13 @@
         {
             "type": "git",
             "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad.git",
-            "tag": "1.16.0",
-            "commit": "5fde70bb63a1cbf6f734fb2429e74ffb53126217"
+            "tag": "1.16.1",
+            "commit": "c3c54aad2d45fb246a9b9e8a5e05488c15c27173"
+        },
+        {
+            /* There seems to be a regression in mpegtsdemux 1.16.1 caused by cd8bb641f81b7a7a0379aff9334b36a8eb9e638f */
+            "type": "patch",
+            "path": "revert_cd8bb641f81b7a7a0379aff9334b36a8eb9e638f.patch"
         }
     ]
 }
