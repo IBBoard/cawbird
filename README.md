@@ -7,7 +7,7 @@ Cawbird works with the new APIs and includes a few fixes and modifications that 
 
 ## Packaging and installation
 
-Official packages are built in the [Cawbird Open Build Service project](https://build.opensuse.org/project/show/home:IBBoard:cawbird). They can be installed from the [Cawbird download page](https://software.opensuse.org//download.html?project=home%3AIBBoard%3Acawbird&package=cawbird) (Note: CentOS is listed under Fedora)
+Cawbird packages are built in the [Cawbird Open Build Service project](https://build.opensuse.org/project/show/home:IBBoard:cawbird). They can be installed from the [Cawbird download page](https://software.opensuse.org//download.html?project=home%3AIBBoard%3Acawbird&package=cawbird).
 
 **[Install Cawbird](https://software.opensuse.org//download.html?project=home%3AIBBoard%3Acawbird&package=cawbird)**
 
@@ -25,15 +25,24 @@ Packages currently exist for:
 * Ubuntu
   * Ubuntu 18.04 (Bionic Beaver)
   * Ubuntu 19.04 (Disco Dingo)
+* Debian
+  * Testing
 
-### In official repositories:
-
-- [Fedora (30+)](https://apps.fedoraproject.org/packages/cawbird): `sudo dnf install cawbird`
-
-The following distros should be supported in future:
+The following distros will be supported in future:
 
 * Ubuntu
   * Ubuntu 19.10 (Eoan Ermine)
+* Debian
+  * Unstable
+
+### Official distro repositories
+
+The following distros currently have their own official packages:
+
+* [Fedora (30+)](https://apps.fedoraproject.org/packages/cawbird)
+  * `sudo dnf install cawbird`
+
+### Dependencies
 
 Twitter uses specific codecs for videos. These are provided by `libav` and are not included in the core repositories of many distros. The following additional repositories are known to include the required libraries:
 
