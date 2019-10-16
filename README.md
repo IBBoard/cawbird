@@ -1,17 +1,18 @@
 # Cawbird 1.0.2
 
-Cawbird is a fork of the [Corebird Twitter client from Baedert](https://corebird.baedert.org/), which became unsupported after Twitter disabled the streaming API.
+<img src="./screenshot1.jpg" style="float:right; margin-left: 1em;" />
 
-Cawbird works with the new APIs and includes a few fixes and modifications that have historically been patched in to IBBoard's custom Corebird build on
-[his personal Open Build Service account](https://build.opensuse.org/project/show/home:IBBoard:desktop).
+[Cawbird](https://ibboard.co.uk/cawbird/) is a fork of the [Corebird](https://corebird.baedert.org/) Twitter client from Baedert, which became unsupported after Twitter disabled the streaming API.
+
+Cawbird works with the new APIs and includes a few fixes and modifications that have historically been patched in to IBBoard's custom Corebird build on his personal Open Build Service account<sup>[1](#footnote1)</sup>.
 
 ## Packaging and installation
 
 Cawbird packages are built in the [Cawbird Open Build Service project](https://build.opensuse.org/project/show/home:IBBoard:cawbird). They can be installed from the [Cawbird download page](https://software.opensuse.org//download.html?project=home%3AIBBoard%3Acawbird&package=cawbird).
 
-**[Install Cawbird](https://software.opensuse.org//download.html?project=home%3AIBBoard%3Acawbird&package=cawbird)**
+<a href="https://software.opensuse.org//download.html?project=home%3AIBBoard%3Acawbird&package=cawbird" style="display: inline-block; padding: 0.5em 1em; border: 1px solid #000; border-radius: 0.5em; background: #444; color: #eee; font-weight: bold">Install Cawbird</a>
 
-Packages currently exist for:
+These packages are currently available for:
 
 * openSUSE
   * openSUSE Tumbleweed
@@ -88,7 +89,7 @@ Due to [changes in the Twitter API](https://developer.twitter.com/en/docs/accoun
   * DM deletion
   * Some list changes
 
-All limitations are limitations imposed by Twitter and are not the fault of the Cawbird client.
+All limitations are limitations imposed by Twitter and are not the fault of the Cawbird client. They have affected [all third-party client applications](http://apps-of-a-feather.com/).
 
 ## Known issues
 
@@ -135,3 +136,7 @@ Cawbird installs its application icon into `/usr/share/icons/hicolor/`, so an ap
 Note that the above packages are just rough estimations, the actual package names on your distribution may vary and may require additional repositories (e.g. RPMFusion in Fedora, or Packman in openSUSE)
 
 If you pass `--disable-video` to the configure script, you don't need any gstreamer dependency but won't be able to view any videos.
+
+## Footnotes
+
+<a name="footnote1"></a>1: [home:IBBoard:desktop](https://build.opensuse.org/project/show/home:IBBoard:desktop)
