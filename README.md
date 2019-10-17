@@ -21,6 +21,7 @@ These packages are currently available for:
 * Fedora
   * Fedora 29
   * Fedora 30
+  * Fedora Rawhide
 * CentOS
   * CentOS 7
 * Ubuntu
@@ -28,13 +29,12 @@ These packages are currently available for:
   * Ubuntu 19.04 (Disco Dingo)
 * Debian
   * Testing
+  * Unstable
 
 The following distros will be supported in future:
 
-* Ubuntu
-  * Ubuntu 19.10 (Eoan Ermine)
-* Debian
-  * Unstable
+* Ubuntu 19.10 (Eoan Ermine)
+* Fedora 31
 
 ### Official distro repositories
 
@@ -44,6 +44,11 @@ The following distros currently have their own official packages:
   * `sudo dnf install cawbird`
 * [NixOS (19.09+)](https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/cawbird/default.nix)
   * `nix-shell -p cawbird` for testing, `nix-env -iA cawbird` for permanent installation
+
+## Community builds
+
+ * [Cawbird Snap](https://snapcraft.io/cawbird) on Snapcraft.io
+ * Cawbird Flatpak - [in progress](https://github.com/IBBoard/cawbird/issues/24)
 
 ### Dependencies
 
