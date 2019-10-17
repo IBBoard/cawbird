@@ -1,6 +1,6 @@
 # Cawbird 1.0.2
 
-<img src="./screenshot1.jpg" style="float:right; margin-left: 1em;" />
+<a href="https://ibboard.co.uk/cawbird/#screenshots"><img src="./screenshot1.jpg" style="float:right; margin-left: 1em;" /></a>
 
 [Cawbird](https://ibboard.co.uk/cawbird/) is a fork of the [Corebird](https://corebird.baedert.org/) Twitter client from Baedert, which became unsupported after Twitter disabled the streaming API.
 
@@ -10,7 +10,7 @@ Cawbird works with the new APIs and includes a few fixes and modifications that 
 
 Cawbird packages are built in the [Cawbird Open Build Service project](https://build.opensuse.org/project/show/home:IBBoard:cawbird). They can be installed from the [Cawbird download page](https://software.opensuse.org//download.html?project=home%3AIBBoard%3Acawbird&package=cawbird).
 
-<a href="https://software.opensuse.org//download.html?project=home%3AIBBoard%3Acawbird&package=cawbird" style="display: inline-block; padding: 0.5em 1em; border: 1px solid #000; border-radius: 0.5em; background: #444; color: #eee; font-weight: bold">Install Cawbird</a>
+<a href="https://software.opensuse.org//download.html?project=home%3AIBBoard%3Acawbird&package=cawbird" style="display: inline-block; padding: 0.5em 1em; border: 1px solid #000; border-radius: 0.5em; background: #444; color: #eee; font-weight: bold">**Install Cawbird**</a>
 
 These packages are currently available for:
 
