@@ -969,7 +969,7 @@ LazyMenuButton* lazy_menu_button_new (void);
 LazyMenuButton* lazy_menu_button_construct (GType object_type);
 GMenu* lazy_menu_button_get_menu_model (LazyMenuButton* self);
 void lazy_menu_button_set_menu_model (LazyMenuButton* self, GMenu* value);
-void tweet_utils_handle_media_click (CbTweet* t, MainWindow* window, gint index, gdouble px, gdouble py);
+void tweet_utils_handle_media_click (CbMedia** media, MainWindow* window, gint index, gdouble px, gdouble py);
 void tweet_utils_sort_entities (CbTextEntity** entities, int* entities_length1);
 const gchar* __class_name (GObject* o);
 gchar* utils_get_time_delta (GDateTime* time, GDateTime* now);

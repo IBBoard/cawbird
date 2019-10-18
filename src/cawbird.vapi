@@ -2,7 +2,7 @@
 
 namespace TweetUtils {
 	[CCode (cheader_filename = "cawbird.h")]
-	public static void handle_media_click (Cb.Tweet t, MainWindow window, int index, double px = 0.0, double py = 0.0);
+	public static void handle_media_click (Cb.Media[] media, MainWindow window, int index, double px = 0.0, double py = 0.0);
 	[CCode (cheader_filename = "cawbird.h")]
 	public static void sort_entities (ref Cb.TextEntity[] entities);
 }
