@@ -23,21 +23,21 @@ class MediaDialog : Gtk.Window {
   private Gtk.Revealer next_revealer;
   [GtkChild]
   private Gtk.Revealer previous_revealer;
-  private unowned Cb.Tweet tweet;
+  private unowned Cb.Media[] media;
   private int cur_index = 0;
   private Gtk.GestureMultiPress button_gesture;
 
-  public MediaDialog (Cb.Tweet tweet,
+  public MediaDialog (Cb.Media[] media,
                       int      start_media_index) {
-    Cb.Media cur_media = tweet.get_medias()[start_media_index];
-    this.tweet = tweet;
+    this.media = media;
+    Cb.Media cur_media = media[start_media_index];
     this.cur_index = start_media_index;
     this.button_gesture = new Gtk.GestureMultiPress (this);
     this.button_gesture.set_button (0);
     this.button_gesture.set_propagation_phase (Gtk.PropagationPhase.BUBBLE);
     this.button_gesture.released.connect (button_released_cb);
 
-    if (tweet.get_medias ().length == 1) {
+    if (media.length == 1) {
       next_revealer.hide ();
       previous_revealer.hide ();
     }
@@ -83,21 +83,21 @@ class MediaDialog : Gtk.Window {
     }
     this.queue_resize ();
 
-    next_revealer.set_visible (cur_index != tweet.get_medias ().length - 1);
+    next_revealer.set_visible (cur_index != this.media.length - 1);
     previous_revealer.set_visible (cur_index != 0);
   }
 
   private void next_media () {
-    if (cur_index < tweet.get_medias ().length - 1) {
+    if (cur_index < media.length - 1) {
       cur_index ++;
-      change_media (tweet.get_medias ()[cur_index]);
+      change_media (media[cur_index]);
     }
   }
 
   private void previous_media () {
     if (cur_index > 0) {
       cur_index --;
-      change_media (tweet.get_medias ()[cur_index]);
+      change_media (media[cur_index]);
     }
   }
 
