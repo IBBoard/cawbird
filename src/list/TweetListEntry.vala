@@ -66,6 +66,8 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   private Gtk.Grid? quote_grid = null;
   private Gtk.Stack? media_stack = null;
   private MultiMediaWidget? mm_widget = null;
+  private Gtk.Stack? quoted_media_stack = null;
+  private MultiMediaWidget? quoted_mm_widget = null;
 
 
   private bool _read_only = false;
@@ -74,6 +76,8 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       assert (value);
       if (mm_widget != null)
         mm_widget.sensitive = !value;
+      if (quoted_mm_widget != null)
+        quoted_mm_widget.sensitive = !value;
 
       this.grid.remove (name_button);
       var name_label = new Gtk.Label ("<b>" + tweet.get_user_name () + "</b>");
@@ -198,26 +202,47 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       (tweet.retweeted_tweet != null && tweet.retweeted_tweet.reply_id != 0));
 
     if (tweet.has_inline_media ()) {
-      this.create_media_widget (tweet.is_flag_set (Cb.TweetState.NSFW));
+      this.create_media_widget (tweet.is_flag_set (Cb.TweetState.NSFW), out this.mm_widget, out this.media_stack);
+      this.grid.attach (mm_widget, 1, 3, 6, 1);
       mm_widget.restrict_height = restrict_height;
       mm_widget.set_all_media (tweet.get_medias ());
       mm_widget.media_clicked.connect (media_clicked_cb);
       mm_widget.media_invalid.connect (media_invalid_cb);
       mm_widget.window = main_window;
 
-      if (text_label.label.length == 0 && tweet.quoted_tweet == null) {
+      if (text_label.label.length == 0) {
+        // Move the media widget up (to overlap with avatar) if there's no text
+        // We don't do this for quoted images because there is no avatar
         scroller.visible = false;
-        if (this.media_stack == null)
-          this.grid.child_set (mm_widget, "top-attach", 2);
-        else
-          this.grid.child_set (media_stack, "top-attach", 2);
+        Gtk.Widget w = media_stack != null ? ((Gtk.Widget)media_stack) : ((Gtk.Widget)mm_widget);
+        this.grid.child_set (w, "top-attach", 2);
       }
 
       if (tweet.is_flag_set (Cb.TweetState.NSFW))
         Settings.get ().changed["hide-nsfw-content"].connect (hide_nsfw_content_changed_cb);
 
-      Settings.get ().changed["media-visibility"].connect (media_visibility_changed_cb);
       mm_widget.visible = (Settings.get_media_visiblity () == MediaVisibility.SHOW);
+    }
+
+    if (tweet.has_quoted_inline_media ()) {
+      this.create_media_widget (tweet.is_flag_set (Cb.TweetState.NSFW), out this.quoted_mm_widget, out this.quoted_media_stack);
+      quoted_mm_widget.margin_start = 12;
+      this.quote_grid.attach (quoted_mm_widget, 0, 3, 3, 1);
+      quoted_mm_widget.restrict_height = restrict_height;
+      quoted_mm_widget.set_all_media (tweet.get_quoted_medias ());
+      quoted_mm_widget.media_clicked.connect (quoted_media_clicked_cb);
+      quoted_mm_widget.media_invalid.connect (quoted_media_invalid_cb);
+      quoted_mm_widget.window = main_window;
+
+      // FIXME: We probably need a separate set of flags for the quoted tweet in case it's the opposite
+      if (tweet.is_flag_set (Cb.TweetState.NSFW))
+        Settings.get ().changed["hide-nsfw-content"].connect (hide_nsfw_content_changed_cb);
+
+      quoted_mm_widget.visible = (Settings.get_media_visiblity () == MediaVisibility.SHOW);
+    }
+
+    if (tweet.has_inline_media () || tweet.has_quoted_inline_media ()) {
+      Settings.get ().changed["media-visibility"].connect (media_visibility_changed_cb);
     }
 
     var actions = new GLib.SimpleActionGroup ();
@@ -260,15 +285,26 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     if (tweet.is_flag_set (Cb.TweetState.NSFW) && this.media_stack != null)
       Settings.get ().changed["hide-nsfw-content"].disconnect (hide_nsfw_content_changed_cb);
 
-    if (this.mm_widget != null)
+    if (this.mm_widget != null || this.mm_widget != null)
       Settings.get ().changed["media-visibility"].disconnect (media_visibility_changed_cb);
   }
 
   private void media_visibility_changed_cb () {
-    if (Settings.get_media_visiblity () == MediaVisibility.SHOW)
-      this.mm_widget.show ();
-    else
-      this.mm_widget.hide ();
+    if (Settings.get_media_visiblity () == MediaVisibility.SHOW) {
+      if (mm_widget != null) {
+        this.mm_widget.show ();
+      }
+      if (quoted_mm_widget != null) {
+        this.quoted_mm_widget.show ();
+      }
+    } else {
+      if (mm_widget != null) {
+        this.mm_widget.hide ();
+      }
+      if (mm_widget != null) {
+        this.quoted_mm_widget.hide ();
+      }
+    }
   }
 
   private void transform_flags_changed_cb () {
@@ -279,28 +315,41 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
                                                        0);
     }
 
-    if (this.mm_widget != null && this.tweet.quoted_tweet == null) {
+    if (this.mm_widget != null) {
       Gtk.Widget w = media_stack != null ? ((Gtk.Widget)media_stack) : ((Gtk.Widget)mm_widget);
 
+      // Move the media widget up (to overlap with avatar) if there's no text
+      // We don't do this for quoted images because there is no avatar
       if (text_label.label.length == 0)
         this.grid.child_set (w, "top-attach", 2);
       else
-        this.grid.child_set (w, "top-attach", 8);
+        this.grid.child_set (w, "top-attach", 3);
     }
   }
 
   private void hide_nsfw_content_changed_cb () {
-    assert (this.media_stack != null);
-
-    if (this.tweet.is_flag_set (Cb.TweetState.NSFW) &&
-        Settings.hide_nsfw_content ())
-      this.media_stack.visible_child_name = "nsfw";
-    else
-      this.media_stack.visible_child = mm_widget;
+    if (this.media_stack != null) {
+      if (this.tweet.is_flag_set (Cb.TweetState.NSFW) &&
+          Settings.hide_nsfw_content ())
+        this.media_stack.visible_child_name = "nsfw";
+      else
+        this.media_stack.visible_child = mm_widget;
+    }
+    if (this.quoted_media_stack != null) {
+      if (this.tweet.is_flag_set (Cb.TweetState.NSFW) &&
+          Settings.hide_nsfw_content ())
+        this.quoted_media_stack.visible_child_name = "nsfw";
+      else
+        this.quoted_media_stack.visible_child = quoted_mm_widget;
+    }
   }
 
   private void media_clicked_cb (Cb.Media m, int index, double px, double py) {
     TweetUtils.handle_media_click (this.tweet.get_medias (), this.main_window, index);
+  }
+
+  private void quoted_media_clicked_cb (Cb.Media m, int index, double px, double py) {
+    TweetUtils.handle_media_click (this.tweet.get_quoted_medias (), this.main_window, index);
   }
 
   private void delete_tweet_activated () {
@@ -527,6 +576,12 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       new_text = Cb.TextTransform.tweet (ref tweet.source_tweet, flags, 0);
 
     this.text_label.label = new_text;
+  }
+
+  private void quoted_media_invalid_cb () {
+    //FIXME: Use quoted flags, once/if implemented
+    Cb.TransformFlags flags = Settings.get_text_transform_flags ()
+                              & ~Cb.TransformFlags.REMOVE_MEDIA_LINKS;
 
     if (tweet.quoted_tweet != null) {
       string new_quote_text = Cb.TextTransform.tweet (ref tweet.quoted_tweet,
@@ -650,14 +705,14 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     this.show ();
   }
 
-  private void create_media_widget (bool nsfw) {
-    this.mm_widget = new MultiMediaWidget ();
+  private void create_media_widget (bool nsfw, out MultiMediaWidget? mm_widget, out Gtk.Stack? media_stack) {
+    mm_widget = new MultiMediaWidget ();
     mm_widget.halign = Gtk.Align.FILL;
     mm_widget.hexpand = true;
     mm_widget.margin_top = 6;
 
     if (nsfw) {
-      this.media_stack = new Gtk.Stack ();
+      media_stack = new Gtk.Stack ();
       media_stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
       media_stack.add (mm_widget);
       var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 12);
@@ -681,23 +736,10 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
         media_stack.visible_child_name = "nsfw";
       else
         media_stack.visible_child = mm_widget;
-
-      if (this.tweet.quoted_tweet != null) {
-        media_stack.margin_start = 12;
-        this.quote_grid.attach (media_stack, 0, 3, 3, 1);
-      } else {
-        this.grid.attach (media_stack, 1, 7, 7, 1);
-      }
     } else {
       /* We will never have to hide mm_widget */
       mm_widget.show_all ();
-
-      if (this.tweet.quoted_tweet != null) {
-        mm_widget.margin_start = 12;
-        this.quote_grid.attach (mm_widget, 0, 3, 3, 1);
-      } else {
-        this.grid.attach (mm_widget, 1, 7, 7, 1);
-      }
+      media_stack = null;
     }
   }
 
@@ -774,6 +816,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     quote_grid.attach (quote_time_delta, 2, 0, 1, 1);
 
     quote_grid.show_all ();
-    this.grid.attach (quote_grid, 1, 3, 6, 1);
+    this.grid.attach (quote_grid, 1, 4, 6, 1);
   }
 }
