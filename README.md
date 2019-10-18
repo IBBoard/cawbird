@@ -27,13 +27,13 @@ These packages are currently available for:
 * Ubuntu
   * Ubuntu 18.04 (Bionic Beaver)
   * Ubuntu 19.04 (Disco Dingo)
+  * Ubuntu 19.10 (Eoan Ermine)
 * Debian
   * Testing
   * Unstable
 
 The following distros will be supported in future:
 
-* Ubuntu 19.10 (Eoan Ermine)
 * Fedora 31
 
 ### Official distro repositories
