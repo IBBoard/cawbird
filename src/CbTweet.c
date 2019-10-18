@@ -30,17 +30,6 @@ usable_json_value (JsonObject *object, const char *name)
   return !json_object_get_null_member (object, name);
 }
 
-static guint
-json_array_size (JsonObject *object, const char *name)
-{
-  if (!json_object_has_member (object, name))
-    return 0;
-
-  return json_array_get_length (json_object_get_array_member (object, name));
-}
-
-
-
 G_DEFINE_TYPE (CbTweet, cb_tweet, G_TYPE_OBJECT);
 
 enum {
@@ -73,12 +62,18 @@ cb_tweet_has_inline_media (CbTweet *tweet)
 {
   g_return_val_if_fail (CB_IS_TWEET (tweet), FALSE);
 
-  if (tweet->quoted_tweet != NULL)
-    return tweet->quoted_tweet->n_medias > 0;
-  else if (tweet->retweeted_tweet != NULL)
+  if (tweet->retweeted_tweet != NULL)
     return tweet->retweeted_tweet->n_medias > 0;
 
   return tweet->source_tweet.n_medias > 0;
+}
+
+gboolean
+cb_tweet_has_quoted_inline_media (CbTweet *tweet)
+{
+  g_return_val_if_fail (CB_IS_TWEET (tweet), FALSE);
+
+  return tweet->quoted_tweet != NULL && tweet->quoted_tweet->n_medias > 0;
 }
 
 /* TODO: Replace these 3 functinos with one that returns a pointer to a CbUserIdentity? */
@@ -116,12 +111,7 @@ cb_tweet_get_medias (CbTweet *tweet,
   g_return_val_if_fail (CB_IS_TWEET (tweet), NULL);
   g_return_val_if_fail (n_medias != NULL, NULL);
 
-  if (tweet->quoted_tweet != NULL)
-    {
-      *n_medias = tweet->quoted_tweet->n_medias;
-      return tweet->quoted_tweet->medias;
-    }
-  else if (tweet->retweeted_tweet != NULL)
+  if (tweet->retweeted_tweet != NULL)
     {
       *n_medias = tweet->retweeted_tweet->n_medias;
       return tweet->retweeted_tweet->medias;
@@ -131,6 +121,17 @@ cb_tweet_get_medias (CbTweet *tweet,
       *n_medias = tweet->source_tweet.n_medias;
       return tweet->source_tweet.medias;
     }
+}
+
+CbMedia **
+cb_tweet_get_quoted_medias (CbTweet *tweet,
+                            int     *n_medias)
+{
+  g_return_val_if_fail (CB_IS_TWEET (tweet), NULL);
+  g_return_val_if_fail (tweet->quoted_tweet != NULL, NULL);
+
+  *n_medias = tweet->quoted_tweet->n_medias;
+  return tweet->quoted_tweet->medias;
 }
 
 char **
@@ -186,7 +187,6 @@ cb_tweet_load_from_json (CbTweet   *tweet,
 {
   JsonObject *status;
   JsonObject *user;
-  gboolean has_media;
 
   g_return_if_fail (CB_IS_TWEET (tweet));
   g_return_if_fail (status_node != NULL);
@@ -201,7 +201,6 @@ cb_tweet_load_from_json (CbTweet   *tweet,
 
 
   cb_mini_tweet_parse (&tweet->source_tweet, status);
-  has_media = json_array_size (json_object_get_object_member (status, "entities"), "media") > 0;
 
   if (json_object_has_member (status, "retweeted_status"))
     {
@@ -240,7 +239,7 @@ cb_tweet_load_from_json (CbTweet   *tweet,
         tweet->state |= CB_TWEET_STATE_NSFW;
     }
 
-  if (json_object_has_member (status, "quoted_status") && !has_media)
+  if (json_object_has_member (status, "quoted_status"))
     {
       JsonObject *quote = json_object_get_object_member (status, "quoted_status");
       tweet->quoted_tweet = g_malloc (sizeof (CbMiniTweet));
@@ -255,7 +254,6 @@ cb_tweet_load_from_json (CbTweet   *tweet,
         tweet->state &= ~CB_TWEET_STATE_NSFW;
     }
   else if (tweet->retweeted_tweet != NULL &&
-           tweet->retweeted_tweet->n_medias == 0 &&
            json_object_has_member (json_object_get_object_member (status, "retweeted_status"), "quoted_status")) {
       JsonObject *quote = json_object_get_object_member (json_object_get_object_member (status, "retweeted_status"),
                                                          "quoted_status");

@@ -144,6 +144,7 @@ namespace Cb {
       public unowned string get_user_name ();
 
       public bool has_inline_media ();
+      public bool has_quoted_inline_media ();
       public void load_from_json (Json.Node node, int64 account_id, GLib.DateTime now);
 
       public bool is_flag_set (uint flag);
@@ -158,6 +159,7 @@ namespace Cb {
       public unowned Cb.UserIdentity[] get_reply_users ();
 
       public unowned Cb.Media[] get_medias();
+      public unowned Cb.Media[] get_quoted_medias();
       public string[] get_mentions();
 
       public signal void state_changed();
