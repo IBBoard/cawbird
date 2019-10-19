@@ -54,7 +54,7 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
     /* Mark tweets as seen the user has already replied to */
     var root = root_node.get_object ();
     
-    if (!root.get_null_member ("retweeted_status")) {
+    if (root.has_member ("retweeted_status")) {
       Utils.set_rt_from_tweet (root_node, this.tweet_list.model, this.account);
     }
 

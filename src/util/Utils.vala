@@ -150,7 +150,7 @@ namespace Utils {
   public void set_rt_from_tweet (Json.Node root, Cb.TweetModel model, Account account) {
     var obj = root.get_object ();
 
-    if (obj.get_null_member ("retweeted_status")) {
+    if (!obj.has_member ("retweeted_status")) {
       return;
     }
 
@@ -365,7 +365,7 @@ namespace Utils {
   public bool usable_json_value (Json.Object node, string value_name) {
     if (!node.has_member (value_name))
         return false;
-
+    debug("usable_json_value");
     return !node.get_null_member (value_name);
   }
 
