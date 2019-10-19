@@ -222,9 +222,9 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     }
 
     if (tweet.has_quoted_inline_media ()) {
-      this.create_media_widget (tweet.is_flag_set (Cb.TweetState.NSFW), out this.quoted_mm_widget, out this.quoted_media_stack);
+      this.create_media_widget (tweet.is_quoted_flag_set (Cb.TweetState.NSFW), out this.quoted_mm_widget, out this.quoted_media_stack);
       quoted_mm_widget.margin_start = 12;
-      Gtk.Widget w = media_stack != null ? ((Gtk.Widget)quoted_media_stack) : ((Gtk.Widget)quoted_mm_widget);
+      Gtk.Widget w = quoted_media_stack != null ? ((Gtk.Widget)quoted_media_stack) : ((Gtk.Widget)quoted_mm_widget);
       this.quote_grid.attach (w, 0, 3, 3, 1);
       quoted_mm_widget.restrict_height = restrict_height;
       quoted_mm_widget.set_all_media (tweet.get_quoted_medias ());
@@ -238,7 +238,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     if (tweet.has_inline_media () || tweet.has_quoted_inline_media ()) {
       Settings.get ().changed["media-visibility"].connect (media_visibility_changed_cb);
 
-      if (tweet.is_flag_set (Cb.TweetState.NSFW))
+      if (tweet.is_flag_set (Cb.TweetState.NSFW) || tweet.is_quoted_flag_set (Cb.TweetState.NSFW))
         Settings.get ().changed["hide-nsfw-content"].connect (hide_nsfw_content_changed_cb);
     }
 
@@ -279,7 +279,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   ~TweetListEntry () {
     Settings.get ().changed["text-transform-flags"].disconnect (transform_flags_changed_cb);
 
-    if (tweet.is_flag_set (Cb.TweetState.NSFW) && this.media_stack != null)
+    if (tweet.is_flag_set (Cb.TweetState.NSFW) || tweet.is_quoted_flag_set (Cb.TweetState.NSFW))
       Settings.get ().changed["hide-nsfw-content"].disconnect (hide_nsfw_content_changed_cb);
 
     if (this.mm_widget != null || this.mm_widget != null)
@@ -333,7 +333,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
         this.media_stack.visible_child = mm_widget;
     }
     if (this.quoted_media_stack != null) {
-      if (this.tweet.is_flag_set (Cb.TweetState.NSFW) &&
+      if (this.tweet.is_quoted_flag_set (Cb.TweetState.NSFW) &&
           Settings.hide_nsfw_content ())
         this.quoted_media_stack.visible_child_name = "nsfw";
       else
@@ -699,7 +699,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   }
 
   private void create_media_widget (bool nsfw, out MultiMediaWidget? mm_widget, out Gtk.Stack? media_stack) {
-    // FIXME: We probably need a separate set of flags for the quoted tweet in case it's the opposite
     // Note: We need to use local variables first, because the anonymous function won't capture an "out" parameter
     MultiMediaWidget _mm_widget = new MultiMediaWidget ();
     _mm_widget.halign = Gtk.Align.FILL;

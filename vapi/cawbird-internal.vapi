@@ -151,6 +151,10 @@ namespace Cb {
       public void set_flag (uint flag);
       public void unset_flag (uint flag);
 
+      public bool is_quoted_flag_set (uint flag);
+      public void set_quoted_flag (uint flag);
+      public void unset_quoted_flag (uint flag);
+
       public string get_formatted_text ();
       public string get_trimmed_text (uint transform_flags);
       public string get_real_text ();
