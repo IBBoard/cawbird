@@ -203,7 +203,8 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
     if (tweet.has_inline_media ()) {
       this.create_media_widget (tweet.is_flag_set (Cb.TweetState.NSFW), out this.mm_widget, out this.media_stack);
-      this.grid.attach (mm_widget, 1, 3, 6, 1);
+      Gtk.Widget w = media_stack != null ? ((Gtk.Widget)media_stack) : ((Gtk.Widget)mm_widget);
+      this.grid.attach (w, 1, 3, 6, 1);
       mm_widget.restrict_height = restrict_height;
       mm_widget.set_all_media (tweet.get_medias ());
       mm_widget.media_clicked.connect (media_clicked_cb);
@@ -214,7 +215,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
         // Move the media widget up (to overlap with avatar) if there's no text
         // We don't do this for quoted images because there is no avatar
         scroller.visible = false;
-        Gtk.Widget w = media_stack != null ? ((Gtk.Widget)media_stack) : ((Gtk.Widget)mm_widget);
         this.grid.child_set (w, "top-attach", 2);
       }
 
@@ -227,7 +227,8 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     if (tweet.has_quoted_inline_media ()) {
       this.create_media_widget (tweet.is_flag_set (Cb.TweetState.NSFW), out this.quoted_mm_widget, out this.quoted_media_stack);
       quoted_mm_widget.margin_start = 12;
-      this.quote_grid.attach (quoted_mm_widget, 0, 3, 3, 1);
+      Gtk.Widget w = media_stack != null ? ((Gtk.Widget)quoted_media_stack) : ((Gtk.Widget)quoted_mm_widget);
+      this.quote_grid.attach (w, 0, 3, 3, 1);
       quoted_mm_widget.restrict_height = restrict_height;
       quoted_mm_widget.set_all_media (tweet.get_quoted_medias ());
       quoted_mm_widget.media_clicked.connect (quoted_media_clicked_cb);
