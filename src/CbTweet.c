@@ -34,6 +34,7 @@ G_DEFINE_TYPE (CbTweet, cb_tweet, G_TYPE_OBJECT);
 
 enum {
   STATE_CHANGED,
+  QUOTE_STATE_CHANGED,
   LAST_SIGNAL
 };
 
@@ -249,9 +250,7 @@ cb_tweet_load_from_json (CbTweet   *tweet,
 
       if (usable_json_value (quote, "possibly_sensitive") &&
           json_object_get_boolean_member (quote, "possibly_sensitive"))
-        tweet->state |= CB_TWEET_STATE_NSFW;
-      else
-        tweet->state &= ~CB_TWEET_STATE_NSFW;
+        tweet->quote_state |= CB_TWEET_STATE_NSFW;
     }
   else if (tweet->retweeted_tweet != NULL &&
            json_object_has_member (json_object_get_object_member (status, "retweeted_status"), "quoted_status")) {
@@ -265,9 +264,7 @@ cb_tweet_load_from_json (CbTweet   *tweet,
 
       if (usable_json_value (quote, "possibly_sensitive") &&
           json_object_get_boolean_member (quote, "possibly_sensitive"))
-        tweet->state |= CB_TWEET_STATE_NSFW;
-      else
-        tweet->state &= ~CB_TWEET_STATE_NSFW;
+        tweet->quote_state |= CB_TWEET_STATE_NSFW;
     }
 
   if (json_object_get_boolean_member (status, "favorited"))
@@ -335,6 +332,42 @@ cb_tweet_unset_flag (CbTweet *tweet, guint flag)
 
   if (tweet->state != prev_state)
     g_signal_emit (tweet, tweet_signals[STATE_CHANGED], 0);
+}
+
+gboolean
+cb_tweet_is_quoted_flag_set (CbTweet *tweet, guint flag)
+{
+  return (tweet->quote_state & flag) > 0;
+}
+
+void
+cb_tweet_set_quoted_flag (CbTweet *tweet, guint flag)
+{
+  guint prev_state;
+
+  g_return_if_fail (CB_IS_TWEET (tweet));
+
+  prev_state = tweet->quote_state;
+
+  tweet->quote_state |= flag;
+
+  if (tweet->quote_state != prev_state)
+    g_signal_emit (tweet, tweet_signals[QUOTE_STATE_CHANGED], 0);
+}
+
+void
+cb_tweet_unset_quoted_flag (CbTweet *tweet, guint flag)
+{
+  guint prev_state;
+
+  g_return_if_fail (CB_IS_TWEET (tweet));
+
+  prev_state = tweet->quote_state;
+
+  tweet->quote_state &= ~flag;
+
+  if (tweet->quote_state != prev_state)
+    g_signal_emit (tweet, tweet_signals[QUOTE_STATE_CHANGED], 0);
 }
 
 char *

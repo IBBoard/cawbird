@@ -66,6 +66,7 @@ struct _CbTweet
   GObject parent_instance;
 
   guint state : 16;
+  guint quote_state : 16;
 
   gint64 id;
   CbMiniTweet source_tweet;
@@ -112,6 +113,10 @@ void             cb_tweet_load_from_json   (CbTweet   *tweet,
 gboolean         cb_tweet_is_flag_set (CbTweet *tweet, guint flag);
 void             cb_tweet_set_flag    (CbTweet *tweet, guint flag);
 void             cb_tweet_unset_flag  (CbTweet *tweet, guint flag);
+
+gboolean         cb_tweet_is_quoted_flag_set (CbTweet *tweet, guint flag);
+void             cb_tweet_set_quoted_flag    (CbTweet *tweet, guint flag);
+void             cb_tweet_unset_quoted_flag  (CbTweet *tweet, guint flag);
 
 char *           cb_tweet_get_formatted_text (CbTweet *tweet);
 char *           cb_tweet_get_trimmed_text   (CbTweet *tweet,
