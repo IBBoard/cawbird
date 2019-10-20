@@ -44,6 +44,14 @@
   <url type="bugtracker">https://github.com/ibboard/cawbird/issues</url>
 
   <releases>
+    <release version="1.0.3" date="2019-10-20">
+      <p>Changes in Cawbird 1.0.3:</p>
+      <ul>
+        <li>Handle tweet media separatelty from quoted tweet media - now displays quote with image reply!</li>
+        <li>Fix silently handled tweet parsing errors from RT syncing changes</li>
+        <li>Tidy up README</li>
+      </ul>
+    </release>
     <release version="1.0.2" date="2019-10-05">
       <p>Changes in Cawbird 1.0.2:</p>
       <ul>
