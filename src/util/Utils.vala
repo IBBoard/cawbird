@@ -365,7 +365,6 @@ namespace Utils {
   public bool usable_json_value (Json.Object node, string value_name) {
     if (!node.has_member (value_name))
         return false;
-    debug("usable_json_value");
     return !node.get_null_member (value_name);
   }
 
