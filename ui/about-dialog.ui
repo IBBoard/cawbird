@@ -7,8 +7,9 @@
     <property name="program-name">Cawbird</property>
     <property name="version">1.0.3</property>
     <property name="website">https://ibboard.co.uk/cawbird/</property>
-    <property name="authors">IBBoard&lt;cawbird@ibboard.co.uk&gt;</property>
-    <property name="logo-icon-name">cawbird</property>
+    <property name="authors">IBBoard &lt;cawbird@ibboard.co.uk&gt; (Cawbird)
+Timm Bäder &lt;mail@baedert.org&gt; (Corebird)</property>
+    <property name="logo-icon-name">uk.co.ibboard.cawbird</property>
     <property name="license-type">gpl-3-0</property>
     <signal name="response" handler="response_cb" swapped="no"/>
   </template>
