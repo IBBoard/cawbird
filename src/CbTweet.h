@@ -98,6 +98,8 @@ CbUserIdentity * cb_tweet_get_reply_users (CbTweet *tweet,
 
 CbMedia **       cb_tweet_get_medias       (CbTweet   *tweet,
                                             int       *n_medias);
+CbMedia **       cb_tweet_get_quoted_medias(CbTweet   *tweet,
+                                            int       *n_medias);
 char **          cb_tweet_get_mentions     (CbTweet   *tweet,
                                             int       *n_mentions);
 gboolean         cb_tweet_has_inline_media (CbTweet   *tweet);
