@@ -72,8 +72,8 @@ msgstr ""
 #. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon
 #. file name)!
 #: data/uk.co.ibboard.cawbird.desktop.in:11
-msgid "cawbird"
-msgstr "cawbird"
+msgid "uk.co.ibboard.cawbird"
+msgstr "uk.co.ibboard.cawbird"
 
 #. TRANSLATORS: This is the start of a "Replying to" line in a tweet
 #: src/CbUtils.c:177 src/TweetInfoPage.vala:525
