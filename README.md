@@ -127,7 +127,7 @@ ninja -C build
 
 Cawbird installs its application icon into `/usr/share/icons/hicolor/`, so an appropriate call to `gtk-update-icon-cache` might be needed.
 
-### Dependencies
+### Build Dependencies
 
 * `gtk+-3.0 >= 3.20`
 * `glib-2.0 >= 2.44`
@@ -136,10 +136,12 @@ Cawbird installs its application icon into `/usr/share/icons/hicolor/`, so an ap
 * `libsoup-2.4`
 * `gettext >= 0.19.7`
 * `vala >= 0.28` (makedep)
-* `automake >= 1.14` (makedep)
+* `meson` (makedep)
 * `gst-plugins-base-1.0` (for playbin, disable via --disable-video)
-* `gst-plugins-bad-1.0 >= 1.6` (disable via --disable-video, default enabled)
-* `gst-plugins-good-1.0` (disable via --disable-video, default enabled)
+* `gst-plugins-bad-1.0 >= 1.6` or `gst-plugins-good-1.0` (disable via --disable-video, default enabled)
+  * Requires the `element-gtksink` feature, provided by `gstreamer1.0-gtk` on Ubuntu-based systems,
+    `gstreamer1-plugins-bad-free-gtk` on older RPM-based systems and `gstreamer1-plugins-good-gtk` on
+    newer RPM-based systems
 * `gst-libav-1.0` (disable via --disable-video, default enabled)
 * `gspell-1 >= 1.2` (for spellchecking, disable via --disable-spellcheck, default enabled)
 
