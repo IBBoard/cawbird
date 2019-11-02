@@ -79,6 +79,38 @@ public class Cawbird : Gtk.Application {
 
       db.insert_ignore ("info").val ("key", "migration").val ("value", GLib.get_real_time ().to_string ()).run ();
     }
+    try {
+      var favourites_path = Dirs.config ("image-favorites/");
+      var favourites_dir = GLib.Dir.open (favourites_path);
+      var has_favs = false;
+      string? name = null;
+
+      while ((name = favourites_dir.read_name ()) != null) {
+        has_favs = true;
+        break;
+      }
+
+      if (!has_favs) {
+        // No current favourites - transfer any old ones
+        var corebird_favourites_path = Dirs.corebird_config ("image-favorites/");
+        var corebird_favourites_dir = GLib.Dir.open (corebird_favourites_path);
+
+        if (GLib.FileUtils.test (corebird_favourites_path, GLib.FileTest.EXISTS)) {
+          while ((name = corebird_favourites_dir.read_name ()) != null) {
+            GLib.File old_file = File.new_for_path (Path.build_filename (corebird_favourites_path, name));
+            GLib.File new_file = File.new_for_path (Path.build_filename (favourites_path, name));
+            try {
+              debug ("Transferring favourite image %s to %s", old_file.get_path(), new_file.get_path());
+              old_file.copy(new_file, 0, null, null);
+            } catch (Error e) {
+              warning ("Error: %s\n", e.message);
+            }
+          }
+        }
+      }
+    } catch (GLib.FileError e) {
+      error ("Error: %s", e.message);
+    }
 
     snippet_manager = new Cb.SnippetManager (db.get_sqlite_db ());
   }
