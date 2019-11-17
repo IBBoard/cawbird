@@ -93,9 +93,10 @@ public class Cawbird : Gtk.Application {
       if (!has_favs) {
         // No current favourites - transfer any old ones
         var corebird_favourites_path = Dirs.corebird_config ("image-favorites/");
-        var corebird_favourites_dir = GLib.Dir.open (corebird_favourites_path);
-
+        
         if (GLib.FileUtils.test (corebird_favourites_path, GLib.FileTest.EXISTS)) {
+          var corebird_favourites_dir = GLib.Dir.open (corebird_favourites_path);
+          
           while ((name = corebird_favourites_dir.read_name ()) != null) {
             GLib.File old_file = File.new_for_path (Path.build_filename (corebird_favourites_path, name));
             GLib.File new_file = File.new_for_path (Path.build_filename (favourites_path, name));
