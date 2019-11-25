@@ -64,7 +64,7 @@ public class MainWindow : Gtk.ApplicationWindow {
     this.get_style_context ().add_class ("cawbird-window");
     /* Create widgets */
     this.set_show_menubar (false);
-    this.set_icon_name ("cawbird");
+    this.set_icon_name ("uk.co.ibboard.cawbird");
     this.delete_event.connect (window_delete_cb);
 
     this.headerbar = new Gtk.HeaderBar ();

@@ -15,7 +15,7 @@
     <child>
       <object class="GtkImage">
         <property name="visible">1</property>
-        <property name="icon-name">cawbird</property>
+        <property name="icon-name">uk.co.ibboard.cawbird</property>
         <property name="halign">center</property>
         <property name="margin-bottom">24</property>
         <property name="pixel-size">128</property>
