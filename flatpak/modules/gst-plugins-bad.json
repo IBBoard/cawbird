@@ -10,13 +10,7 @@
         {
             "type": "git",
             "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad.git",
-            "tag": "1.16.1",
-            "commit": "c3c54aad2d45fb246a9b9e8a5e05488c15c27173"
-        },
-        {
-            /* There seems to be a regression in mpegtsdemux 1.16.1 caused by cd8bb641f81b7a7a0379aff9334b36a8eb9e638f */
-            "type": "patch",
-            "path": "revert_cd8bb641f81b7a7a0379aff9334b36a8eb9e638f.patch"
+            "commit": "cfa0f1858075a3390def50250eafc89d270178d3"
         }
     ]
 }
