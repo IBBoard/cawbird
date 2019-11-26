@@ -50,7 +50,7 @@ The following distros currently have their own official packages:
 ## Community builds
 
 * [Cawbird Snap](https://snapcraft.io/cawbird) on Snapcraft.io
-* Cawbird Flatpak - [in progress](https://github.com/IBBoard/cawbird/issues/24)
+* [Cawbird Flatpak](https://flathub.org/apps/details/uk.co.ibboard.cawbird) on Flathub.org
 * Arch Linux (AUR):
   * [Cawbird (stable)](https://aur.archlinux.org/packages/cawbird)
   * [Cawbird-git](https://aur.archlinux.org/packages/cawbird-git)
