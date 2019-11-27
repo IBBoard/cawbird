@@ -356,7 +356,7 @@ weighted_length_for_character (gunichar ch)
   if ((ch >= 0    && ch <= 4351) ||
       (ch >= 8192 && ch <= 8205) ||
       (ch >= 8208 && ch <= 8223) ||
-      (ch >= 8424 && ch <= 8247)) {
+      (ch >= 8242 && ch <= 8247)) {
     return 1;
   } else {
     return 2;
