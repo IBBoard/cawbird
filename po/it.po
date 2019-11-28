@@ -8,13 +8,14 @@
 # Matteo Castelli <Mtt.Castelli@gmail.com>, 2016
 # Nicola Stanislao Vitale <nivit@rocketmail.com>, 2015
 # Tassoman, 2017
+# Albano Battistella <albano_battistella@hotmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2017-10-22 12:02+0200\n"
-"PO-Revision-Date: 2018-02-20 19:25+0000\n"
-"Last-Translator: Emanuele Rocco Petrone <emaeleptrn@gmail.com>\n"
+"PO-Revision-Date: 2019-11-28 19:25+0100\n"
+"Last-Translator: Emanuele Albano Battistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/cawbird/cawbird/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -375,15 +376,15 @@ msgstr "L'immagine non rispetta le dimensioni minime richieste"
 #, c-format
 msgid "Minimum width: %d pixel"
 msgid_plural "Minimum width: %d pixels"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Larghezza minima: %d pixel"
+msgstr[1] "Larghezze minime: %d pixel"
 
 #: src/window/AccountDialog.vala:383
 #, c-format
 msgid "Minimum height: %d pixel"
 msgid_plural "Minimum height: %d pixels"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Altezza minima: %d pixel"
+msgstr[1] "Altezze minime: %d pixel"
 
 #: src/window/AccountDialog.vala:404 src/window/AccountDialog.vala:417
 msgid "Pick"
@@ -836,7 +837,7 @@ msgstr "Mostra Preferenze Applicazione"
 #: ui/shortcuts-window.ui:45
 msgctxt "shortcuts window"
 msgid "Toggle Topbar"
-msgstr ""
+msgstr "Attiva/disattiva la barra superiore"
 
 #: ui/shortcuts-window.ui:52
 msgctxt "shortcuts window"
@@ -851,7 +852,7 @@ msgstr "Avanti"
 #: ui/shortcuts-window.ui:66
 msgctxt "shortcuts window"
 msgid "Go to nth page"
-msgstr ""
+msgstr "Vai alla pagina successiva"
 
 #: ui/shortcuts-window.ui:74
 msgctxt "shortcuts window"
