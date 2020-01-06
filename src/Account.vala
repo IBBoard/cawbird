@@ -66,7 +66,7 @@ public class Account : GLib.Object {
     user_counter = new Cb.UserCounter ();
     this.load_filters ();
 
-    if (this.migration_date < 0) {
+    if (this.migration_date < 0 && Cawbird.db != null) {
       this.migration_date = Cawbird.db.select ("accounts") .cols ("migrated") .where_eqi ("id", this.id) .once_i64 ();
     }
 
