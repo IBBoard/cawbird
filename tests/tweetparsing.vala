@@ -2213,9 +2213,8 @@ void special_quote () {
   /* The expected output here is that the tweet is still a retweet, of course... */
   assert (t.retweeted_tweet != null);
 
-  /* ... but the quoted_status field of the retweeted tweet should effectively be ignored
-   * since it also has media attached. */
-  assert (t.quoted_tweet == null);
+  /* ... but we now handle media AND quotes, so we should see the quoted tweet as well */
+  assert (t.quoted_tweet != null);
 
 
   /* ... I repeat: the retweeted tweet has media attached! */
