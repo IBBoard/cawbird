@@ -17,7 +17,8 @@ void simple () {
   var entities = new Cb.TextEntity[1];
   entities[0] = Cb.TextEntity () {
     from = 4,
-    to   = 6,
+    to   = 7,
+    original_text = "bar",
     display_text = "display_text",
     tooltip_text = "tooltip_text",
     target       = "target_text"
@@ -40,7 +41,8 @@ void url_at_end () {
   var entities = new Cb.TextEntity[1];
   entities[0] = Cb.TextEntity () {
     from = 8,
-    to   = 9,
+    to   = 11,
+    original_text = "foo",
     display_text = "display_text",
     tooltip_text = "tooltip_text",
     target       = "target_text"
@@ -65,6 +67,7 @@ void utf8 () {
   entities[0] = Cb.TextEntity () {
     from = 2,
     to   = 6,
+    original_text = "#foo",
     display_text = "#foo",
     tooltip_text = "#foo",
     target       = null
@@ -84,6 +87,7 @@ void expand_links () {
   entities[0] = Cb.TextEntity () {
     from = 2,
     to   = 6,
+    original_text = "#foo",
     display_text = "displayfoobar",
     tooltip_text = "#foo",
     target       = "target_url"
@@ -105,6 +109,7 @@ void multiple_links () {
   entities[0] = Cb.TextEntity () {
     from = 0,
     to = 22,
+    original_text = "http://t.co/O5uZwJg31k",
     display_text = "mirgehendirurlsaus.com",
     target = "http://mirgehendirurlsaus.com",
     tooltip_text = "http://mirgehendirurlsaus.com"
@@ -112,6 +117,7 @@ void multiple_links () {
   entities[1] = Cb.TextEntity () {
     from = 26,
     to   = 48,
+    original_text = "http://t.co/BsKkxv8UG4",
     display_text = "foobar.com",
     target = "http://foobar.com",
     tooltip_text = "http://foobar.com"
@@ -119,6 +125,7 @@ void multiple_links () {
   entities[2] = Cb.TextEntity () {
     from = 52,
     to   = 74,
+    original_text = "http://t.co/W8qs846ude",
     display_text = "hahaaha.com",
     target = "http://hahaaha.com",
     tooltip_text = "http://hahaaha.com"
@@ -126,6 +133,7 @@ void multiple_links () {
   entities[3] = Cb.TextEntity () {
     from = 77,
     to   = 99,
+    original_text = "http://t.co/x4bKoCusvQ",
     display_text = "huehue.org",
     target = "http://huehue.org",
     tooltip_text = "http://huehue.org"
@@ -152,6 +160,7 @@ void remove_only_trailing_hashtags () {
   entities[0] = Cb.TextEntity () {
     from = 5,
     to = 13,
+    original_text = "#totally",
     display_text = "#totally",
     target = "foobar"
   };
@@ -159,6 +168,7 @@ void remove_only_trailing_hashtags () {
   entities[1] = Cb.TextEntity () {
     from = 28,
     to = 36,
+    original_text = "@baedert",
     display_text = "@baedert",
     target = "blubb"
   };
@@ -166,13 +176,15 @@ void remove_only_trailing_hashtags () {
   entities[2] = Cb.TextEntity () {
     from = 38,
     to = 53,
-    display_text = "#baedertwhorship",
+    original_text = "#baedertworship",
+    display_text = "#baedertworship",
     target = "bla"
   };
 
   entities[3] = Cb.TextEntity () {
     from = 57,
     to = 66,
+    original_text = "#thefeels",
     display_text = "#thefeels",
     target = "foobar"
   };
@@ -184,7 +196,7 @@ void remove_only_trailing_hashtags () {
 
   assert (result.contains (">@baedert<")); // Mention should still be a link
   assert (result.contains (">#totally<"));
-  assert (!result.contains ("#baedertworship"));
+  assert (result.contains ("#baedertworship"));
   assert (!result.contains ("#thefeels"));
 }
 
@@ -196,6 +208,7 @@ void remove_multiple_trailing_hashtags () {
   entities[0] = Cb.TextEntity () {
     from = 5,
     to = 13,
+    original_text = "#totally",
     display_text = "#totally",
     target = "foobar"
   };
@@ -203,6 +216,7 @@ void remove_multiple_trailing_hashtags () {
   entities[1] = Cb.TextEntity () {
     from = 28,
     to = 36,
+    original_text = "@baedert",
     display_text = "@baedert",
     target = "blubb"
   };
@@ -210,13 +224,15 @@ void remove_multiple_trailing_hashtags () {
   entities[2] = Cb.TextEntity () {
     from = 38,
     to = 53,
-    display_text = "#baedertwhorship",
+    original_text = "#baedertworship",
+    display_text = "#baedertworship",
     target = "bla"
   };
 
   entities[3] = Cb.TextEntity () {
     from = 54,
     to = 63,
+    original_text = "#thefeels",
     display_text = "#thefeels",
     target = "foobar"
   };
@@ -224,6 +240,7 @@ void remove_multiple_trailing_hashtags () {
   entities[4] = Cb.TextEntity () {
     from = 64,
     to = 71,
+    original_text = "#foobar",
     display_text = "#foobar",
     target = "bla"
   };
@@ -248,6 +265,7 @@ void trailing_hashtags_mention_before () {
   entities[0] = Cb.TextEntity () {
     from = 5,
     to = 13,
+    original_text = "#totally",
     display_text = "#totally",
     target = "foobar"
   };
@@ -255,6 +273,7 @@ void trailing_hashtags_mention_before () {
   entities[1] = Cb.TextEntity () {
     from = 29,
     to = 44,
+    original_text = "#baedertworship",
     display_text = "#baedertworship",
     target = "bla"
   };
@@ -262,6 +281,7 @@ void trailing_hashtags_mention_before () {
   entities[2] = Cb.TextEntity () {
     from = 45,
     to = 53,
+    original_text = "@baedert",
     display_text = "@baedert",
     target = "foobar"
   };
@@ -269,6 +289,7 @@ void trailing_hashtags_mention_before () {
   entities[3] = Cb.TextEntity () {
     from = 54,
     to = 61,
+    original_text = "#foobar",
     display_text = "#foobar",
     target = "bla"
   };
@@ -292,6 +313,7 @@ void whitespace_hashtags () {
   entities[0] = Cb.TextEntity () {
     from = 5,
     to = 13,
+    original_text = "#totally",
     display_text = "#totally",
     target = "foobar"
   };
@@ -299,6 +321,7 @@ void whitespace_hashtags () {
   entities[1] = Cb.TextEntity () {
     from = 28,
     to = 36,
+    original_text = "@baedert",
     display_text = "@baedert",
     target = "blubb"
   };
@@ -306,13 +329,15 @@ void whitespace_hashtags () {
   entities[2] = Cb.TextEntity () {
     from = 38,
     to = 53,
-    display_text = "#baedertwhorship",
+    original_text = "#baedertworship",
+    display_text = "#baedertworship",
     target = "bla"
   };
 
   entities[3] = Cb.TextEntity () {
     from = 54,
     to = 63,
+    original_text = "#thefeels",
     display_text = "#thefeels",
     target = "foobar"
   };
@@ -320,6 +345,7 @@ void whitespace_hashtags () {
   entities[4] = Cb.TextEntity () {
     from = 64,
     to = 71,
+    original_text = "#foobar",
     display_text = "#foobar",
     target = "bla"
   };
@@ -344,6 +370,7 @@ void trailing_hashtags_link_after () {
   entities[0] = Cb.TextEntity () {
     from = 5,
     to = 13,
+    original_text = "#totally",
     display_text = "#totally",
     target = "foobar"
   };
@@ -351,6 +378,7 @@ void trailing_hashtags_link_after () {
   entities[1] = Cb.TextEntity () {
     from = 28,
     to = 36,
+    original_text = "@baedert",
     display_text = "@baedert",
     target = "blubb"
   };
@@ -358,13 +386,15 @@ void trailing_hashtags_link_after () {
   entities[2] = Cb.TextEntity () {
     from = 38,
     to = 53,
-    display_text = "#baedertwhorship",
+    original_text = "#baedertworship",
+    display_text = "#baedertworship",
     target = "bla"
   };
 
   entities[3] = Cb.TextEntity () {
     from = 54,
     to = 72,
+    original_text = "https://foobar.com",
     display_text = "BLA BLA BLA",
     target = "https://foobar.com"
   };
@@ -392,6 +422,7 @@ void no_quoted_link () {
     from = 0,
     to   = 6,
     target = "https://twitter.com/bla/status/1337",
+    original_text = "Foobar",
     display_text = "sometextwhocares"
   };
 
@@ -449,6 +480,30 @@ void bug1 () {
   assert (filter_text.length > 0);
 }
 
+void bug70_substring_memory_allocation() {
+  // Twitter once gave us bad data (duplicate entity indices). This caused negative-length substrings.
+  // We can't linkigy an entity that we don't know the position of, so it has to remain as text.
+  // This is the best we can do with the data available.
+
+  var now = new GLib.DateTime.now_local ();
+  var t = new Cb.Tweet ();
+
+  var parser = new Json.Parser ();
+  try {
+    parser.load_from_data (BUG70);
+  } catch (GLib.Error e) {
+    critical (e.message);
+  }
+  var root = parser.get_root ();
+
+  // This should raise a WARNING level message and we should use expect, but we have to use INFO because WARNING is fatal in debug mode, which tests use,
+  // and the system uses the structured log writer so we can't do simple filtering
+  //GLib.Test.expect_message("cawbird", GLib.LogLevelFlags.LEVEL_WARNING, "Skipping entity - expected https://t.co/30kMXiKMRU but found https://t.co/4Xxq6jHtm0. Likely bad indices (54 to 77)");
+  t.load_from_json (root, 0, now);
+  assert (t.get_real_text() == "https://t.co/30kMXiKMRU https://twitter.com/chadloder/status/1211804049240031232");
+  //GLib.Test.assert_expected_messages ();
+}
+
 int main (string[] args) {
   GLib.Environment.set_variable ("GSETTINGS_BACKEND", "memory", true);
   Intl.setlocale (LocaleCategory.ALL, "");
@@ -468,6 +523,7 @@ int main (string[] args) {
   GLib.Test.add_func ("/tt/no-quoted-link", no_quoted_link);
   GLib.Test.add_func ("/tt/new-reply", new_reply);
   GLib.Test.add_func ("/tt/bug1", bug1);
+  GLib.Test.add_func ("/tt/bug70-substring-memory-allocation", bug70_substring_memory_allocation);
 
   return GLib.Test.run ();
 }
@@ -1016,6 +1072,379 @@ const string BUG1_DATA =
    "filter_level":"low",
    "lang":"ar",
    "timestamp_ms":"1499283482658"
+}
+""";
+
+const string BUG70 = """
+{
+  "created_at" : "Tue Dec 31 00:20:42 +0000 2019",
+  "id" : 1211804333978734592,
+  "id_str" : "1211804333978734592",
+  "full_text" : "@FlizzieMcGuire @schmittlauch https://t.co/30kMXiKMRU https://t.co/4Xxq6jHtm0",
+  "truncated" : false,
+  "display_text_range" : [
+    30,
+    53
+  ],
+  "entities" : {
+    "hashtags" : [
+    ],
+    "symbols" : [
+    ],
+    "user_mentions" : [
+      {
+        "screen_name" : "FlizzieMcGuire",
+        "name" : "Bikini Bottom Mafia Stan Account",
+        "id" : 863773010,
+        "id_str" : "863773010",
+        "indices" : [
+          0,
+          15
+        ]
+      },
+      {
+        "screen_name" : "schmittlauch",
+        "name" : "Trolli @schmittlauch@toot.matereal.eu 🦥",
+        "id" : 312869558,
+        "id_str" : "312869558",
+        "indices" : [
+          16,
+          29
+        ]
+      }
+    ],
+    "urls" : [
+      {
+        "url" : "https://t.co/30kMXiKMRU",
+        "expanded_url" : "https://twitter.com/chadloder/status/1211804049240031232?s=21",
+        "display_url" : "twitter.com/chadloder/stat…",
+        "indices" : [
+          54,
+          77
+        ]
+      },
+      {
+        "url" : "https://t.co/4Xxq6jHtm0",
+        "expanded_url" : "https://twitter.com/chadloder/status/1211804049240031232",
+        "display_url" : "twitter.com/chadloder/stat…",
+        "indices" : [
+          54,
+          77
+        ]
+      }
+    ]
+  },
+  "source" : "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+  "in_reply_to_status_id" : 1211803346975240192,
+  "in_reply_to_status_id_str" : "1211803346975240192",
+  "in_reply_to_user_id" : 863773010,
+  "in_reply_to_user_id_str" : "863773010",
+  "in_reply_to_screen_name" : "FlizzieMcGuire",
+  "user" : {
+    "id" : 98575337,
+    "id_str" : "98575337",
+    "name" : "Chad Loder",
+    "screen_name" : "chadloder",
+    "location" : "Los Angeles, CA",
+    "description" : "Founder @Habitu8 • Recovering tech guy, author, investor • Human • Previously: Founder, VP Engineering @Rapid7 • #blacklivesmatter",
+    "url" : "https://t.co/j2ABO3HoJN",
+    "entities" : {
+      "url" : {
+        "urls" : [
+          {
+            "url" : "https://t.co/j2ABO3HoJN",
+            "expanded_url" : "https://www.habitu8.io/",
+            "display_url" : "habitu8.io",
+            "indices" : [
+              0,
+              23
+            ]
+          }
+        ]
+      },
+      "description" : {
+        "urls" : [
+        ]
+      }
+    },
+    "protected" : false,
+    "followers_count" : 41256,
+    "friends_count" : 3984,
+    "listed_count" : 392,
+    "created_at" : "Tue Dec 22 07:11:56 +0000 2009",
+    "favourites_count" : 39913,
+    "utc_offset" : null,
+    "time_zone" : null,
+    "geo_enabled" : true,
+    "verified" : false,
+    "statuses_count" : 13848,
+    "lang" : null,
+    "contributors_enabled" : false,
+    "is_translator" : false,
+    "is_translation_enabled" : false,
+    "profile_background_color" : "C0DEED",
+    "profile_background_image_url" : "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https" : "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile" : false,
+    "profile_image_url" : "http://pbs.twimg.com/profile_images/1213949167870984193/SohzlEa0_normal.jpg",
+    "profile_image_url_https" : "https://pbs.twimg.com/profile_images/1213949167870984193/SohzlEa0_normal.jpg",
+    "profile_banner_url" : "https://pbs.twimg.com/profile_banners/98575337/1578219983",
+    "profile_link_color" : "F0CBCA",
+    "profile_sidebar_border_color" : "C0DEED",
+    "profile_sidebar_fill_color" : "DDEEF6",
+    "profile_text_color" : "333333",
+    "profile_use_background_image" : true,
+    "has_extended_profile" : true,
+    "default_profile" : false,
+    "default_profile_image" : false,
+    "can_media_tag" : true,
+    "followed_by" : true,
+    "following" : false,
+    "follow_request_sent" : false,
+    "notifications" : false,
+    "translator_type" : "none"
+  },
+  "geo" : null,
+  "coordinates" : null,
+  "place" : null,
+  "contributors" : null,
+  "is_quote_status" : true,
+  "quoted_status_id" : 1211804049240031232,
+  "quoted_status_id_str" : "1211804049240031232",
+  "quoted_status_permalink" : {
+    "url" : "https://t.co/4Xxq6jHtm0",
+    "expanded" : "https://twitter.com/chadloder/status/1211804049240031232",
+    "display" : "twitter.com/chadloder/stat…"
+  },
+  "quoted_status" : {
+    "created_at" : "Tue Dec 31 00:19:34 +0000 2019",
+    "id" : 1211804049240031232,
+    "id_str" : "1211804049240031232",
+    "full_text" : "The Kiwifarms shit-stains are mad that Nazi-loving backpfeifengesicht¹ Vincent Canfield got booted from #36C3 conference.\n\nLet’s be clear.\n\n1. The hacking scene has ALWAYS had antifascists.\n\n2. Anti-antifascist literally means “fascist”.\n\n¹ - loosely translated, “punchable face” https://t.co/2wXVVs9An8",
+    "truncated" : false,
+    "display_text_range" : [
+      0,
+      279
+    ],
+    "entities" : {
+      "hashtags" : [
+        {
+          "text" : "36C3",
+          "indices" : [
+            104,
+            109
+          ]
+        }
+      ],
+      "symbols" : [
+      ],
+      "user_mentions" : [
+      ],
+      "urls" : [
+      ],
+      "media" : [
+        {
+          "id" : 1211804033226170368,
+          "id_str" : "1211804033226170368",
+          "indices" : [
+            280,
+            303
+          ],
+          "media_url" : "http://pbs.twimg.com/media/ENExWQnU4AAcv5K.jpg",
+          "media_url_https" : "https://pbs.twimg.com/media/ENExWQnU4AAcv5K.jpg",
+          "url" : "https://t.co/2wXVVs9An8",
+          "display_url" : "pic.twitter.com/2wXVVs9An8",
+          "expanded_url" : "https://twitter.com/chadloder/status/1211804049240031232/photo/1",
+          "type" : "photo",
+          "sizes" : {
+            "thumb" : {
+              "w" : 150,
+              "h" : 150,
+              "resize" : "crop"
+            },
+            "medium" : {
+              "w" : 1024,
+              "h" : 496,
+              "resize" : "fit"
+            },
+            "large" : {
+              "w" : 1024,
+              "h" : 496,
+              "resize" : "fit"
+            },
+            "small" : {
+              "w" : 680,
+              "h" : 329,
+              "resize" : "fit"
+            }
+          },
+          "features" : {
+            "orig" : {
+              "faces" : [
+              ]
+            },
+            "medium" : {
+              "faces" : [
+              ]
+            },
+            "large" : {
+              "faces" : [
+              ]
+            },
+            "small" : {
+              "faces" : [
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "extended_entities" : {
+      "media" : [
+        {
+          "id" : 1211804033226170368,
+          "id_str" : "1211804033226170368",
+          "indices" : [
+            280,
+            303
+          ],
+          "media_url" : "http://pbs.twimg.com/media/ENExWQnU4AAcv5K.jpg",
+          "media_url_https" : "https://pbs.twimg.com/media/ENExWQnU4AAcv5K.jpg",
+          "url" : "https://t.co/2wXVVs9An8",
+          "display_url" : "pic.twitter.com/2wXVVs9An8",
+          "expanded_url" : "https://twitter.com/chadloder/status/1211804049240031232/photo/1",
+          "type" : "photo",
+          "sizes" : {
+            "thumb" : {
+              "w" : 150,
+              "h" : 150,
+              "resize" : "crop"
+            },
+            "medium" : {
+              "w" : 1024,
+              "h" : 496,
+              "resize" : "fit"
+            },
+            "large" : {
+              "w" : 1024,
+              "h" : 496,
+              "resize" : "fit"
+            },
+            "small" : {
+              "w" : 680,
+              "h" : 329,
+              "resize" : "fit"
+            }
+          },
+          "features" : {
+            "orig" : {
+              "faces" : [
+              ]
+            },
+            "medium" : {
+              "faces" : [
+              ]
+            },
+            "large" : {
+              "faces" : [
+              ]
+            },
+            "small" : {
+              "faces" : [
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "source" : "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+    "in_reply_to_status_id" : null,
+    "in_reply_to_status_id_str" : null,
+    "in_reply_to_user_id" : null,
+    "in_reply_to_user_id_str" : null,
+    "in_reply_to_screen_name" : null,
+    "user" : {
+      "id" : 98575337,
+      "id_str" : "98575337",
+      "name" : "Chad Loder",
+      "screen_name" : "chadloder",
+      "location" : "Los Angeles, CA",
+      "description" : "Founder @Habitu8 • Recovering tech guy, author, investor • Human • Previously: Founder, VP Engineering @Rapid7 • #blacklivesmatter",
+      "url" : "https://t.co/j2ABO3HoJN",
+      "entities" : {
+        "url" : {
+          "urls" : [
+            {
+              "url" : "https://t.co/j2ABO3HoJN",
+              "expanded_url" : "https://www.habitu8.io/",
+              "display_url" : "habitu8.io",
+              "indices" : [
+                0,
+                23
+              ]
+            }
+          ]
+        },
+        "description" : {
+          "urls" : [
+          ]
+        }
+      },
+      "protected" : false,
+      "followers_count" : 41256,
+      "friends_count" : 3984,
+      "listed_count" : 392,
+      "created_at" : "Tue Dec 22 07:11:56 +0000 2009",
+      "favourites_count" : 39913,
+      "utc_offset" : null,
+      "time_zone" : null,
+      "geo_enabled" : true,
+      "verified" : false,
+      "statuses_count" : 13848,
+      "lang" : null,
+      "contributors_enabled" : false,
+      "is_translator" : false,
+      "is_translation_enabled" : false,
+      "profile_background_color" : "C0DEED",
+      "profile_background_image_url" : "http://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_image_url_https" : "https://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_tile" : false,
+      "profile_image_url" : "http://pbs.twimg.com/profile_images/1213949167870984193/SohzlEa0_normal.jpg",
+      "profile_image_url_https" : "https://pbs.twimg.com/profile_images/1213949167870984193/SohzlEa0_normal.jpg",
+      "profile_banner_url" : "https://pbs.twimg.com/profile_banners/98575337/1578219983",
+      "profile_link_color" : "F0CBCA",
+      "profile_sidebar_border_color" : "C0DEED",
+      "profile_sidebar_fill_color" : "DDEEF6",
+      "profile_text_color" : "333333",
+      "profile_use_background_image" : true,
+      "has_extended_profile" : true,
+      "default_profile" : false,
+      "default_profile_image" : false,
+      "can_media_tag" : true,
+      "followed_by" : true,
+      "following" : false,
+      "follow_request_sent" : false,
+      "notifications" : false,
+      "translator_type" : "none"
+    },
+    "geo" : null,
+    "coordinates" : null,
+    "place" : null,
+    "contributors" : null,
+    "is_quote_status" : false,
+    "retweet_count" : 4,
+    "favorite_count" : 18,
+    "favorited" : false,
+    "retweeted" : false,
+    "possibly_sensitive" : false,
+    "lang" : "en"
+  },
+  "retweet_count" : 0,
+  "favorite_count" : 1,
+  "favorited" : false,
+  "retweeted" : false,
+  "possibly_sensitive" : false,
+  "lang" : "und"
 }
 """;
 // }}}
