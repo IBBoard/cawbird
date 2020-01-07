@@ -52,6 +52,7 @@ void cb_user_identity_parse (CbUserIdentity *id,
 void
 cb_text_entity_free (CbTextEntity *e)
 {
+  g_free (e->original_text);
   g_free (e->display_text);
   g_free (e->tooltip_text);
   g_free (e->target);
@@ -62,6 +63,8 @@ cb_text_entity_copy (const CbTextEntity *e1, CbTextEntity *e2)
 {
   e2->from = e1->from;
   e2->to   = e1->to;
+  g_free(e2->original_text);
+  e2->original_text = g_strdup (e1->original_text);
   g_free (e2->display_text);
   e2->display_text = g_strdup (e1->display_text);
   g_free (e2->tooltip_text);
@@ -299,6 +302,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
       indices = json_object_get_array_member (url, "indices");
       t->entities[url_index].from = json_array_get_int_element (indices, 0);
       t->entities[url_index].to   = json_array_get_int_element (indices, 1);
+      t->entities[url_index].original_text = g_strdup (json_object_get_string_member (url, "url"));
       t->entities[url_index].display_text = cb_utils_escape_ampersands (json_object_get_string_member (url, "display_url"));
       t->entities[url_index].tooltip_text = cb_utils_escape_ampersands (expanded_url);
       t->entities[url_index].target = cb_utils_escape_ampersands (expanded_url);
@@ -315,6 +319,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
 
       t->entities[url_index].from = json_array_get_int_element (indices, 0);
       t->entities[url_index].to   = json_array_get_int_element (indices, 1);
+      t->entities[url_index].original_text = g_strdup_printf ("#%s", text);
       t->entities[url_index].display_text = g_strdup_printf ("#%s", text);
       t->entities[url_index].tooltip_text = g_strdup_printf ("#%s", text);
       t->entities[url_index].target = NULL;
@@ -337,6 +342,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
 
       t->entities[url_index].from = json_array_get_int_element (indices, 0);
       t->entities[url_index].to   = json_array_get_int_element (indices, 1);
+      t->entities[url_index].original_text = g_strdup_printf ("@%s", screen_name);
       t->entities[url_index].display_text = g_strdup_printf ("@%s", screen_name);
       t->entities[url_index].tooltip_text = cb_utils_escape_ampersands (json_object_get_string_member (mention, "name"));
       t->entities[url_index].target = g_strdup_printf ("@%s/@%s", id_str, screen_name);
@@ -375,6 +381,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
 
           t->entities[url_index].from = json_array_get_int_element (indices, 0);
           t->entities[url_index].to   = json_array_get_int_element (indices, 1);
+          t->entities[url_index].original_text = g_strdup (json_object_get_string_member (url, "url"));
           t->entities[url_index].display_text = cb_utils_escape_ampersands (json_object_get_string_member (url, "display_url"));
           t->entities[url_index].target = url_str;
 

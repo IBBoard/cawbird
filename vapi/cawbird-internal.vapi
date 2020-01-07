@@ -96,6 +96,7 @@ namespace Cb {
   public struct TextEntity {
     public uint from;
     public uint to;
+    public string original_text;
     public string display_text;
     public string tooltip_text;
     public string? target; // If target is null, use display_text as target!

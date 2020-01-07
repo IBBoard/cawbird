@@ -154,15 +154,30 @@ cb_text_transform_text (const char   *text,
     {
       CbTextEntity *entity = &entities[i];
       char *before;
+      char *entity_text;
       guint entity_to;
+      guint entity_from;
 
       if (entity->to <= display_range_start)
         continue;
 
       entity_to = entity->to - display_range_start;
+      entity_from = entity->from - display_range_start;
+
+      entity_text = g_utf8_substring(text, entity_from, entity_to);
+
+      if (g_strcmp0(entity->original_text, entity_text) != 0) {
+        // If the entity text doesn't match the text between the indices then something went wrong with our data!
+        g_info("Skipping entity - expected %s but found %s. Likely bad indices (%u to %u)", entity->original_text, entity_text, entity->from, entity->to);
+        g_free(entity_text);
+        continue;
+      }
+
+      g_free(entity_text);
+
       before = g_utf8_substring (text,
                                  last_end,
-                                 entity->from - display_range_start);
+                                 entity_from);
 
       if (!(last_entity_was_trailing && is_whitespace (before)))
         g_string_append (str, before);
