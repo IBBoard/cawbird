@@ -527,14 +527,14 @@ void bug70_case_insensitivity() {
     to   = 28,
     original_text = "#NewYearsEve",
     display_text = "#NewYearsEve",
-    target = "blubb"
+    target = "#NewYearsEve"
   };
   t.source_tweet.entities[2] = Cb.TextEntity () {
     from = 29,
     to   = 41,
     original_text = "#Ebertstraße",
     display_text = "#Ebertstraße",
-    target = "blubb"
+    target = "#Ebertstraße"
   };
 
   string result = t.get_real_text ();
