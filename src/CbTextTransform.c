@@ -166,8 +166,11 @@ cb_text_transform_text (const char   *text,
 
       entity_text = g_utf8_substring(text, entity_from, entity_to);
 
-      if (g_strcmp0(entity->original_text, entity_text) != 0) {
-        // If the entity text doesn't match the text between the indices then something went wrong with our data!
+      if (g_ascii_strcasecmp(entity->original_text, entity_text) != 0) {
+        // If the entity text doesn't match the text between the indices (ignoring case, because sometimes Twitter has @ibboard
+        // in the text and @IBBoard in the entity) then something went wrong with our data!
+        // We ignore the case of ASCII characters because a) g_strcasecmp is deprecated and recommends the ASCII functions
+        // and b) this has mainly been seen with usernames, which are only ASCII anyway
         g_info("Skipping entity - expected %s but found %s. Likely bad indices (%u to %u)", entity->original_text, entity_text, entity->from, entity->to);
         g_free(entity_text);
         continue;
