@@ -120,6 +120,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
           from = (uint)indices.get_int_element (0),
           to   = (uint)indices.get_int_element (1) ,
           target = expanded_url.replace ("&", "&amp;"),
+          original_text = url.get_string_member ("url"),
           tooltip_text = expanded_url,
           display_text = url.get_string_member ("display_url")
         };

@@ -111,7 +111,9 @@ class SettingsDialog : Gtk.Window {
         sample_tweet.source_tweet.entities[i] = Cb.TextEntity () {
           from = sample_text.char_count (from),
           to   = sample_text.char_count (to),
+          original_text = match,
           display_text = match,
+          tooltip_text = match,
           target       = "foobar"
         };
 

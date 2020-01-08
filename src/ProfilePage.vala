@@ -329,7 +329,9 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
           from = (uint)indices.get_int_element (0),
           to   = (uint)indices.get_int_element (1),
           target = expanded_url,
-          display_text = ent.get_string_member ("display_url")
+          original_text = ent.get_string_member ("url"),
+          display_text = ent.get_string_member ("display_url"),
+          tooltip_text = expanded_url
         };
       });
 
@@ -345,6 +347,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
             from = (uint)e.start_character_index,
             to   = (uint)(e.start_character_index + e.length_in_characters),
             target = e.start->ndup(e.length_in_bytes),
+            original_text = e.start->ndup(e.length_in_bytes),
             display_text = e.start->ndup(e.length_in_bytes),
             tooltip_text = e.start->ndup(e.length_in_bytes)
           };
@@ -353,6 +356,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
             from = (uint)e.start_character_index,
             to   = (uint)(e.start_character_index + e.length_in_characters),
             target = "@0/%.*s".printf (e.length_in_bytes, e.start),
+            original_text = e.start->ndup(e.length_in_bytes),
             display_text = e.start->ndup(e.length_in_bytes),
             tooltip_text = e.start->ndup(e.length_in_bytes)
           };

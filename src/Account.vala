@@ -201,6 +201,7 @@ public class Account : GLib.Object {
       urls[index] = Cb.TextEntity () {
         from = (uint)indices.get_int_element (0),
         to   = (uint)indices.get_int_element (1),
+        original_text = obj.get_string_member ("url"),
         display_text = obj.get_string_member ("expanded_url"),
         target = null
       };

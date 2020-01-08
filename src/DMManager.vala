@@ -119,6 +119,7 @@ public class DMManager : GLib.Object {
       url_list[index] = Cb.TextEntity() {
         from = (uint)indices.get_int_element (0),
         to   = (uint)indices.get_int_element (1) ,
+        original_text = url.get_string_member ("url"),
         display_text = url.get_string_member ("display_url"),
         target = expanded_url.replace ("&", "&amp;"),
         tooltip_text = expanded_url
