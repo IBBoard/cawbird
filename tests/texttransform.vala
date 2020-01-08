@@ -504,6 +504,44 @@ void bug70_substring_memory_allocation() {
   //GLib.Test.assert_expected_messages ();
 }
 
+void bug70_case_insensitivity() {
+  // Apparently Twitter sometimes mismatches the case between the entity content and the text.
+  // Presumably this happens when someone types @ibboard but the canonical format is @IBBoard.
+  // The text shows what was typed, but the entity shows the canonical value.
+  var t = new Cb.Tweet ();
+  t.quoted_tweet = Cb.MiniTweet ();
+  t.quoted_tweet.id = 1337;
+
+  t.source_tweet = Cb.MiniTweet ();
+  t.source_tweet.text = "Hello @ibboard! #newyearseve #ebertstraße";
+  t.source_tweet.entities = new Cb.TextEntity[3];
+  t.source_tweet.entities[0] = Cb.TextEntity () {
+    from = 6,
+    to   = 14,
+    original_text = "@IBBoard",
+    display_text = "@IBBoard",
+    target = "blubb"
+  };
+  t.source_tweet.entities[1] = Cb.TextEntity () {
+    from = 16,
+    to   = 28,
+    original_text = "#NewYearsEve",
+    display_text = "#NewYearsEve",
+    target = "blubb"
+  };
+  t.source_tweet.entities[2] = Cb.TextEntity () {
+    from = 29,
+    to   = 41,
+    original_text = "#Ebertstraße",
+    display_text = "#Ebertstraße",
+    target = "blubb"
+  };
+
+  string result = t.get_real_text ();
+
+  assert (result == "Hello @IBBoard! #NewYearsEve #Ebertstraße");
+}
+
 int main (string[] args) {
   GLib.Environment.set_variable ("GSETTINGS_BACKEND", "memory", true);
   Intl.setlocale (LocaleCategory.ALL, "");
@@ -524,6 +562,7 @@ int main (string[] args) {
   GLib.Test.add_func ("/tt/new-reply", new_reply);
   GLib.Test.add_func ("/tt/bug1", bug1);
   GLib.Test.add_func ("/tt/bug70-substring-memory-allocation", bug70_substring_memory_allocation);
+  GLib.Test.add_func ("/tt/bug70-case-insensitivity", bug70_case_insensitivity);
 
   return GLib.Test.run ();
 }
