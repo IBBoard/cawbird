@@ -157,6 +157,7 @@ cb_text_transform_text (const char   *text,
       char *entity_text;
       guint entity_to;
       guint entity_from;
+      gboolean entity_exists = FALSE;
 
       if (entity->to <= display_range_start)
         continue;
@@ -166,11 +167,22 @@ cb_text_transform_text (const char   *text,
 
       entity_text = g_utf8_substring(text, entity_from, entity_to);
 
-      if (g_ascii_strcasecmp(entity->original_text, entity_text) != 0) {
-        // If the entity text doesn't match the text between the indices (ignoring case, because sometimes Twitter has @ibboard
-        // in the text and @IBBoard in the entity) then something went wrong with our data!
-        // We ignore the case of ASCII characters because a) g_strcasecmp is deprecated and recommends the ASCII functions
-        // and b) this has mainly been seen with usernames, which are only ASCII anyway
+      // If the entity text doesn't match the text between the indices (ignoring case, because sometimes Twitter has @ibboard
+      // in the text and @IBBoard in the entity) then something went wrong with our data!
+      // We ignore the case of ASCII characters because a) g_strcasecmp is deprecated and recommends the ASCII functions
+      // and b) case changing has mainly been seen with usernames, which are only ASCII anyway
+      if (is_hashtag (entity->display_text)) {
+        // We build hashtags with "#" but the text might use the FULLWIDTH NUMBER SIGN
+        // so we have to ignore it in the comparison
+        char *original_text_no_hash = g_utf8_offset_to_pointer (entity->original_text, 1);
+        char *entity_text_no_hash = g_utf8_offset_to_pointer (entity_text, 1);
+        entity_exists = g_ascii_strcasecmp(original_text_no_hash, entity_text_no_hash) == 0;
+      }
+      else {
+        entity_exists = g_ascii_strcasecmp(entity->original_text, entity_text) == 0;
+      }
+
+      if (!entity_exists) {
         g_info("Skipping entity - expected %s but found %s. Likely bad indices (%u to %u)", entity->original_text, entity_text, entity->from, entity->to);
         g_free(entity_text);
         continue;
