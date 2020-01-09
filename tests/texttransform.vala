@@ -542,6 +542,28 @@ void bug70_case_insensitivity() {
   assert (result == "Hello @IBBoard! #NewYearsEve #Ebertstraße");
 }
 
+void bug70_wide_hash() {
+  // Some character sets (e.g. Japanese) may use U+FF03 FULLWIDTH NUMBER SIGN
+  // instead of U+0023 NUMBER SIGN  
+  var t = new Cb.Tweet ();
+  t.quoted_tweet = Cb.MiniTweet ();
+  t.quoted_tweet.id = 1337;
+
+  t.source_tweet = Cb.MiniTweet ();
+  t.source_tweet.text = "Wide ＃リーグオーダー";
+  t.source_tweet.entities = new Cb.TextEntity[1];
+  t.source_tweet.entities[0] = Cb.TextEntity () {
+    from = 5,
+    to   = 13,
+    original_text = "#リーグオーダー",
+    // Use the fact that get_real_text() expands hashtags to their display text to do a translation that we can spot
+    display_text = "#LeagueOrder"
+  };
+  info("bug70-wide-hash");
+  string result = t.get_real_text ();
+  assert (result == "Wide #LeagueOrder");
+}
+
 int main (string[] args) {
   GLib.Environment.set_variable ("GSETTINGS_BACKEND", "memory", true);
   Intl.setlocale (LocaleCategory.ALL, "");
@@ -563,6 +585,7 @@ int main (string[] args) {
   GLib.Test.add_func ("/tt/bug1", bug1);
   GLib.Test.add_func ("/tt/bug70-substring-memory-allocation", bug70_substring_memory_allocation);
   GLib.Test.add_func ("/tt/bug70-case-insensitivity", bug70_case_insensitivity);
+  GLib.Test.add_func ("/tt/bug70-wide-hash", bug70_wide_hash);
 
   return GLib.Test.run ();
 }
