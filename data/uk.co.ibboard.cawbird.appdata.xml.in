@@ -44,6 +44,17 @@
   <url type="bugtracker">https://github.com/ibboard/cawbird/issues</url>
 
   <releases>
+    <release version="1.0.4" date="2020-01-12">
+      <p>Changes in Cawbird 1.0.4:</p>
+      <ul>
+        <li>Reduce bespoke themeing and make the main bar use native colours</li>
+        <li>Import favourited images from Corebird (if they exist)</li>
+        <li>Fixed crash caused by Twitter sending invalid entity positions in tweet</li>
+        <li>Fixed tweet length error with counting prime marks (quotes)</li>
+        <li>Update Italian translation (thanks to @albanobattistella)</li>
+        <li>Completed Flatpak build (thanks to @p1u3o)</li>
+      </ul>
+    </release>
     <release version="1.0.3" date="2019-10-20">
       <p>Changes in Cawbird 1.0.3:</p>
       <ul>
