@@ -480,6 +480,36 @@ void bug1 () {
   assert (filter_text.length > 0);
 }
 
+void bug69_old_bad_encoding () {
+  // Some really old tweets properly encode some characters but not ampersands.
+  // This causes our rendering to break as it assumes everything is valid HTML.
+  var now = new GLib.DateTime.now_local ();
+  var bad_tweet = new Cb.Tweet ();
+
+  var parser = new Json.Parser ();
+  try {
+    parser.load_from_data (bug69_bad_tweet);
+  } catch (GLib.Error e) {
+    critical (e.message);
+  }
+  var bad_root = parser.get_root ();
+  bad_tweet.load_from_json (bad_root, 0, now);
+
+  var good_tweet = new Cb.Tweet ();
+  parser = new Json.Parser ();
+
+  try {
+    parser.load_from_data (bug69_good_tweet);
+  } catch (GLib.Error e) {
+    critical (e.message);
+  }
+  var good_root = parser.get_root ();
+
+  good_tweet.load_from_json (good_root, 0, now);
+
+  assert (good_tweet.get_real_text().substring(0, 137) == bad_tweet.get_real_text());
+}
+
 void bug70_substring_memory_allocation() {
   // Twitter once gave us bad data (duplicate entity indices). This caused negative-length substrings.
   // We can't linkigy an entity that we don't know the position of, so it has to remain as text.
@@ -583,6 +613,7 @@ int main (string[] args) {
   GLib.Test.add_func ("/tt/no-quoted-link", no_quoted_link);
   GLib.Test.add_func ("/tt/new-reply", new_reply);
   GLib.Test.add_func ("/tt/bug1", bug1);
+  GLib.Test.add_func ("/tt/bug69-old-bad-encoding", bug69_old_bad_encoding);
   GLib.Test.add_func ("/tt/bug70-substring-memory-allocation", bug70_substring_memory_allocation);
   GLib.Test.add_func ("/tt/bug70-case-insensitivity", bug70_case_insensitivity);
   GLib.Test.add_func ("/tt/bug70-wide-hash", bug70_wide_hash);
@@ -1134,6 +1165,339 @@ const string BUG1_DATA =
    "filter_level":"low",
    "lang":"ar",
    "timestamp_ms":"1499283482658"
+}
+""";
+
+const string bug69_good_tweet = """
+{
+  "created_at" : "Fri Dec 20 14:17:23 +0000 2019",
+  "id" : 1208028629059420161,
+  "id_str" : "1208028629059420161",
+  "full_text" : "for i in `seq 1 254` ; do ping -W1 -c 1 10.0.0.$i &gt; /dev/null &amp;&amp; echo 10.0.0.$i ; done #scan network 10.0.0.0 for active hosts\n\n(Copy of https://t.co/0hUF8hx8Lj to compare JSON)",
+  "truncated" : false,
+  "display_text_range" : [
+    0,
+    188
+  ],
+  "entities" : {
+    "hashtags" : [
+      {
+        "text" : "scan",
+        "indices" : [
+          98,
+          103
+        ]
+      }
+    ],
+    "symbols" : [
+    ],
+    "user_mentions" : [
+    ],
+    "urls" : [
+      {
+        "url" : "https://t.co/0hUF8hx8Lj",
+        "expanded_url" : "https://twitter.com/climagic/status/6705176552",
+        "display_url" : "twitter.com/climagic/statu…",
+        "indices" : [
+          148,
+          171
+        ]
+      }
+    ]
+  },
+  "source" : "<a href=\"https://ibboard.co.uk/cawbird/\" rel=\"nofollow\">Cawbird</a>",
+  "in_reply_to_status_id" : null,
+  "in_reply_to_status_id_str" : null,
+  "in_reply_to_user_id" : null,
+  "in_reply_to_user_id_str" : null,
+  "in_reply_to_screen_name" : null,
+  "user" : {
+    "id" : 194913600,
+    "id_str" : "194913600",
+    "name" : "Test Account",
+    "screen_name" : "IBBTwtr",
+    "location" : "",
+    "description" : "IBBoard's test account for sending test messages to without disturbing people. THIS ACCOUNT WILL NEVER POST ANYTHING INTERESTING! May be used as a spam trap.",
+    "url" : null,
+    "entities" : {
+      "description" : {
+        "urls" : [
+        ]
+      }
+    },
+    "protected" : false,
+    "followers_count" : 2,
+    "friends_count" : 12,
+    "listed_count" : 0,
+    "created_at" : "Sat Sep 25 09:06:35 +0000 2010",
+    "favourites_count" : 1,
+    "utc_offset" : null,
+    "time_zone" : null,
+    "geo_enabled" : false,
+    "verified" : false,
+    "statuses_count" : 102,
+    "lang" : null,
+    "contributors_enabled" : false,
+    "is_translator" : false,
+    "is_translation_enabled" : false,
+    "profile_background_color" : "C0DEED",
+    "profile_background_image_url" : "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https" : "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile" : false,
+    "profile_image_url" : "http://pbs.twimg.com/profile_images/853335069934669831/k5Y-rjee_normal.jpg",
+    "profile_image_url_https" : "https://pbs.twimg.com/profile_images/853335069934669831/k5Y-rjee_normal.jpg",
+    "profile_link_color" : "1DA1F2",
+    "profile_sidebar_border_color" : "C0DEED",
+    "profile_sidebar_fill_color" : "DDEEF6",
+    "profile_text_color" : "333333",
+    "profile_use_background_image" : true,
+    "has_extended_profile" : false,
+    "default_profile" : true,
+    "default_profile_image" : false,
+    "can_media_tag" : true,
+    "followed_by" : false,
+    "following" : false,
+    "follow_request_sent" : false,
+    "notifications" : false,
+    "translator_type" : "none"
+  },
+  "geo" : null,
+  "coordinates" : null,
+  "place" : null,
+  "contributors" : null,
+  "is_quote_status" : true,
+  "quoted_status_id" : 6705176552,
+  "quoted_status_id_str" : "6705176552",
+  "quoted_status_permalink" : {
+    "url" : "https://t.co/0hUF8hx8Lj",
+    "expanded" : "https://twitter.com/climagic/status/6705176552",
+    "display" : "twitter.com/climagic/statu…"
+  },
+  "quoted_status" : {
+    "created_at" : "Tue Dec 15 19:25:44 +0000 2009",
+    "id" : 6705176552,
+    "id_str" : "6705176552",
+    "full_text" : "for i in `seq 1 254` ; do ping -W1 -c 1 10.0.0.$i &gt; /dev/null && echo 10.0.0.$i ; done #scan network 10.0.0.0 for active hosts",
+    "truncated" : false,
+    "display_text_range" : [
+      0,
+      129
+    ],
+    "entities" : {
+      "hashtags" : [
+        {
+          "text" : "scan",
+          "indices" : [
+            90,
+            95
+          ]
+        }
+      ],
+      "symbols" : [
+      ],
+      "user_mentions" : [
+      ],
+      "urls" : [
+      ]
+    },
+    "source" : "<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>",
+    "in_reply_to_status_id" : null,
+    "in_reply_to_status_id_str" : null,
+    "in_reply_to_user_id" : null,
+    "in_reply_to_user_id_str" : null,
+    "in_reply_to_screen_name" : null,
+    "user" : {
+      "id" : 91333167,
+      "id_str" : "91333167",
+      "name" : "Command Line Magic",
+      "screen_name" : "climagic",
+      "location" : "BASHLAND",
+      "description" : "Cool Unix/Linux Command Line tricks you can use in $TWITTER_CHAR_LIMIT characters or less. Here mostly to inspire all to try more. Read docs first, run later.",
+      "url" : "https://t.co/eKoQFEZTLs",
+      "entities" : {
+        "url" : {
+          "urls" : [
+            {
+              "url" : "https://t.co/eKoQFEZTLs",
+              "expanded_url" : "http://www.climagic.org/",
+              "display_url" : "climagic.org",
+              "indices" : [
+                0,
+                23
+              ]
+            }
+          ]
+        },
+        "description" : {
+          "urls" : [
+          ]
+        }
+      },
+      "protected" : false,
+      "followers_count" : 187515,
+      "friends_count" : 12242,
+      "listed_count" : 4036,
+      "created_at" : "Fri Nov 20 12:49:35 +0000 2009",
+      "favourites_count" : 1498,
+      "utc_offset" : null,
+      "time_zone" : null,
+      "geo_enabled" : true,
+      "verified" : false,
+      "statuses_count" : 12536,
+      "lang" : null,
+      "contributors_enabled" : false,
+      "is_translator" : false,
+      "is_translation_enabled" : false,
+      "profile_background_color" : "C0DEED",
+      "profile_background_image_url" : "http://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_image_url_https" : "https://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_tile" : true,
+      "profile_image_url" : "http://pbs.twimg.com/profile_images/535876218/climagic-icon_normal.png",
+      "profile_image_url_https" : "https://pbs.twimg.com/profile_images/535876218/climagic-icon_normal.png",
+      "profile_link_color" : "0084B4",
+      "profile_sidebar_border_color" : "C0DEED",
+      "profile_sidebar_fill_color" : "DDEEF6",
+      "profile_text_color" : "333333",
+      "profile_use_background_image" : true,
+      "has_extended_profile" : false,
+      "default_profile" : false,
+      "default_profile_image" : false,
+      "can_media_tag" : true,
+      "followed_by" : false,
+      "following" : false,
+      "follow_request_sent" : false,
+      "notifications" : false,
+      "translator_type" : "none"
+    },
+    "geo" : null,
+    "coordinates" : null,
+    "place" : null,
+    "contributors" : null,
+    "is_quote_status" : false,
+    "retweet_count" : 12,
+    "favorite_count" : 44,
+    "favorited" : false,
+    "retweeted" : false,
+    "lang" : "en"
+  },
+  "retweet_count" : 0,
+  "favorite_count" : 0,
+  "favorited" : false,
+  "retweeted" : false,
+  "possibly_sensitive" : false,
+  "lang" : "en"
+}
+""";
+
+// Note: This is currently a copy-and-paste of the `bug69_good_tweet` quoted tweet
+// since we can't load it directly and do a Ctrl+k to dump the JSON because of the bug!
+const string bug69_bad_tweet = """
+{
+  "created_at" : "Tue Dec 15 19:25:44 +0000 2009",
+  "id" : 6705176552,
+  "id_str" : "6705176552",
+  "full_text" : "for i in `seq 1 254` ; do ping -W1 -c 1 10.0.0.$i &gt; /dev/null && echo 10.0.0.$i ; done #scan network 10.0.0.0 for active hosts",
+  "truncated" : false,
+  "display_text_range" : [
+    0,
+    129
+  ],
+  "entities" : {
+    "hashtags" : [
+      {
+        "text" : "scan",
+        "indices" : [
+          90,
+          95
+        ]
+      }
+    ],
+    "symbols" : [
+    ],
+    "user_mentions" : [
+    ],
+    "urls" : [
+    ]
+  },
+  "source" : "<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>",
+  "in_reply_to_status_id" : null,
+  "in_reply_to_status_id_str" : null,
+  "in_reply_to_user_id" : null,
+  "in_reply_to_user_id_str" : null,
+  "in_reply_to_screen_name" : null,
+  "user" : {
+    "id" : 91333167,
+    "id_str" : "91333167",
+    "name" : "Command Line Magic",
+    "screen_name" : "climagic",
+    "location" : "BASHLAND",
+    "description" : "Cool Unix/Linux Command Line tricks you can use in $TWITTER_CHAR_LIMIT characters or less. Here mostly to inspire all to try more. Read docs first, run later.",
+    "url" : "https://t.co/eKoQFEZTLs",
+    "entities" : {
+      "url" : {
+        "urls" : [
+          {
+            "url" : "https://t.co/eKoQFEZTLs",
+            "expanded_url" : "http://www.climagic.org/",
+            "display_url" : "climagic.org",
+            "indices" : [
+              0,
+              23
+            ]
+          }
+        ]
+      },
+      "description" : {
+        "urls" : [
+        ]
+      }
+    },
+    "protected" : false,
+    "followers_count" : 187515,
+    "friends_count" : 12242,
+    "listed_count" : 4036,
+    "created_at" : "Fri Nov 20 12:49:35 +0000 2009",
+    "favourites_count" : 1498,
+    "utc_offset" : null,
+    "time_zone" : null,
+    "geo_enabled" : true,
+    "verified" : false,
+    "statuses_count" : 12536,
+    "lang" : null,
+    "contributors_enabled" : false,
+    "is_translator" : false,
+    "is_translation_enabled" : false,
+    "profile_background_color" : "C0DEED",
+    "profile_background_image_url" : "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https" : "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile" : true,
+    "profile_image_url" : "http://pbs.twimg.com/profile_images/535876218/climagic-icon_normal.png",
+    "profile_image_url_https" : "https://pbs.twimg.com/profile_images/535876218/climagic-icon_normal.png",
+    "profile_link_color" : "0084B4",
+    "profile_sidebar_border_color" : "C0DEED",
+    "profile_sidebar_fill_color" : "DDEEF6",
+    "profile_text_color" : "333333",
+    "profile_use_background_image" : true,
+    "has_extended_profile" : false,
+    "default_profile" : false,
+    "default_profile_image" : false,
+    "can_media_tag" : true,
+    "followed_by" : false,
+    "following" : false,
+    "follow_request_sent" : false,
+    "notifications" : false,
+    "translator_type" : "none"
+  },
+  "geo" : null,
+  "coordinates" : null,
+  "place" : null,
+  "contributors" : null,
+  "is_quote_status" : false,
+  "retweet_count" : 12,
+  "favorite_count" : 44,
+  "favorited" : false,
+  "retweeted" : false,
+  "lang" : "en"
 }
 """;
 
