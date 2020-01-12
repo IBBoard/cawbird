@@ -19,8 +19,8 @@ These packages are currently available for:
   * openSUSE Leap 15
   * openSUSE Leap 15.1
 * Fedora
-  * Fedora 29
   * Fedora 30
+  * Fedora 31
   * Fedora Rawhide
 * CentOS
   * CentOS 7
@@ -31,10 +31,6 @@ These packages are currently available for:
 * Debian
   * Testing
   * Unstable
-
-The following distros will be supported in future:
-
-* Fedora 31
 
 ### Official distro repositories
 
