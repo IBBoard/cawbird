@@ -213,6 +213,7 @@ namespace Cb {
   namespace TextTransform {
     string tweet (ref MiniTweet tweet, uint flags, int64 quote_id);
     string text (string text, TextEntity[] entities, uint flags, size_t n_medias, int64 quote_id, uint display_range_start = 0);
+    string fix_encoding (string text);
   }
 
   [CCode (cprefix = "cb_filter_", cheader_filename = "CbFilter.h")]

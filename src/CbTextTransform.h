@@ -42,4 +42,6 @@ char *cb_text_transform_text  (const char   *text,
                                gint64        quote_id,
                                guint         display_range_start);
 
+char *cb_text_transform_fix_encoding (const char *text);
+
 #endif

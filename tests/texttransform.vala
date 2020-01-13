@@ -480,6 +480,23 @@ void bug1 () {
   assert (filter_text.length > 0);
 }
 
+void bug69_encode_text () {
+  // Test that our encoding function works independently of tweets.
+  // It'd be nice if we didn't have to expose this function, but we're testing
+  // C code from Vala, so I don't think there's much choice
+
+  // First make sure normal text doesn't change
+  assert(Cb.TextTransform.fix_encoding ("Hello, World!") == "Hello, World!");
+  assert(Cb.TextTransform.fix_encoding ("Héllö, Wôrld‽") == "Héllö, Wôrld‽");
+  assert(Cb.TextTransform.fix_encoding ("こんにちは世界！") == "こんにちは世界！");
+
+  // Then test it doesn't break correct encoding
+  assert(Cb.TextTransform.fix_encoding ("Hello, World &amp; Others&excl;&#x00021;&#33;") == "Hello, World &amp; Others&excl;&#x00021;&#33;");
+
+  // Then test it fixes a simple case
+  assert(Cb.TextTransform.fix_encoding ("Hello, World & Others!") == "Hello, World &amp; Others!");
+}
+
 void bug69_old_bad_encoding () {
   // Some really old tweets properly encode some characters but not ampersands.
   // This causes our rendering to break as it assumes everything is valid HTML.
@@ -613,6 +630,7 @@ int main (string[] args) {
   GLib.Test.add_func ("/tt/no-quoted-link", no_quoted_link);
   GLib.Test.add_func ("/tt/new-reply", new_reply);
   GLib.Test.add_func ("/tt/bug1", bug1);
+  GLib.Test.add_func ("/tt/bug69-encode-text", bug69_encode_text);
   GLib.Test.add_func ("/tt/bug69-old-bad-encoding", bug69_old_bad_encoding);
   GLib.Test.add_func ("/tt/bug70-substring-memory-allocation", bug70_substring_memory_allocation);
   GLib.Test.add_func ("/tt/bug70-case-insensitivity", bug70_case_insensitivity);

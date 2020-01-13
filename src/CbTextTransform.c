@@ -90,6 +90,15 @@ is_whitespace (const char *s)
 }
 
 char *
+cb_text_transform_fix_encoding (const char *text)
+{
+  GString *str;
+  str = g_string_new (NULL);
+  g_string_append(str, text);
+  return g_string_free(str, FALSE);
+}
+
+char *
 cb_text_transform_text (const char   *text,
                         CbTextEntity *entities,
                         gsize         n_entities,
