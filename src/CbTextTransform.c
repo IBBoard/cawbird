@@ -92,10 +92,75 @@ is_whitespace (const char *s)
 char *
 cb_text_transform_fix_encoding (const char *text)
 {
-  GString *str;
-  str = g_string_new (NULL);
-  g_string_append(str, text);
-  return g_string_free(str, FALSE);
+  GString *fixed_string;
+  gchar cur_char;
+  const gchar *str;
+  gchar *valid_string;
+  guint valid_start = 0;
+  guint cur_pos = 0;
+  guint entity_pos;
+  gboolean in_entity = FALSE;
+  str = text;
+  fixed_string = g_string_new (NULL);
+
+  // Apparently this is a C-ish pattern for walking the string
+  while(*str) {
+    cur_char = g_utf8_get_char (str);
+
+    if (in_entity) {
+      if (
+        (cur_char >= '0' && cur_char <= '9')
+        || (cur_char >= 'A' && cur_char <= 'Z') || (cur_char >= 'a' && cur_char <= 'z')
+        || (cur_char == '#' && entity_pos == cur_pos - 1)) {
+        // Continue - but don't "continue;" because we need to do the stuff at the end of the loop
+      } else if (cur_char == ';') {
+        // Assume the entity was valid.
+        // Or we had REALLY bad luck and found an old tweet where someone used an ampersand. no space, some alphanumeric text AND a semicolon!
+        in_entity = FALSE;
+      } else {
+        // Entity was invalid
+        if (valid_start < entity_pos) {
+          // There's valid substring text to add
+          valid_string = g_utf8_substring(text, valid_start, entity_pos);
+          g_string_append(fixed_string, valid_string);
+          g_free(valid_string);
+        }
+
+        g_string_append(fixed_string, "&amp;");
+        in_entity = FALSE;
+        valid_start = entity_pos + 1;
+      }
+    } else if (cur_char == '&') {
+      entity_pos = cur_pos;
+      in_entity = TRUE;
+    } 
+    // Else all is good, just keep going
+
+    str = g_utf8_next_char(str);
+    cur_pos += 1;
+  }
+
+  if (in_entity) {
+    // Handle a trailing entity
+    // TODO: Avoid code copy-and-paste from the WHILE loop
+    if (valid_start < entity_pos) {
+      valid_string = g_utf8_substring(text, valid_start, entity_pos);
+      g_string_append(fixed_string, valid_string);
+      g_free(valid_string);
+    }
+
+    g_string_append(fixed_string, "&amp;");
+    valid_start = entity_pos + 1;
+  }
+
+  // Add any trailing text
+  if (valid_start < cur_pos) {
+    valid_string = g_utf8_substring(text, valid_start, cur_pos);
+    g_string_append(fixed_string, valid_string);
+    g_free(valid_string);
+  }
+  
+  return g_string_free(fixed_string, FALSE);
 }
 
 char *
