@@ -159,7 +159,7 @@ cb_text_transform_fix_encoding (const char *text)
     g_string_append(fixed_string, valid_string);
     g_free(valid_string);
   }
-  
+
   return g_string_free(fixed_string, FALSE);
 }
 
@@ -228,6 +228,7 @@ cb_text_transform_text (const char   *text,
     {
       CbTextEntity *entity = &entities[i];
       char *before;
+      char *encoded_before;
       char *entity_text;
       guint entity_to;
       guint entity_from;
@@ -268,8 +269,13 @@ cb_text_transform_text (const char   *text,
                                  last_end,
                                  entity_from);
 
-      if (!(last_entity_was_trailing && is_whitespace (before)))
-        g_string_append (str, before);
+      if (!(last_entity_was_trailing && is_whitespace (before))) {
+        encoded_before = cb_text_transform_fix_encoding (before);
+        g_string_append (str, encoded_before);
+        g_free (encoded_before);
+      }
+
+      g_free (before);
 
       if ((flags & CB_TEXT_TRANSFORM_REMOVE_TRAILING_HASHTAGS) > 0 &&
           (entity->info & TRAILING) > 0 &&
@@ -277,7 +283,6 @@ cb_text_transform_text (const char   *text,
         {
           last_end = entity_to;
           last_entity_was_trailing = TRUE;
-          g_free (before);
           continue;
         }
 
@@ -288,7 +293,6 @@ cb_text_transform_text (const char   *text,
           (quote_id != 0 && is_quote_link (entity, quote_id)))
         {
           last_end = entity_to;
-          g_free (before);
           continue;
         }
 
@@ -324,7 +328,6 @@ cb_text_transform_text (const char   *text,
         }
 
       last_end = entity_to;
-      g_free (before);
     }
 
   end_str = g_utf8_substring (text, last_end, text_len);
