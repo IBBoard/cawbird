@@ -495,6 +495,13 @@ void bug69_encode_text () {
 
   // Then test it fixes a simple case
   assert(Cb.TextTransform.fix_encoding ("Hello, World & Others!") == "Hello, World &amp; Others!");
+
+  // Then some other positions
+  assert(Cb.TextTransform.fix_encoding ("&Hello, World!") == "&amp;Hello, World!");
+  assert(Cb.TextTransform.fix_encoding ("Hello, World!&") == "Hello, World!&amp;");
+
+  // And finally, bug 69 - double ampersand
+  assert(Cb.TextTransform.fix_encoding ("Hello, World && Others!") == "Hello, World &amp;&amp; Others!");
 }
 
 void bug69_old_bad_encoding () {
