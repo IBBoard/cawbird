@@ -500,8 +500,13 @@ void bug69_encode_text () {
   assert(Cb.TextTransform.fix_encoding ("&Hello, World!") == "&amp;Hello, World!");
   assert(Cb.TextTransform.fix_encoding ("Hello, World!&") == "Hello, World!&amp;");
 
-  // And finally, bug 69 - double ampersand
+  // And then bug 69 - double ampersand
   assert(Cb.TextTransform.fix_encoding ("Hello, World && Others!") == "Hello, World &amp;&amp; Others!");
+
+  // Check other odd ampersand setups while we're at it.
+  assert(Cb.TextTransform.fix_encoding ("Hello, World &amp;& Others!") == "Hello, World &amp;&amp; Others!");
+  assert(Cb.TextTransform.fix_encoding ("Hello, World &&amp; Others!") == "Hello, World &amp;&amp; Others!");
+  assert(Cb.TextTransform.fix_encoding ("Hello, World &hello& Others!") == "Hello, World &amp;hello&amp; Others!");
 }
 
 void bug69_old_bad_encoding () {
