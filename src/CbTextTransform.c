@@ -129,7 +129,7 @@ cb_text_transform_fix_encoding (const char *text)
         g_string_append(fixed_string, "&amp;");
         valid_start = entity_pos + 1;
 
-        if (cur_char == '&' && entity_pos == cur_pos - 1) {
+        if (cur_char == '&') {
           // If it's a consecutive & then we're in a new entity already!
           in_entity = TRUE;
           entity_pos = cur_pos;
