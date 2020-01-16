@@ -97,9 +97,25 @@ Due to [changes in the Twitter API](https://developer.twitter.com/en/docs/accoun
 
 All limitations are limitations imposed by Twitter and are not the fault of the Cawbird client. They have affected [all third-party client applications](http://apps-of-a-feather.com/).
 
+Cawbird is also unable to implement the following features because Twitter does not provide a way for third-party applications to get the data:
+
+* Twitter's "[Bookmarks](https://blog.twitter.com/en_us/topics/product/2018/an-easier-way-to-save-and-share-tweets.html)" system
+  * No API is available
+* Full threads in a single request
+  * No API is available
+* Replies older than seven days
+  * The search is limited to the last seven days
+* All replies to a tweet
+  * No API is available and the search results are not guaranteed to find all replies
+
 ## Known issues
 
-Due to a [bug in GnuTLS](https://gitlab.com/gnutls/gnutls/issues/841#note_225110002), Cawbird is currently suffering from occasional TLS errors. These are being handled under [Cawbird bug 9](https://github.com/IBBoard/cawbird/issues/9) to handle them when they do. A future version of GnuTLS should resolve the underlying problem.
+There are no current known issues with running Cawbird.
+
+Previously, the following issues have occurred that were outside of our control:
+
+* Due to a [bug in GnuTLS](https://gitlab.com/gnutls/gnutls/issues/841#note_225110002), Cawbird has suffered from occasional TLS errors. This has been handled under [Cawbird bug 9](https://github.com/IBBoard/cawbird/issues/9) and GnuTLS have released a fix for the underlying problem
+* Due to a [bug in GStreamer 1.16.1](https://github.com/IBBoard/cawbird/pull/42#issuecomment-539437887), Cawbird suffered from glitchy audio and video when playing media. This has now been fixed in GStreamer
 
 ## Translations
 
