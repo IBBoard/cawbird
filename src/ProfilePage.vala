@@ -403,6 +403,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       location_label.visible = false;
 
     avatar_image.verified = verified;
+    avatar_image.protected_account = protected_user;
 
     if (display_url.length > 0) {
       url_label.visible = true;

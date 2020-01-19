@@ -260,6 +260,7 @@ class SearchPage : IPage, Gtk.Box {
         entry.name = user_obj.get_string_member ("name").strip ();
         entry.avatar_url = avatar_url;
         entry.verified = user_obj.get_boolean_member ("verified");
+        entry.protected_account = user_obj.get_boolean_member ("protected");
         entry.show_settings = false;
         if (!collect_obj.done)
           entry.visible = false;

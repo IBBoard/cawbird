@@ -64,6 +64,7 @@ struct _CbUserIdentity
 {
   gint64  id;
   guint   verified : 1;
+  guint   protected_account : 1;
   char   *screen_name;
   char   *user_name;
 };

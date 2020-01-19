@@ -54,6 +54,10 @@
     <file>data/verified-small@2.png</file>
     <file>data/verified-large.png</file>
     <file>data/verified-large@2.png</file>
+    <file>data/protected-account-small.png</file>
+    <file>data/protected-account-small@2.png</file>
+    <file>data/protected-account-large.png</file>
+    <file>data/protected-account-large@2.png</file>
     <file>data/no_avatar.png</file>
     <file>data/no_banner.png</file>
     <file>ui/style.css</file>

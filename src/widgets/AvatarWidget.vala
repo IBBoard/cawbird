@@ -39,6 +39,7 @@ public class AvatarWidget : Gtk.Widget {
     }
   }
   public bool verified { get; set; default = false; }
+  public bool protected_account { get; set; default = false; }
   public bool overlap  { get; set; default = false; }
   public int size      { get; set; default = 48;    }
 
@@ -74,6 +75,9 @@ public class AvatarWidget : Gtk.Widget {
 
   static Cairo.Surface[] verified_icons;
   const int[] VERIFIED_SIZES = {12, 25};
+  static Cairo.Surface[] protected_account_icons;
+  const int[] PROTECTED_ACCOUNT_SIZES = {16, 32};
+
   static construct {
     try {
       verified_icons = {
@@ -88,6 +92,25 @@ public class AvatarWidget : Gtk.Widget {
           2, null),
         Gdk.cairo_surface_create_from_pixbuf (
           new Gdk.Pixbuf.from_resource ("/uk/co/ibboard/cawbird/data/verified-large@2.png"),
+          2, null)
+      };
+    } catch (GLib.Error e) {
+      critical (e.message);
+    }
+
+    try {
+      protected_account_icons = {
+        Gdk.cairo_surface_create_from_pixbuf (
+          new Gdk.Pixbuf.from_resource ("/uk/co/ibboard/cawbird/data/protected-account-small.png"),
+          1, null),
+        Gdk.cairo_surface_create_from_pixbuf (
+          new Gdk.Pixbuf.from_resource ("/uk/co/ibboard/cawbird/data/protected-account-large.png"),
+          1, null),
+        Gdk.cairo_surface_create_from_pixbuf (
+          new Gdk.Pixbuf.from_resource ("/uk/co/ibboard/cawbird/data/protected-account-small@2.png"),
+          2, null),
+        Gdk.cairo_surface_create_from_pixbuf (
+          new Gdk.Pixbuf.from_resource ("/uk/co/ibboard/cawbird/data/protected-account-large@2.png"),
           2, null)
       };
     } catch (GLib.Error e) {
@@ -200,6 +223,30 @@ public class AvatarWidget : Gtk.Widget {
       ctx.set_source_surface (verified_img,
                               (width  - (VERIFIED_SIZES[index] * verified_scale)) / verified_scale,
                               y);
+      ctx.paint_with_alpha (this.alpha);
+    }
+
+    if (protected_account) {
+      double protected_scale = 1.0;
+      int index = SMALL;
+      if (width > 48)
+        index = LARGE;
+
+      if (index == LARGE && this._size < 100) {
+        protected_scale = (double)this._size / 100.0;
+      }
+
+      int scale_factor = this.get_scale_factor () - 1;
+      Cairo.Surface protected_account_img = protected_account_icons[scale_factor * 2 + index];
+      ctx.scale (protected_scale, protected_scale);
+      double protected_y = (height  - (PROTECTED_ACCOUNT_SIZES[index] * protected_scale)) / protected_scale;
+
+      if (overlap) {
+        protected_y -= OVERLAP_DIST;
+      }
+      ctx.set_source_surface (protected_account_img,
+                              (width  - (PROTECTED_ACCOUNT_SIZES[index] * protected_scale)) / protected_scale,
+                              protected_y);
       ctx.paint_with_alpha (this.alpha);
     }
 

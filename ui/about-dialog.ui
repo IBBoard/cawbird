@@ -9,6 +9,9 @@
     <property name="website">https://ibboard.co.uk/cawbird/</property>
     <property name="authors">IBBoard &lt;cawbird@ibboard.co.uk&gt; (Cawbird)
 Timm Bäder &lt;mail@baedert.org&gt; (Corebird)</property>
+    <property name="artists">IBBoard &lt;cawbird@ibboard.co.uk&gt; (Cawbird icon)
+Timm Bäder &lt;mail@baedert.org&gt; (Corebird graphics)
+Gnome Project (Padlock icon - CC-BY-SA3 from Adwaita icon theme)</property>
     <property name="logo-icon-name">uk.co.ibboard.cawbird</property>
     <property name="license-type">gpl-3-0</property>
     <signal name="response" handler="response_cb" swapped="no"/>

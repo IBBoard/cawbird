@@ -78,6 +78,7 @@ namespace Cb {
     public string screen_name;
     public string user_name;
     public bool verified;
+    public bool protected_account;
     public void parse (Json.Object object);
   }
 

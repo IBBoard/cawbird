@@ -132,6 +132,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
                                        48 * this.get_scale_factor ());
     }
     avatar_image.verified = tweet.is_flag_set (Cb.TweetState.VERIFIED);
+    avatar_image.protected_account = tweet.is_flag_set (Cb.TweetState.PROTECTED);
     text_label.label = tweet.get_trimmed_text (Settings.get_text_transform_flags ()).strip ();
     if (tweet.retweeted_tweet != null) {
       rt_label.show ();

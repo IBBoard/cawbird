@@ -493,7 +493,7 @@ class CompletionTextView : Gtk.TextView {
   private Gtk.Widget create_completion_row (void *id_ptr) {
     // *shrug*
     Cb.UserIdentity *id = (Cb.UserIdentity*) id_ptr;
-    var row = new UserCompletionRow (id->id, id->user_name, id->screen_name, id->verified);
+    var row = new UserCompletionRow (id->id, id->user_name, id->screen_name, id->verified, id->protected_account);
 
     row.show ();
     return row;
@@ -506,6 +506,7 @@ class CompletionTextView : Gtk.TextView {
 
 class UserCompletionRow : Gtk.ListBoxRow {
   private static Cairo.Surface verified_surface;
+  private static Cairo.Surface protected_account_surface;
   private Gtk.Label user_name_label;
   private Gtk.Label screen_name_label;
 
@@ -514,12 +515,15 @@ class UserCompletionRow : Gtk.ListBoxRow {
       verified_surface = Gdk.cairo_surface_create_from_pixbuf (
           new Gdk.Pixbuf.from_resource ("/uk/co/ibboard/cawbird/data/verified-small.png"),
           1, null);
+      protected_account_surface = Gdk.cairo_surface_create_from_pixbuf (
+          new Gdk.Pixbuf.from_resource ("/uk/co/ibboard/cawbird/data/protected-account-small.png"),
+          1, null);
     } catch (GLib.Error e) {
       error (e.message);
     }
   }
 
-  public UserCompletionRow (int64 id, string user_name, string screen_name, bool verified) {
+  public UserCompletionRow (int64 id, string user_name, string screen_name, bool verified, bool protected_account) {
     user_name_label = new Gtk.Label (user_name);
     screen_name_label = new Gtk.Label ("@" + screen_name);
 
@@ -535,6 +539,11 @@ class UserCompletionRow : Gtk.ListBoxRow {
     if (verified) {
       var verified_image= new Gtk.Image.from_surface (verified_surface);
       box.add (verified_image);
+    }
+
+    if (protected_account) {
+      var protected_account_image = new Gtk.Image.from_surface (protected_account_surface);
+      box.add (protected_account_image);
     }
 
     box.margin = 2;

@@ -549,6 +549,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     retweet_button.active  = tweet.is_flag_set (Cb.TweetState.RETWEETED);
     favorite_button.active = tweet.is_flag_set (Cb.TweetState.FAVORITED);
     avatar_image.verified  = tweet.is_flag_set (Cb.TweetState.VERIFIED);
+    avatar_image.protected_account = tweet.is_flag_set (Cb.TweetState.PROTECTED);
 
     // Linking to a RT in New Twitter gives you a "RT …" page with no apparent way to get
     // to the original tweet, therefore we need to link to the RTed tweet to be useful.

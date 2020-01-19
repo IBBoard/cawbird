@@ -57,6 +57,12 @@ class UserListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
     }
   }
 
+  public bool protected_account {
+    set {
+      this.avatar_image.protected_account = value;
+    }
+  }
+
   public bool seen {
     get { return true; }
     set {}
