@@ -406,6 +406,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     avatar_image.protected_account = protected_user;
 
     if (display_url.length > 0) {
+      display_url = GLib.Markup.escape_text (display_url);
       url_label.visible = true;
       url_label.set_markup ("<span underline='none'><a href='%s'>%s</a></span>"
                             .printf (display_url, display_url));
