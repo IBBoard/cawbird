@@ -147,6 +147,7 @@ cb_user_completion_model_insert_items (CbUserCompletionModel *self,
       new_id->screen_name = g_steal_pointer (&id->screen_name);
       new_id->user_name = g_steal_pointer (&id->user_name);
       new_id->verified = id->verified;
+      new_id->protected_account = id->protected_account;
       added ++;
     }
 
@@ -183,7 +184,8 @@ cb_user_completion_model_insert_infos (CbUserCompletionModel *self,
       new_id->id = info->user_id;
       new_id->screen_name = g_steal_pointer (&info->screen_name);
       new_id->user_name = g_steal_pointer (&info->user_name);
-      new_id->verified = FALSE;
+      new_id->verified = info->verified;
+      new_id->protected_account = info->protected_account;
       added ++;
     }
 

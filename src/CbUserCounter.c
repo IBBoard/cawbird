@@ -52,14 +52,17 @@ cb_user_counter_id_seen (CbUserCounter        *counter,
   g_return_if_fail (CB_IS_USER_COUNTER (counter));
   g_return_if_fail (id != NULL);
 
-  cb_user_counter_user_seen (counter, id->id, id->screen_name, id->user_name);
+  cb_user_counter_user_seen_full (counter, id->id, id->screen_name, id->user_name, id->verified, id->protected_account);
 }
 
 void
-cb_user_counter_user_seen (CbUserCounter *counter,
-                           gint64         user_id,
-                           const char    *screen_name,
-                           const char    *user_name)
+user_seen (CbUserCounter *counter,
+           gint64         user_id,
+           const char    *screen_name,
+           const char    *user_name,
+           gboolean       verified,
+           gboolean       protected_account,
+           gboolean       extras_known)
 {
   gboolean found = FALSE;
   guint i;
@@ -75,6 +78,12 @@ cb_user_counter_user_seen (CbUserCounter *counter,
       if (ui->user_id == user_id)
         {
           ui->score ++;
+          ui->screen_name = g_strdup (screen_name);
+          ui->user_name = g_strdup (user_name);
+          if (extras_known) {
+            ui->verified    = verified;
+            ui->protected_account = protected_account;
+          }
           ui->changed = TRUE;
           found = TRUE;
           break;
@@ -93,9 +102,31 @@ cb_user_counter_user_seen (CbUserCounter *counter,
       ui->user_name   = g_strdup (user_name);
       ui->changed     = TRUE; /* Because we just inserted this, eh */
       ui->score       = 1;
+      ui->verified    = verified;
+      ui->protected_account = protected_account;
     }
 }
 
+// Lightweight call where we don't have all of the details (e.g. from DMs)
+void
+cb_user_counter_user_seen (CbUserCounter *counter,
+                                gint64         user_id,
+                                const char    *screen_name,
+                                const char    *user_name) {
+  user_seen (counter, user_id, screen_name, user_name, FALSE, FALSE, FALSE);
+}
+
+// Full call where we know whether accounts are verified or protected
+void
+cb_user_counter_user_seen_full (CbUserCounter *counter,
+                                gint64         user_id,
+                                const char    *screen_name,
+                                const char    *user_name,
+                                gboolean       verified,
+                                gboolean       protected_account)
+{
+  user_seen (counter, user_id, screen_name, user_name, verified, protected_account, TRUE);
+}
 
 int
 cb_user_counter_save (CbUserCounter *counter,
@@ -122,8 +153,8 @@ cb_user_counter_save (CbUserCounter *counter,
 
       /* Actually save entry in DB */
       ok = sqlite3_prepare_v2 (db,
-                               "INSERT OR REPLACE INTO `user_cache` (id, screen_name, user_name, score) "
-                               "VALUES(?, ?, ?, ?)", -1, &stmt, NULL);
+                               "INSERT OR REPLACE INTO `user_cache` (id, screen_name, user_name, score, verified, protected_account) "
+                               "VALUES(?, ?, ?, ?, ?, ?)", -1, &stmt, NULL);
 
       if (ok != SQLITE_OK)
         {
@@ -135,6 +166,8 @@ cb_user_counter_save (CbUserCounter *counter,
       sqlite3_bind_text (stmt, 2, ui->screen_name, -1, NULL);
       sqlite3_bind_text (stmt, 3, ui->user_name, -1, NULL);
       sqlite3_bind_int (stmt,  4, ui->score);
+      sqlite3_bind_int (stmt, 5, ui->verified);
+      sqlite3_bind_int (stmt, 6, ui->protected_account);
 
       ok = sqlite3_step (stmt);
       if (ok != SQLITE_DONE)
@@ -165,7 +198,7 @@ query_sqlite_cb (void  *user_data,
   guint i;
   gint64 user_id;
 
-  g_assert (n_columns == 4);
+  g_assert (n_columns == 6);
 
   user_id = strtoull (columns[0], NULL, 10);
 
@@ -184,6 +217,8 @@ query_sqlite_cb (void  *user_data,
   ui->screen_name = g_strdup (columns[1]);
   ui->user_name = g_strdup (columns[2]);
   ui->score = atoi (columns[3]);
+  ui->verified = *columns[4] == '1';
+  ui->protected_account = *columns[5] == '1';
 
   query_data->lowest_score = MIN (query_data->lowest_score, ui->score);
 
@@ -245,6 +280,8 @@ cb_user_counter_query_by_prefix (CbUserCounter *counter,
           new_ui->screen_name = g_strdup (ui->screen_name);
           new_ui->user_name = g_strdup (ui->user_name);
           new_ui->score = ui->score;
+          new_ui->verified = ui->verified;
+          new_ui->protected_account = ui->protected_account;
 
           query_data.lowest_score = MIN (query_data.lowest_score, ui->score);
         }
@@ -256,7 +293,8 @@ cb_user_counter_query_by_prefix (CbUserCounter *counter,
   if (query_data.infos->len == 0)
     query_data.lowest_score = -1;
 
-  sql = g_strdup_printf ("SELECT `id`, `screen_name`, `user_name`, `score` "
+  sql = g_strdup_printf ("SELECT `id`, `screen_name`, `user_name`, `score`, "
+                         "`verified`, `protected_account` "
                          "FROM `user_cache` WHERE `screen_name` LIKE '%s%%' "
                          "OR `user_name` LIKE '%s%%' ORDER BY `score` DESC LIMIT %d "
                          "COLLATE NOCASE;", prefix, prefix, max_results);

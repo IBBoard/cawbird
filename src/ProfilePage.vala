@@ -366,7 +366,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       }
     }
 
-    account.user_counter.user_seen (id, screen_name, name);
+    account.user_counter.user_seen_full (id, screen_name, name, verified, protected_user);
 
     this.follow_button.following = is_following;
     this.follow_button.sensitive = (this.user_id != this.account.id);

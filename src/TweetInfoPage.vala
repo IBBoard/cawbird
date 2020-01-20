@@ -530,7 +530,9 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
    *
    */
   private void set_tweet_data (Cb.Tweet tweet, string? with = null) {
-    account.user_counter.user_seen (tweet.get_user_id (), tweet.get_screen_name (), tweet.get_user_name ());
+    bool tweet_is_protected = tweet.is_flag_set (Cb.TweetState.PROTECTED);
+    bool tweet_is_verified = tweet.is_flag_set (Cb.TweetState.VERIFIED);
+    account.user_counter.user_seen_full (tweet.get_user_id (), tweet.get_screen_name (), tweet.get_user_name (), tweet_is_verified, tweet_is_protected);
     GLib.DateTime created_at = new GLib.DateTime.from_unix_local (
              tweet.retweeted_tweet != null ? tweet.retweeted_tweet.created_at :
                                              tweet.source_tweet.created_at);
@@ -548,8 +550,8 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     time_label.label = time_format;
     retweet_button.active  = tweet.is_flag_set (Cb.TweetState.RETWEETED);
     favorite_button.active = tweet.is_flag_set (Cb.TweetState.FAVORITED);
-    avatar_image.verified  = tweet.is_flag_set (Cb.TweetState.VERIFIED);
-    avatar_image.protected_account = tweet.is_flag_set (Cb.TweetState.PROTECTED);
+    avatar_image.verified  = tweet_is_verified;
+    avatar_image.protected_account = tweet_is_protected;
 
     // Linking to a RT in New Twitter gives you a "RT …" page with no apparent way to get
     // to the original tweet, therefore we need to link to the RTed tweet to be useful.

@@ -245,6 +245,7 @@ namespace Cb {
     public UserCounter ();
     public void id_seen (ref Cb.UserIdentity id);
     public void user_seen (int64 id, string screen_name, string user_name);
+    public void user_seen_full (int64 id, string screen_name, string user_name, bool verified, bool protected_account);
     public int save (Sqlite.Database db);
     public void query_by_prefix (Sqlite.Database db,
                                  string prefix,
@@ -259,6 +260,8 @@ namespace Cb {
     string user_name;
     int score;
     bool changed;
+    bool verified;
+    bool protected_account;
   }
 
 

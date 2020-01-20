@@ -34,6 +34,8 @@ struct _CbUserInfo
   char *user_name;
   guint score;
   guint changed : 1;
+  guint verified : 1;
+  guint protected_account : 1;
 };
 
 
@@ -61,6 +63,13 @@ void  cb_user_counter_user_seen (CbUserCounter *counter,
                                  gint64         user_id,
                                  const char    *screen_name,
                                  const char    *user_name);
+
+void  cb_user_counter_user_seen_full (CbUserCounter *counter,
+                                      gint64         user_id,
+                                      const char    *screen_name,
+                                      const char    *user_name,
+                                      gboolean       verified,
+                                      gboolean       protected_account);
 
 int  cb_user_counter_save (CbUserCounter *counter, sqlite3 *db);
 
