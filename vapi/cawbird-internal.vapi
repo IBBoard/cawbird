@@ -412,6 +412,7 @@ namespace Cb {
   [CCode (cprefix = "CbComposeJob_", lower_case_cprefix = "cb_compose_job_", cheader_filename =
           "CbComposeJob.h")]
   public class ComposeJob : GLib.Object {
+    public string response_payload;
     [CCode (cname="MAX_UPLOADS")]
     public static int MAX_UPLOADS;
     public signal void image_upload_progress (string a, double d);

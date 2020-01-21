@@ -426,6 +426,8 @@ send_tweet_call_completed_cb (GObject      *source_object,
   GError *error = NULL;
 
   rest_proxy_call_invoke_finish (call, result, &error);
+  self->response_payload = rest_proxy_call_get_payload (call);
+
   if (error)
     {
       g_warning ("Could not send tweet: %s", error->message);
@@ -433,8 +435,7 @@ send_tweet_call_completed_cb (GObject      *source_object,
     }
   else
     {
-      const gchar *data = rest_proxy_call_get_payload (call);
-      cb_user_stream_inject_tweet (self->user_stream, CB_STREAM_MESSAGE_TWEET, data);
+      cb_user_stream_inject_tweet (self->user_stream, CB_STREAM_MESSAGE_TWEET, self->response_payload);
       g_task_return_boolean (send_task, TRUE);
     }
 

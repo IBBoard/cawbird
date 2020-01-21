@@ -47,6 +47,7 @@ struct _CbComposeJob
   gint64 reply_id;
   CbTweet *quoted_tweet;
   char *text;
+  const char *response_payload;
   GCancellable *cancellable;
 
   RestProxyCall *send_call;
