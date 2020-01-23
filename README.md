@@ -99,12 +99,15 @@ All limitations are limitations imposed by Twitter and are not the fault of the 
 
 Cawbird is also unable to implement the following features because Twitter does not provide a way for third-party applications to get the data:
 
+* Polls
+  * The free API does not include polls as tweet "entities"
+  * Twitter doesn't even mark posts so that we can direct people to the web
 * Twitter's "[Bookmarks](https://blog.twitter.com/en_us/topics/product/2018/an-easier-way-to-save-and-share-tweets.html)" system
   * No API is available
 * Full threads in a single request
   * No API is available
 * Replies older than seven days
-  * The search is limited to the last seven days
+  * The free search is limited to returning results from the last seven days
 * All replies to a tweet
   * No API is available and the search results are not guaranteed to find all replies
 
