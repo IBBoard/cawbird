@@ -90,9 +90,6 @@
                                 <property name="valign">baseline</property>
                                 <property name="hexpand">1</property>
                                 <property name="margin-start">6</property>
-                                <style>
-                                  <class name="dim-label"/>
-                                </style>
                               </object>
                             </child>
                           </object>
@@ -123,9 +120,6 @@
                                 <property name="halign">end</property>
                                 <property name="track-visited-links">0</property>
                                 <property name="margin-start">6</property>
-                                <style>
-                                  <class name="dim-label"/>
-                                </style>
                               </object>
                             </child>
                           </object>
