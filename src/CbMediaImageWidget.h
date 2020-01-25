@@ -34,17 +34,11 @@ struct _CbMediaImageWidget
   double drag_start_hvalue;
   double drag_start_vvalue;
 
-  double initial_scroll_x;
-  double initial_scroll_y;
-
   gulong hadj_changed_id;
   gulong vadj_changed_id;
 };
 typedef struct _CbMediaImageWidget CbMediaImageWidget;
 
 GtkWidget * cb_media_image_widget_new       (CbMedia *media);
-void        cb_media_image_widget_scroll_to (CbMediaImageWidget *self,
-                                             double              px,
-                                             double              py);
 
 #endif
