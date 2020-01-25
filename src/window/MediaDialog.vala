@@ -26,12 +26,15 @@ class MediaDialog : Gtk.Window {
   private unowned Cb.Media[] media;
   private int cur_index = 0;
   private Gtk.GestureMultiPress button_gesture;
+  private Gdk.Rectangle max_dimensions;
 
   public MediaDialog (Cb.Media[] media,
-                      int      start_media_index) {
+                      int      start_media_index,
+                      Gdk.Rectangle max_dimensions) {
     this.media = media;
     Cb.Media cur_media = media[start_media_index];
     this.cur_index = start_media_index;
+    this.max_dimensions = max_dimensions;
     this.button_gesture = new Gtk.GestureMultiPress (this);
     this.button_gesture.set_button (0);
     this.button_gesture.set_propagation_phase (Gtk.PropagationPhase.BUBBLE);
@@ -66,11 +69,11 @@ class MediaDialog : Gtk.Window {
 
     Gtk.Widget new_widget = null;
     if (media.is_video ()) {
-      new_widget = new Cb.MediaVideoWidget (media);
+      new_widget = new Cb.MediaVideoWidget (media, max_dimensions);
       frame.add (new_widget);
       ((Cb.MediaVideoWidget)new_widget).start ();
     } else {
-      new_widget = new Cb.MediaImageWidget (media);
+      new_widget = new Cb.MediaImageWidget (media, max_dimensions);
       frame.add (new_widget);
     }
 

@@ -336,7 +336,10 @@ namespace TweetUtils {
   public void handle_media_click (Cb.Media[] media,
                                   MainWindow window,
                                   int        index) {
-    MediaDialog media_dialog = new MediaDialog (media, index);
+    Gdk.Monitor current_monitor = Gdk.Display.get_default().get_monitor_at_window(window.get_window());
+    Gdk.Rectangle workarea = current_monitor.get_workarea();
+    Gdk.Rectangle max_dimensions = { 0, 0, (int)Math.round(workarea.width * 0.95), (int)Math.round(workarea.height * 0.95) };
+    MediaDialog media_dialog = new MediaDialog (media, index, max_dimensions);
     media_dialog.set_transient_for (window);
     media_dialog.set_modal (true);
     media_dialog.show ();

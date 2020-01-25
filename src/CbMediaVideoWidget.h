@@ -51,7 +51,7 @@ struct _CbMediaVideoWidget
 };
 typedef struct _CbMediaVideoWidget CbMediaVideoWidget;
 
-CbMediaVideoWidget * cb_media_video_widget_new   (CbMedia *media);
+CbMediaVideoWidget * cb_media_video_widget_new   (CbMedia *media, GdkRectangle *max_dimensions);
 void                 cb_media_video_widget_start (CbMediaVideoWidget *self);
 
 #endif

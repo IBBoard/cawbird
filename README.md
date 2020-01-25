@@ -145,7 +145,7 @@ Cawbird installs its application icon into `/usr/share/icons/hicolor/`, so an ap
 
 ### Build Dependencies
 
-* `gtk+-3.0 >= 3.20`
+* `gtk+-3.0 >= 3.22`
 * `glib-2.0 >= 2.44`
 * `json-glib-1.0`
 * `sqlite3`

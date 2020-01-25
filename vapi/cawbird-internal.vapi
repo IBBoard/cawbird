@@ -268,7 +268,7 @@ namespace Cb {
   [CCode (cprefix = "CbMediaImageWidget_", lower_case_cprefix = "cb_media_image_widget_", cheader_filename =
           "CbMediaImageWidget.h")]
   public class MediaImageWidget : Gtk.ScrolledWindow {
-    public MediaImageWidget (Media media);
+    public MediaImageWidget (Media media, Gdk.Rectangle max_dimensions);
     public void scroll_to (double x, double y);
   }
 
@@ -389,7 +389,7 @@ namespace Cb {
   [CCode (cprefix = "CbMediaVideoWidget_", lower_case_cprefix = "cb_media_video_widget_", cheader_filename =
           "CbMediaVideoWidget.h")]
   public class MediaVideoWidget : Gtk.Stack {
-    public MediaVideoWidget (Media media);
+    public MediaVideoWidget (Media media, Gdk.Rectangle max_dimensions);
     public void start ();
   }
 

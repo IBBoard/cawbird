@@ -15,7 +15,7 @@ libm = cc.find_library('m', required : false)
 min_glib_version = '2.44'
 
 glib_dep = dependency('glib-2.0', version: '>=' + min_glib_version)
-gtk_dep  = dependency('gtk+-3.0', version: '>=3.20')
+gtk_dep  = dependency('gtk+-3.0', version: '>=3.22')
 json_dep = dependency('json-glib-1.0')
 sql_dep  = dependency('sqlite3')
 soup_dep = dependency('libsoup-2.4')

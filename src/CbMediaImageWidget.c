@@ -87,11 +87,9 @@ cb_media_image_widget_init (CbMediaImageWidget *self)
 }
 
 GtkWidget *
-cb_media_image_widget_new (CbMedia *media)
+cb_media_image_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
 {
   CbMediaImageWidget *self;
-  int img_width;
-  int img_height;
   int win_width;
   int win_height;
 
@@ -106,25 +104,20 @@ cb_media_image_widget_new (CbMedia *media)
   else
     gtk_image_set_from_surface (GTK_IMAGE (self->image), media->surface);
 
-  img_width  = cairo_image_surface_get_width (media->surface);
-  img_height = cairo_image_surface_get_height (media->surface);
+  win_width = media->width;
+  win_height = media->height;
 
-  win_width = gdk_screen_get_width (gdk_screen_get_default ()) * 0.95;
-  win_height = gdk_screen_get_height (gdk_screen_get_default ()) * 0.95;
-
-  /* TODO: Replace the GdkScreen usage here */
-
-  if (img_width <= win_width)
+  if (win_width > max_dimensions->width)
     {
-      win_width = img_width;
+      win_width = max_dimensions->width;
       g_object_set (self,
                     "hscrollbar-policy", GTK_POLICY_NEVER,
                     NULL);
     }
 
-  if (img_height <= win_height)
+  if (win_height > max_dimensions->height)
     {
-      win_height = img_height;
+      win_height = max_dimensions->height;
       g_object_set (self,
                     "vscrollbar-policy", GTK_POLICY_NEVER,
                     NULL);

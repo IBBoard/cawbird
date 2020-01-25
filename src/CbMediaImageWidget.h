@@ -39,6 +39,6 @@ struct _CbMediaImageWidget
 };
 typedef struct _CbMediaImageWidget CbMediaImageWidget;
 
-GtkWidget * cb_media_image_widget_new       (CbMedia *media);
+GtkWidget * cb_media_image_widget_new       (CbMedia *media, GdkRectangle *max_dimensions);
 
 #endif
