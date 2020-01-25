@@ -16,14 +16,15 @@ These packages are currently available for:
 
 * openSUSE
   * openSUSE Tumbleweed
-  * openSUSE Leap 15
   * openSUSE Leap 15.1
+  * openSUSE Leap 15.2
 * Fedora
   * Fedora 30
   * Fedora 31
   * Fedora Rawhide
 * CentOS
   * CentOS 7
+  * CentOS 8
 * Ubuntu
   * Ubuntu 18.04 (Bionic Beaver)
   * Ubuntu 19.04 (Disco Dingo)
