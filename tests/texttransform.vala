@@ -507,6 +507,9 @@ void bug69_encode_text () {
   assert(Cb.TextTransform.fix_encoding ("Hello, World &amp;& Others!") == "Hello, World &amp;&amp; Others!");
   assert(Cb.TextTransform.fix_encoding ("Hello, World &&amp; Others!") == "Hello, World &amp;&amp; Others!");
   assert(Cb.TextTransform.fix_encoding ("Hello, World &hello& Others!") == "Hello, World &amp;hello&amp; Others!");
+
+  // When posting https://twitter.com/IBBoard/status/1222590553793159169 it showed "&" instead of "…" but nothing should change
+  assert(Cb.TextTransform.fix_encoding ("The spammers are dead!\n\nOh, wait, no… #sigh https://t.co/j1LEcVQySq") == "The spammers are dead!\n\nOh, wait, no… #sigh https://t.co/j1LEcVQySq");
 }
 
 void bug69_old_bad_encoding () {

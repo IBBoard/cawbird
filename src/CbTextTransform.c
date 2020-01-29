@@ -93,7 +93,7 @@ char *
 cb_text_transform_fix_encoding (const char *text)
 {
   GString *fixed_string;
-  gchar cur_char;
+  gunichar cur_char;
   const gchar *str;
   gchar *valid_string;
   guint valid_start = 0;
@@ -138,6 +138,7 @@ cb_text_transform_fix_encoding (const char *text)
         }
       }
     } else if (cur_char == '&') {
+      g_debug("Start of entity");
       entity_pos = cur_pos;
       in_entity = TRUE;
     } 
