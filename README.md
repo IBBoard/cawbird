@@ -111,6 +111,10 @@ Cawbird is also unable to implement the following features because Twitter does 
   * The free search is limited to returning results from the last seven days
 * All replies to a tweet
   * No API is available and the search results are not guaranteed to find all replies
+* Twitter [Cards](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards)
+  * No API is available
+  * Twitter doesn't even mark posts so that we can direct people to the web
+  * This results in @TwitterDev [posting a message](https://mobile.twitter.com/TwitterDev/status/1222596295090757636) that many devs can't see!
 
 ## Known issues
 
