@@ -110,6 +110,9 @@ cb_media_image_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
   if (win_width > max_dimensions->width)
     {
       win_width = max_dimensions->width;
+    }
+  else
+    {
       g_object_set (self,
                     "hscrollbar-policy", GTK_POLICY_NEVER,
                     NULL);
@@ -118,6 +121,9 @@ cb_media_image_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
   if (win_height > max_dimensions->height)
     {
       win_height = max_dimensions->height;
+    }
+  else
+    {
       g_object_set (self,
                     "vscrollbar-policy", GTK_POLICY_NEVER,
                     NULL);

@@ -337,17 +337,9 @@ namespace TweetUtils {
                                   MainWindow window,
                                   int        index) {
     Gdk.Display default_display = Gdk.Display.get_default();
-    int num_monitors = default_display.get_n_monitors();
-    debug("Num monitors: %d", num_monitors);
-    for (int i = 0; i < num_monitors; i++) {
-      Gdk.Monitor monitor = default_display.get_monitor(i);
-      debug("Monitor %d: %s %s - %d×%d (work area %d×%d)", i, monitor.manufacturer, monitor.model, monitor.geometry.width, monitor.geometry.height, monitor.workarea.width, monitor.workarea.height);
-    }
     Gdk.Monitor current_monitor = default_display.get_monitor_at_window(window.get_window());
-    debug("Current monitor: %s %s - %d×%d (work area %d×%d)", current_monitor.manufacturer, current_monitor.model, current_monitor.geometry.width, current_monitor.geometry.height, current_monitor.workarea.width, current_monitor.workarea.height);
     Gdk.Rectangle workarea = current_monitor.get_workarea();
     Gdk.Rectangle max_dimensions = { 0, 0, (int)Math.round(workarea.width * 0.95), (int)Math.round(workarea.height * 0.95) };
-    debug("Max dimensions: %d×%d", max_dimensions.width, max_dimensions.height);
     MediaDialog media_dialog = new MediaDialog (media, index, max_dimensions);
     media_dialog.set_transient_for (window);
     media_dialog.set_modal (true);
