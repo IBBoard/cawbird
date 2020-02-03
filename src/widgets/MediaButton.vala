@@ -377,8 +377,8 @@ private class MediaButton : Gtk.Widget {
 
     int max_width = (int) Math.floor ((height / 16.0) * 9);
     int width = int.min (media_width, max_width);
-    minimum = int.min (media_width, MIN_WIDTH);
-    natural = width;
+    minimum = MIN_WIDTH;
+    natural = int.max (width, minimum);
   }
 
   public override void get_preferred_width (out int minimum,
