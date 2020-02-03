@@ -679,25 +679,25 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
   /**
    * Twitter's source parameter of tweets includes a 'rel' parameter
-   * that doesn't work as pango markup, so we just remove it here.
+   * that doesn't work as pango markup, so we rebuild a hyperlink that will work.
    *
-   * Example string:
+   * Note: This assumes a certain format of source parameter hyperlink:
    *   <a href=\"http://www.tweetdeck.com\" rel=\"nofollow\">TweetDeck</a>
    *
    * @param source_str The source string from twitter
    *
-   * @return The #source_string without the rel parameter
+   * @return The rebuilt #source_string that's valid pango markup
    */
   private string extract_source (string source_str) {
     int from, to;
-    int tmp = 0;
-    tmp = source_str.index_of_char ('"');
-    tmp = source_str.index_of_char ('"', tmp + 1);
-    from = source_str.index_of_char ('"', tmp + 1);
-    to = source_str.index_of_char ('"', from + 1);
+    from = source_str.index_of_char ('"') + 1;
+    to = source_str.index_of_char ('"', from);
     if (to == -1 || from == -1)
       return source_str;
-    return source_str.substring (0, from-5) + source_str.substring(to + 1);
+    int name_start = source_str.index_of_char('>', to) + 1;
+    int name_end = source_str.index_of_char('<', name_start);
+    string client_name = source_str.substring(name_start, name_end - name_start);
+    return "<a href=\"%s\" title=\"%s\">%s</a>".printf(source_str.substring (from, to - from), client_name, client_name);
   }
 
   public void create_radio_button (Gtk.RadioButton? group) {}
