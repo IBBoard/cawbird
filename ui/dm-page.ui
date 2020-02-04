@@ -4,75 +4,74 @@
     <property name="can-focus">0</property>
     <property name="orientation">vertical</property>
     <child>
-      <object class="ScrollWidget" id="scroll_widget">
-        <property name="visible">True</property>
-        <property name="can-focus">True</property>
-        <child>
-          <object class="GtkListBox" id="messages_list">
-            <property name="visible">1</property>
-            <property name="vexpand">1</property>
-            <property name="selection-mode">none</property>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkBox">
-        <property name="visible">1</property>
-        <child>
-          <object class="GtkFrame">
-            <property name="visible">1</property>
-            <property name="margin">6</property>
-            <child>
-              <object class="GtkScrolledWindow">
-                <property name="visible">1</property>
-                <child>
-                  <object class="CompletionTextView" id="text_view">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="wrap-mode">word-char</property>
-                    <property name="left-margin">0</property>
-                    <property name="right-margin">0</property>
-                    <signal name="key_press_event" handler="text_view_key_press_cb"/>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="send_button">
-            <property name="label" translatable="yes">Send</property>
-            <property name="visible">1</property>
-            <property name="can-focus">1</property>
-            <property name="receives-default">1</property>
-            <property name="margin-end">6</property>
-            <property name="margin-top">6</property>
-            <property name="margin-bottom">6</property>
-            <property name="valign">start</property>
-            <signal name="clicked" handler="send_button_clicked_cb" swapped="no"/>
-            <style>
-              <class name="suggested-action"/>
-            </style>
-          </object>
-          <packing>
-            <property name="position">1</property>
-          </packing>
-        </child>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">1</property>
-      </packing>
-    </child>
+      <object class="GtkPaned" id="dm_panes">
+        <property name="orientation">vertical</property>
+          <child>
+            <object class="ScrollWidget" id="scroll_widget">
+              <property name="visible">True</property>
+              <property name="can-focus">True</property>
+              <property name="vexpand">True</property>
+              <child>
+                <object class="GtkListBox" id="messages_list">
+                  <property name="visible">1</property>
+                  <property name="vexpand">1</property>
+                  <property name="selection-mode">none</property>
+                </object>
+              </child>
+            </object>
+          </child>
+          <child>
+            <object class="GtkBox">
+              <property name="visible">1</property>
+              <child>
+                <object class="GtkFrame">
+                  <property name="visible">1</property>
+                  <property name="margin">6</property>
+                  <child>
+                    <object class="GtkScrolledWindow">
+                      <property name="visible">1</property>
+                      <child>
+                        <object class="CompletionTextView" id="text_view">
+                          <property name="visible">True</property>
+                          <property name="can-focus">True</property>
+                          <property name="hexpand">True</property>
+                          <property name="wrap-mode">word-char</property>
+                          <property name="accepts-tab">False</property>
+                          <property name="height-request">60</property>
+                          <property name="left-margin">0</property>
+                          <property name="right-margin">0</property>
+                          <signal name="key_press_event" handler="text_view_key_press_cb"/>
+                        </object>
+                      </child>
+                    </object>
+                  </child>
+                </object>
+                <packing>
+                  <property name="expand">1</property>
+                </packing>
+              </child>
+              <child>
+                <object class="GtkButton" id="send_button">
+                  <property name="label" translatable="yes">Send</property>
+                  <property name="visible">1</property>
+                  <property name="can-focus">1</property>
+                  <property name="receives-default">1</property>
+                  <property name="margin-end">6</property>
+                  <property name="margin-top">6</property>
+                  <property name="margin-bottom">6</property>
+                  <property name="valign">start</property>
+                  <signal name="clicked" handler="send_button_clicked_cb" swapped="no"/>
+                  <style>
+                    <class name="suggested-action"/>
+                  </style>
+                </object>
+                <packing>
+                  <property name="position">1</property>
+                </packing>
+              </child>
+            </object>
+          </child>
+        </object>
+      </child>
   </template>
 </interface>
