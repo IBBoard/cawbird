@@ -106,6 +106,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       this.compose_image_manager.end_progress (path, error_msg);
     });
 
+    length_label.label = Cb.Tweet.MAX_LENGTH.to_string ();
     load_tweet.begin ();
 
     avatar_image.surface = acc.avatar;
@@ -115,7 +116,6 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
 
     GLib.NetworkMonitor.get_default ().notify["network-available"].connect (update_send_button_sensitivity);
 
-    length_label.label = Cb.Tweet.MAX_LENGTH.to_string ();
     tweet_text.buffer.changed.connect (update_send_button_sensitivity);
 
     if (parent != null) {
