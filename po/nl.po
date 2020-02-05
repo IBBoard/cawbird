@@ -1,19 +1,20 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Timm Bäder
 # This file is distributed under the same license as the cawbird package.
-#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
 # Translators:
-# Geert Wirken <geert@gwirken.nl>, 2014
-# Heimen Stoffels <vistausss@outlook.com>, 2014-2015-2015
-# Nathan Follens, 2017
+# IBBoard . <github@ibboard.co.uk>, 2020
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Cawbird\n"
+"Project-Id-Version: cawbird 1.6\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2017-10-22 12:02+0200\n"
-"PO-Revision-Date: 2017-10-22 14:06+0000\n"
-"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
-"Language-Team: Dutch (http://www.transifex.com/cawbird/cawbird/language/nl/)\n"
+"PO-Revision-Date: 2020-02-05 20:32+0000\n"
+"Last-Translator: IBBoard . <github@ibboard.co.uk>, 2020\n"
+"Language-Team: Dutch (https://www.transifex.com/cawbird/teams/107135/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,15 +33,21 @@ msgstr "Twittertoepassing"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:10
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such "
-"as Direct Messages (DMs), tweet notifications, conversation views."
-msgstr "Cawbird is een geïntegreerde GTK+ Twittertoepassing met ondersteuning voor de belangrijkste functionaliteiten, zoals privéberichten (DM's), tweetmeldingen en gespreksweergaven."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
+msgstr ""
+"Cawbird is een geïntegreerde GTK+ Twittertoepassing met ondersteuning voor "
+"de belangrijkste functionaliteiten, zoals privéberichten (DM's), "
+"tweetmeldingen en gespreksweergaven."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:13
 msgid ""
 "Additional features include local viewing of videos, multiple inline images,"
 " Lists, Filters, multiple accounts, etc."
-msgstr "Extra mogelijkheden zijn o.a. het weergeven van video's in de toepassing zelf, meerdere bijgevoegde afbeeldingen, lijsten, filters, meerdere accounts en nog veel meer."
+msgstr ""
+"Extra mogelijkheden zijn o.a. het weergeven van video's in de toepassing "
+"zelf, meerdere bijgevoegde afbeeldingen, lijsten, filters, meerdere accounts"
+" en nog veel meer."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:21
 msgid "Generic timeline view when using Cawbird"
@@ -279,7 +286,9 @@ msgstr "Creëer een account"
 msgid ""
 "Unauthorized. Most of the time, this means that there’s something wrong with"
 " the Twitter servers and you should try again later"
-msgstr "Niet geautoriseerd. Meestal betekent dit dat er iets mis is met de Twitter-servers en dat u het later opnieuw moet proberen."
+msgstr ""
+"Niet geautoriseerd. Meestal betekent dit dat er iets mis is met de Twitter-"
+"servers en dat u het later opnieuw moet proberen."
 
 #: src/widgets/AccountCreateWidget.vala:69
 #, c-format
@@ -407,7 +416,9 @@ msgstr "Terug"
 #, c-format
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
-msgstr "De geselecteerde afbeelding is te groot. De maximale bestandsgrootte is %'d MB per afbeelding."
+msgstr ""
+"De geselecteerde afbeelding is te groot. De maximale bestandsgrootte is %'d "
+"MB per afbeelding."
 
 #: src/window/ComposeTweetWindow.vala:343
 msgid "Only one GIF file per tweet is allowed."
@@ -453,7 +464,9 @@ msgstr "Het fragment bestaat al"
 msgid ""
 "Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
 "#newisalwaysbetter"
-msgstr "Hé! Kijk eens naar deze nieuwe #Cawbird-versie! \\ (•◡•) / #cool #nieuwisaltijdbeter"
+msgstr ""
+"Hé! Kijk eens naar deze nieuwe #Cawbird-versie! \\ (•◡•) / #cool "
+"#nieuwisaltijdbeter"
 
 #: src/window/UserListDialog.vala:40
 msgid "Add to or Remove User From List"
@@ -475,7 +488,9 @@ msgstr "Nieuw account"
 msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
-msgstr "Om Cawbird toestemming te geven heeft u een pincode nodig van twitter.com van het toe te voegen account"
+msgstr ""
+"Om Cawbird toestemming te geven heeft u een pincode nodig van twitter.com "
+"van het toe te voegen account"
 
 #: ui/account-create-widget.ui:58
 msgid "Request PIN"
@@ -800,7 +815,9 @@ msgstr "Er zijn geen fragmenten ingesteld."
 
 #: ui/settings-dialog.ui:480
 msgid "You can activate snippets by writing the keyword and pressing TAB."
-msgstr "U kunt fragmenten activeren door het sleutelwoord te typen en daarna op de tabtoets te drukken."
+msgstr ""
+"U kunt fragmenten activeren door het sleutelwoord te typen en daarna op de "
+"tabtoets te drukken."
 
 #: ui/settings-dialog.ui:494
 msgid "Snippets"
