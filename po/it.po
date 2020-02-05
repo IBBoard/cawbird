@@ -1,22 +1,20 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Timm Bäder
 # This file is distributed under the same license as the cawbird package.
-#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
 # Translators:
-# Daniele Napolitano <dnax88@gmail.com>, 2014
-# Emanuele Rocco Petrone <emaeleptrn@gmail.com>, 2018
-# Matteo Castelli <Mtt.Castelli@gmail.com>, 2016
-# Nicola Stanislao Vitale <nivit@rocketmail.com>, 2015
-# Tassoman, 2017
-# Albano Battistella <albano_battistella@hotmail.com>, 2019
+# IBBoard . <github@ibboard.co.uk>, 2020
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Cawbird\n"
+"Project-Id-Version: cawbird 1.6\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2017-10-22 12:02+0200\n"
-"PO-Revision-Date: 2019-11-28 19:25+0100\n"
-"Last-Translator: Emanuele Albano Battistella <albano_battistella@hotmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/cawbird/cawbird/language/it/)\n"
+"PO-Revision-Date: 2020-02-05 20:32+0000\n"
+"Last-Translator: IBBoard . <github@ibboard.co.uk>, 2020\n"
+"Language-Team: Italian (https://www.transifex.com/cawbird/teams/107135/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,15 +33,19 @@ msgstr "Client Twitter"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:10
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such "
-"as Direct Messages (DMs), tweet notifications, conversation views."
-msgstr "Cawbird è un client twitter nativo GTK+ che fornisce funzioni vitali come messaggi diretti (DM), notifiche dei tweet e vista delle conversazioni."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
+msgstr ""
+"Cawbird è un client twitter nativo GTK+ che fornisce funzioni vitali come "
+"messaggi diretti (DM), notifiche dei tweet e vista delle conversazioni."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:13
 msgid ""
 "Additional features include local viewing of videos, multiple inline images,"
 " Lists, Filters, multiple accounts, etc."
-msgstr "Funzionalità aggiuntive includono riproduzione locale dei video, più immagini in una riga, liste, filtri, account multipli ecc."
+msgstr ""
+"Funzionalità aggiuntive includono riproduzione locale dei video, più "
+"immagini in una riga, liste, filtri, account multipli ecc."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:21
 msgid "Generic timeline view when using Cawbird"
@@ -282,7 +284,10 @@ msgstr "Creane uno"
 msgid ""
 "Unauthorized. Most of the time, this means that there’s something wrong with"
 " the Twitter servers and you should try again later"
-msgstr "Non autorizzato. La maggior parte delle volte questo significa che c'è qualche problema con i server di Twitter e che dovresti provare di nuovo più tardi"
+msgstr ""
+"Non autorizzato. La maggior parte delle volte questo significa che c'è "
+"qualche problema con i server di Twitter e che dovresti provare di nuovo più"
+" tardi"
 
 #: src/widgets/AccountCreateWidget.vala:69
 #, c-format
@@ -410,7 +415,9 @@ msgstr "Indietro"
 #, c-format
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
-msgstr "L'immagine selezionata è troppo grossa. La dimensione massima consentita è %'d MB"
+msgstr ""
+"L'immagine selezionata è troppo grossa. La dimensione massima consentita è "
+"%'d MB"
 
 #: src/window/ComposeTweetWindow.vala:343
 msgid "Only one GIF file per tweet is allowed."
@@ -456,7 +463,9 @@ msgstr "Lo snippet esiste già"
 msgid ""
 "Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
 "#newisalwaysbetter"
-msgstr "Ehi, scarica la nuova versione di #Cawbird \\ (•◡•) / #cool #newisalwaysbetter"
+msgstr ""
+"Ehi, scarica la nuova versione di #Cawbird \\ (•◡•) / #cool "
+"#newisalwaysbetter"
 
 #: src/window/UserListDialog.vala:40
 msgid "Add to or Remove User From List"
@@ -478,7 +487,9 @@ msgstr "Nuovo account"
 msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
-msgstr "Per autenticarti su Cawbird hai bisogno di un PIN da twitter.com dell'account che desideri aggiungere"
+msgstr ""
+"Per autenticarti su Cawbird hai bisogno di un PIN da twitter.com "
+"dell'account che desideri aggiungere"
 
 #: ui/account-create-widget.ui:58
 msgid "Request PIN"
@@ -803,7 +814,9 @@ msgstr "Nessuno snippet configurato."
 
 #: ui/settings-dialog.ui:480
 msgid "You can activate snippets by writing the keyword and pressing TAB."
-msgstr "Gli snippet si attivano digitando la parola chiave con la tastiera e premendo TAB."
+msgstr ""
+"Gli snippet si attivano digitando la parola chiave con la tastiera e "
+"premendo TAB."
 
 #: ui/settings-dialog.ui:494
 msgid "Snippets"
