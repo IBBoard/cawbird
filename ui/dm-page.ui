@@ -19,10 +19,15 @@
                 </object>
               </child>
             </object>
+            <packing>
+              <property name="resize">1</property>
+              <property name="shrink">1</property>
+            </packing>
           </child>
           <child>
             <object class="GtkBox">
               <property name="visible">1</property>
+              <property name="height-request">70</property>
               <child>
                 <object class="GtkFrame">
                   <property name="visible">1</property>
@@ -37,7 +42,6 @@
                           <property name="hexpand">True</property>
                           <property name="wrap-mode">word-char</property>
                           <property name="accepts-tab">False</property>
-                          <property name="height-request">60</property>
                           <property name="left-margin">0</property>
                           <property name="right-margin">0</property>
                           <signal name="key_press_event" handler="text_view_key_press_cb"/>
@@ -70,6 +74,10 @@
                 </packing>
               </child>
             </object>
+            <packing>
+              <property name="resize">0</property>
+              <property name="shrink">0</property>
+            </packing>
           </child>
         </object>
       </child>
