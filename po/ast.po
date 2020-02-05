@@ -1,19 +1,20 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Timm Bäder
 # This file is distributed under the same license as the cawbird package.
-#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
 # Translators:
-# enolp <enolp@softastur.org>, 2014-2017
-# Xuacu Saturio <xuacusk8@gmail.com>, 2015
-# Ḷḷumex03 <tornes@opmbx.org>, 2014
+# IBBoard . <github@ibboard.co.uk>, 2020
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Cawbird\n"
+"Project-Id-Version: cawbird 1.6\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2017-10-22 12:02+0200\n"
-"PO-Revision-Date: 2018-01-09 20:56+0000\n"
-"Last-Translator: Xuacu Saturio <xuacusk8@gmail.com>\n"
-"Language-Team: Asturian (http://www.transifex.com/cawbird/cawbird/language/ast/)\n"
+"PO-Revision-Date: 2020-02-05 20:32+0000\n"
+"Last-Translator: IBBoard . <github@ibboard.co.uk>, 2020\n"
+"Language-Team: Asturian (https://www.transifex.com/cawbird/teams/107135/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,15 +33,20 @@ msgstr "Veceru pa Twitter"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:10
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such "
-"as Direct Messages (DMs), tweet notifications, conversation views."
-msgstr "Cawbird ye un veceru nativu pa Twitter en GTK+ qu'apurre carauterístiques vitales como mensaxes direutos (DM), notificaciones de tuits, visión de conversaciones."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
+msgstr ""
+"Cawbird ye un veceru nativu pa Twitter en GTK+ qu'apurre carauterístiques "
+"vitales como mensaxes direutos (DM), notificaciones de tuits, visión de "
+"conversaciones."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:13
 msgid ""
 "Additional features include local viewing of videos, multiple inline images,"
 " Lists, Filters, multiple accounts, etc."
-msgstr "Carauterístiques adicionales qu'inclúin visión llocal de videos, imáxenes en llinia múltiples, llistes, filtros, cuentes múltiples, etc."
+msgstr ""
+"Carauterístiques adicionales qu'inclúin visión llocal de videos, imáxenes en"
+" llinia múltiples, llistes, filtros, cuentes múltiples, etc."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:21
 msgid "Generic timeline view when using Cawbird"
@@ -279,7 +285,9 @@ msgstr "Crea una"
 msgid ""
 "Unauthorized. Most of the time, this means that there’s something wrong with"
 " the Twitter servers and you should try again later"
-msgstr "Nun autorizáu. La mayor parte de les veces, esto significa que daqué funciona mal nos sirvidores de Twitter y tendríes de tentar sero"
+msgstr ""
+"Nun autorizáu. La mayor parte de les veces, esto significa que daqué "
+"funciona mal nos sirvidores de Twitter y tendríes de tentar sero"
 
 #: src/widgets/AccountCreateWidget.vala:69
 #, c-format
@@ -407,7 +415,9 @@ msgstr "Atrás"
 #, c-format
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
-msgstr "La imaxe seleicionada ye demasiao grande. El tamañu máximu per imaxe ye de %'d MB"
+msgstr ""
+"La imaxe seleicionada ye demasiao grande. El tamañu máximu per imaxe ye de "
+"%'d MB"
 
 #: src/window/ComposeTweetWindow.vala:343
 msgid "Only one GIF file per tweet is allowed."
@@ -453,7 +463,9 @@ msgstr "El fragmentu yá existe"
 msgid ""
 "Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
 "#newisalwaysbetter"
-msgstr "Manín, comprueba esta versión nueva de #Cawbird \\ (•◡•) / #Perbién #LoNuevoSiempresYeMeyor"
+msgstr ""
+"Manín, comprueba esta versión nueva de #Cawbird \\ (•◡•) / #Perbién "
+"#LoNuevoSiempresYeMeyor"
 
 #: src/window/UserListDialog.vala:40
 msgid "Add to or Remove User From List"
@@ -475,7 +487,9 @@ msgstr "Cuenta nueva"
 msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
-msgstr "P'autenticar Cawbird,necesites un PIN de twitter.com cola cuenta que quiés añadir"
+msgstr ""
+"P'autenticar Cawbird,necesites un PIN de twitter.com cola cuenta que quiés "
+"añadir"
 
 #: ui/account-create-widget.ui:58
 msgid "Request PIN"
