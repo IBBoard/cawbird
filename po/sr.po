@@ -1,17 +1,20 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Timm Bäder
 # This file is distributed under the same license as the cawbird package.
-#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
 # Translators:
-# Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail.com>, 2016-2017
+# IBBoard . <github@ibboard.co.uk>, 2020
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Cawbird\n"
+"Project-Id-Version: cawbird 1.6\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2017-10-22 12:02+0200\n"
-"PO-Revision-Date: 2017-11-19 08:34+0000\n"
-"Last-Translator: Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail.com>\n"
-"Language-Team: Serbian (http://www.transifex.com/cawbird/cawbird/language/sr/)\n"
+"PO-Revision-Date: 2020-02-05 20:32+0000\n"
+"Last-Translator: IBBoard . <github@ibboard.co.uk>, 2020\n"
+"Language-Team: Serbian (https://www.transifex.com/cawbird/teams/107135/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,15 +33,19 @@ msgstr "Твитер клијент"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:10
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such "
-"as Direct Messages (DMs), tweet notifications, conversation views."
-msgstr "Корберд је домаћи ГТК+ твитер клијент који пружа основне могућности као што су директне поруке, обавештења о твитовима и прегледе разговора."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
+msgstr ""
+"Корберд је домаћи ГТК+ твитер клијент који пружа основне могућности као што "
+"су директне поруке, обавештења о твитовима и прегледе разговора."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:13
 msgid ""
 "Additional features include local viewing of videos, multiple inline images,"
 " Lists, Filters, multiple accounts, etc."
-msgstr "Додатне могућности садрже локално прегледање видео записа, вишеструке угнежђене слике, спискове, филтере, вишеструке налоге и тако даље."
+msgstr ""
+"Додатне могућности садрже локално прегледање видео записа, вишеструке "
+"угнежђене слике, спискове, филтере, вишеструке налоге и тако даље."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:21
 msgid "Generic timeline view when using Cawbird"
@@ -280,7 +287,9 @@ msgstr "Направи налог"
 msgid ""
 "Unauthorized. Most of the time, this means that there’s something wrong with"
 " the Twitter servers and you should try again later"
-msgstr "Неовлашћено. У већини случајева ово значи да нешто није у реду са Твитеровим серверима и да требате покушати касније"
+msgstr ""
+"Неовлашћено. У већини случајева ово значи да нешто није у реду са Твитеровим"
+" серверима и да требате покушати касније"
 
 #: src/widgets/AccountCreateWidget.vala:69
 #, c-format
@@ -410,7 +419,9 @@ msgstr "Назад"
 #, c-format
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
-msgstr "Изабрана слика је сувише велика. Највећа дозвољена величина датотеке по слици је %'d мегабајта"
+msgstr ""
+"Изабрана слика је сувише велика. Највећа дозвољена величина датотеке по "
+"слици је %'d мегабајта"
 
 #: src/window/ComposeTweetWindow.vala:343
 msgid "Only one GIF file per tweet is allowed."
@@ -456,7 +467,8 @@ msgstr "Исечак већ постоји"
 msgid ""
 "Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
 "#newisalwaysbetter"
-msgstr "Хеј, баци поглед на ново #Cawbird издање! \\ (•◡•) / #cool #новојеувекбоље"
+msgstr ""
+"Хеј, баци поглед на ново #Cawbird издање! \\ (•◡•) / #cool #новојеувекбоље"
 
 #: src/window/UserListDialog.vala:40
 msgid "Add to or Remove User From List"
@@ -478,7 +490,9 @@ msgstr "Нови налог"
 msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
-msgstr "Да бисте овластили Корберд, морате унети ПИН са twitter.com преко налога којег желите додати"
+msgstr ""
+"Да бисте овластили Корберд, морате унети ПИН са twitter.com преко налога "
+"којег желите додати"
 
 #: ui/account-create-widget.ui:58
 msgid "Request PIN"
@@ -803,7 +817,8 @@ msgstr "Нема подешених исечака."
 
 #: ui/settings-dialog.ui:480
 msgid "You can activate snippets by writing the keyword and pressing TAB."
-msgstr "Увек можете активирати исечке писањем кључне речи и притиском тастера TAB."
+msgstr ""
+"Увек можете активирати исечке писањем кључне речи и притиском тастера TAB."
 
 #: ui/settings-dialog.ui:494
 msgid "Snippets"
