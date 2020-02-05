@@ -1,17 +1,20 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Timm Bäder
 # This file is distributed under the same license as the cawbird package.
-#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
 # Translators:
-# antiparvos, 2016-2017
+# IBBoard . <github@ibboard.co.uk>, 2020
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Cawbird\n"
+"Project-Id-Version: cawbird 1.6\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2017-10-22 12:02+0200\n"
-"PO-Revision-Date: 2017-12-22 02:49+0000\n"
-"Last-Translator: antiparvos\n"
-"Language-Team: Galician (http://www.transifex.com/cawbird/cawbird/language/gl/)\n"
+"PO-Revision-Date: 2020-02-05 20:32+0000\n"
+"Last-Translator: IBBoard . <github@ibboard.co.uk>, 2020\n"
+"Language-Team: Galician (https://www.transifex.com/cawbird/teams/107135/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,15 +33,20 @@ msgstr "Cliente para o Twitter"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:10
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such "
-"as Direct Messages (DMs), tweet notifications, conversation views."
-msgstr "Cawbird é un cliente GTK+ nativo para o Twitter que fornece funcionalidades fundamentais como mensaxes directas (MD), notificacións de chíos ou vistas de conversas."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
+msgstr ""
+"Cawbird é un cliente GTK+ nativo para o Twitter que fornece funcionalidades "
+"fundamentais como mensaxes directas (MD), notificacións de chíos ou vistas "
+"de conversas."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:13
 msgid ""
 "Additional features include local viewing of videos, multiple inline images,"
 " Lists, Filters, multiple accounts, etc."
-msgstr "Inclúe funcionalidades adicionais como visualización local de vídeos, varias imaxes inseridas, listaxes, filtros, múltiples contas, etc."
+msgstr ""
+"Inclúe funcionalidades adicionais como visualización local de vídeos, varias"
+" imaxes inseridas, listaxes, filtros, múltiples contas, etc."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:21
 msgid "Generic timeline view when using Cawbird"
@@ -277,7 +285,9 @@ msgstr "Crear unha"
 msgid ""
 "Unauthorized. Most of the time, this means that there’s something wrong with"
 " the Twitter servers and you should try again later"
-msgstr "Non autorizado. Normalmente significa que algo funciona mal nos servidores do Twitter e debería tentalo máis tarde"
+msgstr ""
+"Non autorizado. Normalmente significa que algo funciona mal nos servidores "
+"do Twitter e debería tentalo máis tarde"
 
 #: src/widgets/AccountCreateWidget.vala:69
 #, c-format
@@ -451,7 +461,9 @@ msgstr "A cadea xa existe"
 msgid ""
 "Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
 "#newisalwaysbetter"
-msgstr "Ei, probe esta nova versión do #Cawbird ! \\ (•◡•) / #cool #newisalwaysbetter"
+msgstr ""
+"Ei, probe esta nova versión do #Cawbird ! \\ (•◡•) / #cool "
+"#newisalwaysbetter"
 
 #: src/window/UserListDialog.vala:40
 msgid "Add to or Remove User From List"
@@ -473,7 +485,9 @@ msgstr "Nova conta"
 msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
-msgstr "Para autenticar o Cawbird, precisa un PIN de twitter.com coa conta que desexa engadir"
+msgstr ""
+"Para autenticar o Cawbird, precisa un PIN de twitter.com coa conta que "
+"desexa engadir"
 
 #: ui/account-create-widget.ui:58
 msgid "Request PIN"
