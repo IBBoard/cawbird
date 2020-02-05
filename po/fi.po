@@ -1,17 +1,20 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Timm Bäder
 # This file is distributed under the same license as the cawbird package.
-#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
 # Translators:
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2014-2017
+# IBBoard . <github@ibboard.co.uk>, 2020
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Cawbird\n"
+"Project-Id-Version: cawbird 1.6\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2017-10-22 12:02+0200\n"
-"PO-Revision-Date: 2017-10-22 17:13+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
-"Language-Team: Finnish (http://www.transifex.com/cawbird/cawbird/language/fi/)\n"
+"PO-Revision-Date: 2020-02-05 20:32+0000\n"
+"Last-Translator: IBBoard . <github@ibboard.co.uk>, 2020\n"
+"Language-Team: Finnish (https://www.transifex.com/cawbird/teams/107135/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,15 +33,19 @@ msgstr "Twitter-sovellus"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:10
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such "
-"as Direct Messages (DMs), tweet notifications, conversation views."
-msgstr "Cawbird on GTK+:lla toteutettu Twitter-sovellus, joka tarjoaa muun muassa yksityisviestit, ilmoitukset twiiteistä ja keskustelunäkymän."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
+msgstr ""
+"Cawbird on GTK+:lla toteutettu Twitter-sovellus, joka tarjoaa muun muassa "
+"yksityisviestit, ilmoitukset twiiteistä ja keskustelunäkymän."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:13
 msgid ""
 "Additional features include local viewing of videos, multiple inline images,"
 " Lists, Filters, multiple accounts, etc."
-msgstr "Lisäominaisuuksiin kuuluu muun muassa videoiden katselu suoraan sovelluksesta, useat upotetut kuvat, listat, suodattimet, useat tilit jne."
+msgstr ""
+"Lisäominaisuuksiin kuuluu muun muassa videoiden katselu suoraan "
+"sovelluksesta, useat upotetut kuvat, listat, suodattimet, useat tilit jne."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:21
 msgid "Generic timeline view when using Cawbird"
@@ -277,7 +284,9 @@ msgstr "Luo uusi tili"
 msgid ""
 "Unauthorized. Most of the time, this means that there’s something wrong with"
 " the Twitter servers and you should try again later"
-msgstr "Ei valtuutusta. Yleensä tämä tarkoittaa, että Twitter-palvelimilla on ongelmia, joten yritä pian uudelleen"
+msgstr ""
+"Ei valtuutusta. Yleensä tämä tarkoittaa, että Twitter-palvelimilla on "
+"ongelmia, joten yritä pian uudelleen"
 
 #: src/widgets/AccountCreateWidget.vala:69
 #, c-format
@@ -405,7 +414,8 @@ msgstr "Takaisin"
 #, c-format
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
-msgstr "Valittu kuva on liian suuri. Kuva voi olla kooltaan korkeintaan %'d Mt."
+msgstr ""
+"Valittu kuva on liian suuri. Kuva voi olla kooltaan korkeintaan %'d Mt."
 
 #: src/window/ComposeTweetWindow.vala:343
 msgid "Only one GIF file per tweet is allowed."
@@ -451,7 +461,9 @@ msgstr "Tekstileike on jo olemassa"
 msgid ""
 "Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
 "#newisalwaysbetter"
-msgstr "Hei, #Cawbird'in uusi versio on nyt saatavilla! \\ (•◡•) / #cool #newisalwaysbetter"
+msgstr ""
+"Hei, #Cawbird'in uusi versio on nyt saatavilla! \\ (•◡•) / #cool "
+"#newisalwaysbetter"
 
 #: src/window/UserListDialog.vala:40
 msgid "Add to or Remove User From List"
@@ -473,7 +485,9 @@ msgstr "Uusi tili"
 msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
-msgstr "Asettaaksesi Cawbirdin tunnistautumisen tulee sinun noutaa twitter.comista PIN sille tilille, jonka haluat lisätä"
+msgstr ""
+"Asettaaksesi Cawbirdin tunnistautumisen tulee sinun noutaa twitter.comista "
+"PIN sille tilille, jonka haluat lisätä"
 
 #: ui/account-create-widget.ui:58
 msgid "Request PIN"
@@ -798,7 +812,8 @@ msgstr "Tekstileikkeitä ei ole määritetty."
 
 #: ui/settings-dialog.ui:480
 msgid "You can activate snippets by writing the keyword and pressing TAB."
-msgstr "Voit aktivoida tekstileikkeet kirjoittamalla avainsanan ja painamalla TAB."
+msgstr ""
+"Voit aktivoida tekstileikkeet kirjoittamalla avainsanan ja painamalla TAB."
 
 #: ui/settings-dialog.ui:494
 msgid "Snippets"
