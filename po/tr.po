@@ -101,6 +101,7 @@ msgstr "Doğrudan Görüşme"
 msgid "%d new Message from %s"
 msgid_plural "%d new Messages from %s"
 msgstr[0] "%2$s Kullanıcısından %1$d Yeni Mesaj"
+msgstr[1] ""
 
 #: src/DMThreadsPage.vala:234 src/UserEventReceiver.vala:98
 #, c-format
@@ -143,6 +144,7 @@ msgstr "%s Tweetlendi"
 msgid "%d new Tweet!"
 msgid_plural "%d new Tweets!"
 msgstr[0] "%d Yeni Tweet!"
+msgstr[1] ""
 
 #: src/HomeTimeline.vala:190
 msgid "Home"
@@ -227,6 +229,7 @@ msgstr "Tweet Detayları"
 msgid "(%d unread)"
 msgid_plural "(%d unread)"
 msgstr[0] "(%d Okunmamış)"
+msgstr[1] ""
 
 #: src/list/FavImageRow.vala:81 ui/account-dialog.ui:212
 #: ui/account-dialog.ui:269 ui/filter-list-entry.ui:93
@@ -370,12 +373,14 @@ msgstr ""
 msgid "Minimum width: %d pixel"
 msgid_plural "Minimum width: %d pixels"
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/window/AccountDialog.vala:383
 #, c-format
 msgid "Minimum height: %d pixel"
 msgid_plural "Minimum height: %d pixels"
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/window/AccountDialog.vala:404 src/window/AccountDialog.vala:417
 msgid "Pick"
