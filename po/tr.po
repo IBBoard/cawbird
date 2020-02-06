@@ -101,7 +101,7 @@ msgstr "Doğrudan Görüşme"
 msgid "%d new Message from %s"
 msgid_plural "%d new Messages from %s"
 msgstr[0] "%2$s Kullanıcısından %1$d Yeni Mesaj"
-msgstr[1] ""
+msgstr[1] "%2$s Kullanıcısından %1$d Yeni Mesaj"
 
 #: src/DMThreadsPage.vala:234 src/UserEventReceiver.vala:98
 #, c-format
@@ -144,7 +144,7 @@ msgstr "%s Tweetlendi"
 msgid "%d new Tweet!"
 msgid_plural "%d new Tweets!"
 msgstr[0] "%d Yeni Tweet!"
-msgstr[1] ""
+msgstr[1] "%d Yeni Tweet!"
 
 #: src/HomeTimeline.vala:190
 msgid "Home"
@@ -229,7 +229,7 @@ msgstr "Tweet Detayları"
 msgid "(%d unread)"
 msgid_plural "(%d unread)"
 msgstr[0] "(%d Okunmamış)"
-msgstr[1] ""
+msgstr[1] "(%d Okunmamış)"
 
 #: src/list/FavImageRow.vala:81 ui/account-dialog.ui:212
 #: ui/account-dialog.ui:269 ui/filter-list-entry.ui:93
