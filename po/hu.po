@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-02-08 14:43+0000\n"
+"POT-Creation-Date: 2020-02-08 16:17+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -292,18 +292,18 @@ msgstr "A felhasználói fiók már használatban"
 msgid "No users found"
 msgstr ""
 
-#: src/widgets/FavImageView.vala:153 src/window/ComposeTweetWindow.vala:463
+#: src/widgets/FavImageView.vala:153 src/window/ComposeTweetWindow.vala:470
 msgid "Select Image"
 msgstr ""
 
 #: src/widgets/FavImageView.vala:156 src/window/AccountDialog.vala:347
-#: src/window/ComposeTweetWindow.vala:466
+#: src/window/ComposeTweetWindow.vala:473
 msgid "Open"
 msgstr ""
 
 #: src/widgets/FavImageView.vala:157 src/widgets/MediaButton.vala:292
-#: src/window/AccountDialog.vala:348 src/window/ComposeTweetWindow.vala:428
-#: src/window/ComposeTweetWindow.vala:467 src/window/UserListDialog.vala:47
+#: src/window/AccountDialog.vala:348 src/window/ComposeTweetWindow.vala:435
+#: src/window/ComposeTweetWindow.vala:474 src/window/UserListDialog.vala:47
 #: ui/account-dialog.ui:25 ui/account-dialog.ui:256 ui/compose-window.ui:41
 #: ui/filter-list-entry.ui:80 ui/list-list-entry.ui:98
 #: ui/list-statuses-page.ui:172 ui/modify-filter-dialog.ui:13
@@ -381,39 +381,48 @@ msgstr[1] ""
 msgid "Pick"
 msgstr ""
 
-#: src/window/ComposeTweetWindow.vala:213
+#: src/window/ComposeTweetWindow.vala:216
 #, c-format
-msgid "Failed to load %u images: %s"
+msgid "Failed to load image"
+msgid_plural "Failed to load %u images"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
+#: src/window/ComposeTweetWindow.vala:219
+#, c-format
+msgid "%s: %s"
 msgstr ""
 
-#: src/window/ComposeTweetWindow.vala:214
-#: src/window/ComposeTweetWindow.vala:504
-#: src/window/ComposeTweetWindow.vala:510
-#: src/window/ComposeTweetWindow.vala:516
-#: src/window/ComposeTweetWindow.vala:534
-#: src/window/ComposeTweetWindow.vala:593
+#: src/window/ComposeTweetWindow.vala:221
+#: src/window/ComposeTweetWindow.vala:511
+#: src/window/ComposeTweetWindow.vala:517
+#: src/window/ComposeTweetWindow.vala:523
+#: src/window/ComposeTweetWindow.vala:541
+#: src/window/ComposeTweetWindow.vala:600
 msgid "Back"
 msgstr "Vissza"
 
-#: src/window/ComposeTweetWindow.vala:295
+#: src/window/ComposeTweetWindow.vala:302
 msgid "Quote tweet"
 msgstr ""
 
-#: src/window/ComposeTweetWindow.vala:503
+#: src/window/ComposeTweetWindow.vala:510
 msgid "Selected file is not an image."
 msgstr ""
 
-#: src/window/ComposeTweetWindow.vala:508
+#: src/window/ComposeTweetWindow.vala:515
 #, c-format
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
 msgstr ""
 
-#: src/window/ComposeTweetWindow.vala:515
+#: src/window/ComposeTweetWindow.vala:522
 msgid "Only one GIF file per tweet is allowed."
 msgstr ""
 
-#: src/window/ComposeTweetWindow.vala:561
+#: src/window/ComposeTweetWindow.vala:568
 msgid "Insert Emoji"
 msgstr ""
 
