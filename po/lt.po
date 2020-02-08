@@ -1,22 +1,25 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Timm Bäder
 # This file is distributed under the same license as the cawbird package.
-#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
 # Translators:
-# Moo, 2014-2017
+# IBBoard . <github@ibboard.co.uk>, 2020
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Cawbird\n"
+"Project-Id-Version: Cawbird 1.0.4\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2017-10-22 12:02+0200\n"
-"PO-Revision-Date: 2017-10-22 18:18+0000\n"
-"Last-Translator: Moo\n"
-"Language-Team: Lithuanian (http://www.transifex.com/cawbird/cawbird/language/lt/)\n"
+"PO-Revision-Date: 2020-02-05 20:32+0000\n"
+"Last-Translator: IBBoard . <github@ibboard.co.uk>, 2020\n"
+"Language-Team: Lithuanian (https://www.transifex.com/cawbird/teams/107135/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: lt\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:5
 #: data/uk.co.ibboard.cawbird.desktop.in:3
@@ -30,15 +33,20 @@ msgstr "Twitter klientas"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:10
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such "
-"as Direct Messages (DMs), tweet notifications, conversation views."
-msgstr "Cawbird yra savas GTK+ twitter klientas, kuris suteikia svarbiausias ypatybes, tokias kaip Tiesioginės Žinutės (TŽ), tauškalų pranešimai, pokalbių rodiniai."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
+msgstr ""
+"Cawbird yra savas GTK+ twitter klientas, kuris suteikia svarbiausias "
+"ypatybes, tokias kaip Tiesioginės Žinutės (TŽ), tauškalų pranešimai, "
+"pokalbių rodiniai."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:13
 msgid ""
 "Additional features include local viewing of videos, multiple inline images,"
 " Lists, Filters, multiple accounts, etc."
-msgstr "Papildomas ypatybes sudaro vietinė vaizdo įrašų peržiūra, kelių įterptų paveikslėlių galimybė, Sąrašai, filtrai, kelių paskyrų galimybė ir t. t."
+msgstr ""
+"Papildomas ypatybes sudaro vietinė vaizdo įrašų peržiūra, kelių įterptų "
+"paveikslėlių galimybė, Sąrašai, filtrai, kelių paskyrų galimybė ir t. t."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:21
 msgid "Generic timeline view when using Cawbird"
@@ -283,7 +291,9 @@ msgstr "Susikurkite paskyrą"
 msgid ""
 "Unauthorized. Most of the time, this means that there’s something wrong with"
 " the Twitter servers and you should try again later"
-msgstr "Neleistina prieiga. Daugelyje atvejų, tai reiškia Twitter serveriuose įvykusius nesklandumus, tad vėliau, turėtumėte pabandyti dar kartą"
+msgstr ""
+"Neleistina prieiga. Daugelyje atvejų, tai reiškia Twitter serveriuose "
+"įvykusius nesklandumus, tad vėliau, turėtumėte pabandyti dar kartą"
 
 #: src/widgets/AccountCreateWidget.vala:69
 #, c-format
@@ -415,7 +425,9 @@ msgstr "Grįžti"
 #, c-format
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
-msgstr "Pasirinktas paveikslas yra per didelis. Didžiausias vieno paveikslo failo dydis yra %'d MB"
+msgstr ""
+"Pasirinktas paveikslas yra per didelis. Didžiausias vieno paveikslo failo "
+"dydis yra %'d MB"
 
 #: src/window/ComposeTweetWindow.vala:343
 msgid "Only one GIF file per tweet is allowed."
@@ -461,7 +473,9 @@ msgstr "Iškarpa jau yra"
 msgid ""
 "Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
 "#newisalwaysbetter"
-msgstr "Labas, pažvelk į šią naują #Cawbird versiją! \\ (•◡•) / #jega #naujayravisadageriau"
+msgstr ""
+"Labas, pažvelk į šią naują #Cawbird versiją! \\ (•◡•) / #jega "
+"#naujayravisadageriau"
 
 #: src/window/UserListDialog.vala:40
 msgid "Add to or Remove User From List"
@@ -483,7 +497,9 @@ msgstr "Nauja paskyra"
 msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
-msgstr "Norint programoje Cawbird nustatyti tapatybę, yra reikalingas PIN iš twitter.com su paskyra, kurią norite pridėti"
+msgstr ""
+"Norint programoje Cawbird nustatyti tapatybę, yra reikalingas PIN iš "
+"twitter.com su paskyra, kurią norite pridėti"
 
 #: ui/account-create-widget.ui:58
 msgid "Request PIN"
