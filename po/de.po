@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-08 14:32+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
+"POT-Creation-Date: 2020-02-08 14:43+0000\n"
 "PO-Revision-Date: 2017-10-22 10:24+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: German (http://www.transifex.com/cawbird/cawbird/language/"
@@ -69,10 +69,9 @@ msgstr "Typisches Twitter-Profil"
 msgid "Account settings can be configured"
 msgstr "Account-Einstellungen können konfiguriert werden"
 
-#. TRANSLATORS: Developer's name - do not translate!
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:43
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:42
 msgid "IBBoard"
-msgstr ""
+msgstr "IBBoard"
 
 #: data/uk.co.ibboard.cawbird.desktop.in:5
 msgid "Use Twitter from within a normal desktop application"

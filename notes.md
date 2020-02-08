@@ -13,6 +13,11 @@ The base translation template is rebuilt using `ninja -C build cawbird-pot`.
 Translations can then be rebuilt using `ninja -C build cawbird-update-po`. It may also rebuild the `.pot` file. It doesn't say so in the docs, but the file updates when it's run.
 
 Beware: Rebuilding translations seems to forget the bug reporting URL! It also lower-cases the project ID.
+The following command is useful to reinstate the reporting URL:
+
+```
+sed -i 's/"Report-Msgid-Bugs-To: \\n"/"Report-Msgid-Bugs-To: https:\/\/github.com\/ibboard\/cawbird\/issues\/new\\n"/' po/*
+```
 
 ## Fake Streaming
 

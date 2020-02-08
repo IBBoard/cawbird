@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-08 14:32+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
+"POT-Creation-Date: 2020-02-08 14:43+0000\n"
 "PO-Revision-Date: 2018-01-17 19:31+0000\n"
 "Last-Translator: HybridGlucose <a07051226@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/cawbird/cawbird/"
@@ -56,10 +56,9 @@ msgstr "典型的 Twitter 個人檔案"
 msgid "Account settings can be configured"
 msgstr "可以設定帳戶資料"
 
-#. TRANSLATORS: Developer's name - do not translate!
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:43
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:42
 msgid "IBBoard"
-msgstr ""
+msgstr "IBBoard"
 
 #: data/uk.co.ibboard.cawbird.desktop.in:5
 msgid "Use Twitter from within a normal desktop application"
