@@ -102,6 +102,7 @@ msgid_plural "%d new Messages from %s"
 msgstr[0] "%d nauja žinutė nuo %s"
 msgstr[1] "%d naujos žinutės nuo %s"
 msgstr[2] "%d naujų žinučių nuo %s"
+msgstr[3] "%d naujų žinučių nuo %s"
 
 #: src/DMThreadsPage.vala:234 src/UserEventReceiver.vala:98
 #, c-format
@@ -146,6 +147,7 @@ msgid_plural "%d new Tweets!"
 msgstr[0] "%d naujas tauškalas!"
 msgstr[1] "%d nauji tauškalai!"
 msgstr[2] "%d naujų tauškalų!"
+msgstr[3] "%d naujų tauškalų!"
 
 #: src/HomeTimeline.vala:190
 msgid "Home"
@@ -232,6 +234,7 @@ msgid_plural "(%d unread)"
 msgstr[0] "(%d neperskaitytas)"
 msgstr[1] "(%d neperskaityti)"
 msgstr[2] "(%d neperskaitytų)"
+msgstr[3] "(%d neperskaitytų)"
 
 #: src/list/FavImageRow.vala:81 ui/account-dialog.ui:212
 #: ui/account-dialog.ui:269 ui/filter-list-entry.ui:93
@@ -377,6 +380,7 @@ msgid_plural "Minimum width: %d pixels"
 msgstr[0] "Minimalus plotis: %d taškas"
 msgstr[1] "Minimalus plotis: %d taškai"
 msgstr[2] "Minimalus plotis: %d taškų"
+msgstr[3] "Minimalus plotis: %d taškų"
 
 #: src/window/AccountDialog.vala:383
 #, c-format
@@ -385,6 +389,7 @@ msgid_plural "Minimum height: %d pixels"
 msgstr[0] "Minimalus aukštis: %d taškas"
 msgstr[1] "Minimalus aukštis: %d taškai"
 msgstr[2] "Minimalus aukštis: %d taškų"
+msgstr[3] "Minimalus aukštis: %d taškų"
 
 #: src/window/AccountDialog.vala:404 src/window/AccountDialog.vala:417
 msgid "Pick"
