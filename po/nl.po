@@ -8,16 +8,17 @@
 # Nathan Follens, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Cawbird\n"
-"Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2017-10-22 12:02+0200\n"
+"Project-Id-Version: cawbird\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-08 14:32+0000\n"
 "PO-Revision-Date: 2017-10-22 14:06+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
-"Language-Team: Dutch (http://www.transifex.com/cawbird/cawbird/language/nl/)\n"
+"Language-Team: Dutch (http://www.transifex.com/cawbird/cawbird/language/"
+"nl/)\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:5
@@ -32,68 +33,73 @@ msgstr "Twittertoepassing"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:10
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such "
-"as Direct Messages (DMs), tweet notifications, conversation views."
-msgstr "Cawbird is een geïntegreerde GTK+ Twittertoepassing met ondersteuning voor de belangrijkste functionaliteiten, zoals privéberichten (DM's), tweetmeldingen en gespreksweergaven."
+"Cawbird is a native GTK+ twitter client that provides vital features such as "
+"Direct Messages (DMs), tweet notifications, conversation views."
+msgstr ""
+"Cawbird is een geïntegreerde GTK+ Twittertoepassing met ondersteuning voor "
+"de belangrijkste functionaliteiten, zoals privéberichten (DM's), "
+"tweetmeldingen en gespreksweergaven."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:13
 msgid ""
-"Additional features include local viewing of videos, multiple inline images,"
-" Lists, Filters, multiple accounts, etc."
-msgstr "Extra mogelijkheden zijn o.a. het weergeven van video's in de toepassing zelf, meerdere bijgevoegde afbeeldingen, lijsten, filters, meerdere accounts en nog veel meer."
+"Additional features include local viewing of videos, multiple inline images, "
+"Lists, Filters, multiple accounts, etc."
+msgstr ""
+"Extra mogelijkheden zijn o.a. het weergeven van video's in de toepassing "
+"zelf, meerdere bijgevoegde afbeeldingen, lijsten, filters, meerdere accounts "
+"en nog veel meer."
 
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:21
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:22
 msgid "Generic timeline view when using Cawbird"
 msgstr "Algemene tijdlijnweergave gebruiken"
 
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:25
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:26
 msgid "Typical Twitter profile"
 msgstr "Doorsnee Twitter-profiel"
 
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:29
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:30
 msgid "Account settings can be configured"
 msgstr "Accountinstellingen kunnen worden ingesteld"
 
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:41
-msgid "Timm Bäder"
-msgstr "Timm Bäder"
+#. TRANSLATORS: Developer's name - do not translate!
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:43
+msgid "IBBoard"
+msgstr ""
 
 #: data/uk.co.ibboard.cawbird.desktop.in:5
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Gebruik Twitter vanuit een normale bureaubladtoepassing"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or
-#. localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/uk.co.ibboard.cawbird.desktop.in:7
 msgid "twitter;"
 msgstr "twitter;"
 
-#. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon
-#. file name)!
+#. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/uk.co.ibboard.cawbird.desktop.in:11
 msgid "uk.co.ibboard.cawbird"
 msgstr "uk.co.ibboard.cawbird"
 
 #. TRANSLATORS: This is the start of a "Replying to" line in a tweet
-#: src/CbUtils.c:177 src/TweetInfoPage.vala:525
+#: src/CbUtils.c:195 src/TweetInfoPage.vala:581
 msgid "Replying to"
 msgstr "In antwoord op"
 
 #. TRANSLATORS: This gets appended to the "replying to" line
 #. * in a tweet. Example: "Replying to Foo and Bar" where
 #. * "and Bar" comes from this string.
-#: src/CbUtils.c:188 src/TweetInfoPage.vala:537
+#: src/CbUtils.c:206 src/TweetInfoPage.vala:593
 msgid "and"
 msgstr "en"
 
 #. TRANSLATORS: This gets appended to the "replying to" line
 #. * in a tweet
-#: src/CbUtils.c:197
+#: src/CbUtils.c:215
 #, c-format
 msgid "and %d others"
 msgstr "en %d anderen"
 
-#: src/DMPage.vala:344
+#: src/DMPage.vala:285
 msgid "Direct Conversation"
 msgstr "Privégesprek"
 
@@ -113,12 +119,8 @@ msgstr "Nieuw privébericht van %s"
 msgid "Direct Messages"
 msgstr "Privéberichten"
 
-#: src/DefaultTimeline.vala:366
-msgid "Could not load tweets"
-msgstr "De tweets kunnen niet worden geladen"
-
-#: src/FavoritesTimeline.vala:72 src/FavoritesTimeline.vala:76
-#: src/TweetInfoPage.vala:567
+#: src/FavoritesTimeline.vala:77 src/FavoritesTimeline.vala:81
+#: src/TweetInfoPage.vala:626
 msgid "Favorites"
 msgstr "Vind-ik-leuks"
 
@@ -130,24 +132,24 @@ msgstr "Nieuw filter toevoegen"
 msgid "Filters"
 msgstr "Filters"
 
-#: src/HomeTimeline.vala:143
+#: src/HomeTimeline.vala:155
 #, c-format
 msgid "%s retweeted %s"
 msgstr "%s heeft %s geretweet"
 
-#: src/HomeTimeline.vala:146
+#: src/HomeTimeline.vala:158
 #, c-format
 msgid "%s tweeted"
 msgstr "%s tweette"
 
-#: src/HomeTimeline.vala:155
+#: src/HomeTimeline.vala:167
 #, c-format
 msgid "%d new Tweet!"
 msgid_plural "%d new Tweets!"
 msgstr[0] "%d nieuwe tweet!"
 msgstr[1] "%d nieuwe tweets!"
 
-#: src/HomeTimeline.vala:190
+#: src/HomeTimeline.vala:202
 msgid "Home"
 msgstr "Thuis"
 
@@ -171,12 +173,12 @@ msgstr "Tweet opstellen"
 msgid "Add new Account"
 msgstr "Nieuw account toevoegen"
 
-#: src/MentionsTimeline.vala:93 src/UserEventReceiver.vala:115
+#: src/MentionsTimeline.vala:102 src/UserEventReceiver.vala:115
 #, c-format
 msgid "%s mentioned %s"
 msgstr "%s heeft %s vermeld"
 
-#: src/MentionsTimeline.vala:111 src/MentionsTimeline.vala:115
+#: src/MentionsTimeline.vala:119 src/MentionsTimeline.vala:123
 msgid "Mentions"
 msgstr "Vermeldingen"
 
@@ -184,44 +186,44 @@ msgstr "Vermeldingen"
 msgid "Suspended Account"
 msgstr "Opgeschort account"
 
-#: src/ProfilePage.vala:272
+#: src/ProfilePage.vala:275
 msgid "Protected profile"
 msgstr "Afgeschermd profiel"
 
-#: src/ProfilePage.vala:369
+#: src/ProfilePage.vala:376
 #, c-format
 msgid "Tweet to @%s"
 msgstr "Verstuur een tweet naar @%s"
 
-#: src/ProfilePage.vala:507 src/ProfilePage.vala:551
+#: src/ProfilePage.vala:522 src/ProfilePage.vala:566
 msgid "Protected Profile"
 msgstr "Afgeschermd profiel"
 
-#: src/SearchPage.vala:371 src/SearchPage.vala:380 ui/search-page.ui:24
+#: src/SearchPage.vala:372 src/SearchPage.vala:381 ui/search-page.ui:24
 msgid "Search"
 msgstr "Zoeken"
 
-#: src/SearchPage.vala:401
+#: src/SearchPage.vala:402
 msgid "Load More"
 msgstr "Meer laden"
 
-#: src/TweetInfoPage.vala:345
+#: src/TweetInfoPage.vala:381
 msgid "Could not show tweet"
 msgstr "De tweet kan niet worden weergegeven"
 
-#: src/TweetInfoPage.vala:566
+#: src/TweetInfoPage.vala:625
 msgid "Retweets"
 msgstr "Retweets"
 
-#: src/TweetInfoPage.vala:575 src/widgets/MediaButton.vala:103
+#: src/TweetInfoPage.vala:634 src/widgets/MediaButton.vala:103
 msgid "Open in Browser"
 msgstr "Openen in webbrowser"
 
-#: src/TweetInfoPage.vala:575
+#: src/TweetInfoPage.vala:634
 msgid "Source"
 msgstr "Bron"
 
-#: src/TweetInfoPage.vala:621
+#: src/TweetInfoPage.vala:677
 msgid "Tweet Details"
 msgstr "Details van tweet"
 
@@ -234,35 +236,35 @@ msgstr[1] "(%d ongelezen)"
 
 #: src/list/FavImageRow.vala:81 ui/account-dialog.ui:212
 #: ui/account-dialog.ui:269 ui/filter-list-entry.ui:93
-#: ui/list-list-entry.ui:132 ui/list-statuses-page.ui:166
+#: ui/list-list-entry.ui:132 ui/list-statuses-page.ui:165
 #: ui/modify-snippet-dialog.ui:108 ui/tweet-info-page.ui:10
 #: ui/tweet-list-entry.ui:10
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: src/list/TweetListEntry.vala:455
+#: src/list/TweetListEntry.vala:552
 #, c-format
 msgid "Block %s"
 msgstr "%s blokkeren"
 
-#: src/list/TweetListEntry.vala:611
+#: src/list/TweetListEntry.vala:715
 msgid "This tweet contains images marked as inappropriate"
 msgstr "Deze tweet bevat afbeeldingen die gemarkeerd zijn als gevoelig"
 
-#: src/list/TweetListEntry.vala:618
+#: src/list/TweetListEntry.vala:722
 msgid "Show anyway"
 msgstr "Tóch weergeven"
 
-#: src/util/Utils.vala:146
+#: src/util/Utils.vala:182
 msgid "Now"
 msgstr "Nu"
 
-#: src/util/Utils.vala:148
+#: src/util/Utils.vala:184
 #, c-format
 msgid "%dm"
 msgstr "%dm"
 
-#: src/util/Utils.vala:152
+#: src/util/Utils.vala:188
 #, c-format
 msgid "%dh"
 msgstr "%du"
@@ -277,15 +279,18 @@ msgstr "Creëer een account"
 
 #: src/widgets/AccountCreateWidget.vala:55
 msgid ""
-"Unauthorized. Most of the time, this means that there’s something wrong with"
-" the Twitter servers and you should try again later"
-msgstr "Niet geautoriseerd. Meestal betekent dit dat er iets mis is met de Twitter-servers en dat u het later opnieuw moet proberen."
+"Unauthorized. Most of the time, this means that there’s something wrong with "
+"the Twitter servers and you should try again later"
+msgstr ""
+"Niet geautoriseerd. Meestal betekent dit dat er iets mis is met de Twitter-"
+"servers en dat u het later opnieuw moet proberen."
 
 #: src/widgets/AccountCreateWidget.vala:69
 #, c-format
 msgid "Could not open %s"
 msgstr "Het openen van %s is mislukt"
 
+#. We just assume that it was the wrong code
 #: src/widgets/AccountCreateWidget.vala:98
 msgid "Wrong PIN"
 msgstr "Onjuiste pincode"
@@ -298,21 +303,21 @@ msgstr "Account is al in gebruik"
 msgid "No users found"
 msgstr "Er zijn geen gebruikers gevonden"
 
-#: src/widgets/FavImageView.vala:153 src/window/ComposeTweetWindow.vala:299
+#: src/widgets/FavImageView.vala:153 src/window/ComposeTweetWindow.vala:463
 msgid "Select Image"
 msgstr "Afbeelding selecteren"
 
 #: src/widgets/FavImageView.vala:156 src/window/AccountDialog.vala:347
-#: src/window/ComposeTweetWindow.vala:302
+#: src/window/ComposeTweetWindow.vala:466
 msgid "Open"
 msgstr "Openen"
 
-#: src/widgets/FavImageView.vala:157 src/widgets/MediaButton.vala:276
-#: src/window/AccountDialog.vala:348 src/window/ComposeTweetWindow.vala:275
-#: src/window/ComposeTweetWindow.vala:303 src/window/UserListDialog.vala:47
+#: src/widgets/FavImageView.vala:157 src/widgets/MediaButton.vala:292
+#: src/window/AccountDialog.vala:348 src/window/ComposeTweetWindow.vala:428
+#: src/window/ComposeTweetWindow.vala:467 src/window/UserListDialog.vala:47
 #: ui/account-dialog.ui:25 ui/account-dialog.ui:256 ui/compose-window.ui:41
 #: ui/filter-list-entry.ui:80 ui/list-list-entry.ui:98
-#: ui/list-statuses-page.ui:173 ui/modify-filter-dialog.ui:13
+#: ui/list-statuses-page.ui:172 ui/modify-filter-dialog.ui:13
 #: ui/modify-snippet-dialog.ui:14 ui/shortcuts-window.ui:134
 #: ui/user-filter-entry.ui:114
 msgid "Cancel"
@@ -334,15 +339,15 @@ msgstr "URL kopiëren"
 msgid "Save as…"
 msgstr "Opslaan als…"
 
-#: src/widgets/MediaButton.vala:268
+#: src/widgets/MediaButton.vala:284
 msgid "Save Video"
 msgstr "Video opslaan"
 
-#: src/widgets/MediaButton.vala:270
+#: src/widgets/MediaButton.vala:286
 msgid "Save Image"
 msgstr "Afbeelding opslaan"
 
-#: src/widgets/MediaButton.vala:275 src/window/AccountDialog.vala:429
+#: src/widgets/MediaButton.vala:291 src/window/AccountDialog.vala:429
 #: src/window/AccountDialog.vala:450 src/window/UserListDialog.vala:48
 #: ui/account-dialog.ui:33 ui/list-statuses-page.ui:129
 #: ui/modify-filter-dialog.ui:20 ui/modify-snippet-dialog.ui:21
@@ -387,33 +392,41 @@ msgstr[1] "Minimale hoogte: %d pixels"
 msgid "Pick"
 msgstr "Kiezen"
 
-#: src/window/ComposeTweetWindow.vala:138
-msgid "Quote tweet"
-msgstr "Tweet citeren"
+#: src/window/ComposeTweetWindow.vala:213
+#, c-format
+msgid "Failed to load %u images: %s"
+msgstr ""
 
-#: src/window/ComposeTweetWindow.vala:331
-msgid "Selected file is not an image."
-msgstr "Het geselecteerde bestand is geen afbeelding."
-
-#: src/window/ComposeTweetWindow.vala:332
-#: src/window/ComposeTweetWindow.vala:338
-#: src/window/ComposeTweetWindow.vala:344
-#: src/window/ComposeTweetWindow.vala:365
-#: src/window/ComposeTweetWindow.vala:428
+#: src/window/ComposeTweetWindow.vala:214
+#: src/window/ComposeTweetWindow.vala:504
+#: src/window/ComposeTweetWindow.vala:510
+#: src/window/ComposeTweetWindow.vala:516
+#: src/window/ComposeTweetWindow.vala:534
+#: src/window/ComposeTweetWindow.vala:593
 msgid "Back"
 msgstr "Terug"
 
-#: src/window/ComposeTweetWindow.vala:336
+#: src/window/ComposeTweetWindow.vala:295
+msgid "Quote tweet"
+msgstr "Tweet citeren"
+
+#: src/window/ComposeTweetWindow.vala:503
+msgid "Selected file is not an image."
+msgstr "Het geselecteerde bestand is geen afbeelding."
+
+#: src/window/ComposeTweetWindow.vala:508
 #, c-format
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
-msgstr "De geselecteerde afbeelding is te groot. De maximale bestandsgrootte is %'d MB per afbeelding."
+msgstr ""
+"De geselecteerde afbeelding is te groot. De maximale bestandsgrootte is %'d "
+"MB per afbeelding."
 
-#: src/window/ComposeTweetWindow.vala:343
+#: src/window/ComposeTweetWindow.vala:515
 msgid "Only one GIF file per tweet is allowed."
 msgstr "Per tweet wordt slechts één GIF-bestand toegestaan."
 
-#: src/window/ComposeTweetWindow.vala:392
+#: src/window/ComposeTweetWindow.vala:561
 msgid "Insert Emoji"
 msgstr "Emoji invoegen"
 
@@ -451,9 +464,10 @@ msgstr "Het fragment bestaat al"
 
 #: src/window/SettingsDialog.vala:85
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
-"#newisalwaysbetter"
-msgstr "Hé! Kijk eens naar deze nieuwe #Cawbird-versie! \\ (•◡•) / #cool #nieuwisaltijdbeter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
+msgstr ""
+"Hé! Kijk eens naar deze nieuwe #Cawbird-versie! \\ (•◡•) / #cool "
+"#nieuwisaltijdbeter"
 
 #: src/window/UserListDialog.vala:40
 msgid "Add to or Remove User From List"
@@ -475,7 +489,9 @@ msgstr "Nieuw account"
 msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
-msgstr "Om Cawbird toestemming te geven heeft u een pincode nodig van twitter.com van het toe te voegen account"
+msgstr ""
+"Om Cawbird toestemming te geven heeft u een pincode nodig van twitter.com "
+"van het toe te voegen account"
 
 #: ui/account-create-widget.ui:58
 msgid "Request PIN"
@@ -489,7 +505,7 @@ msgstr "Voer de pincode van twitter.com hieronder in:"
 msgid "PIN"
 msgstr "Pincode"
 
-#: ui/account-create-widget.ui:132 ui/list-statuses-page.ui:358
+#: ui/account-create-widget.ui:132 ui/list-statuses-page.ui:357
 msgid "Confirm"
 msgstr "Bevestigen"
 
@@ -566,7 +582,7 @@ msgstr "Geen resultaten gevonden"
 msgid "Try a different search"
 msgstr "Probeer een andere zoekopdracht"
 
-#: ui/compose-window.ui:48 ui/dm-page.ui:51 ui/shortcuts-window.ui:127
+#: ui/compose-window.ui:48 ui/dm-page.ui:59 ui/shortcuts-window.ui:127
 msgid "Send"
 msgstr "Verzenden"
 
@@ -610,19 +626,19 @@ msgstr "Gecreëerd op:"
 msgid "Edit"
 msgstr "Bewerken"
 
-#: ui/list-statuses-page.ui:194
+#: ui/list-statuses-page.ui:193
 msgid "Mode:"
 msgstr "Modus:"
 
-#: ui/list-statuses-page.ui:217
+#: ui/list-statuses-page.ui:216
 msgid "Private"
 msgstr "Privé"
 
-#: ui/list-statuses-page.ui:218
+#: ui/list-statuses-page.ui:217
 msgid "Public"
 msgstr "Openbaar"
 
-#: ui/list-statuses-page.ui:296
+#: ui/list-statuses-page.ui:295
 msgid "Description"
 msgstr "Omschrijving"
 
@@ -800,7 +816,9 @@ msgstr "Er zijn geen fragmenten ingesteld."
 
 #: ui/settings-dialog.ui:480
 msgid "You can activate snippets by writing the keyword and pressing TAB."
-msgstr "U kunt fragmenten activeren door het sleutelwoord te typen en daarna op de tabtoets te drukken."
+msgstr ""
+"U kunt fragmenten activeren door het sleutelwoord te typen en daarna op de "
+"tabtoets te drukken."
 
 #: ui/settings-dialog.ui:494
 msgid "Snippets"
@@ -911,19 +929,19 @@ msgstr "Gaan"
 msgid "Quote"
 msgstr "Tweet citeren"
 
-#: ui/tweet-info-page.ui:252
+#: ui/tweet-info-page.ui:253
 msgid "Retweet tweet"
 msgstr "Tweet retweeten"
 
-#: ui/tweet-info-page.ui:277
+#: ui/tweet-info-page.ui:278
 msgid "Favorite tweet"
 msgstr "Vind ik leuk"
 
-#: ui/tweet-info-page.ui:302
+#: ui/tweet-info-page.ui:303
 msgid "Reply to tweet"
 msgstr "Tweet beantwoorden"
 
-#: ui/tweet-info-page.ui:338
+#: ui/tweet-info-page.ui:339
 msgid "More"
 msgstr "Meer"
 
@@ -939,15 +957,15 @@ msgstr "Beantwoorden"
 msgid "Unblock"
 msgstr "Deblokkeren"
 
-#: ui/user-list-entry.ui:67
+#: ui/user-list-entry.ui:68
 msgid "Show settings of this account"
 msgstr "Accountinstellingen weergeven"
 
-#: ui/user-list-entry.ui:92
+#: ui/user-list-entry.ui:93
 msgid "Open in new window"
 msgstr "Openen in een nieuw venster"
 
-#: ui/user-list-entry.ui:116
+#: ui/user-list-entry.ui:117
 msgid "Go to profile"
 msgstr "Ga naar profiel"
 
@@ -958,3 +976,9 @@ msgstr "Gecreëerd"
 #: ui/user-lists-widget.ui:86
 msgid "Subscribed to"
 msgstr "Geabonneerd op"
+
+#~ msgid "Timm Bäder"
+#~ msgstr "Timm Bäder"
+
+#~ msgid "Could not load tweets"
+#~ msgstr "De tweets kunnen niet worden geladen"

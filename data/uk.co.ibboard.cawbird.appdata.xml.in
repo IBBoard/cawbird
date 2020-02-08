@@ -39,6 +39,7 @@
 
   <project_license>GPL-3.0+</project_license>
 
+  <!-- TRANSLATORS: Developer's name - do not translate! -->
   <developer_name>IBBoard</developer_name>
 
   <url type="bugtracker">https://github.com/ibboard/cawbird/issues</url>

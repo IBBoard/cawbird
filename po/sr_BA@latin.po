@@ -5,17 +5,19 @@
 # Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: Cawbird\n"
-"Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2017-10-22 12:02+0200\n"
+"Project-Id-Version: cawbird\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-08 14:32+0000\n"
 "PO-Revision-Date: 2017-11-20 17:05+0000\n"
 "Last-Translator: Slobodan Terzić <githzerai06@gmail.com>\n"
-"Language-Team: Serbian (Latin) (http://www.transifex.com/cawbird/cawbird/language/sr%40latin/)\n"
+"Language-Team: Serbian (Latin) (http://www.transifex.com/cawbird/cawbird/"
+"language/sr%40latin/)\n"
+"Language: sr@latin\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: sr@latin\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:5
 #: data/uk.co.ibboard.cawbird.desktop.in:3
@@ -29,68 +31,71 @@ msgstr "Twitter klijent"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:10
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such "
-"as Direct Messages (DMs), tweet notifications, conversation views."
-msgstr "Cawbird je domaći GTK+ tviter klijent koji pruža osnovne mogućnosti kao što su direktne poruke, obaveštenja o tvitovima i preglede razgovora."
+"Cawbird is a native GTK+ twitter client that provides vital features such as "
+"Direct Messages (DMs), tweet notifications, conversation views."
+msgstr ""
+"Cawbird je domaći GTK+ tviter klijent koji pruža osnovne mogućnosti kao što "
+"su direktne poruke, obaveštenja o tvitovima i preglede razgovora."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:13
 msgid ""
-"Additional features include local viewing of videos, multiple inline images,"
-" Lists, Filters, multiple accounts, etc."
-msgstr "Dodatne mogućnosti sadrže lokalno pregledanje video zapisa, višestruke ugnežđene slike, spiskove, filtere, višestruke naloge i tako dalje."
+"Additional features include local viewing of videos, multiple inline images, "
+"Lists, Filters, multiple accounts, etc."
+msgstr ""
+"Dodatne mogućnosti sadrže lokalno pregledanje video zapisa, višestruke "
+"ugnežđene slike, spiskove, filtere, višestruke naloge i tako dalje."
 
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:21
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:22
 msgid "Generic timeline view when using Cawbird"
 msgstr "Opšti pregled vremenske linije kada se koristi Cawbird"
 
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:25
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:26
 msgid "Typical Twitter profile"
 msgstr "Uobičajeni Twitter profil"
 
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:29
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:30
 msgid "Account settings can be configured"
 msgstr "Podešavanja naloga se mogu menjati"
 
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:41
-msgid "Timm Bäder"
-msgstr "Timm Bäder"
+#. TRANSLATORS: Developer's name - do not translate!
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:43
+msgid "IBBoard"
+msgstr ""
 
 #: data/uk.co.ibboard.cawbird.desktop.in:5
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Koristite Twitter pomoću običnog računarskog programa"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or
-#. localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/uk.co.ibboard.cawbird.desktop.in:7
 msgid "twitter;"
 msgstr "twitter;tviter;tviter;"
 
-#. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon
-#. file name)!
+#. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/uk.co.ibboard.cawbird.desktop.in:11
 msgid "uk.co.ibboard.cawbird"
 msgstr "uk.co.ibboard.cawbird"
 
 #. TRANSLATORS: This is the start of a "Replying to" line in a tweet
-#: src/CbUtils.c:177 src/TweetInfoPage.vala:525
+#: src/CbUtils.c:195 src/TweetInfoPage.vala:581
 msgid "Replying to"
 msgstr "Odgovor za"
 
 #. TRANSLATORS: This gets appended to the "replying to" line
 #. * in a tweet. Example: "Replying to Foo and Bar" where
 #. * "and Bar" comes from this string.
-#: src/CbUtils.c:188 src/TweetInfoPage.vala:537
+#: src/CbUtils.c:206 src/TweetInfoPage.vala:593
 msgid "and"
 msgstr "i"
 
 #. TRANSLATORS: This gets appended to the "replying to" line
 #. * in a tweet
-#: src/CbUtils.c:197
+#: src/CbUtils.c:215
 #, c-format
 msgid "and %d others"
 msgstr "i %d drugih"
 
-#: src/DMPage.vala:344
+#: src/DMPage.vala:285
 msgid "Direct Conversation"
 msgstr "Direktni razgovori"
 
@@ -111,12 +116,8 @@ msgstr "Nova direktna poruka od %s"
 msgid "Direct Messages"
 msgstr "Direktne poruke"
 
-#: src/DefaultTimeline.vala:366
-msgid "Could not load tweets"
-msgstr "Ne mogu da učitam tvitove"
-
-#: src/FavoritesTimeline.vala:72 src/FavoritesTimeline.vala:76
-#: src/TweetInfoPage.vala:567
+#: src/FavoritesTimeline.vala:77 src/FavoritesTimeline.vala:81
+#: src/TweetInfoPage.vala:626
 msgid "Favorites"
 msgstr "Omiljeno"
 
@@ -128,17 +129,17 @@ msgstr "Dodaj novi filter"
 msgid "Filters"
 msgstr "Filteri"
 
-#: src/HomeTimeline.vala:143
+#: src/HomeTimeline.vala:155
 #, c-format
 msgid "%s retweeted %s"
 msgstr "%s je ponovo tvitovao/la %s"
 
-#: src/HomeTimeline.vala:146
+#: src/HomeTimeline.vala:158
 #, c-format
 msgid "%s tweeted"
 msgstr "%s je tvitovao/la"
 
-#: src/HomeTimeline.vala:155
+#: src/HomeTimeline.vala:167
 #, c-format
 msgid "%d new Tweet!"
 msgid_plural "%d new Tweets!"
@@ -146,7 +147,7 @@ msgstr[0] "%d novi tvit!"
 msgstr[1] "%d nova tvita!"
 msgstr[2] "%d novih tvitova!"
 
-#: src/HomeTimeline.vala:190
+#: src/HomeTimeline.vala:202
 msgid "Home"
 msgstr "Početna"
 
@@ -170,12 +171,12 @@ msgstr "Sastavi tvit"
 msgid "Add new Account"
 msgstr "Dodaj novi nalog"
 
-#: src/MentionsTimeline.vala:93 src/UserEventReceiver.vala:115
+#: src/MentionsTimeline.vala:102 src/UserEventReceiver.vala:115
 #, c-format
 msgid "%s mentioned %s"
 msgstr "%s spomenu %s"
 
-#: src/MentionsTimeline.vala:111 src/MentionsTimeline.vala:115
+#: src/MentionsTimeline.vala:119 src/MentionsTimeline.vala:123
 msgid "Mentions"
 msgstr "Spominjanja"
 
@@ -183,44 +184,44 @@ msgstr "Spominjanja"
 msgid "Suspended Account"
 msgstr "Obustavljeni nalog"
 
-#: src/ProfilePage.vala:272
+#: src/ProfilePage.vala:275
 msgid "Protected profile"
 msgstr "Zaštićen profil"
 
-#: src/ProfilePage.vala:369
+#: src/ProfilePage.vala:376
 #, c-format
 msgid "Tweet to @%s"
 msgstr "Tvituj ka @%s"
 
-#: src/ProfilePage.vala:507 src/ProfilePage.vala:551
+#: src/ProfilePage.vala:522 src/ProfilePage.vala:566
 msgid "Protected Profile"
 msgstr "Zaštićeni profil"
 
-#: src/SearchPage.vala:371 src/SearchPage.vala:380 ui/search-page.ui:24
+#: src/SearchPage.vala:372 src/SearchPage.vala:381 ui/search-page.ui:24
 msgid "Search"
 msgstr "Pretraga"
 
-#: src/SearchPage.vala:401
+#: src/SearchPage.vala:402
 msgid "Load More"
 msgstr "Učitaj još"
 
-#: src/TweetInfoPage.vala:345
+#: src/TweetInfoPage.vala:381
 msgid "Could not show tweet"
 msgstr "Ne mogu da prikažem tvit"
 
-#: src/TweetInfoPage.vala:566
+#: src/TweetInfoPage.vala:625
 msgid "Retweets"
 msgstr "ponovnih tvitova"
 
-#: src/TweetInfoPage.vala:575 src/widgets/MediaButton.vala:103
+#: src/TweetInfoPage.vala:634 src/widgets/MediaButton.vala:103
 msgid "Open in Browser"
 msgstr "Otvori u pregledaču"
 
-#: src/TweetInfoPage.vala:575
+#: src/TweetInfoPage.vala:634
 msgid "Source"
 msgstr "izvor"
 
-#: src/TweetInfoPage.vala:621
+#: src/TweetInfoPage.vala:677
 msgid "Tweet Details"
 msgstr "pojedinosti tvita"
 
@@ -234,35 +235,35 @@ msgstr[2] "(%d nepročitanih)"
 
 #: src/list/FavImageRow.vala:81 ui/account-dialog.ui:212
 #: ui/account-dialog.ui:269 ui/filter-list-entry.ui:93
-#: ui/list-list-entry.ui:132 ui/list-statuses-page.ui:166
+#: ui/list-list-entry.ui:132 ui/list-statuses-page.ui:165
 #: ui/modify-snippet-dialog.ui:108 ui/tweet-info-page.ui:10
 #: ui/tweet-list-entry.ui:10
 msgid "Delete"
 msgstr "Obriši"
 
-#: src/list/TweetListEntry.vala:455
+#: src/list/TweetListEntry.vala:552
 #, c-format
 msgid "Block %s"
 msgstr "Blokiraj %s"
 
-#: src/list/TweetListEntry.vala:611
+#: src/list/TweetListEntry.vala:715
 msgid "This tweet contains images marked as inappropriate"
 msgstr "Označeno je da ovaj tvit sadrži nedolične slike"
 
-#: src/list/TweetListEntry.vala:618
+#: src/list/TweetListEntry.vala:722
 msgid "Show anyway"
 msgstr "Ipak prikaži"
 
-#: src/util/Utils.vala:146
+#: src/util/Utils.vala:182
 msgid "Now"
 msgstr "sada"
 
-#: src/util/Utils.vala:148
+#: src/util/Utils.vala:184
 #, c-format
 msgid "%dm"
 msgstr "%dm"
 
-#: src/util/Utils.vala:152
+#: src/util/Utils.vala:188
 #, c-format
 msgid "%dh"
 msgstr "%dč"
@@ -277,15 +278,18 @@ msgstr "Napravi nalog"
 
 #: src/widgets/AccountCreateWidget.vala:55
 msgid ""
-"Unauthorized. Most of the time, this means that there’s something wrong with"
-" the Twitter servers and you should try again later"
-msgstr "Neovlašćeno. U većini slučajeva ovo znači da nešto nije u redu sa Twitterovim serverima i da trebate pokušati kasnije"
+"Unauthorized. Most of the time, this means that there’s something wrong with "
+"the Twitter servers and you should try again later"
+msgstr ""
+"Neovlašćeno. U većini slučajeva ovo znači da nešto nije u redu sa "
+"Twitterovim serverima i da trebate pokušati kasnije"
 
 #: src/widgets/AccountCreateWidget.vala:69
 #, c-format
 msgid "Could not open %s"
 msgstr "Ne mogu da otvorim %s"
 
+#. We just assume that it was the wrong code
 #: src/widgets/AccountCreateWidget.vala:98
 msgid "Wrong PIN"
 msgstr "Pogrešan PIN"
@@ -298,21 +302,21 @@ msgstr "Nalog se već koristi"
 msgid "No users found"
 msgstr "Nema pronađenih korisnika"
 
-#: src/widgets/FavImageView.vala:153 src/window/ComposeTweetWindow.vala:299
+#: src/widgets/FavImageView.vala:153 src/window/ComposeTweetWindow.vala:463
 msgid "Select Image"
 msgstr "Izaberi sliku"
 
 #: src/widgets/FavImageView.vala:156 src/window/AccountDialog.vala:347
-#: src/window/ComposeTweetWindow.vala:302
+#: src/window/ComposeTweetWindow.vala:466
 msgid "Open"
 msgstr "Otvori"
 
-#: src/widgets/FavImageView.vala:157 src/widgets/MediaButton.vala:276
-#: src/window/AccountDialog.vala:348 src/window/ComposeTweetWindow.vala:275
-#: src/window/ComposeTweetWindow.vala:303 src/window/UserListDialog.vala:47
+#: src/widgets/FavImageView.vala:157 src/widgets/MediaButton.vala:292
+#: src/window/AccountDialog.vala:348 src/window/ComposeTweetWindow.vala:428
+#: src/window/ComposeTweetWindow.vala:467 src/window/UserListDialog.vala:47
 #: ui/account-dialog.ui:25 ui/account-dialog.ui:256 ui/compose-window.ui:41
 #: ui/filter-list-entry.ui:80 ui/list-list-entry.ui:98
-#: ui/list-statuses-page.ui:173 ui/modify-filter-dialog.ui:13
+#: ui/list-statuses-page.ui:172 ui/modify-filter-dialog.ui:13
 #: ui/modify-snippet-dialog.ui:14 ui/shortcuts-window.ui:134
 #: ui/user-filter-entry.ui:114
 msgid "Cancel"
@@ -334,15 +338,15 @@ msgstr "Kopiraj URL"
 msgid "Save as…"
 msgstr "Sačuvaj kao…"
 
-#: src/widgets/MediaButton.vala:268
+#: src/widgets/MediaButton.vala:284
 msgid "Save Video"
 msgstr "Sačuvaj video"
 
-#: src/widgets/MediaButton.vala:270
+#: src/widgets/MediaButton.vala:286
 msgid "Save Image"
 msgstr "Sačuvaj sliku"
 
-#: src/widgets/MediaButton.vala:275 src/window/AccountDialog.vala:429
+#: src/widgets/MediaButton.vala:291 src/window/AccountDialog.vala:429
 #: src/window/AccountDialog.vala:450 src/window/UserListDialog.vala:48
 #: ui/account-dialog.ui:33 ui/list-statuses-page.ui:129
 #: ui/modify-filter-dialog.ui:20 ui/modify-snippet-dialog.ui:21
@@ -389,33 +393,41 @@ msgstr[2] "Minimalna visina: %d piksela"
 msgid "Pick"
 msgstr "Izaberi"
 
-#: src/window/ComposeTweetWindow.vala:138
-msgid "Quote tweet"
-msgstr "Citiraj tvit"
+#: src/window/ComposeTweetWindow.vala:213
+#, c-format
+msgid "Failed to load %u images: %s"
+msgstr ""
 
-#: src/window/ComposeTweetWindow.vala:331
-msgid "Selected file is not an image."
-msgstr "Izabrana datoteka nije slika."
-
-#: src/window/ComposeTweetWindow.vala:332
-#: src/window/ComposeTweetWindow.vala:338
-#: src/window/ComposeTweetWindow.vala:344
-#: src/window/ComposeTweetWindow.vala:365
-#: src/window/ComposeTweetWindow.vala:428
+#: src/window/ComposeTweetWindow.vala:214
+#: src/window/ComposeTweetWindow.vala:504
+#: src/window/ComposeTweetWindow.vala:510
+#: src/window/ComposeTweetWindow.vala:516
+#: src/window/ComposeTweetWindow.vala:534
+#: src/window/ComposeTweetWindow.vala:593
 msgid "Back"
 msgstr "Nazad"
 
-#: src/window/ComposeTweetWindow.vala:336
+#: src/window/ComposeTweetWindow.vala:295
+msgid "Quote tweet"
+msgstr "Citiraj tvit"
+
+#: src/window/ComposeTweetWindow.vala:503
+msgid "Selected file is not an image."
+msgstr "Izabrana datoteka nije slika."
+
+#: src/window/ComposeTweetWindow.vala:508
 #, c-format
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
-msgstr "Izabrana slika je suviše velika. Najveća dozvoljena veličina datoteke po slici je %'d megabajta"
+msgstr ""
+"Izabrana slika je suviše velika. Najveća dozvoljena veličina datoteke po "
+"slici je %'d megabajta"
 
-#: src/window/ComposeTweetWindow.vala:343
+#: src/window/ComposeTweetWindow.vala:515
 msgid "Only one GIF file per tweet is allowed."
 msgstr "Dozvoljen je samo jedan GIF po tvitu."
 
-#: src/window/ComposeTweetWindow.vala:392
+#: src/window/ComposeTweetWindow.vala:561
 msgid "Insert Emoji"
 msgstr "Ubaci emodži"
 
@@ -453,9 +465,9 @@ msgstr "Isečak već postoji"
 
 #: src/window/SettingsDialog.vala:85
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
-"#newisalwaysbetter"
-msgstr "Hej, baci pogled na novo #Cawbird izdanje! \\ (•◡•) / #cool #novojeuvekbolje"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
+msgstr ""
+"Hej, baci pogled na novo #Cawbird izdanje! \\ (•◡•) / #cool #novojeuvekbolje"
 
 #: src/window/UserListDialog.vala:40
 msgid "Add to or Remove User From List"
@@ -477,7 +489,9 @@ msgstr "Novi nalog"
 msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
-msgstr "Da biste ovlastili Cawbird, morate uneti PIN sa twitter.com preko naloga kojeg želite dodati"
+msgstr ""
+"Da biste ovlastili Cawbird, morate uneti PIN sa twitter.com preko naloga "
+"kojeg želite dodati"
 
 #: ui/account-create-widget.ui:58
 msgid "Request PIN"
@@ -491,7 +505,7 @@ msgstr "Unesite PIN sa twitter.com ispod:"
 msgid "PIN"
 msgstr "PIN"
 
-#: ui/account-create-widget.ui:132 ui/list-statuses-page.ui:358
+#: ui/account-create-widget.ui:132 ui/list-statuses-page.ui:357
 msgid "Confirm"
 msgstr "Potvrdi"
 
@@ -568,7 +582,7 @@ msgstr "Nema rezultata"
 msgid "Try a different search"
 msgstr "Probajte sa drugačijom pretragom"
 
-#: ui/compose-window.ui:48 ui/dm-page.ui:51 ui/shortcuts-window.ui:127
+#: ui/compose-window.ui:48 ui/dm-page.ui:59 ui/shortcuts-window.ui:127
 msgid "Send"
 msgstr "Pošalji"
 
@@ -612,19 +626,19 @@ msgstr "Napravljeno u:"
 msgid "Edit"
 msgstr "Uredi"
 
-#: ui/list-statuses-page.ui:194
+#: ui/list-statuses-page.ui:193
 msgid "Mode:"
 msgstr "Režim:"
 
-#: ui/list-statuses-page.ui:217
+#: ui/list-statuses-page.ui:216
 msgid "Private"
 msgstr "Privatno"
 
-#: ui/list-statuses-page.ui:218
+#: ui/list-statuses-page.ui:217
 msgid "Public"
 msgstr "Javno"
 
-#: ui/list-statuses-page.ui:296
+#: ui/list-statuses-page.ui:295
 msgid "Description"
 msgstr "Opis"
 
@@ -802,7 +816,8 @@ msgstr "Nema podešenih isečaka."
 
 #: ui/settings-dialog.ui:480
 msgid "You can activate snippets by writing the keyword and pressing TAB."
-msgstr "Uvek možete aktivirati isečke pisanjem ključne reči i pritiskom tastera TAB."
+msgstr ""
+"Uvek možete aktivirati isečke pisanjem ključne reči i pritiskom tastera TAB."
 
 #: ui/settings-dialog.ui:494
 msgid "Snippets"
@@ -913,19 +928,19 @@ msgstr "Idi"
 msgid "Quote"
 msgstr "Citiraj"
 
-#: ui/tweet-info-page.ui:252
+#: ui/tweet-info-page.ui:253
 msgid "Retweet tweet"
 msgstr "Ponovo tvituj tvit"
 
-#: ui/tweet-info-page.ui:277
+#: ui/tweet-info-page.ui:278
 msgid "Favorite tweet"
 msgstr "Označi tvit omiljenim"
 
-#: ui/tweet-info-page.ui:302
+#: ui/tweet-info-page.ui:303
 msgid "Reply to tweet"
 msgstr "Odgovori na tvit"
 
-#: ui/tweet-info-page.ui:338
+#: ui/tweet-info-page.ui:339
 msgid "More"
 msgstr "Više"
 
@@ -941,15 +956,15 @@ msgstr "Odgovori"
 msgid "Unblock"
 msgstr "Deblokiraj"
 
-#: ui/user-list-entry.ui:67
+#: ui/user-list-entry.ui:68
 msgid "Show settings of this account"
 msgstr "Prikaži podešavanja ovog naloga"
 
-#: ui/user-list-entry.ui:92
+#: ui/user-list-entry.ui:93
 msgid "Open in new window"
 msgstr "Otvori u novom prozoru"
 
-#: ui/user-list-entry.ui:116
+#: ui/user-list-entry.ui:117
 msgid "Go to profile"
 msgstr "Idi na profil"
 
@@ -960,3 +975,9 @@ msgstr "Napravi"
 #: ui/user-lists-widget.ui:86
 msgid "Subscribed to"
 msgstr "Pretplaćen(a) na"
+
+#~ msgid "Timm Bäder"
+#~ msgstr "Timm Bäder"
+
+#~ msgid "Could not load tweets"
+#~ msgstr "Ne mogu da učitam tvitove"
