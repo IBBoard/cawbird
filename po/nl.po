@@ -488,7 +488,7 @@ msgstr "Gebruiker toevoegen aan of verwijderen van lijst"
 
 #: src/window/UserListDialog.vala:69
 msgid "You have no lists."
-msgstr "U heeft geen lijsten."
+msgstr "Je hebt geen lijsten."
 
 #: ui/about-dialog.ui:5
 msgid "About Cawbird"
