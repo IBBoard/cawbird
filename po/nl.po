@@ -255,7 +255,7 @@ msgstr "Deze tweet bevat afbeeldingen die gemarkeerd zijn als gevoelig"
 
 #: src/list/TweetListEntry.vala:722
 msgid "Show anyway"
-msgstr "Tóch weergeven"
+msgstr "Tóch bekijken"
 
 #: src/util/Utils.vala:182
 msgid "Now"
