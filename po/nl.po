@@ -741,7 +741,7 @@ msgstr "Media tonen"
 
 #: ui/settings-dialog.ui:78
 msgid "Always show"
-msgstr "Altijd weergeven"
+msgstr "Altijd tonen"
 
 #: ui/settings-dialog.ui:79
 msgid "Always hide"
