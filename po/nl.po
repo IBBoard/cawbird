@@ -673,7 +673,7 @@ msgstr "Afsluiten"
 
 #: ui/modify-filter-dialog.ui:6
 msgid "Add New Filter"
-msgstr "Nieuw filter toevoegen"
+msgstr "Filter toevoegen"
 
 #: ui/modify-snippet-dialog.ui:6
 msgid "Add New Snippet"
