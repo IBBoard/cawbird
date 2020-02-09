@@ -540,7 +540,7 @@ msgstr "Automatisch laden"
 
 #: ui/account-dialog.ui:244
 msgid "Do you really want to delete this account?"
-msgstr "Weet u zeker dat u dit account wilt verwijderen?"
+msgstr "Weet je zeker dat je dit account wilt verwijderen?"
 
 #: ui/cb-emoji-chooser.ui:41
 msgctxt "emoji category"
