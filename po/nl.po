@@ -173,7 +173,7 @@ msgstr "Tweet opstellen"
 
 #: src/MainWindow.vala:132
 msgid "Add new Account"
-msgstr "Nieuw account toevoegen"
+msgstr "Account toevoegen"
 
 #: src/MentionsTimeline.vala:102 src/UserEventReceiver.vala:115
 #, c-format
