@@ -503,8 +503,8 @@ msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
 msgstr ""
-"Om Cawbird toestemming te geven heeft u een pincode nodig van twitter.com "
-"van het toe te voegen account"
+"Geef Cawbird toestemming door op twitter.com een pincode op te halen van het"
+" toe te voegen account"
 
 #: ui/account-create-widget.ui:58
 msgid "Request PIN"
