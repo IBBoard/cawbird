@@ -295,7 +295,7 @@ msgstr "Het openen van %s is mislukt"
 #. We just assume that it was the wrong code
 #: src/widgets/AccountCreateWidget.vala:98
 msgid "Wrong PIN"
-msgstr "Onjuiste pincode"
+msgstr "De pincode is onjuist"
 
 #: src/widgets/AccountCreateWidget.vala:124
 msgid "Account already in use"
