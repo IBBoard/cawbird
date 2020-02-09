@@ -697,7 +697,7 @@ msgstr "Naam:"
 
 #: ui/new-list-entry.ui:73
 msgid "Create"
-msgstr "Creëren"
+msgstr "Aanmaken"
 
 #: ui/profile-page.ui:6
 msgid "Write Direct Message"
