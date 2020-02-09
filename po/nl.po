@@ -850,7 +850,7 @@ msgstr "Tweet opstellen"
 #: ui/shortcuts-window.ui:24
 msgctxt "shortcuts window"
 msgid "Show Account settings"
-msgstr "Accountinstellingen weergeven"
+msgstr "Accountinstellingen tonen"
 
 #: ui/shortcuts-window.ui:31
 msgctxt "shortcuts window"
