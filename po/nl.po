@@ -605,7 +605,7 @@ msgstr "Afbeelding toevoegen"
 
 #: ui/compose-window.ui:185
 msgid "Show favorite images"
-msgstr "Favoriete afbeeldingen weergeven"
+msgstr "Favoriete afbeeldingen tonen"
 
 #: ui/filter-page.ui:71 ui/search-page.ui:86
 msgid "Users"
