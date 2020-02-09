@@ -299,7 +299,7 @@ msgstr "De pincode is onjuist"
 
 #: src/widgets/AccountCreateWidget.vala:124
 msgid "Account already in use"
-msgstr "Account is al in gebruik"
+msgstr "Dit account is al in gebruik"
 
 #: src/widgets/CompletionTextView.vala:59
 msgid "No users found"
