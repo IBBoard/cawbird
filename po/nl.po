@@ -855,7 +855,7 @@ msgstr "Accountinstellingen tonen"
 #: ui/shortcuts-window.ui:31
 msgctxt "shortcuts window"
 msgid "Show Accounts Popover"
-msgstr "Accounts-snelmenu weergeven"
+msgstr "Accounts-snelmenu tonen"
 
 #: ui/shortcuts-window.ui:38
 msgctxt "shortcuts window"
