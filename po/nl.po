@@ -374,7 +374,7 @@ msgstr "Omslagfoto selecteren"
 
 #: src/window/AccountDialog.vala:380
 msgid "Image does not meet minimum size requirements:"
-msgstr "De afbeelding voldoet niet aan de minimale grootte-vereisten:"
+msgstr "De afbeelding voldoet niet aan de minimale afmetingen:"
 
 #: src/window/AccountDialog.vala:381
 #, c-format
