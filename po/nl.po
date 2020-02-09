@@ -681,7 +681,7 @@ msgstr "Fragment toevoegen"
 
 #: ui/modify-snippet-dialog.ui:46
 msgid "Keyword"
-msgstr "Sleutelwoord"
+msgstr "Trefwoord"
 
 #: ui/modify-snippet-dialog.ui:72
 msgid "Replacement"
