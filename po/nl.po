@@ -637,7 +637,7 @@ msgstr "Gemaakt op:"
 
 #: ui/list-statuses-page.ui:119
 msgid "Edit"
-msgstr "Bewerken"
+msgstr "Aanpassen"
 
 #: ui/list-statuses-page.ui:193
 msgid "Mode:"
