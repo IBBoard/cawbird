@@ -153,7 +153,7 @@ msgstr[1] "%d nieuwe tweets!"
 
 #: src/HomeTimeline.vala:202
 msgid "Home"
-msgstr "Thuis"
+msgstr "Startpagina"
 
 #: src/ListStatusesPage.vala:378
 msgid "List"
