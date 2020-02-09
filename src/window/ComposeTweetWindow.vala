@@ -208,9 +208,16 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       }
     }
 
-    if (failed_paths.length > 0) {
+    if (failed_paths.length > 0) {      
+      // It would have been nice to do this in one string, but using format positions to
+      // let translations skip the image count results in `*** invalid %N$ use detected ***`
+
       stack.visible_child = image_error_grid;
-      image_error_label.label = _("Failed to load %u images: %s").printf(failed_paths.length, string.joinv(", ", failed_paths));
+      var failed_to_log_str = ngettext("Failed to load image", "Failed to load %u images", failed_paths.length).printf(failed_paths.length);
+      // TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
+      // to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
+      image_error_label.label = _("%s: %s").printf(failed_to_log_str, string.joinv(", ", failed_paths));
+
       cancel_button.label = _("Back");
     }
 
