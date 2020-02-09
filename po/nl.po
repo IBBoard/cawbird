@@ -211,7 +211,7 @@ msgstr "Meer laden"
 
 #: src/TweetInfoPage.vala:381
 msgid "Could not show tweet"
-msgstr "De tweet kan niet worden weergegeven"
+msgstr "De tweet kan niet worden getoond"
 
 #: src/TweetInfoPage.vala:625
 msgid "Retweets"
