@@ -721,7 +721,7 @@ msgstr "Retweets uitschakelen"
 
 #: ui/profile-page.ui:166
 msgid "Follows you"
-msgstr "Volgt u"
+msgstr "Volgt je"
 
 #: ui/profile-page.ui:242 ui/search-page.ui:74 ui/settings-dialog.ui:420
 msgid "Tweets"
