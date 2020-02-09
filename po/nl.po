@@ -633,7 +633,7 @@ msgstr "Auteur:"
 
 #: ui/list-statuses-page.ui:84
 msgid "Created at:"
-msgstr "Gecreëerd op:"
+msgstr "Gemaakt op:"
 
 #: ui/list-statuses-page.ui:119
 msgid "Edit"
