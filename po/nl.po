@@ -984,7 +984,7 @@ msgstr "Ga naar profiel"
 
 #: ui/user-lists-widget.ui:14
 msgid "Created"
-msgstr "Gecreëerd"
+msgstr "Aangemaakt"
 
 #: ui/user-lists-widget.ui:86
 msgid "Subscribed to"
