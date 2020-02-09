@@ -924,7 +924,7 @@ msgstr "Opstellen"
 
 #: ui/shortcuts-window.ui:141
 msgid "Show Emoji Chooser"
-msgstr "Emojikiezer weergeven"
+msgstr "Emojikiezer tonen"
 
 #: ui/start-conversation-entry.ui:29
 msgid "Start new conversation"
