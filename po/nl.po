@@ -705,7 +705,7 @@ msgstr "Privébericht opstellen"
 
 #: ui/profile-page.ui:14
 msgid "Add to/Remove from List"
-msgstr "Toevoegen aan of verwijderen uit lijst"
+msgstr "Toevoegen aan of verwijderen van lijst"
 
 #: ui/profile-page.ui:20
 msgid "Blocked"
