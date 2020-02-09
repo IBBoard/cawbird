@@ -737,7 +737,7 @@ msgstr "Volgend"
 
 #: ui/settings-dialog.ui:59
 msgid "Show inline media"
-msgstr "Media weergeven"
+msgstr "Media tonen"
 
 #: ui/settings-dialog.ui:78
 msgid "Always show"
