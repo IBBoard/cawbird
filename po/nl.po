@@ -972,7 +972,7 @@ msgstr "Deblokkeren"
 
 #: ui/user-list-entry.ui:68
 msgid "Show settings of this account"
-msgstr "Accountinstellingen weergeven"
+msgstr "Accountinstellingen tonen"
 
 #: ui/user-list-entry.ui:93
 msgid "Open in new window"
