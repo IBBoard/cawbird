@@ -689,7 +689,7 @@ msgstr "Vervangen door"
 
 #: ui/new-list-entry.ui:30
 msgid "Create New List"
-msgstr "Nieuwe lijst creëren"
+msgstr "Lijst aanmaken"
 
 #: ui/new-list-entry.ui:51
 msgid "Name:"
