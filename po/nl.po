@@ -128,7 +128,7 @@ msgstr "Vind-ik-leuks"
 
 #: src/FilterPage.vala:47
 msgid "Add new Filter"
-msgstr "Nieuw filter toevoegen"
+msgstr "Filter toevoegen"
 
 #: src/FilterPage.vala:317 src/FilterPage.vala:323
 msgid "Filters"
