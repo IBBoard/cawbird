@@ -825,7 +825,7 @@ msgstr "Gevoelige inhoud verbergen"
 
 #: ui/settings-dialog.ui:441
 msgid "No snippets configured."
-msgstr "Er zijn geen fragmenten ingesteld."
+msgstr "Je hebt geen fragmenten ingesteld."
 
 #: ui/settings-dialog.ui:480
 msgid "You can activate snippets by writing the keyword and pressing TAB."
