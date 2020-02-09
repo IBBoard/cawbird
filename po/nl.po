@@ -4,9 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Geert Wirken <geert@gwirken.nl>, 2014
-# Nathan Follens, 2017
-# Heimen Stoffels <vistausss@outlook.com>, 2014-2015, 2020
+# IBBoard . <github@ibboard.co.uk>, 2020
+# Heimen Stoffels <vistausss@outlook.com>, 2020
 # 
 #, fuzzy
 msgid ""
@@ -20,6 +19,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:5
@@ -46,9 +46,9 @@ msgid ""
 "Additional features include local viewing of videos, multiple inline images,"
 " Lists, Filters, multiple accounts, etc."
 msgstr ""
-"Extra mogelijkheden zijn o.a. het weergeven van video's in de toepassing "
-"zelf, meerdere bijgevoegde afbeeldingen, lijsten, filters, meerdere accounts"
-" en nog veel meer."
+"Daarnaast kun je video's afspelen, meerdere bijgevoegde afbeeldingen tonen, "
+"en is er ondersteuning voor lijsten, filters, meerdere accounts en nog veel "
+"meer."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:22
 msgid "Generic timeline view when using Cawbird"
@@ -70,12 +70,14 @@ msgstr "IBBoard"
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Gebruik Twitter vanuit een normale bureaubladtoepassing"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
 #: data/uk.co.ibboard.cawbird.desktop.in:7
 msgid "twitter;"
 msgstr "twitter;"
 
-#. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon file name)!
+#. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon
+#. file name)!
 #: data/uk.co.ibboard.cawbird.desktop.in:11
 msgid "uk.co.ibboard.cawbird"
 msgstr "uk.co.ibboard.cawbird"
@@ -126,7 +128,7 @@ msgstr "Vind-ik-leuks"
 
 #: src/FilterPage.vala:47
 msgid "Add new Filter"
-msgstr "Nieuw filter toevoegen"
+msgstr "Filter toevoegen"
 
 #: src/FilterPage.vala:317 src/FilterPage.vala:323
 msgid "Filters"
@@ -151,7 +153,7 @@ msgstr[1] "%d nieuwe tweets!"
 
 #: src/HomeTimeline.vala:202
 msgid "Home"
-msgstr "Thuis"
+msgstr "Startpagina"
 
 #: src/ListStatusesPage.vala:378
 msgid "List"
@@ -163,7 +165,7 @@ msgstr "Lijsten"
 
 #: src/MainWindow.vala:88
 msgid "Show configured accounts"
-msgstr "Ingestelde accounts weergeven"
+msgstr "Ingestelde accounts bekijken"
 
 #: src/MainWindow.vala:100 ui/compose-window.ui:11 ui/compose-window.ui:25
 msgid "Compose Tweet"
@@ -171,7 +173,7 @@ msgstr "Tweet opstellen"
 
 #: src/MainWindow.vala:132
 msgid "Add new Account"
-msgstr "Nieuw account toevoegen"
+msgstr "Account toevoegen"
 
 #: src/MentionsTimeline.vala:102 src/UserEventReceiver.vala:115
 #, c-format
@@ -193,7 +195,7 @@ msgstr "Afgeschermd profiel"
 #: src/ProfilePage.vala:376
 #, c-format
 msgid "Tweet to @%s"
-msgstr "Verstuur een tweet naar @%s"
+msgstr "Verstuur een tweet aan @%s"
 
 #: src/ProfilePage.vala:522 src/ProfilePage.vala:566
 msgid "Protected Profile"
@@ -209,7 +211,7 @@ msgstr "Meer laden"
 
 #: src/TweetInfoPage.vala:381
 msgid "Could not show tweet"
-msgstr "De tweet kan niet worden weergegeven"
+msgstr "De tweet kan niet worden getoond"
 
 #: src/TweetInfoPage.vala:625
 msgid "Retweets"
@@ -225,7 +227,7 @@ msgstr "Bron"
 
 #: src/TweetInfoPage.vala:677
 msgid "Tweet Details"
-msgstr "Details van tweet"
+msgstr "Details"
 
 #: src/list/DMThreadEntry.vala:71
 #, c-format
@@ -253,7 +255,7 @@ msgstr "Deze tweet bevat afbeeldingen die gemarkeerd zijn als gevoelig"
 
 #: src/list/TweetListEntry.vala:722
 msgid "Show anyway"
-msgstr "Tóch weergeven"
+msgstr "Tóch bekijken"
 
 #: src/util/Utils.vala:182
 msgid "Now"
@@ -271,11 +273,11 @@ msgstr "%du"
 
 #: src/widgets/AccountCreateWidget.vala:42
 msgid "Don’t have a Twitter account yet?"
-msgstr "Heeft u nog geen Twitter-account?"
+msgstr "Heb je nog geen Twitter-account?"
 
 #: src/widgets/AccountCreateWidget.vala:42
 msgid "Create one"
-msgstr "Creëer een account"
+msgstr "Maak een account aan"
 
 #: src/widgets/AccountCreateWidget.vala:55
 msgid ""
@@ -283,7 +285,7 @@ msgid ""
 " the Twitter servers and you should try again later"
 msgstr ""
 "Niet geautoriseerd. Meestal betekent dit dat er iets mis is met de Twitter-"
-"servers en dat u het later opnieuw moet proberen."
+"servers en dat je het later opnieuw moet proberen."
 
 #: src/widgets/AccountCreateWidget.vala:69
 #, c-format
@@ -293,11 +295,11 @@ msgstr "Het openen van %s is mislukt"
 #. We just assume that it was the wrong code
 #: src/widgets/AccountCreateWidget.vala:98
 msgid "Wrong PIN"
-msgstr "Onjuiste pincode"
+msgstr "De pincode is onjuist"
 
 #: src/widgets/AccountCreateWidget.vala:124
 msgid "Account already in use"
-msgstr "Account is al in gebruik"
+msgstr "Dit account is al in gebruik"
 
 #: src/widgets/CompletionTextView.vala:59
 msgid "No users found"
@@ -372,7 +374,7 @@ msgstr "Omslagfoto selecteren"
 
 #: src/window/AccountDialog.vala:380
 msgid "Image does not meet minimum size requirements:"
-msgstr "De afbeelding voldoet niet aan de minimale grootte-vereisten:"
+msgstr "De afbeelding voldoet niet aan de minimumafmetingen:"
 
 #: src/window/AccountDialog.vala:381
 #, c-format
@@ -482,11 +484,11 @@ msgstr ""
 
 #: src/window/UserListDialog.vala:40
 msgid "Add to or Remove User From List"
-msgstr "Gebruiker toevoegen aan of verwijderen uit lijst"
+msgstr "Gebruiker toevoegen aan of verwijderen van lijst"
 
 #: src/window/UserListDialog.vala:69
 msgid "You have no lists."
-msgstr "U heeft geen lijsten."
+msgstr "Je hebt geen lijsten."
 
 #: ui/about-dialog.ui:5
 msgid "About Cawbird"
@@ -501,8 +503,8 @@ msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
 msgstr ""
-"Om Cawbird toestemming te geven heeft u een pincode nodig van twitter.com "
-"van het toe te voegen account"
+"Geef Cawbird toestemming door op twitter.com een pincode op te halen van het"
+" toe te voegen account"
 
 #: ui/account-create-widget.ui:58
 msgid "Request PIN"
@@ -510,7 +512,7 @@ msgstr "Pincode aanvragen"
 
 #: ui/account-create-widget.ui:88
 msgid "Enter PIN from twitter.com below:"
-msgstr "Voer de pincode van twitter.com hieronder in:"
+msgstr "Voer de pincode hieronder in:"
 
 #: ui/account-create-widget.ui:106
 msgid "PIN"
@@ -538,7 +540,7 @@ msgstr "Automatisch laden"
 
 #: ui/account-dialog.ui:244
 msgid "Do you really want to delete this account?"
-msgstr "Weet u zeker dat u dit account wilt verwijderen?"
+msgstr "Weet je zeker dat je dit account wilt verwijderen?"
 
 #: ui/cb-emoji-chooser.ui:41
 msgctxt "emoji category"
@@ -563,7 +565,7 @@ msgstr "Eten en drinken"
 #: ui/cb-emoji-chooser.ui:93
 msgctxt "emoji category"
 msgid "Travel & Places"
-msgstr "Reizen en plaatsen"
+msgstr "Reizen en locaties"
 
 #: ui/cb-emoji-chooser.ui:106
 msgctxt "emoji category"
@@ -603,7 +605,7 @@ msgstr "Afbeelding toevoegen"
 
 #: ui/compose-window.ui:185
 msgid "Show favorite images"
-msgstr "Favoriete afbeeldingen weergeven"
+msgstr "Favoriete afbeeldingen tonen"
 
 #: ui/filter-page.ui:71 ui/search-page.ui:86
 msgid "Users"
@@ -619,11 +621,11 @@ msgstr "Opzeggen"
 
 #: ui/list-statuses-page.ui:26
 msgid "Subscribers:"
-msgstr "Abonnees:"
+msgstr "Aantal abonnees:"
 
 #: ui/list-statuses-page.ui:49
 msgid "Members:"
-msgstr "Leden:"
+msgstr "Aantal leden:"
 
 #: ui/list-statuses-page.ui:72
 msgid "Creator:"
@@ -631,11 +633,11 @@ msgstr "Auteur:"
 
 #: ui/list-statuses-page.ui:84
 msgid "Created at:"
-msgstr "Gecreëerd op:"
+msgstr "Gemaakt op:"
 
 #: ui/list-statuses-page.ui:119
 msgid "Edit"
-msgstr "Bewerken"
+msgstr "Aanpassen"
 
 #: ui/list-statuses-page.ui:193
 msgid "Mode:"
@@ -671,15 +673,15 @@ msgstr "Afsluiten"
 
 #: ui/modify-filter-dialog.ui:6
 msgid "Add New Filter"
-msgstr "Nieuw filter toevoegen"
+msgstr "Filter toevoegen"
 
 #: ui/modify-snippet-dialog.ui:6
 msgid "Add New Snippet"
-msgstr "Nieuw fragment toevoegen"
+msgstr "Fragment toevoegen"
 
 #: ui/modify-snippet-dialog.ui:46
 msgid "Keyword"
-msgstr "Sleutelwoord"
+msgstr "Trefwoord"
 
 #: ui/modify-snippet-dialog.ui:72
 msgid "Replacement"
@@ -687,7 +689,7 @@ msgstr "Vervangen door"
 
 #: ui/new-list-entry.ui:30
 msgid "Create New List"
-msgstr "Nieuwe lijst creëren"
+msgstr "Lijst aanmaken"
 
 #: ui/new-list-entry.ui:51
 msgid "Name:"
@@ -695,7 +697,7 @@ msgstr "Naam:"
 
 #: ui/new-list-entry.ui:73
 msgid "Create"
-msgstr "Creëren"
+msgstr "Aanmaken"
 
 #: ui/profile-page.ui:6
 msgid "Write Direct Message"
@@ -703,7 +705,7 @@ msgstr "Privébericht opstellen"
 
 #: ui/profile-page.ui:14
 msgid "Add to/Remove from List"
-msgstr "Toevoegen aan of verwijderen uit lijst"
+msgstr "Toevoegen aan of verwijderen van lijst"
 
 #: ui/profile-page.ui:20
 msgid "Blocked"
@@ -719,7 +721,7 @@ msgstr "Retweets uitschakelen"
 
 #: ui/profile-page.ui:166
 msgid "Follows you"
-msgstr "Volgt u"
+msgstr "Volgt je"
 
 #: ui/profile-page.ui:242 ui/search-page.ui:74 ui/settings-dialog.ui:420
 msgid "Tweets"
@@ -735,11 +737,11 @@ msgstr "Volgend"
 
 #: ui/settings-dialog.ui:59
 msgid "Show inline media"
-msgstr "Media weergeven"
+msgstr "Media tonen"
 
 #: ui/settings-dialog.ui:78
 msgid "Always show"
-msgstr "Altijd weergeven"
+msgstr "Altijd tonen"
 
 #: ui/settings-dialog.ui:79
 msgid "Always hide"
@@ -823,13 +825,13 @@ msgstr "Gevoelige inhoud verbergen"
 
 #: ui/settings-dialog.ui:441
 msgid "No snippets configured."
-msgstr "Er zijn geen fragmenten ingesteld."
+msgstr "Je hebt geen fragmenten ingesteld."
 
 #: ui/settings-dialog.ui:480
 msgid "You can activate snippets by writing the keyword and pressing TAB."
 msgstr ""
-"U kunt fragmenten activeren door het sleutelwoord te typen en daarna op de "
-"tabtoets te drukken."
+"Activeer fragmenten door het trefwoord te typen en daarna op de tabtoets te "
+"drukken."
 
 #: ui/settings-dialog.ui:494
 msgid "Snippets"
@@ -848,22 +850,22 @@ msgstr "Tweet opstellen"
 #: ui/shortcuts-window.ui:24
 msgctxt "shortcuts window"
 msgid "Show Account settings"
-msgstr "Accountinstellingen weergeven"
+msgstr "Accountinstellingen tonen"
 
 #: ui/shortcuts-window.ui:31
 msgctxt "shortcuts window"
 msgid "Show Accounts Popover"
-msgstr "Accounts-snelmenu weergeven"
+msgstr "Accounts-snelmenu tonen"
 
 #: ui/shortcuts-window.ui:38
 msgctxt "shortcuts window"
 msgid "Show Application Settings"
-msgstr "Toepassingsinstellingen weergeven"
+msgstr "Toepassingsinstellingen tonen"
 
 #: ui/shortcuts-window.ui:45
 msgctxt "shortcuts window"
 msgid "Toggle Topbar"
-msgstr "Bovenste balk weergeven/verbergen"
+msgstr "Bovenste balk tonen/verbergen"
 
 #: ui/shortcuts-window.ui:52
 msgctxt "shortcuts window"
@@ -908,7 +910,7 @@ msgstr "Citeren"
 #: ui/shortcuts-window.ui:107
 msgctxt "shortcuts window"
 msgid "Show Details"
-msgstr "Details weergeven"
+msgstr "Details bekijken"
 
 #: ui/shortcuts-window.ui:114
 msgctxt "shortcuts window"
@@ -922,11 +924,11 @@ msgstr "Opstellen"
 
 #: ui/shortcuts-window.ui:141
 msgid "Show Emoji Chooser"
-msgstr "Emojikiezer weergeven"
+msgstr "Emojikiezer tonen"
 
 #: ui/start-conversation-entry.ui:29
 msgid "Start new conversation"
-msgstr "Nieuw gesprek starten"
+msgstr "Gesprek starten"
 
 #: ui/start-conversation-entry.ui:49
 msgid "With:"
@@ -970,7 +972,7 @@ msgstr "Deblokkeren"
 
 #: ui/user-list-entry.ui:68
 msgid "Show settings of this account"
-msgstr "Accountinstellingen weergeven"
+msgstr "Accountinstellingen tonen"
 
 #: ui/user-list-entry.ui:93
 msgid "Open in new window"
@@ -982,14 +984,8 @@ msgstr "Ga naar profiel"
 
 #: ui/user-lists-widget.ui:14
 msgid "Created"
-msgstr "Gecreëerd"
+msgstr "Aangemaakt"
 
 #: ui/user-lists-widget.ui:86
 msgid "Subscribed to"
 msgstr "Geabonneerd op"
-
-#~ msgid "Timm Bäder"
-#~ msgstr "Timm Bäder"
-
-#~ msgid "Could not load tweets"
-#~ msgstr "De tweets kunnen niet worden geladen"
