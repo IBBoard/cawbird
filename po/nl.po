@@ -165,7 +165,7 @@ msgstr "Lijsten"
 
 #: src/MainWindow.vala:88
 msgid "Show configured accounts"
-msgstr "Ingestelde accounts weergeven"
+msgstr "Ingestelde accounts bekijken"
 
 #: src/MainWindow.vala:100 ui/compose-window.ui:11 ui/compose-window.ui:25
 msgid "Compose Tweet"
