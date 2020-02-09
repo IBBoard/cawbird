@@ -512,7 +512,7 @@ msgstr "Pincode aanvragen"
 
 #: ui/account-create-widget.ui:88
 msgid "Enter PIN from twitter.com below:"
-msgstr "Voer de pincode van twitter.com hieronder in:"
+msgstr "Voer de pincode hieronder in:"
 
 #: ui/account-create-widget.ui:106
 msgid "PIN"
