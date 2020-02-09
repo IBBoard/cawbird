@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-02-08 16:17+0000\n"
+"POT-Creation-Date: 2020-02-09 13:42+0000\n"
 "PO-Revision-Date: 2018-02-06 18:45+0000\n"
 "Last-Translator: Iris Ilexiris <iris.ilexiris@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/cawbird/cawbird/language/"
@@ -265,7 +265,7 @@ msgid "%dh"
 msgstr "%dh"
 
 #: src/widgets/AccountCreateWidget.vala:42
-msgid "Don’t have a Twitter account yet?"
+msgid "Don't have a Twitter account yet?"
 msgstr "Ĉu vi ne havas Tviterokonton jam?"
 
 #: src/widgets/AccountCreateWidget.vala:42
@@ -274,7 +274,7 @@ msgstr "Krei konton"
 
 #: src/widgets/AccountCreateWidget.vala:55
 msgid ""
-"Unauthorized. Most of the time, this means that there’s something wrong with "
+"Unauthorized. Most of the time, this means that there's something wrong with "
 "the Twitter servers and you should try again later"
 msgstr ""
 "Vi ne estas rajtigitan. Plejparto, ĉi tiu signifas eraro kun la Tvitero-"
@@ -443,7 +443,7 @@ msgid "Matches"
 msgstr "Egalas"
 
 #: src/window/ModifyFilterDialog.vala:78
-msgid "Doesn’t match"
+msgid "Doesn't match"
 msgstr "Ne egalas"
 
 #: src/window/ModifySnippetDialog.vala:44
@@ -451,11 +451,11 @@ msgid "Modify Snippet"
 msgstr "Redakti kodaĵon"
 
 #: src/window/ModifySnippetDialog.vala:63
-msgid "Snippet can’t be empty"
+msgid "Snippet can't be empty"
 msgstr "Kodaĵo ne povas esti malplena"
 
 #: src/window/ModifySnippetDialog.vala:70
-msgid "Replacement can’t be empty"
+msgid "Replacement can't be empty"
 msgstr "Anstataŭtigo ne povas esti malplena"
 
 #: src/window/ModifySnippetDialog.vala:78

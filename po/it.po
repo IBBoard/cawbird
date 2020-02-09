@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-02-08 16:17+0000\n"
+"POT-Creation-Date: 2020-02-09 13:42+0000\n"
 "PO-Revision-Date: 2019-11-28 19:25+0100\n"
 "Last-Translator: Emanuele Albano Battistella <albano_battistella@hotmail."
 "com>\n"
@@ -271,7 +271,7 @@ msgid "%dh"
 msgstr "%dh"
 
 #: src/widgets/AccountCreateWidget.vala:42
-msgid "Don’t have a Twitter account yet?"
+msgid "Don't have a Twitter account yet?"
 msgstr "Non hai ancora un account Twitter?"
 
 #: src/widgets/AccountCreateWidget.vala:42
@@ -280,7 +280,7 @@ msgstr "Creane uno"
 
 #: src/widgets/AccountCreateWidget.vala:55
 msgid ""
-"Unauthorized. Most of the time, this means that there’s something wrong with "
+"Unauthorized. Most of the time, this means that there's something wrong with "
 "the Twitter servers and you should try again later"
 msgstr ""
 "Non autorizzato. La maggior parte delle volte questo significa che c'è "
@@ -450,7 +450,7 @@ msgid "Matches"
 msgstr "Corrispondenze"
 
 #: src/window/ModifyFilterDialog.vala:78
-msgid "Doesn’t match"
+msgid "Doesn't match"
 msgstr "Non corrisponde"
 
 #: src/window/ModifySnippetDialog.vala:44
@@ -458,11 +458,11 @@ msgid "Modify Snippet"
 msgstr "Modifica Snippet"
 
 #: src/window/ModifySnippetDialog.vala:63
-msgid "Snippet can’t be empty"
+msgid "Snippet can't be empty"
 msgstr "Lo snippet non può essere vuoto"
 
 #: src/window/ModifySnippetDialog.vala:70
-msgid "Replacement can’t be empty"
+msgid "Replacement can't be empty"
 msgstr "Il sostituto non può essere vuoto"
 
 #: src/window/ModifySnippetDialog.vala:78

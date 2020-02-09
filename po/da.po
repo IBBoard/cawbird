@@ -269,7 +269,7 @@ msgid "%dh"
 msgstr "%dt"
 
 #: src/widgets/AccountCreateWidget.vala:42
-msgid "Don’t have a Twitter account yet?"
+msgid "Don't have a Twitter account yet?"
 msgstr "Har du ikke en Twitter konto endnu?"
 
 #: src/widgets/AccountCreateWidget.vala:42
@@ -278,7 +278,7 @@ msgstr "Lav en"
 
 #: src/widgets/AccountCreateWidget.vala:55
 msgid ""
-"Unauthorized. Most of the time, this means that there’s something wrong with"
+"Unauthorized. Most of the time, this means that there's something wrong with"
 " the Twitter servers and you should try again later"
 msgstr ""
 "Uautoriseret. Ofte betyder dette at der er noget galt med Twitters servere, "
@@ -448,7 +448,7 @@ msgid "Matches"
 msgstr "Matcher"
 
 #: src/window/ModifyFilterDialog.vala:78
-msgid "Doesn’t match"
+msgid "Doesn't match"
 msgstr "Matcher ikke"
 
 #: src/window/ModifySnippetDialog.vala:44
@@ -456,11 +456,11 @@ msgid "Modify Snippet"
 msgstr "Rediger Snippet"
 
 #: src/window/ModifySnippetDialog.vala:63
-msgid "Snippet can’t be empty"
+msgid "Snippet can't be empty"
 msgstr "Snippet kan ikke være tom"
 
 #: src/window/ModifySnippetDialog.vala:70
-msgid "Replacement can’t be empty"
+msgid "Replacement can't be empty"
 msgstr "Erstatning kan ikke være tom"
 
 #: src/window/ModifySnippetDialog.vala:78

@@ -39,7 +39,7 @@ class AccountCreateWidget : Gtk.Box {
     this.cawbird = cawbird;
     this.main_window = main_window;
     info_label.label = "%s <a href=\"https://twitter.com/signup\">%s</a>"
-                       .printf (_("Don’t have a Twitter account yet?"), _("Create one"));
+                       .printf (_("Don't have a Twitter account yet?"), _("Create one"));
     pin_entry.buffer.deleted_text.connect (pin_changed_cb);
     pin_entry.buffer.inserted_text.connect (pin_changed_cb);
   }
@@ -52,7 +52,7 @@ class AccountCreateWidget : Gtk.Box {
         acc.proxy.request_token_async.end (res);
       } catch (GLib.Error e) {
         if (e.message.down() == "unauthorized") {
-          Utils.show_error_dialog (_("Unauthorized. Most of the time, this means that there’s something wrong with the Twitter servers and you should try again later"), this.main_window);
+          Utils.show_error_dialog (_("Unauthorized. Most of the time, this means that there's something wrong with the Twitter servers and you should try again later"), this.main_window);
           } else {
           Utils.show_error_dialog (e.message, this.main_window);
         }

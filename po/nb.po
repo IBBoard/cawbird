@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-02-08 16:17+0000\n"
+"POT-Creation-Date: 2020-02-09 13:42+0000\n"
 "PO-Revision-Date: 2018-02-09 06:34+0000\n"
 "Last-Translator: Kim Malmo <berencamlost@msn.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/cawbird/cawbird/"
@@ -266,7 +266,7 @@ msgid "%dh"
 msgstr "%dh"
 
 #: src/widgets/AccountCreateWidget.vala:42
-msgid "Don’t have a Twitter account yet?"
+msgid "Don't have a Twitter account yet?"
 msgstr "Har du ikke en Twitter-konto enda?"
 
 #: src/widgets/AccountCreateWidget.vala:42
@@ -275,7 +275,7 @@ msgstr "Lag konto"
 
 #: src/widgets/AccountCreateWidget.vala:55
 msgid ""
-"Unauthorized. Most of the time, this means that there’s something wrong with "
+"Unauthorized. Most of the time, this means that there's something wrong with "
 "the Twitter servers and you should try again later"
 msgstr ""
 "Ikke autentisert. Dette betyr som regel at det er noe galt med Twitter-"
@@ -442,7 +442,7 @@ msgid "Matches"
 msgstr "Treff"
 
 #: src/window/ModifyFilterDialog.vala:78
-msgid "Doesn’t match"
+msgid "Doesn't match"
 msgstr "Samsvarer ikke"
 
 #: src/window/ModifySnippetDialog.vala:44
@@ -450,11 +450,11 @@ msgid "Modify Snippet"
 msgstr "Endre kodesnut"
 
 #: src/window/ModifySnippetDialog.vala:63
-msgid "Snippet can’t be empty"
+msgid "Snippet can't be empty"
 msgstr "Kodesnutt kan ikke være tom"
 
 #: src/window/ModifySnippetDialog.vala:70
-msgid "Replacement can’t be empty"
+msgid "Replacement can't be empty"
 msgstr "Erstatning kan ikke være tom"
 
 #: src/window/ModifySnippetDialog.vala:78

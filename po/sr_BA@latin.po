@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-02-08 16:17+0000\n"
+"POT-Creation-Date: 2020-02-09 13:42+0000\n"
 "PO-Revision-Date: 2017-11-20 17:05+0000\n"
 "Last-Translator: Slobodan Terzić <githzerai06@gmail.com>\n"
 "Language-Team: Serbian (Latin) (http://www.transifex.com/cawbird/cawbird/"
@@ -268,7 +268,7 @@ msgid "%dh"
 msgstr "%dč"
 
 #: src/widgets/AccountCreateWidget.vala:42
-msgid "Don’t have a Twitter account yet?"
+msgid "Don't have a Twitter account yet?"
 msgstr "Još nemate Twitter nalog?"
 
 #: src/widgets/AccountCreateWidget.vala:42
@@ -277,7 +277,7 @@ msgstr "Napravi nalog"
 
 #: src/widgets/AccountCreateWidget.vala:55
 msgid ""
-"Unauthorized. Most of the time, this means that there’s something wrong with "
+"Unauthorized. Most of the time, this means that there's something wrong with "
 "the Twitter servers and you should try again later"
 msgstr ""
 "Neovlašćeno. U većini slučajeva ovo znači da nešto nije u redu sa "
@@ -449,7 +449,7 @@ msgid "Matches"
 msgstr "podudara se"
 
 #: src/window/ModifyFilterDialog.vala:78
-msgid "Doesn’t match"
+msgid "Doesn't match"
 msgstr "Ne poklapa se"
 
 #: src/window/ModifySnippetDialog.vala:44
@@ -457,11 +457,11 @@ msgid "Modify Snippet"
 msgstr "Izmeni isečak"
 
 #: src/window/ModifySnippetDialog.vala:63
-msgid "Snippet can’t be empty"
+msgid "Snippet can't be empty"
 msgstr "Isečak ne može biti prazan"
 
 #: src/window/ModifySnippetDialog.vala:70
-msgid "Replacement can’t be empty"
+msgid "Replacement can't be empty"
 msgstr "Zamena ne može biti prazna"
 
 #: src/window/ModifySnippetDialog.vala:78
