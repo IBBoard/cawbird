@@ -621,7 +621,7 @@ msgstr "Opzeggen"
 
 #: ui/list-statuses-page.ui:26
 msgid "Subscribers:"
-msgstr "Abonnees:"
+msgstr "Aantal abonnees:"
 
 #: ui/list-statuses-page.ui:49
 msgid "Members:"
