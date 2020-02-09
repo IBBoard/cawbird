@@ -277,7 +277,7 @@ msgstr "Heb je nog geen Twitter-account?"
 
 #: src/widgets/AccountCreateWidget.vala:42
 msgid "Create one"
-msgstr "Creëer een account"
+msgstr "Maak een account aan"
 
 #: src/widgets/AccountCreateWidget.vala:55
 msgid ""
