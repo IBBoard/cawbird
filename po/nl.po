@@ -928,7 +928,7 @@ msgstr "Emojikiezer tonen"
 
 #: ui/start-conversation-entry.ui:29
 msgid "Start new conversation"
-msgstr "Nieuw gesprek starten"
+msgstr "Gesprek starten"
 
 #: ui/start-conversation-entry.ui:49
 msgid "With:"
