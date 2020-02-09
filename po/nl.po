@@ -865,7 +865,7 @@ msgstr "Toepassingsinstellingen tonen"
 #: ui/shortcuts-window.ui:45
 msgctxt "shortcuts window"
 msgid "Toggle Topbar"
-msgstr "Bovenste balk weergeven/verbergen"
+msgstr "Bovenste balk tonen/verbergen"
 
 #: ui/shortcuts-window.ui:52
 msgctxt "shortcuts window"
