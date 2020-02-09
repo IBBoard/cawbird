@@ -285,7 +285,7 @@ msgid ""
 " the Twitter servers and you should try again later"
 msgstr ""
 "Niet geautoriseerd. Meestal betekent dit dat er iets mis is met de Twitter-"
-"servers en dat u het later opnieuw moet proberen."
+"servers en dat je het later opnieuw moet proberen."
 
 #: src/widgets/AccountCreateWidget.vala:69
 #, c-format
