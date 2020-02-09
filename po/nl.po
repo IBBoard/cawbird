@@ -625,7 +625,7 @@ msgstr "Aantal abonnees:"
 
 #: ui/list-statuses-page.ui:49
 msgid "Members:"
-msgstr "Leden:"
+msgstr "Aantal leden:"
 
 #: ui/list-statuses-page.ui:72
 msgid "Creator:"
