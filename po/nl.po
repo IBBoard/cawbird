@@ -830,8 +830,8 @@ msgstr "Je hebt geen fragmenten ingesteld."
 #: ui/settings-dialog.ui:480
 msgid "You can activate snippets by writing the keyword and pressing TAB."
 msgstr ""
-"U kunt fragmenten activeren door het sleutelwoord te typen en daarna op de "
-"tabtoets te drukken."
+"Activeer fragmenten door het trefwoord te typen en daarna op de tabtoets te "
+"drukken."
 
 #: ui/settings-dialog.ui:494
 msgid "Snippets"
