@@ -195,7 +195,7 @@ msgstr "Afgeschermd profiel"
 #: src/ProfilePage.vala:376
 #, c-format
 msgid "Tweet to @%s"
-msgstr "Verstuur een tweet naar @%s"
+msgstr "Verstuur een tweet aan @%s"
 
 #: src/ProfilePage.vala:522 src/ProfilePage.vala:566
 msgid "Protected Profile"
