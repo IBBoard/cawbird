@@ -227,7 +227,7 @@ msgstr "Bron"
 
 #: src/TweetInfoPage.vala:677
 msgid "Tweet Details"
-msgstr "Details van tweet"
+msgstr "Details"
 
 #: src/list/DMThreadEntry.vala:71
 #, c-format
