@@ -910,7 +910,7 @@ msgstr "Citeren"
 #: ui/shortcuts-window.ui:107
 msgctxt "shortcuts window"
 msgid "Show Details"
-msgstr "Details weergeven"
+msgstr "Details bekijken"
 
 #: ui/shortcuts-window.ui:114
 msgctxt "shortcuts window"
