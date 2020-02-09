@@ -565,7 +565,7 @@ msgstr "Eten en drinken"
 #: ui/cb-emoji-chooser.ui:93
 msgctxt "emoji category"
 msgid "Travel & Places"
-msgstr "Reizen en plaatsen"
+msgstr "Reizen en locaties"
 
 #: ui/cb-emoji-chooser.ui:106
 msgctxt "emoji category"
