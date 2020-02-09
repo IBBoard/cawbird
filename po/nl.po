@@ -273,7 +273,7 @@ msgstr "%du"
 
 #: src/widgets/AccountCreateWidget.vala:42
 msgid "Don’t have a Twitter account yet?"
-msgstr "Heeft u nog geen Twitter-account?"
+msgstr "Heb je nog geen Twitter-account?"
 
 #: src/widgets/AccountCreateWidget.vala:42
 msgid "Create one"
