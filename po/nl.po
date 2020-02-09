@@ -484,7 +484,7 @@ msgstr ""
 
 #: src/window/UserListDialog.vala:40
 msgid "Add to or Remove User From List"
-msgstr "Gebruiker toevoegen aan of verwijderen uit lijst"
+msgstr "Gebruiker toevoegen aan of verwijderen van lijst"
 
 #: src/window/UserListDialog.vala:69
 msgid "You have no lists."
