@@ -677,7 +677,7 @@ msgstr "Filter toevoegen"
 
 #: ui/modify-snippet-dialog.ui:6
 msgid "Add New Snippet"
-msgstr "Nieuw fragment toevoegen"
+msgstr "Fragment toevoegen"
 
 #: ui/modify-snippet-dialog.ui:46
 msgid "Keyword"
