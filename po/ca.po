@@ -910,7 +910,7 @@ msgstr "Mostra els detalls"
 #: ui/shortcuts-window.ui:114
 msgctxt "shortcuts window"
 msgid "Delete"
-msgstr "Eliminar"
+msgstr "Elimina"
 
 #: ui/shortcuts-window.ui:122
 msgctxt "shortcuts window"
@@ -919,7 +919,7 @@ msgstr "Redacta"
 
 #: ui/shortcuts-window.ui:141
 msgid "Show Emoji Chooser"
-msgstr "Trieu Emoji"
+msgstr "Tria Emoji"
 
 #: ui/start-conversation-entry.ui:29
 msgid "Start new conversation"
@@ -975,7 +975,7 @@ msgstr "Obre a una finestra nova"
 
 #: ui/user-list-entry.ui:117
 msgid "Go to profile"
-msgstr "Anar al perfil"
+msgstr "Vés al perfil"
 
 #: ui/user-lists-widget.ui:14
 msgid "Created"
