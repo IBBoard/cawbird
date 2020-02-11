@@ -430,7 +430,7 @@ msgstr "El fitxer seleccionat no és una imatge."
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
 msgstr ""
-"La imatge seleccionada és massa gran. La mida máxima per imatge es %'d MB"
+"La imatge seleccionada és massa gran. La mida máxima per imatge és de %'d MB"
 
 #: src/window/ComposeTweetWindow.vala:522
 msgid "Only one GIF file per tweet is allowed."
@@ -537,7 +537,7 @@ msgstr "Inici automàtic"
 
 #: ui/account-dialog.ui:244
 msgid "Do you really want to delete this account?"
-msgstr "Voleu eliminar aquest compte?"
+msgstr "Vols eliminar aquest compte?"
 
 #: ui/cb-emoji-chooser.ui:41
 msgctxt "emoji category"
@@ -610,7 +610,7 @@ msgstr "Usuaris"
 
 #: ui/list-list-entry.ui:109
 msgid "Subscribe"
-msgstr "Subscriviu-vos"
+msgstr "Subscriu-te"
 
 #: ui/list-list-entry.ui:122
 msgid "Unsubscribe"
@@ -710,7 +710,7 @@ msgstr "Blocat"
 
 #: ui/profile-page.ui:24
 msgid "Muted"
-msgstr "Slienciat"
+msgstr "Silenciat"
 
 #: ui/profile-page.ui:28
 msgid "Retweets disabled"
@@ -738,15 +738,15 @@ msgstr "Mostrar contingut inline"
 
 #: ui/settings-dialog.ui:78
 msgid "Always show"
-msgstr "Mostrar sempre"
+msgstr "Mostra sempre"
 
 #: ui/settings-dialog.ui:79
 msgid "Always hide"
-msgstr "Amagar sempre"
+msgstr "Amaga sempre"
 
 #: ui/settings-dialog.ui:80
 msgid "Hide in timeline"
-msgstr "Amagar en el timeline"
+msgstr "Amaga-ho al timeline"
 
 #: ui/settings-dialog.ui:101
 msgid "Auto scroll on new tweets"
@@ -810,19 +810,19 @@ msgstr "Avatars arrodonits"
 
 #: ui/settings-dialog.ui:338
 msgid "Remove trailing hashtags"
-msgstr "Eliminar hashtags posteriors"
+msgstr "Elimina els hashtags posteriors"
 
 #: ui/settings-dialog.ui:366
 msgid "Remove media links"
-msgstr "Elimina enllaços"
+msgstr "Elimina els enllaços"
 
 #: ui/settings-dialog.ui:394
 msgid "Hide inappropriate content"
-msgstr "Amagar contingut inapropiat"
+msgstr "Amaga el contingut inapropiat"
 
 #: ui/settings-dialog.ui:441
 msgid "No snippets configured."
-msgstr "No s'han configurat snippets"
+msgstr "No s'han configurat els snippets"
 
 #: ui/settings-dialog.ui:480
 msgid "You can activate snippets by writing the keyword and pressing TAB."
