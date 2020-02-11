@@ -148,7 +148,7 @@ msgstr "%s ha repiulat"
 msgid "%d new Tweet!"
 msgid_plural "%d new Tweets!"
 msgstr[0] "%d nou tweet!"
-msgstr[1] "%d nous tweets!"
+msgstr[1] "%d noves piulades!"
 
 #: src/HomeTimeline.vala:202
 msgid "Home"
@@ -172,7 +172,7 @@ msgstr "Redacteu una piulada"
 
 #: src/MainWindow.vala:132
 msgid "Add new Account"
-msgstr "Afegir un compte nou"
+msgstr "Afegiu un compte nou"
 
 #: src/MentionsTimeline.vala:102 src/UserEventReceiver.vala:115
 #, c-format
@@ -210,7 +210,7 @@ msgstr "Carrega'n més"
 
 #: src/TweetInfoPage.vala:381
 msgid "Could not show tweet"
-msgstr "No s'ha pogut mostrar el tweet"
+msgstr "No s'ha pogut mostrar la piulada"
 
 #: src/TweetInfoPage.vala:625
 msgid "Retweets"
@@ -246,7 +246,7 @@ msgstr "Suprimeix"
 #: src/list/TweetListEntry.vala:552
 #, c-format
 msgid "Block %s"
-msgstr "Bloquejar a %s"
+msgstr "Bloqueja a %s"
 
 #: src/list/TweetListEntry.vala:715
 msgid "This tweet contains images marked as inappropriate"
@@ -254,7 +254,7 @@ msgstr "Aquest tweet conté imatges marcades com a inapropiades"
 
 #: src/list/TweetListEntry.vala:722
 msgid "Show anyway"
-msgstr "Mostrar de totes maneres"
+msgstr "Mostra de totes maneres"
 
 #: src/util/Utils.vala:182
 msgid "Now"
@@ -306,7 +306,7 @@ msgstr "No s'han trobat usuaris"
 
 #: src/widgets/FavImageView.vala:153 src/window/ComposeTweetWindow.vala:470
 msgid "Select Image"
-msgstr "Seleccioneu la imatge"
+msgstr "Selecciona la imatge"
 
 #: src/widgets/FavImageView.vala:156 src/window/AccountDialog.vala:347
 #: src/window/ComposeTweetWindow.vala:473
@@ -369,7 +369,7 @@ msgstr "Prova de nou"
 
 #: src/window/AccountDialog.vala:344
 msgid "Select Banner Image"
-msgstr "Seleccioneu la imatge del bàner"
+msgstr "Selecciona la imatge del bàner"
 
 #: src/window/AccountDialog.vala:380
 msgid "Image does not meet minimum size requirements:"
