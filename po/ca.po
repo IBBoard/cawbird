@@ -826,7 +826,7 @@ msgstr "No s'han configurat els snippets"
 
 #: ui/settings-dialog.ui:480
 msgid "You can activate snippets by writing the keyword and pressing TAB."
-msgstr "Pots activar snippets escrivint la paraula clau i pressionant TAB"
+msgstr "Pots activar els snippets escrivint la paraula clau i pressionant TAB"
 
 #: ui/settings-dialog.ui:494
 msgid "Snippets"
@@ -870,22 +870,22 @@ msgstr "Enrere"
 #: ui/shortcuts-window.ui:59
 msgctxt "shortcuts window"
 msgid "Go Forward"
-msgstr "Endevant"
+msgstr "Endavant"
 
 #: ui/shortcuts-window.ui:66
 msgctxt "shortcuts window"
 msgid "Go to nth page"
-msgstr "Anar a la pàgina #"
+msgstr "Vés a la pàgina #"
 
 #: ui/shortcuts-window.ui:74
 msgctxt "shortcuts window"
 msgid "Tweets"
-msgstr "Tweets"
+msgstr "Piulades"
 
 #: ui/shortcuts-window.ui:79
 msgctxt "shortcuts window"
 msgid "Retweet"
-msgstr "Retwittejar"
+msgstr "Repiular"
 
 #: ui/shortcuts-window.ui:86
 msgctxt "shortcuts window"
@@ -895,17 +895,17 @@ msgstr "M'agrada"
 #: ui/shortcuts-window.ui:93
 msgctxt "shortcuts window"
 msgid "Reply"
-msgstr "Respondre"
+msgstr "Respon"
 
 #: ui/shortcuts-window.ui:100
 msgctxt "shortcuts window"
 msgid "Quote"
-msgstr "Citar"
+msgstr "Cita"
 
 #: ui/shortcuts-window.ui:107
 msgctxt "shortcuts window"
 msgid "Show Details"
-msgstr "Mostrar detalls"
+msgstr "Mostra els detalls"
 
 #: ui/shortcuts-window.ui:114
 msgctxt "shortcuts window"
