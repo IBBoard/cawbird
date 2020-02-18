@@ -1,25 +1,25 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Timm Bäder
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the cawbird package.
-#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
 # Translators:
 # Daniele Napolitano <dnax88@gmail.com>, 2014
 # Emanuele Rocco Petrone <emaeleptrn@gmail.com>, 2018
 # Matteo Castelli <Mtt.Castelli@gmail.com>, 2016
 # Nicola Stanislao Vitale <nivit@rocketmail.com>, 2015
 # Tassoman, 2017
-# Albano Battistella <albano_battistella@hotmail.com>, 2019
+# Albano Battistella <albano_battistella@hotmail.com>, 2019-2020
+# 
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2020-02-09 13:42+0000\n"
-"PO-Revision-Date: 2019-11-28 19:25+0100\n"
-"Last-Translator: Emanuele Albano Battistella <albano_battistella@hotmail."
-"com>\n"
-"Language-Team: Italian (http://www.transifex.com/cawbird/cawbird/language/"
-"it/)\n"
-"Language: it\n"
+"PO-Revision-Date: 2020-02-05 20:32+0000\n"
+"Last-Translator: albanobattistella <albano_battistella@hotmail.com>, 2020\n"
+"Language-Team: Italian (https://www.transifex.com/cawbird/teams/107135/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,16 +37,16 @@ msgstr "Client Twitter"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:10
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as "
-"Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
 "Cawbird è un client twitter nativo GTK+ che fornisce funzioni vitali come "
 "messaggi diretti (DM), notifiche dei tweet e vista delle conversazioni."
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:13
 msgid ""
-"Additional features include local viewing of videos, multiple inline images, "
-"Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images,"
+" Lists, Filters, multiple accounts, etc."
 msgstr ""
 "Funzionalità aggiuntive includono riproduzione locale dei video, più "
 "immagini in una riga, liste, filtri, account multipli ecc."
@@ -280,12 +280,12 @@ msgstr "Creane uno"
 
 #: src/widgets/AccountCreateWidget.vala:55
 msgid ""
-"Unauthorized. Most of the time, this means that there's something wrong with "
-"the Twitter servers and you should try again later"
+"Unauthorized. Most of the time, this means that there's something wrong with"
+" the Twitter servers and you should try again later"
 msgstr ""
 "Non autorizzato. La maggior parte delle volte questo significa che c'è "
-"qualche problema con i server di Twitter e che dovresti provare di nuovo più "
-"tardi"
+"qualche problema con i server di Twitter e che dovresti provare di nuovo più"
+" tardi"
 
 #: src/widgets/AccountCreateWidget.vala:69
 #, c-format
@@ -398,15 +398,16 @@ msgstr "Seleziona"
 #, c-format
 msgid "Failed to load image"
 msgid_plural "Failed to load %u images"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Impossibile caricare l'immagine"
+msgstr[1] "Carcamento immagini %u fallito."
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
+#. <path>, <path>"
 #: src/window/ComposeTweetWindow.vala:219
 #, c-format
 msgid "%s: %s"
-msgstr ""
+msgstr "%s: %s"
 
 #: src/window/ComposeTweetWindow.vala:221
 #: src/window/ComposeTweetWindow.vala:511
