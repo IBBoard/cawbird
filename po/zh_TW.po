@@ -6,16 +6,17 @@
 # HybridGlucose <a07051226@gmail.com>, 2016-2017-2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Cawbird\n"
+"Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2017-10-22 12:02+0200\n"
+"POT-Creation-Date: 2020-02-09 13:42+0000\n"
 "PO-Revision-Date: 2018-01-17 19:31+0000\n"
 "Last-Translator: HybridGlucose <a07051226@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/cawbird/cawbird/language/zh_TW/)\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/cawbird/cawbird/"
+"language/zh_TW/)\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:5
@@ -30,68 +31,69 @@ msgstr "Twitter用戶端"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:10
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such "
-"as Direct Messages (DMs), tweet notifications, conversation views."
-msgstr "Cawbird 是原生的 GTK+ Twitter 用戶端，具有訊息、推文通知、以對話形式檢視回覆等等功能。"
+"Cawbird is a native GTK+ twitter client that provides vital features such as "
+"Direct Messages (DMs), tweet notifications, conversation views."
+msgstr ""
+"Cawbird 是原生的 GTK+ Twitter 用戶端，具有訊息、推文通知、以對話形式檢視回覆"
+"等等功能。"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:13
 msgid ""
-"Additional features include local viewing of videos, multiple inline images,"
-" Lists, Filters, multiple accounts, etc."
-msgstr "其他功能包括直接觀賞影片、顯示多張影像、列表、過濾器及多重帳戶登入等等。"
+"Additional features include local viewing of videos, multiple inline images, "
+"Lists, Filters, multiple accounts, etc."
+msgstr ""
+"其他功能包括直接觀賞影片、顯示多張影像、列表、過濾器及多重帳戶登入等等。"
 
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:21
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:22
 msgid "Generic timeline view when using Cawbird"
 msgstr "使用 Cawbird 以時間軸方式瀏覽"
 
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:25
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:26
 msgid "Typical Twitter profile"
 msgstr "典型的 Twitter 個人檔案"
 
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:29
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:30
 msgid "Account settings can be configured"
 msgstr "可以設定帳戶資料"
 
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:41
-msgid "Timm Bäder"
-msgstr ""
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:42
+msgid "IBBoard"
+msgstr "IBBoard"
 
 #: data/uk.co.ibboard.cawbird.desktop.in:5
 msgid "Use Twitter from within a normal desktop application"
 msgstr "在普通的桌面應用程式內使用 Twitter"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or
-#. localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/uk.co.ibboard.cawbird.desktop.in:7
 msgid "twitter;"
 msgstr "twitter;"
 
-#. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon
-#. file name)!
+#. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/uk.co.ibboard.cawbird.desktop.in:11
 msgid "uk.co.ibboard.cawbird"
 msgstr "uk.co.ibboard.cawbird"
 
 #. TRANSLATORS: This is the start of a "Replying to" line in a tweet
-#: src/CbUtils.c:177 src/TweetInfoPage.vala:525
+#: src/CbUtils.c:195 src/TweetInfoPage.vala:581
 msgid "Replying to"
 msgstr "回覆給"
 
 #. TRANSLATORS: This gets appended to the "replying to" line
 #. * in a tweet. Example: "Replying to Foo and Bar" where
 #. * "and Bar" comes from this string.
-#: src/CbUtils.c:188 src/TweetInfoPage.vala:537
+#: src/CbUtils.c:206 src/TweetInfoPage.vala:593
 msgid "and"
 msgstr "和"
 
 #. TRANSLATORS: This gets appended to the "replying to" line
 #. * in a tweet
-#: src/CbUtils.c:197
+#: src/CbUtils.c:215
 #, c-format
 msgid "and %d others"
 msgstr "和其他 %d 人"
 
-#: src/DMPage.vala:344
+#: src/DMPage.vala:285
 msgid "Direct Conversation"
 msgstr "對話"
 
@@ -110,12 +112,8 @@ msgstr "%s 傳送了新訊息"
 msgid "Direct Messages"
 msgstr "訊息"
 
-#: src/DefaultTimeline.vala:366
-msgid "Could not load tweets"
-msgstr "無法載入推文"
-
-#: src/FavoritesTimeline.vala:72 src/FavoritesTimeline.vala:76
-#: src/TweetInfoPage.vala:567
+#: src/FavoritesTimeline.vala:77 src/FavoritesTimeline.vala:81
+#: src/TweetInfoPage.vala:626
 msgid "Favorites"
 msgstr "喜歡"
 
@@ -127,23 +125,23 @@ msgstr "新增過濾器"
 msgid "Filters"
 msgstr "過濾器"
 
-#: src/HomeTimeline.vala:143
+#: src/HomeTimeline.vala:155
 #, c-format
 msgid "%s retweeted %s"
 msgstr "%s 轉推了 %s"
 
-#: src/HomeTimeline.vala:146
+#: src/HomeTimeline.vala:158
 #, c-format
 msgid "%s tweeted"
 msgstr "%s 推文了"
 
-#: src/HomeTimeline.vala:155
+#: src/HomeTimeline.vala:167
 #, c-format
 msgid "%d new Tweet!"
 msgid_plural "%d new Tweets!"
 msgstr[0] "%d 則新推文！"
 
-#: src/HomeTimeline.vala:190
+#: src/HomeTimeline.vala:202
 msgid "Home"
 msgstr "主頁"
 
@@ -167,12 +165,12 @@ msgstr "撰寫新推文"
 msgid "Add new Account"
 msgstr "加入新帳戶"
 
-#: src/MentionsTimeline.vala:93 src/UserEventReceiver.vala:115
+#: src/MentionsTimeline.vala:102 src/UserEventReceiver.vala:115
 #, c-format
 msgid "%s mentioned %s"
 msgstr "%s 提及 %s"
 
-#: src/MentionsTimeline.vala:111 src/MentionsTimeline.vala:115
+#: src/MentionsTimeline.vala:119 src/MentionsTimeline.vala:123
 msgid "Mentions"
 msgstr "提及"
 
@@ -180,44 +178,44 @@ msgstr "提及"
 msgid "Suspended Account"
 msgstr "被暫時停用的帳戶"
 
-#: src/ProfilePage.vala:272
+#: src/ProfilePage.vala:275
 msgid "Protected profile"
 msgstr "受保護的個人檔案"
 
-#: src/ProfilePage.vala:369
+#: src/ProfilePage.vala:376
 #, c-format
 msgid "Tweet to @%s"
 msgstr "推文給 @%s"
 
-#: src/ProfilePage.vala:507 src/ProfilePage.vala:551
+#: src/ProfilePage.vala:522 src/ProfilePage.vala:566
 msgid "Protected Profile"
 msgstr "受保護的個人檔案"
 
-#: src/SearchPage.vala:371 src/SearchPage.vala:380 ui/search-page.ui:24
+#: src/SearchPage.vala:372 src/SearchPage.vala:381 ui/search-page.ui:24
 msgid "Search"
 msgstr "搜尋"
 
-#: src/SearchPage.vala:401
+#: src/SearchPage.vala:402
 msgid "Load More"
 msgstr "載入更多"
 
-#: src/TweetInfoPage.vala:345
+#: src/TweetInfoPage.vala:381
 msgid "Could not show tweet"
 msgstr "無法顯示推文"
 
-#: src/TweetInfoPage.vala:566
+#: src/TweetInfoPage.vala:625
 msgid "Retweets"
 msgstr "個轉推"
 
-#: src/TweetInfoPage.vala:575 src/widgets/MediaButton.vala:103
+#: src/TweetInfoPage.vala:634 src/widgets/MediaButton.vala:103
 msgid "Open in Browser"
 msgstr "在瀏覽器中開啟"
 
-#: src/TweetInfoPage.vala:575
+#: src/TweetInfoPage.vala:634
 msgid "Source"
 msgstr "來源"
 
-#: src/TweetInfoPage.vala:621
+#: src/TweetInfoPage.vala:677
 msgid "Tweet Details"
 msgstr "推文詳細"
 
@@ -229,41 +227,41 @@ msgstr[0] "(%d 未讀)"
 
 #: src/list/FavImageRow.vala:81 ui/account-dialog.ui:212
 #: ui/account-dialog.ui:269 ui/filter-list-entry.ui:93
-#: ui/list-list-entry.ui:132 ui/list-statuses-page.ui:166
+#: ui/list-list-entry.ui:132 ui/list-statuses-page.ui:165
 #: ui/modify-snippet-dialog.ui:108 ui/tweet-info-page.ui:10
 #: ui/tweet-list-entry.ui:10
 msgid "Delete"
 msgstr "刪除"
 
-#: src/list/TweetListEntry.vala:455
+#: src/list/TweetListEntry.vala:552
 #, c-format
 msgid "Block %s"
 msgstr "封鎖 %s"
 
-#: src/list/TweetListEntry.vala:611
+#: src/list/TweetListEntry.vala:715
 msgid "This tweet contains images marked as inappropriate"
 msgstr "這則推文被標記為敏感內容"
 
-#: src/list/TweetListEntry.vala:618
+#: src/list/TweetListEntry.vala:722
 msgid "Show anyway"
 msgstr "顯示它"
 
-#: src/util/Utils.vala:146
+#: src/util/Utils.vala:182
 msgid "Now"
 msgstr "現在"
 
-#: src/util/Utils.vala:148
+#: src/util/Utils.vala:184
 #, c-format
 msgid "%dm"
 msgstr "%d分鐘"
 
-#: src/util/Utils.vala:152
+#: src/util/Utils.vala:188
 #, c-format
 msgid "%dh"
 msgstr "%d小時"
 
 #: src/widgets/AccountCreateWidget.vala:42
-msgid "Don’t have a Twitter account yet?"
+msgid "Don't have a Twitter account yet?"
 msgstr "還沒有 Twitter 帳號嗎？"
 
 #: src/widgets/AccountCreateWidget.vala:42
@@ -272,8 +270,8 @@ msgstr "註冊一個"
 
 #: src/widgets/AccountCreateWidget.vala:55
 msgid ""
-"Unauthorized. Most of the time, this means that there’s something wrong with"
-" the Twitter servers and you should try again later"
+"Unauthorized. Most of the time, this means that there's something wrong with "
+"the Twitter servers and you should try again later"
 msgstr "授權失敗。通常這是因為Twitter伺服器出錯，請稍後再試。"
 
 #: src/widgets/AccountCreateWidget.vala:69
@@ -281,6 +279,7 @@ msgstr "授權失敗。通常這是因為Twitter伺服器出錯，請稍後再�
 msgid "Could not open %s"
 msgstr "無法開啟 %s"
 
+#. We just assume that it was the wrong code
 #: src/widgets/AccountCreateWidget.vala:98
 msgid "Wrong PIN"
 msgstr "PIN 錯誤"
@@ -293,21 +292,21 @@ msgstr "此帳戶已被加入過"
 msgid "No users found"
 msgstr "沒有找到用戶"
 
-#: src/widgets/FavImageView.vala:153 src/window/ComposeTweetWindow.vala:299
+#: src/widgets/FavImageView.vala:153 src/window/ComposeTweetWindow.vala:470
 msgid "Select Image"
 msgstr "選擇媒體"
 
 #: src/widgets/FavImageView.vala:156 src/window/AccountDialog.vala:347
-#: src/window/ComposeTweetWindow.vala:302
+#: src/window/ComposeTweetWindow.vala:473
 msgid "Open"
 msgstr "開啟"
 
-#: src/widgets/FavImageView.vala:157 src/widgets/MediaButton.vala:276
-#: src/window/AccountDialog.vala:348 src/window/ComposeTweetWindow.vala:275
-#: src/window/ComposeTweetWindow.vala:303 src/window/UserListDialog.vala:47
+#: src/widgets/FavImageView.vala:157 src/widgets/MediaButton.vala:292
+#: src/window/AccountDialog.vala:348 src/window/ComposeTweetWindow.vala:435
+#: src/window/ComposeTweetWindow.vala:474 src/window/UserListDialog.vala:47
 #: ui/account-dialog.ui:25 ui/account-dialog.ui:256 ui/compose-window.ui:41
 #: ui/filter-list-entry.ui:80 ui/list-list-entry.ui:98
-#: ui/list-statuses-page.ui:173 ui/modify-filter-dialog.ui:13
+#: ui/list-statuses-page.ui:172 ui/modify-filter-dialog.ui:13
 #: ui/modify-snippet-dialog.ui:14 ui/shortcuts-window.ui:134
 #: ui/user-filter-entry.ui:114
 msgid "Cancel"
@@ -329,15 +328,15 @@ msgstr "複製網址"
 msgid "Save as…"
 msgstr "儲存為..."
 
-#: src/widgets/MediaButton.vala:268
+#: src/widgets/MediaButton.vala:284
 msgid "Save Video"
 msgstr "儲存影片"
 
-#: src/widgets/MediaButton.vala:270
+#: src/widgets/MediaButton.vala:286
 msgid "Save Image"
 msgstr "儲存圖片"
 
-#: src/widgets/MediaButton.vala:275 src/window/AccountDialog.vala:429
+#: src/widgets/MediaButton.vala:291 src/window/AccountDialog.vala:429
 #: src/window/AccountDialog.vala:450 src/window/UserListDialog.vala:48
 #: ui/account-dialog.ui:33 ui/list-statuses-page.ui:129
 #: ui/modify-filter-dialog.ui:20 ui/modify-snippet-dialog.ui:21
@@ -380,33 +379,47 @@ msgstr[0] "最小高度: %d 像素"
 msgid "Pick"
 msgstr ""
 
-#: src/window/ComposeTweetWindow.vala:138
-msgid "Quote tweet"
-msgstr "引用推文"
+#: src/window/ComposeTweetWindow.vala:216
+#, c-format
+msgid "Failed to load image"
+msgid_plural "Failed to load %u images"
+msgstr[0] ""
 
-#: src/window/ComposeTweetWindow.vala:331
-msgid "Selected file is not an image."
-msgstr "所選擇的檔案並非影像或圖片。"
+#. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
+#: src/window/ComposeTweetWindow.vala:219
+#, c-format
+msgid "%s: %s"
+msgstr ""
 
-#: src/window/ComposeTweetWindow.vala:332
-#: src/window/ComposeTweetWindow.vala:338
-#: src/window/ComposeTweetWindow.vala:344
-#: src/window/ComposeTweetWindow.vala:365
-#: src/window/ComposeTweetWindow.vala:428
+#: src/window/ComposeTweetWindow.vala:221
+#: src/window/ComposeTweetWindow.vala:511
+#: src/window/ComposeTweetWindow.vala:517
+#: src/window/ComposeTweetWindow.vala:523
+#: src/window/ComposeTweetWindow.vala:541
+#: src/window/ComposeTweetWindow.vala:600
 msgid "Back"
 msgstr "返回"
 
-#: src/window/ComposeTweetWindow.vala:336
+#: src/window/ComposeTweetWindow.vala:302
+msgid "Quote tweet"
+msgstr "引用推文"
+
+#: src/window/ComposeTweetWindow.vala:510
+msgid "Selected file is not an image."
+msgstr "所選擇的檔案並非影像或圖片。"
+
+#: src/window/ComposeTweetWindow.vala:515
 #, c-format
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
 msgstr "所選擇的媒體檔案太大。大小上限為 %'d MB。"
 
-#: src/window/ComposeTweetWindow.vala:343
+#: src/window/ComposeTweetWindow.vala:522
 msgid "Only one GIF file per tweet is allowed."
 msgstr "每一則推文只允許一個GIF檔案."
 
-#: src/window/ComposeTweetWindow.vala:392
+#: src/window/ComposeTweetWindow.vala:568
 msgid "Insert Emoji"
 msgstr "插入顏文字"
 
@@ -419,7 +432,7 @@ msgid "Matches"
 msgstr "相符"
 
 #: src/window/ModifyFilterDialog.vala:78
-msgid "Doesn’t match"
+msgid "Doesn't match"
 msgstr "不符合"
 
 #: src/window/ModifySnippetDialog.vala:44
@@ -427,11 +440,11 @@ msgid "Modify Snippet"
 msgstr "編輯片語"
 
 #: src/window/ModifySnippetDialog.vala:63
-msgid "Snippet can’t be empty"
+msgid "Snippet can't be empty"
 msgstr "片語關鍵字不可空白"
 
 #: src/window/ModifySnippetDialog.vala:70
-msgid "Replacement can’t be empty"
+msgid "Replacement can't be empty"
 msgstr "替換內容不可空白"
 
 #: src/window/ModifySnippetDialog.vala:78
@@ -444,8 +457,7 @@ msgstr "片語關鍵字已存在"
 
 #: src/window/SettingsDialog.vala:85
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
-"#newisalwaysbetter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
 msgstr "嘿，#Cawbird 推出了新版本！ \\ (•◡•) / #cool #newisalwaysbetter"
 
 #: src/window/UserListDialog.vala:40
@@ -482,7 +494,7 @@ msgstr "在下方輸入 twitter.com 所提供的 PIN ："
 msgid "PIN"
 msgstr "PIN"
 
-#: ui/account-create-widget.ui:132 ui/list-statuses-page.ui:358
+#: ui/account-create-widget.ui:132 ui/list-statuses-page.ui:357
 msgid "Confirm"
 msgstr "確認"
 
@@ -559,7 +571,7 @@ msgstr "找不到相符的"
 msgid "Try a different search"
 msgstr "試試其他的吧"
 
-#: ui/compose-window.ui:48 ui/dm-page.ui:51 ui/shortcuts-window.ui:127
+#: ui/compose-window.ui:48 ui/dm-page.ui:59 ui/shortcuts-window.ui:127
 msgid "Send"
 msgstr "推文"
 
@@ -603,19 +615,19 @@ msgstr "建立時間："
 msgid "Edit"
 msgstr "編輯"
 
-#: ui/list-statuses-page.ui:194
+#: ui/list-statuses-page.ui:193
 msgid "Mode:"
 msgstr "隱私："
 
-#: ui/list-statuses-page.ui:217
+#: ui/list-statuses-page.ui:216
 msgid "Private"
 msgstr "私人"
 
-#: ui/list-statuses-page.ui:218
+#: ui/list-statuses-page.ui:217
 msgid "Public"
 msgstr "公開"
 
-#: ui/list-statuses-page.ui:296
+#: ui/list-statuses-page.ui:295
 msgid "Description"
 msgstr "描述"
 
@@ -904,19 +916,19 @@ msgstr "開始"
 msgid "Quote"
 msgstr "引用"
 
-#: ui/tweet-info-page.ui:252
+#: ui/tweet-info-page.ui:253
 msgid "Retweet tweet"
 msgstr "轉推"
 
-#: ui/tweet-info-page.ui:277
+#: ui/tweet-info-page.ui:278
 msgid "Favorite tweet"
 msgstr "個喜歡"
 
-#: ui/tweet-info-page.ui:302
+#: ui/tweet-info-page.ui:303
 msgid "Reply to tweet"
 msgstr "回覆"
 
-#: ui/tweet-info-page.ui:338
+#: ui/tweet-info-page.ui:339
 msgid "More"
 msgstr "更多"
 
@@ -932,15 +944,15 @@ msgstr "回覆"
 msgid "Unblock"
 msgstr "解除封鎖"
 
-#: ui/user-list-entry.ui:67
+#: ui/user-list-entry.ui:68
 msgid "Show settings of this account"
 msgstr "顯示這個帳號的設定"
 
-#: ui/user-list-entry.ui:92
+#: ui/user-list-entry.ui:93
 msgid "Open in new window"
 msgstr "在新視窗中開啟"
 
-#: ui/user-list-entry.ui:116
+#: ui/user-list-entry.ui:117
 msgid "Go to profile"
 msgstr "前往個人檔案"
 
@@ -951,3 +963,6 @@ msgstr "建立"
 #: ui/user-lists-widget.ui:86
 msgid "Subscribed to"
 msgstr "訂閱的"
+
+#~ msgid "Could not load tweets"
+#~ msgstr "無法載入推文"

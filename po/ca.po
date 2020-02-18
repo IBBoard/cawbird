@@ -1,20 +1,24 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Timm Bäder
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the cawbird package.
-#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
 # Translators:
 # Estanislau Trepat <estanis@etrepat.com>, 2015
 # Guillem Arias <gariasfa7@alumnes.ub.edu>, 2016
 # Pau Iranzo <paugnu@gmail.com>, 2014
 # Sergi <lovechii555@yahoo.es>, 2015
+# Joan Ensesa <jensesa@protonmail.com>, 2020
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Cawbird\n"
+"Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2017-10-22 12:02+0200\n"
-"PO-Revision-Date: 2017-10-22 10:08+0000\n"
-"Last-Translator: baedert <mail@baedert.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/cawbird/cawbird/language/ca/)\n"
+"POT-Creation-Date: 2020-02-09 13:42+0000\n"
+"PO-Revision-Date: 2020-02-05 20:32+0000\n"
+"Last-Translator: Joan Ensesa <jensesa@protonmail.com>, 2020\n"
+"Language-Team: Catalan (https://www.transifex.com/cawbird/teams/107135/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,31 +37,36 @@ msgstr "Client del Twitter"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:10
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such "
-"as Direct Messages (DMs), tweet notifications, conversation views."
-msgstr "El Cawbird és un client del twitter natiu GTK+ que proveeix característiques bàsiques com missatges directes, notificacions de piulades i visualització de converses. "
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
+msgstr ""
+"El Cawbird és un client del twitter natiu GTK+ que proveeix característiques"
+" bàsiques com missatges directes, notificacions de piulades i visualització "
+"de converses. "
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:13
 msgid ""
 "Additional features include local viewing of videos, multiple inline images,"
 " Lists, Filters, multiple accounts, etc."
-msgstr "Característiques addicionals inclouen vista local de vídeos, múltiples imatges inline, Llistes, Filtres, múltiples comptes, etc."
+msgstr ""
+"Característiques addicionals inclouen vista local de vídeos, múltiples "
+"imatges inline, Llistes, Filtres, múltiples comptes, etc."
 
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:21
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:22
 msgid "Generic timeline view when using Cawbird"
 msgstr "Timeline genèrica  al utilitzar Cawbird"
 
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:25
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:26
 msgid "Typical Twitter profile"
 msgstr "Perfil de Twitter tipic"
 
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:29
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:30
 msgid "Account settings can be configured"
 msgstr "Els paràmetres del compte es poden configurar"
 
-#: data/uk.co.ibboard.cawbird.appdata.xml.in:41
-msgid "Timm Bäder"
-msgstr ""
+#: data/uk.co.ibboard.cawbird.appdata.xml.in:42
+msgid "IBBoard"
+msgstr "IBBoard"
 
 #: data/uk.co.ibboard.cawbird.desktop.in:5
 msgid "Use Twitter from within a normal desktop application"
@@ -76,25 +85,25 @@ msgid "uk.co.ibboard.cawbird"
 msgstr "uk.co.ibboard.cawbird"
 
 #. TRANSLATORS: This is the start of a "Replying to" line in a tweet
-#: src/CbUtils.c:177 src/TweetInfoPage.vala:525
+#: src/CbUtils.c:195 src/TweetInfoPage.vala:581
 msgid "Replying to"
-msgstr ""
+msgstr "Respon a"
 
 #. TRANSLATORS: This gets appended to the "replying to" line
 #. * in a tweet. Example: "Replying to Foo and Bar" where
 #. * "and Bar" comes from this string.
-#: src/CbUtils.c:188 src/TweetInfoPage.vala:537
+#: src/CbUtils.c:206 src/TweetInfoPage.vala:593
 msgid "and"
-msgstr ""
+msgstr "i"
 
 #. TRANSLATORS: This gets appended to the "replying to" line
 #. * in a tweet
-#: src/CbUtils.c:197
+#: src/CbUtils.c:215
 #, c-format
 msgid "and %d others"
-msgstr ""
+msgstr "i a %d més"
 
-#: src/DMPage.vala:344
+#: src/DMPage.vala:285
 msgid "Direct Conversation"
 msgstr "Conversa directa"
 
@@ -114,12 +123,8 @@ msgstr "Hi ha un missatge directe nou de %s"
 msgid "Direct Messages"
 msgstr "Missatges directes"
 
-#: src/DefaultTimeline.vala:366
-msgid "Could not load tweets"
-msgstr "No s'han pogut carregar els tweets"
-
-#: src/FavoritesTimeline.vala:72 src/FavoritesTimeline.vala:76
-#: src/TweetInfoPage.vala:567
+#: src/FavoritesTimeline.vala:77 src/FavoritesTimeline.vala:81
+#: src/TweetInfoPage.vala:626
 msgid "Favorites"
 msgstr "Preferits"
 
@@ -131,24 +136,24 @@ msgstr "Afegir un nou Filtre"
 msgid "Filters"
 msgstr "Filtres"
 
-#: src/HomeTimeline.vala:143
+#: src/HomeTimeline.vala:155
 #, c-format
 msgid "%s retweeted %s"
 msgstr "%s ha repiulat %s"
 
-#: src/HomeTimeline.vala:146
+#: src/HomeTimeline.vala:158
 #, c-format
 msgid "%s tweeted"
 msgstr "%s ha repiulat"
 
-#: src/HomeTimeline.vala:155
+#: src/HomeTimeline.vala:167
 #, c-format
 msgid "%d new Tweet!"
 msgid_plural "%d new Tweets!"
 msgstr[0] "%d nou tweet!"
-msgstr[1] "%d nous tweets!"
+msgstr[1] "%d noves piulades!"
 
-#: src/HomeTimeline.vala:190
+#: src/HomeTimeline.vala:202
 msgid "Home"
 msgstr "Inici"
 
@@ -170,59 +175,59 @@ msgstr "Redacteu una piulada"
 
 #: src/MainWindow.vala:132
 msgid "Add new Account"
-msgstr "Afegir un compte nou"
+msgstr "Afegiu un compte nou"
 
-#: src/MentionsTimeline.vala:93 src/UserEventReceiver.vala:115
+#: src/MentionsTimeline.vala:102 src/UserEventReceiver.vala:115
 #, c-format
 msgid "%s mentioned %s"
 msgstr "%s ha mencionat a %s"
 
-#: src/MentionsTimeline.vala:111 src/MentionsTimeline.vala:115
+#: src/MentionsTimeline.vala:119 src/MentionsTimeline.vala:123
 msgid "Mentions"
 msgstr "Mencions"
 
 #: src/ProfilePage.vala:218
 msgid "Suspended Account"
-msgstr ""
+msgstr "Compte suspès"
 
-#: src/ProfilePage.vala:272
+#: src/ProfilePage.vala:275
 msgid "Protected profile"
 msgstr "Perfil protegit"
 
-#: src/ProfilePage.vala:369
+#: src/ProfilePage.vala:376
 #, c-format
 msgid "Tweet to @%s"
 msgstr "Piula a @%s"
 
-#: src/ProfilePage.vala:507 src/ProfilePage.vala:551
+#: src/ProfilePage.vala:522 src/ProfilePage.vala:566
 msgid "Protected Profile"
-msgstr ""
+msgstr "Perfil protegit"
 
-#: src/SearchPage.vala:371 src/SearchPage.vala:380 ui/search-page.ui:24
+#: src/SearchPage.vala:372 src/SearchPage.vala:381 ui/search-page.ui:24
 msgid "Search"
 msgstr "Cerca"
 
-#: src/SearchPage.vala:401
+#: src/SearchPage.vala:402
 msgid "Load More"
-msgstr ""
+msgstr "Carrega'n més"
 
-#: src/TweetInfoPage.vala:345
+#: src/TweetInfoPage.vala:381
 msgid "Could not show tweet"
-msgstr "No s'ha pogut mostrar el tweet"
+msgstr "No s'ha pogut mostrar la piulada"
 
-#: src/TweetInfoPage.vala:566
+#: src/TweetInfoPage.vala:625
 msgid "Retweets"
 msgstr "Repiulades"
 
-#: src/TweetInfoPage.vala:575 src/widgets/MediaButton.vala:103
+#: src/TweetInfoPage.vala:634 src/widgets/MediaButton.vala:103
 msgid "Open in Browser"
 msgstr "Obre al navegador"
 
-#: src/TweetInfoPage.vala:575
+#: src/TweetInfoPage.vala:634
 msgid "Source"
 msgstr "Origen"
 
-#: src/TweetInfoPage.vala:621
+#: src/TweetInfoPage.vala:677
 msgid "Tweet Details"
 msgstr "Detalls de la piulada"
 
@@ -235,42 +240,42 @@ msgstr[1] "(%d missatges no llegits)"
 
 #: src/list/FavImageRow.vala:81 ui/account-dialog.ui:212
 #: ui/account-dialog.ui:269 ui/filter-list-entry.ui:93
-#: ui/list-list-entry.ui:132 ui/list-statuses-page.ui:166
+#: ui/list-list-entry.ui:132 ui/list-statuses-page.ui:165
 #: ui/modify-snippet-dialog.ui:108 ui/tweet-info-page.ui:10
 #: ui/tweet-list-entry.ui:10
 msgid "Delete"
 msgstr "Suprimeix"
 
-#: src/list/TweetListEntry.vala:455
+#: src/list/TweetListEntry.vala:552
 #, c-format
 msgid "Block %s"
-msgstr "Bloquejar a %s"
+msgstr "Bloqueja a %s"
 
-#: src/list/TweetListEntry.vala:611
+#: src/list/TweetListEntry.vala:715
 msgid "This tweet contains images marked as inappropriate"
 msgstr "Aquest tweet conté imatges marcades com a inapropiades"
 
-#: src/list/TweetListEntry.vala:618
+#: src/list/TweetListEntry.vala:722
 msgid "Show anyway"
-msgstr "Mostrar de totes maneres"
+msgstr "Mostra de totes maneres"
 
-#: src/util/Utils.vala:146
+#: src/util/Utils.vala:182
 msgid "Now"
 msgstr "Ara"
 
-#: src/util/Utils.vala:148
+#: src/util/Utils.vala:184
 #, c-format
 msgid "%dm"
 msgstr "%dm"
 
-#: src/util/Utils.vala:152
+#: src/util/Utils.vala:188
 #, c-format
 msgid "%dh"
 msgstr "%dh"
 
 #: src/widgets/AccountCreateWidget.vala:42
-msgid "Don’t have a Twitter account yet?"
-msgstr ""
+msgid "Don't have a Twitter account yet?"
+msgstr "Encara no tens un compte a Twitter?"
 
 #: src/widgets/AccountCreateWidget.vala:42
 msgid "Create one"
@@ -278,15 +283,18 @@ msgstr "Creeu-ne un"
 
 #: src/widgets/AccountCreateWidget.vala:55
 msgid ""
-"Unauthorized. Most of the time, this means that there’s something wrong with"
+"Unauthorized. Most of the time, this means that there's something wrong with"
 " the Twitter servers and you should try again later"
 msgstr ""
+"Sense autorització. La majoria de vegades això vol dir que els servidors de "
+"Twitter tenen problemes i ho hauries de tornar a intentar més tard."
 
 #: src/widgets/AccountCreateWidget.vala:69
 #, c-format
 msgid "Could not open %s"
 msgstr "No s'ha pogut obrir %s"
 
+#. We just assume that it was the wrong code
 #: src/widgets/AccountCreateWidget.vala:98
 msgid "Wrong PIN"
 msgstr "PIN incorrecte"
@@ -299,21 +307,21 @@ msgstr "Ja s'està utilitzant el compte"
 msgid "No users found"
 msgstr "No s'han trobat usuaris"
 
-#: src/widgets/FavImageView.vala:153 src/window/ComposeTweetWindow.vala:299
+#: src/widgets/FavImageView.vala:153 src/window/ComposeTweetWindow.vala:470
 msgid "Select Image"
-msgstr "Seleccionar imatge"
+msgstr "Selecciona la imatge"
 
 #: src/widgets/FavImageView.vala:156 src/window/AccountDialog.vala:347
-#: src/window/ComposeTweetWindow.vala:302
+#: src/window/ComposeTweetWindow.vala:473
 msgid "Open"
-msgstr "Obrir"
+msgstr "Obre"
 
-#: src/widgets/FavImageView.vala:157 src/widgets/MediaButton.vala:276
-#: src/window/AccountDialog.vala:348 src/window/ComposeTweetWindow.vala:275
-#: src/window/ComposeTweetWindow.vala:303 src/window/UserListDialog.vala:47
+#: src/widgets/FavImageView.vala:157 src/widgets/MediaButton.vala:292
+#: src/window/AccountDialog.vala:348 src/window/ComposeTweetWindow.vala:435
+#: src/window/ComposeTweetWindow.vala:474 src/window/UserListDialog.vala:47
 #: ui/account-dialog.ui:25 ui/account-dialog.ui:256 ui/compose-window.ui:41
 #: ui/filter-list-entry.ui:80 ui/list-list-entry.ui:98
-#: ui/list-statuses-page.ui:173 ui/modify-filter-dialog.ui:13
+#: ui/list-statuses-page.ui:172 ui/modify-filter-dialog.ui:13
 #: ui/modify-snippet-dialog.ui:14 ui/shortcuts-window.ui:134
 #: ui/user-filter-entry.ui:114
 msgid "Cancel"
@@ -329,21 +337,21 @@ msgstr "Deixa de seguir"
 
 #: src/widgets/MediaButton.vala:48
 msgid "Copy URL"
-msgstr "Copiar URL"
+msgstr "Copia l'URL"
 
 #: src/widgets/MediaButton.vala:105
 msgid "Save as…"
-msgstr ""
+msgstr "Anomena i desa..."
 
-#: src/widgets/MediaButton.vala:268
+#: src/widgets/MediaButton.vala:284
 msgid "Save Video"
-msgstr ""
+msgstr "Desa el video"
 
-#: src/widgets/MediaButton.vala:270
+#: src/widgets/MediaButton.vala:286
 msgid "Save Image"
-msgstr ""
+msgstr "Desa la imatge"
 
-#: src/widgets/MediaButton.vala:275 src/window/AccountDialog.vala:429
+#: src/widgets/MediaButton.vala:291 src/window/AccountDialog.vala:429
 #: src/window/AccountDialog.vala:450 src/window/UserListDialog.vala:48
 #: ui/account-dialog.ui:33 ui/list-statuses-page.ui:129
 #: ui/modify-filter-dialog.ui:20 ui/modify-snippet-dialog.ui:21
@@ -352,7 +360,7 @@ msgstr "Desa"
 
 #: src/widgets/TweetListBox.vala:123
 msgid "Loading…"
-msgstr ""
+msgstr "S'està carregant..."
 
 #: src/widgets/TweetListBox.vala:126 src/widgets/TweetListBox.vala:177
 msgid "No entries found"
@@ -364,59 +372,76 @@ msgstr "Prova de nou"
 
 #: src/window/AccountDialog.vala:344
 msgid "Select Banner Image"
-msgstr ""
+msgstr "Selecciona la imatge del bàner"
 
 #: src/window/AccountDialog.vala:380
 msgid "Image does not meet minimum size requirements:"
-msgstr ""
+msgstr "La imatge no té la mida mínima necessària:"
 
 #: src/window/AccountDialog.vala:381
 #, c-format
 msgid "Minimum width: %d pixel"
 msgid_plural "Minimum width: %d pixels"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Amplada mínima: %d píxel"
+msgstr[1] "Amplada mínima: %d píxels"
 
 #: src/window/AccountDialog.vala:383
 #, c-format
 msgid "Minimum height: %d pixel"
 msgid_plural "Minimum height: %d pixels"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Alçada mínima: %d píxel"
+msgstr[1] "Alçada mínima: %d píxels"
 
 #: src/window/AccountDialog.vala:404 src/window/AccountDialog.vala:417
 msgid "Pick"
-msgstr ""
+msgstr "Tria"
 
-#: src/window/ComposeTweetWindow.vala:138
-msgid "Quote tweet"
-msgstr "Citar tweet"
+#: src/window/ComposeTweetWindow.vala:216
+#, c-format
+msgid "Failed to load image"
+msgid_plural "Failed to load %u images"
+msgstr[0] "No s'ha pogut carregar la imatge"
+msgstr[1] "No s'han pogut carregar %u imatges"
 
-#: src/window/ComposeTweetWindow.vala:331
-msgid "Selected file is not an image."
-msgstr ""
+#. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
+#. <path>, <path>"
+#: src/window/ComposeTweetWindow.vala:219
+#, c-format
+msgid "%s: %s"
+msgstr "%s: %s"
 
-#: src/window/ComposeTweetWindow.vala:332
-#: src/window/ComposeTweetWindow.vala:338
-#: src/window/ComposeTweetWindow.vala:344
-#: src/window/ComposeTweetWindow.vala:365
-#: src/window/ComposeTweetWindow.vala:428
+#: src/window/ComposeTweetWindow.vala:221
+#: src/window/ComposeTweetWindow.vala:511
+#: src/window/ComposeTweetWindow.vala:517
+#: src/window/ComposeTweetWindow.vala:523
+#: src/window/ComposeTweetWindow.vala:541
+#: src/window/ComposeTweetWindow.vala:600
 msgid "Back"
 msgstr "Enrere"
 
-#: src/window/ComposeTweetWindow.vala:336
+#: src/window/ComposeTweetWindow.vala:302
+msgid "Quote tweet"
+msgstr "Cita la piulada"
+
+#: src/window/ComposeTweetWindow.vala:510
+msgid "Selected file is not an image."
+msgstr "El fitxer seleccionat no és una imatge."
+
+#: src/window/ComposeTweetWindow.vala:515
 #, c-format
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
-msgstr "La imatge seleccionada és massa gran. La mida máxima per imatge es %'d MB"
+msgstr ""
+"La imatge seleccionada és massa gran. La mida máxima per imatge és de %'d MB"
 
-#: src/window/ComposeTweetWindow.vala:343
+#: src/window/ComposeTweetWindow.vala:522
 msgid "Only one GIF file per tweet is allowed."
-msgstr ""
+msgstr "Només es permet un fitxer GIF per cada piulada."
 
-#: src/window/ComposeTweetWindow.vala:392
+#: src/window/ComposeTweetWindow.vala:568
 msgid "Insert Emoji"
-msgstr ""
+msgstr "Insereix Emoji"
 
 #: src/window/ModifyFilterDialog.vala:45
 msgid "Modify Filter"
@@ -427,20 +452,20 @@ msgid "Matches"
 msgstr "Coincideix"
 
 #: src/window/ModifyFilterDialog.vala:78
-msgid "Doesn’t match"
-msgstr ""
+msgid "Doesn't match"
+msgstr "Sense coincidència"
 
 #: src/window/ModifySnippetDialog.vala:44
 msgid "Modify Snippet"
 msgstr "Modificar Snippet"
 
 #: src/window/ModifySnippetDialog.vala:63
-msgid "Snippet can’t be empty"
-msgstr ""
+msgid "Snippet can't be empty"
+msgstr "El Snippet no pot estar buit"
 
 #: src/window/ModifySnippetDialog.vala:70
-msgid "Replacement can’t be empty"
-msgstr ""
+msgid "Replacement can't be empty"
+msgstr "El reemplaçament no pot estar buit."
 
 #: src/window/ModifySnippetDialog.vala:78
 msgid "Snippet may not contain whitespace"
@@ -454,7 +479,8 @@ msgstr "El Snippet ja existeix"
 msgid ""
 "Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
 "#newisalwaysbetter"
-msgstr "Ei, prova aquesta nova versió de #Cawbird! (•◡•) / #cool #newisalwaysbetter"
+msgstr ""
+"Ei, prova aquesta nova versió de #Cawbird! (•◡•) / #cool #newisalwaysbetter"
 
 #: src/window/UserListDialog.vala:40
 msgid "Add to or Remove User From List"
@@ -477,6 +503,8 @@ msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
 msgstr ""
+"Per autenticar el Cawbird, necessites un PIN de twitter.com pel compte que "
+"vols afegir"
 
 #: ui/account-create-widget.ui:58
 msgid "Request PIN"
@@ -484,13 +512,13 @@ msgstr "Sol·licita un PIN"
 
 #: ui/account-create-widget.ui:88
 msgid "Enter PIN from twitter.com below:"
-msgstr ""
+msgstr "Introdueix a sota el PIN de twitter.com:"
 
 #: ui/account-create-widget.ui:106
 msgid "PIN"
-msgstr ""
+msgstr "PIN"
 
-#: ui/account-create-widget.ui:132 ui/list-statuses-page.ui:358
+#: ui/account-create-widget.ui:132 ui/list-statuses-page.ui:357
 msgid "Confirm"
 msgstr "Confirma"
 
@@ -512,72 +540,72 @@ msgstr "Inici automàtic"
 
 #: ui/account-dialog.ui:244
 msgid "Do you really want to delete this account?"
-msgstr "Voleu eliminar aquest compte?"
+msgstr "Vols eliminar aquest compte?"
 
 #: ui/cb-emoji-chooser.ui:41
 msgctxt "emoji category"
 msgid "Smileys & People"
-msgstr ""
+msgstr "Emoticones & Gent"
 
 #: ui/cb-emoji-chooser.ui:54
 msgctxt "emoji category"
 msgid "Body & Clothing"
-msgstr ""
+msgstr "Cos & Roba"
 
 #: ui/cb-emoji-chooser.ui:67
 msgctxt "emoji category"
 msgid "Animals & Nature"
-msgstr ""
+msgstr "Animals & Natura"
 
 #: ui/cb-emoji-chooser.ui:80
 msgctxt "emoji category"
 msgid "Food & Drink"
-msgstr ""
+msgstr "Menjar & Beure"
 
 #: ui/cb-emoji-chooser.ui:93
 msgctxt "emoji category"
 msgid "Travel & Places"
-msgstr ""
+msgstr "Viatges & Llocs"
 
 #: ui/cb-emoji-chooser.ui:106
 msgctxt "emoji category"
 msgid "Activities"
-msgstr ""
+msgstr "Activitats"
 
 #: ui/cb-emoji-chooser.ui:119
 msgctxt "emoji category"
 msgid "Objects"
-msgstr ""
+msgstr "Objectes"
 
 #: ui/cb-emoji-chooser.ui:132
 msgctxt "emoji category"
 msgid "Symbols"
-msgstr ""
+msgstr "Símbols"
 
 #: ui/cb-emoji-chooser.ui:145
 msgctxt "emoji category"
 msgid "Flags"
-msgstr ""
+msgstr "Banderes"
 
 #: ui/cb-emoji-chooser.ui:272
 msgid "No Results Found"
-msgstr ""
+msgstr "No s'han trobat resultats"
 
 #: ui/cb-emoji-chooser.ui:285
 msgid "Try a different search"
-msgstr ""
+msgstr "Prova una altra cerca"
 
-#: ui/compose-window.ui:48 ui/dm-page.ui:51 ui/shortcuts-window.ui:127
+#: ui/compose-window.ui:48 ui/dm-page.ui:59 ui/shortcuts-window.ui:127
 msgid "Send"
 msgstr "Envia"
 
 #: ui/compose-window.ui:177
 msgid "Add Image"
-msgstr "Afegir imatge"
+msgstr "Afegeix una imatge"
 
 #: ui/compose-window.ui:185
 msgid "Show favorite images"
-msgstr ""
+msgstr "Mostra les imatges preferides"
 
 #: ui/filter-page.ui:71 ui/search-page.ui:86
 msgid "Users"
@@ -585,7 +613,7 @@ msgstr "Usuaris"
 
 #: ui/list-list-entry.ui:109
 msgid "Subscribe"
-msgstr "Subscriviu-vos"
+msgstr "Subscriu-te"
 
 #: ui/list-list-entry.ui:122
 msgid "Unsubscribe"
@@ -611,19 +639,19 @@ msgstr "Creat el:"
 msgid "Edit"
 msgstr "Edita"
 
-#: ui/list-statuses-page.ui:194
+#: ui/list-statuses-page.ui:193
 msgid "Mode:"
 msgstr "Mode:"
 
-#: ui/list-statuses-page.ui:217
+#: ui/list-statuses-page.ui:216
 msgid "Private"
 msgstr "Privat"
 
-#: ui/list-statuses-page.ui:218
+#: ui/list-statuses-page.ui:217
 msgid "Public"
 msgstr "Públic"
 
-#: ui/list-statuses-page.ui:296
+#: ui/list-statuses-page.ui:295
 msgid "Description"
 msgstr "Descripció"
 
@@ -649,7 +677,7 @@ msgstr "Afegeix un filtre nou"
 
 #: ui/modify-snippet-dialog.ui:6
 msgid "Add New Snippet"
-msgstr "Afegir un nou Snippet"
+msgstr "Afegeix un nou Snippet"
 
 #: ui/modify-snippet-dialog.ui:46
 msgid "Keyword"
@@ -685,7 +713,7 @@ msgstr "Blocat"
 
 #: ui/profile-page.ui:24
 msgid "Muted"
-msgstr "Slienciat"
+msgstr "Silenciat"
 
 #: ui/profile-page.ui:28
 msgid "Retweets disabled"
@@ -713,15 +741,15 @@ msgstr "Mostrar contingut inline"
 
 #: ui/settings-dialog.ui:78
 msgid "Always show"
-msgstr "Mostrar sempre"
+msgstr "Mostra sempre"
 
 #: ui/settings-dialog.ui:79
 msgid "Always hide"
-msgstr "Amagar sempre"
+msgstr "Amaga sempre"
 
 #: ui/settings-dialog.ui:80
 msgid "Hide in timeline"
-msgstr "Amagar en el timeline"
+msgstr "Amaga-ho al timeline"
 
 #: ui/settings-dialog.ui:101
 msgid "Auto scroll on new tweets"
@@ -781,27 +809,27 @@ msgstr "Notificacions"
 
 #: ui/settings-dialog.ui:311
 msgid "Round avatars"
-msgstr "Avatars arredonits"
+msgstr "Avatars arrodonits"
 
 #: ui/settings-dialog.ui:338
 msgid "Remove trailing hashtags"
-msgstr "Eliminar hashtags posteriors"
+msgstr "Elimina els hashtags posteriors"
 
 #: ui/settings-dialog.ui:366
 msgid "Remove media links"
-msgstr "Eliminar enllaços"
+msgstr "Elimina els enllaços"
 
 #: ui/settings-dialog.ui:394
 msgid "Hide inappropriate content"
-msgstr "Amagar contingut inapropiat"
+msgstr "Amaga el contingut inapropiat"
 
 #: ui/settings-dialog.ui:441
 msgid "No snippets configured."
-msgstr "No s'han configurat snippets"
+msgstr "No s'han configurat els snippets"
 
 #: ui/settings-dialog.ui:480
 msgid "You can activate snippets by writing the keyword and pressing TAB."
-msgstr "Pots activar snippets escrivint la paraula clau i pressionant TAB"
+msgstr "Pots activar els snippets escrivint la paraula clau i pressionant TAB"
 
 #: ui/settings-dialog.ui:494
 msgid "Snippets"
@@ -815,27 +843,27 @@ msgstr "General"
 #: ui/shortcuts-window.ui:17
 msgctxt "shortcuts window"
 msgid "Compose Tweet"
-msgstr "Escriure Tweet"
+msgstr "Escriu una piulada"
 
 #: ui/shortcuts-window.ui:24
 msgctxt "shortcuts window"
 msgid "Show Account settings"
-msgstr "Mostrar paràmetres del compte"
+msgstr "Mostra els paràmetres del compte"
 
 #: ui/shortcuts-window.ui:31
 msgctxt "shortcuts window"
 msgid "Show Accounts Popover"
-msgstr "Mostrar finestra de comptes"
+msgstr "Mostra la finestra dels comptes"
 
 #: ui/shortcuts-window.ui:38
 msgctxt "shortcuts window"
 msgid "Show Application Settings"
-msgstr "Mostrar paràmetres de l'aplicació"
+msgstr "Mostra els paràmetres de l'aplicació"
 
 #: ui/shortcuts-window.ui:45
 msgctxt "shortcuts window"
 msgid "Toggle Topbar"
-msgstr "Canviar Topbar"
+msgstr "Canvia Topbar"
 
 #: ui/shortcuts-window.ui:52
 msgctxt "shortcuts window"
@@ -845,22 +873,22 @@ msgstr "Enrere"
 #: ui/shortcuts-window.ui:59
 msgctxt "shortcuts window"
 msgid "Go Forward"
-msgstr "Endevant"
+msgstr "Endavant"
 
 #: ui/shortcuts-window.ui:66
 msgctxt "shortcuts window"
 msgid "Go to nth page"
-msgstr "Anar a la pàgina #"
+msgstr "Vés a la pàgina #"
 
 #: ui/shortcuts-window.ui:74
 msgctxt "shortcuts window"
 msgid "Tweets"
-msgstr "Tweets"
+msgstr "Piulades"
 
 #: ui/shortcuts-window.ui:79
 msgctxt "shortcuts window"
 msgid "Retweet"
-msgstr "Retwittejar"
+msgstr "Repiular"
 
 #: ui/shortcuts-window.ui:86
 msgctxt "shortcuts window"
@@ -870,31 +898,31 @@ msgstr "M'agrada"
 #: ui/shortcuts-window.ui:93
 msgctxt "shortcuts window"
 msgid "Reply"
-msgstr "Respondre"
+msgstr "Respon"
 
 #: ui/shortcuts-window.ui:100
 msgctxt "shortcuts window"
 msgid "Quote"
-msgstr "Citar"
+msgstr "Cita"
 
 #: ui/shortcuts-window.ui:107
 msgctxt "shortcuts window"
 msgid "Show Details"
-msgstr "Mostrar detalls"
+msgstr "Mostra els detalls"
 
 #: ui/shortcuts-window.ui:114
 msgctxt "shortcuts window"
 msgid "Delete"
-msgstr "Eliminar"
+msgstr "Elimina"
 
 #: ui/shortcuts-window.ui:122
 msgctxt "shortcuts window"
 msgid "Compose"
-msgstr ""
+msgstr "Redacta"
 
 #: ui/shortcuts-window.ui:141
 msgid "Show Emoji Chooser"
-msgstr ""
+msgstr "Tria Emoji"
 
 #: ui/start-conversation-entry.ui:29
 msgid "Start new conversation"
@@ -912,19 +940,19 @@ msgstr "Vés"
 msgid "Quote"
 msgstr "Cita"
 
-#: ui/tweet-info-page.ui:252
+#: ui/tweet-info-page.ui:253
 msgid "Retweet tweet"
 msgstr "Repiula la piulada"
 
-#: ui/tweet-info-page.ui:277
+#: ui/tweet-info-page.ui:278
 msgid "Favorite tweet"
 msgstr "Marca com a preferit"
 
-#: ui/tweet-info-page.ui:302
+#: ui/tweet-info-page.ui:303
 msgid "Reply to tweet"
 msgstr "Respon a la piulada"
 
-#: ui/tweet-info-page.ui:338
+#: ui/tweet-info-page.ui:339
 msgid "More"
 msgstr "Més"
 
@@ -940,17 +968,17 @@ msgstr "Contesta"
 msgid "Unblock"
 msgstr "Desbloqueja "
 
-#: ui/user-list-entry.ui:67
+#: ui/user-list-entry.ui:68
 msgid "Show settings of this account"
 msgstr "Mostra els paràmetres per a aquest compte"
 
-#: ui/user-list-entry.ui:92
+#: ui/user-list-entry.ui:93
 msgid "Open in new window"
 msgstr "Obre a una finestra nova"
 
-#: ui/user-list-entry.ui:116
+#: ui/user-list-entry.ui:117
 msgid "Go to profile"
-msgstr "Anar al perfil"
+msgstr "Vés al perfil"
 
 #: ui/user-lists-widget.ui:14
 msgid "Created"
