@@ -17,6 +17,40 @@
 
 namespace TweetUtils {
   /**
+   * Turns Twitter's JSON error messages into a GLib.Error object, unless
+   * the exception was caused by a libsoup error
+   *
+   * Example JSON:
+   * {"errors":[{"message":"Sorry, that page does not exist","code":34}]}
+   */
+  private GLib.Error failed_request_to_error (Rest.ProxyCall call, GLib.Error e) {
+    if (e.code < 100) {
+      // Special case for _handle_error_from_message in rest-proxy-call.c
+      // All libsoup errors are below the HTTP response code range
+      // so return the error and don't bother with the payload
+      return e;
+    }
+
+    unowned string json = call.get_payload();
+
+    try {
+      debug(json);
+      var parser = new Json.Parser();
+      parser.load_from_data (json);
+      var obj = parser.get_root().get_object();
+      var errors = obj.get_array_member("errors");
+      // Assume there's always at least one, and we just take the first
+      var error = errors.get_element(0).get_object();
+      // Twitter's error codes don't go above three digits - https://developer.twitter.com/en/docs/basics/response-codes
+      var code = (int)error.get_int_member("code");
+      var message = error.get_string_member("message");
+      return new GLib.Error.literal (Quark.from_string("tweet-action"), code, message);
+    } catch (GLib.Error e) {
+      return e;
+    }
+  }
+
+  /**
    * Fetches the given tweet by ID.
    *
    * Note: This should not be used frequently as we should (in most situations)
@@ -51,8 +85,9 @@ namespace TweetUtils {
         tweet = new Cb.Tweet ();
         tweet.load_from_json (parser.get_root (), account.id, now);
         get_tweet.callback ();
-      } catch (GLib.Error e) {
-        err = e;
+      } catch (GLib.Error e) {        
+        err = failed_request_to_error (call, e);
+        warning ("Exception %s:%d: %s in %s:%d", err.domain.to_string(), err.code, err.message, GLib.Log.FILE, GLib.Log.LINE);
         get_tweet.callback ();
         return;
       }
@@ -82,8 +117,8 @@ namespace TweetUtils {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        warning ("Exception: %s in %s:%d", e.message, GLib.Log.FILE, GLib.Log.LINE);
-        err = e;
+        err = failed_request_to_error (call, e);
+        warning ("Exception %s:%d: %s in %s:%d", err.domain.to_string(), err.code, err.message, GLib.Log.FILE, GLib.Log.LINE);
         delete_tweet.callback ();
         return;
       }
@@ -127,8 +162,8 @@ namespace TweetUtils {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        warning ("Exception: %s in %s:%d", e.message, GLib.Log.FILE, GLib.Log.LINE);
-        err = e;
+        err = failed_request_to_error (call, e);
+        warning ("Exception %s:%d: %s in %s:%d", err.domain.to_string(), err.code, err.message, GLib.Log.FILE, GLib.Log.LINE);
         set_favorite_status.callback ();
         return;
       }
@@ -176,8 +211,8 @@ namespace TweetUtils {
       try{
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        warning ("Exception: %s in %s:%d", e.message, GLib.Log.FILE, GLib.Log.LINE);
-        err = e;
+        err = failed_request_to_error (call, e);
+        warning ("Exception %s:%d: %s in %s:%d", err.domain.to_string(), err.code, err.message, GLib.Log.FILE, GLib.Log.LINE);
         set_retweet_status.callback ();
         return;
       }
