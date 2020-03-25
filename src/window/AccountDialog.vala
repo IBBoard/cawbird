@@ -167,8 +167,7 @@ public class AccountDialog : Gtk.Window {
           debug ("Profile successfully updated");
         } catch (GLib.Error e) {
           warning (e.message);
-          Utils.show_error_object (call.get_payload (), "Could not update profile",
-                                   GLib.Log.LINE, GLib.Log.FILE, this);
+          Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e), this);
         }
       });
 
@@ -200,8 +199,7 @@ public class AccountDialog : Gtk.Window {
           call.invoke_async.end (res);
           debug ("Avatar successfully updated");
         } catch (GLib.Error e) {
-          Utils.show_error_object (call.get_payload (), "Could not update your avatar",
-                                   GLib.Log.LINE, GLib.Log.FILE, this);
+          Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e), this);
           return;
         }
 
@@ -233,8 +231,7 @@ public class AccountDialog : Gtk.Window {
           call.invoke_async.end (res);
           debug ("Banner successfully updated");
         } catch (GLib.Error e) {
-          Utils.show_error_object (call.get_payload (), "Could not update your banner",
-                                   GLib.Log.LINE, GLib.Log.FILE, this);
+          Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e), this);
         }
       });
     }

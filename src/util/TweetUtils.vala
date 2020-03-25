@@ -16,6 +16,9 @@
  */
 
 namespace TweetUtils {
+  public Quark get_error_domain() {
+    return Quark.from_string("tweet-action");
+  }
   /**
    * Turns Twitter's JSON error messages into a GLib.Error object, unless
    * the exception was caused by a libsoup error
@@ -23,7 +26,7 @@ namespace TweetUtils {
    * Example JSON:
    * {"errors":[{"message":"Sorry, that page does not exist","code":34}]}
    */
-  private GLib.Error failed_request_to_error (Rest.ProxyCall call, GLib.Error e) {
+  public GLib.Error failed_request_to_error (Rest.ProxyCall call, GLib.Error e) {
     if (e.code < 100) {
       // Special case for _handle_error_from_message in rest-proxy-call.c
       // All libsoup errors are below the HTTP response code range
@@ -34,7 +37,24 @@ namespace TweetUtils {
     unowned string json = call.get_payload();
 
     try {
-      debug(json);
+      // TODO: The Utils function used to have the following to handle multiple errors:
+      /*
+       *   if (errors.get_length () == 1) {
+       *     var err = errors.get_object_element (0);
+       *     sb.append (err.get_int_member ("code").to_string ()).append (": ")
+       *       .append (err.get_string_member ("message"))
+       *       .append ("(").append (file).append (":").append (line.to_string ()).append (")");
+       *   } else if (errors.get_length () > 1) {
+       *     sb.append ("<ul>");
+       *     errors.foreach_element ((arr, index, node) => {
+       *       var obj = node.get_object ();
+       *       sb.append ("<li>").append (obj.get_int_member ("code").to_string ())
+       *         .append (": ")
+       *         .append (obj.get_string_member ("message")).append ("</li>");
+       *     });
+       *     sb.append ("</ul>");
+       *   }
+       */
       var parser = new Json.Parser();
       parser.load_from_data (json);
       var obj = parser.get_root().get_object();
@@ -44,9 +64,76 @@ namespace TweetUtils {
       // Twitter's error codes don't go above three digits - https://developer.twitter.com/en/docs/basics/response-codes
       var code = (int)error.get_int_member("code");
       var message = error.get_string_member("message");
-      return new GLib.Error.literal (Quark.from_string("tweet-action"), code, message);
+      return new GLib.Error.literal (get_error_domain(), code, message);
     } catch (GLib.Error e) {
       return e;
+    }
+  }
+
+  /*
+   * Turns a Twitter error code into a translated message for the user, or uses the default message
+   * if we haven't seen the code before
+   */
+  string code_to_message(int code, string default_message){
+    // TODO: Remove the magic numbers (including error handling in this class)
+    // Codes and default messages taken from https://developer.twitter.com/en/docs/basics/response-codes
+    // Some lines commented out to avoid work for the translators for strings we aren't likely to hit
+    switch (code) {
+      //case 3: return _("Invalid coordinates."); // We don't do locations
+      //case 13: return _("No location associated with the specified IP address."); // We don't do locations
+      //case 17: return _("No user matches for specified terms."); // We don't use the users/lookup endpoint
+      case 32: return _("Could not authenticate you");
+      case 34: return _("Sorry, that page does not exist");
+      //case 36: return _("You cannot report yourself for spam."); // We don't do spam reports
+      //case 38: return _("<named> parameter is missing."); // We should always be constructing valid queries!
+      //case 44: return _("attachment_url parameter is invalid"); // We control attachment URLs, so they should be valid
+      case 50: return _("User not found.");
+      case 63: return _("User has been suspended.");
+      case 64: return _("Your account is suspended and is not permitted to access this feature");
+      //case 68: return _("The Twitter REST API v1 is no longer active. Please migrate to API v1.1."); // We're never going to go back to v1.0!
+      //case 87: return _("Client is not permitted to perform this action."); // We shouldn't have UI for the not permitted tasks
+      case 88: return _("Rate limit exceeded");
+      case 89: return _("Invalid or expired token"); // 
+      //case 93: return _("This application is not allowed to access or delete your direct messages"); // We request the DM permission
+      //case 99: return _("Unable to verify your credentials."); // Not relevant to posting
+      case 120: return _("Account update failed: value is too long."); // XXX: This should say how long it can be, and possibly which field ("value")
+      case 130: return _("Over capacity");
+      case 131: return _("Internal error");
+      case 135: return _("Could not authenticate you");
+      case 139: return _("You have already favorited this status.");
+      case 144: return _("No status found with that ID.");
+      case 150: return _("You cannot send messages to users who are not following you.");
+      case 151: return _("There was an error sending your message."); // XXX: There should be a reason here
+      case 160: return _("You've already requested to follow this user."); // XXX: There should be a username here
+      case 161: return _("You are unable to follow more people at this time");
+      case 179: return _("Sorry, you are not authorized to see this status");
+      case 185: return _("User is over daily status update limit");
+      case 186: return _("Tweet needs to be a bit shorter.");
+      case 187: return _("Status is a duplicate");
+      //case 195: return _("Missing or invalid url parameter"); // We should always be constructing valid queries!
+      //case 205: return _("You are over the limit for spam reports."); // We don't do spam reports
+      case 214: return _("Owner must allow dms from anyone.");
+      case 215: return _("Bad authentication data");
+      case 220: return _("Your credentials do not allow access to this resource.");
+      case 226: return _("This request looks like it might be automated. To protect our users from spam and other malicious activity, we can’t complete this action right now.");
+      case 231: return _("User must verify login");
+      case 261: return _("Application cannot perform write actions.");
+      case 271: return _("You can’t mute yourself.");
+      case 272: return _("You are not muting the specified user.");
+      case 323: return _("Animated GIFs are not allowed when uploading multiple images.");
+      case 324: return _("The validation of media ids failed.");
+      case 325: return _("A media id was not found.");
+      case 326: return _("To protect our users from spam and other malicious activity, this account is temporarily locked.");
+      case 327: return _("You have already retweeted this Tweet.");
+      case 349: return _("You cannot send messages to this user.");
+      case 354: return _("The text of your direct message is over the max character limit.");
+      case 355: return _("Subscription already exists.");
+      case 385: return _("You attempted to reply to a Tweet that is deleted or not visible to you.");
+      case 386: return _("The Tweet exceeds the number of allowed attachment types.");
+      case 407: return _("The given URL is invalid.");
+      case 416: return _("Invalid / suspended application");
+      // Else fall back to Twitter's (probably English) message
+      default: return default_message;
     }
   }
 

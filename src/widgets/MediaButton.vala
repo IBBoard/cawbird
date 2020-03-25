@@ -302,7 +302,7 @@ private class MediaButton : Gtk.Widget {
       try {
         out_stream = file.create (0, null);
       } catch (GLib.Error e) {
-        Utils.show_error_dialog (e.message, this.window);
+        Utils.show_error_dialog (e, this.window);
         warning (e.message);
       }
 

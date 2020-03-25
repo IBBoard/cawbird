@@ -113,8 +113,7 @@ public class ListListEntry : Gtk.ListBoxRow {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_object (call.get_payload (), e.message,
-                                 GLib.Log.LINE, GLib.Log.FILE);
+        Utils.show_error_dialog (e);
         this.sensitive = true;
         return;
       }
@@ -134,8 +133,7 @@ public class ListListEntry : Gtk.ListBoxRow {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_object (call.get_payload (), e.message,
-                                 GLib.Log.LINE, GLib.Log.FILE);
+        Utils.show_error_dialog (e);
         return;
       } finally {
         subscribe_button.sensitive = true;
@@ -158,8 +156,7 @@ public class ListListEntry : Gtk.ListBoxRow {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_object (call.get_payload (), e.message,
-                                 GLib.Log.LINE, GLib.Log.FILE);
+        Utils.show_error_dialog (e);
         return;
       }
     });

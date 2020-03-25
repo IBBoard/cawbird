@@ -360,7 +360,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
         try {
           success = TweetUtils.delete_tweet.end (res);
         } catch (GLib.Error e) {
-          Utils.show_error_dialog (e.message, main_window);
+          Utils.show_error_dialog (e, main_window);
         }
         if (success) {
           sensitive = false;
@@ -438,7 +438,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       try {
         success = TweetUtils.set_retweet_status.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_dialog (e.message, main_window);
+        Utils.show_error_dialog (e, main_window);
       }
       if (success) {
         if (shows_actions) {
@@ -463,7 +463,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       try {
         success = TweetUtils.set_favorite_status.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_dialog (e.message, main_window);
+        Utils.show_error_dialog (e, main_window);
       }
       if (success) {
         if (shows_actions) {

@@ -279,7 +279,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       try {
         success = TweetUtils.set_favorite_status.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_dialog (e.message, main_window);
+        Utils.show_error_dialog (e, main_window);
       }
       if (success) {
         if (tweet.is_flag_set (Cb.TweetState.FAVORITED)) {
@@ -309,7 +309,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       try {
         success = TweetUtils.set_retweet_status.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_dialog (e.message, main_window);
+        Utils.show_error_dialog (e, main_window);
       }
       if (success) {
         if (tweet.is_flag_set (Cb.TweetState.RETWEETED)) {
@@ -496,13 +496,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        if (e.message.strip () != "Forbidden" &&
-            e.message.strip ().down () != "not found" &&
-            !(e is GLib.IOError.CANCELLED)) {
-          critical (e.message);
-          Utils.show_error_object (call.get_payload (), e.message,
-                                   GLib.Log.LINE, GLib.Log.FILE, this.main_window);
-        }
+        Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e), this.main_window);
         bottom_list_box.visible = (bottom_list_box.get_children ().length () > 0);
         return;
       }
@@ -665,7 +659,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       try {
         success = TweetUtils.delete_tweet.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_dialog (e.message, main_window);
+        Utils.show_error_dialog (e, main_window);
       }
       if (success) {
         this.main_window.main_widget.remove_current_page ();

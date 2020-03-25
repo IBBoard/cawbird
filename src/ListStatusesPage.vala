@@ -269,8 +269,7 @@ class ListStatusesPage : ScrollWidget, IPage {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_object (call.get_payload (), e.message,
-                                 GLib.Log.LINE, GLib.Log.FILE, this.main_window);
+        Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e), this.main_window);
       }
       edit_button.sensitive = true;
       delete_button.sensitive = true;
@@ -293,8 +292,7 @@ class ListStatusesPage : ScrollWidget, IPage {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_object (call.get_payload (), e.message,
-                                 GLib.Log.LINE, GLib.Log.FILE, this.main_window);
+        Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e), this.main_window);
       }
     });
     // Go back to the ListsPage and tell it to remove this list

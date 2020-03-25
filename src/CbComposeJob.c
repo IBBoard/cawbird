@@ -16,6 +16,7 @@
  */
 
 #include <string.h>
+#include "cawbird.h"
 #include "CbComposeJob.h"
 #include "CbUtils.h"
 
@@ -431,7 +432,7 @@ send_tweet_call_completed_cb (GObject      *source_object,
   if (error)
     {
       g_warning ("Could not send tweet: %s", error->message);
-      g_task_return_error (send_task, error);
+      g_task_return_error (send_task, tweet_utils_failed_request_to_error (call, error));
     }
   else
     {

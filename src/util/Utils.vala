@@ -197,11 +197,25 @@ namespace Utils {
   }
 
   /**
-   * Shows an error dialog with the given error message
+   * Shows an error dialog for a given GLib error
    *
-   * @param message The error message to show
+   * @param e The error to show
    */
-  void show_error_dialog (string message, Gtk.Window? transient_for = null) {
+  void show_error_dialog (GLib.Error e, Gtk.Window? transient_for = null, string? file = null, int line = 0) {
+    string message;
+    if (e.domain == TweetUtils.get_error_domain()) {
+      message = TweetUtils.code_to_message(e.code, e.message);
+    } else {
+      message = e.message;
+    }
+
+    // Log the original message rather than the translation
+    if (file != null) {
+      warning ("Exception %s:%d: %s in %s:%d", e.domain.to_string(), e.code, e.message, file, line);
+    } else {
+      warning ("Exception %s:%d: %s", e.domain.to_string(), e.code, e.message);
+    }
+
     var dialog = new Gtk.MessageDialog (transient_for, Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                         Gtk.MessageType.ERROR, Gtk.ButtonsType.OK,
                                         "%s", message);
@@ -217,83 +231,6 @@ namespace Utils {
     });
 
     dialog.show ();
-  }
-
-  /**
-   * Shows the given json error object in an error dialog.
-   * Example object data:
-   * {"errors":[{"message":"Could not authenticate you","code":32}]
-   *
-   * @param json_data The json data to show
-   * @param alternative If the given json data is not valid,
-   *                    show this alternative error message.
-   */
-  void show_error_object (string?     json_data,
-                          string      alternative,
-                          int         line,
-                          string      file,
-                          Gtk.Window? transient_for = null) {
-    string error_message = "Exception: %s in %s:%d".printf (alternative, file, line);
-    if (json_data == null) {
-      show_error_dialog (error_message, transient_for);
-      return;
-    }
-
-    var parser = new Json.Parser ();
-    StringBuilder sb = new StringBuilder ();
-    try {
-      parser.load_from_data (json_data);
-    } catch (GLib.Error e) {
-      show_error_dialog (error_message, transient_for);
-      return;
-    }
-
-    if (parser.get_root ().get_node_type () != Json.NodeType.OBJECT) {
-      show_error_dialog (error_message, transient_for);
-      return;
-    }
-
-    var root = parser.get_root ().get_object ();
-    if (root.has_member ("error") &&
-        root.get_member ("error").get_node_type () == Json.NodeType.VALUE) {
-      message (json_data);
-      show_error_dialog (root.get_member ("error").get_string (), transient_for);
-      return;
-    }
-
-    if (root.has_member ("errors") &&
-        root.get_member ("errors").get_node_type () == Json.NodeType.VALUE) {
-      message (json_data);
-      show_error_dialog (root.get_member ("errors").get_string (), transient_for);
-      return;
-    }
-
-    if (!root.has_member ("errors")) {
-      show_error_dialog (error_message, transient_for);
-      return;
-    }
-
-    var errors = root.get_array_member ("errors");
-    if (errors.get_length () == 1) {
-      var err = errors.get_object_element (0);
-      sb.append (err.get_int_member ("code").to_string ()).append (": ")
-        .append (err.get_string_member ("message"))
-        .append ("(").append (file).append (":").append (line.to_string ()).append (")");
-    } else if (errors.get_length () > 1) {
-      sb.append ("<ul>");
-      errors.foreach_element ((arr, index, node) => {
-        var obj = node.get_object ();
-        sb.append ("<li>").append (obj.get_int_member ("code").to_string ())
-          .append (": ")
-          .append (obj.get_string_member ("message")).append ("</li>");
-      });
-      sb.append ("</ul>");
-    }
-
-    error_message = sb.str;
-
-    critical (json_data);
-    show_error_dialog (error_message, transient_for);
   }
 
   async Gdk.Pixbuf? download_pixbuf (string            url,

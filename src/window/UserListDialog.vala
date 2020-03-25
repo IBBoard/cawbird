@@ -95,8 +95,7 @@ class UserListDialog : Gtk.Dialog {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_object (call.get_payload (), e.message,
-                                 GLib.Log.LINE, GLib.Log.FILE, this);
+        Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e), this);
         return;
       }
       var parser = new Json.Parser ();
@@ -154,8 +153,7 @@ class UserListDialog : Gtk.Dialog {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_object (call.get_payload (), e.message,
-                                 GLib.Log.LINE, GLib.Log.FILE, this);
+        Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e), this);
       }
     });
   }
@@ -170,8 +168,7 @@ class UserListDialog : Gtk.Dialog {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_object (call.get_payload (), e.message,
-                                 GLib.Log.LINE, GLib.Log.FILE, this);
+        Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e), this);
       }
     });
   }

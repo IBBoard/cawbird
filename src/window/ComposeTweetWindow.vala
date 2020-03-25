@@ -366,8 +366,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       try {
        success = this.compose_job.send_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_object (this.compose_job.response_payload, e.message,
-                                 GLib.Log.LINE, GLib.Log.FILE, this);
+        Utils.show_error_dialog (e, this);
         set_sending_state (false);
         return;
       }
@@ -377,8 +376,6 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
         this.destroy ();
       } else {
         set_sending_state (false);
-        // FIXME: Translate
-        Utils.show_error_dialog ("Failed to send tweet", this);
       }
     });
   }

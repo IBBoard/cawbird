@@ -51,11 +51,7 @@ class AccountCreateWidget : Gtk.Box {
       try {
         acc.proxy.request_token_async.end (res);
       } catch (GLib.Error e) {
-        if (e.message.down() == "unauthorized") {
-          Utils.show_error_dialog (_("Unauthorized. Most of the time, this means that there's something wrong with the Twitter servers and you should try again later"), this.main_window);
-          } else {
-          Utils.show_error_dialog (e.message, this.main_window);
-        }
+        Utils.show_error_dialog (e, this.main_window);
         critical (e.message);
         return;
       }
@@ -67,7 +63,7 @@ class AccountCreateWidget : Gtk.Box {
         GLib.AppInfo.launch_default_for_uri (uri, null);
       } catch (GLib.Error e) {
         this.show_error (_("Could not open %s").printf ("<a href=\"" + uri + "\">" + uri + "</a>"));
-        Utils.show_error_dialog (e.message, this.main_window);
+        Utils.show_error_dialog (e, this.main_window);
         critical ("Could not open %s", uri);
         critical (e.message);
       }
