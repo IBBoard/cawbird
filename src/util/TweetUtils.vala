@@ -174,7 +174,6 @@ namespace TweetUtils {
         get_tweet.callback ();
       } catch (GLib.Error e) {        
         err = failed_request_to_error (call, e);
-        warning ("Exception %s:%d: %s in %s:%d", err.domain.to_string(), err.code, err.message, GLib.Log.FILE, GLib.Log.LINE);
         get_tweet.callback ();
         return;
       }
@@ -204,10 +203,13 @@ namespace TweetUtils {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        err = failed_request_to_error (call, e);
-        warning ("Exception %s:%d: %s in %s:%d", err.domain.to_string(), err.code, err.message, GLib.Log.FILE, GLib.Log.LINE);
-        delete_tweet.callback ();
-        return;
+        var tmp_error = failed_request_to_error (call, e);
+        if (tmp_error.code != 144) {
+          err = tmp_error;
+          debug("Delete failed: %d", err.code);
+          delete_tweet.callback ();
+          return;
+        }
       }
       inject_deletion (tweet.id, account);
       success = true;
@@ -249,10 +251,15 @@ namespace TweetUtils {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        err = failed_request_to_error (call, e);
-        warning ("Exception %s:%d: %s in %s:%d", err.domain.to_string(), err.code, err.message, GLib.Log.FILE, GLib.Log.LINE);
-        set_favorite_status.callback ();
-        return;
+        var tmp_error = failed_request_to_error (call, e);
+        // If we can handle it cleanly, pretend it worked
+        if ((status && tmp_error.code != 139) // Faving and we didn't get "already Faved"
+           ||
+            (!status && tmp_error.code != 144)) { // or un-Faving and didn't get "no such status"
+          err = tmp_error;
+          set_favorite_status.callback ();
+          return;
+        }
       }
       if (status)
         tweet.set_flag (Cb.TweetState.FAVORITED);
@@ -298,8 +305,24 @@ namespace TweetUtils {
       try{
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        err = failed_request_to_error (call, e);
-        warning ("Exception %s:%d: %s in %s:%d", err.domain.to_string(), err.code, err.message, GLib.Log.FILE, GLib.Log.LINE);
+        var tmp_error = failed_request_to_error (call, e);
+        // If we can handle it cleanly, pretend it worked
+        if ((status && tmp_error.code == 327) // RTing and we got "already RTed"
+           ||
+            (!status && tmp_error.code == 144)) { // or un-RTing and got "no such status"
+            // Note: We don't inject the tweet because we don't have it
+            // But we *should* pick it up on the next poll so it will be delayed rather than lost
+            debug("Succeeded by %d", tmp_error.code);
+            if (status) {
+              tweet.set_flag (Cb.TweetState.RETWEETED);
+            } else {
+              tweet.unset_flag (Cb.TweetState.RETWEETED);
+            }
+            success = true;
+        } else {
+          debug("Failed with %d", tmp_error.code);
+          err = tmp_error;
+        }
         set_retweet_status.callback ();
         return;
       }
@@ -323,7 +346,6 @@ namespace TweetUtils {
 
         account.user_stream.inject_tweet(message_type, message);
       } catch (GLib.Error e) {
-        warning ("Exception: %s in %s:%d", e.message, GLib.Log.FILE, GLib.Log.LINE);
         info (back);
         err = e;
         return;
