@@ -1,11 +1,11 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) YEAR 2013-2018 Timm Bäder, 2018-2020 IBBoard
 # This file is distributed under the same license as the cawbird package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 # Translators:
 # Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, 2020
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -13,13 +13,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2020-03-28 12:09+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
-"Last-Translator: Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, "
-"2020\n"
+"Last-Translator: Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, 2020\n"
 "Language-Team: Danish (https://www.transifex.com/cawbird/teams/107135/da/)\n"
-"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:5
@@ -34,16 +33,16 @@ msgstr "Twitter klient"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:10
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as "
-"Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
 "Cawbird er en GTK+ twitter klient med essentielle funktioner som Direkte "
 "Beskeder (DMs), tweet notifikationer og samtalevisning"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:13
 msgid ""
-"Additional features include local viewing of videos, multiple inline images, "
-"Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images,"
+" Lists, Filters, multiple accounts, etc."
 msgstr ""
 "Yderligere funktioner inkludere: Lokal videoafspilning, Flere indlejrede "
 "billeder, Lister, Filtre, Flere konti, osv."
@@ -68,12 +67,14 @@ msgstr "IBBoard"
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Brug Twitter i en desktop applikation"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
 #: data/uk.co.ibboard.cawbird.desktop.in:7
 msgid "twitter;"
 msgstr "twitter;"
 
-#. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon file name)!
+#. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon
+#. file name)!
 #: data/uk.co.ibboard.cawbird.desktop.in:11
 msgid "uk.co.ibboard.cawbird"
 msgstr "uk.co.ibboard.cawbird"
@@ -254,173 +255,174 @@ msgid "Show anyway"
 msgstr "Vis alligevel"
 
 #: src/util/TweetUtils.vala:85 src/util/TweetUtils.vala:102
-#, fuzzy
 msgid "Could not authenticate you"
-msgstr "Kunne ikke åbne %s"
+msgstr "Kunne ikke autentificere dig"
 
 #: src/util/TweetUtils.vala:86
 msgid "Sorry, that page does not exist"
-msgstr ""
+msgstr "Beklager, denne side eksistere ikke"
 
 #: src/util/TweetUtils.vala:90
-#, fuzzy
 msgid "User not found."
-msgstr "Ingen brugere fundet"
+msgstr "Bruger kunne ikke findes."
 
 #: src/util/TweetUtils.vala:91
 msgid "User has been suspended."
-msgstr ""
+msgstr "Bruger er blevet suspenderet."
 
 #: src/util/TweetUtils.vala:92
 msgid "Your account is suspended and is not permitted to access this feature"
-msgstr ""
+msgstr "Din konto er blevet suspenderet og kan ikke tilgå denne feature"
 
 #: src/util/TweetUtils.vala:95
 msgid "Rate limit exceeded"
-msgstr ""
+msgstr "Takstgrænse overskredet"
 
 #: src/util/TweetUtils.vala:96
 msgid "Invalid or expired token"
-msgstr ""
+msgstr "Ugyldig eller udløbet token"
 
 #: src/util/TweetUtils.vala:99
 msgid "Account update failed: value is too long."
-msgstr ""
+msgstr "Konto opdatering fejlede: værdi er for lang"
 
 #: src/util/TweetUtils.vala:100
 msgid "Over capacity"
-msgstr ""
+msgstr "Over kapacitet"
 
 #: src/util/TweetUtils.vala:101
-#, fuzzy
 msgid "Internal error"
-msgstr "Grænseflade"
+msgstr "Intern fejl"
 
 #: src/util/TweetUtils.vala:103
 msgid "You have already favorited this status."
-msgstr ""
+msgstr "Du har allerede favoriseret denne status."
 
 #: src/util/TweetUtils.vala:104
 msgid "No status found with that ID."
-msgstr ""
+msgstr "Intet status fundet med dette ID."
 
 #: src/util/TweetUtils.vala:105
 msgid "You cannot send messages to users who are not following you."
-msgstr ""
+msgstr "Du kan ikke sende beskeder til brugere som ikke følger dig."
 
 #: src/util/TweetUtils.vala:106
 msgid "There was an error sending your message."
-msgstr ""
+msgstr "Der var en fejl under afsendelsen af din besked."
 
 #: src/util/TweetUtils.vala:107
 msgid "You've already requested to follow this user."
-msgstr ""
+msgstr "Du har allerede anmodet om at følge denne bruger."
 
 #: src/util/TweetUtils.vala:108
 msgid "You are unable to follow more people at this time"
-msgstr ""
+msgstr "Du kan ikke følge flere folk i øjeblikket"
 
 #: src/util/TweetUtils.vala:109
 msgid "Sorry, you are not authorized to see this status"
-msgstr ""
+msgstr "Beklager, du er ikke autoriseret til at se denne status"
 
 #: src/util/TweetUtils.vala:110
 msgid "User is over daily status update limit"
-msgstr ""
+msgstr "Bruger er over daglig statusopdaterings begrænsning"
 
 #: src/util/TweetUtils.vala:111
 msgid "Tweet needs to be a bit shorter."
-msgstr ""
+msgstr "Tweetet er nød til at være lidt kortere"
 
 #: src/util/TweetUtils.vala:112
 msgid "Status is a duplicate"
-msgstr ""
+msgstr "Status er en duplikat"
 
 #: src/util/TweetUtils.vala:115
 msgid "Owner must allow dms from anyone."
-msgstr ""
+msgstr "Bruger er nød til at tillade dm's fra alle."
 
 #: src/util/TweetUtils.vala:116
 msgid "Bad authentication data"
-msgstr ""
+msgstr "Ugyldige autentificerings data"
 
 #: src/util/TweetUtils.vala:117
 msgid "Your credentials do not allow access to this resource."
-msgstr ""
+msgstr "Dine akkreditiver giver ikke adgang til denne resurse."
 
 #: src/util/TweetUtils.vala:118
 msgid ""
 "This request looks like it might be automated. To protect our users from "
 "spam and other malicious activity, we can’t complete this action right now."
 msgstr ""
+"Denne anmodning virker automatiseret. For at beskytte vores brugere fra spam"
+" og andre ondsindet aktiviteter, kan vi ikke udføre denne handling lige nu."
 
 #: src/util/TweetUtils.vala:119
 msgid "User must verify login"
-msgstr ""
+msgstr "Bruger skal validere login"
 
 #: src/util/TweetUtils.vala:120
 msgid "Application cannot perform write actions."
-msgstr ""
+msgstr "Program kan ikke udføre skriv handlinger."
 
 #: src/util/TweetUtils.vala:121
 msgid "You can’t mute yourself."
-msgstr ""
+msgstr "Du kan ikke mute dig selv."
 
 #: src/util/TweetUtils.vala:122
 msgid "You are not muting the specified user."
-msgstr ""
+msgstr "Du muter ikke den angivne bruger."
 
 #: src/util/TweetUtils.vala:123
 msgid "Animated GIFs are not allowed when uploading multiple images."
-msgstr ""
+msgstr "Animerede GIFs er ikke tilladt ved upload af flere billeder."
 
 #: src/util/TweetUtils.vala:124
 msgid "The validation of media ids failed."
-msgstr ""
+msgstr "Valideringen af medie id fejlede."
 
 #: src/util/TweetUtils.vala:125
 msgid "A media id was not found."
-msgstr ""
+msgstr "Et medie id kunne ikke findes."
 
 #: src/util/TweetUtils.vala:126
 msgid ""
-"To protect our users from spam and other malicious activity, this account is "
-"temporarily locked."
+"To protect our users from spam and other malicious activity, this account is"
+" temporarily locked."
 msgstr ""
+"For at beskytte brugere fra spam og andre ondsindede aktiviteter, er denne "
+"konto blevet låst."
 
 #: src/util/TweetUtils.vala:127
 msgid "You have already retweeted this Tweet."
-msgstr ""
+msgstr "Du har allerede retweetet dette Tweet."
 
 #: src/util/TweetUtils.vala:128
 msgid "You cannot send messages to this user."
-msgstr ""
+msgstr "Du kan ikke sende beskeder til denne bruger."
 
 #: src/util/TweetUtils.vala:129
 msgid "The text of your direct message is over the max character limit."
-msgstr ""
+msgstr "Teksten af denne direkte besked er over karaktergrænsen."
 
 #: src/util/TweetUtils.vala:130
-#, fuzzy
 msgid "Subscription already exists."
-msgstr "Snippet eksistere allerede"
+msgstr "Abonnering eksistere allerede."
 
 #: src/util/TweetUtils.vala:131
 msgid ""
 "You attempted to reply to a Tweet that is deleted or not visible to you."
 msgstr ""
+"Du forsøgte at svare på et Tweet der er slettet eller utilgængeligt for dig."
 
 #: src/util/TweetUtils.vala:132
 msgid "The Tweet exceeds the number of allowed attachment types."
-msgstr ""
+msgstr "Dette Tweet overskrider det tilladte vedhæftnings typer."
 
 #: src/util/TweetUtils.vala:133
 msgid "The given URL is invalid."
-msgstr ""
+msgstr "Det angivet URL er ugyldigt."
 
 #: src/util/TweetUtils.vala:134
 msgid "Invalid / suspended application"
-msgstr ""
+msgstr "Ugyldig / suspenderet program"
 
 #: src/util/Utils.vala:182
 msgid "Now"
@@ -558,7 +560,8 @@ msgstr[0] "Kunne ikke indlæse billede"
 msgstr[1] "Kunne ikke indlæse %u billeder"
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
+#. <path>, <path>"
 #: src/window/ComposeTweetWindow.vala:219
 #, c-format
 msgid "%s: %s"
@@ -631,7 +634,8 @@ msgstr "Snippet eksistere allerede"
 
 #: src/window/SettingsDialog.vala:85
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
+"#newisalwaysbetter"
 msgstr ""
 "Hej, tjek lige denne nye #Cawbird version! \\ (•◡•) / #cool "
 "#newisalwaysbetter"
@@ -657,8 +661,8 @@ msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
 msgstr ""
-"For at autentificere Cawbird skal du have en PIN fra twitter.com fra kontoen "
-"du ønsker at tilføje"
+"For at autentificere Cawbird skal du have en PIN fra twitter.com fra kontoen"
+" du ønsker at tilføje"
 
 #: ui/account-create-widget.ui:58
 msgid "Request PIN"
@@ -1141,10 +1145,3 @@ msgstr "Lavet"
 #: ui/user-lists-widget.ui:86
 msgid "Subscribed to"
 msgstr "Tilmeldt"
-
-#~ msgid ""
-#~ "Unauthorized. Most of the time, this means that there's something wrong "
-#~ "with the Twitter servers and you should try again later"
-#~ msgstr ""
-#~ "Uautoriseret. Ofte betyder dette at der er noget galt med Twitters "
-#~ "servere, så prøv igen senere"
