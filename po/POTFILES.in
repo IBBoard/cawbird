@@ -20,6 +20,7 @@ src/UserEventReceiver.vala
 src/list/DMThreadEntry.vala
 src/list/FavImageRow.vala
 src/list/TweetListEntry.vala
+src/util/TweetUtils.vala
 src/util/Utils.vala
 src/widgets/AccountCreateWidget.vala
 src/widgets/AvatarBannerWidget.vala
