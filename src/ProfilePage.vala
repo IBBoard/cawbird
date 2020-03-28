@@ -602,41 +602,51 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
 
   [GtkCallback]
   private void follow_button_clicked_cb () {
+    follow_button.sensitive = false;
     var call = account.proxy.new_call();
-    HomeTimeline ht = (HomeTimeline) main_window.get_page (Page.STREAM);
+    call.set_method ("POST");
     if (follow_button.following) {
       call.set_function( "1.1/friendships/destroy.json");
-      ht.hide_tweets_from (this.user_id, Cb.TweetState.HIDDEN_UNFOLLOWED);
-      ht.hide_retweets_from (this.user_id, Cb.TweetState.HIDDEN_UNFOLLOWED);
-      follower_count --;
-      account.unfollow_id (this.user_id);
-      ((SimpleAction)actions.lookup_action ("toggle-retweets")).set_enabled (false);
-      set_retweets_disabled (false);
     } else {
       call.set_function ("1.1/friendships/create.json");
       call.add_param ("follow", "false");
-      ht.show_tweets_from (this.user_id, Cb.TweetState.HIDDEN_UNFOLLOWED);
-      if (!((SimpleAction)actions.lookup_action ("toggle-retweets")).get_state ().get_boolean ()) {
-        ht.show_retweets_from (this.user_id, Cb.TweetState.HIDDEN_UNFOLLOWED);
-      }
-      set_user_blocked (false);
-      follower_count ++;
-      account.follow_id (this.user_id);
-      ((SimpleAction)actions.lookup_action ("toggle-retweets")).set_enabled (true);
     }
-    update_follower_label ();
-    follow_button.sensitive = false;
-    call.set_method ("POST");
     call.add_param ("id", user_id.to_string ());
     call.invoke_async.begin (null, (obj, res) => {
       try {
-        this.follow_button.following = !this.follow_button.following;
         this.follow_button.sensitive = (this.user_id != this.account.id);
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        critical (e.message);
-        critical (call.get_payload ());
+        var err = TweetUtils.failed_request_to_error(call, e);
+        if (err.domain != TweetUtils.get_error_domain() || err.code != 160) {
+          debug("Code: %d", err.code);
+          Utils.show_error_dialog (err, main_window);
+          follow_button.sensitive = true;
+          return;
+        }
       }
+
+      HomeTimeline ht = (HomeTimeline) main_window.get_page (Page.STREAM);
+      if (follow_button.following) {
+        ht.hide_tweets_from (this.user_id, Cb.TweetState.HIDDEN_UNFOLLOWED);
+        ht.hide_retweets_from (this.user_id, Cb.TweetState.HIDDEN_UNFOLLOWED);
+        follower_count --;
+        account.unfollow_id (this.user_id);
+        ((SimpleAction)actions.lookup_action ("toggle-retweets")).set_enabled (false);
+        set_retweets_disabled (false);
+      } else {
+        ht.show_tweets_from (this.user_id, Cb.TweetState.HIDDEN_UNFOLLOWED);
+        if (!((SimpleAction)actions.lookup_action ("toggle-retweets")).get_state ().get_boolean ()) {
+          ht.show_retweets_from (this.user_id, Cb.TweetState.HIDDEN_UNFOLLOWED);
+        }
+        set_user_blocked (false);
+        follower_count ++;
+        account.follow_id (this.user_id);
+        ((SimpleAction)actions.lookup_action ("toggle-retweets")).set_enabled (true);
+      }
+      
+      this.follow_button.following = !this.follow_button.following;
+      update_follower_label ();
       follow_button.sensitive = true;
     });
   }
