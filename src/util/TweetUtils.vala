@@ -96,6 +96,7 @@ namespace TweetUtils {
       case 89: return _("Invalid or expired token"); // 
       //case 93: return _("This application is not allowed to access or delete your direct messages"); // We request the DM permission
       //case 99: return _("Unable to verify your credentials."); // Not relevant to posting
+      case 109: return _("The specified user is not a subscriber of this list."); // Not listed in the docs
       case 110: return _("The user you are trying to remove from the list is not a member."); // Not listed in the docs
       case 120: return _("Account update failed: value is too long."); // XXX: This should say how long it can be, and possibly which field ("value")
       case 130: return _("Over capacity");
