@@ -150,20 +150,37 @@ namespace UserUtils {
 
   async void mute_user (Account account,
                         int64   to_block,
-                        bool    setting) {
+                        bool    setting) throws GLib.Error {
     var call = account.proxy.new_call ();
     call.set_method ("POST");
-    if (setting)
+    if (setting) {
       call.set_function ("1.1/mutes/users/create.json");
-    else
+      call.add_param ("include_entities", "false");
+      call.add_param ("skip_status", "true");
+    } else {
       call.set_function ("1.1/mutes/users/destroy.json");
+    }
 
     call.add_param ("user_id", to_block.to_string ());
+    GLib.Error? err = null;
+    
+    call.invoke_async.begin (null, (obj, res) => {
+      try {
+        call.invoke_async.end (res);
+      } catch (GLib.Error e) {
+        var tmp_err = TweetUtils.failed_request_to_error (call, e);
 
-    try {
-      yield call.invoke_async (null);
-    } catch (GLib.Error e) {
-      critical (e.message);
+        // Muting muted users fails silently, so errors are important, but code 272 means
+        // we unmuted someone who was already unmuted
+        if (setting || tmp_err.domain != TweetUtils.get_error_domain() || tmp_err.code != 272) {
+          err = tmp_err;
+        }
+      }
+      mute_user.callback();
+    });
+    yield;
+    if (err != null) {
+      throw err;
     }
   }
 }
