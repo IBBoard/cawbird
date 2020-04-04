@@ -91,7 +91,6 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
   private int follower_count = -1;
   private GLib.Cancellable data_cancellable;
   private bool lists_page_inited = false;
-  private bool block_item_blocked = false;
   private bool retweet_item_blocked = false;
   private bool tweets_loading = false;
   private bool followers_loading = false;
@@ -757,35 +756,26 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
 
 
   private void toggle_blocked_activated (GLib.SimpleAction a, GLib.Variant? v) {
-    if (block_item_blocked)
-      return;
-
-    block_item_blocked = true;
-
     bool current_state = get_user_blocked ();
-    HomeTimeline ht = (HomeTimeline) main_window.get_page (Page.STREAM);
-    var call = account.proxy.new_call ();
-    call.set_method ("POST");
-    if (current_state) {
-      call.set_function ("1.1/blocks/destroy.json");
-      ht.show_tweets_from (this.user_id, Cb.TweetState.HIDDEN_AUTHOR_BLOCKED);
-    } else {
-      call.set_function ("1.1/blocks/create.json");
-      this.follow_button.following = false;
-      this.follow_button.sensitive = (this.user_id != this.account.id);
-      ht.hide_tweets_from (this.user_id, Cb.TweetState.HIDDEN_AUTHOR_BLOCKED);
-    }
-    set_user_blocked (!current_state);
-    call.add_param ("user_id", this.user_id.to_string ());
-    call.invoke_async.begin (null, (obj, res) => {
+    a.set_enabled (false);
+    UserUtils.block_user.begin (account, this.user_id, !current_state, (obj, res) => {
       try {
-        call.invoke_async.end (res);
+        UserUtils.block_user.end (res);
+        a.set_state(!current_state);
+        HomeTimeline ht = (HomeTimeline) main_window.get_page (Page.STREAM);
+        if (current_state) {
+          ht.show_tweets_from (this.user_id, Cb.TweetState.HIDDEN_AUTHOR_BLOCKED);
+        } else {
+          this.follow_button.following = false;
+          this.follow_button.sensitive = (this.user_id != this.account.id);
+          ht.hide_tweets_from (this.user_id, Cb.TweetState.HIDDEN_AUTHOR_BLOCKED);
+        }
+        set_user_blocked (!current_state);
       } catch (GLib.Error e) {
-        Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e), this.main_window);
-        /* Reset the state if the blocking failed */
-        a.set_state (new GLib.Variant.boolean (current_state));
+        Utils.show_error_dialog (e, this.main_window);
+      } finally {
+        a.set_enabled (true);
       }
-      block_item_blocked = false;
     });
   }
 
