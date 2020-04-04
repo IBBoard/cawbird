@@ -270,22 +270,14 @@ class FilterPage : Gtk.ScrolledWindow, IPage, Cb.MessageReceiver {
   }
 
   private void unmute_user (int64 id) {
-    var call = account.proxy.new_call ();
-    call.set_method ("POST");
-    call.set_function ("1.1/mutes/users/destroy.json");
-    call.add_param ("include_entities", "false");
-    call.add_param ("skip_status", "true");
-    call.add_param ("user_id", id.to_string ());
-    call.invoke_async.begin (null, (o, res) => {
+    UserUtils.mute_user.begin (account, id, false, (obj, res) => {
       try {
-        call.invoke_async.end (res);
+        UserUtils.mute_user.end (res);
+        remove_user (id, true);
       } catch (GLib.Error e) {
-        Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e), this.main_window);
-        warning (e.message);
-        return;
+        Utils.show_error_dialog (e, this.main_window);
       }
     });
-    remove_user (id, true);
   }
 
   [GtkCallback]

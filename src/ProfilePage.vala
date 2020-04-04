@@ -93,7 +93,6 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
   private bool lists_page_inited = false;
   private bool block_item_blocked = false;
   private bool retweet_item_blocked = false;
-  private bool mute_item_blocked = false;
   private bool tweets_loading = false;
   private bool followers_loading = false;
   private Cursor? followers_cursor = null;
@@ -792,18 +791,23 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
 
   private void toggle_muted_activated (GLib.SimpleAction a, GLib.Variant? v) {
     bool setting = get_user_muted ();
-    mute_item_blocked = true;
-    a.set_state (!setting);
+    a.set_enabled (false);
     UserUtils.mute_user.begin (account,this.user_id, !setting, (obj, res) => {
-      UserUtils.mute_user.end (res);
-      mute_item_blocked = false;
-      HomeTimeline ht = (HomeTimeline) main_window.get_page (Page.STREAM);
-      if (setting) {
-        ht.show_tweets_from (this.user_id, Cb.TweetState.HIDDEN_AUTHOR_MUTED);
-        ht.show_retweets_from (this.user_id, Cb.TweetState.HIDDEN_RETWEETER_MUTED);
-      } else {
-        ht.hide_tweets_from (this.user_id, Cb.TweetState.HIDDEN_AUTHOR_MUTED);
-        ht.hide_retweets_from (this.user_id, Cb.TweetState.HIDDEN_RETWEETER_MUTED);
+      try {
+        UserUtils.mute_user.end (res);
+        a.set_state (!setting);
+        HomeTimeline ht = (HomeTimeline) main_window.get_page (Page.STREAM);
+        if (setting) {
+          ht.show_tweets_from (this.user_id, Cb.TweetState.HIDDEN_AUTHOR_MUTED);
+          ht.show_retweets_from (this.user_id, Cb.TweetState.HIDDEN_RETWEETER_MUTED);
+        } else {
+          ht.hide_tweets_from (this.user_id, Cb.TweetState.HIDDEN_AUTHOR_MUTED);
+          ht.hide_retweets_from (this.user_id, Cb.TweetState.HIDDEN_RETWEETER_MUTED);
+        }
+      } catch (GLib.Error e) {
+        Utils.show_error_dialog (e, this.main_window);
+      } finally {
+        a.set_enabled (true);
       }
     });
   }
