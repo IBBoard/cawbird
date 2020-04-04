@@ -115,7 +115,7 @@ public class ListListEntry : Gtk.ListBoxRow {
 
         if (err.domain != TweetUtils.get_error_domain() || err.code != 34) {
           // Deleting lists uses a basic "doesn't exist" error if it was deleted elsewhere
-          Utils.show_error_dialog (err);      
+          Utils.show_error_dialog (err, (Gtk.Window)this.get_toplevel());
           this.sensitive = true;
           return;
         }
@@ -137,7 +137,7 @@ public class ListListEntry : Gtk.ListBoxRow {
       } catch (GLib.Error e) {
         // Subscribing to a subscribed list doesn't appear to cause errors,
         // so there's nothing to ignore as "accidental success"
-        Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e));
+        Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e), (Gtk.Window)this.get_toplevel());
         return;
       } finally {
         this.sensitive = true;
@@ -163,7 +163,7 @@ public class ListListEntry : Gtk.ListBoxRow {
 
         if (err.domain != TweetUtils.get_error_domain() || err.code != 109) {
           // 109 is "user isn't subscribed to the list", so assume they were unsubscribed by another source
-          Utils.show_error_dialog (err);
+          Utils.show_error_dialog (err, (Gtk.Window)this.get_toplevel());
           return;
         }
       } finally {
