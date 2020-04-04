@@ -153,6 +153,8 @@ class UserListDialog : Gtk.Dialog {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
+        // Adding an added users doesn't appear to cause errors,
+        // so there's nothing to ignore as "accidental success"
         Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e), this);
       }
     });
@@ -168,7 +170,12 @@ class UserListDialog : Gtk.Dialog {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e), this);
+        var err = TweetUtils.failed_request_to_error (call, e);
+
+        if (err.domain != TweetUtils.get_error_domain() || err.code != 110) {
+          // 110 is "user isn't in the list", so assume they were removed by another source
+          Utils.show_error_dialog (err, this);
+        }
       }
     });
   }
