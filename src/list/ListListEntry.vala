@@ -53,8 +53,6 @@ public class ListListEntry : Gtk.ListBoxRow {
   private Gtk.Button unsubscribe_button;
   [GtkChild]
   private Gtk.Button delete_button;
-  [GtkChild]
-  private Gtk.Button cancel_button;
 
 
   public int64 id;
@@ -113,18 +111,22 @@ public class ListListEntry : Gtk.ListBoxRow {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_dialog (e);
-        this.sensitive = true;
-        return;
-      }
+        var err = TweetUtils.failed_request_to_error (call, e);
 
+        if (err.domain != TweetUtils.get_error_domain() || err.code != 34) {
+          // Deleting lists uses a basic "doesn't exist" error if it was deleted elsewhere
+          Utils.show_error_dialog (err);      
+          this.sensitive = true;
+          return;
+        }
+      }
+      cancel_more_mode();
     });
   }
 
   [GtkCallback]
   private void subscribe_button_clicked_cb () {
-    subscribe_button.sensitive = false;
-    cancel_button.sensitive = false;
+    this.sensitive = false;
     var call = account.proxy.new_call ();
     call.set_function ("1.1/lists/subscribers/create.json");
     call.set_method ("POST");
@@ -133,11 +135,12 @@ public class ListListEntry : Gtk.ListBoxRow {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_dialog (e);
+        // Subscribing to a subscribed list doesn't appear to cause errors,
+        // so there's nothing to ignore as "accidental success"
+        Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e));
         return;
       } finally {
-        subscribe_button.sensitive = true;
-        cancel_button.sensitive = true;
+        this.sensitive = true;
       }
       subscribe_button.hide ();
       unsubscribe_button.show ();
@@ -156,9 +159,18 @@ public class ListListEntry : Gtk.ListBoxRow {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_dialog (e);
-        return;
+        var err = TweetUtils.failed_request_to_error (call, e);
+
+        if (err.domain != TweetUtils.get_error_domain() || err.code != 109) {
+          // 109 is "user isn't subscribed to the list", so assume they were unsubscribed by another source
+          Utils.show_error_dialog (err);
+          return;
+        }
+      } finally {
+        this.sensitive = true;
       }
+      subscribe_button.show ();
+      unsubscribe_button.hide ();
     });
   }
 
@@ -171,6 +183,10 @@ public class ListListEntry : Gtk.ListBoxRow {
 
   [GtkCallback]
   private void cancel_button_clicked_cb () {
+    cancel_more_mode();
+  }
+
+  private void cancel_more_mode () {
     stack.visible_child_name = "default";
     this.activatable = true;
   }
