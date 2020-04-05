@@ -108,6 +108,7 @@ cawbird_lib_sources = files([
   'src/sql/UpdateStatement.vala',
   'src/util/Benchmark.vala',
   'src/util/Dirs.vala',
+  'src/util/ListUtils.vala',
   'src/util/TweetUtils.vala',
   'src/util/UserCompletion.vala',
   'src/util/UserUtils.vala',

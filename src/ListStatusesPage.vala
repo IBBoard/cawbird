@@ -284,22 +284,18 @@ class ListStatusesPage : ScrollWidget, IPage {
 
   [GtkCallback]
   private void delete_confirmation_item_clicked_cb () {
-    var call = account.proxy.new_call ();
-    call.set_function("1.1/lists/destroy.json");
-    call.add_param ("list_id", list_id.to_string ());
-    call.set_method ("POST");
-    call.invoke_async.begin (null, (o, res) => {
+    ListUtils.delete_list.begin (account, list_id, (obj, res) => {
       try {
-        call.invoke_async.end (res);
+        ListUtils.delete_list.end (res);
+        // Go back to the ListsPage and tell it to remove this list
+        var bundle = new Cb.Bundle ();
+        bundle.put_int (ListsPage.KEY_MODE, ListsPage.MODE_DELETE);
+        bundle.put_int64 (ListsPage.KEY_LIST_ID, list_id);
+        main_window.main_widget.switch_page (Page.LISTS, bundle);
       } catch (GLib.Error e) {
-        Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e), this.main_window);
+        Utils.show_error_dialog (e, this.main_window);
       }
     });
-    // Go back to the ListsPage and tell it to remove this list
-    var bundle = new Cb.Bundle ();
-    bundle.put_int (ListsPage.KEY_MODE, ListsPage.MODE_DELETE);
-    bundle.put_int64 (ListsPage.KEY_LIST_ID, list_id);
-    main_window.main_widget.switch_page (Page.LISTS, bundle);
   }
 
   [GtkCallback]
