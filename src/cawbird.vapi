@@ -34,6 +34,8 @@ namespace Dirs {
 	[CCode (cheader_filename = "cawbird.h")]
 	public static void create_dirs ();
 }
+namespace ListUtils {
+}
 namespace UserUtils {
 }
 namespace Benchmark {

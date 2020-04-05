@@ -103,24 +103,15 @@ public class ListListEntry : Gtk.ListBoxRow {
   [GtkCallback]
   private void delete_button_clicked_cb () {
     this.sensitive = false;
-    var call = account.proxy.new_call ();
-    call.set_function ("1.1/lists/destroy.json");
-    call.set_method ("POST");
-    call.add_param ("list_id", id.to_string ());
-    call.invoke_async.begin (null, (o, res) => {
+    ListUtils.delete_list.begin (account, id, (obj, res) => {
       try {
-        call.invoke_async.end (res);
+        ListUtils.delete_list.end (res);
+        cancel_more_mode();
       } catch (GLib.Error e) {
-        var err = TweetUtils.failed_request_to_error (call, e);
-
-        if (err.domain != TweetUtils.get_error_domain() || err.code != 34) {
-          // Deleting lists uses a basic "doesn't exist" error if it was deleted elsewhere
-          Utils.show_error_dialog (err, (Gtk.Window)this.get_toplevel());
-          this.sensitive = true;
-          return;
-        }
+        Utils.show_error_dialog (e, (Gtk.Window)this.get_toplevel());
+        this.sensitive = true;
+        return;
       }
-      cancel_more_mode();
     });
   }
 
