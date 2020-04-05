@@ -2,12 +2,11 @@
 # Copyright (C) YEAR 2013-2018 Timm Bäder, 2018-2020 IBBoard
 # This file is distributed under the same license as the cawbird package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 # Translators:
-# Geert Wirken <geert@gwirken.nl>, 2014
-# Nathan Follens, 2017
-# Heimen Stoffels <vistausss@outlook.com>, 2014-2015, 2020
-#
+# IBBoard . <github@ibboard.co.uk>, 2020
+# Heimen Stoffels <vistausss@outlook.com>, 2020
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -17,10 +16,10 @@ msgstr ""
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>, 2020\n"
 "Language-Team: Dutch (https://www.transifex.com/cawbird/teams/107135/nl/)\n"
-"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:5
@@ -35,8 +34,8 @@ msgstr "Twittertoepassing"
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:10
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as "
-"Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
 "Cawbird is een geïntegreerde GTK+ Twittertoepassing met ondersteuning voor "
 "de belangrijkste functionaliteiten, zoals privéberichten (DM's), "
@@ -44,8 +43,8 @@ msgstr ""
 
 #: data/uk.co.ibboard.cawbird.appdata.xml.in:13
 msgid ""
-"Additional features include local viewing of videos, multiple inline images, "
-"Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images,"
+" Lists, Filters, multiple accounts, etc."
 msgstr ""
 "Daarnaast kun je video's afspelen, meerdere bijgevoegde afbeeldingen tonen, "
 "en is er ondersteuning voor lijsten, filters, meerdere accounts en nog veel "
@@ -71,12 +70,14 @@ msgstr "IBBoard"
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Gebruik Twitter vanuit een normale bureaubladtoepassing"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
 #: data/uk.co.ibboard.cawbird.desktop.in:7
 msgid "twitter;"
 msgstr "twitter;"
 
-#. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon file name)!
+#. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon
+#. file name)!
 #: data/uk.co.ibboard.cawbird.desktop.in:11
 msgid "uk.co.ibboard.cawbird"
 msgstr "uk.co.ibboard.cawbird"
@@ -288,11 +289,12 @@ msgstr "Ongeldige of verlopen toegangssleutel"
 
 #: src/util/TweetUtils.vala:99
 msgid "The specified user is not a subscriber of this list."
-msgstr ""
+msgstr "De opgegeven gebruiker is niet geabonneerd op deze lijst."
 
 #: src/util/TweetUtils.vala:100
 msgid "The user you are trying to remove from the list is not a member."
 msgstr ""
+"De gebruiker die je wilt verwijderen is niet geabonneerd op deze lijst."
 
 #: src/util/TweetUtils.vala:101
 msgid "Account update failed: value is too long."
@@ -363,8 +365,8 @@ msgid ""
 "This request looks like it might be automated. To protect our users from "
 "spam and other malicious activity, we can’t complete this action right now."
 msgstr ""
-"Dit verzoek lijkt geautomatiseerd. Om gebruikers te beschermen tegen spam en "
-"andere schadelijke activiteit, kunnen we deze handeling nu niet uitvoeren."
+"Dit verzoek lijkt geautomatiseerd. Om gebruikers te beschermen tegen spam en"
+" andere schadelijke activiteit, kunnen we deze handeling nu niet uitvoeren."
 
 #: src/util/TweetUtils.vala:121
 msgid "User must verify login"
@@ -398,8 +400,8 @@ msgstr "Er is geen media-id gevonden."
 
 #: src/util/TweetUtils.vala:128
 msgid ""
-"To protect our users from spam and other malicious activity, this account is "
-"temporarily locked."
+"To protect our users from spam and other malicious activity, this account is"
+" temporarily locked."
 msgstr ""
 "Om gebruikers te beschermen tegen spam en andere schadelijke activiteit, is "
 "dit account tijdelijk geblokkeerd."
@@ -575,7 +577,8 @@ msgstr[0] "De afbeelding kan niet worden geladen"
 msgstr[1] "%u afbeeldingen kunnen niet worden geladen"
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
+#. <path>, <path>"
 #: src/window/ComposeTweetWindow.vala:219
 #, c-format
 msgid "%s: %s"
@@ -648,7 +651,8 @@ msgstr "Het fragment bestaat al"
 
 #: src/window/SettingsDialog.vala:85
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
+"#newisalwaysbetter"
 msgstr ""
 "Hé! Kijk eens naar deze nieuwe #Cawbird-versie! \\ (•◡•) / #cool "
 "#nieuwisaltijdbeter"
@@ -674,8 +678,8 @@ msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
 msgstr ""
-"Geef Cawbird toestemming door op twitter.com een pincode op te halen van het "
-"toe te voegen account"
+"Geef Cawbird toestemming door op twitter.com een pincode op te halen van het"
+" toe te voegen account"
 
 #: ui/account-create-widget.ui:58
 msgid "Request PIN"
