@@ -40,8 +40,6 @@ class ListStatusesPage : ScrollWidget, IPage {
   [GtkChild]
   private TweetListBox tweet_list;
   [GtkChild]
-  private MaxSizeContainer max_size_container;
-  [GtkChild]
   private Gtk.MenuButton delete_button;
   [GtkChild]
   private Gtk.Button edit_button;
@@ -88,19 +86,9 @@ class ListStatusesPage : ScrollWidget, IPage {
     this.id = id;
     this.account = account;
     this.tweet_list.account = account;
-    this.scroll_event.connect (scroll_event_cb);
     this.scrolled_to_end.connect (load_older);
     this.scrolled_to_start.connect (handle_scrolled_to_start);
     tweet_list.set_adjustment (this.get_vadjustment ());
-  }
-
-  private bool scroll_event_cb (Gdk.EventScroll evt) {
-    if (evt.delta_y < 0 && this.vadjustment.value == 0) {
-      int inc = (int)(vadjustment.step_increment * (-evt.delta_y));
-      max_size_container.max_size += inc;
-      return Gdk.EVENT_STOP;
-    }
-    return Gdk.EVENT_PROPAGATE;
   }
 
   /**
@@ -150,7 +138,6 @@ class ListStatusesPage : ScrollWidget, IPage {
       this.list_id = list_id;
       load_newer.begin ();
     } else {
-      max_size_container.max_size = 0;
       this.list_id = list_id;
       tweet_list.model.clear ();
       load_newest.begin ();
