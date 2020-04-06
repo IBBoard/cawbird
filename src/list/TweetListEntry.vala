@@ -122,8 +122,12 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     this.tweet = tweet;
     this.main_window = main_window;
 
-    name_button.set_markup (tweet.get_user_name ());
-    screen_name_label.label = "@" + tweet.get_screen_name ();
+    var name = tweet.get_user_name ();
+    name_button.set_markup (name);
+    name_button.tooltip_text = name;
+    var screen_name = "@" + tweet.get_screen_name ();
+    screen_name_label.label = screen_name;
+    screen_name_label.tooltip_text = screen_name;
     if (tweet.avatar_url != null) {
       string avatar_url = tweet.avatar_url;
       if (this.get_scale_factor () == 2)
@@ -177,7 +181,9 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
         quote_label.hide ();
 
       quote_name.set_markup (tweet.quoted_tweet.author.user_name);
+      quote_name.tooltip_text = tweet.quoted_tweet.author.user_name;
       quote_screen_name.label = "@" + tweet.quoted_tweet.author.screen_name;
+      quote_screen_name.tooltip_text = "@" + tweet.quoted_tweet.author.screen_name;
       if (tweet.quoted_tweet.reply_id != 0) {
         var buff = new GLib.StringBuilder ();
         Cb.Utils.write_reply_text (ref tweet.quoted_tweet, buff);

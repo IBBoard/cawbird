@@ -31,7 +31,10 @@ class UserListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
   private Gtk.Button profile_button;
 
   public new string name {
-    set { name_label.label = value; }
+    set {
+      name_label.label = value;
+      name_label.tooltip_text = value;
+    }
   }
 
   public string screen_name {
@@ -41,6 +44,7 @@ class UserListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
   }
   public void set_screen_name (string sn) {
     screen_name_label.label = sn;
+    screen_name_label.tooltip_text = sn;
   }
 
   public string avatar_url {

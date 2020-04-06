@@ -375,9 +375,12 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
                                        "user.tweet-to");
     section.remove (1);
     section.insert_item (1, user_item);
-
-    name_label.set_markup (name.strip ());
-    screen_name_label.set_label ("@" + screen_name);
+    var _name = name.strip ();
+    name_label.set_markup (name);
+    name_label.tooltip_text = _name;
+    var _screen_name = "@" + screen_name;
+    screen_name_label.set_label (_screen_name);
+    screen_name_label.tooltip_text = _screen_name;
     string desc = description;
     if (text_urls != null) {
       TweetUtils.sort_entities (ref text_urls);

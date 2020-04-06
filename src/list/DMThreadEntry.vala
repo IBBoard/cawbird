@@ -31,11 +31,13 @@ class DMThreadEntry : Gtk.ListBoxRow {
   public new string name {
     set {
       name_label.label = value;
+      name_label.tooltip_text = value;
     }
   }
   public string screen_name {
     set {
       screen_name_label.label = "@" + value;
+      screen_name_label.tooltip_text = "@" + value;
     }
   }
   public string last_message {

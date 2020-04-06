@@ -23,13 +23,19 @@ class DMListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
   private Gtk.Label time_delta_label;
 
   public string text {
-    set { text_label.label = value; }
+    set {text_label.label = value; }
   }
   public string screen_name {
-    set { screen_name_label.label = "@" + value; }
+    set {
+      screen_name_label.label = "@" + value;
+      screen_name_label.tooltip_text = "@" + value;
+    }
   }
   public new string name {
-    set { name_button.set_markup (value.replace ("&", "&amp;")); }
+    set {
+      name_button.set_markup (value.replace ("&", "&amp;"));
+      name_button.tooltip_text = value;
+    }
   }
 
   public Cairo.Surface avatar {
