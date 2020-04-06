@@ -354,7 +354,7 @@ public class ScrollWidget : Gtk.ScrolledWindow {
 [CCode (cheader_filename = "cawbird.h")]
 public class TextButton : Gtk.Button {
 	public TextButton ();
-	public void set_markup (string text);
+	public void set_text (string text);
 }
 [CCode (cheader_filename = "cawbird.h")]
 public class BadgeRadioButton : Gtk.RadioButton {

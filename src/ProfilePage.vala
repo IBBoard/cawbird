@@ -257,7 +257,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       loading_stack.visible_child_name = "data";
     });
 
-    string name        = root.get_string_member("name").replace ("&", "&amp;").strip ();
+    string name        = root.get_string_member("name").strip ();
     string screen_name = root.get_string_member("screen_name");
     string description = root.get_string_member("description");
     int followers      = (int)root.get_int_member("followers_count");
@@ -376,7 +376,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     section.remove (1);
     section.insert_item (1, user_item);
     var _name = name.strip ();
-    name_label.set_markup (name);
+    name_label.set_text (name);
     name_label.tooltip_text = _name;
     var _screen_name = "@" + screen_name;
     screen_name_label.set_label (_screen_name);

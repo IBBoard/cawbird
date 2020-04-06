@@ -536,7 +536,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     }
 
     text_label.label = tweet.get_formatted_text ();
-    name_button.set_markup (tweet.get_user_name ());
+    name_button.set_text (tweet.get_user_name ());
     name_button.tooltip_text = tweet.get_user_name ();
     var screen_name = "@" + tweet.get_screen_name ();
     screen_name_label.label = screen_name;

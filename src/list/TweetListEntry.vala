@@ -80,8 +80,8 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
         quoted_mm_widget.sensitive = !value;
 
       this.grid.remove (name_button);
-      var name_label = new Gtk.Label ("<b>" + tweet.get_user_name () + "</b>");
-      name_label.set_use_markup (true);
+      var name_label = new Gtk.Label (tweet.get_user_name ());
+      name_label.get_style_context ().add_class ("name");
       name_label.valign = Gtk.Align.BASELINE;
       name_label.ellipsize = Pango.EllipsizeMode.END;
       name_label.xalign = 0;
@@ -123,7 +123,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     this.main_window = main_window;
 
     var name = tweet.get_user_name ();
-    name_button.set_markup (name);
+    name_button.set_text (name);
     name_button.tooltip_text = name;
     var screen_name = "@" + tweet.get_screen_name ();
     screen_name_label.label = screen_name;
@@ -149,7 +149,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
           .append ("\" title=\"@")
           .append (tweet.source_tweet.author.screen_name)
           .append ("\">")
-          .append (tweet.source_tweet.author.user_name)
+          .append (GLib.Markup.escape_text(tweet.source_tweet.author.user_name))
           .append ("</a></span>");
       rt_label.label = buff.str;
     }
@@ -180,7 +180,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       if (quote_label.label.length == 0)
         quote_label.hide ();
 
-      quote_name.set_markup (tweet.quoted_tweet.author.user_name);
+      quote_name.set_text (tweet.quoted_tweet.author.user_name);
       quote_name.tooltip_text = tweet.quoted_tweet.author.user_name;
       quote_screen_name.label = "@" + tweet.quoted_tweet.author.screen_name;
       quote_screen_name.tooltip_text = "@" + tweet.quoted_tweet.author.screen_name;
@@ -784,7 +784,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     if (reply) {
       this.quote_reply_label = new Gtk.Label ("");
       quote_reply_label.halign = Gtk.Align.START;
-      quote_reply_label.set_use_markup (true);
       quote_reply_label.xalign = 0;
       quote_reply_label.set_margin_start (12);
       quote_reply_label.set_margin_bottom (4);

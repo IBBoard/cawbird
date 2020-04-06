@@ -44,7 +44,7 @@ void cb_user_identity_parse (CbUserIdentity *id,
 {
   id->id = json_object_get_int_member (user_obj, "id");
   id->screen_name = g_strdup (json_object_get_string_member (user_obj, "screen_name"));
-  id->user_name = cb_utils_escape_ampersands (json_object_get_string_member (user_obj, "name"));
+  id->user_name = g_strdup (json_object_get_string_member (user_obj, "name"));
   id->verified = json_object_get_boolean_member (user_obj, "verified");
 }
 

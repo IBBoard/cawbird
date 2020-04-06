@@ -227,6 +227,11 @@ replyindicator {
 .inline-media:disabled {
   opacity: 0.4;
 }
+
+.read-only label.name {
+  font-weight: bold;
+}
+
 /* Override the earlier rule to read-only
  * inline media are still full-opacity */
 .read-only .inline-media:disabled {

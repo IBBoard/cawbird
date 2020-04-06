@@ -23,19 +23,19 @@ public class TextButton : Gtk.Button {
   }
 
   /**
-   * Adds a GtkLabel to the Button using the given text as markup.
+   * Adds a GtkLabel to the Button using the given text as the text.
    * If the button already contains another child, that will either be replaced if it's
    * no instance of GtkLabel, or - if it's a GtkLabel already - be reused.
    *
    * @param text The markup to use(see pango markup)
    */
-  public void set_markup (string text) {
+  public void set_text (string text) {
     Gtk.Label label = null;
     Gtk.Widget child = get_child ();
     if (child != null) {
       if (child is Gtk.Label) {
         label = (Gtk.Label)child;
-        label.set_markup (text);
+        label.set_text (text);
       } else {
         this.remove (child);
         label = new Gtk.Label (text);
@@ -43,7 +43,7 @@ public class TextButton : Gtk.Button {
     } else {
       label = new Gtk.Label (text);
     }
-    label.set_use_markup (true);
+
     label.set_justify (Gtk.Justification.CENTER);
     label.valign = Gtk.Align.BASELINE;
     label.ellipsize = Pango.EllipsizeMode.END;

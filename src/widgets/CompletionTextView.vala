@@ -529,7 +529,6 @@ class UserCompletionRow : Gtk.ListBoxRow {
 
     var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
     user_name_label.set_valign (Gtk.Align.BASELINE);
-    user_name_label.set_use_markup (true);
     user_name_label.set_ellipsize (Pango.EllipsizeMode.END);
     box.add (user_name_label);
     screen_name_label.set_valign (Gtk.Align.BASELINE);

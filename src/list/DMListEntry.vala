@@ -33,7 +33,7 @@ class DMListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
   }
   public new string name {
     set {
-      name_button.set_markup (value.replace ("&", "&amp;"));
+      name_button.set_text (value);
       name_button.tooltip_text = value;
     }
   }
