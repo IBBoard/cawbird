@@ -150,7 +150,8 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
           .append (tweet.source_tweet.author.screen_name)
           .append ("\">")
           .append (GLib.Markup.escape_text(tweet.source_tweet.author.user_name))
-          .append ("</a></span>");
+          .append ("</a></span> @")
+          .append (tweet.source_tweet.author.screen_name);
       rt_label.label = buff.str;
     }
 
