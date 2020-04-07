@@ -784,6 +784,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     if (reply) {
       this.quote_reply_label = new Gtk.Label ("");
       quote_reply_label.halign = Gtk.Align.START;
+      quote_reply_label.set_use_markup (true);
       quote_reply_label.xalign = 0;
       quote_reply_label.set_margin_start (12);
       quote_reply_label.set_margin_bottom (4);
