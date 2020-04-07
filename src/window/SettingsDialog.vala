@@ -30,6 +30,8 @@ class SettingsDialog : Gtk.Window {
   [GtkChild]
   private Gtk.Stack main_stack;
   [GtkChild]
+  private Gtk.Switch use_dark_theme_switch;
+  [GtkChild]
   private Gtk.Switch double_click_activation_switch;
   [GtkChild]
   private Gtk.ListBox sample_tweet_list;
@@ -64,6 +66,10 @@ class SettingsDialog : Gtk.Window {
     // Interface page
     auto_scroll_on_new_tweets_switch.notify["active"].connect (() => {
       on_new_tweets_combobox.sensitive = !auto_scroll_on_new_tweets_switch.active;
+    });
+    Settings.get ().bind ("use-dark-theme", use_dark_theme_switch, "active", SettingsBindFlags.DEFAULT);
+    use_dark_theme_switch.notify["active"].connect (() => {
+      Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = Settings.use_dark_theme();
     });
     Settings.get ().bind ("auto-scroll-on-new-tweets", auto_scroll_on_new_tweets_switch, "active",
                           SettingsBindFlags.DEFAULT);
