@@ -237,9 +237,7 @@
                 <property name="valign">baseline</property>
                 <property name="margin-top">4</property>
                 <property name="lines">0</property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
+                <property name="use-markup">1</property>
               </object>
               <packing>
                 <property name="left-attach">5</property>

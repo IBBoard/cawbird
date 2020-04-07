@@ -629,11 +629,16 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     GLib.DateTime then = new GLib.DateTime.from_unix_local (
                              tweet.retweeted_tweet != null ? tweet.retweeted_tweet.created_at :
                                                              tweet.source_tweet.created_at);
-    time_delta_label.label = Utils.get_time_delta (then, cur_time);
+
+    var link = "https://twitter.com/%s/status/%s".printf (tweet.source_tweet.author.screen_name, tweet.id.to_string());
+    time_delta_label.label = "<span underline='none'><a href='%s' title='%s'>%s</a></span>"
+                             .printf (link, _("Open in Browser"), GLib.Markup.escape_text(Utils.get_time_delta(then, cur_time)));
 
     if (quote_time_delta != null) {
       then = new GLib.DateTime.from_unix_local (tweet.quoted_tweet.created_at);
-      quote_time_delta.label = Utils.get_time_delta (then, cur_time);
+      link = "https://twitter.com/%s/status/%s".printf (tweet.quoted_tweet.author.screen_name, tweet.quoted_tweet.id.to_string());
+      quote_time_delta.label = "<span underline='none'><a href='%s' title='%s'>%s</a></span>"
+                         .printf (link, _("Open in Browser"), GLib.Markup.escape_text(Utils.get_time_delta(then, cur_time)));
     }
 
     return (int)(cur_time.difference (then) / 1000.0 / 1000.0);
@@ -818,7 +823,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
     this.quote_time_delta = new Gtk.Label ("");
     quote_time_delta.halign = Gtk.Align.END;
-    quote_time_delta.get_style_context ().add_class ("dim-label");
+    quote_time_delta.set_use_markup (true);
     quote_grid.attach (quote_time_delta, 2, 0, 1, 1);
 
     quote_grid.show_all ();
