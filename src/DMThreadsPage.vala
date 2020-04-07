@@ -237,7 +237,7 @@ class DMThreadsPage : IPage, Cb.MessageReceiver, ScrollWidget {
     thread.notification_id = account.notifications.send_dm (sender_id,
                                                             thread.notification_id,
                                                             summary,
-                                                            text);
+                                                            Utils.unescape_html (text));
   }
 
   public void create_radio_button(Gtk.RadioButton? group) {
