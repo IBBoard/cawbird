@@ -44,6 +44,39 @@
   <url type="bugtracker">https://github.com/ibboard/cawbird/issues</url>
 
   <releases>
+    <release version="1.0.5" date="2020-04-08">
+      <p>Changes in Cawbird 1.0.5:</p>
+      <ul>
+        <li>Improvements:
+          <ul>
+            <li>Made Cawbird translatable through Transifex! (#47)</li>
+            <li>Added new Danish translation (thanks @mads5408), updated Catalan (thanks @joensgi), Dutch (thanks @Vistaus), and Italian (thanks @albanobattistella)</li>
+            <li>Improved image scaling to handle portrait monitors (#59)</li>
+          </ul>
+        </li>
+        <li>Bug fixes:
+          <ul>
+            <li>Fixed parsing/display of some old tweets with bad encoding (#69)</li>
+            <li>Fixed URL encoding issues in user profiles breaking URL display (#78)</li>
+            <li>Removed case-sensitive filtering of @-handle in mentions so all mentions now show (#81)</li>
+            <li>Fixed segfault on CentOS 8 due to a bug in how RHEL/CentOS patch a glib function for FIPS compliance (#82)</li>
+          </ul>
+        </li>
+        <li>UI changes:
+          <ul>
+            <li>Added dark mode toggle in settings (#67)</li>
+            <li>Improved error messages so that they're not just "Forbidden" or "Not Found" (#8, #41)</li>
+            <li>Protected accounts are now marked with a padlock (#18)</li>
+            <li>Made tweet timestamps into links to twitter.com (#129)</li>
+            <li>Added @-handle next to display name for retweets (#20)</li>
+            <li>Un-dimmed some labels to improve accessibility (#80)</li>
+            <li>Added tooltips for usernames, @-handles and Twitter client names (#87, #120)</li>
+            <li>DM composition area can now be resized (#72)</li>
+            <li>Tidied up CSS to remove warnings (#5)</li>
+          </ul>
+        </li>
+      </ul>
+    </release>
     <release version="1.0.4" date="2020-01-12">
       <p>Changes in Cawbird 1.0.4:</p>
       <ul>
