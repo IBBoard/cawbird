@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the cawbird package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# ALBANO BATTISTELLA <albano_battistella@hotmail.com>, 2020.
 #
 # Translators:
 # Daniele Napolitano <dnax88@gmail.com>, 2014
@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2020-04-07 15:27+0100\n"
-"PO-Revision-Date: 2020-02-05 20:32+0000\n"
+"PO-Revision-Date: 2020-04-09 09:32+0100\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>, 2020\n"
 "Language-Team: Italian (https://www.transifex.com/cawbird/teams/107135/it/)\n"
 "Language: it\n"
@@ -202,140 +202,141 @@ msgstr "Questo tweet contiene immagini segnalate come inappropriate"
 msgid "Show anyway"
 msgstr "Mostrare comunque"
 
-#, fuzzy
 msgid "Could not authenticate you"
-msgstr "Non posso aprire %s"
+msgstr "non possiamo autenticarti"
 
 msgid "Sorry, that page does not exist"
-msgstr ""
+msgstr "Mi dispiace, questa pagina non esiste"
 
-#, fuzzy
 msgid "User not found."
-msgstr "Nessun utente"
+msgstr "Utente non trovato."
 
 msgid "User has been suspended."
-msgstr ""
+msgstr "L'utente è stato sospeso."
 
 msgid "Your account is suspended and is not permitted to access this feature"
-msgstr ""
+msgstr "Il tuo account è sospeso e non è consentito accedere a questa funzione"
 
 msgid "Rate limit exceeded"
-msgstr ""
+msgstr "Tasso limite superato"
 
 msgid "Invalid or expired token"
-msgstr ""
+msgstr "Token non valido o scaduto"
 
 msgid "The specified user is not a subscriber of this list."
-msgstr ""
+msgstr "L'utente specificato non è un abbonato di questo elenco."
 
 msgid "The user you are trying to remove from the list is not a member."
-msgstr ""
+msgstr "L'utente che stai tentando di rimuovere dall'elenco non è un membro."
 
 msgid "Account update failed: value is too long."
-msgstr ""
+msgstr "Aggiornamento dell'account non riuscito: il valore è troppo lungo."
 
 msgid "Over capacity"
-msgstr ""
+msgstr "Oltre la capacità"
 
-#, fuzzy
 msgid "Internal error"
-msgstr "Interfaccia"
+msgstr "Errore interno"
 
 msgid "You have already favorited this status."
-msgstr ""
+msgstr "Hai già preferito questo stato."
 
 msgid "No status found with that ID."
-msgstr ""
+msgstr "Nessuno stato trovato con quell'ID."
 
 msgid "You cannot send messages to users who are not following you."
-msgstr ""
+msgstr "Non è possibile inviare messaggi agli utenti che non ti seguono."
 
 msgid "There was an error sending your message."
-msgstr ""
+msgstr "Si è verificato un errore nell'invio del messaggio."
 
 msgid "You've already requested to follow this user."
-msgstr ""
+msgstr "Hai già richiesto di seguire questo utente."
 
 msgid "You are unable to follow more people at this time"
-msgstr ""
+msgstr "Non puoi seguire più persone in questo momento"
 
 msgid "Sorry, you are not authorized to see this status"
-msgstr ""
+msgstr "Spiacenti, non sei autorizzato a visualizzare questo stato"
 
 msgid "User is over daily status update limit"
-msgstr ""
+msgstr "L'utente ha superato il limite di aggiornamento dello stato giornaliero"
 
 msgid "Tweet needs to be a bit shorter."
-msgstr ""
+msgstr "Il tweet deve essere un po 'più breve."
 
 msgid "Status is a duplicate"
-msgstr ""
+msgstr "Lo stato è un duplicato"
 
 msgid "Owner must allow dms from anyone."
-msgstr ""
+msgstr "Il proprietario deve consentire dms da chiunque."
 
 msgid "Bad authentication data"
-msgstr ""
+msgstr "Dati di autenticazione errati"
 
 msgid "Your credentials do not allow access to this resource."
-msgstr ""
+msgstr "Le tue credenziali non consentono l'accesso a questa risorsa."
 
 msgid ""
 "This request looks like it might be automated. To protect our users from "
 "spam and other malicious activity, we can’t complete this action right now."
 msgstr ""
+"Questa richiesta sembra essere automatizzata. Per proteggere i nostri utenti da"
+"Spam e altre attività dannose, al momento non possiamo completare questa azione".
 
 msgid "User must verify login"
-msgstr ""
+msgstr "L'utente deve verificare l'accesso"
 
 msgid "Application cannot perform write actions."
-msgstr ""
+msgstr "L'applicazione non può eseguire azioni di scrittura."
 
 msgid "You can’t mute yourself."
-msgstr ""
+msgstr "Non puoi silenziare te stesso."
 
 msgid "You are not muting the specified user."
-msgstr ""
+msgstr "Non stai silenziando l'utente specificato"
 
 msgid "Animated GIFs are not allowed when uploading multiple images."
-msgstr ""
+msgstr "Le GIF animate non sono consentite quando si caricano più immagini."
 
 msgid "The validation of media ids failed."
-msgstr ""
+msgstr "La convalida degli ID media non è riuscita."
 
 msgid "A media id was not found."
-msgstr ""
+msgstr "Non è stato trovato un ID media."
 
 msgid ""
 "To protect our users from spam and other malicious activity, this account is "
 "temporarily locked."
 msgstr ""
+"Per proteggere i nostri utenti da spam e altre attività dannose, questo account è"
+"temporaneamente bloccato."
 
 msgid "You have already retweeted this Tweet."
-msgstr ""
+msgstr "Hai già ritwittato questo Tweet."
 
 msgid "You cannot send messages to this user."
-msgstr ""
+msgstr "Non è possibile inviare messaggi a questo utente."
 
 msgid "The text of your direct message is over the max character limit."
-msgstr ""
+msgstr "The text of your direct message is over the max character limit."
 
-#, fuzzy
 msgid "Subscription already exists."
-msgstr "Lo snippet esiste già"
+msgstr "La sottoscrizione esiste già."
 
 msgid ""
 "You attempted to reply to a Tweet that is deleted or not visible to you."
 msgstr ""
+"Hai tentato di rispondere a un Tweet cancellato o non visibile a te."
 
 msgid "The Tweet exceeds the number of allowed attachment types."
-msgstr ""
+msgstr "Il Tweet supera il numero di tipi di allegati consentiti."
 
 msgid "The given URL is invalid."
-msgstr ""
+msgstr "L'URL indicato non è valido."
 
 msgid "Invalid / suspended application"
-msgstr ""
+msgstr "Applicazione non valida / sospesa"
 
 msgid "Now"
 msgstr "Adesso"
