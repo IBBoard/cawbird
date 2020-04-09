@@ -282,7 +282,7 @@ msgid ""
 "spam and other malicious activity, we can’t complete this action right now."
 msgstr ""
 "Questa richiesta sembra essere automatizzata. Per proteggere i nostri utenti da"
-"Spam e altre attività dannose, al momento non possiamo completare questa azione".
+"Spam e altre attività dannose, al momento non possiamo completare questa azione."
 
 msgid "User must verify login"
 msgstr "L'utente deve verificare l'accesso"
