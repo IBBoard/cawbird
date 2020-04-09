@@ -4,7 +4,6 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# IBBoard . <github@ibboard.co.uk>, 2020
 # Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, 2020
 # 
 #, fuzzy
