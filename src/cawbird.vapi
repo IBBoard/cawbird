@@ -363,14 +363,6 @@ public class BadgeRadioButton : Gtk.RadioButton {
 	public bool show_badge { get; set; }
 }
 [CCode (cheader_filename = "cawbird.h")]
-public class ReplyIndicator : Gtk.Widget {
-	public ReplyIndicator ();
-	public override bool draw (Cairo.Context ct);
-	public override void get_preferred_height_for_width (int width, out int min_height, out int nat_height);
-	public override Gtk.SizeRequestMode get_request_mode ();
-	public bool replies_available { get; set; }
-}
-[CCode (cheader_filename = "cawbird.h")]
 public class MultiMediaWidget : Gtk.Box {
 	public bool restrict_height;
 	public weak Gtk.Window window;
