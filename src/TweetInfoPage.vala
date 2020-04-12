@@ -442,9 +442,6 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       }
       int n_replies = 0;
       statuses_node.foreach_element ((arr, index, node) => {
-        if (n_replies >= 5)
-          return;
-
         var obj = node.get_object ();
         if (!obj.has_member ("in_reply_to_status_id") || obj.get_null_member ("in_reply_to_status_id"))
           return;
