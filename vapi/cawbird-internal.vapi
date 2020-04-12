@@ -149,6 +149,8 @@ namespace Cb {
       public bool has_quoted_inline_media ();
       public void load_from_json (Json.Node node, int64 account_id, GLib.DateTime now);
 
+      public bool is_reply ();
+
       public bool is_flag_set (uint flag);
       public void set_flag (uint flag);
       public void unset_flag (uint flag);

@@ -299,6 +299,12 @@ cb_tweet_load_from_json (CbTweet   *tweet,
 }
 
 gboolean
+cb_tweet_is_reply (CbTweet *tweet)
+{
+  return (tweet->retweeted_tweet != NULL && tweet->retweeted_tweet->reply_id != 0) || (tweet->retweeted_tweet == NULL && tweet->source_tweet.reply_id != 0);
+}
+
+gboolean
 cb_tweet_is_flag_set (CbTweet *tweet, guint flag)
 {
   return (tweet->state & flag) > 0;
