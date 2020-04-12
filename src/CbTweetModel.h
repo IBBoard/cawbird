@@ -38,6 +38,8 @@ struct _CbTweetModel
 {
   GObject parent_instance;
 
+  gboolean ascending;
+
   GPtrArray *tweets;
   GPtrArray *hidden_tweets;
   gint64 min_id;
@@ -57,6 +59,8 @@ gboolean cb_tweet_model_contains_id  (CbTweetModel *self,
                                       gint64        id);
 
 void     cb_tweet_model_clear        (CbTweetModel *self);
+
+void     cb_tweet_model_set_sort_order    (CbTweetModel *self, gboolean ascending);
 
 CbTweet *cb_tweet_model_get_for_id   (CbTweetModel *self,
                                       gint64        id,

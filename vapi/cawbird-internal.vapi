@@ -282,6 +282,7 @@ namespace Cb {
     public GLib.GenericArray<Tweet> hidden_tweets;
 
     public TweetModel ();
+    public void set_sort_order (bool ascending);
     public bool contains_id (int64 id);
     public void clear ();
     public unowned Tweet? get_for_id (int64 id, int diff = -1);

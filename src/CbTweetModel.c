@@ -72,6 +72,7 @@ cb_tweet_model_init (CbTweetModel *self)
 {
   self->tweets = g_ptr_array_new_with_free_func (g_object_unref);
   self->hidden_tweets = g_ptr_array_new_with_free_func (g_object_unref);
+  self->ascending = FALSE;
   self->min_id = G_MAXINT64;
   self->max_id = G_MININT64;
 }
@@ -202,11 +203,11 @@ insert_sorted (CbTweetModel *self,
 
   if (tweet->id > self->max_id)
     {
-      insert_pos = 0;
+      insert_pos = self->ascending ? self->tweets->len : 0;
     }
   else if (tweet->id < self->min_id)
     {
-      insert_pos = self->tweets->len;
+      insert_pos = self->ascending ? 0 : self->tweets->len;
     }
   else
     {
@@ -220,7 +221,17 @@ insert_sorted (CbTweetModel *self,
           CbTweet *cur = next;
           next = g_ptr_array_index (self->tweets, i);
 
-          if (cur->id > tweet->id && next->id < tweet->id)
+          CbTweet *older, *newer;
+
+          if (self->ascending) {
+            older = cur;
+            newer = next;
+          } else {
+            older = next;
+            newer = cur;
+          }
+
+          if (newer->id > tweet->id && older->id < tweet->id)
             {
               insert_pos = i;
               break;
@@ -314,6 +325,15 @@ cb_tweet_model_clear (CbTweetModel *self)
   self->max_id = G_MININT64;
 
   emit_items_changed (self, 0, l, 0);
+}
+
+void
+cb_tweet_model_set_sort_order (CbTweetModel *self, gboolean ascending)
+{
+  g_return_if_fail (self->min_id == G_MAXINT64);
+  g_return_if_fail (self->max_id == G_MININT64);
+  
+  self->ascending = ascending;
 }
 
 CbTweet *
@@ -668,11 +688,13 @@ cb_tweet_model_add (CbTweetModel *self,
 
   if (cb_tweet_is_hidden (tweet))
     {
+      g_debug("Added hidden tweet");
       g_object_ref (tweet);
       g_ptr_array_add (self->hidden_tweets, tweet);
     }
   else
     {
+      g_debug("Add normal tweet");
       insert_sorted (self, tweet);
 
       if (tweet->id > self->max_id)
