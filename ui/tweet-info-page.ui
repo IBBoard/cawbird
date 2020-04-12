@@ -28,18 +28,11 @@
                 <property name="can-focus">0</property>
                 <property name="hexpand">1</property>
                 <child>
-                  <object class="TweetListBox" id="top_list_box">
+                  <object class="TweetListBox" id="replied_to_list_box">
                     <property name="can-focus">False</property>
                     <property name="selection-mode">none</property>
                   </object>
                 </child>
-              </object>
-            </child>
-            <child>
-              <object class="ReplyIndicator" id="reply_indicator">
-                <property name="visible">1</property>
-                <property name="can-focus">0</property>
-                <property name="hexpand">1</property>
               </object>
             </child>
             <child>
@@ -353,7 +346,7 @@
             </child>
 
             <child>
-              <object class="TweetListBox" id="bottom_list_box">
+              <object class="TweetListBox" id="replies_list_box">
                 <property name="visible">1</property>
                 <property name="selection-mode">none</property>
                 <property name="margin-top">6</property>
