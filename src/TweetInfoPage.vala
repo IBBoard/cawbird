@@ -434,29 +434,42 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       if (root == null)
         return;
 
+      int64[] thread_ids = {tweet_id};
       var statuses_node = root.get_object ().get_array_member ("statuses");
       int64 previous_tweet_id = -1;
-      if (replies_list_box.model.get_n_items () > 0) {
-        //assert (replies_list_box.model.get_n_items () == 1);
-        previous_tweet_id = ((Cb.Tweet)(replies_list_box.model.get_item (0))).id;
-      }
       int n_replies = 0;
-      statuses_node.foreach_element ((arr, index, node) => {
+      // Results come back in decreasing chronological order, but we need to work increasing
+      var statuses = statuses_node.get_elements();
+      statuses.reverse();
+      statuses.foreach ((node) => {
         var obj = node.get_object ();
         if (!obj.has_member ("in_reply_to_status_id") || obj.get_null_member ("in_reply_to_status_id"))
           return;
+        
+          int64 reply_id = obj.get_int_member ("in_reply_to_status_id");
 
-        int64 reply_id = obj.get_int_member ("in_reply_to_status_id");
-        if (reply_id != tweet_id) {
+        if (!(reply_id in thread_ids)) {
+          // Not relevant to the thread? Skip it
           return;
+        }
+
+        var user_obj = obj.get_object_member("user");
+        var reply_screen_name = user_obj.get_string_member("screen_name");
+
+        if (reply_id != tweet_id && reply_screen_name != screen_name) {
+          // Relevant to the thread, but not from the author and not in reply to the current tweet? Skip it
+          return;
+        }
+        
+        if (reply_screen_name == screen_name) {
+          // Must be relevant by now, so matching screen name means it's more of the author's thread
+          thread_ids += obj.get_int_member("id");
         }
 
         var t = new Cb.Tweet ();
         t.load_from_json (node, account.id, now);
-        if (t.id != previous_tweet_id) {
-          replies_list_box.model.add (t);
-          n_replies ++;
-        }
+        replies_list_box.model.add (t);
+        n_replies ++;
       });
 
       if (n_replies > 0) {
