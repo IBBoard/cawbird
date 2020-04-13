@@ -225,26 +225,28 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
   private void rearrange_tweets (int64 new_id) {
     //assert (new_id != this.tweet_id);
-    // FIXME: Sort how this works in the new model
     if (replies_list_box.model.contains_id (new_id)) {
-      // Move the current tweet up into replied_to_list_box
+      // We're moving down the thread to a reply of the currently displayed tweet,
+      // so move the current tweet up into replied_to_list_box
       replied_to_list_box.model.add (this.tweet);
       replied_to_list_box.show ();
       replies_list_box.model.clear ();
       replies_list_box.hide ();
     } else if (replied_to_list_box.model.contains_id (new_id)) {
-      // Remove all tweets above the new one from the top list box,
-      // add the direct successor to the top_list
+      // We're moving up the thread to a replied-to tweet so
+      // remove all tweets below the selected one from the "replied to" list box
+      // (they'll now be replies) and add the direct successor to the replies list
+      // Other replies will then be loaded by a separate process
       replies_list_box.model.clear ();
       replies_list_box.show ();
-      var t = replied_to_list_box.model.get_for_id (new_id, -1);
+      var t = replied_to_list_box.model.get_for_id (new_id, 1);
       if (t != null) {
         replies_list_box.model.add (t);
       } else {
         replies_list_box.model.add (this.tweet);
       }
 
-      replied_to_list_box.model.remove_tweets_above (new_id);
+      replied_to_list_box.model.remove_tweets_later_than (new_id);
       if (replied_to_list_box.model.get_n_items () == 0)
         replied_to_list_box.hide ();
     }

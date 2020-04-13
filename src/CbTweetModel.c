@@ -688,13 +688,11 @@ cb_tweet_model_add (CbTweetModel *self,
 
   if (cb_tweet_is_hidden (tweet))
     {
-      g_debug("Added hidden tweet");
       g_object_ref (tweet);
       g_ptr_array_add (self->hidden_tweets, tweet);
     }
   else
     {
-      g_debug("Add normal tweet");
       insert_sorted (self, tweet);
 
       if (tweet->id > self->max_id)
@@ -725,13 +723,26 @@ cb_tweet_model_remove_last_n_visible (CbTweetModel *self,
 }
 
 void
-cb_tweet_model_remove_tweets_above (CbTweetModel *self,
-                                    gint64        id)
+cb_tweet_model_remove_tweets_later_than (CbTweetModel *self,
+                                         gint64        id)
 {
   g_return_if_fail (CB_IS_TWEET_MODEL (self));
 
-  while (self->tweets->len > 0)
-    {
+  if (self->tweets->len == 0)
+    return;
+
+  if (self->ascending) {
+    for (guint i = self->tweets->len; i > 0; i--) {
+      CbTweet *cur = g_ptr_array_index (self->tweets, i - 1);
+
+      if (cur->id < id)
+        break;
+
+      remove_tweet_at_pos (self, i - 1);
+    }
+  }
+  else {
+    while (self->tweets->len > 0) {
       CbTweet *first = g_ptr_array_index (self->tweets, 0);
 
       if (first->id < id)
@@ -739,4 +750,5 @@ cb_tweet_model_remove_tweets_above (CbTweetModel *self,
 
       remove_tweet_at_pos (self, 0);
     }
+  }
 }

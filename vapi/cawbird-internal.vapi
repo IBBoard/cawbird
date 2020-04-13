@@ -292,7 +292,7 @@ namespace Cb {
     public bool set_tweet_flag (Tweet t, TweetState flag);
     public bool unset_tweet_flag (Tweet t, TweetState flag);
     public void remove_tweet (Tweet t);
-    public void remove_tweets_above (int64 id);
+    public void remove_tweets_later_than (int64 id);
     public void toggle_flag_on_user_tweets (int64 user_id, TweetState flag, bool active);
     public void toggle_flag_on_user_retweets (int64 user_id, TweetState flag, bool active);
   }
