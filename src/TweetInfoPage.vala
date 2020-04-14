@@ -412,71 +412,83 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       values_set = true;
     });
 
-    var reply_call = account.proxy.new_call ();
-    reply_call.set_method ("GET");
-    reply_call.set_function ("1.1/search/tweets.json");
-    reply_call.add_param ("q", "to:" + this.screen_name);
-    reply_call.add_param ("since_id", tweet_id.to_string ());
-    reply_call.add_param ("count", "200");
-    reply_call.add_param ("tweet_mode", "extended");
-    Cb.Utils.load_threaded_async.begin (reply_call, cancellable, (_, res) => {
-      Json.Node? root = null;
+    // Pull the user's self-replies and user replies separately to ensure user replies don't overrun the thread
+    // It doubles our query count, but we get 180 per 15 minutes, which is still 6 threads per minute!
+    var self_reply_call = account.proxy.new_call ();
+    self_reply_call.set_method ("GET");
+    self_reply_call.set_function ("1.1/search/tweets.json");
+    self_reply_call.add_param ("q", "to:" + this.screen_name + " from:" + this.screen_name);
+    self_reply_call.add_param ("since_id", tweet_id.to_string ());
+    self_reply_call.add_param ("count", "200");
+    self_reply_call.add_param ("tweet_mode", "extended");
+    Cb.Utils.load_threaded_async.begin (self_reply_call, cancellable, add_replies);
 
-      try {
-        root = Cb.Utils.load_threaded_async.end (res);
-      } catch (GLib.Error e) {
-        if (!(e is GLib.IOError.CANCELLED))
-          warning (e.message);
+    var other_reply_call = account.proxy.new_call ();
+    other_reply_call.set_method ("GET");
+    other_reply_call.set_function ("1.1/search/tweets.json");
+    other_reply_call.add_param ("q", "to:" + this.screen_name + " -from:" + this.screen_name);
+    other_reply_call.add_param ("since_id", tweet_id.to_string ());
+    other_reply_call.add_param ("count", "200");
+    other_reply_call.add_param ("tweet_mode", "extended");
+    Cb.Utils.load_threaded_async.begin (other_reply_call, cancellable, add_replies);
+  }
+      
+  private void add_replies (GLib.Object? src, GLib.AsyncResult res) {
+    var now = new GLib.DateTime.now_local ();
+    Json.Node? root = null;
 
+    try {
+      root = Cb.Utils.load_threaded_async.end (res);
+    } catch (GLib.Error e) {
+      if (!(e is GLib.IOError.CANCELLED))
+        warning (e.message);
+
+      return;
+    }
+
+    if (root == null)
+      return;
+
+    int64[] thread_ids = {tweet_id};
+    var statuses_node = root.get_object ().get_array_member ("statuses");
+    int n_replies = 0;
+    // Results come back in decreasing chronological order, but we need to work increasing
+    var statuses = statuses_node.get_elements();
+    statuses.reverse();
+    statuses.foreach ((node) => {
+      var obj = node.get_object ();
+      if (!obj.has_member ("in_reply_to_status_id") || obj.get_null_member ("in_reply_to_status_id"))
+        return;
+      
+        int64 reply_id = obj.get_int_member ("in_reply_to_status_id");
+
+      if (!(reply_id in thread_ids)) {
+        // Not relevant to the thread? Skip it
         return;
       }
 
-      if (root == null)
+      var user_obj = obj.get_object_member("user");
+      var reply_screen_name = user_obj.get_string_member("screen_name");
+
+      if (reply_id != tweet_id && reply_screen_name != screen_name) {
+        // Relevant to the thread, but not from the author and not in reply to the current tweet? Skip it
         return;
-
-      int64[] thread_ids = {tweet_id};
-      var statuses_node = root.get_object ().get_array_member ("statuses");
-      int64 previous_tweet_id = -1;
-      int n_replies = 0;
-      // Results come back in decreasing chronological order, but we need to work increasing
-      var statuses = statuses_node.get_elements();
-      statuses.reverse();
-      statuses.foreach ((node) => {
-        var obj = node.get_object ();
-        if (!obj.has_member ("in_reply_to_status_id") || obj.get_null_member ("in_reply_to_status_id"))
-          return;
-        
-          int64 reply_id = obj.get_int_member ("in_reply_to_status_id");
-
-        if (!(reply_id in thread_ids)) {
-          // Not relevant to the thread? Skip it
-          return;
-        }
-
-        var user_obj = obj.get_object_member("user");
-        var reply_screen_name = user_obj.get_string_member("screen_name");
-
-        if (reply_id != tweet_id && reply_screen_name != screen_name) {
-          // Relevant to the thread, but not from the author and not in reply to the current tweet? Skip it
-          return;
-        }
-        
-        if (reply_screen_name == screen_name) {
-          // Must be relevant by now, so matching screen name means it's more of the author's thread
-          thread_ids += obj.get_int_member("id");
-        }
-
-        var t = new Cb.Tweet ();
-        t.load_from_json (node, account.id, now);
-        replies_list_box.model.add (t);
-        n_replies ++;
-      });
-
-      if (n_replies > 0) {
-        replies_list_box.show ();
       }
+      
+      if (reply_screen_name == screen_name) {
+        // Must be relevant by now, so matching screen name means it's more of the author's thread
+        thread_ids += obj.get_int_member("id");
+      }
+
+      var t = new Cb.Tweet ();
+      t.load_from_json (node, account.id, now);
+      replies_list_box.model.add (t);
+      n_replies ++;
     });
 
+    if (n_replies > 0) {
+      replies_list_box.show ();
+    }
   }
 
   /**
