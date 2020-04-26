@@ -99,14 +99,14 @@ load_animation (GInputStream *input_stream,
       g_object_unref (animation);
       return;
     }
-
+  g_debug("MEM Image is %s", gdk_pixbuf_animation_is_static_image (animation) ? "static" : "animated");
   if (!gdk_pixbuf_animation_is_static_image (animation))
     media->animation = animation; /* Takes ref */
   else
     media->animation = NULL;
 
   has_alpha = gdk_pixbuf_get_has_alpha (frame);
-
+  g_debug("MEM Creating %d×%d %d bit surface", gdk_pixbuf_get_width (frame), gdk_pixbuf_get_height (frame), has_alpha ? 32 : 24);
   surface = cairo_image_surface_create (has_alpha ? CAIRO_FORMAT_ARGB32 : CAIRO_FORMAT_RGB24,
                                         gdk_pixbuf_get_width (frame),
                                         gdk_pixbuf_get_height (frame));
@@ -372,7 +372,7 @@ cb_media_downloader_load_threaded (CbMediaDownloader *downloader,
   input_stream = g_memory_input_stream_new_from_data (msg->response_body->data,
                                                       msg->response_body->length,
                                                       NULL);
-
+  g_debug("MEM Loading animation for %s", media->url);
   load_animation (input_stream, media, cancellable);
   g_input_stream_close (input_stream, NULL, NULL);
   g_object_unref (input_stream);
