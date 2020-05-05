@@ -92,6 +92,7 @@ load_animation (GInputStream *input_stream,
       g_error_free (error);
       return;
     }
+  // XXX: How often does this function need to do what it says (and potentially use lots of memory temporarily, as it decodes a video until it can make a picture)?
   frame = gdk_pixbuf_animation_get_static_image (animation);
 
   if (g_cancellable_is_cancelled (cancellable))
