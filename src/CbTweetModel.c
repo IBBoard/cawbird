@@ -122,7 +122,7 @@ update_min_max_id (CbTweetModel *self,
     {
       if (self->tweets->len > 0)
         {
-          CbTweet *t = g_ptr_array_index (self->tweets, 0);
+          CbTweet *t = g_ptr_array_index (self->tweets, self->ascending ? self->tweets->len - 1 : 0);
 
           self->max_id = t->id;
 
@@ -150,7 +150,7 @@ update_min_max_id (CbTweetModel *self,
     {
       if (self->tweets->len > 0)
         {
-          CbTweet *t = g_ptr_array_index (self->tweets, self->tweets->len - 1);
+          CbTweet *t = g_ptr_array_index (self->tweets, self->ascending ? 0 : self->tweets->len - 1);
 
           self->min_id = t->id;
           /* We just removed the tweet with the min_id, so now remove all hidden tweets
@@ -708,18 +708,28 @@ cb_tweet_model_remove_last_n_visible (CbTweetModel *self,
                                      guint          amount)
 {
   int size_before;
+  int start;
 
   g_return_if_fail (CB_IS_TWEET_MODEL (self));
 
-  g_assert (amount <= self->tweets->len);
-
   size_before = self->tweets->len;
 
+  if (amount > size_before) {
+    amount = size_before;
+  }
+
+  if (self->ascending) {
+    start = 0;
+  }
+  else {
+    start = size_before - amount;
+  }
+
   g_ptr_array_remove_range (self->tweets,
-                            size_before - amount,
+                            start,
                             amount);
   update_min_max_id (self, self->min_id);
-  emit_items_changed (self, size_before - amount, amount, 0);
+  emit_items_changed (self, start, amount, 0);
 }
 
 void
