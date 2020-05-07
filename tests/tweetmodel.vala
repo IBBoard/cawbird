@@ -210,6 +210,47 @@ void contains () {
   assert (!tm.contains_id (100 + n));
 }
 
+void index_of () {
+  var tm = new Cb.TweetModel ();
+
+  const int n = 10;
+
+  for (int i = 0; i < n; i++) {
+    var t = new Cb.Tweet ();
+    t.id = 100 + i;
+
+    tm.add (t);
+  }
+
+  for (int i = 0; i < n; i++) {
+    assert (tm.index_of (100 + i) == n - i - 1);
+  }
+
+  assert (tm.index_of (99) == -1);
+  assert (tm.index_of (100 + n) == -1);
+}
+
+void index_of_ascending () {
+  var tm = new Cb.TweetModel ();
+  tm.set_sort_order (true);
+
+  const int n = 10;
+
+  for (int i = 0; i < n; i++) {
+    var t = new Cb.Tweet ();
+    t.id = 100 + i;
+
+    tm.add (t);
+  }
+
+  for (int i = 0; i < n; i++) {
+    assert (tm.index_of (100 + i) == i);
+  }
+
+  assert (tm.index_of (99) == -1);
+  assert (tm.index_of (100 + n) == -1);
+}
+
 void clear () {
   var tm = new Cb.TweetModel ();
 
@@ -750,6 +791,8 @@ int main (string[] args) {
   GLib.Test.add_func ("/tweetmodel/tweet-removal", tweet_removal);
   GLib.Test.add_func ("/tweetmodel/tweet-removal-asc", tweet_removal_asc);
   GLib.Test.add_func ("/tweetmodel/contains", contains);
+  GLib.Test.add_func ("/tweetmodel/index-of", index_of);
+  GLib.Test.add_func ("/tweetmodel/index-of-ascending", index_of_ascending);
   GLib.Test.add_func ("/tweetmodel/clear", clear);
   GLib.Test.add_func ("/tweetmodel/clear2", clear2);
   GLib.Test.add_func ("/tweetmodel/remove", remove_tweet);

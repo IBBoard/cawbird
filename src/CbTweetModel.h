@@ -55,6 +55,8 @@ GType    cb_tweet_model_get_type     (void) G_GNUC_CONST;
 
 CbTweetModel *cb_tweet_model_new (void);
 
+int cb_tweet_model_index_of (CbTweetModel *self, gint64 id);
+
 gboolean cb_tweet_model_contains_id  (CbTweetModel *self,
                                       gint64        id);
 

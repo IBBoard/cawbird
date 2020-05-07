@@ -174,22 +174,33 @@ update_min_max_id (CbTweetModel *self,
     }
 }
 
+int
+cb_tweet_model_index_of (CbTweetModel *self,
+                         gint64        id)
+{
+  int i;
+  g_return_val_if_fail (CB_IS_TWEET_MODEL (self), FALSE);
+
+  for (i = 0; i < self->tweets->len; i ++)
+    {
+      CbTweet *tweet = g_ptr_array_index (self->tweets, i);
+
+      if (tweet->id == id)
+        return i;
+    }
+
+  return -1;
+}
 static void
 remove_tweet_at_pos (CbTweetModel *self,
                      guint         index)
 {
+  g_assert (index < self->tweets->len);
   CbTweet *tweet = g_ptr_array_index (self->tweets, index);
   gint64 id = tweet->id;
 
-  g_assert (index < self->tweets->len);
-
   g_ptr_array_remove_index (self->tweets, index);
   tweet = NULL; /* We just unreffed it, so potentially freed */
-
-  /* TODO: If this tweet was the one with id == min_id or id == max_id,
-   *       we should remove tweets from self->hidden_tweets with id
-   *       greater or lower than its id. 
-   */
 
   update_min_max_id (self, id);
   emit_items_changed (self, index, 1, 0);
@@ -297,18 +308,7 @@ gboolean
 cb_tweet_model_contains_id (CbTweetModel *self,
                             gint64        id)
 {
-  int i;
-  g_return_val_if_fail (CB_IS_TWEET_MODEL (self), FALSE);
-
-  for (i = 0; i < self->tweets->len; i ++)
-    {
-      CbTweet *tweet = g_ptr_array_index (self->tweets, i);
-
-      if (tweet->id == id)
-        return TRUE;
-    }
-
-  return FALSE;
+  return cb_tweet_model_index_of (self, id) != -1;
 }
 
 void
