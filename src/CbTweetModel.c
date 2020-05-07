@@ -704,7 +704,7 @@ cb_tweet_model_add (CbTweetModel *self,
 }
 
 void
-cb_tweet_model_remove_last_n_visible (CbTweetModel *self,
+cb_tweet_model_remove_oldest_n_visible (CbTweetModel *self,
                                      guint          amount)
 {
   int size_before;

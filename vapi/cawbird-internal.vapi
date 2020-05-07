@@ -287,7 +287,7 @@ namespace Cb {
     public void clear ();
     public unowned Tweet? get_for_id (int64 id, int diff = -1);
     public void add (Tweet t);
-    public void remove_last_n_visible (uint amount);
+    public void remove_oldest_n_visible (uint amount);
     public bool delete_id (int64 id, out bool seen);
     public bool set_tweet_flag (Tweet t, TweetState flag);
     public bool unset_tweet_flag (Tweet t, TweetState flag);

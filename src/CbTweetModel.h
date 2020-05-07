@@ -94,7 +94,7 @@ gboolean cb_tweet_model_unset_tweet_flag (CbTweetModel *self,
 void     cb_tweet_model_add (CbTweetModel *self,
                              CbTweet      *tweet);
 
-void     cb_tweet_model_remove_last_n_visible (CbTweetModel *self,
+void     cb_tweet_model_remove_oldest_n_visible (CbTweetModel *self,
                                                guint         amount);
 
 void     cb_tweet_model_remove_tweets_later_than (CbTweetModel *self,
