@@ -25,7 +25,9 @@
 #define EMOJI_PER_ROW 7
 
 /* From 2017-10-18 */
-#define EMOJI_DATA_CHECKSUM "2ad33472d280d83737884a0e60a9236793653111"
+#define EMOJI_DATA_CHECKSUM1 "2ad33472d280d83737884a0e60a9236793653111"
+/* From 2020-04-13 */
+#define EMOJI_DATA_CHECKSUM2 "4b36b4fcdb73ef96cf5111f269ccbb26cad6d437"
 
 enum {
   EMOJI_PICKED,
@@ -611,10 +613,13 @@ cb_emoji_chooser_try_init (CbEmojiChooser *self)
 
   checksum = g_compute_checksum_for_bytes (G_CHECKSUM_SHA1, bytes);
 
-  correct_checksum = strcmp (checksum, EMOJI_DATA_CHECKSUM) == 0;
+  // XXX This is a slightly ugly way to make sure that the g_variant_type structure hasn't changed.
+  // If the emoji button disappears, it's probably because this changed.
+  // There must be a better way! But we are in C…
+  correct_checksum = strcmp (checksum, EMOJI_DATA_CHECKSUM1) == 0 || strcmp(checksum, EMOJI_DATA_CHECKSUM2) == 0;
   if (!correct_checksum)
     {
-      g_message ("Emoji chooser: checksum mismatch. %s != %s", checksum, EMOJI_DATA_CHECKSUM);
+      g_message ("Emoji chooser: checksum mismatch. %s != %s && %s != %s", checksum, EMOJI_DATA_CHECKSUM1, checksum, EMOJI_DATA_CHECKSUM2);
       g_free (checksum);
       g_bytes_unref (bytes);
       return FALSE;
