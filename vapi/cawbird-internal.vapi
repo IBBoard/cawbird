@@ -286,7 +286,7 @@ namespace Cb {
     public bool contains_id (int64 id);
     public int index_of (int64 id);
     public void clear ();
-    public unowned Tweet? get_for_id (int64 id, int diff = -1);
+    public unowned Tweet? get_for_id (int64 id, int diff = 0);
     public void add (Tweet t);
     public void remove_oldest_n_visible (uint amount);
     public bool delete_id (int64 id, out bool seen);

@@ -417,7 +417,6 @@ void hide_rt () {
   //assert (!((Cb.Tweet)tm.get_item (0)).is_hidden ());
 }
 
-
 void get_for_id () {
   var tm = new Cb.TweetModel ();
 
@@ -435,9 +434,8 @@ void get_for_id () {
   assert (((Cb.Tweet)tm.get_item (1)).id == 10);
 
   var result = tm.get_for_id (10);
-
   assert (result != null);
-  assert (result.id == 100);
+  assert (result.id == 10);
 
   var t3 = new Cb.Tweet ();
   t3.id = 1000;
@@ -452,6 +450,42 @@ void get_for_id () {
 
   assert (result != null);
   assert (result.id == 1000);
+}
+
+void get_for_id_asc () {
+  var tm = new Cb.TweetModel ();
+  tm.set_sort_order (true);
+
+  var t1 = new Cb.Tweet ();
+  t1.id = 10;
+
+  var t2 = new Cb.Tweet ();
+  t2.id = 100;
+
+  tm.add (t1);
+  tm.add (t2);
+
+  assert (tm.get_n_items () == 2);
+  assert (((Cb.Tweet)tm.get_item (0)).id == 10);
+  assert (((Cb.Tweet)tm.get_item (1)).id == 100);
+
+  var result = tm.get_for_id (10);
+  assert (result != null);
+  assert (result.id == 10);
+
+  var t3 = new Cb.Tweet ();
+  t3.id = 1000;
+  tm.add (t3);
+
+  result = tm.get_for_id (100, 1);
+
+  assert (result != null);
+  assert (result.id == 1000);
+
+  result = tm.get_for_id (100, -1);
+
+  assert (result != null);
+  assert (result.id == 10);
 }
 
 void min_max_id () {
@@ -802,6 +836,7 @@ int main (string[] args) {
   GLib.Test.add_func ("/tweetmodel/remove-older-ascending", remove_older_ascending);
   GLib.Test.add_func ("/tweetmodel/hide-rt", hide_rt);
   GLib.Test.add_func ("/tweetmodel/get-for-id", get_for_id);
+  GLib.Test.add_func ("/tweetmodel/get-for-id-ascending", get_for_id_asc);
   GLib.Test.add_func ("/tweetmodel/min-max-id", min_max_id);
   GLib.Test.add_func ("/tweetmodel/min-max-id-ascending", min_max_id_ascending);
   GLib.Test.add_func ("/tweetmodel/sorting", sorting);
