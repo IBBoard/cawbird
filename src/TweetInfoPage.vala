@@ -76,6 +76,8 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
   [GtkChild]
   private TweetListBox replies_list_box;
   [GtkChild]
+  private TweetListBox self_replies_list_box;
+  [GtkChild]
   private Gtk.ToggleButton favorite_button;
   [GtkChild]
   private Gtk.ToggleButton retweet_button;
@@ -99,6 +101,8 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     this.account = account;
     this.replies_list_box.account = account;
     this.replies_list_box.set_sort_order (true);
+    this.self_replies_list_box.account = account;
+    this.self_replies_list_box.set_sort_order (true);
     this.replied_to_list_box.account = account;
     this.replied_to_list_box.set_sort_order (true);
 
@@ -121,6 +125,13 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       main_window.main_widget.switch_page (Page.TWEET_INFO, bundle);
     });
     replies_list_box.row_activated.connect ((row) => {
+      var bundle = new Cb.Bundle ();
+      bundle.put_int (KEY_MODE, TweetInfoPage.BY_INSTANCE);
+      bundle.put_object (KEY_TWEET, ((TweetListEntry)row).tweet);
+      bundle.put_bool (KEY_EXISTING, true);
+      main_window.main_widget.switch_page (Page.TWEET_INFO, bundle);
+    });
+    self_replies_list_box.row_activated.connect ((row) => {
       var bundle = new Cb.Bundle ();
       bundle.put_int (KEY_MODE, TweetInfoPage.BY_INSTANCE);
       bundle.put_object (KEY_TWEET, ((TweetListEntry)row).tweet);
@@ -172,6 +183,8 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       replied_to_list_box.hide ();
       replies_list_box.model.clear ();
       replies_list_box.hide ();
+      self_replies_list_box.model.clear ();
+      self_replies_list_box.hide ();
     }
 
     if (mode == BY_INSTANCE) {
@@ -224,7 +237,6 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
   }
 
   private void rearrange_tweets (int64 new_id) {
-    //assert (new_id != this.tweet_id);
     if (replies_list_box.model.contains_id (new_id)) {
       // We're moving down the thread to a reply of the currently displayed tweet,
       // so move the current tweet up into replied_to_list_box
@@ -232,26 +244,93 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       replied_to_list_box.show ();
       replies_list_box.model.clear ();
       replies_list_box.hide ();
+      self_replies_list_box.model.clear ();
+      self_replies_list_box.hide ();
+    } else if (self_replies_list_box.model.contains_id (new_id)) {      
+      // We're moving down the thread to a self-reply of the currently displayed tweet,
+      // so move the current tweet up into replied_to_list_box
+      replied_to_list_box.model.add (this.tweet);
+      replied_to_list_box.show ();
+      replies_list_box.model.clear ();
+      replies_list_box.hide ();
+      var idx = self_replies_list_box.model.index_of (new_id);
+
+      for (int i = 0; i < idx; i++) {
+        replied_to_list_box.model.add ((Cb.Tweet)self_replies_list_box.model.get_item (0));
+      }
+
+      self_replies_list_box.model.remove_oldest_n_visible (idx + 1);
+
+      if (self_replies_list_box.model.get_n_items () == 0) {
+        self_replies_list_box.hide ();
+      }
     } else if (replied_to_list_box.model.contains_id (new_id)) {
       // We're moving up the thread to a replied-to tweet so
       // remove all tweets below the selected one from the "replied to" list box
       // (they'll now be replies) and add the direct successor to the replies list
       // Other replies will then be loaded by a separate process
       replies_list_box.model.clear ();
-      replies_list_box.show ();
-      var t = replied_to_list_box.model.get_for_id (new_id, 1);
-      if (t != null) {
-        replies_list_box.model.add (t);
-      } else {
-        replies_list_box.model.add (this.tweet);
+      replies_list_box.hide ();
+      self_replies_list_box.hide ();
+      var idx = replied_to_list_box.model.index_of (new_id);
+      var new_tweet = (Cb.Tweet)replied_to_list_box.model.get_item (idx);
+      var new_author = new_tweet.source_tweet.author.id;
+
+      var self_replies_count = self_replies_list_box.model.get_n_items ();
+      
+      if (self_replies_count > 0) {
+        Cb.Tweet? remove_from_tweet = null;
+        for (int i = 0; i < self_replies_count; i++) {
+          var tweet = (Cb.Tweet)self_replies_list_box.model.get_item (i);
+          if (tweet.source_tweet.author.id != new_author) {
+            remove_from_tweet = tweet;
+            break;
+          }
+        }
+
+        if (remove_from_tweet != null) {
+          self_replies_list_box.model.remove_tweets_later_than (remove_from_tweet.id);
+        }
+      }
+
+      var list_length = replied_to_list_box.model.get_n_items ();
+      var prev_id = new_id;
+
+      for (int i = idx + 1; i < list_length; i++) {
+        var tweet = (Cb.Tweet)replied_to_list_box.model.get_item (i);
+        if (tweet.source_tweet.author.id == new_author) {
+          self_replies_list_box.model.add (tweet);
+          self_replies_list_box.show ();
+          prev_id = tweet.id;
+        } else if (i == idx + 1) {
+          replies_list_box.model.add (tweet);
+          replies_list_box.show ();
+          self_replies_list_box.model.clear ();
+          break;
+        } else {
+          var moved_item_count = i - idx;
+
+          if (self_replies_list_box.model.get_n_items () > moved_item_count) {
+            // Remove the remaining self-replies, which now aren't a self-reply thread
+            self_replies_list_box.model.remove_tweets_later_than (prev_id);
+          }
+          break;
+        }
+      }
+
+      if (this.tweet.source_tweet.reply_id == prev_id) {
+        if (this.tweet.source_tweet.author.id == new_author) {
+          self_replies_list_box.model.add (this.tweet);
+        } else {
+          replies_list_box.model.add (this.tweet);
+        }
       }
 
       replied_to_list_box.model.remove_tweets_later_than (new_id);
-      if (replied_to_list_box.model.get_n_items () == 0)
-        replied_to_list_box.hide ();
     }
-    //else
-      //error ("wtf");
+    
+    if (replied_to_list_box.model.get_n_items () == 0)
+      replied_to_list_box.hide ();
   }
 
   public void on_leave () {
@@ -450,8 +529,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       return;
 
     int64[] thread_ids = {tweet_id};
-    var statuses_node = root.get_object ().get_array_member ("statuses");
-    int n_replies = 0;
+    var statuses_node = root.get_object ().get_array_member ("statuses");    
     // Results come back in decreasing chronological order, but we need to work increasing
     var statuses = statuses_node.get_elements();
     statuses.reverse();
@@ -460,7 +538,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       if (!obj.has_member ("in_reply_to_status_id") || obj.get_null_member ("in_reply_to_status_id"))
         return;
       
-        int64 reply_id = obj.get_int_member ("in_reply_to_status_id");
+      int64 reply_id = obj.get_int_member ("in_reply_to_status_id");
 
       if (!(reply_id in thread_ids)) {
         // Not relevant to the thread? Skip it
@@ -474,20 +552,26 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
         // Relevant to the thread, but not from the author and not in reply to the current tweet? Skip it
         return;
       }
-      
-      if (reply_screen_name == screen_name) {
-        // Must be relevant by now, so matching screen name means it's more of the author's thread
-        thread_ids += obj.get_int_member("id");
-      }
 
       var t = new Cb.Tweet ();
       t.load_from_json (node, account.id, now);
-      replies_list_box.model.add (t);
-      n_replies ++;
+      
+      if (reply_screen_name == screen_name) {
+        // Must be relevant by now, so matching screen name means it's more of the author's thread
+        thread_ids += t.id;
+        self_replies_list_box.model.add (t);
+      }
+      else {
+        replies_list_box.model.add (t);
+      }
     });
 
-    if (n_replies > 0) {
+    if (replies_list_box.model.get_n_items () > 0) {
       replies_list_box.show ();
+    }
+
+    if (self_replies_list_box.model.get_n_items () > 0) {
+      self_replies_list_box.show ();
     }
   }
 
@@ -498,7 +582,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
    * @param reply_id The id of the tweet the previous tweet was a reply to.
    */
   private void load_replied_to_tweet (int64 reply_id) {
-    if (reply_id == 0) {
+    if (reply_id == 0 || replied_to_list_box.model.contains_id (reply_id)) {
       return;
     }
 
@@ -728,8 +812,13 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
         if (reply_id == this.tweet_id) {
           var t = new Cb.Tweet ();
           t.load_from_json (root, account.id, new GLib.DateTime.now_local ());
-          replies_list_box.model.add (t);
-          replies_list_box.show ();
+          if (t.source_tweet.author.screen_name == screen_name) {
+            self_replies_list_box.model.add (t);
+            self_replies_list_box.show ();
+          } else {
+            replies_list_box.model.add (t);
+            replies_list_box.show ();
+          }
         }
       }
     } else if (type == Cb.StreamMessageType.DELETE) {

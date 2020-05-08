@@ -38,6 +38,7 @@
             <child>
               <object class="GtkGrid" id="grid">
                 <property name="visible">1</property>
+                <property name="margin-bottom">6</property>
                 <style>
                   <class name="view" />
                   <class name="tweet-info-grid" />
@@ -346,10 +347,16 @@
             </child>
 
             <child>
+              <object class="TweetListBox" id="self_replies_list_box">
+                <property name="visible">1</property>
+                <property name="selection-mode">none</property>
+                <property name="hexpand">1</property>
+              </object>
+            </child>
+            <child>
               <object class="TweetListBox" id="replies_list_box">
                 <property name="visible">1</property>
                 <property name="selection-mode">none</property>
-                <property name="margin-top">6</property>
                 <property name="hexpand">1</property>
               </object>
             </child>
