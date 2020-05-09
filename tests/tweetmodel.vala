@@ -190,6 +190,20 @@ void tweet_removal_asc () {
   }
 }
 
+void tweet_removal_zero_length_handling () {
+  var tm = new Cb.TweetModel ();
+  tm.set_sort_order (true);
+
+  for (int i = 0; i < 20; i ++) {
+    var t = new Cb.Tweet();
+    t.id = 10 + (i * 2); // Only even ids
+    tm.add (t);
+  }
+
+  tm.remove_oldest_n_visible (0);
+}
+
+
 void contains () {
   var tm = new Cb.TweetModel ();
 
@@ -824,6 +838,7 @@ int main (string[] args) {
   GLib.Test.add_func ("/tweetmodel/basic-tweet-order-asc", basic_tweet_order_asc);
   GLib.Test.add_func ("/tweetmodel/tweet-removal", tweet_removal);
   GLib.Test.add_func ("/tweetmodel/tweet-removal-asc", tweet_removal_asc);
+  GLib.Test.add_func ("/tweetmodel/tweet-removal-zero-length", tweet_removal_zero_length_handling);
   GLib.Test.add_func ("/tweetmodel/contains", contains);
   GLib.Test.add_func ("/tweetmodel/index-of", index_of);
   GLib.Test.add_func ("/tweetmodel/index-of-ascending", index_of_ascending);

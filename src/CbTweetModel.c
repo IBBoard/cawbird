@@ -705,10 +705,14 @@ cb_tweet_model_add (CbTweetModel *self,
 
 void
 cb_tweet_model_remove_oldest_n_visible (CbTweetModel *self,
-                                     guint          amount)
+                                        guint          amount)
 {
   int size_before;
   int start;
+
+  if (amount < 1) {
+    return;
+  }
 
   g_return_if_fail (CB_IS_TWEET_MODEL (self));
 
