@@ -354,6 +354,13 @@
               </object>
             </child>
             <child>
+              <object class="TweetListBox" id="mentioned_replies_list_box">
+                <property name="visible">1</property>
+                <property name="selection-mode">none</property>
+                <property name="hexpand">1</property>
+              </object>
+            </child>
+            <child>
               <object class="TweetListBox" id="replies_list_box">
                 <property name="visible">1</property>
                 <property name="selection-mode">none</property>

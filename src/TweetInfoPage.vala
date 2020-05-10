@@ -78,6 +78,8 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
   [GtkChild]
   private TweetListBox self_replies_list_box;
   [GtkChild]
+  private TweetListBox mentioned_replies_list_box;
+  [GtkChild]
   private Gtk.ToggleButton favorite_button;
   [GtkChild]
   private Gtk.ToggleButton retweet_button;
@@ -103,6 +105,8 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     this.replies_list_box.set_sort_order (true);
     this.self_replies_list_box.account = account;
     this.self_replies_list_box.set_sort_order (true);
+    this.mentioned_replies_list_box.account = account;
+    this.mentioned_replies_list_box.set_sort_order (true);
     this.replied_to_list_box.account = account;
     this.replied_to_list_box.set_sort_order (true);
 
@@ -132,6 +136,13 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       main_window.main_widget.switch_page (Page.TWEET_INFO, bundle);
     });
     self_replies_list_box.row_activated.connect ((row) => {
+      var bundle = new Cb.Bundle ();
+      bundle.put_int (KEY_MODE, TweetInfoPage.BY_INSTANCE);
+      bundle.put_object (KEY_TWEET, ((TweetListEntry)row).tweet);
+      bundle.put_bool (KEY_EXISTING, true);
+      main_window.main_widget.switch_page (Page.TWEET_INFO, bundle);
+    });
+    mentioned_replies_list_box.row_activated.connect ((row) => {
       var bundle = new Cb.Bundle ();
       bundle.put_int (KEY_MODE, TweetInfoPage.BY_INSTANCE);
       bundle.put_object (KEY_TWEET, ((TweetListEntry)row).tweet);
@@ -185,6 +196,8 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       replies_list_box.hide ();
       self_replies_list_box.model.clear ();
       self_replies_list_box.hide ();
+      mentioned_replies_list_box.model.clear ();
+      mentioned_replies_list_box.hide ();
     }
 
     if (mode == BY_INSTANCE) {
@@ -237,7 +250,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
   }
 
   private void rearrange_tweets (int64 new_id) {
-    if (replies_list_box.model.contains_id (new_id)) {
+    if (replies_list_box.model.contains_id (new_id) || mentioned_replies_list_box.model.contains_id (new_id)) {
       // We're moving down the thread to a reply of the currently displayed tweet,
       // so move the current tweet up into replied_to_list_box
       replied_to_list_box.model.add (this.tweet);
@@ -246,17 +259,21 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       replies_list_box.hide ();
       self_replies_list_box.model.clear ();
       self_replies_list_box.hide ();
+      mentioned_replies_list_box.model.clear ();
+      mentioned_replies_list_box.hide ();
     } else if (self_replies_list_box.model.contains_id (new_id)) {      
       // We're moving down the thread to a self-reply of the currently displayed tweet,
-      // so move the current tweet up into replied_to_list_box
+      // so move all intervening tweets up into replied_to_list_box
       replied_to_list_box.model.add (this.tweet);
       replied_to_list_box.show ();
       replies_list_box.model.clear ();
       replies_list_box.hide ();
+      mentioned_replies_list_box.model.clear ();
+      mentioned_replies_list_box.hide ();
       var idx = self_replies_list_box.model.index_of (new_id);
 
       for (int i = 0; i < idx; i++) {
-        replied_to_list_box.model.add ((Cb.Tweet)self_replies_list_box.model.get_item (0));
+        replied_to_list_box.model.add ((Cb.Tweet)self_replies_list_box.model.get_item (i));
       }
 
       self_replies_list_box.model.remove_oldest_n_visible (idx + 1);
@@ -268,9 +285,12 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       // We're moving up the thread to a replied-to tweet so
       // remove all tweets below the selected one from the "replied to" list box
       // (they'll now be replies) and add the direct successor to the replies list
+      // or add the chain of self-replies to the self-reply list
       // Other replies will then be loaded by a separate process
       replies_list_box.model.clear ();
       replies_list_box.hide ();
+      mentioned_replies_list_box.model.clear ();
+      mentioned_replies_list_box.hide ();
       self_replies_list_box.hide ();
       var idx = replied_to_list_box.model.index_of (new_id);
       var new_tweet = (Cb.Tweet)replied_to_list_box.model.get_item (idx);
@@ -295,6 +315,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
       var list_length = replied_to_list_box.model.get_n_items ();
       var prev_id = new_id;
+      var mentions = new_tweet.get_mentions ();
 
       for (int i = idx + 1; i < list_length; i++) {
         var tweet = (Cb.Tweet)replied_to_list_box.model.get_item (i);
@@ -303,8 +324,13 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
           self_replies_list_box.show ();
           prev_id = tweet.id;
         } else if (i == idx + 1) {
-          replies_list_box.model.add (tweet);
-          replies_list_box.show ();
+          if (tweet.source_tweet.author.screen_name in mentions) {
+            mentioned_replies_list_box.model.add (tweet);
+            mentioned_replies_list_box.show ();
+          } else {
+            replies_list_box.model.add (tweet);
+            replies_list_box.show ();
+          }
           self_replies_list_box.model.clear ();
           break;
         } else {
@@ -321,8 +347,15 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       if (this.tweet.source_tweet.reply_id == prev_id) {
         if (this.tweet.source_tweet.author.id == new_author) {
           self_replies_list_box.model.add (this.tweet);
-        } else {
+          self_replies_list_box.show ();
+        } 
+        else if (this.tweet.source_tweet.author.screen_name in mentions) {
+          mentioned_replies_list_box.model.add (this.tweet);
+          mentioned_replies_list_box.show ();
+        }
+        else {
           replies_list_box.model.add (this.tweet);
+          replies_list_box.show ();
         }
       }
 
@@ -528,6 +561,8 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     if (root == null)
       return;
 
+    var mentions = tweet.get_mentions ();
+
     int64[] thread_ids = {tweet_id};
     var statuses_node = root.get_object ().get_array_member ("statuses");    
     // Results come back in decreasing chronological order, but we need to work increasing
@@ -561,6 +596,9 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
         thread_ids += t.id;
         self_replies_list_box.model.add (t);
       }
+      else if (reply_screen_name in mentions) {
+        mentioned_replies_list_box.model.add (t);
+      }
       else {
         replies_list_box.model.add (t);
       }
@@ -568,6 +606,10 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
     if (replies_list_box.model.get_n_items () > 0) {
       replies_list_box.show ();
+    }
+
+    if (mentioned_replies_list_box.model.get_n_items () > 0) {
+      mentioned_replies_list_box.show ();
     }
 
     if (self_replies_list_box.model.get_n_items () > 0) {
@@ -815,7 +857,12 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
           if (t.source_tweet.author.screen_name == screen_name) {
             self_replies_list_box.model.add (t);
             self_replies_list_box.show ();
-          } else {
+          }
+          else if (t.source_tweet.author.screen_name in tweet.get_mentions ()) {
+            mentioned_replies_list_box.model.add (t);
+            mentioned_replies_list_box.show ();
+          }
+          else {
             replies_list_box.model.add (t);
             replies_list_box.show ();
           }
