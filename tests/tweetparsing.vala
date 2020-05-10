@@ -1037,6 +1037,219 @@ const string TD6 =
 }
 """;
 
+const string MENTION_TWEET_DATA = """
+{
+  "created_at" : "Sat May 09 18:07:54 +0000 2020",
+  "id" : 1259183327229116416,
+  "id_str" : "1259183327229116416",
+  "full_text" : ".@DrJaninaRamirez's #artdetective has become the soundtrack for lockdown. #geek 🤓 #AlwaysAnArtHistoryGraduate https://t.co/nb9kBDSEfO",
+  "truncated" : false,
+  "display_text_range" : [
+    0,
+    109
+  ],
+  "entities" : {
+    "hashtags" : [
+      {
+        "text" : "artdetective",
+        "indices" : [
+          20,
+          33
+        ]
+      },
+      {
+        "text" : "geek",
+        "indices" : [
+          74,
+          79
+        ]
+      },
+      {
+        "text" : "AlwaysAnArtHistoryGraduate",
+        "indices" : [
+          82,
+          109
+        ]
+      }
+    ],
+    "symbols" : [
+    ],
+    "user_mentions" : [
+      {
+        "screen_name" : "DrJaninaRamirez",
+        "name" : "Dr Janina Ramirez",
+        "id" : 425339936,
+        "id_str" : "425339936",
+        "indices" : [
+          1,
+          17
+        ]
+      }
+    ],
+    "urls" : [
+    ],
+    "media" : [
+      {
+        "id" : 1259183317749989376,
+        "id_str" : "1259183317749989376",
+        "indices" : [
+          110,
+          133
+        ],
+        "media_url" : "http://pbs.twimg.com/tweet_video_thumb/EXmEjlmWAAANLYr.jpg",
+        "media_url_https" : "https://pbs.twimg.com/tweet_video_thumb/EXmEjlmWAAANLYr.jpg",
+        "url" : "https://t.co/nb9kBDSEfO",
+        "display_url" : "pic.twitter.com/nb9kBDSEfO",
+        "expanded_url" : "https://twitter.com/HannahECarroll/status/1259183327229116416/photo/1",
+        "type" : "photo",
+        "sizes" : {
+          "small" : {
+            "w" : 320,
+            "h" : 488,
+            "resize" : "fit"
+          },
+          "thumb" : {
+            "w" : 150,
+            "h" : 150,
+            "resize" : "crop"
+          },
+          "large" : {
+            "w" : 320,
+            "h" : 488,
+            "resize" : "fit"
+          },
+          "medium" : {
+            "w" : 320,
+            "h" : 488,
+            "resize" : "fit"
+          }
+        }
+      }
+    ]
+  },
+  "extended_entities" : {
+    "media" : [
+      {
+        "id" : 1259183317749989376,
+        "id_str" : "1259183317749989376",
+        "indices" : [
+          110,
+          133
+        ],
+        "media_url" : "http://pbs.twimg.com/tweet_video_thumb/EXmEjlmWAAANLYr.jpg",
+        "media_url_https" : "https://pbs.twimg.com/tweet_video_thumb/EXmEjlmWAAANLYr.jpg",
+        "url" : "https://t.co/nb9kBDSEfO",
+        "display_url" : "pic.twitter.com/nb9kBDSEfO",
+        "expanded_url" : "https://twitter.com/HannahECarroll/status/1259183327229116416/photo/1",
+        "type" : "animated_gif",
+        "sizes" : {
+          "small" : {
+            "w" : 320,
+            "h" : 488,
+            "resize" : "fit"
+          },
+          "thumb" : {
+            "w" : 150,
+            "h" : 150,
+            "resize" : "crop"
+          },
+          "large" : {
+            "w" : 320,
+            "h" : 488,
+            "resize" : "fit"
+          },
+          "medium" : {
+            "w" : 320,
+            "h" : 488,
+            "resize" : "fit"
+          }
+        },
+        "video_info" : {
+          "aspect_ratio" : [
+            40,
+            61
+          ],
+          "variants" : [
+            {
+              "bitrate" : 0,
+              "content_type" : "video/mp4",
+              "url" : "https://video.twimg.com/tweet_video/EXmEjlmWAAANLYr.mp4"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "source" : "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+  "in_reply_to_status_id" : null,
+  "in_reply_to_status_id_str" : null,
+  "in_reply_to_user_id" : null,
+  "in_reply_to_user_id_str" : null,
+  "in_reply_to_screen_name" : null,
+  "user" : {
+    "id" : 334713923,
+    "id_str" : "334713923",
+    "name" : "Hannah Carroll",
+    "screen_name" : "HannahECarroll",
+    "location" : "Birmingham, England",
+    "description" : "Marketing Executive (Projects) @brumhippodrome Tweets about theatre, books, films, art and MarComms. Not a whole lot about food. All my views.",
+    "url" : null,
+    "entities" : {
+      "description" : {
+        "urls" : [
+        ]
+      }
+    },
+    "protected" : false,
+    "followers_count" : 2006,
+    "friends_count" : 4384,
+    "listed_count" : 53,
+    "created_at" : "Wed Jul 13 15:11:06 +0000 2011",
+    "favourites_count" : 2307,
+    "utc_offset" : null,
+    "time_zone" : null,
+    "geo_enabled" : true,
+    "verified" : false,
+    "statuses_count" : 5059,
+    "lang" : null,
+    "contributors_enabled" : false,
+    "is_translator" : false,
+    "is_translation_enabled" : false,
+    "profile_background_color" : "ACDED6",
+    "profile_background_image_url" : "http://abs.twimg.com/images/themes/theme18/bg.gif",
+    "profile_background_image_url_https" : "https://abs.twimg.com/images/themes/theme18/bg.gif",
+    "profile_background_tile" : false,
+    "profile_image_url" : "http://pbs.twimg.com/profile_images/1231642501657874432/sDgwVzoV_normal.jpg",
+    "profile_image_url_https" : "https://pbs.twimg.com/profile_images/1231642501657874432/sDgwVzoV_normal.jpg",
+    "profile_banner_url" : "https://pbs.twimg.com/profile_banners/334713923/1582481429",
+    "profile_link_color" : "038543",
+    "profile_sidebar_border_color" : "EEEEEE",
+    "profile_sidebar_fill_color" : "F6F6F6",
+    "profile_text_color" : "333333",
+    "profile_use_background_image" : true,
+    "has_extended_profile" : false,
+    "default_profile" : false,
+    "default_profile_image" : false,
+    "following" : true,
+    "follow_request_sent" : false,
+    "notifications" : false,
+    "translator_type" : "none"
+  },
+  "geo" : null,
+  "coordinates" : null,
+  "place" : null,
+  "contributors" : null,
+  "is_quote_status" : false,
+  "retweet_count" : 3,
+  "favorite_count" : 22,
+  "favorited" : false,
+  "retweeted" : false,
+  "possibly_sensitive" : false,
+  "possibly_sensitive_appealable" : false,
+  "lang" : "en"
+}
+""";
+
 const string REPLY_TWEET_DATA = """
 {
   "created_at" : "Mon Apr 17 15:16:18 +0000 2017",
@@ -2237,6 +2450,55 @@ void reply_users () {
 
   var reply_users = t.get_reply_users ();
   assert (reply_users.length == 9);
+/*
+  try {
+    parser.load_from_data (MENTION_TWEET_DATA);
+  } catch (GLib.Error e) {
+    critical (e.message);
+  }
+  root = parser.get_root ();
+
+  t.load_from_json (root, 0, now);
+
+  // Dr J is mentioned but isn't in the "reply to" list
+  reply_users = t.get_reply_users ();
+  assert (reply_users.length == 0); */
+}
+
+void mentions () {
+  var now = new GLib.DateTime.now_local ();
+  var t = new Cb.Tweet ();
+
+  var parser = new Json.Parser ();
+  try {
+    parser.load_from_data (REPLY_TWEET_DATA);
+  } catch (GLib.Error e) {
+    critical (e.message);
+  }
+  var root = parser.get_root ();
+
+  t.load_from_json (root, 0, now);
+
+  var mentions = t.get_mentions ();
+  assert (mentions.length == 9);
+  string[] names = {"jjdesmond", "_UBRAS_", "franalsworth", "4Apes", "katy4apes", "theAliceRoberts", "JaneGoodallUK", "Jane_Goodall", "JaneGoodallInst"};
+  foreach (var name in names) {
+    assert (name in mentions);
+  }
+
+  try {
+    parser.load_from_data (MENTION_TWEET_DATA);
+  } catch (GLib.Error e) {
+    critical (e.message);
+  }
+  root = parser.get_root ();
+
+  t.load_from_json (root, 0, now);
+
+  mentions = t.get_mentions ();
+  assert (mentions.length == 1);
+  debug(mentions[0]);
+  assert (mentions[0] == "DrJaninaRamirez");
 }
 
 void empty_display_range () {
@@ -2361,6 +2623,7 @@ int main (string[] args) {
   GLib.Test.add_func ("/tweet-parsing/double-media", double_media);
   GLib.Test.add_func ("/tweet-parsing/special-quote", special_quote);
   GLib.Test.add_func ("/tweet-parsing/reply-users", reply_users);
+  GLib.Test.add_func ("/tweet-parsing/mentions", mentions);
   GLib.Test.add_func ("/tweet-parsing/empty-display-range", empty_display_range);
   GLib.Test.add_func ("/tweet-parsing/rt-reply", rt_reply);
   GLib.Test.add_func ("/tweet-parsing/entity-count", entity_count);

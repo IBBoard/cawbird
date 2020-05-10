@@ -173,9 +173,9 @@ cb_tweet_get_mentions (CbTweet  *tweet,
   for (i = 0; i < n_entities; i ++)
     if (entities[i].display_text[0] == '@')
       {
-        mentions[x] = g_strdup (entities[i].display_text);
+        mentions[x] = g_strdup (&entities[i].display_text[1]);
         x ++;
-      }
+  }
 
   return mentions;
 }

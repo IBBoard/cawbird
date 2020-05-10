@@ -206,7 +206,6 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
   int url_index = 0;
   guint n_media_arrays = 0;
   guint n_reply_users = 0;
-  guint non_reply_mentions = 0;
   int max_entities;
   gboolean direct_duplicate = FALSE;
 
@@ -275,13 +274,11 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
           t->reply_users[reply_index].user_name = g_strdup (json_object_get_string_member (mention, "name"));
           reply_index ++;
         }
-
-      non_reply_mentions = n_reply_users - 1;
     }
 
   max_entities = json_array_get_length (urls) +
                  json_array_get_length (hashtags) +
-                 json_array_get_length (user_mentions) - non_reply_mentions +
+                 json_array_get_length (user_mentions) +
                  media_count;
   media_count += (int)json_array_get_length (urls);
 
@@ -327,13 +324,9 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
       url_index ++;
     }
 
-  /* USER MENTIONS */
-  if (direct_duplicate)
-    i = n_reply_users;
-  else
-    i = n_reply_users == 0 ? 0 : n_reply_users - 1;
+  /* USER MENTIONS */  
 
-  for (p = json_array_get_length (user_mentions); i < p; i ++)
+  for (i = 0, p = json_array_get_length (user_mentions); i < p; i ++)
     {
       JsonObject *mention = json_node_get_object (json_array_get_element (user_mentions, i));
       JsonArray  *indices = json_object_get_array_member (mention, "indices");
