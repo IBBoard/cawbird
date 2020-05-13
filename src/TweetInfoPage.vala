@@ -273,6 +273,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       var idx = self_replies_list_box.model.index_of (new_id);
 
       for (int i = 0; i < idx; i++) {
+        //FIXME: This isn't working when you move down from a RT (because their IDs are later, so they get out of order)!
         replied_to_list_box.model.add ((Cb.Tweet)self_replies_list_box.model.get_item (i));
       }
 
@@ -294,7 +295,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       self_replies_list_box.hide ();
       var idx = replied_to_list_box.model.index_of (new_id);
       var new_tweet = (Cb.Tweet)replied_to_list_box.model.get_item (idx);
-      var new_author = new_tweet.source_tweet.author.id;
+      var new_screen_name_lower = new_tweet.get_screen_name().down();
 
       var self_replies_count = self_replies_list_box.model.get_n_items ();
       
@@ -302,7 +303,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
         Cb.Tweet? remove_from_tweet = null;
         for (int i = 0; i < self_replies_count; i++) {
           var tweet = (Cb.Tweet)self_replies_list_box.model.get_item (i);
-          if (tweet.source_tweet.author.id != new_author) {
+          if (tweet.get_screen_name().down() != new_screen_name_lower) {
             remove_from_tweet = tweet;
             break;
           }
@@ -315,16 +316,20 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
       var list_length = replied_to_list_box.model.get_n_items ();
       var prev_id = new_id;
-      var mentions = new_tweet.get_mentions ();
+      var mentions = tweet.get_mentions ();
+      for (int i = 0; i < mentions.length; i++) {
+        mentions[i] = mentions[i].down();
+      }
 
       for (int i = idx + 1; i < list_length; i++) {
         var tweet = (Cb.Tweet)replied_to_list_box.model.get_item (i);
-        if (tweet.source_tweet.author.id == new_author) {
+        var tweet_screen_name = tweet.get_screen_name().down();
+        if (tweet_screen_name != new_screen_name_lower) {
           self_replies_list_box.model.add (tweet);
           self_replies_list_box.show ();
           prev_id = tweet.id;
         } else if (i == idx + 1) {
-          if (tweet.source_tweet.author.screen_name in mentions) {
+          if (tweet_screen_name in mentions) {
             mentioned_replies_list_box.model.add (tweet);
             mentioned_replies_list_box.show ();
           } else {
@@ -344,8 +349,10 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
         }
       }
 
+      // FIXME: If the user skips up two tweets then this won't be true BUT we should move it down if it's a self-tweet
+      // HOWEVER if it's a to-and-fro then we *shouldn't* move it down! More complex logic required.
       if (this.tweet.source_tweet.reply_id == prev_id) {
-        if (this.tweet.source_tweet.author.id == new_author) {
+        if (screen_name.down() == new_screen_name_lower) {
           self_replies_list_box.model.add (this.tweet);
           self_replies_list_box.show ();
         } 
@@ -561,7 +568,14 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     if (root == null)
       return;
 
+    // Get the screen name of the author and the mentions of the current tweet.
+    // And lowercase them so we can compare them, because Twitter isn't consistent in its casing
+    // even in internal fields!
+    var screen_name_lower = screen_name.down();
     var mentions = tweet.get_mentions ();
+    for (int i = 0; i < mentions.length; i++) {
+      mentions[i] = mentions[i].down();
+    }
 
     int64[] thread_ids = {tweet_id};
     var statuses_node = root.get_object ().get_array_member ("statuses");    
@@ -581,17 +595,17 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       }
 
       var user_obj = obj.get_object_member("user");
-      var reply_screen_name = user_obj.get_string_member("screen_name");
+      var reply_screen_name = user_obj.get_string_member("screen_name").down();
 
-      if (reply_id != tweet_id && reply_screen_name != screen_name) {
-        // Relevant to the thread, but not from the author and not in reply to the current tweet? Skip it
+      if (reply_id != tweet_id && reply_screen_name != screen_name_lower) {
+        // Potentially relevant to the thread, but not from the author and not in reply to the current tweet? Skip it, it's something else
         return;
       }
 
       var t = new Cb.Tweet ();
       t.load_from_json (node, account.id, now);
-      
-      if (reply_screen_name == screen_name) {
+
+      if (reply_screen_name == screen_name_lower) {
         // Must be relevant by now, so matching screen name means it's more of the author's thread
         thread_ids += t.id;
         self_replies_list_box.model.add (t);
@@ -854,11 +868,18 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
         if (reply_id == this.tweet_id) {
           var t = new Cb.Tweet ();
           t.load_from_json (root, account.id, new GLib.DateTime.now_local ());
-          if (t.source_tweet.author.screen_name == screen_name) {
+
+          var screen_name_lower = t.get_screen_name().down();
+          var mentions = tweet.get_mentions ();
+          for (int i = 0; i < mentions.length; i++) {
+            mentions[i] = mentions[i].down();
+          }
+
+          if (screen_name_lower == screen_name) {
             self_replies_list_box.model.add (t);
             self_replies_list_box.show ();
           }
-          else if (t.source_tweet.author.screen_name in tweet.get_mentions ()) {
+          else if (screen_name_lower in mentions) {
             mentioned_replies_list_box.model.add (t);
             mentioned_replies_list_box.show ();
           }
