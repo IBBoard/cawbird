@@ -220,7 +220,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       this.screen_name = args.get_string (KEY_SCREEN_NAME);
     }
 
-    query_tweet_info (existing);
+    query_tweet_info ();
   }
 
   private void load_user_avatar (string url) {
@@ -261,7 +261,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       self_replies_list_box.hide ();
       mentioned_replies_list_box.model.clear ();
       mentioned_replies_list_box.hide ();
-    } else if (self_replies_list_box.model.contains_id (new_id)) {      
+    } else if (self_replies_list_box.model.contains_id (new_id)) {
       // We're moving down the thread to a self-reply of the currently displayed tweet,
       // so move all intervening tweets up into replied_to_list_box
       replied_to_list_box.model.add (this.tweet);
@@ -316,7 +316,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
       var list_length = replied_to_list_box.model.get_n_items ();
       var prev_id = new_id;
-      var mentions = tweet.get_mentions ();
+      var mentions = new_tweet.get_mentions ();
       for (int i = 0; i < mentions.length; i++) {
         mentions[i] = mentions[i].down();
       }
@@ -324,7 +324,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       for (int i = idx + 1; i < list_length; i++) {
         var tweet = (Cb.Tweet)replied_to_list_box.model.get_item (i);
         var tweet_screen_name = tweet.get_screen_name().down();
-        if (tweet_screen_name != new_screen_name_lower) {
+        if (tweet_screen_name == new_screen_name_lower) {
           self_replies_list_box.model.add (tweet);
           self_replies_list_box.show ();
           prev_id = tweet.id;
@@ -343,20 +343,20 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
           if (self_replies_list_box.model.get_n_items () > moved_item_count) {
             // Remove the remaining self-replies, which now aren't a self-reply thread
-            self_replies_list_box.model.remove_tweets_later_than (prev_id);
+            self_replies_list_box.model.remove_tweets_later_than (tweet.id);
           }
           break;
         }
       }
 
-      // FIXME: If the user skips up two tweets then this won't be true BUT we should move it down if it's a self-tweet
-      // HOWEVER if it's a to-and-fro then we *shouldn't* move it down! More complex logic required.
-      if (this.tweet.source_tweet.reply_id == prev_id) {
-        if (screen_name.down() == new_screen_name_lower) {
+      var cur_reply_id = this.tweet.source_tweet.reply_id;
+      if (cur_reply_id == new_id) {
+        var screen_name_lower = screen_name.down();
+        if (screen_name_lower == new_screen_name_lower) {
           self_replies_list_box.model.add (this.tweet);
           self_replies_list_box.show ();
         } 
-        else if (this.tweet.source_tweet.author.screen_name in mentions) {
+        else if (screen_name_lower in mentions) {
           mentioned_replies_list_box.model.add (this.tweet);
           mentioned_replies_list_box.show ();
         }
@@ -364,9 +364,28 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
           replies_list_box.model.add (this.tweet);
           replies_list_box.show ();
         }
+      } else if (self_replies_list_box.model.contains_id (cur_reply_id)) {
+        self_replies_list_box.model.add (this.tweet);
+        self_replies_list_box.show ();
       }
 
       replied_to_list_box.model.remove_tweets_later_than (new_id);
+    }
+    else {
+      // New tweet - wipe the lot to be sure!
+      // (It's most likely to be going back in the history from a previous
+      // move *up* the thread, so we might be able to keep the replied_to, 
+      // but there's also the possibility that we're moving back from a
+      // quoted tweet and its thread and we can't tell until we load everything
+      // so just wipe it and be done with it)
+      replied_to_list_box.model.clear ();
+      replied_to_list_box.hide ();
+      replies_list_box.model.clear ();
+      replies_list_box.hide ();
+      mentioned_replies_list_box.model.clear ();
+      mentioned_replies_list_box.hide ();
+      self_replies_list_box.model.clear ();
+      self_replies_list_box.hide ();
     }
     
     if (replied_to_list_box.model.get_n_items () == 0)
@@ -476,7 +495,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     main_window.main_widget.switch_page (Page.PROFILE, bundle);
   }
 
-  private void query_tweet_info (bool existing) {
+  private void query_tweet_info () {
     if (this.cancellable != null) {
       this.cancellable.cancel ();
     }
@@ -521,12 +540,10 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
       set_tweet_data (tweet, with);
 
-      if (!existing) {
-        if (tweet.retweeted_tweet == null)
-          load_replied_to_tweet (tweet.source_tweet.reply_id);
-        else
-          load_replied_to_tweet (tweet.retweeted_tweet.reply_id);
-      }
+      if (tweet.retweeted_tweet == null)
+        load_replied_to_tweet (tweet.source_tweet.reply_id);
+      else
+        load_replied_to_tweet (tweet.retweeted_tweet.reply_id);
 
       values_set = true;
     });
@@ -638,8 +655,24 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
    * @param reply_id The id of the tweet the previous tweet was a reply to.
    */
   private void load_replied_to_tweet (int64 reply_id) {
-    if (reply_id == 0 || replied_to_list_box.model.contains_id (reply_id)) {
+    if (reply_id == 0) {
+      // Top of the thread, so stop
       return;
+    }
+
+    var replied_to_idx = replied_to_list_box.model.index_of (reply_id);
+
+    if (replied_to_idx != -1) {
+      // We already have this tweet, so don't fetch it from the web
+      // BUT we might not have the rest of the thread (because they pressed "Back" after we removed some of the thread)
+      // so recurse anyway
+      var replied_to_tweet = (Cb.Tweet)replied_to_list_box.model.get_item (replied_to_idx);
+      if (replied_to_tweet.retweeted_tweet == null) {
+        load_replied_to_tweet (replied_to_tweet.source_tweet.reply_id);
+      }
+      else {
+        load_replied_to_tweet (replied_to_tweet.retweeted_tweet.reply_id);
+      }
     }
 
     replied_to_list_box.show ();
