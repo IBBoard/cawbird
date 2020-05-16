@@ -273,7 +273,6 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       var idx = self_replies_list_box.model.index_of (new_id);
 
       for (int i = 0; i < idx; i++) {
-        //FIXME: This isn't working when you move down from a RT (because their IDs are later, so they get out of order)!
         replied_to_list_box.model.add ((Cb.Tweet)self_replies_list_box.model.get_item (i));
       }
 
@@ -662,6 +661,10 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
     var replied_to_idx = replied_to_list_box.model.index_of (reply_id);
 
+    if (replied_to_idx == -1) {
+      replied_to_idx = replied_to_list_box.model.index_of_retweet (reply_id);
+    }
+
     if (replied_to_idx != -1) {
       // We already have this tweet, so don't fetch it from the web
       // BUT we might not have the rest of the thread (because they pressed "Back" after we removed some of the thread)
@@ -673,6 +676,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       else {
         load_replied_to_tweet (replied_to_tweet.retweeted_tweet.reply_id);
       }
+      return;
     }
 
     replied_to_list_box.show ();
