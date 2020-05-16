@@ -55,8 +55,8 @@ public class TweetListBox : Gtk.ListBox {
     Cb.Utils.bind_model (this, this.model, widget_create_func);
   }
 
-  public void set_sort_order (bool ascending) {
-    this.model.set_sort_order (ascending);
+  public void set_thread_mode (bool thread_mode) {
+    this.model.set_thread_mode (thread_mode);
   }
 
   private Gtk.Widget widget_create_func (GLib.Object obj) {

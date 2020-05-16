@@ -11,7 +11,7 @@ bool is_desc_sorted (Cb.TweetModel tm) {
   return true;
 }
 
-bool is_asc_sorted (Cb.TweetModel tm) {
+bool is_thread_mode_sorted (Cb.TweetModel tm) {
   int64 last_id = ((Cb.Tweet)tm.get_item (0)).id;
 
   for (int i = 1; i < tm.get_n_items (); i ++) {
@@ -65,9 +65,9 @@ void basic_tweet_order () {
   assert (((Cb.Tweet)tm.get_item (2)).id == 10);
 }
 
-void basic_tweet_order_asc () {
+void basic_tweet_order_thread_mode () {
   Cb.TweetModel tm = new Cb.TweetModel ();
-  tm.set_sort_order (true);
+  tm.set_thread_mode (true);
 
   Cb.Tweet t1 = new Cb.Tweet ();
   t1.id = 10;
@@ -90,7 +90,7 @@ void basic_tweet_order_asc () {
 
   assert (tm.get_n_items () == 3);
 
-  assert (is_asc_sorted (tm));
+  assert (is_thread_mode_sorted (tm));
 
   assert (((Cb.Tweet)tm.get_item (0)).id == 10);
   assert (((Cb.Tweet)tm.get_item (1)).id == 100);
@@ -143,9 +143,9 @@ void tweet_removal () {
   }
 }
 
-void tweet_removal_asc () {
+void tweet_removal_thread_mode () {
   var tm = new Cb.TweetModel ();
-  tm.set_sort_order (true);
+  tm.set_thread_mode (true);
 
   //add 10 visible tweets
   for (int i = 0; i < 10; i ++) {
@@ -192,7 +192,7 @@ void tweet_removal_asc () {
 
 void tweet_removal_zero_length_handling () {
   var tm = new Cb.TweetModel ();
-  tm.set_sort_order (true);
+  tm.set_thread_mode (true);
 
   for (int i = 0; i < 20; i ++) {
     var t = new Cb.Tweet();
@@ -244,9 +244,9 @@ void index_of () {
   assert (tm.index_of (100 + n) == -1);
 }
 
-void index_of_ascending () {
+void index_of_thread_mode () {
   var tm = new Cb.TweetModel ();
-  tm.set_sort_order (true);
+  tm.set_thread_mode (true);
 
   const int n = 10;
 
@@ -359,9 +359,9 @@ void remove_older () {
   assert (tm.min_id == 1);
 }
 
-void remove_older_ascending () {
+void remove_older_thread_mode () {
   var tm = new Cb.TweetModel ();
-  tm.set_sort_order (true);
+  tm.set_thread_mode (true);
 
   for (int i = 1; i < 51; i ++) {
     var t = new Cb.Tweet ();
@@ -466,9 +466,9 @@ void get_for_id () {
   assert (result.id == 1000);
 }
 
-void get_for_id_asc () {
+void get_for_id_thread_mode () {
   var tm = new Cb.TweetModel ();
-  tm.set_sort_order (true);
+  tm.set_thread_mode (true);
 
   var t1 = new Cb.Tweet ();
   t1.id = 10;
@@ -528,9 +528,9 @@ void min_max_id () {
   assert (tm.max_id == 1400);
 }
 
-void min_max_id_ascending () {
+void min_max_id_thread_mode () {
   var tm = new Cb.TweetModel ();
-  tm.set_sort_order (true);
+  tm.set_thread_mode (true);
   var t = new Cb.Tweet ();
   t.id = 1337;
   tm.add (t);
@@ -568,7 +568,7 @@ void sorting () {
   assert (is_desc_sorted (tm));
 
   tm = new Cb.TweetModel ();
-  tm.set_sort_order (true);
+  tm.set_thread_mode (true);
 
   for (int i = 0; i < 100; i ++) {
     var t = new Cb.Tweet ();
@@ -576,7 +576,7 @@ void sorting () {
     tm.add (t);
   }
 
-  assert (is_asc_sorted (tm));
+  assert (is_thread_mode_sorted (tm));
 }
 
 void min_max_remove () {
@@ -627,9 +627,9 @@ void min_max_remove () {
   assert (tm.max_id == int64.MIN);
 }
 
-void min_max_remove_ascending () {
+void min_max_remove_thread_mode () {
   var tm = new Cb.TweetModel ();
-  tm.set_sort_order (true);
+  tm.set_thread_mode (true);
 
   var t1 = new Cb.Tweet ();
   t1.id = 10;
@@ -751,9 +751,9 @@ void hidden_remove_oldest_n_visible () {
   assert (tm.get_n_items () == 0);
 }
 
-void hidden_remove_oldest_n_visible_asc () {
+void hidden_remove_oldest_n_visible_thread_mode () {
   var tm = new Cb.TweetModel ();
-  tm.set_sort_order (true);
+  tm.set_thread_mode (true);
 
   for (int i = 0; i < 20; i ++) {
     var t = new Cb.Tweet();
@@ -835,32 +835,32 @@ void same_id () {
 int main (string[] args) {
   GLib.Test.init (ref args);
   GLib.Test.add_func ("/tweetmodel/basic-tweet-order", basic_tweet_order);
-  GLib.Test.add_func ("/tweetmodel/basic-tweet-order-asc", basic_tweet_order_asc);
+  GLib.Test.add_func ("/tweetmodel/basic-tweet-order-thread-mode", basic_tweet_order_thread_mode);
   GLib.Test.add_func ("/tweetmodel/tweet-removal", tweet_removal);
-  GLib.Test.add_func ("/tweetmodel/tweet-removal-asc", tweet_removal_asc);
+  GLib.Test.add_func ("/tweetmodel/tweet-removal-thread-mode", tweet_removal_thread_mode);
   GLib.Test.add_func ("/tweetmodel/tweet-removal-zero-length", tweet_removal_zero_length_handling);
   GLib.Test.add_func ("/tweetmodel/contains", contains);
   GLib.Test.add_func ("/tweetmodel/index-of", index_of);
-  GLib.Test.add_func ("/tweetmodel/index-of-ascending", index_of_ascending);
+  GLib.Test.add_func ("/tweetmodel/index-of-thread-mode", index_of_thread_mode);
   GLib.Test.add_func ("/tweetmodel/clear", clear);
   GLib.Test.add_func ("/tweetmodel/clear2", clear2);
   GLib.Test.add_func ("/tweetmodel/remove", remove_tweet);
   GLib.Test.add_func ("/tweetmodel/remove-hidden", remove_hidden);
   GLib.Test.add_func ("/tweetmodel/remove-own-retweet", remove_own_retweet);
   GLib.Test.add_func ("/tweetmodel/remove-older", remove_older);
-  GLib.Test.add_func ("/tweetmodel/remove-older-ascending", remove_older_ascending);
+  GLib.Test.add_func ("/tweetmodel/remove-older-thread-mode", remove_older_thread_mode);
   GLib.Test.add_func ("/tweetmodel/hide-rt", hide_rt);
   GLib.Test.add_func ("/tweetmodel/get-for-id", get_for_id);
-  GLib.Test.add_func ("/tweetmodel/get-for-id-ascending", get_for_id_asc);
+  GLib.Test.add_func ("/tweetmodel/get-for-id-thread-mode", get_for_id_thread_mode);
   GLib.Test.add_func ("/tweetmodel/min-max-id", min_max_id);
-  GLib.Test.add_func ("/tweetmodel/min-max-id-ascending", min_max_id_ascending);
+  GLib.Test.add_func ("/tweetmodel/min-max-id-thread-mode", min_max_id_thread_mode);
   GLib.Test.add_func ("/tweetmodel/sorting", sorting);
   GLib.Test.add_func ("/tweetmodel/min-max-remove", min_max_remove);
-  GLib.Test.add_func ("/tweetmodel/min-max-remove-ascending", min_max_remove_ascending);
+  GLib.Test.add_func ("/tweetmodel/min-max-remove-thread-mode", min_max_remove_thread_mode);
   GLib.Test.add_func ("/tweetmodel/tweet-count", tweet_count);
   GLib.Test.add_func ("/tweetmodel/empty-hidden-tweets", empty_hidden_tweets);
   GLib.Test.add_func ("/tweetmodel/hidden-remove-last-n-visible", hidden_remove_oldest_n_visible);
-  GLib.Test.add_func ("/tweetmodel/hidden-remove-last-n-visible-asc", hidden_remove_oldest_n_visible_asc);
+  GLib.Test.add_func ("/tweetmodel/hidden-remove-last-n-visible-thread-mode", hidden_remove_oldest_n_visible_thread_mode);
   GLib.Test.add_func ("/tweetmodel/same-id", same_id);
 
   return GLib.Test.run ();

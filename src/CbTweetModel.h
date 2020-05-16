@@ -38,7 +38,7 @@ struct _CbTweetModel
 {
   GObject parent_instance;
 
-  gboolean ascending;
+  gboolean thread_mode;
 
   GPtrArray *tweets;
   GPtrArray *hidden_tweets;
@@ -62,7 +62,7 @@ gboolean cb_tweet_model_contains_id  (CbTweetModel *self,
 
 void     cb_tweet_model_clear        (CbTweetModel *self);
 
-void     cb_tweet_model_set_sort_order    (CbTweetModel *self, gboolean ascending);
+void     cb_tweet_model_set_thread_mode (CbTweetModel *self, gboolean thread_mode);
 
 CbTweet *cb_tweet_model_get_for_id   (CbTweetModel *self,
                                       gint64        id,

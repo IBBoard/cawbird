@@ -102,13 +102,13 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     this.id = id;
     this.account = account;
     this.replies_list_box.account = account;
-    this.replies_list_box.set_sort_order (true);
+    this.replies_list_box.set_thread_mode (true);
     this.self_replies_list_box.account = account;
-    this.self_replies_list_box.set_sort_order (true);
+    this.self_replies_list_box.set_thread_mode (true);
     this.mentioned_replies_list_box.account = account;
-    this.mentioned_replies_list_box.set_sort_order (true);
+    this.mentioned_replies_list_box.set_thread_mode (true);
     this.replied_to_list_box.account = account;
-    this.replied_to_list_box.set_sort_order (true);
+    this.replied_to_list_box.set_thread_mode (true);
 
     grid.set_redraw_on_allocate (true);
 

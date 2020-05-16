@@ -72,7 +72,7 @@ cb_tweet_model_init (CbTweetModel *self)
 {
   self->tweets = g_ptr_array_new_with_free_func (g_object_unref);
   self->hidden_tweets = g_ptr_array_new_with_free_func (g_object_unref);
-  self->ascending = FALSE;
+  self->thread_mode = FALSE;
   self->min_id = G_MAXINT64;
   self->max_id = G_MININT64;
 }
@@ -122,7 +122,7 @@ update_min_max_id (CbTweetModel *self,
     {
       if (self->tweets->len > 0)
         {
-          CbTweet *t = g_ptr_array_index (self->tweets, self->ascending ? self->tweets->len - 1 : 0);
+          CbTweet *t = g_ptr_array_index (self->tweets, self->thread_mode ? self->tweets->len - 1 : 0);
 
           self->max_id = t->id;
 
@@ -150,7 +150,7 @@ update_min_max_id (CbTweetModel *self,
     {
       if (self->tweets->len > 0)
         {
-          CbTweet *t = g_ptr_array_index (self->tweets, self->ascending ? 0 : self->tweets->len - 1);
+          CbTweet *t = g_ptr_array_index (self->tweets, self->thread_mode ? 0 : self->tweets->len - 1);
 
           self->min_id = t->id;
           /* We just removed the tweet with the min_id, so now remove all hidden tweets
@@ -214,11 +214,11 @@ insert_sorted (CbTweetModel *self,
 
   if (tweet->id > self->max_id)
     {
-      insert_pos = self->ascending ? self->tweets->len : 0;
+      insert_pos = self->thread_mode ? self->tweets->len : 0;
     }
   else if (tweet->id < self->min_id)
     {
-      insert_pos = self->ascending ? 0 : self->tweets->len;
+      insert_pos = self->thread_mode ? 0 : self->tweets->len;
     }
   else
     {
@@ -234,7 +234,7 @@ insert_sorted (CbTweetModel *self,
 
           CbTweet *older, *newer;
 
-          if (self->ascending) {
+          if (self->thread_mode) {
             older = cur;
             newer = next;
           } else {
@@ -328,12 +328,12 @@ cb_tweet_model_clear (CbTweetModel *self)
 }
 
 void
-cb_tweet_model_set_sort_order (CbTweetModel *self, gboolean ascending)
+cb_tweet_model_set_thread_mode (CbTweetModel *self, gboolean thread_mode)
 {
   g_return_if_fail (self->min_id == G_MAXINT64);
   g_return_if_fail (self->max_id == G_MININT64);
   
-  self->ascending = ascending;
+  self->thread_mode = thread_mode;
 }
 
 CbTweet *
@@ -722,7 +722,7 @@ cb_tweet_model_remove_oldest_n_visible (CbTweetModel *self,
     amount = size_before;
   }
 
-  if (self->ascending) {
+  if (self->thread_mode) {
     start = 0;
   }
   else {
@@ -745,7 +745,7 @@ cb_tweet_model_remove_tweets_later_than (CbTweetModel *self,
   if (self->tweets->len == 0)
     return;
 
-  if (self->ascending) {
+  if (self->thread_mode) {
     for (guint i = self->tweets->len; i > 0; i--) {
       CbTweet *cur = g_ptr_array_index (self->tweets, i - 1);
 
