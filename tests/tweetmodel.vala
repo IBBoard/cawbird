@@ -265,6 +265,51 @@ void index_of_thread_mode () {
   assert (tm.index_of (100 + n) == -1);
 }
 
+void index_of_rt () {
+  var tm = new Cb.TweetModel ();
+
+  const int n = 10;
+
+  for (int i = 0; i < n; i++) {
+    var t = new Cb.Tweet ();
+    t.id = 100 + i;
+    t.retweeted_tweet = Cb.MiniTweet();
+    t.retweeted_tweet.id = 10 + i;
+
+    tm.add (t);
+  }
+
+  for (int i = 0; i < n; i++) {
+    assert (tm.index_of_retweet (10 + i) == n - i - 1);
+  }
+
+  assert (tm.index_of_retweet (9) == -1);
+  assert (tm.index_of_retweet (10 + n) == -1);
+}
+
+void index_of_rt_thread_mode () {
+  var tm = new Cb.TweetModel ();
+  tm.set_thread_mode (true);
+
+  const int n = 10;
+
+  for (int i = 0; i < n; i++) {
+    var t = new Cb.Tweet ();
+    t.id = 100 + i;
+    t.retweeted_tweet = Cb.MiniTweet();
+    t.retweeted_tweet.id = 10 + i;
+
+    tm.add (t);
+  }
+
+  for (int i = 0; i < n; i++) {
+    assert (tm.index_of_retweet (10 + i) == i);
+  }
+
+  assert (tm.index_of_retweet (9) == -1);
+  assert (tm.index_of_retweet (10 + n) == -1);
+}
+
 void clear () {
   var tm = new Cb.TweetModel ();
 
@@ -842,6 +887,8 @@ int main (string[] args) {
   GLib.Test.add_func ("/tweetmodel/contains", contains);
   GLib.Test.add_func ("/tweetmodel/index-of", index_of);
   GLib.Test.add_func ("/tweetmodel/index-of-thread-mode", index_of_thread_mode);
+  GLib.Test.add_func ("/tweetmodel/index-of-retweet", index_of_rt);
+  GLib.Test.add_func ("/tweetmodel/index-of-retweet-thread-mode", index_of_rt_thread_mode);
   GLib.Test.add_func ("/tweetmodel/clear", clear);
   GLib.Test.add_func ("/tweetmodel/clear2", clear2);
   GLib.Test.add_func ("/tweetmodel/remove", remove_tweet);

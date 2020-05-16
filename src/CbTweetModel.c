@@ -191,6 +191,25 @@ cb_tweet_model_index_of (CbTweetModel *self,
 
   return -1;
 }
+
+int
+cb_tweet_model_index_of_retweet  (CbTweetModel *self,
+                                  gint64        id)
+{
+  int i;
+  g_return_val_if_fail (CB_IS_TWEET_MODEL (self), FALSE);
+
+  for (i = 0; i < self->tweets->len; i ++)
+    {
+      CbTweet *tweet = g_ptr_array_index (self->tweets, i);
+
+      if (tweet->retweeted_tweet != NULL && tweet->retweeted_tweet->id == id)
+        return i;
+    }
+
+  return -1;
+}
+
 static void
 remove_tweet_at_pos (CbTweetModel *self,
                      guint         index)

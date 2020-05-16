@@ -285,6 +285,7 @@ namespace Cb {
     public void set_thread_mode (bool thread_mode);
     public bool contains_id (int64 id);
     public int index_of (int64 id);
+    public int index_of_retweet (int64 id);
     public void clear ();
     public unowned Tweet? get_for_id (int64 id, int diff = 0);
     public void add (Tweet t);
