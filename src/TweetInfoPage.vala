@@ -350,8 +350,8 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       }
 
       var cur_reply_id = this.tweet.source_tweet.reply_id;
+      var screen_name_lower = screen_name.down();
       if (cur_reply_id == new_id) {
-        var screen_name_lower = screen_name.down();
         if (screen_name_lower == new_screen_name_lower) {
           self_replies_list_box.model.add (this.tweet);
           self_replies_list_box.show ();
@@ -364,7 +364,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
           replies_list_box.model.add (this.tweet);
           replies_list_box.show ();
         }
-      } else if (self_replies_list_box.model.contains_id (cur_reply_id)) {
+      } else if (self_replies_list_box.model.contains_id (cur_reply_id) && screen_name_lower == new_screen_name_lower) {
         self_replies_list_box.model.add (this.tweet);
         self_replies_list_box.show ();
       }
