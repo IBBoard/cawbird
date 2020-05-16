@@ -70,7 +70,11 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
   [GtkChild]
   private Gtk.Label rt_label;
   [GtkChild]
-  private Gtk.Label fav_label;
+  private Gtk.Image rt_image;
+  [GtkChild]
+  private Gtk.Label rts_label;
+  [GtkChild]
+  private Gtk.Label favs_label;
   [GtkChild]
   private TweetListBox replied_to_list_box;
   [GtkChild]
@@ -424,7 +428,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
           this.tweet.favorite_count --;
         }
 
-        this.update_rt_fav_labels ();
+        this.update_rts_favs_labels ();
       } else {
         favorite_button.active = tweet.is_flag_set (Cb.TweetState.FAVORITED);
       }
@@ -454,7 +458,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
           this.tweet.retweet_count --;
         }
 
-        this.update_rt_fav_labels ();
+        this.update_rts_favs_labels ();
       } else {
         retweet_button.active = tweet.is_flag_set (Cb.TweetState.RETWEETED);
       }
@@ -736,7 +740,29 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     screen_name_label.tooltip_text = screen_name;
 
     load_user_avatar (tweet.avatar_url);
-    update_rt_fav_labels ();
+
+    if (tweet.retweeted_tweet != null) {
+      rt_label.show ();
+      rt_image.show ();
+      var buff = new StringBuilder ();
+      buff.append ("<span underline='none'><a href=\"@")
+          .append (tweet.source_tweet.author.id.to_string ())
+          .append ("/@")
+          .append (tweet.source_tweet.author.screen_name)
+          .append ("\" title=\"@")
+          .append (tweet.source_tweet.author.screen_name)
+          .append ("\">")
+          .append (GLib.Markup.escape_text(tweet.source_tweet.author.user_name))
+          .append ("</a></span> @")
+          .append (tweet.source_tweet.author.screen_name);
+      rt_label.label = buff.str;
+    }
+    else {
+      rt_label.hide ();
+      rt_image.hide ();
+    }
+
+    update_rts_favs_labels ();
     time_label.label = time_format;
     retweet_button.active  = tweet.is_flag_set (Cb.TweetState.RETWEETED);
     favorite_button.active = tweet.is_flag_set (Cb.TweetState.FAVORITED);
@@ -811,9 +837,9 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     }
   }
 
-  private void update_rt_fav_labels () {
-    rt_label.label = "<big><b>%'d</b></big> %s".printf (tweet.retweet_count, _("Retweets"));
-    fav_label.label = "<big><b>%'d</b></big> %s".printf (tweet.favorite_count, _("Favorites"));
+  private void update_rts_favs_labels () {
+    rts_label.label = "<big><b>%'d</b></big> %s".printf (tweet.retweet_count, _("Retweets"));
+    favs_label.label = "<big><b>%'d</b></big> %s".printf (tweet.favorite_count, _("Favorites"));
   }
 
   private void set_source_link (int64 id, string screen_name) {
@@ -942,7 +968,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
         this.values_set = false;
         this.favorite_button.active = true;
         this.tweet.favorite_count ++;
-        this.update_rt_fav_labels ();
+        this.update_rts_favs_labels ();
         this.values_set = true;
       }
 
@@ -953,7 +979,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
         this.values_set = false;
         this.favorite_button.active = false;
         this.tweet.favorite_count --;
-        this.update_rt_fav_labels ();
+        this.update_rts_favs_labels ();
         this.values_set = true;
       }
     }
