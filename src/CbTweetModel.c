@@ -230,12 +230,13 @@ insert_sorted (CbTweetModel *self,
                CbTweet      *tweet)
 {
   int insert_pos = -1;
+  gint64 id = self->thread_mode && tweet->retweeted_tweet != NULL ? tweet->retweeted_tweet->id : tweet->id;
 
-  if (tweet->id > self->max_id)
+  if (id > self->max_id)
     {
       insert_pos = self->thread_mode ? self->tweets->len : 0;
     }
-  else if (tweet->id < self->min_id)
+  else if (id < self->min_id)
     {
       insert_pos = self->thread_mode ? 0 : self->tweets->len;
     }
@@ -251,22 +252,24 @@ insert_sorted (CbTweetModel *self,
           CbTweet *cur = next;
           next = g_ptr_array_index (self->tweets, i);
 
-          CbTweet *older, *newer;
+          gint64 older_id, newer_id, cur_id;
 
           if (self->thread_mode) {
-            older = cur;
-            newer = next;
+            cur_id = cur->retweeted_tweet != NULL ? cur->retweeted_tweet->id : cur->id;
+            older_id = cur_id;
+            newer_id = next->retweeted_tweet != NULL ? next->retweeted_tweet->id : next->id;
           } else {
-            older = next;
-            newer = cur;
+            cur_id = cur->id;
+            older_id = next->id;
+            newer_id = cur_id;
           }
 
-          if (newer->id > tweet->id && older->id < tweet->id)
+          if (newer_id > id && older_id < id)
             {
               insert_pos = i;
               break;
             }
-          else if (cur->id == tweet->id)
+          else if (cur_id == id)
             {
               // We found a duplicate! Could be caused by injecting the user's own tweet,
               // so ignore it
@@ -287,6 +290,12 @@ insert_sorted (CbTweetModel *self,
   g_ptr_array_insert (self->tweets, insert_pos, tweet);
 
   emit_items_changed (self, insert_pos, 0, 1);
+
+  if (id > self->max_id)
+    self->max_id = id;
+
+  if (id < self->min_id)
+    self->min_id = id;
 }
 
 static void
@@ -315,12 +324,6 @@ show_tweet_internal (CbTweetModel *self,
   g_ptr_array_remove_index (self->hidden_tweets, index);
   insert_sorted (self, tweet);
   g_object_unref (tweet);
-
-  if (tweet->id > self->max_id)
-    self->max_id = tweet->id;
-
-  if (tweet->id < self->min_id)
-    self->min_id = tweet->id;
 }
 
 gboolean
@@ -713,12 +716,6 @@ cb_tweet_model_add (CbTweetModel *self,
   else
     {
       insert_sorted (self, tweet);
-
-      if (tweet->id > self->max_id)
-        self->max_id = tweet->id;
-
-      if (tweet->id < self->min_id)
-        self->min_id = tweet->id;
     }
 }
 

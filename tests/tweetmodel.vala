@@ -12,13 +12,17 @@ bool is_desc_sorted (Cb.TweetModel tm) {
 }
 
 bool is_thread_mode_sorted (Cb.TweetModel tm) {
-  int64 last_id = ((Cb.Tweet)tm.get_item (0)).id;
+  Cb.Tweet first_tweet = ((Cb.Tweet)tm.get_item (0));
+  int64 last_id = first_tweet.retweeted_tweet == null ? first_tweet.id : first_tweet.retweeted_tweet.id;
 
   for (int i = 1; i < tm.get_n_items (); i ++) {
     Cb.Tweet t = (Cb.Tweet)tm.get_item (i);
-    if (t.id < last_id) return false;
+    int64 id = t.retweeted_tweet == null ? t.id : t.retweeted_tweet.id;
+    debug("ID: %lld", id);
 
-    last_id = t.id;
+    if (id < last_id) return false;
+
+    last_id = id;
   }
   return true;
 }
@@ -53,9 +57,9 @@ void basic_tweet_order () {
   tm.add (t1); // 10
   assert (tm.min_id == 10);
   assert (tm.max_id == 1000);
+  tm.add (t2); // 100
   assert (tm.min_id == 10);
   assert (tm.max_id == 1000);
-  tm.add (t2); // 100
 
   assert (tm.get_n_items () == 3);
   assert (is_desc_sorted (tm));
@@ -85,8 +89,9 @@ void basic_tweet_order_thread_mode () {
   tm.add (t1); // 10
   assert (tm.min_id == 10);
   assert (tm.max_id == 1000);
+  tm.add (t2); // 100
   assert (tm.min_id == 10);
-  assert (tm.max_id == 1000); tm.add (t2); // 100
+  assert (tm.max_id == 1000);
 
   assert (tm.get_n_items () == 3);
 
@@ -95,6 +100,92 @@ void basic_tweet_order_thread_mode () {
   assert (((Cb.Tweet)tm.get_item (0)).id == 10);
   assert (((Cb.Tweet)tm.get_item (1)).id == 100);
   assert (((Cb.Tweet)tm.get_item (2)).id == 1000);
+}
+
+void retweet_order () {
+  Cb.TweetModel tm = new Cb.TweetModel ();
+
+  Cb.Tweet t1 = new Cb.Tweet ();
+  t1.id = 10;
+
+  Cb.Tweet t2 = new Cb.Tweet ();
+  t2.id = 100;
+  t2.retweeted_tweet = Cb.MiniTweet ();
+  t2.retweeted_tweet.id = 5;
+
+  Cb.Tweet t3 = new Cb.Tweet ();
+  t3.id = 1000;
+
+
+  tm.add (t3); // 1000
+  assert (tm.min_id == 1000);
+  assert (tm.max_id == 1000);
+  tm.add (t1); // 10
+  assert (tm.min_id == 10);
+  assert (tm.max_id == 1000);
+  tm.add (t2); // 100
+  assert (tm.min_id == 10);
+  assert (tm.max_id == 1000);
+
+  assert (tm.get_n_items () == 3);
+  assert (is_desc_sorted (tm));
+
+  assert (((Cb.Tweet)tm.get_item (0)).id == 1000);
+  assert (((Cb.Tweet)tm.get_item (1)).id == 100);
+  assert (((Cb.Tweet)tm.get_item (2)).id == 10);
+}
+
+void retweet_order_thread_mode () {
+  Cb.TweetModel tm = new Cb.TweetModel ();
+  tm.set_thread_mode (true);
+
+  Cb.Tweet t1 = new Cb.Tweet ();
+  t1.id = 10;
+
+  Cb.Tweet t2 = new Cb.Tweet ();
+  t2.id = 100;
+  t2.retweeted_tweet = Cb.MiniTweet ();
+  t2.retweeted_tweet.id = 5;
+
+  Cb.Tweet t3 = new Cb.Tweet ();
+  t3.id = 1000;
+
+
+  tm.add (t3); // 1000
+  assert (tm.min_id == 1000);
+  assert (tm.max_id == 1000);
+  tm.add (t1); // 10
+  assert (tm.min_id == 10);
+  assert (tm.max_id == 1000);
+  tm.add (t2); // 100 RTing 5
+  assert (tm.min_id == 5);
+  assert (tm.max_id == 1000);
+
+  assert (tm.get_n_items () == 3);
+
+  assert (is_thread_mode_sorted (tm));
+
+  // ID order looks odd because of the RT being moved to the top
+  assert (((Cb.Tweet)tm.get_item (0)).id == 100);
+  assert (((Cb.Tweet)tm.get_item (1)).id == 10);
+  assert (((Cb.Tweet)tm.get_item (2)).id == 1000);
+}
+
+void retweet_duplicate_insertion () {
+  Cb.TweetModel tm = new Cb.TweetModel ();
+  tm.set_thread_mode (true);
+
+  Cb.Tweet t1 = new Cb.Tweet ();
+  t1.id = 10;
+
+  Cb.Tweet t2 = new Cb.Tweet ();
+  t2.id = 100;
+  t2.retweeted_tweet = Cb.MiniTweet ();
+  t2.retweeted_tweet.id = 10;
+
+  tm.add(t1);
+  tm.add(t2);
+  assert(tm.get_n_items() == 1);
 }
 
 void tweet_removal () {
@@ -881,6 +972,9 @@ int main (string[] args) {
   GLib.Test.init (ref args);
   GLib.Test.add_func ("/tweetmodel/basic-tweet-order", basic_tweet_order);
   GLib.Test.add_func ("/tweetmodel/basic-tweet-order-thread-mode", basic_tweet_order_thread_mode);
+  GLib.Test.add_func ("/tweetmodel/retweet-order", retweet_order);
+  GLib.Test.add_func ("/tweetmodel/retweet-order-thread-mode", retweet_order_thread_mode);
+  GLib.Test.add_func ("/tweetmodel/retweet-duplicate-insertion", retweet_duplicate_insertion);
   GLib.Test.add_func ("/tweetmodel/tweet-removal", tweet_removal);
   GLib.Test.add_func ("/tweetmodel/tweet-removal-thread-mode", tweet_removal_thread_mode);
   GLib.Test.add_func ("/tweetmodel/tweet-removal-zero-length", tweet_removal_zero_length_handling);
