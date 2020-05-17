@@ -198,10 +198,17 @@ namespace Utils {
 
   /**
    * Shows an error dialog for a given GLib error
+   * (Unless it is "Operation was cancelled", and then we ignore it)
    *
    * @param e The error to show
    */
   void show_error_dialog (GLib.Error e, Gtk.Window? transient_for = null, string? file = null, int line = 0) {
+    if (e is GLib.IOError.CANCELLED) {
+      // It's not really an error, so don't show it
+      return;
+    }
+
+
     string message;
     if (e.domain == TweetUtils.get_error_domain()) {
       message = TweetUtils.code_to_message(e.code, e.message);
