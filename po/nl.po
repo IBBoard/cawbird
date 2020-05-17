@@ -4,8 +4,9 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# IBBoard . <github@ibboard.co.uk>, 2020
-# Heimen Stoffels <vistausss@outlook.com>, 2020
+# Geert Wirken <geert@gwirken.nl>, 2014
+# Nathan Follens, 2017
+# Heimen Stoffels <vistausss@outlook.com>, 2014-2015, 2020
 # 
 #, fuzzy
 msgid ""
