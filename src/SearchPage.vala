@@ -159,7 +159,7 @@ class SearchPage : IPage, Gtk.Box {
     if (set_text)
       search_entry.set_text(q);
 
-    q += " -rt";
+    q += " -filter:retweets";
 
     this.search_query    = q;
     this.user_page       = 1;
