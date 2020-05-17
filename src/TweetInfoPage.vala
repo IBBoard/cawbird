@@ -96,6 +96,8 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
   [GtkChild]
   private Gtk.Stack main_stack;
   [GtkChild]
+  private Gtk.Label missing_tweet_label;
+  [GtkChild]
   private Gtk.Label error_label;
   [GtkChild]
   private Gtk.Label reply_label;
@@ -113,6 +115,9 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     this.mentioned_replies_list_box.set_thread_mode (true);
     this.replied_to_list_box.account = account;
     this.replied_to_list_box.set_thread_mode (true);
+
+    missing_tweet_label.label = _("This tweet is unavailable");
+    missing_tweet_label.hide();
 
     grid.set_redraw_on_allocate (true);
 
@@ -181,6 +186,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
     max_size_container.max_size = 0;
     main_stack.visible_child = main_box;
+    missing_tweet_label.hide ();
 
     /* If we have a tweet instance here already, we set the avatar now instead of in
      * set_tweet_data, since the rearrange_tweets() or list.model.clear() calls
@@ -695,7 +701,12 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       try {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
-        Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e), this.main_window);
+        var err = TweetUtils.failed_request_to_error (call, e);
+        if (err.domain == TweetUtils.get_error_domain() && err.code == 144) {
+          missing_tweet_label.show();
+        } else {
+          Utils.show_error_dialog (err, this.main_window);
+        }
         replied_to_list_box.visible = (replied_to_list_box.get_children ().length () > 0);
         return;
       }

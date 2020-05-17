@@ -28,9 +28,26 @@
                 <property name="can-focus">0</property>
                 <property name="hexpand">1</property>
                 <child>
-                  <object class="TweetListBox" id="replied_to_list_box">
-                    <property name="can-focus">False</property>
-                    <property name="selection-mode">none</property>
+                  <object class="GtkBox">
+                    <property name="visible">1</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkLabel" id="missing_tweet_label">
+                        <property name="visible">0</property>
+                        <property name="margin-top">18</property>
+                        <property name="margin-bottom">18</property>
+                        <property name="margin-start">6</property>
+                        <property name="halign">center</property>
+                        <property name="valign">baseline</property>
+                        <property name="hexpand">1</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="TweetListBox" id="replied_to_list_box">
+                        <property name="can-focus">False</property>
+                        <property name="selection-mode">none</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>
