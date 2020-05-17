@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-04-07 15:27+0100\n"
+"POT-Creation-Date: 2020-05-17 11:53+0100\n"
 "PO-Revision-Date: 2018-02-09 06:34+0000\n"
 "Last-Translator: Kim Malmo <berencamlost@msn.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/cawbird/cawbird/"
@@ -58,10 +58,6 @@ msgstr "Bruk Twitter som et vanlig skrivebordsprogram"
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;"
-
-#. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon file name)!
-msgid "uk.co.ibboard.cawbird"
-msgstr "uk.co.ibboard.cawbird"
 
 #. TRANSLATORS: This is the start of a "Replying to" line in a tweet
 msgid "Replying to"
@@ -160,6 +156,9 @@ msgid "Search"
 msgstr "Søk"
 
 msgid "Load More"
+msgstr ""
+
+msgid "This tweet is unavailable"
 msgstr ""
 
 msgid "Could not show tweet"
@@ -870,6 +869,9 @@ msgstr "Laget"
 
 msgid "Subscribed to"
 msgstr "Abonnert på"
+
+#~ msgid "uk.co.ibboard.cawbird"
+#~ msgstr "uk.co.ibboard.cawbird"
 
 #~ msgid ""
 #~ "Unauthorized. Most of the time, this means that there's something wrong "

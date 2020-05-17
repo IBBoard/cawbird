@@ -2,23 +2,24 @@
 # Copyright (C) YEAR 2013-2018 Timm Bäder, 2018-2020 IBBoard
 # This file is distributed under the same license as the cawbird package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 # Translators:
 # Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, 2020
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-04-07 15:27+0100\n"
+"POT-Creation-Date: 2020-05-17 11:53+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
-"Last-Translator: Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, 2020\n"
+"Last-Translator: Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, "
+"2020\n"
 "Language-Team: Danish (https://www.transifex.com/cawbird/teams/107135/da/)\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Cawbird"
@@ -28,15 +29,15 @@ msgid "Twitter Client"
 msgstr "Twitter klient"
 
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as"
-" Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as "
+"Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
 "Cawbird er en GTK+ twitter klient med essentielle funktioner som Direkte "
 "Beskeder (DMs), tweet notifikationer og samtalevisning"
 
 msgid ""
-"Additional features include local viewing of videos, multiple inline images,"
-" Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images, "
+"Lists, Filters, multiple accounts, etc."
 msgstr ""
 "Yderligere funktioner inkludere: Lokal videoafspilning, Flere indlejrede "
 "billeder, Lister, Filtre, Flere konti, osv."
@@ -56,15 +57,9 @@ msgstr "IBBoard"
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Brug Twitter i en desktop applikation"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or
-#. localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;"
-
-#. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon
-#. file name)!
-msgid "uk.co.ibboard.cawbird"
-msgstr "uk.co.ibboard.cawbird"
 
 #. TRANSLATORS: This is the start of a "Replying to" line in a tweet
 msgid "Replying to"
@@ -164,6 +159,9 @@ msgstr "Søg"
 
 msgid "Load More"
 msgstr "Indlæs mere"
+
+msgid "This tweet is unavailable"
+msgstr ""
 
 msgid "Could not show tweet"
 msgstr "Kunne ikke vise tweet"
@@ -278,8 +276,8 @@ msgid ""
 "This request looks like it might be automated. To protect our users from "
 "spam and other malicious activity, we can’t complete this action right now."
 msgstr ""
-"Denne anmodning virker automatiseret. For at beskytte vores brugere fra spam"
-" og andre ondsindet aktiviteter, kan vi ikke udføre denne handling lige nu."
+"Denne anmodning virker automatiseret. For at beskytte vores brugere fra spam "
+"og andre ondsindet aktiviteter, kan vi ikke udføre denne handling lige nu."
 
 msgid "User must verify login"
 msgstr "Bruger skal validere login"
@@ -303,8 +301,8 @@ msgid "A media id was not found."
 msgstr "Et medie id kunne ikke findes."
 
 msgid ""
-"To protect our users from spam and other malicious activity, this account is"
-" temporarily locked."
+"To protect our users from spam and other malicious activity, this account is "
+"temporarily locked."
 msgstr ""
 "For at beskytte brugere fra spam og andre ondsindede aktiviteter, er denne "
 "konto blevet låst."
@@ -432,8 +430,7 @@ msgstr[0] "Kunne ikke indlæse billede"
 msgstr[1] "Kunne ikke indlæse %u billeder"
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
-#. <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -485,8 +482,7 @@ msgid "Snippet already exists"
 msgstr "Snippet eksistere allerede"
 
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
-"#newisalwaysbetter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
 msgstr ""
 "Hej, tjek lige denne nye #Cawbird version! \\ (•◡•) / #cool "
 "#newisalwaysbetter"
@@ -507,8 +503,8 @@ msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
 msgstr ""
-"For at autentificere Cawbird skal du have en PIN fra twitter.com fra kontoen"
-" du ønsker at tilføje"
+"For at autentificere Cawbird skal du have en PIN fra twitter.com fra kontoen "
+"du ønsker at tilføje"
 
 msgid "Request PIN"
 msgstr "Anmod om PIN"
@@ -880,3 +876,6 @@ msgstr "Lavet"
 
 msgid "Subscribed to"
 msgstr "Tilmeldt"
+
+#~ msgid "uk.co.ibboard.cawbird"
+#~ msgstr "uk.co.ibboard.cawbird"

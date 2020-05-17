@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-04-07 15:27+0100\n"
+"POT-Creation-Date: 2020-05-17 11:53+0100\n"
 "PO-Revision-Date: 2020-04-09 09:32+0100\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>, 2020\n"
 "Language-Team: Italian (https://www.transifex.com/cawbird/teams/107135/it/)\n"
@@ -64,10 +64,6 @@ msgstr "Usa Twitter come una normale applicazione desktop"
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "Twitter;"
-
-#. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon file name)!
-msgid "uk.co.ibboard.cawbird"
-msgstr "uk.co.ibboard.cawbird"
 
 #. TRANSLATORS: This is the start of a "Replying to" line in a tweet
 msgid "Replying to"
@@ -168,6 +164,9 @@ msgstr "Cerca"
 msgid "Load More"
 msgstr "Mostra altri"
 
+msgid "This tweet is unavailable"
+msgstr ""
+
 msgid "Could not show tweet"
 msgstr "Impossibile mostrare il tweet"
 
@@ -260,7 +259,8 @@ msgid "Sorry, you are not authorized to see this status"
 msgstr "Spiacenti, non sei autorizzato a visualizzare questo stato"
 
 msgid "User is over daily status update limit"
-msgstr "L'utente ha superato il limite di aggiornamento dello stato giornaliero"
+msgstr ""
+"L'utente ha superato il limite di aggiornamento dello stato giornaliero"
 
 msgid "Tweet needs to be a bit shorter."
 msgstr "Il tweet deve essere un po 'più breve."
@@ -281,8 +281,9 @@ msgid ""
 "This request looks like it might be automated. To protect our users from "
 "spam and other malicious activity, we can’t complete this action right now."
 msgstr ""
-"Questa richiesta sembra essere automatizzata. Per proteggere i nostri utenti da"
-"Spam e altre attività dannose, al momento non possiamo completare questa azione."
+"Questa richiesta sembra essere automatizzata. Per proteggere i nostri utenti "
+"daSpam e altre attività dannose, al momento non possiamo completare questa "
+"azione."
 
 msgid "User must verify login"
 msgstr "L'utente deve verificare l'accesso"
@@ -309,8 +310,8 @@ msgid ""
 "To protect our users from spam and other malicious activity, this account is "
 "temporarily locked."
 msgstr ""
-"Per proteggere i nostri utenti da spam e altre attività dannose, questo account è"
-"temporaneamente bloccato."
+"Per proteggere i nostri utenti da spam e altre attività dannose, questo "
+"account ètemporaneamente bloccato."
 
 msgid "You have already retweeted this Tweet."
 msgstr "Hai già ritwittato questo Tweet."
@@ -326,8 +327,7 @@ msgstr "La sottoscrizione esiste già."
 
 msgid ""
 "You attempted to reply to a Tweet that is deleted or not visible to you."
-msgstr ""
-"Hai tentato di rispondere a un Tweet cancellato o non visibile a te."
+msgstr "Hai tentato di rispondere a un Tweet cancellato o non visibile a te."
 
 msgid "The Tweet exceeds the number of allowed attachment types."
 msgstr "Il Tweet supera il numero di tipi di allegati consentiti."
@@ -883,6 +883,9 @@ msgstr "Creato"
 
 msgid "Subscribed to"
 msgstr "Sottoscritto a"
+
+#~ msgid "uk.co.ibboard.cawbird"
+#~ msgstr "uk.co.ibboard.cawbird"
 
 #~ msgid ""
 #~ "Unauthorized. Most of the time, this means that there's something wrong "

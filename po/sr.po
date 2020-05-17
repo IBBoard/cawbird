@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-04-07 15:27+0100\n"
+"POT-Creation-Date: 2020-05-17 11:53+0100\n"
 "PO-Revision-Date: 2017-11-19 08:34+0000\n"
 "Last-Translator: Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail."
 "com>\n"
@@ -59,10 +59,6 @@ msgstr "Користите Твитер помоћу обичног рачуна
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;tviter;твитер;"
-
-#. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon file name)!
-msgid "uk.co.ibboard.cawbird"
-msgstr "uk.co.ibboard.cawbird"
 
 #. TRANSLATORS: This is the start of a "Replying to" line in a tweet
 msgid "Replying to"
@@ -164,6 +160,9 @@ msgstr "Претрага"
 
 msgid "Load More"
 msgstr "Учитај још"
+
+msgid "This tweet is unavailable"
+msgstr ""
 
 msgid "Could not show tweet"
 msgstr "Не могу да прикажем твит"
@@ -881,6 +880,9 @@ msgstr "Направи"
 
 msgid "Subscribed to"
 msgstr "Претплаћен(а) на"
+
+#~ msgid "uk.co.ibboard.cawbird"
+#~ msgstr "uk.co.ibboard.cawbird"
 
 #~ msgid ""
 #~ "Unauthorized. Most of the time, this means that there's something wrong "

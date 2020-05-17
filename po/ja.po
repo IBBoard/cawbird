@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-04-07 15:27+0100\n"
+"POT-Creation-Date: 2020-05-17 11:53+0100\n"
 "PO-Revision-Date: 2017-11-12 23:35+0000\n"
 "Last-Translator: MTD TR <dev.mantendo@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/cawbird/cawbird/"
@@ -59,10 +59,6 @@ msgstr "通常のデスクトップアプリケーションからTwitterを使�
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr ""
-
-#. TRANSLATORS: Do NOT translate or transliterate this text (this is an icon file name)!
-msgid "uk.co.ibboard.cawbird"
-msgstr "uk.co.ibboard.cawbird"
 
 #. TRANSLATORS: This is the start of a "Replying to" line in a tweet
 msgid "Replying to"
@@ -160,6 +156,9 @@ msgstr "検索"
 
 msgid "Load More"
 msgstr "更に読み込む"
+
+msgid "This tweet is unavailable"
+msgstr ""
 
 msgid "Could not show tweet"
 msgstr "ツイートを表示できませんでした"
@@ -864,6 +863,9 @@ msgstr "作成"
 
 msgid "Subscribed to"
 msgstr "購読中"
+
+#~ msgid "uk.co.ibboard.cawbird"
+#~ msgstr "uk.co.ibboard.cawbird"
 
 #~ msgid "Could not load tweets"
 #~ msgstr "ツイートをロードできませんでした"
