@@ -16,6 +16,8 @@
  */
 
 public class HomeTimeline : Cb.MessageReceiver, DefaultTimeline {
+  private int64 last_tweet_id = 0;
+
   protected override string function {
     get {
       return "1.1/statuses/home_timeline.json";
@@ -105,6 +107,21 @@ public class HomeTimeline : Cb.MessageReceiver, DefaultTimeline {
       t.set_flag (Cb.TweetState.HIDDEN_FILTERED);
 
     bool auto_scroll = Settings.auto_scroll_on_new_tweets ();
+    bool is_new_unread = false;
+
+    if (t.id < last_tweet_id && !tweet_list.model.contains_id (t.id)) {
+      int64 age_diff = (int64)(((last_tweet_id >> 22) / 1000) - ((t.id >> 22) / 1000));
+      debug("Loaded missing tweet %lld (%lld seconds older than %lld)", t.id, age_diff, last_tweet_id);
+      is_new_unread = true;
+    }
+    else if (t.id > last_tweet_id && t.source_tweet.author.id != account.id) {
+      // Keep track of the last ID we saw.
+      // Ignore our own tweets because they get injected and come out of sequence.
+      // This is also the reason we can't just use the model's max_id
+      last_tweet_id = t.id;
+      is_new_unread = true;
+    }
+    // Else we've seen it before, so change nothing
 
     t.set_seen (t.source_tweet.author.id == account.id ||
                 (t.retweeted_tweet != null && t.retweeted_tweet.author.id == account.id) ||
@@ -128,8 +145,9 @@ public class HomeTimeline : Cb.MessageReceiver, DefaultTimeline {
         base.scroll_up (t);
       }
 
-      if (!t.get_seen () && preload_is_complete)
+      if (!t.get_seen () && preload_is_complete && is_new_unread) {
         this.unread_count ++;
+      }
     } else {
       t.set_seen (true);
     }

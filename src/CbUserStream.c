@@ -378,7 +378,17 @@ load_timeline_tweets (gpointer user_data)
 
   if (!is_first_load) {
     char since_id [20];
-    sprintf(since_id, "%ld", self->last_home_id);
+    // We may occasionally miss tweets (bug #147). This appears to be because of eventual consistency (tweets appear at the server
+    // that we query *after* our last query but are timestamped *before* the 'since' ID for that query). So we need to try and overlap a bit.
+    // Tweet IDs are "snowflakes" with 12 bits of sequence (lowest), 5 bits of worker ID, 5 bits of data centre, and then the timestamp.
+    // https://github.com/twitter-archive/snowflake/blob/snowflake-2010/src/main/scala/com/twitter/service/snowflake/IdWorker.scala#L27-L36
+    // The timestamp is to millisecond accuracy, so we want to ignore the last three base-10 digits. Plus more digits to give more than
+    // one second of overlap. 10 bits is ~1s and every extra bit is double that.
+    // We mask the ID with that value to see whether we get any missed tweets.
+    // Note: this will result in at least the last tweet being reloaded each time.
+    gint timestamp_shift = 5 + 5 + 12;
+    gint overlap_shift = 13; // 13bits ~= 8 seconds
+    sprintf(since_id, "%ld", self->last_home_id & (-1L << (timestamp_shift + overlap_shift)));
     rest_proxy_call_add_param(proxy_call, "since_id", since_id);
   }
 
