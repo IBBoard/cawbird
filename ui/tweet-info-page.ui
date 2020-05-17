@@ -28,7 +28,7 @@
                 <property name="can-focus">0</property>
                 <property name="hexpand">1</property>
                 <child>
-                  <object class="TweetListBox" id="top_list_box">
+                  <object class="TweetListBox" id="replied_to_list_box">
                     <property name="can-focus">False</property>
                     <property name="selection-mode">none</property>
                   </object>
@@ -36,15 +36,9 @@
               </object>
             </child>
             <child>
-              <object class="ReplyIndicator" id="reply_indicator">
-                <property name="visible">1</property>
-                <property name="can-focus">0</property>
-                <property name="hexpand">1</property>
-              </object>
-            </child>
-            <child>
               <object class="GtkGrid" id="grid">
                 <property name="visible">1</property>
+                <property name="margin-bottom">6</property>
                 <style>
                   <class name="view" />
                   <class name="tweet-info-grid" />
@@ -214,7 +208,47 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="rt_label">
+                  <object class="GtkBox">
+                    <property name="visible">1</property>
+                    <child>
+                      <object class="GtkImage" id="rt_image">
+                        <property name="no-show-all">1</property>
+                        <property name="halign">end</property>
+                        <property name="valign">baseline</property>
+                        <property name="margin-end">12</property>
+                        <property name="pixel-size">16</property>
+                        <property name="icon-name">cawbird-retweet-symbolic</property>
+                        <property name="icon-size">1</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="rt_label">
+                        <property name="no-show-all">1</property>
+                        <property name="halign">start</property>
+                        <property name="valign">baseline</property>
+                        <property name="margin-top">8</property>
+                        <property name="use-markup">1</property>
+                        <property name="ellipsize">end</property>
+                        <property name="xalign">0</property>
+                        <property name="track-visited-links">0</property>
+                        <signal name="activate-link" handler="link_activated_cb" swapped="no"/>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">7</property>
+                    <property name="width">8</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="rts_label">
                     <property name="visible">1</property>
                     <property name="margin-end">8</property>
                     <property name="xalign">0</property>
@@ -231,7 +265,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="fav_label">
+                  <object class="GtkLabel" id="favs_label">
                     <property name="visible">1</property>
                     <property name="xalign">0</property>
                     <property name="use-markup">1</property>
@@ -353,10 +387,23 @@
             </child>
 
             <child>
-              <object class="TweetListBox" id="bottom_list_box">
+              <object class="TweetListBox" id="self_replies_list_box">
                 <property name="visible">1</property>
                 <property name="selection-mode">none</property>
-                <property name="margin-top">6</property>
+                <property name="hexpand">1</property>
+              </object>
+            </child>
+            <child>
+              <object class="TweetListBox" id="mentioned_replies_list_box">
+                <property name="visible">1</property>
+                <property name="selection-mode">none</property>
+                <property name="hexpand">1</property>
+              </object>
+            </child>
+            <child>
+              <object class="TweetListBox" id="replies_list_box">
+                <property name="visible">1</property>
+                <property name="selection-mode">none</property>
                 <property name="hexpand">1</property>
               </object>
             </child>

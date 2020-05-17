@@ -93,6 +93,7 @@ G_DECLARE_FINAL_TYPE (CbTweet, cb_tweet, CB, TWEET, GObject);
 CbTweet *        cb_tweet_new (void);
 
 gboolean         cb_tweet_is_hidden       (CbTweet *tweet);
+gboolean         cb_tweet_is_reply        (CbTweet *tweet);
 CbUserIdentity * cb_tweet_get_reply_users (CbTweet *tweet,
                                            guint   *n_reply_users);
 

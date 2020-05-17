@@ -72,7 +72,7 @@ class MaxSizeContainer : Gtk.Bin {
       child_alloc.y = alloc.y;
       child_alloc.height = alloc.height;
     } else {
-      child_alloc.y = alloc.y;// - (max_size - alloc.height);
+      child_alloc.y = alloc.y;
       child_alloc.height = max_size;
     }
 
@@ -85,6 +85,8 @@ class MaxSizeContainer : Gtk.Bin {
       int min_height, nat_height;
       get_child ().get_preferred_height_for_width (alloc.width, out min_height, out nat_height);
       child_alloc.height = int.max (child_alloc.height, min_height);
+      // Move Y up to show the bottom of the contained objects first as we scroll
+      child_alloc.y = alloc.height - min_height;
 
       get_child ().size_allocate (child_alloc);
       if (this.get_realized ())

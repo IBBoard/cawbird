@@ -345,7 +345,7 @@ class ListStatusesPage : ScrollWidget, IPage {
           return false;
         }
 
-        tweet_list.model.remove_last_n_visible (tweet_list.model.get_n_items () - DefaultTimeline.REST);
+        tweet_list.model.remove_oldest_n_visible (tweet_list.model.get_n_items () - DefaultTimeline.REST);
         tweet_remove_timeout = 0;
         return GLib.Source.REMOVE;
       });

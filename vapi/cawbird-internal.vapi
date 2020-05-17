@@ -149,6 +149,8 @@ namespace Cb {
       public bool has_quoted_inline_media ();
       public void load_from_json (Json.Node node, int64 account_id, GLib.DateTime now);
 
+      public bool is_reply ();
+
       public bool is_flag_set (uint flag);
       public void set_flag (uint flag);
       public void unset_flag (uint flag);
@@ -280,16 +282,19 @@ namespace Cb {
     public GLib.GenericArray<Tweet> hidden_tweets;
 
     public TweetModel ();
+    public void set_thread_mode (bool thread_mode);
     public bool contains_id (int64 id);
+    public int index_of (int64 id);
+    public int index_of_retweet (int64 id);
     public void clear ();
-    public unowned Tweet? get_for_id (int64 id, int diff = -1);
+    public unowned Tweet? get_for_id (int64 id, int diff = 0);
     public void add (Tweet t);
-    public void remove_last_n_visible (uint amount);
+    public void remove_oldest_n_visible (uint amount);
     public bool delete_id (int64 id, out bool seen);
     public bool set_tweet_flag (Tweet t, TweetState flag);
     public bool unset_tweet_flag (Tweet t, TweetState flag);
     public void remove_tweet (Tweet t);
-    public void remove_tweets_above (int64 id);
+    public void remove_tweets_later_than (int64 id);
     public void toggle_flag_on_user_tweets (int64 user_id, TweetState flag, bool active);
     public void toggle_flag_on_user_retweets (int64 user_id, TweetState flag, bool active);
   }

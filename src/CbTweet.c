@@ -173,9 +173,9 @@ cb_tweet_get_mentions (CbTweet  *tweet,
   for (i = 0; i < n_entities; i ++)
     if (entities[i].display_text[0] == '@')
       {
-        mentions[x] = g_strdup (entities[i].display_text);
+        mentions[x] = g_strdup (&entities[i].display_text[1]);
         x ++;
-      }
+  }
 
   return mentions;
 }
@@ -296,6 +296,12 @@ cb_tweet_load_from_json (CbTweet   *tweet,
     g_object_unref (generator);
   }
 #endif
+}
+
+gboolean
+cb_tweet_is_reply (CbTweet *tweet)
+{
+  return (tweet->retweeted_tweet != NULL && tweet->retweeted_tweet->reply_id != 0) || (tweet->retweeted_tweet == NULL && tweet->source_tweet.reply_id != 0);
 }
 
 gboolean

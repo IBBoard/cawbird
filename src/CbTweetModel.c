@@ -72,6 +72,7 @@ cb_tweet_model_init (CbTweetModel *self)
 {
   self->tweets = g_ptr_array_new_with_free_func (g_object_unref);
   self->hidden_tweets = g_ptr_array_new_with_free_func (g_object_unref);
+  self->thread_mode = FALSE;
   self->min_id = G_MAXINT64;
   self->max_id = G_MININT64;
 }
@@ -121,7 +122,7 @@ update_min_max_id (CbTweetModel *self,
     {
       if (self->tweets->len > 0)
         {
-          CbTweet *t = g_ptr_array_index (self->tweets, 0);
+          CbTweet *t = g_ptr_array_index (self->tweets, self->thread_mode ? self->tweets->len - 1 : 0);
 
           self->max_id = t->id;
 
@@ -149,7 +150,7 @@ update_min_max_id (CbTweetModel *self,
     {
       if (self->tweets->len > 0)
         {
-          CbTweet *t = g_ptr_array_index (self->tweets, self->tweets->len - 1);
+          CbTweet *t = g_ptr_array_index (self->tweets, self->thread_mode ? 0 : self->tweets->len - 1);
 
           self->min_id = t->id;
           /* We just removed the tweet with the min_id, so now remove all hidden tweets
@@ -173,22 +174,52 @@ update_min_max_id (CbTweetModel *self,
     }
 }
 
+int
+cb_tweet_model_index_of (CbTweetModel *self,
+                         gint64        id)
+{
+  int i;
+  g_return_val_if_fail (CB_IS_TWEET_MODEL (self), FALSE);
+
+  for (i = 0; i < self->tweets->len; i ++)
+    {
+      CbTweet *tweet = g_ptr_array_index (self->tweets, i);
+
+      if (tweet->id == id)
+        return i;
+    }
+
+  return -1;
+}
+
+int
+cb_tweet_model_index_of_retweet  (CbTweetModel *self,
+                                  gint64        id)
+{
+  int i;
+  g_return_val_if_fail (CB_IS_TWEET_MODEL (self), FALSE);
+
+  for (i = 0; i < self->tweets->len; i ++)
+    {
+      CbTweet *tweet = g_ptr_array_index (self->tweets, i);
+
+      if (tweet->retweeted_tweet != NULL && tweet->retweeted_tweet->id == id)
+        return i;
+    }
+
+  return -1;
+}
+
 static void
 remove_tweet_at_pos (CbTweetModel *self,
                      guint         index)
 {
+  g_assert (index < self->tweets->len);
   CbTweet *tweet = g_ptr_array_index (self->tweets, index);
   gint64 id = tweet->id;
 
-  g_assert (index < self->tweets->len);
-
   g_ptr_array_remove_index (self->tweets, index);
   tweet = NULL; /* We just unreffed it, so potentially freed */
-
-  /* TODO: If this tweet was the one with id == min_id or id == max_id,
-   *       we should remove tweets from self->hidden_tweets with id
-   *       greater or lower than its id. 
-   */
 
   update_min_max_id (self, id);
   emit_items_changed (self, index, 1, 0);
@@ -199,14 +230,15 @@ insert_sorted (CbTweetModel *self,
                CbTweet      *tweet)
 {
   int insert_pos = -1;
+  gint64 id = self->thread_mode && tweet->retweeted_tweet != NULL ? tweet->retweeted_tweet->id : tweet->id;
 
-  if (tweet->id > self->max_id)
+  if (id > self->max_id)
     {
-      insert_pos = 0;
+      insert_pos = self->thread_mode ? self->tweets->len : 0;
     }
-  else if (tweet->id < self->min_id)
+  else if (id < self->min_id)
     {
-      insert_pos = self->tweets->len;
+      insert_pos = self->thread_mode ? 0 : self->tweets->len;
     }
   else
     {
@@ -220,12 +252,24 @@ insert_sorted (CbTweetModel *self,
           CbTweet *cur = next;
           next = g_ptr_array_index (self->tweets, i);
 
-          if (cur->id > tweet->id && next->id < tweet->id)
+          gint64 older_id, newer_id, cur_id;
+
+          if (self->thread_mode) {
+            cur_id = cur->retweeted_tweet != NULL ? cur->retweeted_tweet->id : cur->id;
+            older_id = cur_id;
+            newer_id = next->retweeted_tweet != NULL ? next->retweeted_tweet->id : next->id;
+          } else {
+            cur_id = cur->id;
+            older_id = next->id;
+            newer_id = cur_id;
+          }
+
+          if (newer_id > id && older_id < id)
             {
               insert_pos = i;
               break;
             }
-          else if (cur->id == tweet->id)
+          else if (cur_id == id)
             {
               // We found a duplicate! Could be caused by injecting the user's own tweet,
               // so ignore it
@@ -246,6 +290,12 @@ insert_sorted (CbTweetModel *self,
   g_ptr_array_insert (self->tweets, insert_pos, tweet);
 
   emit_items_changed (self, insert_pos, 0, 1);
+
+  if (id > self->max_id)
+    self->max_id = id;
+
+  if (id < self->min_id)
+    self->min_id = id;
 }
 
 static void
@@ -274,30 +324,13 @@ show_tweet_internal (CbTweetModel *self,
   g_ptr_array_remove_index (self->hidden_tweets, index);
   insert_sorted (self, tweet);
   g_object_unref (tweet);
-
-  if (tweet->id > self->max_id)
-    self->max_id = tweet->id;
-
-  if (tweet->id < self->min_id)
-    self->min_id = tweet->id;
 }
 
 gboolean
 cb_tweet_model_contains_id (CbTweetModel *self,
                             gint64        id)
 {
-  int i;
-  g_return_val_if_fail (CB_IS_TWEET_MODEL (self), FALSE);
-
-  for (i = 0; i < self->tweets->len; i ++)
-    {
-      CbTweet *tweet = g_ptr_array_index (self->tweets, i);
-
-      if (tweet->id == id)
-        return TRUE;
-    }
-
-  return FALSE;
+  return cb_tweet_model_index_of (self, id) != -1;
 }
 
 void
@@ -314,6 +347,15 @@ cb_tweet_model_clear (CbTweetModel *self)
   self->max_id = G_MININT64;
 
   emit_items_changed (self, 0, l, 0);
+}
+
+void
+cb_tweet_model_set_thread_mode (CbTweetModel *self, gboolean thread_mode)
+{
+  g_return_if_fail (self->min_id == G_MAXINT64);
+  g_return_if_fail (self->max_id == G_MININT64);
+  
+  self->thread_mode = thread_mode;
 }
 
 CbTweet *
@@ -674,42 +716,63 @@ cb_tweet_model_add (CbTweetModel *self,
   else
     {
       insert_sorted (self, tweet);
-
-      if (tweet->id > self->max_id)
-        self->max_id = tweet->id;
-
-      if (tweet->id < self->min_id)
-        self->min_id = tweet->id;
     }
 }
 
 void
-cb_tweet_model_remove_last_n_visible (CbTweetModel *self,
-                                     guint          amount)
+cb_tweet_model_remove_oldest_n_visible (CbTweetModel *self,
+                                        guint          amount)
 {
   int size_before;
+  int start;
+
+  if (amount < 1) {
+    return;
+  }
 
   g_return_if_fail (CB_IS_TWEET_MODEL (self));
-
-  g_assert (amount <= self->tweets->len);
 
   size_before = self->tweets->len;
 
+  if (amount > size_before) {
+    amount = size_before;
+  }
+
+  if (self->thread_mode) {
+    start = 0;
+  }
+  else {
+    start = size_before - amount;
+  }
+
   g_ptr_array_remove_range (self->tweets,
-                            size_before - amount,
+                            start,
                             amount);
   update_min_max_id (self, self->min_id);
-  emit_items_changed (self, size_before - amount, amount, 0);
+  emit_items_changed (self, start, amount, 0);
 }
 
 void
-cb_tweet_model_remove_tweets_above (CbTweetModel *self,
-                                    gint64        id)
+cb_tweet_model_remove_tweets_later_than (CbTweetModel *self,
+                                         gint64        id)
 {
   g_return_if_fail (CB_IS_TWEET_MODEL (self));
 
-  while (self->tweets->len > 0)
-    {
+  if (self->tweets->len == 0)
+    return;
+
+  if (self->thread_mode) {
+    for (guint i = self->tweets->len; i > 0; i--) {
+      CbTweet *cur = g_ptr_array_index (self->tweets, i - 1);
+
+      if (cur->id < id)
+        break;
+
+      remove_tweet_at_pos (self, i - 1);
+    }
+  }
+  else {
+    while (self->tweets->len > 0) {
       CbTweet *first = g_ptr_array_index (self->tweets, 0);
 
       if (first->id < id)
@@ -717,4 +780,5 @@ cb_tweet_model_remove_tweets_above (CbTweetModel *self,
 
       remove_tweet_at_pos (self, 0);
     }
+  }
 }

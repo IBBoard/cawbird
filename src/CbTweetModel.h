@@ -38,6 +38,8 @@ struct _CbTweetModel
 {
   GObject parent_instance;
 
+  gboolean thread_mode;
+
   GPtrArray *tweets;
   GPtrArray *hidden_tweets;
   gint64 min_id;
@@ -53,10 +55,14 @@ GType    cb_tweet_model_get_type     (void) G_GNUC_CONST;
 
 CbTweetModel *cb_tweet_model_new (void);
 
+int cb_tweet_model_index_of (CbTweetModel *self, gint64 id);
+
 gboolean cb_tweet_model_contains_id  (CbTweetModel *self,
                                       gint64        id);
 
 void     cb_tweet_model_clear        (CbTweetModel *self);
+
+void     cb_tweet_model_set_thread_mode (CbTweetModel *self, gboolean thread_mode);
 
 CbTweet *cb_tweet_model_get_for_id   (CbTweetModel *self,
                                       gint64        id,
@@ -90,11 +96,11 @@ gboolean cb_tweet_model_unset_tweet_flag (CbTweetModel *self,
 void     cb_tweet_model_add (CbTweetModel *self,
                              CbTweet      *tweet);
 
-void     cb_tweet_model_remove_last_n_visible (CbTweetModel *self,
+void     cb_tweet_model_remove_oldest_n_visible (CbTweetModel *self,
                                                guint         amount);
 
-void     cb_tweet_model_remove_tweets_above (CbTweetModel *self,
-                                             gint64        id);
+void     cb_tweet_model_remove_tweets_later_than (CbTweetModel *self,
+                                                  gint64        id);
 
 
 
