@@ -197,7 +197,8 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       replied_to_list_box.model.clear ();
       replied_to_list_box.hide ();
       replies_list_box.model.clear ();
-      replies_list_box.hide ();
+      replies_list_box.set_unempty ();
+      replies_list_box.show ();
       self_replies_list_box.model.clear ();
       self_replies_list_box.hide ();
       mentioned_replies_list_box.model.clear ();
@@ -254,13 +255,15 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
   }
 
   private void rearrange_tweets (int64 new_id) {
+    replies_list_box.model.clear ();
+    replies_list_box.set_unempty ();
+    replies_list_box.show ();
+
     if (replies_list_box.model.contains_id (new_id) || mentioned_replies_list_box.model.contains_id (new_id)) {
       // We're moving down the thread to a reply of the currently displayed tweet,
       // so move the current tweet up into replied_to_list_box
       replied_to_list_box.model.add (this.tweet);
       replied_to_list_box.show ();
-      replies_list_box.model.clear ();
-      replies_list_box.hide ();
       self_replies_list_box.model.clear ();
       self_replies_list_box.hide ();
       mentioned_replies_list_box.model.clear ();
@@ -270,8 +273,6 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       // so move all intervening tweets up into replied_to_list_box
       replied_to_list_box.model.add (this.tweet);
       replied_to_list_box.show ();
-      replies_list_box.model.clear ();
-      replies_list_box.hide ();
       mentioned_replies_list_box.model.clear ();
       mentioned_replies_list_box.hide ();
       var idx = self_replies_list_box.model.index_of (new_id);
@@ -291,8 +292,6 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       // (they'll now be replies) and add the direct successor to the replies list
       // or add the chain of self-replies to the self-reply list
       // Other replies will then be loaded by a separate process
-      replies_list_box.model.clear ();
-      replies_list_box.hide ();
       mentioned_replies_list_box.model.clear ();
       mentioned_replies_list_box.hide ();
       self_replies_list_box.hide ();
@@ -373,6 +372,9 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       }
 
       replied_to_list_box.model.remove_tweets_later_than (new_id);
+    
+      if (replied_to_list_box.model.get_n_items () == 0)
+        replied_to_list_box.hide ();
     }
     else {
       // New tweet - wipe the lot to be sure!
@@ -383,16 +385,11 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       // so just wipe it and be done with it)
       replied_to_list_box.model.clear ();
       replied_to_list_box.hide ();
-      replies_list_box.model.clear ();
-      replies_list_box.hide ();
       mentioned_replies_list_box.model.clear ();
       mentioned_replies_list_box.hide ();
       self_replies_list_box.model.clear ();
       self_replies_list_box.hide ();
     }
-    
-    if (replied_to_list_box.model.get_n_items () == 0)
-      replied_to_list_box.hide ();
   }
 
   public void on_leave () {
@@ -569,7 +566,12 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     other_reply_call.add_param ("since_id", tweet_id.to_string ());
     other_reply_call.add_param ("count", "200");
     other_reply_call.add_param ("tweet_mode", "extended");
-    Cb.Utils.load_threaded_async.begin (other_reply_call, cancellable, add_replies);
+    Cb.Utils.load_threaded_async.begin (other_reply_call, cancellable, (src, res) => {
+      add_replies(src, res);
+      if (replies_list_box.model.get_n_items() == 0) {
+        replies_list_box.hide();
+      }
+    });
   }
       
   private void add_replies (GLib.Object? src, GLib.AsyncResult res) {
