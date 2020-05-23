@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 10:53+0100\n"
+"POT-Creation-Date: 2020-05-23 11:31+0100\n"
 "PO-Revision-Date: 2017-12-22 02:49+0000\n"
 "Last-Translator: antiparvos\n"
 "Language-Team: Galician (http://www.transifex.com/cawbird/cawbird/language/"
@@ -158,11 +158,14 @@ msgstr "Buscar"
 msgid "Load More"
 msgstr "Cargar máis"
 
-msgid "This tweet is unavailable"
-msgstr ""
-
 msgid "Could not show tweet"
 msgstr "Non foi posíbel mostrar o chío"
+
+msgid "This tweet is hidden by the author"
+msgstr ""
+
+msgid "This tweet is unavailable"
+msgstr ""
 
 msgid "Retweets"
 msgstr "Rechouchíos"

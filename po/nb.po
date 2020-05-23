@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 10:53+0100\n"
+"POT-Creation-Date: 2020-05-23 11:31+0100\n"
 "PO-Revision-Date: 2018-02-09 06:34+0000\n"
 "Last-Translator: Kim Malmo <berencamlost@msn.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/cawbird/cawbird/"
@@ -158,11 +158,14 @@ msgstr "Søk"
 msgid "Load More"
 msgstr ""
 
-msgid "This tweet is unavailable"
-msgstr ""
-
 msgid "Could not show tweet"
 msgstr "Klarte ikke å vise tweet"
+
+msgid "This tweet is hidden by the author"
+msgstr ""
+
+msgid "This tweet is unavailable"
+msgstr ""
 
 msgid "Retweets"
 msgstr "Retweets"

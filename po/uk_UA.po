@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 10:53+0100\n"
+"POT-Creation-Date: 2020-05-23 11:31+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Ukrainian (Ukraine) (http://www.transifex.com/cawbird/cawbird/"
@@ -162,11 +162,14 @@ msgstr "Пошук"
 msgid "Load More"
 msgstr ""
 
-msgid "This tweet is unavailable"
-msgstr ""
-
 msgid "Could not show tweet"
 msgstr "Не можу показати твіт"
+
+msgid "This tweet is hidden by the author"
+msgstr ""
+
+msgid "This tweet is unavailable"
+msgstr ""
 
 msgid "Retweets"
 msgstr "Ретвіти"

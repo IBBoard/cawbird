@@ -116,9 +116,6 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     this.replied_to_list_box.account = account;
     this.replied_to_list_box.set_thread_mode (true);
 
-    missing_tweet_label.label = _("This tweet is unavailable");
-    missing_tweet_label.hide();
-
     grid.set_redraw_on_allocate (true);
 
     mm_widget.media_clicked.connect ((m, i) => TweetUtils.handle_media_click (tweet.get_medias (), main_window, i));
@@ -683,7 +680,14 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
         call.invoke_async.end (res);
       } catch (GLib.Error e) {
         var err = TweetUtils.failed_request_to_error (call, e);
-        if (err.domain == TweetUtils.get_error_domain() && err.code == 144) {
+        if (err.domain == TweetUtils.get_error_domain()) {
+          if (err.code == 179) {
+            missing_tweet_label.label = _("This tweet is hidden by the author");
+          }
+          else {
+            // err.code == 144
+            missing_tweet_label.label = _("This tweet is unavailable");
+          }
           missing_tweet_label.show();
         } else {
           Utils.show_error_dialog (err, this.main_window);

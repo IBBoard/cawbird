@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 10:53+0100\n"
+"POT-Creation-Date: 2020-05-23 11:31+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>, 2020\n"
 "Language-Team: Dutch (https://www.transifex.com/cawbird/teams/107135/nl/)\n"
@@ -163,11 +163,14 @@ msgstr "Zoeken"
 msgid "Load More"
 msgstr "Meer laden"
 
-msgid "This tweet is unavailable"
-msgstr "Deze tweet is niet beschikbaar"
-
 msgid "Could not show tweet"
 msgstr "De tweet kan niet worden getoond"
+
+msgid "This tweet is hidden by the author"
+msgstr ""
+
+msgid "This tweet is unavailable"
+msgstr "Deze tweet is niet beschikbaar"
 
 msgid "Retweets"
 msgstr "Retweets"

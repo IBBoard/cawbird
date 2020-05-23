@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 10:53+0100\n"
+"POT-Creation-Date: 2020-05-23 11:31+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Joan Ensesa <jensesa@protonmail.com>, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/cawbird/teams/107135/ca/)\n"
@@ -164,11 +164,14 @@ msgstr "Cerca"
 msgid "Load More"
 msgstr "Carrega'n més"
 
-msgid "This tweet is unavailable"
-msgstr ""
-
 msgid "Could not show tweet"
 msgstr "No s'ha pogut mostrar la piulada"
+
+msgid "This tweet is hidden by the author"
+msgstr ""
+
+msgid "This tweet is unavailable"
+msgstr ""
 
 msgid "Retweets"
 msgstr "Repiulades"
