@@ -288,97 +288,45 @@ class SearchPage : IPage, Gtk.Box {
       return;
 
     this.loading_tweets = true;
-    var search_call = account.proxy.new_call ();
-    search_call.set_function ("1.1/search/tweets.json");
-    search_call.set_method ("GET");
-    search_call.add_param ("q", this.search_query);
-    search_call.add_param ("max_id", (lowest_tweet_id - 1).to_string ());
-    search_call.add_param ("include_entities", "false");
-    search_call.add_param ("count", "35");
-    Cb.Utils.load_threaded_async.begin (search_call, cancellable, (_, res) => {
-      Json.Node? search_root = null;
+
+    TweetUtils.search_for_tweets.begin (account, this.search_query, (lowest_tweet_id - 1), -1, cancellable, (_, res) => {
+      Cb.Tweet[] tweets;
       try {
-        search_root = Cb.Utils.load_threaded_async.end (res);
+        tweets = TweetUtils.search_for_tweets.end (res);
       } catch (GLib.Error e) {
         warning (e.message);
         tweet_list.set_error (e.message);
         this.loading_tweets = false;
-        return;
-      }
-
-      if (search_root == null) {
-        debug ("search tweets: root is null");
-        this.loading_tweets = false;
-        return;
-      }
-
-      var search_statuses = search_root.get_object().get_array_member("statuses");
-      string[] ids = {};
-      search_statuses.foreach_element ((array, index, node) => {
-        ids += node.get_object().get_string_member("id_str");
-      });
-
-      var call = account.proxy.new_call ();
-      call.set_function ("1.1/statuses/lookup.json");
-      call.set_method ("GET");
-      call.add_param ("id", string.joinv(",", ids));
-      call.add_param ("include_entities", "true");
-      call.add_param ("tweet_mode", "extended");
-
-      Cb.Utils.load_threaded_async.begin (call, cancellable, (_, res) => {
-        Json.Node? root = null;
-        try {
-          root = Cb.Utils.load_threaded_async.end (res);
-        } catch (GLib.Error e) {
-          warning (e.message);
-          tweet_list.set_error (e.message);
-          if (!collect_obj.done)
-            collect_obj.emit ();
-
-          this.loading_tweets = false;
-          return;
-        }
-
-        if (root == null) {
-          debug ("load tweets: root is null");
-          this.loading_tweets = false;
-          if (!collect_obj.done)
-            collect_obj.emit ();
-
-          return;
-        }
-
-        var now = new GLib.DateTime.now_local ();
-        var statuses = root.get_array();
-        if (statuses.get_length () == 0 && n_results <= 0)
-          n_results = -1;
-        else
-          n_results += (int)statuses.get_length ();
-
-        if (n_results <= 0)
-          tweet_list.set_empty ();
-
-        statuses.foreach_element ((array, index, node) => {
-          var tweet = new Cb.Tweet ();
-          tweet.load_from_json (node, account.id, now);
-          if (tweet.id < lowest_tweet_id)
-            lowest_tweet_id = tweet.id;
-          var entry = new TweetListEntry (tweet, main_window, account);
-          if (!collect_obj.done)
-            entry.visible = false;
-          else
-            entry.show ();
-
-          tweet_list.add (entry);
-        });
-
         if (!collect_obj.done)
           collect_obj.emit ();
+        return;
+      }
 
-        this.loading_tweets = false;
-      });
+      if (tweets.length == 0 && n_results <= 0)
+        n_results = -1;
+      else
+        n_results += (int)tweets.length;
+
+      if (n_results <= 0)
+        tweet_list.set_empty ();
+
+      foreach (Cb.Tweet tweet in tweets) {
+        if (tweet.id < lowest_tweet_id)
+          lowest_tweet_id = tweet.id;
+        var entry = new TweetListEntry (tweet, main_window, account);
+        if (!collect_obj.done)
+          entry.visible = false;
+        else
+          entry.show ();
+
+        tweet_list.add (entry);
+      }
+
+      this.loading_tweets = false;
+      if (!collect_obj.done)
+        collect_obj.emit ();
+
     });
-
   }
 
   private void show_entries (GLib.Error? e) {

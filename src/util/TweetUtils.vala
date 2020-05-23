@@ -362,6 +362,93 @@ namespace TweetUtils {
     return success;
   }
 
+  async Json.Array search_for_tweets_json(Account account, string search_query, int64 max_id = -1, int64 since_id = -1, GLib.Cancellable? cancellable = null) throws GLib.Error {
+    var search_call = account.proxy.new_call ();
+    search_call.set_function ("1.1/search/tweets.json");
+    search_call.set_method ("GET");
+    search_call.add_param ("q", search_query);
+    if (max_id > 0) {
+      search_call.add_param ("max_id", (max_id - 1).to_string ());
+    }
+    else if (since_id > 0) {
+      search_call.add_param ("since_id", since_id.to_string());
+    }
+    search_call.add_param ("include_entities", "false");
+    search_call.add_param ("count", "35");
+
+    Json.Array? statuses = null;
+    GLib.Error? err = null;
+
+    Cb.Utils.load_threaded_async.begin (search_call, cancellable, (_, res) => {
+      Json.Node? search_root = null;
+      try {
+        search_root = Cb.Utils.load_threaded_async.end (res);
+      } catch (GLib.Error e) {
+        err = e;
+        search_for_tweets_json.callback();
+        return;
+      }
+
+      if (search_root == null) {
+        search_for_tweets_json.callback();
+        return;
+      }
+
+      var search_statuses = search_root.get_object().get_array_member("statuses");
+      string[] ids = {};
+      search_statuses.foreach_element ((array, index, node) => {
+        ids += node.get_object().get_string_member("id_str");
+      });
+
+      var call = account.proxy.new_call ();
+      call.set_function ("1.1/statuses/lookup.json");
+      call.set_method ("GET");
+      call.add_param ("id", string.joinv(",", ids));
+      call.add_param ("include_entities", "true");
+      call.add_param ("tweet_mode", "extended");
+
+      Cb.Utils.load_threaded_async.begin (call, cancellable, (_, res) => {
+        Json.Node? root = null;
+        try {
+          root = Cb.Utils.load_threaded_async.end (res);
+        } catch (GLib.Error e) {
+          err = e;
+          search_for_tweets_json.callback();
+          return;
+        }
+
+        if (root == null) {
+          debug ("load tweets: root is null");
+          search_for_tweets_json.callback();
+          return;
+        }
+
+        statuses = root.get_array();
+        search_for_tweets_json.callback();
+      });
+    });
+    yield;
+    if (err != null) {
+      throw err;
+    }
+
+    return statuses == null ? new Json.Array() : statuses;
+  }
+
+  async Cb.Tweet[] search_for_tweets(Account account, string search_query, int64 max_id = -1, int64 since_id = -1, GLib.Cancellable? cancellable = null) throws GLib.Error {
+    var statuses = yield search_for_tweets_json(account, search_query, max_id, since_id, cancellable);
+    Cb.Tweet[] tweets = {};
+    var now = new GLib.DateTime.now_local ();
+
+    statuses.foreach_element ((array, index, node) => {
+      var tweet = new Cb.Tweet ();
+      tweet.load_from_json (node, account.id, now);
+      tweets += tweet;
+    });
+
+    return tweets;
+  }
+
   private void inject_deletion (int64 id, Account account) {
     var message = @"{ \"delete\":{ \"status\":{ \"id\":$(id), \"id_str\":\"$(id)\", \"user_id\":$(account.id), \"user_id_str\":\"$(account.id)\" } } }";
     account.user_stream.inject_tweet(Cb.StreamMessageType.DELETE, message);

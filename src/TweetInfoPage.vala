@@ -556,23 +556,8 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
     // Pull the user's self-replies and user replies separately to ensure user replies don't overrun the thread
     // It doubles our query count, but we get 180 per 15 minutes, which is still 6 threads per minute!
-    var self_reply_call = account.proxy.new_call ();
-    self_reply_call.set_method ("GET");
-    self_reply_call.set_function ("1.1/search/tweets.json");
-    self_reply_call.add_param ("q", "to:" + this.screen_name + " from:" + this.screen_name);
-    self_reply_call.add_param ("since_id", tweet_id.to_string ());
-    self_reply_call.add_param ("count", "200");
-    self_reply_call.add_param ("tweet_mode", "extended");
-    Cb.Utils.load_threaded_async.begin (self_reply_call, cancellable, add_replies);
-
-    var other_reply_call = account.proxy.new_call ();
-    other_reply_call.set_method ("GET");
-    other_reply_call.set_function ("1.1/search/tweets.json");
-    other_reply_call.add_param ("q", "to:" + this.screen_name + " -from:" + this.screen_name);
-    other_reply_call.add_param ("since_id", tweet_id.to_string ());
-    other_reply_call.add_param ("count", "200");
-    other_reply_call.add_param ("tweet_mode", "extended");
-    Cb.Utils.load_threaded_async.begin (other_reply_call, cancellable, (src, res) => {
+    TweetUtils.search_for_tweets_json.begin (account, "to:" + this.screen_name + " from:" + this.screen_name, -1, tweet_id, cancellable, add_replies);
+    TweetUtils.search_for_tweets_json.begin (account, "to:" + this.screen_name + " -from:" + this.screen_name, -1, tweet_id, cancellable, (src, res) => {
       add_replies(src, res);
       if (replies_list_box.model.get_n_items() == 0) {
         replies_list_box.hide();
@@ -582,19 +567,16 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       
   private void add_replies (GLib.Object? src, GLib.AsyncResult res) {
     var now = new GLib.DateTime.now_local ();
-    Json.Node? root = null;
+    GLib.List<weak Json.Node> statuses;
 
     try {
-      root = Cb.Utils.load_threaded_async.end (res);
+      statuses = TweetUtils.search_for_tweets_json.end (res).get_elements();
     } catch (GLib.Error e) {
       if (!(e is GLib.IOError.CANCELLED))
         warning (e.message);
 
       return;
     }
-
-    if (root == null)
-      return;
 
     // Get the screen name of the author and the mentions of the current tweet.
     // And lowercase them so we can compare them, because Twitter isn't consistent in its casing
@@ -606,9 +588,8 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     }
 
     int64[] thread_ids = {tweet_id};
-    var statuses_node = root.get_object ().get_array_member ("statuses");    
+
     // Results come back in decreasing chronological order, but we need to work increasing
-    var statuses = statuses_node.get_elements();
     statuses.reverse();
     statuses.foreach ((node) => {
       var obj = node.get_object ();
