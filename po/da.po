@@ -2,13 +2,11 @@
 # Copyright (C) YEAR 2013-2018 Timm Bäder, 2018-2020 IBBoard
 # This file is distributed under the same license as the cawbird package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 # Translators:
-# Geert Wirken <geert@gwirken.nl>, 2014
-# Nathan Follens, 2017
-# Heimen Stoffels <vistausss@outlook.com>, 2014-2015, 2020
+# IBBoard . <github@ibboard.co.uk>, 2020
 # Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, 2020
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -163,14 +161,14 @@ msgstr "Søg"
 msgid "Load More"
 msgstr "Indlæs mere"
 
-msgid "This tweet is unavailable"
-msgstr "Dette tweet er utilgængeligt"
-
 msgid "Could not show tweet"
 msgstr "Kunne ikke vise tweet"
 
 msgid "This tweet is hidden by the author"
-msgstr ""
+msgstr "Dette tweet er skjult af forfatteren"
+
+msgid "This tweet is unavailable"
+msgstr "Dette tweet er utilgængeligt"
 
 msgid "Retweets"
 msgstr "Retweets"
@@ -341,6 +339,8 @@ msgstr "Ugyldig / suspenderet program"
 
 msgid "The original Tweet author restricted who can reply to this Tweet."
 msgstr ""
+"Forfatteren af det originale tweet har begrænset hvem der kan svare på "
+"tweetet."
 
 msgid "Now"
 msgstr "Nu"
