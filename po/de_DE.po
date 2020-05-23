@@ -1,0 +1,909 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Timm Bäder
+# This file is distributed under the same license as the cawbird package.
+#
+# Translators:
+# baedert <mail@baedert.org>, 2014-2015
+# brainscript <inactive+brainscript@transifex.com>, 2016
+# encbladexp <service+transifex@stefan-betz.net>, 2014
+# fgreinus <florian.greinus@googlemail.com>, 2015
+# Heiko Adams <HeikoAdams@users.noreply.github.com>, 2016
+# jupaja, 2014-2015
+# Matthias Kellermann <matthias.kellermann@outlook.com>, 2016
+# Michael <michaelbaer89@gmail.com>, 2014
+# Peter L., 2015-2017
+# Peter Schwindt <peter@schwindt-net.de>, 2015
+# Philip Gillißen <guerda@freenet.de>, 2015
+# Richard Schwab <mail@w.tf-w.tf>, 2014
+# Trolli Schmittlauch <spiollinux@googlemail.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: cawbird\n"
+"Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
+"POT-Creation-Date: 2020-05-23 11:31+0100\n"
+"PO-Revision-Date: 2017-10-22 10:24+0000\n"
+"Last-Translator: baedert <mail@baedert.org>\n"
+"Language-Team: German (Germany) (http://www.transifex.com/cawbird/cawbird/language/"
+"de_DE/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Cawbird"
+msgstr "Cawbird"
+
+msgid "Twitter Client"
+msgstr "Twitter Client"
+
+msgid ""
+"Cawbird is a native GTK+ twitter client that provides vital features such as "
+"Direct Messages (DMs), tweet notifications, conversation views."
+msgstr ""
+"Cawbird ist ein nativer GTK+ Twitter-Client, der wesentliche Funktionen wie "
+"Direktnachrichten (DMs), Tweet-Benachrichtigungen und Konversationen bietet."
+
+msgid ""
+"Additional features include local viewing of videos, multiple inline images, "
+"Lists, Filters, multiple accounts, etc."
+msgstr ""
+"Weitere Funktionalitäten beinhalten die lokale Anzeige von Videos, mehrere "
+"eingebettete Bilder, Listen, Filter, mehrere Accounts, etc."
+
+msgid "Generic timeline view when using Cawbird"
+msgstr "Allgemeine Verlaufsansicht bei Nutzung von Cawbird"
+
+msgid "Typical Twitter profile"
+msgstr "Typisches Twitter-Profil"
+
+msgid "Account settings can be configured"
+msgstr "Account-Einstellungen können konfiguriert werden"
+
+msgid "IBBoard"
+msgstr "IBBoard"
+
+msgid "Use Twitter from within a normal desktop application"
+msgstr "Nutzen Sie Twitter in einer normalen Desktopanwendung"
+
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+msgid "twitter;"
+msgstr "twitter;"
+
+#. TRANSLATORS: This is the start of a "Replying to" line in a tweet
+msgid "Replying to"
+msgstr "Antwortend auf"
+
+#. TRANSLATORS: This gets appended to the "replying to" line
+#. * in a tweet. Example: "Replying to Foo and Bar" where
+#. * "and Bar" comes from this string.
+msgid "and"
+msgstr "und"
+
+#. TRANSLATORS: This gets appended to the "replying to" line
+#. * in a tweet
+#, c-format
+msgid "and %d others"
+msgstr "und %d andere"
+
+msgid "Direct Conversation"
+msgstr "Direktnachrichten"
+
+#, c-format
+msgid "%d new Message from %s"
+msgid_plural "%d new Messages from %s"
+msgstr[0] "%d neue Nachricht von %s"
+msgstr[1] "%d neue Nachrichten von %s"
+
+#, c-format
+msgid "New direct message from %s"
+msgstr "Neue Direktnachricht von %s"
+
+msgid "Direct Messages"
+msgstr "Direktnachrichten"
+
+msgid "Favorites"
+msgstr "Favoriten"
+
+msgid "Add new Filter"
+msgstr "Neuen Filter hinzufügen"
+
+msgid "Filters"
+msgstr "Filter"
+
+#, c-format
+msgid "%s retweeted %s"
+msgstr "%s retweetete %s"
+
+#, c-format
+msgid "%s tweeted"
+msgstr "%s tweetete"
+
+#, c-format
+msgid "%d new Tweet!"
+msgid_plural "%d new Tweets!"
+msgstr[0] "%d neuer Tweet!"
+msgstr[1] "%d neue Tweets!"
+
+msgid "Home"
+msgstr "Timeline"
+
+msgid "List"
+msgstr "Liste"
+
+msgid "Lists"
+msgstr "Listen"
+
+msgid "Show configured accounts"
+msgstr "Zeige konfigurierte Accounts"
+
+msgid "Compose Tweet"
+msgstr "Tweet erstellen"
+
+msgid "Add new Account"
+msgstr "Neuen Account hinzufügen"
+
+#, c-format
+msgid "%s mentioned %s"
+msgstr "%s erwähnte %s"
+
+msgid "Mentions"
+msgstr "Erwähnungen"
+
+msgid "Suspended Account"
+msgstr "Suspendierter Account"
+
+msgid "Protected profile"
+msgstr "Geschütztes Profil"
+
+#, c-format
+msgid "Tweet to @%s"
+msgstr "Tweet an @%s"
+
+msgid "Protected Profile"
+msgstr "Geschütztes Profil"
+
+msgid "Search"
+msgstr "Suchen"
+
+msgid "Load More"
+msgstr "Mehr laden"
+
+msgid "Could not show tweet"
+msgstr "Konnte Tweet nicht anzeigen"
+
+msgid "This tweet is hidden by the author"
+msgstr ""
+
+msgid "This tweet is unavailable"
+msgstr ""
+
+msgid "Retweets"
+msgstr "Retweets"
+
+msgid "Open in Browser"
+msgstr "Im Browser öffnen"
+
+msgid "Source"
+msgstr "Quelle"
+
+msgid "Tweet Details"
+msgstr "Tweet Details"
+
+#, c-format
+msgid "(%d unread)"
+msgid_plural "(%d unread)"
+msgstr[0] "(%d ungelesen)"
+msgstr[1] "(%d ungelesene)"
+
+msgid "Delete"
+msgstr "Löschen"
+
+#, c-format
+msgid "Block %s"
+msgstr "%s blockieren"
+
+msgid "This tweet contains images marked as inappropriate"
+msgstr "Das eingebettete Medium könnte sensibles Material beinhalten"
+
+msgid "Show anyway"
+msgstr "Trotzdem zeigen"
+
+#, fuzzy
+msgid "Could not authenticate you"
+msgstr "Konnte %s nicht öffnen"
+
+msgid "Sorry, that page does not exist"
+msgstr ""
+
+#, fuzzy
+msgid "User not found."
+msgstr "Keine Benutzer gefunden"
+
+msgid "User has been suspended."
+msgstr ""
+
+msgid "Your account is suspended and is not permitted to access this feature"
+msgstr ""
+
+msgid "Rate limit exceeded"
+msgstr ""
+
+msgid "Invalid or expired token"
+msgstr ""
+
+msgid "The specified user is not a subscriber of this list."
+msgstr ""
+
+msgid "The user you are trying to remove from the list is not a member."
+msgstr ""
+
+msgid "Account update failed: value is too long."
+msgstr ""
+
+msgid "Over capacity"
+msgstr ""
+
+#, fuzzy
+msgid "Internal error"
+msgstr "Oberfläche"
+
+msgid "You have already favorited this status."
+msgstr ""
+
+msgid "No status found with that ID."
+msgstr ""
+
+msgid "You cannot send messages to users who are not following you."
+msgstr ""
+
+msgid "There was an error sending your message."
+msgstr ""
+
+msgid "You've already requested to follow this user."
+msgstr ""
+
+msgid "You are unable to follow more people at this time"
+msgstr ""
+
+msgid "Sorry, you are not authorized to see this status"
+msgstr ""
+
+msgid "User is over daily status update limit"
+msgstr ""
+
+msgid "Tweet needs to be a bit shorter."
+msgstr ""
+
+msgid "Status is a duplicate"
+msgstr ""
+
+msgid "Owner must allow dms from anyone."
+msgstr ""
+
+msgid "Bad authentication data"
+msgstr ""
+
+msgid "Your credentials do not allow access to this resource."
+msgstr ""
+
+msgid ""
+"This request looks like it might be automated. To protect our users from "
+"spam and other malicious activity, we can’t complete this action right now."
+msgstr ""
+
+msgid "User must verify login"
+msgstr ""
+
+msgid "Application cannot perform write actions."
+msgstr ""
+
+msgid "You can’t mute yourself."
+msgstr ""
+
+msgid "You are not muting the specified user."
+msgstr ""
+
+msgid "Animated GIFs are not allowed when uploading multiple images."
+msgstr ""
+
+msgid "The validation of media ids failed."
+msgstr ""
+
+msgid "A media id was not found."
+msgstr ""
+
+msgid ""
+"To protect our users from spam and other malicious activity, this account is "
+"temporarily locked."
+msgstr ""
+
+msgid "You have already retweeted this Tweet."
+msgstr ""
+
+msgid "You cannot send messages to this user."
+msgstr ""
+
+msgid "The text of your direct message is over the max character limit."
+msgstr ""
+
+#, fuzzy
+msgid "Subscription already exists."
+msgstr "Der Schnipsel existiert schon"
+
+msgid ""
+"You attempted to reply to a Tweet that is deleted or not visible to you."
+msgstr ""
+
+msgid "The Tweet exceeds the number of allowed attachment types."
+msgstr ""
+
+msgid "The given URL is invalid."
+msgstr ""
+
+msgid "Invalid / suspended application"
+msgstr ""
+
+msgid "The original Tweet author restricted who can reply to this Tweet."
+msgstr ""
+
+msgid "Now"
+msgstr "Jetzt"
+
+#, c-format
+msgid "%dm"
+msgstr "%dM"
+
+#, c-format
+msgid "%dh"
+msgstr "%dS"
+
+msgid "Don't have a Twitter account yet?"
+msgstr "Noch keinen Twitter Account?"
+
+msgid "Create one"
+msgstr "Erstelle einen"
+
+#, c-format
+msgid "Could not open %s"
+msgstr "Konnte %s nicht öffnen"
+
+msgid "Wrong PIN"
+msgstr "Falsche PIN"
+
+msgid "Account already in use"
+msgstr "Account schon in Benutzung"
+
+msgid "No users found"
+msgstr "Keine Benutzer gefunden"
+
+msgid "Select Image"
+msgstr "Bild auswählen"
+
+msgid "Open"
+msgstr "Öffnen"
+
+msgid "Cancel"
+msgstr "Abbrechen"
+
+msgid "Follow"
+msgstr "Folgen"
+
+msgid "Unfollow"
+msgstr "Entfolgen"
+
+msgid "Copy URL"
+msgstr "URL kopieren"
+
+msgid "Save as…"
+msgstr "Speichern unter…"
+
+msgid "Save Video"
+msgstr "Speichere Video"
+
+msgid "Save Image"
+msgstr "Speichere Bild"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Loading…"
+msgstr "Lade…"
+
+msgid "No entries found"
+msgstr "Keine Einträge gefunden"
+
+msgid "Retry"
+msgstr "Erneut versuchen"
+
+msgid "Select Banner Image"
+msgstr "Banner auswählen"
+
+msgid "Image does not meet minimum size requirements:"
+msgstr "Bild entspricht nicht der Minimalgröße:"
+
+#, c-format
+msgid "Minimum width: %d pixel"
+msgid_plural "Minimum width: %d pixels"
+msgstr[0] "Mindestbreite: %d Pixel"
+msgstr[1] "Mindestbreite: %d Pixel"
+
+#, c-format
+msgid "Minimum height: %d pixel"
+msgid_plural "Minimum height: %d pixels"
+msgstr[0] "Mindesthöhe: %d Pixel"
+msgstr[1] "Mindesthöhe: %d Pixel"
+
+msgid "Pick"
+msgstr "Wähle"
+
+#, c-format
+msgid "Failed to load image"
+msgid_plural "Failed to load %u images"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
+#, c-format
+msgid "%s: %s"
+msgstr ""
+
+msgid "Back"
+msgstr "Zurück"
+
+msgid "Quote tweet"
+msgstr "Zitiere Tweet"
+
+msgid "Selected file is not an image."
+msgstr "Ausgewählte Datei ist kein Bild"
+
+#, c-format
+msgid ""
+"The selected image is too big. The maximum file size per image is %'d MB"
+msgstr ""
+"Das gewählte Bild ist zu groß. Die maximale Größe pro Bild beträgt %'d MB"
+
+msgid "Only one GIF file per tweet is allowed."
+msgstr "Nur eine GIF Datei pro Tweet is erlaubt"
+
+msgid "Insert Emoji"
+msgstr "Emoji einfügen"
+
+msgid "Modify Filter"
+msgstr "Filter ändern"
+
+msgid "Matches"
+msgstr "Passt"
+
+msgid "Doesn't match"
+msgstr "Keine Übereinstimmung"
+
+msgid "Modify Snippet"
+msgstr "Schnipsel bearbeiten"
+
+msgid "Snippet can't be empty"
+msgstr "Schnipsel kann nicht leer sein"
+
+msgid "Replacement can't be empty"
+msgstr "Ersetzung kann nicht leer sein"
+
+msgid "Snippet may not contain whitespace"
+msgstr "Der Schnipsel darf keinen whitespace (z. B. Leerzeichen) enthalten"
+
+msgid "Snippet already exists"
+msgstr "Der Schnipsel existiert schon"
+
+msgid ""
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
+msgstr ""
+"Hey, schau dir die neue #Cawbird version an! \\ (•◡•) / #cool "
+"#newisalwaysbetter"
+
+msgid "Add to or Remove User From List"
+msgstr "Nutzer zu Liste hinzufügen oder entfernen"
+
+msgid "You have no lists."
+msgstr "Du hast keine Listen."
+
+msgid "About Cawbird"
+msgstr "Über Cawbird"
+
+msgid "New Account"
+msgstr "Neuer Account"
+
+msgid ""
+"To authenticate Cawbird, you need a PIN from twitter.com with the account "
+"you wish to add"
+msgstr ""
+"Um Cawbird zu authentifizieren wird ein PIN von twitter.com mit dem Account "
+"benötigt, der verwendet werden soll."
+
+msgid "Request PIN"
+msgstr "PIN anfordern"
+
+msgid "Enter PIN from twitter.com below:"
+msgstr "PIN von twitter.com eingeben:"
+
+msgid "PIN"
+msgstr "PIN"
+
+msgid "Confirm"
+msgstr "Bestätigen"
+
+msgid "Account Settings"
+msgstr "Account Einstellungen"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Website"
+msgstr "Webseite"
+
+msgid "Autostart"
+msgstr "Autostart"
+
+msgid "Do you really want to delete this account?"
+msgstr "Willst Du diesen Account wirklich löschen?"
+
+msgctxt "emoji category"
+msgid "Smileys & People"
+msgstr "Smileys & Menschen"
+
+msgctxt "emoji category"
+msgid "Body & Clothing"
+msgstr "Körper & Bekleidung"
+
+msgctxt "emoji category"
+msgid "Animals & Nature"
+msgstr "Tiere & Natur"
+
+msgctxt "emoji category"
+msgid "Food & Drink"
+msgstr "Essen & Trinken"
+
+msgctxt "emoji category"
+msgid "Travel & Places"
+msgstr "Reisen & Orte"
+
+msgctxt "emoji category"
+msgid "Activities"
+msgstr "Aktivitäten"
+
+msgctxt "emoji category"
+msgid "Objects"
+msgstr "Objekte"
+
+msgctxt "emoji category"
+msgid "Symbols"
+msgstr "Symbole"
+
+msgctxt "emoji category"
+msgid "Flags"
+msgstr "Flaggen"
+
+msgid "No Results Found"
+msgstr "Keine Resultate gefunden"
+
+msgid "Try a different search"
+msgstr "Versuche einen anderen Suchbegriff"
+
+msgid "Send"
+msgstr "Senden"
+
+msgid "Add Image"
+msgstr "Bild anhängen"
+
+msgid "Show favorite images"
+msgstr "Zeige Lieblingsbilder"
+
+msgid "Users"
+msgstr "Benutzer"
+
+msgid "Subscribe"
+msgstr "Abonnieren"
+
+msgid "Unsubscribe"
+msgstr "Abbestellen"
+
+msgid "Subscribers:"
+msgstr "Abonnenten"
+
+msgid "Members:"
+msgstr "Mitglieder:"
+
+msgid "Creator:"
+msgstr "Ersteller:"
+
+msgid "Created at:"
+msgstr "Erstellt um:"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Mode:"
+msgstr "Modus:"
+
+msgid "Private"
+msgstr "Privat"
+
+msgid "Public"
+msgstr "Öffentlich"
+
+msgid "Description"
+msgstr "Beschreibung"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Shortcuts"
+msgstr "Tastaturkürzel"
+
+msgid "About"
+msgstr "Über"
+
+msgid "Quit"
+msgstr "Beenden"
+
+msgid "Add New Filter"
+msgstr "Neuen Filter hinzufügen"
+
+msgid "Add New Snippet"
+msgstr "Neuen Schnipsel anlegen"
+
+msgid "Keyword"
+msgstr "Stichwort"
+
+msgid "Replacement"
+msgstr "Ersetzung"
+
+msgid "Create New List"
+msgstr "Neue Liste erstellen"
+
+msgid "Name:"
+msgstr "Name:"
+
+msgid "Create"
+msgstr "Erstellen"
+
+msgid "Write Direct Message"
+msgstr "Direktnachricht schreiben"
+
+msgid "Add to/Remove from List"
+msgstr "Hinzufügen / Entfernen aus der Liste"
+
+msgid "Blocked"
+msgstr "Blockiert"
+
+msgid "Muted"
+msgstr "Stummgeschaltet"
+
+msgid "Retweets disabled"
+msgstr "Retweets deaktiviert"
+
+msgid "Follows you"
+msgstr "Folgt dir"
+
+msgid "Tweets"
+msgstr "Tweets"
+
+msgid "Followers"
+msgstr "Followers"
+
+msgid "Following"
+msgstr "Folgt"
+
+msgid "Use dark theme"
+msgstr ""
+
+msgid "Show inline media"
+msgstr "Eingebettete Medien anzeigen"
+
+msgid "Always show"
+msgstr "Immer anzeigen"
+
+msgid "Always hide"
+msgstr "Immer verstecken"
+
+msgid "Hide in timeline"
+msgstr "Aus Timeline ausblenden"
+
+msgid "Auto scroll on new tweets"
+msgstr "Automatisch scrollen bei neuen Tweets"
+
+msgid "Double-click activation"
+msgstr "Aktivieren per Doppelklick"
+
+msgid "Interface"
+msgstr "Oberfläche"
+
+msgid "On New Tweets"
+msgstr "Bei neuen Tweets"
+
+msgid "Actions"
+msgstr "Aktionen"
+
+msgid "On New Mentions"
+msgstr "Bei neuen Erwähnungen:"
+
+msgid "On New Messages"
+msgstr "Bei neuen Nachrichten"
+
+msgid "Never"
+msgstr "Niemals"
+
+msgid "Every"
+msgstr "Jeder"
+
+msgid "Stack 5"
+msgstr "Sammle 5"
+
+msgid "Stack 10"
+msgstr "Sammle 10"
+
+msgid "Stack 25"
+msgstr "Sammle 25"
+
+msgid "Stack 50"
+msgstr "Sammle 50"
+
+msgid "Notifications"
+msgstr "Benachrichtigungen"
+
+msgid "Round avatars"
+msgstr "Runde Avatare"
+
+msgid "Remove trailing hashtags"
+msgstr "Entferne nachfolgende Hashtags"
+
+msgid "Remove media links"
+msgstr "Entferne Medienverweise"
+
+msgid "Hide inappropriate content"
+msgstr "Verstecke unangebrachte Inhalte"
+
+msgid "No snippets configured."
+msgstr "Keine Schnipsel eingerichtet"
+
+msgid "You can activate snippets by writing the keyword and pressing TAB."
+msgstr ""
+"Du kannst Schnipsel auswählen, in dem du das Stichwort tippst und dann "
+"Tabulator drückst"
+
+msgid "Snippets"
+msgstr "Schnipsel"
+
+msgctxt "shortcuts window"
+msgid "General"
+msgstr "Allgemein"
+
+msgctxt "shortcuts window"
+msgid "Compose Tweet"
+msgstr "Tweet erstellen"
+
+msgctxt "shortcuts window"
+msgid "Show Account settings"
+msgstr "Öffne Konto-Einstellungen"
+
+msgctxt "shortcuts window"
+msgid "Show Accounts Popover"
+msgstr "Öffne Konto-Popover"
+
+msgctxt "shortcuts window"
+msgid "Show Application Settings"
+msgstr "Öffne Einstellungen"
+
+msgctxt "shortcuts window"
+msgid "Toggle Topbar"
+msgstr "Symbolleiste umschalten"
+
+msgctxt "shortcuts window"
+msgid "Go Back"
+msgstr "Zurück"
+
+msgctxt "shortcuts window"
+msgid "Go Forward"
+msgstr "Weiter"
+
+msgctxt "shortcuts window"
+msgid "Go to nth page"
+msgstr "Gehe zu Seite n"
+
+msgctxt "shortcuts window"
+msgid "Tweets"
+msgstr "Tweets"
+
+msgctxt "shortcuts window"
+msgid "Retweet"
+msgstr "Retweeten"
+
+msgctxt "shortcuts window"
+msgid "Favorite"
+msgstr "Favoriten"
+
+msgctxt "shortcuts window"
+msgid "Reply"
+msgstr "Antworten"
+
+msgctxt "shortcuts window"
+msgid "Quote"
+msgstr "Zitieren"
+
+msgctxt "shortcuts window"
+msgid "Show Details"
+msgstr "Zeige Details"
+
+msgctxt "shortcuts window"
+msgid "Delete"
+msgstr "Löschen"
+
+msgctxt "shortcuts window"
+msgid "Compose"
+msgstr "Verfassen"
+
+msgid "Show Emoji Chooser"
+msgstr "Zeige Emoji-Auswahl"
+
+msgid "Start new conversation"
+msgstr "Neue Unterhaltung beginnen"
+
+msgid "With:"
+msgstr "Mit:"
+
+msgid "Go"
+msgstr "Los"
+
+msgid "Quote"
+msgstr "Zitieren"
+
+msgid "Retweet tweet"
+msgstr "Tweet retweeten"
+
+msgid "Favorite tweet"
+msgstr "Favorisieren"
+
+msgid "Reply to tweet"
+msgstr "Auf Tweet antworten"
+
+msgid "More"
+msgstr "Mehr"
+
+msgid "Favorite"
+msgstr "Favoriten"
+
+msgid "Reply"
+msgstr "Antworten"
+
+msgid "Unblock"
+msgstr "Entsperren"
+
+msgid "Show settings of this account"
+msgstr "Zeige die Einstellungen dieses Accounts"
+
+msgid "Open in new window"
+msgstr "In neuem Fenster öffnen"
+
+msgid "Go to profile"
+msgstr "Zum Profil gehen"
+
+msgid "Created"
+msgstr "Erstellt"
+
+msgid "Subscribed to"
+msgstr "Anmelden zu"
+
+#~ msgid "uk.co.ibboard.cawbird"
+#~ msgstr "uk.co.ibboard.cawbird"
+
+#~ msgid ""
+#~ "Unauthorized. Most of the time, this means that there's something wrong "
+#~ "with the Twitter servers and you should try again later"
+#~ msgstr ""
+#~ "Nicht authorisiert. Dies bedeutet meistens dass mit dem Twitter Server "
+#~ "etwas nicht stimmt und Sie es später erneut versuchen sollten."
+
+#~ msgid "Timm Bäder"
+#~ msgstr "Timm Bäder"
+
+#~ msgid "Could not load tweets"
+#~ msgstr "Konnte Tweets nicht laden"
