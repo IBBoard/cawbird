@@ -134,6 +134,8 @@ namespace TweetUtils {
       case 386: return _("The Tweet exceeds the number of allowed attachment types.");
       case 407: return _("The given URL is invalid.");
       case 416: return _("Invalid / suspended application");
+      // Experimental "permissions" feature: https://twittercommunity.com/t/our-experiment-with-new-tweet-settings-for-replies/137953
+      case 433: return _("The original Tweet author restricted who can reply to this Tweet.");
       // Else fall back to Twitter's (probably English) message
       default: return default_message;
     }

@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-17 11:53+0100\n"
+"POT-Creation-Date: 2020-05-23 10:53+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, 2020\n"
 "Language-Team: Danish (https://www.transifex.com/cawbird/teams/107135/da/)\n"
@@ -335,6 +335,9 @@ msgstr "Det angivet URL er ugyldigt."
 
 msgid "Invalid / suspended application"
 msgstr "Ugyldig / suspenderet program"
+
+msgid "The original Tweet author restricted who can reply to this Tweet."
+msgstr ""
 
 msgid "Now"
 msgstr "Nu"

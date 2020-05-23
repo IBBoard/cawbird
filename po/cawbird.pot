@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-17 11:53+0100\n"
+"POT-Creation-Date: 2020-05-23 10:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -318,6 +318,9 @@ msgid "The given URL is invalid."
 msgstr ""
 
 msgid "Invalid / suspended application"
+msgstr ""
+
+msgid "The original Tweet author restricted who can reply to this Tweet."
 msgstr ""
 
 msgid "Now"

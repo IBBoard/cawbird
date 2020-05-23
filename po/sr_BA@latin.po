@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-17 11:53+0100\n"
+"POT-Creation-Date: 2020-05-23 10:53+0100\n"
 "PO-Revision-Date: 2017-11-20 17:05+0000\n"
 "Last-Translator: Slobodan Terzić <githzerai06@gmail.com>\n"
 "Language-Team: Serbian (Latin) (http://www.transifex.com/cawbird/cawbird/"
@@ -330,6 +330,9 @@ msgid "The given URL is invalid."
 msgstr ""
 
 msgid "Invalid / suspended application"
+msgstr ""
+
+msgid "The original Tweet author restricted who can reply to this Tweet."
 msgstr ""
 
 msgid "Now"
