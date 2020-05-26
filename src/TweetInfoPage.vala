@@ -936,7 +936,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
             mentions[i] = mentions[i].down();
           }
 
-          if (screen_name_lower == screen_name) {
+          if (screen_name_lower == screen_name.down()) {
             self_replies_list_box.model.add (t);
             self_replies_list_box.show ();
           }
