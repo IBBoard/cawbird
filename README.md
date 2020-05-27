@@ -19,17 +19,18 @@ These packages are currently available for:
   * openSUSE Leap 15.1
   * openSUSE Leap 15.2
 * Fedora
-  * Fedora 30
   * Fedora 31
+  * Fedora 32
   * Fedora Rawhide
 * CentOS
   * CentOS 7
   * CentOS 8
 * Ubuntu
   * Ubuntu 18.04 (Bionic Beaver)
-  * Ubuntu 19.04 (Disco Dingo)
   * Ubuntu 19.10 (Eoan Ermine)
+  * Ubuntu 20.04 (Focal Fossa)
 * Debian
+  * 10 (Buster)
   * Testing
   * Unstable
 
