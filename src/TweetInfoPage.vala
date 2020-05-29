@@ -553,8 +553,8 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
     // Pull the user's self-replies and user replies separately to ensure user replies don't overrun the thread
     // It doubles our query count, but we get 180 per 15 minutes, which is still 6 threads per minute!
-    TweetUtils.search_for_tweets_json.begin (account, "to:" + this.screen_name + " from:" + this.screen_name, -1, tweet_id, cancellable, add_replies);
-    TweetUtils.search_for_tweets_json.begin (account, "to:" + this.screen_name + " -from:" + this.screen_name, -1, tweet_id, cancellable, (src, res) => {
+    TweetUtils.search_for_tweets_json.begin (account, "to:" + this.screen_name + " from:" + this.screen_name, -1, tweet_id, 100, cancellable, add_replies);
+    TweetUtils.search_for_tweets_json.begin (account, "to:" + this.screen_name + " -from:" + this.screen_name, -1, tweet_id, 100, cancellable, (src, res) => {
       add_replies(src, res);
       if (replies_list_box.model.get_n_items() == 0) {
         replies_list_box.hide();

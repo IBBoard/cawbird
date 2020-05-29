@@ -364,7 +364,7 @@ namespace TweetUtils {
     return success;
   }
 
-  async Json.Array search_for_tweets_json(Account account, string search_query, int64 max_id = -1, int64 since_id = -1, GLib.Cancellable? cancellable = null) throws GLib.Error {
+  async Json.Array search_for_tweets_json(Account account, string search_query, int64 max_id = -1, int64 since_id = -1, uint count = 35, GLib.Cancellable? cancellable = null) throws GLib.Error {
     var search_call = account.proxy.new_call ();
     search_call.set_function ("1.1/search/tweets.json");
     search_call.set_method ("GET");
@@ -376,7 +376,7 @@ namespace TweetUtils {
       search_call.add_param ("since_id", since_id.to_string());
     }
     search_call.add_param ("include_entities", "false");
-    search_call.add_param ("count", "35");
+    search_call.add_param ("count", count.to_string());
 
     Json.Array? statuses = null;
     GLib.Error? err = null;
@@ -404,7 +404,7 @@ namespace TweetUtils {
 
       var call = account.proxy.new_call ();
       call.set_function ("1.1/statuses/lookup.json");
-      call.set_method ("GET");
+      call.set_method ("POST");
       call.add_param ("id", string.joinv(",", ids));
       call.add_param ("include_entities", "true");
       call.add_param ("tweet_mode", "extended");
@@ -437,8 +437,8 @@ namespace TweetUtils {
     return statuses == null ? new Json.Array() : statuses;
   }
 
-  async Cb.Tweet[] search_for_tweets(Account account, string search_query, int64 max_id = -1, int64 since_id = -1, GLib.Cancellable? cancellable = null) throws GLib.Error {
-    var statuses = yield search_for_tweets_json(account, search_query, max_id, since_id, cancellable);
+  async Cb.Tweet[] search_for_tweets(Account account, string search_query, int64 max_id = -1, int64 since_id = -1, uint count = 35, GLib.Cancellable? cancellable = null) throws GLib.Error {
+    var statuses = yield search_for_tweets_json(account, search_query, max_id, since_id, count, cancellable);
     Cb.Tweet[] tweets = {};
     var now = new GLib.DateTime.now_local ();
 

@@ -289,7 +289,7 @@ class SearchPage : IPage, Gtk.Box {
 
     this.loading_tweets = true;
 
-    TweetUtils.search_for_tweets.begin (account, this.search_query, (lowest_tweet_id - 1), -1, cancellable, (_, res) => {
+    TweetUtils.search_for_tweets.begin (account, this.search_query, (lowest_tweet_id - 1), -1, 35, cancellable, (_, res) => {
       Cb.Tweet[] tweets;
       try {
         tweets = TweetUtils.search_for_tweets.end (res);
