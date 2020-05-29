@@ -364,7 +364,7 @@ namespace TweetUtils {
     return success;
   }
 
-  async Json.Array search_for_tweets_json(Account account, string search_query, int64 max_id = -1, int64 since_id = -1, uint count = 35, GLib.Cancellable? cancellable = null) throws GLib.Error {
+  async List<unowned Json.Node> search_for_tweets_json(Account account, string search_query, int64 max_id = -1, int64 since_id = -1, uint count = 35, GLib.Cancellable? cancellable = null) throws GLib.Error {
     var search_call = account.proxy.new_call ();
     search_call.set_function ("1.1/search/tweets.json");
     search_call.set_method ("GET");
@@ -378,7 +378,7 @@ namespace TweetUtils {
     search_call.add_param ("include_entities", "false");
     search_call.add_param ("count", count.to_string());
 
-    Json.Array? statuses = null;
+    List<unowned Json.Node>? statuses = null;
     GLib.Error? err = null;
 
     Cb.Utils.load_threaded_async.begin (search_call, cancellable, (_, res) => {
@@ -425,7 +425,13 @@ namespace TweetUtils {
           return;
         }
 
-        statuses = root.get_array();
+        statuses = root.get_array().get_elements();
+        statuses.sort((a, b) => {
+          var a_id = a.get_object().get_string_member("id_str");
+          var b_id = b.get_object().get_string_member("id_str");
+          // Return values in the same order as search/tweets.json - newest first
+          return GLib.strcmp (b_id, a_id);
+        });
         search_for_tweets_json.callback();
       });
     });
@@ -434,7 +440,7 @@ namespace TweetUtils {
       throw err;
     }
 
-    return statuses == null ? new Json.Array() : statuses;
+    return statuses == null ? new List<unowned Json.Node>() : statuses.copy();
   }
 
   async Cb.Tweet[] search_for_tweets(Account account, string search_query, int64 max_id = -1, int64 since_id = -1, uint count = 35, GLib.Cancellable? cancellable = null) throws GLib.Error {
@@ -442,7 +448,7 @@ namespace TweetUtils {
     Cb.Tweet[] tweets = {};
     var now = new GLib.DateTime.now_local ();
 
-    statuses.foreach_element ((array, index, node) => {
+    statuses.foreach ((node) => {
       var tweet = new Cb.Tweet ();
       tweet.load_from_json (node, account.id, now);
       tweets += tweet;

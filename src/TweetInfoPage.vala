@@ -564,10 +564,10 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       
   private void add_replies (GLib.Object? src, GLib.AsyncResult res) {
     var now = new GLib.DateTime.now_local ();
-    GLib.List<weak Json.Node> statuses;
+    GLib.List<unowned Json.Node> statuses;
 
     try {
-      statuses = TweetUtils.search_for_tweets_json.end (res).get_elements();
+      statuses = TweetUtils.search_for_tweets_json.end (res);
     } catch (GLib.Error e) {
       if (!(e is GLib.IOError.CANCELLED))
         warning (e.message);
