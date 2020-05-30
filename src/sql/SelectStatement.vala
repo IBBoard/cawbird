@@ -21,6 +21,7 @@ namespace Sql {
   public class SelectStatement : GLib.Object {
     public unowned Sqlite.Database db;
     private StringBuilder query_builder = new StringBuilder ();
+    private GLib.GenericArray<string> bindings = new GLib.GenericArray<string>();
     private string table_name;
 
     public SelectStatement (string table_name) {
@@ -49,27 +50,36 @@ namespace Sql {
     }
 
     public SelectStatement where_eq (string field, string val) {
-      query_builder.append (" WHERE `").append (field).append ("` = '").append (val).append ("'");
+      query_builder.append (" WHERE `").append (field).append ("` = ?");
+      bindings.add(val);
+      return this;
+    }
+
+    public SelectStatement where_eq2 (string field, string val) {
+      query_builder.append ("`").append (field).append ("` = ?");
+      bindings.add(val);
       return this;
     }
 
     public SelectStatement where_prefix (string field, string prefix) {
-      query_builder.append (" WHERE `").append (field).append ("` LIKE '")
-                   .append (prefix).append ("%'");
-
+      query_builder.append (" WHERE `").append (field).append ("` LIKE ?");
+      bindings.add(prefix + "%");
       return this;
     }
 
     public SelectStatement where_prefix2 (string field, string prefix) {
-      query_builder.append ("`").append (field).append ("` LIKE '")
-                   .append (prefix).append ("%'");
-
+      query_builder.append ("`").append (field).append ("` LIKE ?");
+      bindings.add(prefix + "%");
       return this;
     }
 
     public SelectStatement or () {
       query_builder.append (" OR ");
+      return this;
+    }
 
+    public SelectStatement and () {
+      query_builder.append (" AND ");
       return this;
     }
 
@@ -79,7 +89,7 @@ namespace Sql {
     }
 
     public SelectStatement where_eqi (string w, int64 v) {
-      query_builder.append (" WHERE `").append (w).append ("`='").append (v.to_string ()).append ("'");
+      this.where_eq (w, v.to_string());
       return this;
     }
 
@@ -100,6 +110,9 @@ namespace Sql {
         critical (db.errmsg ());
         critical (query_builder.str);
         return 0;
+      }
+      for (int i = 0; i < bindings.length; i++) {
+        stmt.bind_text (i + 1, bindings.get (i));
       }
       bool next = true;
       int n_cols = stmt.column_count ();

@@ -56,7 +56,8 @@ namespace Sql {
     }
 
     public UpdateStatement where_eq (string col, string value) {
-      query_builder.append (" WHERE `").append (col).append ("`='").append (value).append ("'");
+      query_builder.append (" WHERE `").append (col).append ("`= ?");
+      bindings.add (value);
       return this;
     }
 
