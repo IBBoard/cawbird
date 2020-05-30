@@ -242,6 +242,18 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       this.mm_widget.show ();
   }
 
+  [GtkCallback]
+  private bool key_released_cb (Gdk.EventKey evt) {
+#if DEBUG
+    switch(evt.keyval) {
+      case Gdk.Key.k:
+        TweetUtils.log_tweet(tweet);
+        return Gdk.EVENT_STOP;
+    }
+#endif
+    return Gdk.EVENT_PROPAGATE;
+  }
+
   public void on_join (int page_id, Cb.Bundle? args) {
     int mode = args.get_int (KEY_MODE);
 

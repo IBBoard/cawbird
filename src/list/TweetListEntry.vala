@@ -403,25 +403,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 #if DEBUG
     switch(evt.keyval) {
       case Gdk.Key.k:
-        stdout.printf (tweet.json_data+"\n");
-        message ("Seen      : %s", tweet.get_seen ().to_string ());
-        message ("My retweet: %s", tweet.my_retweet.to_string ());
-        message ("Retweeted: %s", tweet.is_flag_set (Cb.TweetState.RETWEETED).to_string ());
-        message ("Favorited: %s", tweet.is_flag_set (Cb.TweetState.FAVORITED).to_string ());
-        message ("Protected: %s", tweet.is_flag_set (Cb.TweetState.PROTECTED).to_string ());
-        message ("State    : %s", tweet.state.to_string ());
-        message ("Source tweet author id: %s", tweet.source_tweet.author.id.to_string ());
-        message ("Source tweet author screen_name: %s", tweet.source_tweet.author.screen_name);
-        if (tweet.retweeted_tweet != null) {
-          message ("Retweet!");
-          message ("Retweet author id: %s", tweet.retweeted_tweet.author.id.to_string ());
-          message ("Retweet author screen_name: %s", tweet.retweeted_tweet.author.screen_name);
-        }
-        if (tweet.has_inline_media ()) {
-          foreach (Cb.Media m in tweet.get_medias ()) {
-            message ("Media: %p", m);
-          }
-        }
+        TweetUtils.log_tweet(tweet);
         return Gdk.EVENT_STOP;
     }
 #endif

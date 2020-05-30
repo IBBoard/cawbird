@@ -15,6 +15,7 @@
   <template class="TweetInfoPage" parent="ScrollWidget">
     <property name="can-focus">1</property>
     <property name="hscrollbar-policy">never</property>
+    <signal name="key-release-event" handler="key_released_cb"/>
     <child>
       <object class="GtkStack" id="main_stack">
         <property name="visible">1</property>
