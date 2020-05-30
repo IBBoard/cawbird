@@ -115,6 +115,10 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     this.mentioned_replies_list_box.set_thread_mode (true);
     this.replied_to_list_box.account = account;
     this.replied_to_list_box.set_thread_mode (true);
+    connect_vadjustment (replies_list_box);
+    connect_vadjustment (self_replies_list_box);
+    connect_vadjustment (mentioned_replies_list_box);
+    connect_vadjustment (replied_to_list_box);
 
     grid.set_redraw_on_allocate (true);
 
@@ -162,6 +166,38 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
     Settings.get ().changed["media-visibility"].connect (media_visiblity_changed_cb);
     this.mm_widget.visible = (Settings.get_media_visiblity () != MediaVisibility.HIDE);
+  }
+
+  private void connect_vadjustment (TweetListBox tweet_list_box) {
+    // Ideally we'd just do:
+    // tweet_list_box.set_focus_vadjustment(this.get_vadjustment())
+    // but that gives no way of doing an offset, so we've got to
+    // do all of the calculations ourselves.
+    // https://stackoverflow.com/a/8912336/283242
+    tweet_list_box.set_focus_child.connect((focussed_child) => {
+      if (focussed_child == null) {
+        return;
+      }
+
+      double widget_left, widget_top;
+      focussed_child.translate_coordinates(this, 0, 0, out widget_left, out widget_top);
+      // The coordinate translation doesn't take into account the existing vadjustment! So add it back.
+      widget_top += this.vadjustment.value;
+      Gtk.Allocation alloc;
+      focussed_child.get_allocation(out alloc);
+      var widget_bottom = widget_top + alloc.height;
+      var viewport_top = this.vadjustment.value;
+      var viewport_bottom = viewport_top + this.vadjustment.page_size;
+
+      if (widget_top < viewport_top) {
+        debug("Moving up from %f to %f", viewport_top, widget_top);
+        this.vadjustment.value = widget_top;
+      }
+      else if (widget_bottom > viewport_bottom) {
+        debug("Moving down from %f to %f", viewport_bottom, widget_bottom);
+        this.vadjustment.value = widget_bottom - this.vadjustment.page_size;
+      }
+    });
   }
 
   private void media_visiblity_changed_cb () {
