@@ -187,7 +187,8 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
 
     // Load messages
     var query = account.db.select ("dms")
-                           .cols ("from_id", "to_id", "text", "from_name", "from_screen_name",
+                           .cols ("from_id", "to_id", "text", "message_json",
+                                  "from_name", "from_screen_name",
                                   "timestamp", "id");
     if (user_id == account.id)
       query.where (@"`from_id`='$user_id' AND `to_id`='$user_id'");
@@ -197,8 +198,23 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     query.order ("timestamp DESC")
          .limit (35)
          .run ((vals) => {
-      int64 id = int64.parse (vals[6]);
-      add_entry.begin (id, int64.parse (vals[0]), int64.parse (vals[1]), vals[2], vals[3], vals[4], int64.parse (vals[5]));
+      int64 id = int64.parse (vals[7]);      
+      string json = vals[3];
+
+      if (json != "") {
+        try {
+          Json.Parser parser = new Json.Parser ();
+          parser.load_from_data (json);
+          Json.Node node = parser.get_root ();
+          debug("Adding DM from JSON");
+          handle_dm.begin(Cb.StreamMessageType.DIRECT_MESSAGE, node);
+        } catch (Error e) {
+          warning ("Unable to parse the DM json string: %s\n", e.message);
+        }
+      } else {
+        debug("Adding DM from text");
+        add_entry.begin (id, int64.parse (vals[0]), int64.parse (vals[1]), vals[2], vals[4], vals[5], int64.parse (vals[6]));
+      }
       name = vals[3];
       screen_name = vals[4];
       return true;

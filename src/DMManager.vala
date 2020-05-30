@@ -66,6 +66,15 @@ public class DMManager : GLib.Object {
     return id == dm_id;
   }
 
+  private bool has_dm_json (int64 dm_id) {
+    int64 id = account.db.select ("dms")
+                          .cols ("id")
+                          .where_eqi ("id", dm_id)
+                          .and ().where_eq2 ("message_json", "")
+                          .once_i64 ();
+    return id == dm_id;
+  }
+
   public int reset_unread_count (int64 user_id) {
     if (!threads_model.has_thread (user_id)) {
       debug ("No thread found for user id %s", user_id.to_string ());
@@ -98,12 +107,29 @@ public class DMManager : GLib.Object {
   private async void update_thread (Json.Object dm_obj) {
     Json.Object dm_msg = dm_obj.get_object_member ("message_create");
     int64 message_id = int64.parse(dm_obj.get_string_member ("id"));
+    bool _has_json = has_dm_json (message_id);
+    bool _has_dm = has_dm (message_id);
 
-    if (has_dm (message_id)) {
+    if (_has_dm && _has_json) {
       // The API now returns all recent DMs, and we can't say "since", so we have to
       // check whether the ID exists each time
       return;
     }
+
+    Json.Generator generator = new Json.Generator ();
+    Json.Node node = new Json.Node(Json.NodeType.OBJECT);
+    node.set_object (dm_obj);
+    generator.set_root (node);
+    string json = generator.to_data (null);
+
+    if (_has_dm && !_has_json) {
+      account.db.update ("dms")
+             .val ("message_json", json)
+             .where_eqi ("id", message_id)
+             .run();
+      return;
+    }
+    // Else it is new
 
     int64 recipient_id = int64.parse(dm_msg.get_object_member ("target").get_string_member ("recipient_id"));
     int64 sender_id  = int64.parse(dm_msg.get_string_member ("sender_id"));
@@ -193,6 +219,7 @@ public class DMManager : GLib.Object {
               // Note: We now get time stamps in milliseconds from the API!
               .vali64 ("timestamp", int64.parse(dm_obj.get_string_member ("created_timestamp")) / 1000)
               .val ("text", text)
+              .val ("message_json", json)
               .run ();
 
     /* Update unread count for the thread */

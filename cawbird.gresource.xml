@@ -70,5 +70,6 @@
     <file>sql/accounts/Create.4.sql</file>
     <file>sql/accounts/Create.5.sql</file>
     <file>sql/accounts/Create.6.sql</file>
+    <file>sql/accounts/Create.7.sql</file>
   </gresource>
 </gresources>
