@@ -602,7 +602,9 @@ namespace TweetUtils {
   }
 
   public void log_tweet (Cb.Tweet tweet) {
+#if DEBUG
     stdout.printf (tweet.json_data+"\n");
+#endif
     message ("Seen      : %s", tweet.get_seen ().to_string ());
     message ("My retweet: %s", tweet.my_retweet.to_string ());
     message ("Retweeted: %s", tweet.is_flag_set (Cb.TweetState.RETWEETED).to_string ());
