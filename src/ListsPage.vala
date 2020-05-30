@@ -33,9 +33,9 @@ class ListsPage : IPage, ScrollWidget, Cb.MessageReceiver {
   public unowned Account account            { get; set; }
   public unowned Cb.DeltaUpdater delta_updater { get; set; }
   public int id                             { get; set; }
-  private bool inited = false;
   private int64 user_id;
   private UserListsWidget user_lists_widget;
+  private GLib.DateTime last_load = new GLib.DateTime.from_unix_utc (0);
 
 
   public ListsPage (int id, Account account) {
@@ -58,8 +58,7 @@ class ListsPage : IPage, ScrollWidget, Cb.MessageReceiver {
     if (args != null)
       mode = args.get_int (KEY_MODE);
 
-    if (mode == 0 && !inited) {
-      inited = true;
+    if (mode == 0) {
       this.user_id = account.id;
       load_newest.begin ();
     } else if (mode  == MODE_DELETE) {
@@ -73,9 +72,12 @@ class ListsPage : IPage, ScrollWidget, Cb.MessageReceiver {
     user_lists_widget.unreveal ();
   }
 
-
   private async void load_newest () {
-    yield user_lists_widget.load_lists (user_id);
+    var now = new GLib.DateTime.now_local ();
+    if (now.difference (last_load) > GLib.TimeSpan.MINUTE) {
+      last_load = now;
+      yield user_lists_widget.load_lists (user_id);
+    }
   }
 
   private void stream_message_received (Cb.StreamMessageType type, Json.Node root) { // {{{
@@ -106,11 +108,7 @@ class ListsPage : IPage, ScrollWidget, Cb.MessageReceiver {
   } // }}}
 
   public async TwitterList[] get_user_lists () {
-    if (!inited) {
-      inited = true;
-      yield user_lists_widget.load_lists (user_id);
-    }
-
+    yield load_newest();
     return user_lists_widget.get_user_lists ();
   }
 

@@ -157,13 +157,27 @@ class UserListsWidget : Gtk.Box {
     if (root == null)
       return 0;
 
+    int64[] ids = {};
     var arr = root.get_object ().get_array_member ("lists");
     arr.foreach_element ((array, index, node) => {
       var obj = node.get_object ();
+      ids += obj.get_int_member ("id");
       var entry = new ListListEntry.from_json_data (obj, account);
-      list_box.add (entry);
+      add_list(entry);
     });
-    return arr.get_length ();
+    var size_after = list_box.get_children().length();
+    var list_count = arr.get_length ();
+
+    if (size_after != list_count) {
+      foreach (var entry in list_box.get_children()) {
+        var id = ((ListListEntry)entry).id;
+        if (!(id in ids)) {
+          remove_list(id);
+        }
+      }
+    }
+
+    return list_count;
   } // }}}
 
 
@@ -196,29 +210,35 @@ class UserListsWidget : Gtk.Box {
   }
 
   public void add_list (ListListEntry entry) {
+    Gtk.ListBox list_box;
     if (entry.user_list) {
-      // Avoid duplicates
-      var user_lists = user_list_box.get_children ();
-      foreach (Gtk.Widget w in user_lists) {
-        if (!(w is ListListEntry))
-          continue;
+      list_box = user_list_box;
+    }
+    else {
+      list_box = subscribed_list_box;
+    }
 
-        if (((ListListEntry)w).id == entry.id)
-          return;
+    var updated = false;
+    // Avoid duplicates
+    var user_lists = list_box.get_children ();
+    foreach (Gtk.Widget w in user_lists) {
+      if (!(w is ListListEntry))
+        continue;
+      var list_entry = (ListListEntry)w;
+      if (list_entry.id == entry.id) {
+        update_list_entry_from_entry(list_entry, entry);
+        updated = true;
+        break;
       }
-      user_list_box.add (entry);
+    }
+
+    if (!updated) {
+      list_box.add (entry);
+    }
+
+    if (entry.user_list) {
       user_lists_revealer.reveal_child = true;
     } else {
-      // Avoid duplicates
-      var subscribed_lists = subscribed_list_box.get_children ();
-      foreach (Gtk.Widget w in subscribed_lists) {
-        if (!(w is ListListEntry))
-          continue;
-
-        if (((ListListEntry)w).id == entry.id)
-          return;
-      }
-      subscribed_list_box.add (entry);
       subscribed_list_frame.show ();
       subscribed_list_box.show ();
       subscribed_list_label.show ();
@@ -232,13 +252,21 @@ class UserListsWidget : Gtk.Box {
 
       var lle = (ListListEntry) w;
       if (lle.id == list_id) {
-        lle.title = title;
-        lle.name = name;
-        lle.description = description;
-        lle.mode = mode;
-        lle.queue_draw ();
+        update_list_entry(lle, title, name, description, mode);
       }
     });
+  }
+
+  private void update_list_entry_from_entry (ListListEntry list_entry, ListListEntry src_entry) {
+    update_list_entry(list_entry, src_entry.title, src_entry.name, src_entry.description, src_entry.mode);
+  }
+
+  private void update_list_entry (ListListEntry list_entry, string title, string name, string description, string mode) {
+    list_entry.title = title;
+    list_entry.name = name;
+    list_entry.description = description;
+    list_entry.mode = mode;
+    list_entry.queue_draw ();
   }
 
   public void update_member_count (int64 list_id, int increase) {
