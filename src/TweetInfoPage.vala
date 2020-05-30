@@ -119,6 +119,41 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     connect_vadjustment (self_replies_list_box);
     connect_vadjustment (mentioned_replies_list_box);
     connect_vadjustment (replied_to_list_box);
+    self_replies_list_box.keynav_failed.connect((direction) => {
+      if (direction == Gtk.DirectionType.DOWN) {
+        if (mentioned_replies_list_box.is_visible()) {
+          mentioned_replies_list_box.get_children().first().data.grab_focus();
+        }
+        else if (replies_list_box.is_visible()) {
+          replies_list_box.get_children().first().data.grab_focus();
+        }
+        return true;
+      }
+      return false;
+    });
+    mentioned_replies_list_box.keynav_failed.connect((direction) => {
+      if (direction == Gtk.DirectionType.UP && self_replies_list_box.is_visible()) {
+        self_replies_list_box.get_children().last().data.grab_focus();
+        return true;
+      }
+      else if (direction == Gtk.DirectionType.DOWN && replies_list_box.is_visible()) {
+        replies_list_box.get_children().first().data.grab_focus();
+        return true;
+      }
+      return false;
+    });
+    replies_list_box.keynav_failed.connect((direction) => {
+      if (direction == Gtk.DirectionType.UP) {
+        if (mentioned_replies_list_box.is_visible()) {
+          mentioned_replies_list_box.get_children().last().data.grab_focus();
+        }
+        else if (self_replies_list_box.is_visible()) {
+          self_replies_list_box.get_children().last().data.grab_focus();
+        }
+        return true;
+      }
+      return false;
+    });
 
     grid.set_redraw_on_allocate (true);
 
