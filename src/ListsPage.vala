@@ -81,24 +81,24 @@ class ListsPage : IPage, ScrollWidget, Cb.MessageReceiver {
   private void stream_message_received (Cb.StreamMessageType type, Json.Node root) { // {{{
     if (type == Cb.StreamMessageType.EVENT_LIST_CREATED ||
         type == Cb.StreamMessageType.EVENT_LIST_SUBSCRIBED) {
-      var obj = root.get_object ().get_object_member ("target_object");
+      var obj = root.get_object ();
       var entry = new ListListEntry.from_json_data (obj, account);
       user_lists_widget.add_list (entry);
     } else if (type == Cb.StreamMessageType.EVENT_LIST_DESTROYED ||
                type == Cb.StreamMessageType.EVENT_LIST_UNSUBSCRIBED) {
-      var obj = root.get_object ().get_object_member ("target_object");
+      var obj = root.get_object ();
       int64 list_id = obj.get_int_member ("id");
       user_lists_widget.remove_list (list_id);
     } else if (type == Cb.StreamMessageType.EVENT_LIST_UPDATED) {
-      var obj = root.get_object ().get_object_member ("target_object");
+      var obj = root.get_object ();
       int64 list_id = obj.get_int_member ("id");
       update_list (list_id, obj);
     } else if (type == Cb.StreamMessageType.EVENT_LIST_MEMBER_ADDED) {
-      var obj = root.get_object ().get_object_member ("target_object");
+      var obj = root.get_object ();
       int64 list_id = obj.get_int_member ("id");
       user_lists_widget.update_member_count (list_id, 1);
     } else if (type == Cb.StreamMessageType.EVENT_LIST_MEMBER_REMOVED) {
-      var obj = root.get_object ().get_object_member ("target_object");
+      var obj = root.get_object ();
       int64 list_id = obj.get_int_member ("id");
       user_lists_widget.update_member_count (list_id, -1);
     }
@@ -115,10 +115,11 @@ class ListsPage : IPage, ScrollWidget, Cb.MessageReceiver {
   }
 
   private void update_list (int64 list_id, Json.Object obj) {
+    string title = obj.get_string_member ("name");
     string name = obj.get_string_member ("full_name");
     string description = obj.get_string_member ("description");
     string mode = obj.get_string_member ("mode");
-    user_lists_widget.update_list (list_id, name, description, mode);
+    user_lists_widget.update_list (list_id, title, name, description, mode);
   }
 
 

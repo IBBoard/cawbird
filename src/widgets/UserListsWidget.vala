@@ -225,13 +225,14 @@ class UserListsWidget : Gtk.Box {
     }
   }
 
-  public void update_list (int64 list_id, string name, string description, string mode) {
+  public void update_list (int64 list_id, string title, string name, string description, string mode) {
     user_list_box.foreach ((w) => {
       if (!(w is ListListEntry))
         return;
 
       var lle = (ListListEntry) w;
       if (lle.id == list_id) {
+        lle.title = title;
         lle.name = name;
         lle.description = description;
         lle.mode = mode;

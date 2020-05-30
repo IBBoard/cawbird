@@ -260,6 +260,7 @@ class ListStatusesPage : ScrollWidget, IPage {
       } catch (GLib.Error e) {
         Utils.show_error_dialog (TweetUtils.failed_request_to_error (call, e), this.main_window);
       }
+      account.user_stream.inject_tweet(Cb.StreamMessageType.EVENT_LIST_UPDATED, call.get_payload());
       edit_button.sensitive = true;
       delete_button.sensitive = true;
     });
