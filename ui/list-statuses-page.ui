@@ -231,15 +231,15 @@
               <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkStack" id="name_stack">
+                  <object class="GtkStack" id="title_stack">
                     <property name="visible">1</property>
                     <property name="margin-start">3</property>
                     <property name="margin-end">10</property>
                     <property name="margin-top">5</property>
-                    <property name="visible-child">name_label</property>
+                    <property name="visible-child">title_label</property>
                     <property name="transition-type">slide-up-down</property>
                     <child>
-                      <object class="GtkLabel" id="name_label">
+                      <object class="GtkLabel" id="title_label">
                         <property name="visible">1</property>
                         <property name="halign">start</property>
                         <property name="margin-start">6</property>
@@ -249,7 +249,7 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="name_entry">
+                      <object class="GtkEntry" id="title_entry">
                         <property name="width-request">200</property>
                         <property name="visible">1</property>
                         <property name="can-focus">1</property>

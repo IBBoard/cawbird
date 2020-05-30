@@ -26,15 +26,16 @@ public class ListListEntry : Gtk.ListBoxRow {
   }
 
   [GtkChild]
-  private Gtk.Label name_label;
-  public new string name {
+  private Gtk.Label title_label;
+  public string title {
     set {
-      name_label.label = normalize_name (value);
+      title_label.label = value;
     }
     get {
-      return name_label.label;
+      return title_label.label;
     }
   }
+
   [GtkChild]
   private Gtk.Label description_label;
   public string description {
@@ -45,6 +46,18 @@ public class ListListEntry : Gtk.ListBoxRow {
       return description_label.label;
     }
   }
+
+  [GtkChild]
+  private Gtk.Label name_label;
+  public new string name {
+    set {
+      name_label.label = normalize_name (value);
+    }
+    get {
+      return name_label.label;
+    }
+  }
+
   [GtkChild]
   private Gtk.Stack stack;
   [GtkChild]
@@ -67,7 +80,8 @@ public class ListListEntry : Gtk.ListBoxRow {
   public ListListEntry.from_json_data (Json.Object obj, Account account) {
     this.account = account;
     var user = obj.get_object_member ("user");
-    name = normalize_name (obj.get_string_member ("full_name"));
+    title = obj.get_string_member ("name");
+    name = obj.get_string_member ("full_name");
     description = obj.get_string_member ("description");
     id = obj.get_int_member ("id");
     creator_screen_name = user.get_string_member ("screen_name");

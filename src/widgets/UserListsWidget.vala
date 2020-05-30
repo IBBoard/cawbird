@@ -68,6 +68,7 @@ class UserListsWidget : Gtk.Box {
       var entry = (ListListEntry) row;
       var bundle = new Cb.Bundle ();
       bundle.put_int64 (ListStatusesPage.KEY_LIST_ID, entry.id);
+      bundle.put_string (ListStatusesPage.KEY_TITLE, entry.title);
       bundle.put_string (ListStatusesPage.KEY_NAME, entry.name);
       bundle.put_bool (ListStatusesPage.KEY_USER_LIST, entry.user_list);
       bundle.put_string (ListStatusesPage.KEY_DESCRIPTION, entry.description);
@@ -306,6 +307,7 @@ class UserListsWidget : Gtk.Box {
 
       var bundle = new Cb.Bundle ();
       bundle.put_int64 (ListStatusesPage.KEY_LIST_ID, entry.id);
+      bundle.put_string (ListStatusesPage.KEY_TITLE, entry.title);
       bundle.put_string (ListStatusesPage.KEY_NAME, entry.name);
       bundle.put_bool (ListStatusesPage.KEY_USER_LIST, true);
       bundle.put_string (ListStatusesPage.KEY_DESCRIPTION, entry.description);

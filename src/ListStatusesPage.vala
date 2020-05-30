@@ -26,6 +26,7 @@ class ListStatusesPage : ScrollWidget, IPage {
   public const int KEY_CREATED_AT    = 6;
   public const int KEY_MODE          = 7;
   public const int KEY_LIST_ID       = 8;
+  public const int KEY_TITLE         = 9;
 
   public int id                             { get; set; }
   private unowned MainWindow main_window;
@@ -46,7 +47,7 @@ class ListStatusesPage : ScrollWidget, IPage {
   [GtkChild]
   private Gtk.Label description_label;
   [GtkChild]
-  private Gtk.Label name_label;
+  private Gtk.Label title_label;
   [GtkChild]
   private Gtk.Label creator_label;
   [GtkChild]
@@ -56,9 +57,9 @@ class ListStatusesPage : ScrollWidget, IPage {
   [GtkChild]
   private Gtk.Label created_at_label;
   [GtkChild]
-  private Gtk.Stack name_stack;
+  private Gtk.Stack title_stack;
   [GtkChild]
-  private Gtk.Entry name_entry;
+  private Gtk.Entry title_entry;
   [GtkChild]
   private Gtk.Stack description_stack;
   [GtkChild]
@@ -113,6 +114,7 @@ class ListStatusesPage : ScrollWidget, IPage {
 
     string? list_name = args.get_string (KEY_NAME);
     if (list_name != null) {
+      string list_title = args.get_string (KEY_TITLE);
       bool user_list = args.get_bool (KEY_USER_LIST);
       string description = args.get_string (KEY_DESCRIPTION);
       string creator = args.get_string (KEY_CREATOR);
@@ -123,8 +125,7 @@ class ListStatusesPage : ScrollWidget, IPage {
 
       delete_button.sensitive = user_list;
       edit_button.sensitive = user_list;
-
-      name_label.label = list_name;
+      title_label.label = list_title;
       description_label.label = description;
       creator_label.label = creator;
       members_label.label = "%'d".printf (n_members);
@@ -215,20 +216,20 @@ class ListStatusesPage : ScrollWidget, IPage {
 
   [GtkCallback]
   private void edit_button_clicked_cb () {
-    name_stack.visible_child = name_entry;
+    title_stack.visible_child = title_entry;
     description_stack.visible_child = description_entry;
     delete_stack.visible_child = cancel_button;
     edit_stack.visible_child = save_button;
     mode_stack.visible_child = mode_combo_box;
 
-    name_entry.text = real_list_name ();
+    title_entry.text = title_label.label;
     description_entry.text = description_label.label;
     mode_combo_box.active_id = mode_label.label;
   }
 
   [GtkCallback]
   private void cancel_button_clicked_cb () {
-    name_stack.visible_child = name_label;
+    title_stack.visible_child = title_label;
     description_stack.visible_child = description_label;
     delete_stack.visible_child = delete_button;
     edit_stack.visible_child = edit_button;
@@ -238,7 +239,7 @@ class ListStatusesPage : ScrollWidget, IPage {
   [GtkCallback]
   private void save_button_clicked_cb () {
     // Make everything go back to normal
-    name_label.label = "@%s/%s".printf(creator_label.label, name_entry.get_text ());
+    title_label.label = title_entry.get_text();
     description_label.label = description_entry.text;
     mode_label.label = mode_combo_box.active_id;
     cancel_button_clicked_cb ();
@@ -248,9 +249,10 @@ class ListStatusesPage : ScrollWidget, IPage {
     call.set_function ("1.1/lists/update.json");
     call.set_method ("POST");
     call.add_param ("list_id", list_id.to_string ());
-    call.add_param ("name", real_list_name ());
+    call.add_param ("name", title_label.label);
     call.add_param ("mode", mode_label.label.down ());
     call.add_param ("description", description_label.label);
+    main_window.set_window_title (this.get_title ());
 
     call.invoke_async.begin (null, (o, res) => {
       try {
@@ -261,12 +263,6 @@ class ListStatusesPage : ScrollWidget, IPage {
       edit_button.sensitive = true;
       delete_button.sensitive = true;
     });
-  }
-
-  private string real_list_name () {
-    string cur_name = name_label.label;
-    int slash_index = cur_name.index_of ("/");
-    return cur_name.substring (slash_index + 1);
   }
 
   [GtkCallback]
@@ -356,7 +352,7 @@ class ListStatusesPage : ScrollWidget, IPage {
   }
 
   public string get_title () {
-    return _("List");
+    return title_label.label;
   }
 
   public void create_radio_button (Gtk.RadioButton? group) {}
