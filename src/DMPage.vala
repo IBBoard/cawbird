@@ -43,6 +43,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
 
   public int64 user_id;
   private bool was_scrolled_down = false;
+  private uint update_time_delta_timeout = 0;
 
   public DMPage (int id, Account account) {
     this.id = id;
@@ -209,9 +210,25 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
 
     // Focus the text entry
     text_view.grab_focus ();
+
+    if (this.update_time_delta_timeout != 0) {
+      GLib.Source.remove(this.update_time_delta_timeout);
+    }
+
+    this.update_time_delta_timeout = GLib.Timeout.add(1000 * 60, () => { 
+      messages_list.get_children().foreach((dm_list_entry) => {
+        ((DMListEntry)dm_list_entry).update_time_delta();
+      });
+      return GLib.Source.CONTINUE;
+    });
   }
 
-  public void on_leave () {}
+  public void on_leave () {
+    if (this.update_time_delta_timeout != 0) {
+      GLib.Source.remove(this.update_time_delta_timeout);
+      this.update_time_delta_timeout = 0;
+    }
+  }
 
   [GtkCallback]
   private void send_button_clicked_cb () {
