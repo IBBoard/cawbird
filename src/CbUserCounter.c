@@ -184,47 +184,6 @@ cb_user_counter_save (CbUserCounter *counter,
 }
 
 
-static int
-query_sqlite_cb (void  *user_data,
-                 int    n_columns,
-                 char **columns,
-                 char **column_names)
-{
-  struct {
-    GArray *infos;
-    int lowest_score;
-  } *query_data = user_data;
-  CbUserInfo *ui;
-  guint i;
-  gint64 user_id;
-
-  g_assert (n_columns == 6);
-
-  user_id = strtoull (columns[0], NULL, 10);
-
-  /* Check for duplicates first */
-  for (i = 0; i < query_data->infos->len; i ++)
-    {
-      const CbUserInfo *_ui = &g_array_index (query_data->infos, CbUserInfo, i);
-      if (_ui->user_id == user_id)
-        return 0;
-    }
-
-  g_array_set_size (query_data->infos, query_data->infos->len + 1);
-  ui = &g_array_index (query_data->infos, CbUserInfo, query_data->infos->len - 1);
-
-  ui->user_id = user_id;
-  ui->screen_name = g_strdup (columns[1]);
-  ui->user_name = g_strdup (columns[2]);
-  ui->score = atoi (columns[3]);
-  ui->verified = *columns[4] == '1';
-  ui->protected_account = *columns[5] == '1';
-
-  query_data->lowest_score = MIN (query_data->lowest_score, ui->score);
-
-  return 0; /* Go on */
-}
-
 void
 cb_user_counter_query_by_prefix (CbUserCounter *counter,
                                  sqlite3       *db,
@@ -233,8 +192,6 @@ cb_user_counter_query_by_prefix (CbUserCounter *counter,
                                  CbUserInfo  **results,
                                  int           *n_results)
 {
-  char *sql;
-  char *err;
   int i;
   struct {
     GArray *infos;
@@ -292,21 +249,65 @@ cb_user_counter_query_by_prefix (CbUserCounter *counter,
 
   if (query_data.infos->len == 0)
     query_data.lowest_score = -1;
+  
+  sqlite3_stmt *stmt;
+  int status = sqlite3_prepare_v2 (db, "SELECT `id`, `screen_name`, `user_name`, `score`, "
+                                       "`verified`, `protected_account` "
+                                       "FROM `user_cache` WHERE `screen_name` LIKE ? "
+                                       "OR `user_name` LIKE ? ORDER BY `score` DESC LIMIT ? "
+                                       "COLLATE NOCASE;", -1, &stmt, NULL);
+  if (status != SQLITE_OK) {
+    g_warning ("%s:%d SQL Error: %s",  __FUNCTION__, __LINE__, sqlite3_errmsg (db));
+  }
 
-  sql = g_strdup_printf ("SELECT `id`, `screen_name`, `user_name`, `score`, "
-                         "`verified`, `protected_account` "
-                         "FROM `user_cache` WHERE `screen_name` LIKE '%s%%' "
-                         "OR `user_name` LIKE '%s%%' ORDER BY `score` DESC LIMIT %d "
-                         "COLLATE NOCASE;", prefix, prefix, max_results);
+  char *sql_prefix = strdup(prefix);
+  strcat(sql_prefix, "%");
+  sqlite3_bind_text (stmt, 1, sql_prefix, -1, NULL);
+  sqlite3_bind_text (stmt, 2, sql_prefix, -1, NULL);
+  sqlite3_bind_int (stmt, 3, max_results);
 
-  sqlite3_exec (db, sql, query_sqlite_cb, &query_data, &err);
+  while ((status = sqlite3_step(stmt)) == SQLITE_ROW) {
+    gboolean found = FALSE;
+    CbUserInfo *ui;
+    guint i;
+    gint64 user_id;
 
-  if (err != NULL)
+    user_id = sqlite3_column_int64(stmt, 0);
+
+    /* Check for duplicates first */
+    for (i = 0; i < query_data.infos->len; i ++)
     {
-      g_critical ("%s SQL Error: %s", __FUNCTION__, err);
-      sqlite3_free (err);
+      const CbUserInfo *_ui = &g_array_index (query_data.infos, CbUserInfo, i);
+      if (_ui->user_id == user_id) {
+        found = TRUE;
+        break;
+      }
     }
 
+    if (found) {
+      continue;
+    }
+
+    g_array_set_size (query_data.infos, query_data.infos->len + 1);
+    ui = &g_array_index (query_data.infos, CbUserInfo, query_data.infos->len - 1);
+
+    ui->user_id = user_id;
+    // Apparently it's safe to cast unsigned characters to signed
+    ui->screen_name = g_strdup ((char *) sqlite3_column_text(stmt, 1));
+    ui->user_name = g_strdup ((char *) sqlite3_column_text(stmt, 2));
+    ui->score = atoi ((char *) sqlite3_column_text(stmt, 3));
+    ui->verified = *sqlite3_column_text(stmt, 4) == '1';
+    ui->protected_account = *sqlite3_column_text(stmt, 5) == '1';
+
+    query_data.lowest_score = MIN (query_data.lowest_score, ui->score);
+  }
+
+  if (status != SQLITE_DONE) {
+    g_warning ("%s:%d SQL Error: %s",  __FUNCTION__, __LINE__, sqlite3_errmsg (db));
+  }
+  
+  sqlite3_finalize (stmt);
+  free(sql_prefix);
 
 
   /* Now sort after score */
@@ -321,8 +322,6 @@ cb_user_counter_query_by_prefix (CbUserCounter *counter,
   /* Just use the GArray's data */
   *n_results = query_data.infos->len;
   *results = (CbUserInfo*) g_array_free (query_data.infos, FALSE);
-
-  g_free (sql);
 }
 
 static void
