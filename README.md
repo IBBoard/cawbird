@@ -1,4 +1,4 @@
-# Cawbird 1.0.5
+# Cawbird 1.1.0
 
 <a href="https://ibboard.co.uk/cawbird/#screenshots"><img src="./screenshot1.jpg" style="float:right; margin-left: 1em;" /></a>
 
@@ -130,7 +130,7 @@ Previously, the following issues have occurred that were outside of our control:
 
 ## Translations
 
-  Since February 2014, there has been a [Corebird project on Transifex](https://www.transifex.com/projects/p/corebird). Cawbird is currently still using those translations.
+  Since February 2020, there has been a [Cawbird project on Transifex](https://www.transifex.com/cawbird/cawbird/dashboard/). Users can sign up on Transifex for free to help translate Cawbird.
 
 ## Contributing
 

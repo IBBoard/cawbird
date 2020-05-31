@@ -44,6 +44,49 @@
   <url type="bugtracker">https://github.com/ibboard/cawbird/issues</url>
 
   <releases>
+    <release version="1.1.0" date="2020-05-31">
+      <p>Changes in Cawbird 1.1.0:</p>
+      <ul>
+        <li>Improvements:
+          <ul>
+            <li>Moved tweet replies below tweet in detailed view, so it now matches the layour of almost all other clients (#16)</li>
+            <li>Improved tweet threading (#17):
+              <ul>
+                <li>Now tries to build entire self-reply thread above <em>and</em> below the tweet</li>
+                <li>Sorts all self-replies first, then mentioned replies, then other replies</li>
+                <li>Shows more than five replies</li>
+                <li>Added RT marker to detailed tweet view</li>
+                <li>Reduce number of requests to Twitter API when moving up and down a thread</li>
+              </ul>
+            </li>
+            <li>Improved image scaling to handle portrait monitors (#59)</li>
+            <li>Added overlap to timeline tweet fetching to significantly reduce the likelihood of missing tweets due to "eventual consistency" of Twitter servers (#147)</li>
+            <li>Updated Danish translation (thanks @mads5408) and Dutch translation (thanks @Vistaus) to 100% coverage and increased coverage of Arabic translation (thanks @Ammar_Khaled and @Raayib)</li>
+          </ul>
+        </li>
+        <li>Bug fixes:
+          <ul>
+            <li>Links in direct messages remain clickable after closing and opening (#13)</li>
+            <li>Added support for updated GTK Emoji data (#148 - backported into official v1.0.5 builds)</li>
+            <li>Fixed an SQL error when trying to complete names in tweets</li>
+          </ul>
+        </li>
+        <li>UI changes:
+          <ul>
+            <li>Hidden and deleted tweets in threads no longer trigger error dialogs (#138 and #153)</li>
+            <li>Timestamps on direct messages now update (#30)</li>
+            <li>Fix keyboard navigation in detailed tweet view (#145)</li>
+            <li>Debug builds can dump tweet JSON and details from Tweet Info page (#26)</li>
+            <li>List name is now shown as window title (#135)</li>
+            <li>List now uses actual title, not unique URL-name</li>
+            <li>List of lists now updates (with caching)</li>
+            <li>Tweets in searches now show like/favourite status</li>
+            <li>Added translation strings for new "limited reply" tweets</li>
+            <li>Handle "operation cancelled" 'error' so that users don't see a dialog when clicking back too quickly</li>
+          </ul>
+        </li>
+      </ul>
+    </release>
     <release version="1.0.5" date="2020-04-08">
       <p>Changes in Cawbird 1.0.5:</p>
       <ul>
