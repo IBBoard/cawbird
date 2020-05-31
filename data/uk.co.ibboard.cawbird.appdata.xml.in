@@ -52,7 +52,7 @@
             <li>Moved tweet replies below tweet in detailed view, so it now matches the layour of almost all other clients (#16)</li>
             <li>Improved tweet threading (#17):
               <ul>
-                <li>Now tries to build entire self-reply thread above <em>and</em> below the tweet</li>
+                <li>Now tries to build entire self-reply thread above *and* below the tweet</li>
                 <li>Sorts all self-replies first, then mentioned replies, then other replies</li>
                 <li>Shows more than five replies</li>
                 <li>Added RT marker to detailed tweet view</li>
