@@ -59,7 +59,6 @@
                 <li>Reduce number of requests to Twitter API when moving up and down a thread</li>
               </ul>
             </li>
-            <li>Improved image scaling to handle portrait monitors (#59)</li>
             <li>Added overlap to timeline tweet fetching to significantly reduce the likelihood of missing tweets due to "eventual consistency" of Twitter servers (#147)</li>
             <li>Updated Danish translation (thanks @mads5408) and Dutch translation (thanks @Vistaus) to 100% coverage and increased coverage of Arabic translation (thanks @Ammar_Khaled and @Raayib)</li>
           </ul>
