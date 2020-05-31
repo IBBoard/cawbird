@@ -1,17 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Timm Bäder
 # This file is distributed under the same license as the cawbird package.
-#
+# 
 # Translators:
 # Med Touhami MAHDI <dragnucs@legtux.org>, 2014
 # mohammadA <mohammadAbdulhadi1@gmail.com>, 2016
+# Abdulrahman Saud <bn.saod1@gmail.com>, 2020
+# Ammar K <ak.bahassan@gmail.com>, 2020
+# 
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2020-05-23 11:31+0100\n"
-"PO-Revision-Date: 2018-01-08 14:04+0000\n"
-"Last-Translator: mohammadA <mohammadAbdulhadi1@gmail.com>\n"
+"PO-Revision-Date: 2020-02-05 20:32+0000\n"
+"Last-Translator: Ammar K <ak.bahassan@gmail.com>, 2020\n"
 "Language-Team: Arabic (http://www.transifex.com/cawbird/cawbird/language/"
 "ar/)\n"
 "Language: ar\n"
@@ -22,57 +26,60 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 msgid "Cawbird"
-msgstr ""
+msgstr "كوربرد"
 
 msgid "Twitter Client"
-msgstr "عامل تويتر"
+msgstr "عميل تويتر"
 
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as "
-"Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
-"كوربرد عميل تويتر GTK+ أصيل يوفّر ميزات حيوية مثل الرسائل المباشرة  والإخطار "
-"بالتغريدات وعرض المحادثات."
+"كوربرد عميل تويتر GTK+ أصيل يوفّر ميزات حيوية مثل الرسائل المباشرة  والإخطار"
+" بالتغريدات وعرض المحادثات."
 
 msgid ""
-"Additional features include local viewing of videos, multiple inline images, "
-"Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images,"
+" Lists, Filters, multiple accounts, etc."
 msgstr ""
+"تشمل الميزات الإضافية على: عرض الفيديوهات داخل التطبيق، عرض الصور المتعددة، "
+"القوائم، الفلاتر، و تسجيل الدخول بحسابات متعددة."
 
 msgid "Generic timeline view when using Cawbird"
-msgstr ""
+msgstr "عرض المخطط الزمني العام (Timeline) عند استخدام Cawbird"
 
 msgid "Typical Twitter profile"
 msgstr ""
 
 msgid "Account settings can be configured"
-msgstr ""
+msgstr "يمكن ضبط (تهيئه) إعدادات الحساب "
 
 msgid "IBBoard"
 msgstr "IBBoard"
 
 msgid "Use Twitter from within a normal desktop application"
-msgstr ""
+msgstr "استحدم تويتر من داخل تطبيق في سطح المكتب. "
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
-msgstr ""
+msgstr "تويتر;"
 
 #. TRANSLATORS: This is the start of a "Replying to" line in a tweet
 msgid "Replying to"
-msgstr ""
+msgstr "الرد على"
 
 #. TRANSLATORS: This gets appended to the "replying to" line
 #. * in a tweet. Example: "Replying to Foo and Bar" where
 #. * "and Bar" comes from this string.
 msgid "and"
-msgstr ""
+msgstr "و"
 
 #. TRANSLATORS: This gets appended to the "replying to" line
 #. * in a tweet
 #, c-format
 msgid "and %d others"
-msgstr ""
+msgstr "و %d آخرين"
 
 msgid "Direct Conversation"
 msgstr "محادثة مباشرة"
@@ -80,12 +87,12 @@ msgstr "محادثة مباشرة"
 #, c-format
 msgid "%d new Message from %s"
 msgid_plural "%d new Messages from %s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%d لا توجد رسائل جديدة  %s"
+msgstr[1] "%d رسالة جديدة من %s"
+msgstr[2] "%d رسالتان جديدة من %s"
+msgstr[3] "%d رسائل جديدة من %s"
+msgstr[4] "%d رسائل جديدة من %s"
+msgstr[5] "%d رسائل جديدة من %s"
 
 #, c-format
 msgid "New direct message from %s"
@@ -98,10 +105,10 @@ msgid "Favorites"
 msgstr "المفضلة"
 
 msgid "Add new Filter"
-msgstr ""
+msgstr "اضافة فلتر جديد "
 
 msgid "Filters"
-msgstr ""
+msgstr "الفلاتر "
 
 #, c-format
 msgid "%s retweeted %s"
@@ -114,12 +121,12 @@ msgstr "%s غرد"
 #, c-format
 msgid "%d new Tweet!"
 msgid_plural "%d new Tweets!"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%d  تغريدة جديدة! "
+msgstr[1] "%d تغريدة جديدة! "
+msgstr[2] "%d  تغريدة جديدة! "
+msgstr[3] "%d  تغريدة جديدة! "
+msgstr[4] "%d  تغريدة جديدة! "
+msgstr[5] "%d  تغريدة جديدة! "
 
 msgid "Home"
 msgstr "الرئيسية"
@@ -147,7 +154,7 @@ msgid "Mentions"
 msgstr "الإشارات"
 
 msgid "Suspended Account"
-msgstr ""
+msgstr "حساب موقوف "
 
 msgid "Protected profile"
 msgstr "ملف محمي"
@@ -157,22 +164,22 @@ msgid "Tweet to @%s"
 msgstr "غرد لِ@%s"
 
 msgid "Protected Profile"
-msgstr ""
+msgstr "الحساب محمي "
 
 msgid "Search"
 msgstr "البحث"
 
 msgid "Load More"
-msgstr ""
+msgstr "تحميل المزيد"
 
 msgid "Could not show tweet"
-msgstr ""
+msgstr "تعذر عرض التغريدة"
 
 msgid "This tweet is hidden by the author"
-msgstr ""
+msgstr "التغريدة مخفية بواسطة الكاتب"
 
 msgid "This tweet is unavailable"
-msgstr ""
+msgstr "التغريدة غير متاحة"
 
 msgid "Retweets"
 msgstr "إعادات التغريدات"
@@ -189,63 +196,61 @@ msgstr "تفاصيل التغريدة"
 #, c-format
 msgid "(%d unread)"
 msgid_plural "(%d unread)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "(%d غير مقروءة)"
+msgstr[1] "(%d غير مقروءة)"
+msgstr[2] "(%d غير مقروءة)"
+msgstr[3] "(%d غير مقروءة)"
+msgstr[4] "(%d غير مقروءة)"
+msgstr[5] "(%d  غير مقروءة)"
 
 msgid "Delete"
 msgstr "حذف"
 
 #, c-format
 msgid "Block %s"
-msgstr ""
+msgstr "حظر %s"
 
 msgid "This tweet contains images marked as inappropriate"
-msgstr ""
+msgstr "تحتوي هذه التغريدة على صور تم وضع علامة عليها كغير لائقة"
 
 msgid "Show anyway"
-msgstr ""
+msgstr "عرض على أي حال"
 
-#, fuzzy
 msgid "Could not authenticate you"
-msgstr "تعذّر فتح %s"
+msgstr "تعذر الوثوق بك"
 
 msgid "Sorry, that page does not exist"
-msgstr ""
+msgstr "عذرا، هذه الصفحة غير موجودة"
 
 msgid "User not found."
-msgstr ""
+msgstr "لا يمكن العثور على المستخدم."
 
 msgid "User has been suspended."
-msgstr ""
+msgstr "تم تعليق المستخدم."
 
 msgid "Your account is suspended and is not permitted to access this feature"
-msgstr ""
+msgstr "تم ايقاف حسابك. لا تملك الصلاحية للوصول إلى هذه الميزة"
 
 msgid "Rate limit exceeded"
-msgstr ""
+msgstr "تخطيت المعدل المسموح "
 
 msgid "Invalid or expired token"
-msgstr ""
+msgstr "الرمز غير صالح أو منتهي الصلاحية"
 
 msgid "The specified user is not a subscriber of this list."
-msgstr ""
+msgstr "المستخدم المحدد ليس مشتركًا في هذه القائمة."
 
 msgid "The user you are trying to remove from the list is not a member."
-msgstr ""
+msgstr "المستخدم الذي تحاول إزالته من القائمة ليس عضوًا"
 
 msgid "Account update failed: value is too long."
-msgstr ""
+msgstr "فشل تحديث الحساب:القيمة المدخلة طويلة جدًا"
 
 msgid "Over capacity"
 msgstr ""
 
-#, fuzzy
 msgid "Internal error"
-msgstr "الواجهة"
+msgstr ""
 
 msgid "You have already favorited this status."
 msgstr ""
@@ -254,31 +259,31 @@ msgid "No status found with that ID."
 msgstr ""
 
 msgid "You cannot send messages to users who are not following you."
-msgstr ""
+msgstr "لا يمكنك إرسال رسائل إلى المستخدمين الّذِين لا يتابعونك  "
 
 msgid "There was an error sending your message."
-msgstr ""
+msgstr "حدث خطأ أثناء إرسال رسالتك"
 
 msgid "You've already requested to follow this user."
-msgstr ""
+msgstr "لقد قمت بالفعل بطلب متابعة هذا المستخدم"
 
 msgid "You are unable to follow more people at this time"
-msgstr ""
+msgstr "لا يمكنك متابعة المزيد من الأشخاص في الوقت الحالي"
 
 msgid "Sorry, you are not authorized to see this status"
-msgstr ""
+msgstr "عذرا، غير مصرح لك برؤية هذه الحالة "
 
 msgid "User is over daily status update limit"
 msgstr ""
 
 msgid "Tweet needs to be a bit shorter."
-msgstr ""
+msgstr "يجب أن تكون التغريدة أقصر قليلاً."
 
 msgid "Status is a duplicate"
 msgstr ""
 
 msgid "Owner must allow dms from anyone."
-msgstr ""
+msgstr "يجب أن يسمح المستخدم باستقبال الرسائل الخاصة من أي شخص"
 
 msgid "Bad authentication data"
 msgstr ""
@@ -304,7 +309,7 @@ msgid "You are not muting the specified user."
 msgstr ""
 
 msgid "Animated GIFs are not allowed when uploading multiple images."
-msgstr ""
+msgstr "لا يسمح بإستخدام الصور المتحركة GIFs عند تحميل صور متعددة"
 
 msgid "The validation of media ids failed."
 msgstr ""
@@ -313,18 +318,18 @@ msgid "A media id was not found."
 msgstr ""
 
 msgid ""
-"To protect our users from spam and other malicious activity, this account is "
-"temporarily locked."
+"To protect our users from spam and other malicious activity, this account is"
+" temporarily locked."
 msgstr ""
 
 msgid "You have already retweeted this Tweet."
-msgstr ""
+msgstr "لقد قمت بالفعل بإعادة تغريد هذه التغريدة."
 
 msgid "You cannot send messages to this user."
-msgstr ""
+msgstr "لا يمكنك إرسال الرسائل لهذا المستخدم."
 
 msgid "The text of your direct message is over the max character limit."
-msgstr ""
+msgstr "النص المكتوب في الرسالة تعدى الحد المسموح لعدد الأحرف."
 
 msgid "Subscription already exists."
 msgstr ""
@@ -357,7 +362,7 @@ msgid "%dh"
 msgstr "%dساعة"
 
 msgid "Don't have a Twitter account yet?"
-msgstr ""
+msgstr "ليس لديك حساب تويتر حتى الآن؟"
 
 msgid "Create one"
 msgstr "أنشئ واحدًا"
@@ -370,13 +375,13 @@ msgid "Wrong PIN"
 msgstr "قن خاطئ"
 
 msgid "Account already in use"
-msgstr ""
+msgstr "الحساب قيد الاستخدام"
 
 msgid "No users found"
-msgstr ""
+msgstr "لم يتم العثور على مستخدمين"
 
 msgid "Select Image"
-msgstr ""
+msgstr "اختيار صورة"
 
 msgid "Open"
 msgstr "افتح"
@@ -391,16 +396,16 @@ msgid "Unfollow"
 msgstr "إلغاء التتبُع"
 
 msgid "Copy URL"
-msgstr ""
+msgstr "نسخ الرابط"
 
 msgid "Save as…"
-msgstr ""
+msgstr "حفظ باسم..."
 
 msgid "Save Video"
 msgstr "احفظ الفيديو"
 
 msgid "Save Image"
-msgstr ""
+msgstr "حفظ الصورة"
 
 msgid "Save"
 msgstr "احفظ"
@@ -412,7 +417,7 @@ msgid "No entries found"
 msgstr "لم يتم العثور على أي شيء"
 
 msgid "Retry"
-msgstr ""
+msgstr "إعادة المحاولة"
 
 msgid "Select Banner Image"
 msgstr ""
@@ -441,7 +446,7 @@ msgstr[4] ""
 msgstr[5] ""
 
 msgid "Pick"
-msgstr ""
+msgstr "اختيار"
 
 #, c-format
 msgid "Failed to load image"
@@ -454,39 +459,40 @@ msgstr[4] ""
 msgstr[5] ""
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
+#. <path>, <path>"
 #, c-format
 msgid "%s: %s"
 msgstr ""
 
 msgid "Back"
-msgstr ""
+msgstr "عودة"
 
 msgid "Quote tweet"
-msgstr ""
+msgstr "إقتباس التغريدة"
 
 msgid "Selected file is not an image."
-msgstr ""
+msgstr "الملف المحدد ليس صورة."
 
 #, c-format
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
-msgstr ""
+msgstr "حجم الصورة المحددة كبيرة جدا. الحجم الاقصى لكل صورة هو %'d MB"
 
 msgid "Only one GIF file per tweet is allowed."
-msgstr ""
+msgstr "يسمح بإستخدام GIF واحد فقط للتغريدة."
 
 msgid "Insert Emoji"
-msgstr ""
+msgstr "اضافة Emoji"
 
 msgid "Modify Filter"
-msgstr ""
+msgstr "تعديل الفلتر"
 
 msgid "Matches"
 msgstr "يطابق"
 
 msgid "Doesn't match"
-msgstr ""
+msgstr "لا يتطابق"
 
 msgid "Modify Snippet"
 msgstr ""
@@ -504,11 +510,12 @@ msgid "Snippet already exists"
 msgstr ""
 
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
+"#newisalwaysbetter"
 msgstr ""
 
 msgid "Add to or Remove User From List"
-msgstr ""
+msgstr "اضافة إلى أو حذف المستخدم من القائمة"
 
 msgid "You have no lists."
 msgstr ""
@@ -523,9 +530,11 @@ msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
 msgstr ""
+"لمصادقة Cawbird ، تحتاج إلى رقم تعريف شخصي PIN من twitter.com بالحساب الذي "
+"ترغب في إضافته"
 
 msgid "Request PIN"
-msgstr ""
+msgstr "طلب PIN"
 
 msgid "Enter PIN from twitter.com below:"
 msgstr ""
@@ -537,19 +546,19 @@ msgid "Confirm"
 msgstr "تأكيد"
 
 msgid "Account Settings"
-msgstr ""
+msgstr "إعدادت الحساب"
 
 msgid "Name"
-msgstr ""
+msgstr "الإسم"
 
 msgid "Website"
-msgstr ""
+msgstr "الموقع الكتروني"
 
 msgid "Autostart"
-msgstr ""
+msgstr "بدء تلقائي"
 
 msgid "Do you really want to delete this account?"
-msgstr ""
+msgstr "هل حقا تريد حذف هذا الحساب؟"
 
 msgctxt "emoji category"
 msgid "Smileys & People"
@@ -561,7 +570,7 @@ msgstr ""
 
 msgctxt "emoji category"
 msgid "Animals & Nature"
-msgstr ""
+msgstr "الطبيعة و الحيوانات"
 
 msgctxt "emoji category"
 msgid "Food & Drink"
@@ -569,11 +578,11 @@ msgstr ""
 
 msgctxt "emoji category"
 msgid "Travel & Places"
-msgstr ""
+msgstr "الاماكن و السفر "
 
 msgctxt "emoji category"
 msgid "Activities"
-msgstr ""
+msgstr "النشاطات"
 
 msgctxt "emoji category"
 msgid "Objects"
@@ -588,7 +597,7 @@ msgid "Flags"
 msgstr ""
 
 msgid "No Results Found"
-msgstr ""
+msgstr "لم يتم العثور على نتيجة"
 
 msgid "Try a different search"
 msgstr ""
@@ -597,10 +606,10 @@ msgid "Send"
 msgstr "إرسال"
 
 msgid "Add Image"
-msgstr ""
+msgstr "إضافة صورة "
 
 msgid "Show favorite images"
-msgstr ""
+msgstr "اظهر الصور المفضلة"
 
 msgid "Users"
 msgstr "المستخدمين"
@@ -636,13 +645,13 @@ msgid "Public"
 msgstr "عمومي"
 
 msgid "Description"
-msgstr ""
+msgstr "الوصف"
 
 msgid "Settings"
 msgstr "الإعدادات"
 
 msgid "Shortcuts"
-msgstr ""
+msgstr "اختصارات"
 
 msgid "About"
 msgstr "حول"
@@ -651,13 +660,13 @@ msgid "Quit"
 msgstr "الجروج"
 
 msgid "Add New Filter"
-msgstr ""
+msgstr "اضافة فلتر جديد"
 
 msgid "Add New Snippet"
 msgstr ""
 
 msgid "Keyword"
-msgstr ""
+msgstr "الكلمة الدالة "
 
 msgid "Replacement"
 msgstr ""
@@ -681,10 +690,10 @@ msgid "Blocked"
 msgstr "محضور"
 
 msgid "Muted"
-msgstr ""
+msgstr "مكتوم"
 
 msgid "Retweets disabled"
-msgstr ""
+msgstr "تعطيل إعادات التغريد"
 
 msgid "Follows you"
 msgstr "يتَتبعك"
@@ -699,22 +708,22 @@ msgid "Following"
 msgstr "يتتبع"
 
 msgid "Use dark theme"
-msgstr ""
+msgstr "إستخدام النمط المظلم"
 
 msgid "Show inline media"
 msgstr ""
 
 msgid "Always show"
-msgstr ""
+msgstr "العرض دائما"
 
 msgid "Always hide"
-msgstr ""
+msgstr "إخفاء دائما"
 
 msgid "Hide in timeline"
-msgstr ""
+msgstr "إخفاء في الخط الزمني"
 
 msgid "Auto scroll on new tweets"
-msgstr ""
+msgstr "التمرير التلقائي لالتغريدات الجديدة"
 
 msgid "Double-click activation"
 msgstr ""
@@ -756,16 +765,16 @@ msgid "Notifications"
 msgstr "الإشعارات"
 
 msgid "Round avatars"
-msgstr ""
+msgstr "صور رمزية مستديرة"
 
 msgid "Remove trailing hashtags"
-msgstr ""
+msgstr "إزالة الهاشتقات الزائدة"
 
 msgid "Remove media links"
-msgstr ""
+msgstr "إزالة روابط الوسائط"
 
 msgid "Hide inappropriate content"
-msgstr ""
+msgstr "اخفي المحتوى الغير لائق"
 
 msgid "No snippets configured."
 msgstr ""
@@ -774,11 +783,11 @@ msgid "You can activate snippets by writing the keyword and pressing TAB."
 msgstr ""
 
 msgid "Snippets"
-msgstr ""
+msgstr "القصاصات"
 
 msgctxt "shortcuts window"
 msgid "General"
-msgstr ""
+msgstr "عام"
 
 msgctxt "shortcuts window"
 msgid "Compose Tweet"
@@ -786,7 +795,7 @@ msgstr ""
 
 msgctxt "shortcuts window"
 msgid "Show Account settings"
-msgstr ""
+msgstr "عرض اعدادات الحساب"
 
 msgctxt "shortcuts window"
 msgid "Show Accounts Popover"
@@ -794,7 +803,7 @@ msgstr ""
 
 msgctxt "shortcuts window"
 msgid "Show Application Settings"
-msgstr ""
+msgstr "عرض إعدادات التطبيق"
 
 msgctxt "shortcuts window"
 msgid "Toggle Topbar"
@@ -802,11 +811,11 @@ msgstr ""
 
 msgctxt "shortcuts window"
 msgid "Go Back"
-msgstr ""
+msgstr "عد للخلف"
 
 msgctxt "shortcuts window"
 msgid "Go Forward"
-msgstr ""
+msgstr "إلى الأمام"
 
 msgctxt "shortcuts window"
 msgid "Go to nth page"
@@ -814,38 +823,38 @@ msgstr ""
 
 msgctxt "shortcuts window"
 msgid "Tweets"
-msgstr ""
+msgstr "تغريدات"
 
 msgctxt "shortcuts window"
 msgid "Retweet"
-msgstr ""
+msgstr "إعادة التغريد"
 
 msgctxt "shortcuts window"
 msgid "Favorite"
-msgstr ""
+msgstr "مفضلة"
 
 msgctxt "shortcuts window"
 msgid "Reply"
-msgstr ""
+msgstr "رد"
 
 msgctxt "shortcuts window"
 msgid "Quote"
-msgstr ""
+msgstr "إقتباس"
 
 msgctxt "shortcuts window"
 msgid "Show Details"
-msgstr ""
+msgstr "عرض التفاصيل"
 
 msgctxt "shortcuts window"
 msgid "Delete"
-msgstr ""
+msgstr "حذف"
 
 msgctxt "shortcuts window"
 msgid "Compose"
 msgstr ""
 
 msgid "Show Emoji Chooser"
-msgstr ""
+msgstr "عرض منتقي الرموز التعبيرية"
 
 msgid "Start new conversation"
 msgstr "بدأ محادثة جديدة"
@@ -872,28 +881,25 @@ msgid "More"
 msgstr "المزيد"
 
 msgid "Favorite"
-msgstr ""
+msgstr "مفضلة"
 
 msgid "Reply"
-msgstr ""
+msgstr "رد"
 
 msgid "Unblock"
-msgstr ""
+msgstr "فك الحظر"
 
 msgid "Show settings of this account"
-msgstr ""
+msgstr "عرض الإعدادات لهذا الحساب"
 
 msgid "Open in new window"
-msgstr ""
+msgstr "عرض في نافذه جديدة"
 
 msgid "Go to profile"
-msgstr ""
+msgstr "عرض الملف الشخصي"
 
 msgid "Created"
 msgstr "تم الإنشاء"
 
 msgid "Subscribed to"
 msgstr "مشترك في"
-
-#~ msgid "uk.co.ibboard.cawbird"
-#~ msgstr "uk.co.ibboard.cawbird"
