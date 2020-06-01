@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2020-05-23 11:31+0100\n"
-"PO-Revision-Date: 2020-04-09 09:32+0100\n"
+"PO-Revision-Date: 2020-06-01 09:32+0100\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>, 2020\n"
 "Language-Team: Italian (https://www.transifex.com/cawbird/teams/107135/it/)\n"
 "Language: it\n"
@@ -168,10 +168,10 @@ msgid "Could not show tweet"
 msgstr "Impossibile mostrare il tweet"
 
 msgid "This tweet is hidden by the author"
-msgstr ""
+msgstr "Questo tweet è nascosto dall'autore"
 
 msgid "This tweet is unavailable"
-msgstr ""
+msgstr "Questo tweet non è disponibile"
 
 msgid "Retweets"
 msgstr "Retweet"
@@ -342,7 +342,7 @@ msgid "Invalid / suspended application"
 msgstr "Applicazione non valida / sospesa"
 
 msgid "The original Tweet author restricted who can reply to this Tweet."
-msgstr ""
+msgstr "L'autore originale del Tweet ha limitato a chi può rispondere a questo Tweet."
 
 msgid "Now"
 msgstr "Adesso"
@@ -638,7 +638,7 @@ msgid "Shortcuts"
 msgstr "Scorciatoie"
 
 msgid "About"
-msgstr "Informazioni su..."
+msgstr "Informazioni"
 
 msgid "Quit"
 msgstr "Esci"
@@ -692,7 +692,7 @@ msgid "Following"
 msgstr "Following"
 
 msgid "Use dark theme"
-msgstr ""
+msgstr "Usa tema scuro"
 
 msgid "Show inline media"
 msgstr "Mostrare i media contenuti"
