@@ -864,12 +864,17 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
         (tweet.source_tweet.reply_id != 0 && (tweet.quoted_tweet == null || tweet.source_tweet.reply_id != tweet.quoted_tweet.id))) {
       var author_id = (tweet.retweeted_tweet != null &&
          tweet.retweeted_tweet.reply_id != 0) ? tweet.retweeted_tweet.author.id : tweet.source_tweet.author.id;
-      var all_reply_users = tweet.get_reply_users ();
-      var reply_users = new Cb.UserIdentity[0];
-      for (int i = 0; i < all_reply_users.length; i ++) {
-        if (all_reply_users[i].id == author_id)
-          continue;
-        reply_users += all_reply_users[i];
+      var reply_users = tweet.get_reply_users ();
+      for (int i = 0; i < reply_users.length; i ++) {
+        if (reply_users[i].id == author_id) {
+          var author = reply_users[i];
+          // Move the author to the end to deprioritise them.
+          // This lets us indicate self-replies in TweetInfoView while also showing
+          // more useful information first for multi-user threads
+          reply_users.move(i+1, i, reply_users.length - i - 1);
+          reply_users[reply_users.length - 1] = author;
+          break;
+        }
       }
 
       if (reply_users.length > 0) {
