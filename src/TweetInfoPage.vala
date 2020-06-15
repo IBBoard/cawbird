@@ -160,7 +160,18 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     mm_widget.media_clicked.connect ((m, i) => TweetUtils.handle_media_click (tweet.get_medias (), main_window, i));
     this.scroll_event.connect ((evt) => {
       double evt_delta_x, evt_delta_y;
-      evt.get_scroll_deltas(out evt_delta_x, out evt_delta_y);
+      var success = evt.get_scroll_deltas(out evt_delta_x, out evt_delta_y);
+
+      if (!success) {
+        Gdk.ScrollDirection scroll_dir;
+        success = evt.get_scroll_direction(out scroll_dir);
+
+        if (success && scroll_dir == Gdk.ScrollDirection.UP) {
+          evt_delta_y = -1;
+        } else {
+          evt_delta_y = 0;
+        }
+      }
 
       if (evt_delta_y < 0 && this.vadjustment.value == 0 && tweet.is_reply()) {
         int inc = (int)(vadjustment.step_increment * (-evt_delta_y));
