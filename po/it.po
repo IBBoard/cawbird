@@ -10,7 +10,7 @@
 # Nicola Stanislao Vitale <nivit@rocketmail.com>, 2015
 # Tassoman, 2017
 # Albano Battistella <albano_battistella@hotmail.com>, 2019-2020
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
