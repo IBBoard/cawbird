@@ -1,11 +1,15 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR 2013-2018 Timm Bäder, 2018-2020 IBBoard
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the cawbird package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+# ALBANO BATTISTELLA <albano_battistella@hotmail.com>, 2020.
+#
 # Translators:
-# IBBoard . <github@ibboard.co.uk>, 2020
-# albanobattistella <albano_battistella@hotmail.com>, 2020
+# Daniele Napolitano <dnax88@gmail.com>, 2014
+# Emanuele Rocco Petrone <emaeleptrn@gmail.com>, 2018
+# Matteo Castelli <Mtt.Castelli@gmail.com>, 2016
+# Nicola Stanislao Vitale <nivit@rocketmail.com>, 2015
+# Tassoman, 2017
+# Albano Battistella <albano_battistella@hotmail.com>, 2019-2020
 # 
 #, fuzzy
 msgid ""
