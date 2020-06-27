@@ -575,11 +575,18 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     time_delta_label.label = "<span underline='none'><a href='%s' title='%s'>%s</a></span>"
                              .printf (link, _("Open in Browser"), GLib.Markup.escape_text(Utils.get_time_delta(then, cur_time)));
 
+    var long_delta = Utils.get_time_delta(then, cur_time, true);
+    time_delta_label.get_accessible().set_name(long_delta);
+    time_delta_label.get_accessible().set_description(long_delta);
+
     if (quote_time_delta != null) {
       then = new GLib.DateTime.from_unix_local (tweet.quoted_tweet.created_at);
       link = "https://twitter.com/%s/status/%s".printf (tweet.quoted_tweet.author.screen_name, tweet.quoted_tweet.id.to_string());
       quote_time_delta.label = "<span underline='none'><a href='%s' title='%s'>%s</a></span>"
                          .printf (link, _("Open in Browser"), GLib.Markup.escape_text(Utils.get_time_delta(then, cur_time)));
+      var long_quote_delta = Utils.get_time_delta(then, cur_time, true);
+      quote_time_delta.get_accessible().set_name(long_quote_delta);
+      quote_time_delta.get_accessible().set_description(long_quote_delta);
     }
 
     return (int)(cur_time.difference (then) / 1000.0 / 1000.0);

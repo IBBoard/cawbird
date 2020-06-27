@@ -172,28 +172,56 @@ namespace Utils {
    * Calculates an easily human-readable version of the time difference between
    * time and now.
    * Example: "5m" or "3h" or "26m" or "16 Nov"
+   *
+   * Passing `extended` returns "minutes ago" or "hours ago" and full months instead of "h" or "m"
+   * and abbreviated months
    */
-  public string get_time_delta (GLib.DateTime time, GLib.DateTime now) {
+  public string get_time_delta (GLib.DateTime time, GLib.DateTime now, bool extended = false) {
     //diff is the time difference in microseconds
     GLib.TimeSpan diff = now.difference (time);
 
     int minutes = (int)(diff / 1000.0 / 1000.0 / 60.0);
-    if (minutes == 0)
+    if (minutes == 0) {
       return _("Now");
-    else if (minutes < 60)
-      return _("%dm").printf (minutes);
+    } else if (minutes < 60) {
+      if (extended) {
+        return ngettext("%d minute ago", "%d minutes ago", minutes).printf (minutes);
+      } else {
+        // TRANSLATORS: short-form "x minutes ago"
+        return _("%dm").printf (minutes);
+      }
+    }
 
     int hours = (int)(minutes / 60.0);
-    if (hours < 24)
-      return _("%dh").printf (hours);
-
-    string month = time.format ("%b");
-    if (time.get_year () == now.get_year ()) {
-      //If 'time' was over 24 hours ago, we just return that
-      return "%d %s".printf (time.get_day_of_month (), month);
-    } else {
-      return "%d %s %d".printf (time.get_day_of_month (), month, time.get_year ());
+    if (hours < 24) {
+      if (extended) {
+        return ngettext("%d hour ago", "%d hours ago", hours).printf (hours);
+      } else {
+        // TRANSLATORS: short-form "x hours ago"
+        return _("%dh").printf (hours);
+      }
     }
+
+    string date_format;
+
+    if (time.get_year () == now.get_year ()) {
+      if (extended) {
+        // TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+        date_format = _("%e %B");
+      } else {
+        // TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+        date_format = _("%e %b");
+      }
+    } else {
+      if (extended) {
+        // TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+        date_format = _("%e %B %Y");
+      } else {
+        // TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+        date_format = _("%e %b %Y");
+      }
+    }
+    return time.format(date_format);
   }
 
   /**
