@@ -380,4 +380,18 @@ namespace Utils {
     });
     yield;
   }
+
+  public string linkify_user (Cb.UserIdentity user) {
+    var buff = new StringBuilder ();
+    buff.append ("<span underline='none'><a href=\"@")
+        .append (user.id.to_string ())
+        .append ("/@")
+        .append (user.screen_name)
+        .append ("\" title=\"@")
+        .append (user.screen_name)
+        .append ("\">")
+        .append (GLib.Markup.escape_text(user.user_name))
+        .append ("</a></span>");
+    return buff.str;
+  }
 }

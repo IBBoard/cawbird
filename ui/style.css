@@ -228,7 +228,8 @@ replyindicator {
   opacity: 0.4;
 }
 
-.read-only label.name {
+label.name, label.name link {
+  color: @theme_fg_color;
   font-weight: bold;
 }
 
