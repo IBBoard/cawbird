@@ -42,6 +42,14 @@ class UserListsWidget : Gtk.Box {
   public unowned Account account        { get; set; }
   private bool show_create_entry = true;
 
+  public UserListsWidget() {
+    var accessible_name = _("Your lists");
+    this.user_list_box.get_accessible().set_name(accessible_name);
+    this.user_list_box.get_accessible().set_description(accessible_name);
+    accessible_name = _("Subscribed lists");
+    this.subscribed_list_box.get_accessible().set_name(accessible_name);
+    this.subscribed_list_box.get_accessible().set_description(accessible_name);
+  }
 
   construct {
     user_list_box.set_header_func (default_header_func);

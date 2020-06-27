@@ -22,6 +22,12 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
     }
   }
 
+  protected override string accessibility_name {
+    get {
+      return _("Mentions timeline");
+    }
+  }
+
   public MentionsTimeline(int id, Account account) {
     base (id);
     this.account = account;

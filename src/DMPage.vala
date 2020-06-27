@@ -176,6 +176,9 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
       placeholder_box.load_avatar ();
     }
 
+    messages_list.get_accessible().set_name(_("Direct messages with %s").printf(name));
+    messages_list.get_accessible().set_description(_("Direct messages with %s").printf(name));
+
     text_view.set_account (this.account);
 
     // Clear list

@@ -22,6 +22,12 @@ class FavoritesTimeline : Cb.MessageReceiver, DefaultTimeline {
     }
   }
 
+  protected override string accessibility_name {
+    get {
+      return _("Favourites timeline");
+    }
+  }
+
   public FavoritesTimeline (int id, Account account) {
     base (id);
     this.account = account;

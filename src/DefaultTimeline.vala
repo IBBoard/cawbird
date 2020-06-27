@@ -46,6 +46,7 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
   protected Gtk.Widget? last_focus_widget = null;
   private double last_value = 0.0;
   protected bool preload_is_complete = false;
+  protected abstract string accessibility_name { get; }
 
 
   protected DefaultTimeline (int id) {
@@ -62,6 +63,8 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
     });
 
     this.add (tweet_list);
+    tweet_list.get_accessible().set_name(accessibility_name);
+    tweet_list.get_accessible().set_description(accessibility_name);
 
     tweet_list.row_activated.connect ((row) => {
       if (row is TweetListEntry) {

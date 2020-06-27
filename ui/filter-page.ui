@@ -20,6 +20,12 @@
                 <property name="valign">start</property>
                 <property name="selection-mode">none</property>
                 <signal name="keynav-failed" handler="filter_list_keynav_failed_cb"/>
+                <child internal-child="accessible">
+                  <object class="AtkObject" id="filter_list-atkobject">
+                    <property name="AtkObject::accessible-name" translatable="yes">Filtered terms</property>
+                    <property name="AtkObject::accessible-description" translatable="yes">Filtered terms</property>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
@@ -41,6 +47,12 @@
                     <property name="valign">start</property>
                     <property name="selection-mode">none</property>
                     <signal name="keynav-failed" handler="user_list_keynav_failed_cb"/>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="user_list-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Filtered users</property>
+                        <property name="AtkObject::accessible-description" translatable="yes">Filtered users</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>

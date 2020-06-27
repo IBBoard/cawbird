@@ -73,6 +73,9 @@ class DMThreadsPage : IPage, Cb.MessageReceiver, ScrollWidget {
     thread_list = new Gtk.ListBox ();
     thread_list.set_valign (Gtk.Align.START);
     thread_list.set_selection_mode (Gtk.SelectionMode.NONE);
+    var accessible_name = _("Direct message threads");
+    thread_list.get_accessible().set_name(accessible_name);
+    thread_list.get_accessible().set_description(accessible_name);
     thread_list.keynav_failed.connect (thread_list_keynav_failed_cb);
     thread_list.set_header_func (default_header_func);
     box.add (thread_list);
@@ -98,6 +101,8 @@ class DMThreadsPage : IPage, Cb.MessageReceiver, ScrollWidget {
 
         var bundle = new Cb.Bundle ();
         bundle.put_int64 (DMPage.KEY_SENDER_ID, entry.user_id);
+        bundle.put_string (DMPage.KEY_SCREEN_NAME, entry.screen_name);
+        bundle.put_string (DMPage.KEY_USER_NAME, entry.name);
         main_window.main_widget.switch_page (Page.DM, bundle);
       } else
         warning ("activated row is not a DMThreadEntry");

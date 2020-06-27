@@ -29,12 +29,18 @@ class DMThreadEntry : Gtk.ListBoxRow {
   private Gtk.Label unread_count_label;
   public int64 user_id;
   public new string name {
+    get {
+      return name_label.label;
+    }
     set {
       name_label.label = value;
       name_label.tooltip_text = value;
     }
   }
   public string screen_name {
+    get {
+      return screen_name_label.label;
+    }
     set {
       screen_name_label.label = "@" + value;
       screen_name_label.tooltip_text = "@" + value;

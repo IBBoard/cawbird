@@ -24,6 +24,12 @@ public class HomeTimeline : Cb.MessageReceiver, DefaultTimeline {
     }
   }
 
+  protected override string accessibility_name {
+    get {
+      return _("Home timeline");
+    }
+  }
+
   public HomeTimeline(int id, Account account) {
     base (id);
     this.account = account;

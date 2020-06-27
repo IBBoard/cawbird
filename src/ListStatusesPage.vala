@@ -104,7 +104,7 @@ class ListStatusesPage : ScrollWidget, IPage {
    *  - int64 created_at
    *  - string mode
    */
-    public void on_join (int page_id, Cb.Bundle? args) {
+  public void on_join (int page_id, Cb.Bundle? args) {
     int64 list_id = args.get_int64 (KEY_LIST_ID);
     if (list_id == 0) {
       list_id = this.list_id;
@@ -132,6 +132,10 @@ class ListStatusesPage : ScrollWidget, IPage {
       subscribers_label.label = "%'d".printf (n_subscribers);
       created_at_label.label = new GLib.DateTime.from_unix_local (created_at).format ("%x, %X");
       mode_label.label = Utils.capitalize (mode);
+
+      var accessible_name = _("%s list tweets").printf(list_title);
+      tweet_list.get_accessible().set_name(accessible_name);
+      tweet_list.get_accessible().set_description(accessible_name);
     }
 
     debug (@"Showing list with id $list_id");
