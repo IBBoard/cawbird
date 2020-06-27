@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 11:31+0100\n"
+"POT-Creation-Date: 2020-06-27 17:14+0100\n"
 "PO-Revision-Date: 2018-03-01 17:12+0000\n"
 "Last-Translator: Egor Erastov <egor.er24@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -86,8 +86,16 @@ msgstr "и"
 msgid "and %d others"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "Direct messages with %s"
+msgstr "Сообщения"
+
 msgid "Direct Conversation"
 msgstr "Личная беседа"
+
+#, fuzzy
+msgid "Direct message threads"
+msgstr "Сообщения"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -104,6 +112,10 @@ msgstr "Новое сообщение от %s"
 msgid "Direct Messages"
 msgstr "Сообщения"
 
+#, fuzzy
+msgid "Favourites timeline"
+msgstr "В избранное"
+
 msgid "Favorites"
 msgstr "Избранные"
 
@@ -112,6 +124,10 @@ msgstr "Добавить новый фильтр"
 
 msgid "Filters"
 msgstr "Фильтры"
+
+#, fuzzy
+msgid "Home timeline"
+msgstr "Скрыть в ленте"
 
 #, c-format
 msgid "%s retweeted %s"
@@ -132,8 +148,9 @@ msgstr[3] "%d новых твитов!"
 msgid "Home"
 msgstr "Домой"
 
-msgid "List"
-msgstr "Список"
+#, fuzzy, c-format
+msgid "%s list tweets"
+msgstr "%s твитнут"
 
 msgid "Lists"
 msgstr "Списки"
@@ -146,6 +163,10 @@ msgstr "Написать твит"
 
 msgid "Add new Account"
 msgstr "Добавить новый аккаунт"
+
+#, fuzzy
+msgid "Mentions timeline"
+msgstr "Скрыть в ленте"
 
 #, c-format
 msgid "%s mentioned %s"
@@ -357,12 +378,46 @@ msgid "Now"
 msgstr "Сейчас"
 
 #, c-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#. TRANSLATORS: short-form "x minutes ago"
+#, c-format
 msgid "%dm"
 msgstr "%dм"
 
 #, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#. TRANSLATORS: short-form "x hours ago"
+#, c-format
 msgid "%dh"
 msgstr "%dч"
+
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b"
+msgstr ""
+
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b %Y"
+msgstr ""
 
 msgid "Don't have a Twitter account yet?"
 msgstr ""
@@ -412,15 +467,6 @@ msgstr ""
 
 msgid "Save"
 msgstr "Сохранить"
-
-msgid "Loading…"
-msgstr ""
-
-msgid "No entries found"
-msgstr "Нет записей"
-
-msgid "Retry"
-msgstr "Повтор"
 
 msgid "Select Banner Image"
 msgstr ""
@@ -538,6 +584,9 @@ msgstr ""
 msgid "PIN"
 msgstr ""
 
+msgid "Retry"
+msgstr "Повтор"
+
 msgid "Confirm"
 msgstr "Подтвердить"
 
@@ -606,6 +655,14 @@ msgstr "Добавить изображение"
 
 msgid "Show favorite images"
 msgstr ""
+
+#, fuzzy
+msgid "Filtered terms"
+msgstr "Фильтры"
+
+#, fuzzy
+msgid "Filtered users"
+msgstr "Фильтры"
 
 msgid "Users"
 msgstr "Пользователи"
@@ -882,6 +939,10 @@ msgstr "В избранные"
 msgid "Reply"
 msgstr "Ответить"
 
+#, fuzzy
+msgid "Retweeted by"
+msgstr "Ретвит"
+
 msgid "Unblock"
 msgstr "Разблокировать"
 
@@ -899,6 +960,12 @@ msgstr "Создан"
 
 msgid "Subscribed to"
 msgstr "Подписаться"
+
+#~ msgid "List"
+#~ msgstr "Список"
+
+#~ msgid "No entries found"
+#~ msgstr "Нет записей"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

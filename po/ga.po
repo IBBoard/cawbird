@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 11:31+0100\n"
+"POT-Creation-Date: 2020-06-27 17:14+0100\n"
 "PO-Revision-Date: 2017-11-30 16:57+0000\n"
 "Last-Translator: Aoibhe Ní Ghnímh <aoibhe.agnew@gmail.com>\n"
 "Language-Team: Irish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -72,8 +72,16 @@ msgstr "agus"
 msgid "and %d others"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "Direct messages with %s"
+msgstr "Teachtaireachtaí Díreacha"
+
 msgid "Direct Conversation"
 msgstr ""
+
+#, fuzzy
+msgid "Direct message threads"
+msgstr "Teachtaireachtaí Díreacha"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -91,6 +99,10 @@ msgstr ""
 msgid "Direct Messages"
 msgstr "Teachtaireachtaí Díreacha"
 
+#, fuzzy
+msgid "Favourites timeline"
+msgstr "Croíthe"
+
 msgid "Favorites"
 msgstr "Croíthe"
 
@@ -98,6 +110,9 @@ msgid "Add new Filter"
 msgstr ""
 
 msgid "Filters"
+msgstr ""
+
+msgid "Home timeline"
 msgstr ""
 
 #, c-format
@@ -120,8 +135,9 @@ msgstr[4] ""
 msgid "Home"
 msgstr "Baile"
 
-msgid "List"
-msgstr "Liosta"
+#, c-format
+msgid "%s list tweets"
+msgstr ""
 
 msgid "Lists"
 msgstr "Liostaí"
@@ -133,6 +149,9 @@ msgid "Compose Tweet"
 msgstr ""
 
 msgid "Add new Account"
+msgstr ""
+
+msgid "Mentions timeline"
 msgstr ""
 
 #, c-format
@@ -342,11 +361,47 @@ msgid "Now"
 msgstr "Anois"
 
 #, c-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+
+#. TRANSLATORS: short-form "x minutes ago"
+#, c-format
 msgid "%dm"
 msgstr ""
 
 #, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+
+#. TRANSLATORS: short-form "x hours ago"
+#, c-format
 msgid "%dh"
+msgstr ""
+
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b"
+msgstr ""
+
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b %Y"
 msgstr ""
 
 msgid "Don't have a Twitter account yet?"
@@ -397,15 +452,6 @@ msgstr ""
 
 msgid "Save"
 msgstr "Sábháil"
-
-msgid "Loading…"
-msgstr ""
-
-msgid "No entries found"
-msgstr ""
-
-msgid "Retry"
-msgstr ""
 
 msgid "Select Banner Image"
 msgstr ""
@@ -523,6 +569,9 @@ msgstr ""
 msgid "PIN"
 msgstr ""
 
+msgid "Retry"
+msgstr ""
+
 msgid "Confirm"
 msgstr ""
 
@@ -590,6 +639,12 @@ msgid "Add Image"
 msgstr ""
 
 msgid "Show favorite images"
+msgstr ""
+
+msgid "Filtered terms"
+msgstr ""
+
+msgid "Filtered users"
 msgstr ""
 
 msgid "Users"
@@ -867,6 +922,10 @@ msgstr ""
 msgid "Reply"
 msgstr "Freagra"
 
+#, fuzzy
+msgid "Retweeted by"
+msgstr "Atweetáil"
+
 msgid "Unblock"
 msgstr "Díchoisc"
 
@@ -884,6 +943,9 @@ msgstr ""
 
 msgid "Subscribed to"
 msgstr ""
+
+#~ msgid "List"
+#~ msgstr "Liosta"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

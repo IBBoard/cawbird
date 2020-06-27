@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 11:31+0100\n"
+"POT-Creation-Date: 2020-06-27 17:14+0100\n"
 "PO-Revision-Date: 2018-02-09 06:34+0000\n"
 "Last-Translator: Kim Malmo <berencamlost@msn.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/cawbird/cawbird/"
@@ -75,8 +75,16 @@ msgstr "og"
 msgid "and %d others"
 msgstr "og %d andre"
 
+#, fuzzy, c-format
+msgid "Direct messages with %s"
+msgstr "Direktemeldinger"
+
 msgid "Direct Conversation"
 msgstr "Direktesamtale"
+
+#, fuzzy
+msgid "Direct message threads"
+msgstr "Direktemeldinger"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -91,6 +99,10 @@ msgstr "Ny direktemelding fra %s"
 msgid "Direct Messages"
 msgstr "Direktemeldinger"
 
+#, fuzzy
+msgid "Favourites timeline"
+msgstr "Merk tweet som favoritt"
+
 msgid "Favorites"
 msgstr "Favoritter"
 
@@ -99,6 +111,10 @@ msgstr "Legg til nytt filter"
 
 msgid "Filters"
 msgstr "Filtre"
+
+#, fuzzy
+msgid "Home timeline"
+msgstr "Skjul fra tidslinje"
 
 #, c-format
 msgid "%s retweeted %s"
@@ -117,8 +133,9 @@ msgstr[1] "%d nye tweets!"
 msgid "Home"
 msgstr "Hjem"
 
-msgid "List"
-msgstr "Liste"
+#, fuzzy, c-format
+msgid "%s list tweets"
+msgstr "%s tweetet"
 
 msgid "Lists"
 msgstr "Lister"
@@ -131,6 +148,10 @@ msgstr "Skriv tweet"
 
 msgid "Add new Account"
 msgstr "Legg til ny konto"
+
+#, fuzzy
+msgid "Mentions timeline"
+msgstr "Skjul fra tidslinje"
 
 #, c-format
 msgid "%s mentioned %s"
@@ -340,12 +361,42 @@ msgid "Now"
 msgstr "Nå"
 
 #, c-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANSLATORS: short-form "x minutes ago"
+#, c-format
 msgid "%dm"
 msgstr "%dm"
 
 #, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANSLATORS: short-form "x hours ago"
+#, c-format
 msgid "%dh"
 msgstr "%dh"
+
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b"
+msgstr ""
+
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b %Y"
+msgstr ""
 
 msgid "Don't have a Twitter account yet?"
 msgstr "Har du ikke en Twitter-konto enda?"
@@ -395,15 +446,6 @@ msgstr "Lagre bilde"
 
 msgid "Save"
 msgstr "Lagre"
-
-msgid "Loading…"
-msgstr "Laster inn …"
-
-msgid "No entries found"
-msgstr "Fant ingen elementer"
-
-msgid "Retry"
-msgstr "Prøv på nyt"
 
 msgid "Select Banner Image"
 msgstr "Velg fanebilde"
@@ -514,6 +556,9 @@ msgstr "Skriv inn PIN fra twitter.com nedenfor:"
 msgid "PIN"
 msgstr "PIN"
 
+msgid "Retry"
+msgstr "Prøv på nyt"
+
 msgid "Confirm"
 msgstr "Bekreft"
 
@@ -582,6 +627,14 @@ msgstr "Legg til bild"
 
 msgid "Show favorite images"
 msgstr "Vis favorittbilder"
+
+#, fuzzy
+msgid "Filtered terms"
+msgstr "Filtre"
+
+#, fuzzy
+msgid "Filtered users"
+msgstr "Filtre"
 
 msgid "Users"
 msgstr "Brukere"
@@ -858,6 +911,10 @@ msgstr "Favoritt"
 msgid "Reply"
 msgstr "Svar"
 
+#, fuzzy
+msgid "Retweeted by"
+msgstr "Retweet"
+
 msgid "Unblock"
 msgstr "Fjern blokkering"
 
@@ -875,6 +932,15 @@ msgstr "Laget"
 
 msgid "Subscribed to"
 msgstr "Abonnert på"
+
+#~ msgid "List"
+#~ msgstr "Liste"
+
+#~ msgid "Loading…"
+#~ msgstr "Laster inn …"
+
+#~ msgid "No entries found"
+#~ msgstr "Fant ingen elementer"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

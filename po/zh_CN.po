@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 11:31+0100\n"
+"POT-Creation-Date: 2020-06-27 17:14+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/cawbird/cawbird/"
@@ -76,8 +76,16 @@ msgstr ""
 msgid "and %d others"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "Direct messages with %s"
+msgstr "私信"
+
 msgid "Direct Conversation"
 msgstr "直接对话"
+
+#, fuzzy
+msgid "Direct message threads"
+msgstr "私信"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -91,6 +99,10 @@ msgstr "有来自 %s 的新私信"
 msgid "Direct Messages"
 msgstr "私信"
 
+#, fuzzy
+msgid "Favourites timeline"
+msgstr "收藏推文"
+
 msgid "Favorites"
 msgstr "收藏"
 
@@ -99,6 +111,10 @@ msgstr "添加新过滤器"
 
 msgid "Filters"
 msgstr "过滤器"
+
+#, fuzzy
+msgid "Home timeline"
+msgstr "从时间线上隐藏"
 
 #, c-format
 msgid "%s retweeted %s"
@@ -116,8 +132,9 @@ msgstr[0] "%d 条新推！"
 msgid "Home"
 msgstr "主页"
 
-msgid "List"
-msgstr "列表"
+#, fuzzy, c-format
+msgid "%s list tweets"
+msgstr "%s 已发推"
 
 msgid "Lists"
 msgstr "列表"
@@ -130,6 +147,10 @@ msgstr "撰写推文"
 
 msgid "Add new Account"
 msgstr "添加新账户"
+
+#, fuzzy
+msgid "Mentions timeline"
+msgstr "从时间线上隐藏"
 
 #, c-format
 msgid "%s mentioned %s"
@@ -338,12 +359,40 @@ msgid "Now"
 msgstr "现在"
 
 #, c-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+
+#. TRANSLATORS: short-form "x minutes ago"
+#, c-format
 msgid "%dm"
 msgstr "%d分钟"
 
 #, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+
+#. TRANSLATORS: short-form "x hours ago"
+#, c-format
 msgid "%dh"
 msgstr "%d小时"
+
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b"
+msgstr ""
+
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b %Y"
+msgstr ""
 
 msgid "Don't have a Twitter account yet?"
 msgstr ""
@@ -393,15 +442,6 @@ msgstr ""
 
 msgid "Save"
 msgstr "保存"
-
-msgid "Loading…"
-msgstr ""
-
-msgid "No entries found"
-msgstr "未找到条目"
-
-msgid "Retry"
-msgstr "重试"
 
 msgid "Select Banner Image"
 msgstr ""
@@ -507,6 +547,9 @@ msgstr ""
 msgid "PIN"
 msgstr ""
 
+msgid "Retry"
+msgstr "重试"
+
 msgid "Confirm"
 msgstr "确认"
 
@@ -575,6 +618,14 @@ msgstr "添加图像"
 
 msgid "Show favorite images"
 msgstr ""
+
+#, fuzzy
+msgid "Filtered terms"
+msgstr "过滤器"
+
+#, fuzzy
+msgid "Filtered users"
+msgstr "过滤器"
 
 msgid "Users"
 msgstr "用户"
@@ -851,6 +902,10 @@ msgstr "收藏"
 msgid "Reply"
 msgstr "回复"
 
+#, fuzzy
+msgid "Retweeted by"
+msgstr "转推"
+
 msgid "Unblock"
 msgstr "取消屏蔽"
 
@@ -868,6 +923,12 @@ msgstr "已创建"
 
 msgid "Subscribed to"
 msgstr "订阅到"
+
+#~ msgid "List"
+#~ msgstr "列表"
+
+#~ msgid "No entries found"
+#~ msgstr "未找到条目"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 11:31+0100\n"
+"POT-Creation-Date: 2020-06-27 17:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,7 +69,14 @@ msgstr ""
 msgid "and %d others"
 msgstr ""
 
+#, c-format
+msgid "Direct messages with %s"
+msgstr ""
+
 msgid "Direct Conversation"
+msgstr ""
+
+msgid "Direct message threads"
 msgstr ""
 
 #, c-format
@@ -85,6 +92,9 @@ msgstr ""
 msgid "Direct Messages"
 msgstr ""
 
+msgid "Favourites timeline"
+msgstr ""
+
 msgid "Favorites"
 msgstr ""
 
@@ -92,6 +102,9 @@ msgid "Add new Filter"
 msgstr ""
 
 msgid "Filters"
+msgstr ""
+
+msgid "Home timeline"
 msgstr ""
 
 #, c-format
@@ -111,7 +124,8 @@ msgstr[1] ""
 msgid "Home"
 msgstr ""
 
-msgid "List"
+#, c-format
+msgid "%s list tweets"
 msgstr ""
 
 msgid "Lists"
@@ -124,6 +138,9 @@ msgid "Compose Tweet"
 msgstr ""
 
 msgid "Add new Account"
+msgstr ""
+
+msgid "Mentions timeline"
 msgstr ""
 
 #, c-format
@@ -330,11 +347,41 @@ msgid "Now"
 msgstr ""
 
 #, c-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANSLATORS: short-form "x minutes ago"
+#, c-format
 msgid "%dm"
 msgstr ""
 
 #, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANSLATORS: short-form "x hours ago"
+#, c-format
 msgid "%dh"
+msgstr ""
+
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b"
+msgstr ""
+
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b %Y"
 msgstr ""
 
 msgid "Don't have a Twitter account yet?"
@@ -384,15 +431,6 @@ msgid "Save Image"
 msgstr ""
 
 msgid "Save"
-msgstr ""
-
-msgid "Loading…"
-msgstr ""
-
-msgid "No entries found"
-msgstr ""
-
-msgid "Retry"
 msgstr ""
 
 msgid "Select Banner Image"
@@ -502,6 +540,9 @@ msgstr ""
 msgid "PIN"
 msgstr ""
 
+msgid "Retry"
+msgstr ""
+
 msgid "Confirm"
 msgstr ""
 
@@ -569,6 +610,12 @@ msgid "Add Image"
 msgstr ""
 
 msgid "Show favorite images"
+msgstr ""
+
+msgid "Filtered terms"
+msgstr ""
+
+msgid "Filtered users"
 msgstr ""
 
 msgid "Users"
@@ -844,6 +891,9 @@ msgid "Favorite"
 msgstr ""
 
 msgid "Reply"
+msgstr ""
+
+msgid "Retweeted by"
 msgstr ""
 
 msgid "Unblock"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 11:31+0100\n"
+"POT-Creation-Date: 2020-06-27 17:14+0100\n"
 "PO-Revision-Date: 2017-11-20 17:05+0000\n"
 "Last-Translator: Slobodan Terzić <githzerai06@gmail.com>\n"
 "Language-Team: Serbian (Latin) (http://www.transifex.com/cawbird/cawbird/"
@@ -74,8 +74,16 @@ msgstr "i"
 msgid "and %d others"
 msgstr "i %d drugih"
 
+#, fuzzy, c-format
+msgid "Direct messages with %s"
+msgstr "Direktne poruke"
+
 msgid "Direct Conversation"
 msgstr "Direktni razgovori"
+
+#, fuzzy
+msgid "Direct message threads"
+msgstr "Direktne poruke"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -91,6 +99,10 @@ msgstr "Nova direktna poruka od %s"
 msgid "Direct Messages"
 msgstr "Direktne poruke"
 
+#, fuzzy
+msgid "Favourites timeline"
+msgstr "Označi tvit omiljenim"
+
 msgid "Favorites"
 msgstr "Omiljeno"
 
@@ -99,6 +111,10 @@ msgstr "Dodaj novi filter"
 
 msgid "Filters"
 msgstr "Filteri"
+
+#, fuzzy
+msgid "Home timeline"
+msgstr "Sakrij sa vremenske linije"
 
 #, c-format
 msgid "%s retweeted %s"
@@ -118,8 +134,9 @@ msgstr[2] "%d novih tvitova!"
 msgid "Home"
 msgstr "Početna"
 
-msgid "List"
-msgstr "Spisak"
+#, fuzzy, c-format
+msgid "%s list tweets"
+msgstr "%s je tvitovao/la"
 
 msgid "Lists"
 msgstr "Spiskovi"
@@ -132,6 +149,10 @@ msgstr "Sastavi tvit"
 
 msgid "Add new Account"
 msgstr "Dodaj novi nalog"
+
+#, fuzzy
+msgid "Mentions timeline"
+msgstr "Sakrij sa vremenske linije"
 
 #, c-format
 msgid "%s mentioned %s"
@@ -342,12 +363,44 @@ msgid "Now"
 msgstr "sada"
 
 #, c-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#. TRANSLATORS: short-form "x minutes ago"
+#, c-format
 msgid "%dm"
 msgstr "%dm"
 
 #, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#. TRANSLATORS: short-form "x hours ago"
+#, c-format
 msgid "%dh"
 msgstr "%dč"
+
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b"
+msgstr ""
+
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b %Y"
+msgstr ""
 
 msgid "Don't have a Twitter account yet?"
 msgstr "Još nemate Twitter nalog?"
@@ -397,15 +450,6 @@ msgstr "Sačuvaj sliku"
 
 msgid "Save"
 msgstr "Sačuvaj"
-
-msgid "Loading…"
-msgstr "Učitavam…"
-
-msgid "No entries found"
-msgstr "Nema pronađenih unosa"
-
-msgid "Retry"
-msgstr "Ponovo pokušaj"
 
 msgid "Select Banner Image"
 msgstr "Izaberite sliku barjaka"
@@ -522,6 +566,9 @@ msgstr "Unesite PIN sa twitter.com ispod:"
 msgid "PIN"
 msgstr "PIN"
 
+msgid "Retry"
+msgstr "Ponovo pokušaj"
+
 msgid "Confirm"
 msgstr "Potvrdi"
 
@@ -590,6 +637,14 @@ msgstr "Dodaj sliku"
 
 msgid "Show favorite images"
 msgstr "Prikaži omiljene slike"
+
+#, fuzzy
+msgid "Filtered terms"
+msgstr "Filteri"
+
+#, fuzzy
+msgid "Filtered users"
+msgstr "Filteri"
 
 msgid "Users"
 msgstr "Korisnici"
@@ -867,6 +922,10 @@ msgstr "Stavi kao omiljeno"
 msgid "Reply"
 msgstr "Odgovori"
 
+#, fuzzy
+msgid "Retweeted by"
+msgstr "Ponovo tvituj"
+
 msgid "Unblock"
 msgstr "Deblokiraj"
 
@@ -884,6 +943,15 @@ msgstr "Napravi"
 
 msgid "Subscribed to"
 msgstr "Pretplaćen(a) na"
+
+#~ msgid "List"
+#~ msgstr "Spisak"
+
+#~ msgid "Loading…"
+#~ msgstr "Učitavam…"
+
+#~ msgid "No entries found"
+#~ msgstr "Nema pronađenih unosa"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

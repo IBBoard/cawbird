@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 11:31+0100\n"
+"POT-Creation-Date: 2020-06-27 17:14+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Indonesian (Indonesia) (http://www.transifex.com/cawbird/"
@@ -76,8 +76,16 @@ msgstr "dan"
 msgid "and %d others"
 msgstr "dan 1%d lainnya"
 
+#, fuzzy, c-format
+msgid "Direct messages with %s"
+msgstr "Pesan Langsung"
+
 msgid "Direct Conversation"
 msgstr "Percakapan Langsung"
+
+#, fuzzy
+msgid "Direct message threads"
+msgstr "Pesan Langsung"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -91,6 +99,10 @@ msgstr "Pesan baru langsung dari %s"
 msgid "Direct Messages"
 msgstr "Pesan Langsung"
 
+#, fuzzy
+msgid "Favourites timeline"
+msgstr "Tweet kesukaan"
+
 msgid "Favorites"
 msgstr "Kesukaan"
 
@@ -99,6 +111,10 @@ msgstr "Tambah Penyaringan baru"
 
 msgid "Filters"
 msgstr "Penyaringan"
+
+#, fuzzy
+msgid "Home timeline"
+msgstr "Sembunyi di beranda"
 
 #, c-format
 msgid "%s retweeted %s"
@@ -116,8 +132,9 @@ msgstr[0] "%d Tweets! baru"
 msgid "Home"
 msgstr "Halaman depan"
 
-msgid "List"
-msgstr "Daftar"
+#, fuzzy, c-format
+msgid "%s list tweets"
+msgstr "%s tweeted"
 
 msgid "Lists"
 msgstr "Daftar"
@@ -130,6 +147,10 @@ msgstr "Menulis tweet"
 
 msgid "Add new Account"
 msgstr "Tambah Akun baru"
+
+#, fuzzy
+msgid "Mentions timeline"
+msgstr "Sembunyi di beranda"
 
 #, c-format
 msgid "%s mentioned %s"
@@ -338,12 +359,40 @@ msgid "Now"
 msgstr "Sekarang"
 
 #, c-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+
+#. TRANSLATORS: short-form "x minutes ago"
+#, c-format
 msgid "%dm"
 msgstr "%dm"
 
 #, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+
+#. TRANSLATORS: short-form "x hours ago"
+#, c-format
 msgid "%dh"
 msgstr "%dj"
+
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b"
+msgstr ""
+
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b %Y"
+msgstr ""
 
 msgid "Don't have a Twitter account yet?"
 msgstr "Belum mempunyai akun Twitter?"
@@ -393,15 +442,6 @@ msgstr "SImpan Gambar"
 
 msgid "Save"
 msgstr "Simpan"
-
-msgid "Loading…"
-msgstr "Sedang memuatkan..."
-
-msgid "No entries found"
-msgstr "Entri tidak ditemukan"
-
-msgid "Retry"
-msgstr "Coba lagi"
 
 msgid "Select Banner Image"
 msgstr "Pilih Gambar Spanduk"
@@ -513,6 +553,9 @@ msgstr "Masukkan PIN dari twitter.com dibawah ini:"
 msgid "PIN"
 msgstr "PIN"
 
+msgid "Retry"
+msgstr "Coba lagi"
+
 msgid "Confirm"
 msgstr "Konfirmasi"
 
@@ -581,6 +624,14 @@ msgstr "Tambah Gambar"
 
 msgid "Show favorite images"
 msgstr "Tampilkan gambar favorit"
+
+#, fuzzy
+msgid "Filtered terms"
+msgstr "Penyaringan"
+
+#, fuzzy
+msgid "Filtered users"
+msgstr "Penyaringan"
 
 msgid "Users"
 msgstr "Pengguna"
@@ -859,6 +910,10 @@ msgstr "Kesukaan"
 msgid "Reply"
 msgstr "Balas"
 
+#, fuzzy
+msgid "Retweeted by"
+msgstr "Retweet"
+
 msgid "Unblock"
 msgstr "Lepaskan blokir"
 
@@ -876,6 +931,15 @@ msgstr "Dibuat"
 
 msgid "Subscribed to"
 msgstr "Berlangganan ke"
+
+#~ msgid "List"
+#~ msgstr "Daftar"
+
+#~ msgid "Loading…"
+#~ msgstr "Sedang memuatkan..."
+
+#~ msgid "No entries found"
+#~ msgstr "Entri tidak ditemukan"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

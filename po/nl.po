@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 11:31+0100\n"
+"POT-Creation-Date: 2020-06-27 17:14+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>, 2020\n"
 "Language-Team: Dutch (https://www.transifex.com/cawbird/teams/107135/nl/)\n"
@@ -30,16 +30,16 @@ msgid "Twitter Client"
 msgstr "Twittertoepassing"
 
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as"
-" Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as "
+"Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
 "Cawbird is een geïntegreerde GTK+ Twittertoepassing met ondersteuning voor "
 "de belangrijkste functionaliteiten, zoals privéberichten (DM's), "
 "tweetmeldingen en gespreksweergaven."
 
 msgid ""
-"Additional features include local viewing of videos, multiple inline images,"
-" Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images, "
+"Lists, Filters, multiple accounts, etc."
 msgstr ""
 "Daarnaast kun je video's afspelen, meerdere bijgevoegde afbeeldingen tonen, "
 "en is er ondersteuning voor lijsten, filters, meerdere accounts en nog veel "
@@ -60,8 +60,7 @@ msgstr "IBBoard"
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Gebruik Twitter vanuit een normale bureaubladtoepassing"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or
-#. localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;"
 
@@ -81,8 +80,16 @@ msgstr "en"
 msgid "and %d others"
 msgstr "en %d anderen"
 
+#, fuzzy, c-format
+msgid "Direct messages with %s"
+msgstr "Privéberichten"
+
 msgid "Direct Conversation"
 msgstr "Privégesprek"
+
+#, fuzzy
+msgid "Direct message threads"
+msgstr "Privéberichten"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -97,6 +104,10 @@ msgstr "Nieuw privébericht van %s"
 msgid "Direct Messages"
 msgstr "Privéberichten"
 
+#, fuzzy
+msgid "Favourites timeline"
+msgstr "Vind ik leuk"
+
 msgid "Favorites"
 msgstr "Vind-ik-leuks"
 
@@ -105,6 +116,10 @@ msgstr "Filter toevoegen"
 
 msgid "Filters"
 msgstr "Filters"
+
+#, fuzzy
+msgid "Home timeline"
+msgstr "Verbergen op tijdlijn"
 
 #, c-format
 msgid "%s retweeted %s"
@@ -123,8 +138,9 @@ msgstr[1] "%d nieuwe tweets!"
 msgid "Home"
 msgstr "Startpagina"
 
-msgid "List"
-msgstr "Lijst"
+#, fuzzy, c-format
+msgid "%s list tweets"
+msgstr "%s tweette"
 
 msgid "Lists"
 msgstr "Lijsten"
@@ -137,6 +153,10 @@ msgstr "Tweet opstellen"
 
 msgid "Add new Account"
 msgstr "Account toevoegen"
+
+#, fuzzy
+msgid "Mentions timeline"
+msgstr "Verbergen op tijdlijn"
 
 #, c-format
 msgid "%s mentioned %s"
@@ -286,8 +306,8 @@ msgid ""
 "This request looks like it might be automated. To protect our users from "
 "spam and other malicious activity, we can’t complete this action right now."
 msgstr ""
-"Dit verzoek lijkt geautomatiseerd. Om gebruikers te beschermen tegen spam en"
-" andere schadelijke activiteit, kunnen we deze handeling nu niet uitvoeren."
+"Dit verzoek lijkt geautomatiseerd. Om gebruikers te beschermen tegen spam en "
+"andere schadelijke activiteit, kunnen we deze handeling nu niet uitvoeren."
 
 msgid "User must verify login"
 msgstr "Je moet je inlogverzoek goedkeuren"
@@ -313,8 +333,8 @@ msgid "A media id was not found."
 msgstr "Er is geen media-id gevonden."
 
 msgid ""
-"To protect our users from spam and other malicious activity, this account is"
-" temporarily locked."
+"To protect our users from spam and other malicious activity, this account is "
+"temporarily locked."
 msgstr ""
 "Om gebruikers te beschermen tegen spam en andere schadelijke activiteit, is "
 "dit account tijdelijk geblokkeerd."
@@ -355,12 +375,42 @@ msgid "Now"
 msgstr "Nu"
 
 #, c-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANSLATORS: short-form "x minutes ago"
+#, c-format
 msgid "%dm"
 msgstr "%dm"
 
 #, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANSLATORS: short-form "x hours ago"
+#, c-format
 msgid "%dh"
 msgstr "%du"
+
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b"
+msgstr ""
+
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b %Y"
+msgstr ""
 
 msgid "Don't have a Twitter account yet?"
 msgstr "Heb je nog geen Twitter-account?"
@@ -411,15 +461,6 @@ msgstr "Afbeelding opslaan"
 msgid "Save"
 msgstr "Opslaan"
 
-msgid "Loading…"
-msgstr "Bezig met laden..."
-
-msgid "No entries found"
-msgstr "Geen items gevonden"
-
-msgid "Retry"
-msgstr "Opnieuw proberen"
-
 msgid "Select Banner Image"
 msgstr "Omslagfoto selecteren"
 
@@ -448,8 +489,7 @@ msgstr[0] "De afbeelding kan niet worden geladen"
 msgstr[1] "%u afbeeldingen kunnen niet worden geladen"
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
-#. <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -501,8 +541,7 @@ msgid "Snippet already exists"
 msgstr "Het fragment bestaat al"
 
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
-"#newisalwaysbetter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
 msgstr ""
 "Hé! Kijk eens naar deze nieuwe #Cawbird-versie! \\ (•◡•) / #cool "
 "#nieuwisaltijdbeter"
@@ -523,8 +562,8 @@ msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
 msgstr ""
-"Geef Cawbird toestemming door op twitter.com een pincode op te halen van het"
-" toe te voegen account"
+"Geef Cawbird toestemming door op twitter.com een pincode op te halen van het "
+"toe te voegen account"
 
 msgid "Request PIN"
 msgstr "Pincode aanvragen"
@@ -534,6 +573,9 @@ msgstr "Voer de pincode hieronder in:"
 
 msgid "PIN"
 msgstr "Pincode"
+
+msgid "Retry"
+msgstr "Opnieuw proberen"
 
 msgid "Confirm"
 msgstr "Bevestigen"
@@ -603,6 +645,14 @@ msgstr "Afbeelding toevoegen"
 
 msgid "Show favorite images"
 msgstr "Leuk gevonden afbeeldingen tonen"
+
+#, fuzzy
+msgid "Filtered terms"
+msgstr "Filters"
+
+#, fuzzy
+msgid "Filtered users"
+msgstr "Filters"
 
 msgid "Users"
 msgstr "Gebruikers"
@@ -881,6 +931,10 @@ msgstr "Vind ik leuk"
 msgid "Reply"
 msgstr "Beantwoorden"
 
+#, fuzzy
+msgid "Retweeted by"
+msgstr "Retweeten"
+
 msgid "Unblock"
 msgstr "Deblokkeren"
 
@@ -898,3 +952,12 @@ msgstr "Aangemaakt"
 
 msgid "Subscribed to"
 msgstr "Geabonneerd op"
+
+#~ msgid "List"
+#~ msgstr "Lijst"
+
+#~ msgid "Loading…"
+#~ msgstr "Bezig met laden..."
+
+#~ msgid "No entries found"
+#~ msgstr "Geen items gevonden"

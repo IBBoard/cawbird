@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 11:31+0100\n"
+"POT-Creation-Date: 2020-06-27 17:14+0100\n"
 "PO-Revision-Date: 2017-10-22 17:13+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -74,8 +74,16 @@ msgstr "ja"
 msgid "and %d others"
 msgstr "ja %d muulle"
 
+#, fuzzy, c-format
+msgid "Direct messages with %s"
+msgstr "Yksityisviestit"
+
 msgid "Direct Conversation"
 msgstr "Yksityiskeskustelu"
+
+#, fuzzy
+msgid "Direct message threads"
+msgstr "Yksityisviestit"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -90,6 +98,10 @@ msgstr "Uusi yksityinen viesti käyttäjältä %s"
 msgid "Direct Messages"
 msgstr "Yksityisviestit"
 
+#, fuzzy
+msgid "Favourites timeline"
+msgstr "Lisää twiitti suosikkeihin"
+
 msgid "Favorites"
 msgstr "Suosikit"
 
@@ -98,6 +110,10 @@ msgstr "Lisää uusi suodatin"
 
 msgid "Filters"
 msgstr "Suodattimet"
+
+#, fuzzy
+msgid "Home timeline"
+msgstr "Piilota aikajanalla"
 
 #, c-format
 msgid "%s retweeted %s"
@@ -116,8 +132,9 @@ msgstr[1] "%d uutta twiittiä!"
 msgid "Home"
 msgstr "Koti"
 
-msgid "List"
-msgstr "Lista"
+#, fuzzy, c-format
+msgid "%s list tweets"
+msgstr "%s twiittasi"
 
 msgid "Lists"
 msgstr "Listat"
@@ -130,6 +147,10 @@ msgstr "Kirjoita twiitti"
 
 msgid "Add new Account"
 msgstr "Lisää uusi tili"
+
+#, fuzzy
+msgid "Mentions timeline"
+msgstr "Piilota aikajanalla"
 
 #, c-format
 msgid "%s mentioned %s"
@@ -339,12 +360,42 @@ msgid "Now"
 msgstr "Nyt"
 
 #, c-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANSLATORS: short-form "x minutes ago"
+#, c-format
 msgid "%dm"
 msgstr "%d min"
 
 #, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANSLATORS: short-form "x hours ago"
+#, c-format
 msgid "%dh"
 msgstr "%d t"
+
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b"
+msgstr ""
+
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b %Y"
+msgstr ""
 
 msgid "Don't have a Twitter account yet?"
 msgstr "Ei vielä Twitter-tiliä?"
@@ -394,15 +445,6 @@ msgstr "Tallenna kuva"
 
 msgid "Save"
 msgstr "Tallenna"
-
-msgid "Loading…"
-msgstr "Ladataan…"
-
-msgid "No entries found"
-msgstr "Kohteita ei löytynyt"
-
-msgid "Retry"
-msgstr "Yritä uudelleen"
 
 msgid "Select Banner Image"
 msgstr "Valitse bannerikuva"
@@ -516,6 +558,9 @@ msgstr "Kirjoita PIN twitter.comista alapuolelle:"
 msgid "PIN"
 msgstr "PIN"
 
+msgid "Retry"
+msgstr "Yritä uudelleen"
+
 msgid "Confirm"
 msgstr "Vahvista"
 
@@ -584,6 +629,14 @@ msgstr "Lisää kuva"
 
 msgid "Show favorite images"
 msgstr "Näytä suosikkikuvat"
+
+#, fuzzy
+msgid "Filtered terms"
+msgstr "Suodattimet"
+
+#, fuzzy
+msgid "Filtered users"
+msgstr "Suodattimet"
 
 msgid "Users"
 msgstr "Käyttäjät"
@@ -861,6 +914,10 @@ msgstr "Suosikki"
 msgid "Reply"
 msgstr "Vastaa"
 
+#, fuzzy
+msgid "Retweeted by"
+msgstr "Twiittaa uudelleen"
+
 msgid "Unblock"
 msgstr "Lopeta estäminen"
 
@@ -878,6 +935,15 @@ msgstr "Luotu"
 
 msgid "Subscribed to"
 msgstr "Tilannut"
+
+#~ msgid "List"
+#~ msgstr "Lista"
+
+#~ msgid "Loading…"
+#~ msgstr "Ladataan…"
+
+#~ msgid "No entries found"
+#~ msgstr "Kohteita ei löytynyt"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

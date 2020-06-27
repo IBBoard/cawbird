@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 11:31+0100\n"
+"POT-Creation-Date: 2020-06-27 17:14+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Ukrainian (Ukraine) (http://www.transifex.com/cawbird/cawbird/"
@@ -75,8 +75,16 @@ msgstr ""
 msgid "and %d others"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "Direct messages with %s"
+msgstr "Приватне повідомлення"
+
 msgid "Direct Conversation"
 msgstr "Прямі розмови"
+
+#, fuzzy
+msgid "Direct message threads"
+msgstr "Приватне повідомлення"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -93,6 +101,10 @@ msgstr "Нове приватне повідомлення від %s"
 msgid "Direct Messages"
 msgstr "Приватне повідомлення"
 
+#, fuzzy
+msgid "Favourites timeline"
+msgstr "Вподобати твіт"
+
 msgid "Favorites"
 msgstr "Вподобання"
 
@@ -100,6 +112,9 @@ msgid "Add new Filter"
 msgstr ""
 
 msgid "Filters"
+msgstr ""
+
+msgid "Home timeline"
 msgstr ""
 
 #, c-format
@@ -121,8 +136,9 @@ msgstr[3] "%d нових твітів"
 msgid "Home"
 msgstr "Головна"
 
-msgid "List"
-msgstr "Список"
+#, fuzzy, c-format
+msgid "%s list tweets"
+msgstr "%s твітнув"
 
 msgid "Lists"
 msgstr "Списки"
@@ -135,6 +151,10 @@ msgstr "Написати новий твіт"
 
 msgid "Add new Account"
 msgstr ""
+
+#, fuzzy
+msgid "Mentions timeline"
+msgstr "Згадування"
 
 #, c-format
 msgid "%s mentioned %s"
@@ -344,12 +364,44 @@ msgid "Now"
 msgstr "Зараз"
 
 #, c-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#. TRANSLATORS: short-form "x minutes ago"
+#, c-format
 msgid "%dm"
 msgstr "%d хв"
 
 #, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#. TRANSLATORS: short-form "x hours ago"
+#, c-format
 msgid "%dh"
 msgstr "%d г"
+
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b"
+msgstr ""
+
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b %Y"
+msgstr ""
 
 msgid "Don't have a Twitter account yet?"
 msgstr ""
@@ -399,15 +451,6 @@ msgstr ""
 
 msgid "Save"
 msgstr "Зберегти"
-
-msgid "Loading…"
-msgstr ""
-
-msgid "No entries found"
-msgstr "Записів не знайдено"
-
-msgid "Retry"
-msgstr "Спробувати ще"
 
 msgid "Select Banner Image"
 msgstr ""
@@ -521,6 +564,9 @@ msgstr ""
 msgid "PIN"
 msgstr ""
 
+msgid "Retry"
+msgstr "Спробувати ще"
+
 msgid "Confirm"
 msgstr "Підтвердити"
 
@@ -588,6 +634,12 @@ msgid "Add Image"
 msgstr "Додати зображення"
 
 msgid "Show favorite images"
+msgstr ""
+
+msgid "Filtered terms"
+msgstr ""
+
+msgid "Filtered users"
 msgstr ""
 
 msgid "Users"
@@ -865,6 +917,10 @@ msgstr "Вподобане"
 msgid "Reply"
 msgstr "Відповісти"
 
+#, fuzzy
+msgid "Retweeted by"
+msgstr "Цитувати"
+
 msgid "Unblock"
 msgstr "Розблокувати"
 
@@ -882,6 +938,12 @@ msgstr "Створено"
 
 msgid "Subscribed to"
 msgstr "Підписано на"
+
+#~ msgid "List"
+#~ msgstr "Список"
+
+#~ msgid "No entries found"
+#~ msgstr "Записів не знайдено"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

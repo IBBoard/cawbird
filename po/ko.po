@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 11:31+0100\n"
+"POT-Creation-Date: 2020-06-27 17:14+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/cawbird/cawbird/"
@@ -74,8 +74,16 @@ msgstr ""
 msgid "and %d others"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "Direct messages with %s"
+msgstr "다이렉트 메시지"
+
 msgid "Direct Conversation"
 msgstr "다이렉트 대화"
+
+#, fuzzy
+msgid "Direct message threads"
+msgstr "다이렉트 메시지"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -89,6 +97,10 @@ msgstr "%s 로부터 새로운 다이렉트 메시지"
 msgid "Direct Messages"
 msgstr "다이렉트 메시지"
 
+#, fuzzy
+msgid "Favourites timeline"
+msgstr "트윗을 즐겨찾기"
+
 msgid "Favorites"
 msgstr "즐겨찾기"
 
@@ -97,6 +109,10 @@ msgstr "새로운 필터 추가"
 
 msgid "Filters"
 msgstr "필터"
+
+#, fuzzy
+msgid "Home timeline"
+msgstr "타임라인에서 가리기"
 
 #, c-format
 msgid "%s retweeted %s"
@@ -114,8 +130,9 @@ msgstr[0] "%d 개의 새로운 트윗!"
 msgid "Home"
 msgstr "홈"
 
-msgid "List"
-msgstr "리스트"
+#, fuzzy, c-format
+msgid "%s list tweets"
+msgstr "%s 가 트윗함"
 
 msgid "Lists"
 msgstr "리스트"
@@ -128,6 +145,10 @@ msgstr "트윗 작성"
 
 msgid "Add new Account"
 msgstr "새로운 계정 추가"
+
+#, fuzzy
+msgid "Mentions timeline"
+msgstr "타임라인에서 가리기"
 
 #, c-format
 msgid "%s mentioned %s"
@@ -336,12 +357,40 @@ msgid "Now"
 msgstr "현재"
 
 #, c-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+
+#. TRANSLATORS: short-form "x minutes ago"
+#, c-format
 msgid "%dm"
 msgstr "%d분"
 
 #, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+
+#. TRANSLATORS: short-form "x hours ago"
+#, c-format
 msgid "%dh"
 msgstr "%d시"
+
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b"
+msgstr ""
+
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b %Y"
+msgstr ""
 
 msgid "Don't have a Twitter account yet?"
 msgstr ""
@@ -391,15 +440,6 @@ msgstr ""
 
 msgid "Save"
 msgstr "저장"
-
-msgid "Loading…"
-msgstr ""
-
-msgid "No entries found"
-msgstr "찾을수 없음"
-
-msgid "Retry"
-msgstr "재시도"
 
 msgid "Select Banner Image"
 msgstr ""
@@ -506,6 +546,9 @@ msgstr ""
 msgid "PIN"
 msgstr ""
 
+msgid "Retry"
+msgstr "재시도"
+
 msgid "Confirm"
 msgstr "확인"
 
@@ -574,6 +617,14 @@ msgstr "이미지 추가"
 
 msgid "Show favorite images"
 msgstr ""
+
+#, fuzzy
+msgid "Filtered terms"
+msgstr "필터"
+
+#, fuzzy
+msgid "Filtered users"
+msgstr "필터"
 
 msgid "Users"
 msgstr "사용자"
@@ -850,6 +901,10 @@ msgstr "즐겨찾기"
 msgid "Reply"
 msgstr "답장"
 
+#, fuzzy
+msgid "Retweeted by"
+msgstr "리트윗"
+
 msgid "Unblock"
 msgstr "블락 해제"
 
@@ -867,6 +922,12 @@ msgstr "만들어짐"
 
 msgid "Subscribed to"
 msgstr "을 구독함"
+
+#~ msgid "List"
+#~ msgstr "리스트"
+
+#~ msgid "No entries found"
+#~ msgstr "찾을수 없음"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

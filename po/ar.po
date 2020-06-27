@@ -1,19 +1,19 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Timm Bäder
 # This file is distributed under the same license as the cawbird package.
-# 
+#
 # Translators:
 # Med Touhami MAHDI <dragnucs@legtux.org>, 2014
 # mohammadA <mohammadAbdulhadi1@gmail.com>, 2016
 # Abdulrahman Saud <bn.saod1@gmail.com>, 2020
 # Ammar K <ak.bahassan@gmail.com>, 2020
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 11:31+0100\n"
+"POT-Creation-Date: 2020-06-27 17:14+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Ammar K <ak.bahassan@gmail.com>, 2020\n"
 "Language-Team: Arabic (http://www.transifex.com/cawbird/cawbird/language/"
@@ -32,15 +32,15 @@ msgid "Twitter Client"
 msgstr "عميل تويتر"
 
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as"
-" Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as "
+"Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
-"كوربرد عميل تويتر GTK+ أصيل يوفّر ميزات حيوية مثل الرسائل المباشرة  والإخطار"
-" بالتغريدات وعرض المحادثات."
+"كوربرد عميل تويتر GTK+ أصيل يوفّر ميزات حيوية مثل الرسائل المباشرة  والإخطار "
+"بالتغريدات وعرض المحادثات."
 
 msgid ""
-"Additional features include local viewing of videos, multiple inline images,"
-" Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images, "
+"Lists, Filters, multiple accounts, etc."
 msgstr ""
 "تشمل الميزات الإضافية على: عرض الفيديوهات داخل التطبيق، عرض الصور المتعددة، "
 "القوائم، الفلاتر، و تسجيل الدخول بحسابات متعددة."
@@ -60,8 +60,7 @@ msgstr "IBBoard"
 msgid "Use Twitter from within a normal desktop application"
 msgstr "استحدم تويتر من داخل تطبيق في سطح المكتب. "
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or
-#. localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "تويتر;"
 
@@ -81,8 +80,16 @@ msgstr "و"
 msgid "and %d others"
 msgstr "و %d آخرين"
 
+#, fuzzy, c-format
+msgid "Direct messages with %s"
+msgstr "رسائل مباشرة"
+
 msgid "Direct Conversation"
 msgstr "محادثة مباشرة"
+
+#, fuzzy
+msgid "Direct message threads"
+msgstr "رسائل مباشرة"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -101,6 +108,10 @@ msgstr "رسالة مباشرة جديدة من %s"
 msgid "Direct Messages"
 msgstr "رسائل مباشرة"
 
+#, fuzzy
+msgid "Favourites timeline"
+msgstr "تفضيل التغريدة"
+
 msgid "Favorites"
 msgstr "المفضلة"
 
@@ -109,6 +120,10 @@ msgstr "اضافة فلتر جديد "
 
 msgid "Filters"
 msgstr "الفلاتر "
+
+#, fuzzy
+msgid "Home timeline"
+msgstr "إخفاء في الخط الزمني"
 
 #, c-format
 msgid "%s retweeted %s"
@@ -131,8 +146,9 @@ msgstr[5] "%d  تغريدة جديدة! "
 msgid "Home"
 msgstr "الرئيسية"
 
-msgid "List"
-msgstr "قائمة"
+#, fuzzy, c-format
+msgid "%s list tweets"
+msgstr "%s غرد"
 
 msgid "Lists"
 msgstr "قوائم"
@@ -145,6 +161,10 @@ msgstr "كتابة تغريدة"
 
 msgid "Add new Account"
 msgstr "أضف حسابًا جديدًا"
+
+#, fuzzy
+msgid "Mentions timeline"
+msgstr "إخفاء في الخط الزمني"
 
 #, c-format
 msgid "%s mentioned %s"
@@ -318,8 +338,8 @@ msgid "A media id was not found."
 msgstr ""
 
 msgid ""
-"To protect our users from spam and other malicious activity, this account is"
-" temporarily locked."
+"To protect our users from spam and other malicious activity, this account is "
+"temporarily locked."
 msgstr ""
 
 msgid "You have already retweeted this Tweet."
@@ -354,12 +374,50 @@ msgid "Now"
 msgstr "الآن"
 
 #, c-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#. TRANSLATORS: short-form "x minutes ago"
+#, c-format
 msgid "%dm"
 msgstr "%dدقيقة"
 
 #, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#. TRANSLATORS: short-form "x hours ago"
+#, c-format
 msgid "%dh"
 msgstr "%dساعة"
+
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b"
+msgstr ""
+
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b %Y"
+msgstr ""
 
 msgid "Don't have a Twitter account yet?"
 msgstr "ليس لديك حساب تويتر حتى الآن؟"
@@ -410,15 +468,6 @@ msgstr "حفظ الصورة"
 msgid "Save"
 msgstr "احفظ"
 
-msgid "Loading…"
-msgstr "…يحمّل"
-
-msgid "No entries found"
-msgstr "لم يتم العثور على أي شيء"
-
-msgid "Retry"
-msgstr "إعادة المحاولة"
-
 msgid "Select Banner Image"
 msgstr ""
 
@@ -459,8 +508,7 @@ msgstr[4] ""
 msgstr[5] ""
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
-#. <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
 #, c-format
 msgid "%s: %s"
 msgstr ""
@@ -510,8 +558,7 @@ msgid "Snippet already exists"
 msgstr ""
 
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
-"#newisalwaysbetter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
 msgstr ""
 
 msgid "Add to or Remove User From List"
@@ -541,6 +588,9 @@ msgstr ""
 
 msgid "PIN"
 msgstr ""
+
+msgid "Retry"
+msgstr "إعادة المحاولة"
 
 msgid "Confirm"
 msgstr "تأكيد"
@@ -610,6 +660,14 @@ msgstr "إضافة صورة "
 
 msgid "Show favorite images"
 msgstr "اظهر الصور المفضلة"
+
+#, fuzzy
+msgid "Filtered terms"
+msgstr "الفلاتر "
+
+#, fuzzy
+msgid "Filtered users"
+msgstr "الفلاتر "
 
 msgid "Users"
 msgstr "المستخدمين"
@@ -886,6 +944,10 @@ msgstr "مفضلة"
 msgid "Reply"
 msgstr "رد"
 
+#, fuzzy
+msgid "Retweeted by"
+msgstr "إعادة التغريد"
+
 msgid "Unblock"
 msgstr "فك الحظر"
 
@@ -903,3 +965,12 @@ msgstr "تم الإنشاء"
 
 msgid "Subscribed to"
 msgstr "مشترك في"
+
+#~ msgid "List"
+#~ msgstr "قائمة"
+
+#~ msgid "Loading…"
+#~ msgstr "…يحمّل"
+
+#~ msgid "No entries found"
+#~ msgstr "لم يتم العثور على أي شيء"

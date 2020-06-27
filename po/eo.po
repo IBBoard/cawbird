@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 11:31+0100\n"
+"POT-Creation-Date: 2020-06-27 17:14+0100\n"
 "PO-Revision-Date: 2018-02-06 18:45+0000\n"
 "Last-Translator: Iris Ilexiris <iris.ilexiris@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/cawbird/cawbird/language/"
@@ -74,8 +74,16 @@ msgstr "kaj"
 msgid "and %d others"
 msgstr "kaj %d aligentuloj"
 
+#, fuzzy, c-format
+msgid "Direct messages with %s"
+msgstr "Tujmesaĝoj"
+
 msgid "Direct Conversation"
 msgstr "Tujinterparolo"
+
+#, fuzzy
+msgid "Direct message threads"
+msgstr "Tujmesaĝoj"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -90,6 +98,10 @@ msgstr "Nova tujmesaĝo el %s"
 msgid "Direct Messages"
 msgstr "Tujmesaĝoj"
 
+#, fuzzy
+msgid "Favourites timeline"
+msgstr "Favorati tviton"
+
 msgid "Favorites"
 msgstr "Favoratoj"
 
@@ -98,6 +110,10 @@ msgstr "Aldoni novan filtrilon"
 
 msgid "Filters"
 msgstr "Filtriloj"
+
+#, fuzzy
+msgid "Home timeline"
+msgstr "Kaŝi en kronologio"
 
 #, c-format
 msgid "%s retweeted %s"
@@ -116,8 +132,9 @@ msgstr[1] "%d novaj tvitoj!"
 msgid "Home"
 msgstr "Hejmo"
 
-msgid "List"
-msgstr "Listo"
+#, fuzzy, c-format
+msgid "%s list tweets"
+msgstr "%s tvitis"
 
 msgid "Lists"
 msgstr "Listoj"
@@ -130,6 +147,10 @@ msgstr "Skribi tviton"
 
 msgid "Add new Account"
 msgstr "Aldoni novan konton"
+
+#, fuzzy
+msgid "Mentions timeline"
+msgstr "Kaŝi en kronologio"
 
 #, c-format
 msgid "%s mentioned %s"
@@ -339,12 +360,42 @@ msgid "Now"
 msgstr "Nun"
 
 #, c-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANSLATORS: short-form "x minutes ago"
+#, c-format
 msgid "%dm"
 msgstr "%dm"
 
 #, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANSLATORS: short-form "x hours ago"
+#, c-format
 msgid "%dh"
 msgstr "%dh"
+
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b"
+msgstr ""
+
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b %Y"
+msgstr ""
 
 msgid "Don't have a Twitter account yet?"
 msgstr "Ĉu vi ne havas Tviterokonton jam?"
@@ -394,15 +445,6 @@ msgstr "Konservi bildon"
 
 msgid "Save"
 msgstr "Konservi"
-
-msgid "Loading…"
-msgstr "Ŝargas…"
-
-msgid "No entries found"
-msgstr "Nenio elementoj trovitaj"
-
-msgid "Retry"
-msgstr "Reprovi"
 
 msgid "Select Banner Image"
 msgstr "Elekti gazetkapon"
@@ -517,6 +559,9 @@ msgstr "Entajpi PIN-on el twitter.com malsupre:"
 msgid "PIN"
 msgstr "PIN"
 
+msgid "Retry"
+msgstr "Reprovi"
+
 msgid "Confirm"
 msgstr "Konfirmi"
 
@@ -585,6 +630,14 @@ msgstr "Aldoni bildon"
 
 msgid "Show favorite images"
 msgstr "Montri favoratbildojn"
+
+#, fuzzy
+msgid "Filtered terms"
+msgstr "Filtriloj"
+
+#, fuzzy
+msgid "Filtered users"
+msgstr "Filtriloj"
 
 msgid "Users"
 msgstr "Uzantoj"
@@ -861,6 +914,10 @@ msgstr "Favorati"
 msgid "Reply"
 msgstr "Respondi"
 
+#, fuzzy
+msgid "Retweeted by"
+msgstr "Retviti"
+
 msgid "Unblock"
 msgstr "Malblokigi"
 
@@ -878,6 +935,15 @@ msgstr "Kreita"
 
 msgid "Subscribed to"
 msgstr "Subskribis al"
+
+#~ msgid "List"
+#~ msgstr "Listo"
+
+#~ msgid "Loading…"
+#~ msgstr "Ŝargas…"
+
+#~ msgid "No entries found"
+#~ msgstr "Nenio elementoj trovitaj"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 11:31+0100\n"
+"POT-Creation-Date: 2020-06-27 17:14+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Persian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -71,8 +71,16 @@ msgstr ""
 msgid "and %d others"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "Direct messages with %s"
+msgstr "پیام مستقیم"
+
 msgid "Direct Conversation"
 msgstr ""
+
+#, fuzzy
+msgid "Direct message threads"
+msgstr "پیام مستقیم"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -86,6 +94,10 @@ msgstr ""
 msgid "Direct Messages"
 msgstr "پیام مستقیم"
 
+#, fuzzy
+msgid "Favourites timeline"
+msgstr "توییت های مورد علاقه"
+
 msgid "Favorites"
 msgstr "علاقه مندی ها"
 
@@ -93,6 +105,9 @@ msgid "Add new Filter"
 msgstr ""
 
 msgid "Filters"
+msgstr ""
+
+msgid "Home timeline"
 msgstr ""
 
 #, c-format
@@ -111,8 +126,9 @@ msgstr[0] ""
 msgid "Home"
 msgstr "خانه"
 
-msgid "List"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s list tweets"
+msgstr "%s توییت شد"
 
 msgid "Lists"
 msgstr "لیست ها"
@@ -125,6 +141,10 @@ msgstr "توییت کنید"
 
 msgid "Add new Account"
 msgstr ""
+
+#, fuzzy
+msgid "Mentions timeline"
+msgstr "اشاره ها"
 
 #, c-format
 msgid "%s mentioned %s"
@@ -330,12 +350,40 @@ msgid "Now"
 msgstr "اکنون"
 
 #, c-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+
+#. TRANSLATORS: short-form "x minutes ago"
+#, c-format
 msgid "%dm"
 msgstr "%dm"
 
 #, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+
+#. TRANSLATORS: short-form "x hours ago"
+#, c-format
 msgid "%dh"
 msgstr "%dh"
+
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b"
+msgstr ""
+
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b %Y"
+msgstr ""
 
 msgid "Don't have a Twitter account yet?"
 msgstr ""
@@ -385,15 +433,6 @@ msgstr ""
 
 msgid "Save"
 msgstr "ذخیره سازی"
-
-msgid "Loading…"
-msgstr ""
-
-msgid "No entries found"
-msgstr "چیزی یافت نشد!"
-
-msgid "Retry"
-msgstr ""
 
 msgid "Select Banner Image"
 msgstr ""
@@ -499,6 +538,9 @@ msgstr ""
 msgid "PIN"
 msgstr ""
 
+msgid "Retry"
+msgstr ""
+
 msgid "Confirm"
 msgstr "تایید"
 
@@ -566,6 +608,12 @@ msgid "Add Image"
 msgstr ""
 
 msgid "Show favorite images"
+msgstr ""
+
+msgid "Filtered terms"
+msgstr ""
+
+msgid "Filtered users"
 msgstr ""
 
 msgid "Users"
@@ -843,6 +891,10 @@ msgstr ""
 msgid "Reply"
 msgstr ""
 
+#, fuzzy
+msgid "Retweeted by"
+msgstr "بازتوییت"
+
 msgid "Unblock"
 msgstr ""
 
@@ -860,6 +912,9 @@ msgstr "ایجاد شد"
 
 msgid "Subscribed to"
 msgstr "مشترک شد"
+
+#~ msgid "No entries found"
+#~ msgstr "چیزی یافت نشد!"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

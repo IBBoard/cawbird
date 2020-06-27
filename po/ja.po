@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-05-23 11:31+0100\n"
+"POT-Creation-Date: 2020-06-27 17:14+0100\n"
 "PO-Revision-Date: 2017-11-12 23:35+0000\n"
 "Last-Translator: MTD TR <dev.mantendo@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/cawbird/cawbird/"
@@ -76,8 +76,16 @@ msgstr ""
 msgid "and %d others"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "Direct messages with %s"
+msgstr "ダイレクトメッセージ"
+
 msgid "Direct Conversation"
 msgstr ""
+
+#, fuzzy
+msgid "Direct message threads"
+msgstr "ダイレクトメッセージ"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -91,6 +99,10 @@ msgstr "%s からダイレクトメッセージ"
 msgid "Direct Messages"
 msgstr "ダイレクトメッセージ"
 
+#, fuzzy
+msgid "Favourites timeline"
+msgstr "お気に入りに登録する"
+
 msgid "Favorites"
 msgstr "お気に入り"
 
@@ -99,6 +111,9 @@ msgstr "フィルターを追加する"
 
 msgid "Filters"
 msgstr "フィルター"
+
+msgid "Home timeline"
+msgstr ""
 
 #, c-format
 msgid "%s retweeted %s"
@@ -116,8 +131,9 @@ msgstr[0] "%d 件の新着ツイート！"
 msgid "Home"
 msgstr "ホーム"
 
-msgid "List"
-msgstr "リスト"
+#, fuzzy, c-format
+msgid "%s list tweets"
+msgstr "%s がツイート"
 
 msgid "Lists"
 msgstr "リスト"
@@ -130,6 +146,10 @@ msgstr "ツイートの編集"
 
 msgid "Add new Account"
 msgstr "アカウントを追加する"
+
+#, fuzzy
+msgid "Mentions timeline"
+msgstr "メンション"
 
 #, c-format
 msgid "%s mentioned %s"
@@ -337,12 +357,40 @@ msgid "Now"
 msgstr "現在"
 
 #, c-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+
+#. TRANSLATORS: short-form "x minutes ago"
+#, c-format
 msgid "%dm"
 msgstr "%dm"
 
 #, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+
+#. TRANSLATORS: short-form "x hours ago"
+#, c-format
 msgid "%dh"
 msgstr "%dh"
+
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b"
+msgstr ""
+
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+msgid "%e %b %Y"
+msgstr ""
 
 msgid "Don't have a Twitter account yet?"
 msgstr "まだTwitterアカウントをお持ちではありませんか?"
@@ -392,15 +440,6 @@ msgstr ""
 
 msgid "Save"
 msgstr "保存"
-
-msgid "Loading…"
-msgstr "読み込み中..."
-
-msgid "No entries found"
-msgstr "エントリーがありません"
-
-msgid "Retry"
-msgstr "再試行"
 
 msgid "Select Banner Image"
 msgstr ""
@@ -508,6 +547,9 @@ msgstr ""
 msgid "PIN"
 msgstr ""
 
+msgid "Retry"
+msgstr "再試行"
+
 msgid "Confirm"
 msgstr "確認"
 
@@ -576,6 +618,14 @@ msgstr "画像を追加"
 
 msgid "Show favorite images"
 msgstr ""
+
+#, fuzzy
+msgid "Filtered terms"
+msgstr "フィルター"
+
+#, fuzzy
+msgid "Filtered users"
+msgstr "フィルター"
 
 msgid "Users"
 msgstr "ユーザー"
@@ -852,6 +902,10 @@ msgstr "お気に入り"
 msgid "Reply"
 msgstr "リプライ"
 
+#, fuzzy
+msgid "Retweeted by"
+msgstr "リツイート"
+
 msgid "Unblock"
 msgstr ""
 
@@ -869,6 +923,15 @@ msgstr "作成"
 
 msgid "Subscribed to"
 msgstr "購読中"
+
+#~ msgid "List"
+#~ msgstr "リスト"
+
+#~ msgid "Loading…"
+#~ msgstr "読み込み中..."
+
+#~ msgid "No entries found"
+#~ msgstr "エントリーがありません"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"
