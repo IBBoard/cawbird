@@ -39,6 +39,8 @@ class SearchPage : IPage, Gtk.Box {
   [GtkChild]
   private TweetListBox tweet_list;
   [GtkChild]
+  private ListBox user_list;
+  [GtkChild]
   private Gtk.Label users_header;
   [GtkChild]
   private Gtk.Label tweets_header;
@@ -49,26 +51,28 @@ class SearchPage : IPage, Gtk.Box {
   private LoadMoreEntry load_more_entry = new LoadMoreEntry ();
   private string search_query;
   private int user_page = 1;
-  private int64 lowest_tweet_id = int64.MAX-1;
   private Gtk.Widget last_focus_widget;
-  private int n_results = 0;
   private Collect collect_obj;
   private uint remove_content_timeout = 0;
   private string last_search_query;
-  private bool loading_tweets = false;
+  private bool loading_tweets = false;  
   private bool loading_users  = false;
+  private Json.Node? pending_user = null;
 
 
   public SearchPage (int id, Account account) {
     this.id = id;
     this.account = account;
 
-    /* We are slightly abusing the TweetListBox here */
-    tweet_list.bind_model (null, null);
     tweet_list.set_header_func (header_func);
-    tweet_list.set_sort_func (twitter_item_sort_func);
-    tweet_list.row_activated.connect (row_activated_cb);
+    tweet_list.row_activated.connect (tweet_row_activated_cb);
     tweet_list.retry_button_clicked.connect (retry_button_clicked_cb);
+    tweet_list.account = account;
+    user_list.set_header_func (header_func);
+    user_list.set_sort_func (twitter_item_sort_func);
+    user_list.row_activated.connect (user_row_activated_cb);
+    user_list.retry_button_clicked.connect (retry_button_clicked_cb);
+
     search_button.clicked.connect (() => {
       search_for (search_entry.get_text());
     });
@@ -78,6 +82,7 @@ class SearchPage : IPage, Gtk.Box {
     });
     scroll_widget.scrolled_to_end.connect (load_tweets);
     tweet_list.get_placeholder ().hide ();
+    user_list.get_placeholder ().hide ();
     tweet_list.set_adjustment (scroll_widget.get_vadjustment ());
   }
 
@@ -127,6 +132,8 @@ class SearchPage : IPage, Gtk.Box {
     this.remove_content_timeout = GLib.Timeout.add (3 * 1000 * 60, () => {
       tweet_list.remove_all ();
       tweet_list.get_placeholder ().hide ();
+      user_list.remove_all();
+      user_list.get_placeholder ().hide ();
       this.last_focus_widget  = null;
 
       this.remove_content_timeout = 0;
@@ -135,8 +142,11 @@ class SearchPage : IPage, Gtk.Box {
   }
 
   public void search_for (string search_term, bool set_text = false) {
-    if (search_term.length == 0)
+    if (search_term.length == 0) {
+      tweet_list.set_empty();
+      user_list.set_empty();
       return;
+    }
 
     this.last_search_query = search_term;
 
@@ -147,23 +157,28 @@ class SearchPage : IPage, Gtk.Box {
 
     this.cancellable = new GLib.Cancellable ();
 
-    n_results = 0;
     string q = this.last_search_query;//search_term.copy ();
 
     // clear the list
     tweet_list.remove_all ();
     tweet_list.set_unempty ();
-    tweet_list.get_placeholder ().show ();
+    user_list.remove_all();
+    user_list.set_unempty();
+    user_list.get_placeholder().show();
+    // Set accessible text
+    var accessible_name = _("Users matching \"%s\"".printf(q));
+    user_list.get_accessible().set_name(accessible_name);
+    user_list.get_accessible().set_description(accessible_name);
+    accessible_name = _("Tweets matching \"%s\"".printf(q));
+    tweet_list.get_accessible().set_name(accessible_name);
+    tweet_list.get_accessible().set_description(accessible_name);
 
 
     if (set_text)
       search_entry.set_text(q);
 
-    q += " -filter:retweets";
-
     this.search_query    = q;
     this.user_page       = 1;
-    this.lowest_tweet_id = int64.MAX-1;
 
     collect_obj = new Collect (2);
     collect_obj.finished.connect (show_entries);
@@ -172,31 +187,36 @@ class SearchPage : IPage, Gtk.Box {
     load_users ();
   }
 
-  private void row_activated_cb (Gtk.ListBoxRow row) {
+  private void tweet_row_activated_cb (Gtk.ListBoxRow row) {
     this.last_focus_widget = row;
     var bundle = new Cb.Bundle ();
-    if (row is UserListEntry) {
-      bundle.put_int64 (ProfilePage.KEY_USER_ID, ((UserListEntry)row).user_id);
-      bundle.put_string (ProfilePage.KEY_SCREEN_NAME, ((UserListEntry)row).screen_name);
-      main_window.main_widget.switch_page (Page.PROFILE, bundle);
-    } else if (row is TweetListEntry) {
-      bundle.put_int (TweetInfoPage.KEY_MODE, TweetInfoPage.BY_INSTANCE);
-      bundle.put_object (TweetInfoPage.KEY_TWEET, ((TweetListEntry)row).tweet);
-      main_window.main_widget.switch_page (Page.TWEET_INFO, bundle);
-    }
+    bundle.put_int (TweetInfoPage.KEY_MODE, TweetInfoPage.BY_INSTANCE);
+    bundle.put_object (TweetInfoPage.KEY_TWEET, ((TweetListEntry)row).tweet);
+    main_window.main_widget.switch_page (Page.TWEET_INFO, bundle);
   }
 
-  private void header_func (Gtk.ListBoxRow row, Gtk.ListBoxRow? before) { //{{{
+  private void user_row_activated_cb (Gtk.ListBoxRow row) {
+    this.last_focus_widget = row;
+    var user_row = (UserListEntry)row;
+    var bundle = new Cb.Bundle ();
+    bundle.put_int64 (ProfilePage.KEY_USER_ID, user_row.user_id);
+    bundle.put_string (ProfilePage.KEY_SCREEN_NAME, user_row.screen_name);
+    main_window.main_widget.switch_page (Page.PROFILE, bundle);
+  }
+
+  private void header_func (Gtk.ListBoxRow row, Gtk.ListBoxRow? before) {
     Gtk.Widget header = row.get_header ();
     if (header != null)
       return;
 
-    if (before == null && row is UserListEntry) {
-      row.set_header (users_header);
-    } else if ((before is UserListEntry || before is LoadMoreEntry) && row is TweetListEntry) {
-      row.set_header (tweets_header);
+    if (before == null) {
+      if (row is UserListEntry) {
+        row.set_header (users_header);
+      } else if (row is TweetListEntry) {
+        row.set_header (tweets_header);
+      }
     }
-  } //}}}
+  }
 
   private void load_users () {
     if (this.loading_users)
@@ -216,7 +236,7 @@ class SearchPage : IPage, Gtk.Box {
         root = Cb.Utils.load_threaded_async.end (res);
       } catch (GLib.Error e) {
         warning (e.message);
-        tweet_list.set_error (e.message);
+        user_list.set_error (e.message);
 
         if (!collect_obj.done)
           collect_obj.emit ();
@@ -235,42 +255,39 @@ class SearchPage : IPage, Gtk.Box {
       }
 
       var users = root.get_array ();
-      if (users.get_length () == 0 && n_results <= 0)
-        n_results = -1;
-      else
-        n_results += (int)users.get_length ();
 
-      if (n_results <= 0) {
-        tweet_list.set_empty ();
+      if (user_list.get_children().length() + users.get_length() <= 0) {
+        user_list.set_empty ();
+      }
+
+      var final_page = false;
+
+      if (user_page > 1) {
+        add_user_to_list(pending_user);
+      }
+      
+      pending_user = null;
+
+      if (this.loading_tweets) {
+        // Keep a "loading" placeholder showing
+        tweet_list.get_placeholder ().show ();
       }
 
       users.foreach_element ((array, index, node) => {
-        if (index > USER_COUNT - 1)
+        if (index > USER_COUNT - 1) {
+          // Keep one item back so that we know there's more to load
+          pending_user = node;
           return;
-
-        var user_obj = node.get_object ();
-        var entry = new UserListEntry ();
-        string avatar_url = user_obj.get_string_member ("profile_image_url");
-
-        if (this.get_scale_factor () == 2)
-          avatar_url = avatar_url.replace ("_normal", "_bigger");
-
-        entry.user_id = user_obj.get_int_member ("id");
-        entry.set_screen_name ("@" + user_obj.get_string_member ("screen_name"));
-        entry.name = user_obj.get_string_member ("name").strip ();
-        entry.avatar_url = avatar_url;
-        entry.verified = user_obj.get_boolean_member ("verified");
-        entry.protected_account = user_obj.get_boolean_member ("protected");
-        entry.show_settings = false;
-        if (!collect_obj.done)
-          entry.visible = false;
-        tweet_list.add (entry);
-      });
-      if (users.get_length () > USER_COUNT) {
-        if (load_more_entry.parent == null) {
-          load_more_entry.visible = false;
-          tweet_list.add (load_more_entry);
         }
+
+        final_page |= add_user_to_list(node);
+      });
+      if (!final_page && pending_user != null) {
+        if (load_more_entry.parent == null) {
+          user_list.add (load_more_entry);
+        }
+        
+        load_more_entry.show ();
       } else {
         load_more_entry.hide ();
       }
@@ -280,7 +297,42 @@ class SearchPage : IPage, Gtk.Box {
 
       this.loading_users = false;
     });
+  }
 
+  private bool add_user_to_list(Json.Node node) {
+    var final_page = false;
+    var user_obj = node.get_object ();
+    var screen_name = user_obj.get_string_member ("screen_name");    
+    var exists = false;
+    var children = user_list.get_children();
+    children.reverse();
+
+    foreach (Gtk.Widget widget in children) {
+      if (widget is UserListEntry && ((UserListEntry)widget).screen_name == screen_name) {
+        // We got overlap
+        final_page = true;
+        exists = true;
+        break;
+      }
+    }
+
+    if (!exists) {
+      var entry = new UserListEntry ();
+      string avatar_url = user_obj.get_string_member ("profile_image_url");
+
+      if (this.get_scale_factor () == 2)
+        avatar_url = avatar_url.replace ("_normal", "_bigger");
+
+      entry.user_id = user_obj.get_int_member ("id");
+      entry.set_screen_name ("@" + screen_name);
+      entry.name = user_obj.get_string_member ("name").strip ();
+      entry.avatar_url = avatar_url;
+      entry.verified = user_obj.get_boolean_member ("verified");
+      entry.protected_account = user_obj.get_boolean_member ("protected");
+      entry.show_settings = false;
+      user_list.add (entry);
+    }
+    return final_page;
   }
 
   private void load_tweets () {
@@ -289,7 +341,7 @@ class SearchPage : IPage, Gtk.Box {
 
     this.loading_tweets = true;
 
-    TweetUtils.search_for_tweets.begin (account, this.search_query, (lowest_tweet_id - 1), -1, 35, cancellable, (_, res) => {
+    TweetUtils.search_for_tweets.begin (account, this.search_query + " -filter:retweets", (this.tweet_list.model.min_id - 1), -1, 35, cancellable, (_, res) => {
       Cb.Tweet[] tweets;
       try {
         tweets = TweetUtils.search_for_tweets.end (res);
@@ -302,24 +354,12 @@ class SearchPage : IPage, Gtk.Box {
         return;
       }
 
-      if (tweets.length == 0 && n_results <= 0)
-        n_results = -1;
-      else
-        n_results += (int)tweets.length;
-
-      if (n_results <= 0)
+      if (tweets.length <= 0) {
         tweet_list.set_empty ();
+      }
 
       foreach (Cb.Tweet tweet in tweets) {
-        if (tweet.id < lowest_tweet_id)
-          lowest_tweet_id = tweet.id;
-        var entry = new TweetListEntry (tweet, main_window, account);
-        if (!collect_obj.done)
-          entry.visible = false;
-        else
-          entry.show ();
-
-        tweet_list.add (entry);
+        tweet_list.model.add (tweet);
       }
 
       this.loading_tweets = false;
@@ -331,14 +371,14 @@ class SearchPage : IPage, Gtk.Box {
 
   private void show_entries (GLib.Error? e) {
     if (e != null) {
-      tweet_list.set_error (e.message);
+      user_list.set_error (e.message);
+      user_list.set_empty ();
       tweet_list.set_empty ();
       this.loading_tweets = false;
       this.loading_users = false;
       return;
     }
 
-    tweet_list.@foreach ((w) => w.show());
     this.loading_tweets = false;
     this.loading_users = false;
 
@@ -375,17 +415,13 @@ class LoadMoreEntry : Gtk.ListBoxRow, Cb.TwitterItem {
 
   public LoadMoreEntry () {
     this.activatable = false;
-
-    var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 12);
-    box.show ();
     this.load_more_button = new Gtk.Button.with_label (_("Load More"));
     load_more_button.get_style_context ().add_class ("dim-label");
     load_more_button.set_halign (Gtk.Align.CENTER);
     load_more_button.set_hexpand (true);
     load_more_button.set_relief (Gtk.ReliefStyle.NONE);
     load_more_button.show ();
-    box.add (load_more_button);
-    this.add (box);
+    this.add (load_more_button);
   }
 
   public Gtk.Button get_button () {

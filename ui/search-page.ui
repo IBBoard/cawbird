@@ -51,10 +51,25 @@
         <property name="margin-top">5</property>
         <property name="hscrollbar-policy">never</property>
         <child>
-          <object class="TweetListBox" id="tweet_list">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="selection-mode">none</property>
+          <object class="GtkBox">
+            <property name="visible">1</property>
+            <property name="orientation">vertical</property>
+            <child>
+                <object class="ListBox" id="user_list">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="selection-mode">none</property>
+                <property name="expand">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="TweetListBox" id="tweet_list">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="selection-mode">none</property>
+                <property name="expand">True</property>
+              </object>
+            </child>
           </object>
         </child>
       </object>
