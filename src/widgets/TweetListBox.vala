@@ -15,13 +15,11 @@
  *  along with cawbird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class TweetListBox : Gtk.ListBox {
-  private Gtk.Stack? placeholder = null;
-  private Gtk.Label no_entries_label;
-
-  private Gtk.Box error_box;
-  private Gtk.Label error_label;
-  private Gtk.Button retry_button;
+public class TweetListBox : ListBox {
+  public Cb.DeltaUpdater delta_updater;
+  public unowned Account account;
+  public Cb.TweetModel model = new Cb.TweetModel ();
+  private Gtk.GestureMultiPress press_gesture;
   private TweetListEntry? _action_entry;
   public TweetListEntry? action_entry {
     get {
@@ -29,28 +27,15 @@ public class TweetListBox : Gtk.ListBox {
     }
   }
 
-  public signal void retry_button_clicked ();
-
-  public Cb.DeltaUpdater delta_updater;
-  public unowned Account account;
-  public Cb.TweetModel model = new Cb.TweetModel ();
-  private Gtk.GestureMultiPress press_gesture;
-
   public TweetListBox () {
   }
 
-
   construct {
-    add_placeholder ();
-    this.set_selection_mode (Gtk.SelectionMode.NONE);
     this.press_gesture = new Gtk.GestureMultiPress (this);
     this.press_gesture.set_button (0);
     this.press_gesture.set_propagation_phase (Gtk.PropagationPhase.BUBBLE);
     this.press_gesture.pressed.connect (gesture_pressed_cb);
     this.delta_updater = new Cb.DeltaUpdater (this);
-    Settings.get ().bind ("double-click-activation",
-                          this, "activate-on-single-click",
-                          GLib.SettingsBindFlags.INVERT_BOOLEAN);
 
     Cb.Utils.bind_model (this, this.model, widget_create_func);
   }
@@ -121,80 +106,7 @@ public class TweetListBox : Gtk.ListBox {
     this._action_entry = null;
   }
 
-  private void add_placeholder () {
-    placeholder = new Gtk.Stack ();
-    placeholder.transition_type = Gtk.StackTransitionType.CROSSFADE;
-    var loading_label = new Gtk.Label (_("Loading…"));
-    loading_label.get_style_context ().add_class ("dim-label");
-    placeholder.add_named (loading_label, "spinner");
-    no_entries_label  = new Gtk.Label (_("No entries found"));
-    no_entries_label.get_style_context ().add_class ("dim-label");
-    no_entries_label.wrap_mode = Pango.WrapMode.WORD_CHAR;
-    placeholder.add_named (no_entries_label, "no-entries");
-
-    error_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 12);
-    error_label = new Gtk.Label ("");
-    error_label.get_style_context ().add_class ("dim-label");
-    error_label.margin = 12;
-    error_label.selectable = true;
-    error_label.wrap = true;
-    retry_button = new Gtk.Button.with_label (_("Retry"));
-    retry_button.set_halign (Gtk.Align.CENTER);
-    retry_button.clicked.connect (() => {
-      placeholder.visible_child_name = "spinner";
-      retry_button_clicked ();
-    });
-    error_box.add (error_label);
-    error_box.add (retry_button);
-    placeholder.add_named (error_box, "error");
-
-    placeholder.visible_child_name = "spinner";
-    placeholder.show_all ();
-    placeholder.set_valign (Gtk.Align.CENTER);
-    placeholder.set_halign (Gtk.Align.CENTER);
-    this.set_placeholder (placeholder);
-
-  }
-
-  public void set_empty () {
-    placeholder.visible_child_name = "no-entries";
-  }
-
-  public void set_unempty () {
-    placeholder.visible_child_name = "spinner";
-  }
-
-  public void set_error (string err_msg) {
-    error_label.label = err_msg;
-    placeholder.visible_child_name = "error";
-  }
-
-  public Gtk.Stack? get_placeholder () {
-    return placeholder;
-  }
-
-  public void set_placeholder_text (string text) {
-    no_entries_label.label = text;
-  }
-
-  public void reset_placeholder_text () {
-    no_entries_label.label = _("No entries found");
-  }
-
-  public void remove_all () {
-    this.foreach ((w) => {
-      remove (w);
-    });
-  }
-
-  public Gtk.Widget? get_first_visible_row () {
-    int i = 0;
-    Gtk.Widget? row = this.get_row_at_index (0);
-    while (row != null && !row.visible) {
-      i ++;
-      row = this.get_row_at_index (i);
-    }
-
-    return row;
+  public new void remove_all () {
+    this.model.clear();
   }
 }
