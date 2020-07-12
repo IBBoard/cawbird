@@ -258,12 +258,14 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       var viewport_top = this.vadjustment.value;
       var viewport_bottom = viewport_top + this.vadjustment.page_size;
 
-      if (widget_top < viewport_top) {
-        debug("Moving up from %f to %f", viewport_top, widget_top);
+      if (this.vadjustment.value == 0 && widget_top < 0) {
+        max_size_container.max_size += (int)Math.ceil(-widget_top);
+        this.vadjustment.value = 0;
+      }
+      else if (widget_top < viewport_top) {
         this.vadjustment.value = widget_top;
       }
       else if (widget_bottom > viewport_bottom) {
-        debug("Moving down from %f to %f", viewport_bottom, widget_bottom);
         this.vadjustment.value = widget_bottom - this.vadjustment.page_size;
       }
     });
