@@ -88,6 +88,8 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
   [GtkChild]
   private Gtk.ToggleButton retweet_button;
   [GtkChild]
+  private Gtk.MenuButton menu_button;
+  [GtkChild]
   private Gtk.Label time_label;
   [GtkChild]
   private Gtk.Label source_label;
@@ -119,6 +121,12 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     connect_vadjustment (self_replies_list_box);
     connect_vadjustment (mentioned_replies_list_box);
     connect_vadjustment (replied_to_list_box);
+    replied_to_list_box.keynav_failed.connect((direction) => {
+      if (direction == Gtk.DirectionType.DOWN) {
+        name_button.grab_focus();
+      }
+      return false;
+    });
     self_replies_list_box.keynav_failed.connect((direction) => {
       if (direction == Gtk.DirectionType.DOWN) {
         if (mentioned_replies_list_box.is_visible()) {
@@ -129,11 +137,20 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
         }
         return true;
       }
+      else if (direction == Gtk.DirectionType.UP) {
+        menu_button.grab_focus();
+        return true;
+      }
       return false;
     });
     mentioned_replies_list_box.keynav_failed.connect((direction) => {
-      if (direction == Gtk.DirectionType.UP && self_replies_list_box.is_visible()) {
-        self_replies_list_box.get_children().last().data.grab_focus();
+      if (direction == Gtk.DirectionType.UP) {
+        if (self_replies_list_box.is_visible()) {
+          self_replies_list_box.get_children().last().data.grab_focus();
+        }
+        else {
+          menu_button.grab_focus();
+        }
         return true;
       }
       else if (direction == Gtk.DirectionType.DOWN && replies_list_box.is_visible()) {
@@ -149,6 +166,9 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
         }
         else if (self_replies_list_box.is_visible()) {
           self_replies_list_box.get_children().last().data.grab_focus();
+        }
+        else {
+          menu_button.grab_focus();
         }
         return true;
       }
