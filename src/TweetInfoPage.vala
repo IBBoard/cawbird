@@ -130,10 +130,10 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     self_replies_list_box.keynav_failed.connect((direction) => {
       if (direction == Gtk.DirectionType.DOWN) {
         if (mentioned_replies_list_box.is_visible()) {
-          mentioned_replies_list_box.get_children().first().data.grab_focus();
+          mentioned_replies_list_box.get_first_visible_row().grab_focus();
         }
         else if (replies_list_box.is_visible()) {
-          replies_list_box.get_children().first().data.grab_focus();
+          replies_list_box.get_first_visible_row().grab_focus();
         }
         return true;
       }
@@ -146,7 +146,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     mentioned_replies_list_box.keynav_failed.connect((direction) => {
       if (direction == Gtk.DirectionType.UP) {
         if (self_replies_list_box.is_visible()) {
-          self_replies_list_box.get_children().last().data.grab_focus();
+          self_replies_list_box.get_last_visible_row().grab_focus();
         }
         else {
           menu_button.grab_focus();
@@ -154,7 +154,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
         return true;
       }
       else if (direction == Gtk.DirectionType.DOWN && replies_list_box.is_visible()) {
-        replies_list_box.get_children().first().data.grab_focus();
+        replies_list_box.get_first_visible_row().grab_focus();
         return true;
       }
       return false;
@@ -162,10 +162,10 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     replies_list_box.keynav_failed.connect((direction) => {
       if (direction == Gtk.DirectionType.UP) {
         if (mentioned_replies_list_box.is_visible()) {
-          mentioned_replies_list_box.get_children().last().data.grab_focus();
+          mentioned_replies_list_box.get_last_visible_row().grab_focus();
         }
         else if (self_replies_list_box.is_visible()) {
-          self_replies_list_box.get_children().last().data.grab_focus();
+          self_replies_list_box.get_last_visible_row().grab_focus();
         }
         else {
           menu_button.grab_focus();

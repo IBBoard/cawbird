@@ -112,4 +112,16 @@ public class ListBox : Gtk.ListBox {
 
     return row;
   }
+
+  public Gtk.Widget? get_last_visible_row () {
+    int i = 0;
+    // We're in trouble if we get more than int.max (but less than uint.max) entries!
+    Gtk.Widget? row = this.get_row_at_index ((int)get_children().length() - 1);
+    while (row != null && !row.visible) {
+      i--;
+      row = this.get_row_at_index (i);
+    }
+
+    return row;
+  }
 }

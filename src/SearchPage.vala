@@ -73,6 +73,51 @@ class SearchPage : IPage, Gtk.Box {
     user_list.row_activated.connect (user_row_activated_cb);
     user_list.retry_button_clicked.connect (retry_button_clicked_cb);
     user_list.set_placeholder_text(_("No users found"));
+    search_entry.keynav_failed.connect((direction) => {
+      if (direction == Gtk.DirectionType.DOWN) {
+        if (user_list.get_children().length() > 0) {
+          user_list.get_first_visible_row().grab_focus();
+        } else {
+          tweet_list.get_first_visible_row().grab_focus();
+        }
+        return true;
+      }
+      return false;
+    });
+    search_button.keynav_failed.connect((direction) => {
+      if (direction == Gtk.DirectionType.DOWN) {
+        if (user_list.get_children().length() > 0) {
+          user_list.get_first_visible_row().grab_focus();
+        } else {
+          tweet_list.get_first_visible_row().grab_focus();
+        }
+        return true;
+      }
+      return false;
+    });
+    user_list.keynav_failed.connect((direction) => {
+      if (direction == Gtk.DirectionType.UP) {
+        search_entry.grab_focus();
+        return true;
+      }
+      else if (direction == Gtk.DirectionType.DOWN) {
+        tweet_list.get_first_visible_row().grab_focus();
+        return true;
+      }
+      return false;
+    });
+    tweet_list.keynav_failed.connect((direction) => {
+      if (direction == Gtk.DirectionType.UP) {
+        if (user_list.get_children().length() > 0) {
+          user_list.get_last_visible_row().grab_focus();
+        }
+        else {
+         search_entry.grab_focus();
+        }
+        return true;
+      }
+      return false;
+    });
 
     search_button.clicked.connect (() => {
       search_for (search_entry.get_text());
