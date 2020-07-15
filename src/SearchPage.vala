@@ -463,7 +463,7 @@ class LoadMoreEntry : Gtk.ListBoxRow, Cb.TwitterItem {
     this.activatable = false;
     this.load_more_button = new Gtk.Button.with_label (_("Load More"));
     load_more_button.get_style_context ().add_class ("dim-label");
-    load_more_button.set_halign (Gtk.Align.CENTER);
+    load_more_button.set_halign (Gtk.Align.FILL);
     load_more_button.set_hexpand (true);
     load_more_button.set_relief (Gtk.ReliefStyle.NONE);
     load_more_button.show ();
