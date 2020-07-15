@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-06-27 17:14+0100\n"
+"POT-Creation-Date: 2020-07-15 18:46+0100\n"
 "PO-Revision-Date: 2017-11-19 08:34+0000\n"
 "Last-Translator: Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail."
 "com>\n"
@@ -175,6 +175,17 @@ msgstr "Твитуј ка @%s"
 
 msgid "Protected Profile"
 msgstr "Заштићени профил"
+
+msgid "No users found"
+msgstr "Нема пронађених корисника"
+
+#, c-format
+msgid "Users matching \"%s\""
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Tweets matching \"%s\""
+msgstr "Твитуј ка @%s"
 
 msgid "Search"
 msgstr "Претрага"
@@ -419,9 +430,6 @@ msgstr "Погрешан ПИН"
 
 msgid "Account already in use"
 msgstr "Налог се већ користи"
-
-msgid "No users found"
-msgstr "Нема пронађених корисника"
 
 msgid "Select Image"
 msgstr "Изабери слику"

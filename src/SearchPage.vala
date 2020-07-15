@@ -72,6 +72,7 @@ class SearchPage : IPage, Gtk.Box {
     user_list.set_sort_func (twitter_item_sort_func);
     user_list.row_activated.connect (user_row_activated_cb);
     user_list.retry_button_clicked.connect (retry_button_clicked_cb);
+    user_list.set_placeholder_text(_("No users found"));
 
     search_button.clicked.connect (() => {
       search_for (search_entry.get_text());

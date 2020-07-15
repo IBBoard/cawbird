@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-06-27 17:14+0100\n"
+"POT-Creation-Date: 2020-07-15 18:46+0100\n"
 "PO-Revision-Date: 2017-10-22 18:18+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -177,6 +177,17 @@ msgstr "Siųsti tauškalą naudotojui @%s"
 
 msgid "Protected Profile"
 msgstr "Apsaugotas profilis"
+
+msgid "No users found"
+msgstr "Naudotojų nerasta"
+
+#, c-format
+msgid "Users matching \"%s\""
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Tweets matching \"%s\""
+msgstr "Siųsti tauškalą naudotojui @%s"
 
 msgid "Search"
 msgstr "Paieška"
@@ -422,9 +433,6 @@ msgstr "Neteisingas PIN"
 
 msgid "Account already in use"
 msgstr "Paskyra jau yra naudojama"
-
-msgid "No users found"
-msgstr "Naudotojų nerasta"
 
 msgid "Select Image"
 msgstr "Pasirinkite paveikslą"

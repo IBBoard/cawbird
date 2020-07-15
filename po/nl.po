@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-06-27 17:14+0100\n"
+"POT-Creation-Date: 2020-07-15 18:46+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>, 2020\n"
 "Language-Team: Dutch (https://www.transifex.com/cawbird/teams/107135/nl/)\n"
@@ -177,6 +177,17 @@ msgstr "Verstuur een tweet aan @%s"
 
 msgid "Protected Profile"
 msgstr "Afgeschermd profiel"
+
+msgid "No users found"
+msgstr "Er zijn geen gebruikers gevonden"
+
+#, c-format
+msgid "Users matching \"%s\""
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Tweets matching \"%s\""
+msgstr "Verstuur een tweet aan @%s"
 
 msgid "Search"
 msgstr "Zoeken"
@@ -427,9 +438,6 @@ msgstr "De pincode is onjuist"
 
 msgid "Account already in use"
 msgstr "Dit account is al in gebruik"
-
-msgid "No users found"
-msgstr "Er zijn geen gebruikers gevonden"
 
 msgid "Select Image"
 msgstr "Afbeelding selecteren"

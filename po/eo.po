@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-06-27 17:14+0100\n"
+"POT-Creation-Date: 2020-07-15 18:46+0100\n"
 "PO-Revision-Date: 2018-02-06 18:45+0000\n"
 "Last-Translator: Iris Ilexiris <iris.ilexiris@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/cawbird/cawbird/language/"
@@ -171,6 +171,17 @@ msgstr "Tviti al @%s"
 
 msgid "Protected Profile"
 msgstr "Karakterizon malpublikita"
+
+msgid "No users found"
+msgstr "Uzantojn netrovitajn"
+
+#, c-format
+msgid "Users matching \"%s\""
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Tweets matching \"%s\""
+msgstr "Tviti al @%s"
 
 msgid "Search"
 msgstr "Serĉi"
@@ -412,9 +423,6 @@ msgstr "Malĝustan PIN-on"
 
 msgid "Account already in use"
 msgstr "Konto jam uzas"
-
-msgid "No users found"
-msgstr "Uzantojn netrovitajn"
 
 msgid "Select Image"
 msgstr "Elekti bildon"

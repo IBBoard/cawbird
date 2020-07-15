@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-06-27 17:14+0100\n"
+"POT-Creation-Date: 2020-07-15 18:46+0100\n"
 "PO-Revision-Date: 2018-01-02 18:35+0000\n"
 "Last-Translator: Vanderlei Ventura <vanderleiventura82@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/cawbird/cawbird/"
@@ -178,6 +178,17 @@ msgstr "Tweet para @%s"
 
 msgid "Protected Profile"
 msgstr ""
+
+msgid "No users found"
+msgstr "Usuário não encontrado"
+
+#, c-format
+msgid "Users matching \"%s\""
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Tweets matching \"%s\""
+msgstr "Tweet para @%s"
 
 msgid "Search"
 msgstr "Pesquisa"
@@ -419,9 +430,6 @@ msgstr "PIN errado"
 
 msgid "Account already in use"
 msgstr "Conta já em uso"
-
-msgid "No users found"
-msgstr "Usuário não encontrado"
 
 msgid "Select Image"
 msgstr "Selecione a image"

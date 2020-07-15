@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-06-27 17:14+0100\n"
+"POT-Creation-Date: 2020-07-15 18:46+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/cawbird/cawbird/"
@@ -171,6 +171,17 @@ msgstr "给 @%s 发推"
 
 msgid "Protected Profile"
 msgstr ""
+
+msgid "No users found"
+msgstr "未找到用户"
+
+#, c-format
+msgid "Users matching \"%s\""
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Tweets matching \"%s\""
+msgstr "给 @%s 发推"
 
 msgid "Search"
 msgstr "搜索"
@@ -409,9 +420,6 @@ msgstr "PIN 码错误"
 
 msgid "Account already in use"
 msgstr "账户已在使用中"
-
-msgid "No users found"
-msgstr "未找到用户"
 
 msgid "Select Image"
 msgstr "选择图片"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-06-27 17:14+0100\n"
+"POT-Creation-Date: 2020-07-15 18:46+0100\n"
 "PO-Revision-Date: 2018-01-09 20:56+0000\n"
 "Last-Translator: Xuacu Saturio <xuacusk8@gmail.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -174,6 +174,17 @@ msgstr "Tuitear a @%s"
 
 msgid "Protected Profile"
 msgstr "Perfil protexíu"
+
+msgid "No users found"
+msgstr "Nun s'alcontraron usuarios"
+
+#, c-format
+msgid "Users matching \"%s\""
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Tweets matching \"%s\""
+msgstr "Tuitear a @%s"
 
 msgid "Search"
 msgstr "Guetar"
@@ -415,9 +426,6 @@ msgstr "PIN incorreutu"
 
 msgid "Account already in use"
 msgstr "La cuenta yá ta n'usu"
-
-msgid "No users found"
-msgstr "Nun s'alcontraron usuarios"
 
 msgid "Select Image"
 msgstr "Esbillar imaxe"

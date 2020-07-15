@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-06-27 17:14+0100\n"
+"POT-Creation-Date: 2020-07-15 18:46+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/cawbird/cawbird/"
@@ -169,6 +169,17 @@ msgstr "@%s 에게 트윗"
 
 msgid "Protected Profile"
 msgstr ""
+
+msgid "No users found"
+msgstr "사용자 없음"
+
+#, c-format
+msgid "Users matching \"%s\""
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Tweets matching \"%s\""
+msgstr "@%s 에게 트윗"
 
 msgid "Search"
 msgstr "찾기"
@@ -407,9 +418,6 @@ msgstr "올바르지 않은 PIN"
 
 msgid "Account already in use"
 msgstr "계정이 이미 사용 중"
-
-msgid "No users found"
-msgstr "사용자 없음"
 
 msgid "Select Image"
 msgstr "이미지 선택"

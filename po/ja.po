@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-06-27 17:14+0100\n"
+"POT-Creation-Date: 2020-07-15 18:46+0100\n"
 "PO-Revision-Date: 2017-11-12 23:35+0000\n"
 "Last-Translator: MTD TR <dev.mantendo@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/cawbird/cawbird/"
@@ -170,6 +170,17 @@ msgstr "@%s にツイート"
 
 msgid "Protected Profile"
 msgstr "非公開アカウント"
+
+msgid "No users found"
+msgstr "ユーザが見つかりません"
+
+#, c-format
+msgid "Users matching \"%s\""
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Tweets matching \"%s\""
+msgstr "@%s にツイート"
 
 msgid "Search"
 msgstr "検索"
@@ -407,9 +418,6 @@ msgstr "誤ったPIN"
 
 msgid "Account already in use"
 msgstr "アカウントはすでに使われています"
-
-msgid "No users found"
-msgstr "ユーザが見つかりません"
 
 msgid "Select Image"
 msgstr "画像を選択"

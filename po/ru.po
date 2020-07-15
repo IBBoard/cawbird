@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-06-27 17:14+0100\n"
+"POT-Creation-Date: 2020-07-15 18:46+0100\n"
 "PO-Revision-Date: 2018-03-01 17:12+0000\n"
 "Last-Translator: Egor Erastov <egor.er24@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -187,6 +187,17 @@ msgstr "Твитнуть @%s "
 
 msgid "Protected Profile"
 msgstr "Защищённый профиль"
+
+msgid "No users found"
+msgstr "Пользователь не найден"
+
+#, c-format
+msgid "Users matching \"%s\""
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Tweets matching \"%s\""
+msgstr "Твитнуть @%s "
 
 msgid "Search"
 msgstr "Поиск"
@@ -434,9 +445,6 @@ msgstr "Неверный PIN"
 
 msgid "Account already in use"
 msgstr "Аккаунт уже используется"
-
-msgid "No users found"
-msgstr "Пользователь не найден"
 
 msgid "Select Image"
 msgstr "Выбрать изображение"

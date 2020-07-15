@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-06-27 17:14+0100\n"
+"POT-Creation-Date: 2020-07-15 18:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,6 +161,17 @@ msgid "Tweet to @%s"
 msgstr ""
 
 msgid "Protected Profile"
+msgstr ""
+
+msgid "No users found"
+msgstr ""
+
+#, c-format
+msgid "Users matching \"%s\""
+msgstr ""
+
+#, c-format
+msgid "Tweets matching \"%s\""
 msgstr ""
 
 msgid "Search"
@@ -398,9 +409,6 @@ msgid "Wrong PIN"
 msgstr ""
 
 msgid "Account already in use"
-msgstr ""
-
-msgid "No users found"
 msgstr ""
 
 msgid "Select Image"

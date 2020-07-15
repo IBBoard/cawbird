@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-06-27 17:14+0100\n"
+"POT-Creation-Date: 2020-07-15 18:46+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Indonesian (Indonesia) (http://www.transifex.com/cawbird/"
@@ -171,6 +171,17 @@ msgstr "Tweet untuk @%s"
 
 msgid "Protected Profile"
 msgstr ""
+
+msgid "No users found"
+msgstr "User tidak ditemukan"
+
+#, c-format
+msgid "Users matching \"%s\""
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Tweets matching \"%s\""
+msgstr "Tweet untuk @%s"
 
 msgid "Search"
 msgstr "Pencarian"
@@ -409,9 +420,6 @@ msgstr "Salah PIN"
 
 msgid "Account already in use"
 msgstr "Akun sudah digunakan"
-
-msgid "No users found"
-msgstr "User tidak ditemukan"
 
 msgid "Select Image"
 msgstr "Pilih Gambar"

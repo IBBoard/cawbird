@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-06-27 17:14+0100\n"
+"POT-Creation-Date: 2020-07-15 18:46+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, "
 "2020\n"
@@ -177,6 +177,17 @@ msgstr "Tweet til @%s"
 
 msgid "Protected Profile"
 msgstr "Låst Profil"
+
+msgid "No users found"
+msgstr "Ingen brugere fundet"
+
+#, c-format
+msgid "Users matching \"%s\""
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Tweets matching \"%s\""
+msgstr "Tweet til @%s"
 
 msgid "Search"
 msgstr "Søg"
@@ -421,9 +432,6 @@ msgstr "Forkert PIN"
 
 msgid "Account already in use"
 msgstr "Konto er allerede i brug"
-
-msgid "No users found"
-msgstr "Ingen brugere fundet"
 
 msgid "Select Image"
 msgstr "Vælg billede"

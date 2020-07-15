@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-06-27 17:14+0100\n"
+"POT-Creation-Date: 2020-07-15 18:46+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -164,6 +164,17 @@ msgid "Tweet to @%s"
 msgstr ""
 
 msgid "Protected Profile"
+msgstr ""
+
+msgid "No users found"
+msgstr ""
+
+#, c-format
+msgid "Users matching \"%s\""
+msgstr ""
+
+#, c-format
+msgid "Tweets matching \"%s\""
 msgstr ""
 
 msgid "Search"
@@ -402,9 +413,6 @@ msgstr "Hibás PIN"
 
 msgid "Account already in use"
 msgstr "A felhasználói fiók már használatban"
-
-msgid "No users found"
-msgstr ""
 
 msgid "Select Image"
 msgstr ""
