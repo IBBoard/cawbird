@@ -37,7 +37,7 @@ static Soup.Session SOUP_SESSION = null;
 
 const int TRANSITION_DURATION = 200 * 1000;
 
-public delegate void VadjustOverScroll (Gtk.ScrolledWindow parent, ListBox list_box, int over_scroll);
+public delegate void VadjustOverScroll (Gtk.ScrolledWindow parent, Gtk.ListBox list_box, int over_scroll);
 
 #if DEBUG
 public unowned string __class_name (GLib.Object o) {
@@ -425,7 +425,7 @@ namespace Utils {
     return buff.str;
   }
 
-  public void connect_vadjustment (Gtk.ScrolledWindow parent, ListBox list_box, VadjustOverScroll? scroll_past_top_func = null) {
+  public void connect_vadjustment (Gtk.ScrolledWindow parent, Gtk.ListBox list_box, VadjustOverScroll? scroll_past_top_func = null) {
     // Ideally we'd just do:
     // list_box.set_focus_vadjustment(parent.get_vadjustment())
     // but that gives no way of doing an offset, so we've got to

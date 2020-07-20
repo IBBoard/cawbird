@@ -237,7 +237,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     this.mm_widget.visible = (Settings.get_media_visiblity () != MediaVisibility.HIDE);
   }
 
-  private void scroll_past_top(Gtk.ScrolledWindow parent, ListBox list_box, int over_scroll) {
+  private void scroll_past_top(Gtk.ScrolledWindow parent, Gtk.ListBox list_box, int over_scroll) {
     max_size_container.max_size += over_scroll;
     parent.vadjustment.value = 0;
   }

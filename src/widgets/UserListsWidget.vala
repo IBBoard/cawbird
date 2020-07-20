@@ -58,6 +58,14 @@ class UserListsWidget : Gtk.Box {
     subscribed_list_box.set_sort_func (ListListEntry.sort_func);
   }
 
+  public void connect_nav(Gtk.ScrolledWindow parent, Gtk.Widget widget_up) {
+    // FIXME: "Up" key works between lists, but not from top list - no keynav_failed event is fired
+    // (and moving between the lists doesn't seem to trigger it anyway - only moving down from
+    // the bottom list)
+    Utils.connect_vadjustment(parent, user_list_box);
+    Utils.connect_vadjustment(parent, subscribed_list_box);
+  }
+
   public void hide_user_list_entry () {
     new_list_entry.hide ();
     new_list_entry.no_show_all = true;

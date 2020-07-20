@@ -263,7 +263,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkRadioButton">
+                      <object class="GtkRadioButton" id="followers_button">
                         <property name="visible">1</property>
                         <property name="hexpand">1</property>
                         <property name="group">tweets_button</property>
@@ -305,7 +305,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkRadioButton">
+                      <object class="GtkRadioButton" id="following_button">
                         <property name="visible">1</property>
                         <property name="hexpand">1</property>
                         <property name="group">tweets_button</property>
@@ -347,7 +347,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkRadioButton">
+                      <object class="GtkRadioButton" id="lists_button">
                         <property name="visible">1</property>
                         <property name="hexpand">1</property>
                         <property name="group">tweets_button</property>

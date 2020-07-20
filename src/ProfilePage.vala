@@ -83,6 +83,12 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
   [GtkChild]
   private Gtk.RadioButton tweets_button;
   [GtkChild]
+  private Gtk.RadioButton followers_button;
+  [GtkChild]
+  private Gtk.RadioButton following_button;
+  [GtkChild]
+  private Gtk.RadioButton lists_button;
+  [GtkChild]
   private Gtk.Label loading_error_label;
   private int64 user_id;
   private new string name;
@@ -121,23 +127,47 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       bundle.put_object (TweetInfoPage.KEY_TWEET, ((TweetListEntry)row).tweet);
       main_window.main_widget.switch_page (Page.TWEET_INFO, bundle);
     });
+    tweet_list.keynav_failed.connect((direction) => {
+      if (direction == Gtk.DirectionType.UP) {
+        tweets_button.grab_focus();
+        return Gdk.EVENT_STOP;
+      }
+      return Gdk.EVENT_PROPAGATE;
+    });
     Utils.connect_vadjustment (this, tweet_list);
+
     followers_list.row_activated.connect ((row) => {
       var bundle = new Cb.Bundle ();
       bundle.put_int64 (ProfilePage.KEY_USER_ID, ((UserListEntry)row).user_id);
       bundle.put_string (ProfilePage.KEY_SCREEN_NAME, ((UserListEntry)row).screen_name);
       main_window.main_widget.switch_page (Page.PROFILE, bundle);
     });
+    followers_list.keynav_failed.connect((direction) => {
+      if (direction == Gtk.DirectionType.UP) {
+        followers_button.grab_focus();      
+        return Gdk.EVENT_STOP;
+      }
+      return Gdk.EVENT_PROPAGATE;
+    });
     Utils.connect_vadjustment (this, followers_list);
+
     following_list.row_activated.connect ((row) => {
       var bundle = new Cb.Bundle ();
       bundle.put_int64 (ProfilePage.KEY_USER_ID, ((UserListEntry)row).user_id);
       bundle.put_string (ProfilePage.KEY_SCREEN_NAME, ((UserListEntry)row).screen_name);
       main_window.main_widget.switch_page (Page.PROFILE, bundle);
     });
+    following_list.keynav_failed.connect((direction) => {
+      if (direction == Gtk.DirectionType.UP) {
+        following_button.grab_focus();
+        return Gdk.EVENT_STOP;
+      }
+      return Gdk.EVENT_PROPAGATE;
+    });
     Utils.connect_vadjustment (this, following_list);
 
     user_lists.hide_user_list_entry ();
+    user_lists.connect_nav(this, lists_button);
 
     actions = new GLib.SimpleActionGroup ();
     actions.add_action_entries (action_entries, this);
