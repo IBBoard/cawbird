@@ -179,7 +179,7 @@ class UserListsWidget : Gtk.Box {
       var obj = node.get_object ();
       ids += obj.get_int_member ("id");
       var entry = new ListListEntry.from_json_data (obj, account);
-      add_list(entry);
+      add_list(entry, list_box);
     });
     var size_after = list_box.get_children().length();
     var list_count = arr.get_length ();
@@ -225,13 +225,14 @@ class UserListsWidget : Gtk.Box {
     }
   }
 
-  public void add_list (ListListEntry entry) {
-    Gtk.ListBox list_box;
-    if (entry.user_list) {
-      list_box = user_list_box;
-    }
-    else {
-      list_box = subscribed_list_box;
+  public void add_list (ListListEntry entry, Gtk.ListBox? list_box = null) {
+    if (list_box == null) {
+      if (entry.user_list) {
+        list_box = user_list_box;
+      }
+      else {
+        list_box = subscribed_list_box;
+      }
     }
 
     var updated = false;
@@ -254,10 +255,17 @@ class UserListsWidget : Gtk.Box {
 
     if (entry.user_list) {
       user_lists_revealer.reveal_child = true;
-    } else {
-      subscribed_list_frame.show ();
-      subscribed_list_box.show ();
-      subscribed_list_label.show ();
+    } else if (list_box.get_children().length() > 0) {
+      if (list_box == user_list_box) {
+        user_list_frame.show ();
+        user_list_box.show ();
+        user_list_label.show ();
+      }
+      else {
+        subscribed_list_frame.show ();
+        subscribed_list_box.show ();
+        subscribed_list_label.show ();
+      }
     }
   }
 
