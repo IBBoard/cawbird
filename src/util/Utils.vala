@@ -37,6 +37,8 @@ static Soup.Session SOUP_SESSION = null;
 
 const int TRANSITION_DURATION = 200 * 1000;
 
+public delegate void VadjustOverScroll (Gtk.ScrolledWindow parent, ListBox list_box, int over_scroll);
+
 #if DEBUG
 public unowned string __class_name (GLib.Object o) {
   return GLib.Type.from_instance (o).name ();
@@ -421,5 +423,40 @@ namespace Utils {
         .append (GLib.Markup.escape_text(user.user_name))
         .append ("</a></span>");
     return buff.str;
+  }
+
+  public void connect_vadjustment (Gtk.ScrolledWindow parent, ListBox list_box, VadjustOverScroll? scroll_past_top_func = null) {
+    // Ideally we'd just do:
+    // list_box.set_focus_vadjustment(parent.get_vadjustment())
+    // but that gives no way of doing an offset, so we've got to
+    // do all of the calculations ourselves.
+    // https://stackoverflow.com/a/8912336/283242
+    list_box.set_focus_child.connect((focussed_child) => {
+      if (focussed_child == null) {
+        return;
+      }
+  
+      double widget_left, widget_top;
+      focussed_child.translate_coordinates(parent, 0, 0, out widget_left, out widget_top);
+      // The coordinate translation doesn't take into account the existing vadjustment! So add it back.
+      widget_top += parent.vadjustment.value;
+      Gtk.Allocation alloc;
+      focussed_child.get_allocation(out alloc);
+      var widget_bottom = widget_top + alloc.height;
+      var viewport_top = parent.vadjustment.value;
+      var viewport_bottom = viewport_top + parent.vadjustment.page_size;
+  
+      if (parent.vadjustment.value == 0 && widget_top < 0) {
+        if (scroll_past_top_func != null) {
+          scroll_past_top_func (parent, list_box, (int)Math.ceil(-widget_top));
+        }
+      }
+      else if (widget_top < viewport_top) {
+        parent.vadjustment.value = widget_top;
+      }
+      else if (widget_bottom > viewport_bottom) {
+        parent.vadjustment.value = widget_bottom - parent.vadjustment.page_size;
+      }
+    });
   }
 }

@@ -68,11 +68,14 @@ class SearchPage : IPage, Gtk.Box {
     tweet_list.row_activated.connect (tweet_row_activated_cb);
     tweet_list.retry_button_clicked.connect (retry_button_clicked_cb);
     tweet_list.account = account;
+    Utils.connect_vadjustment (scroll_widget, tweet_list);
     user_list.set_header_func (header_func);
     user_list.set_sort_func (twitter_item_sort_func);
     user_list.row_activated.connect (user_row_activated_cb);
     user_list.retry_button_clicked.connect (retry_button_clicked_cb);
     user_list.set_placeholder_text(_("No users found"));
+    // We could connect the vadjust for the user list as well, but as it's the top then we won't bother
+
     search_entry.keynav_failed.connect((direction) => {
       if (direction == Gtk.DirectionType.DOWN) {
         if (user_list.get_children().length() > 0) {
@@ -129,7 +132,6 @@ class SearchPage : IPage, Gtk.Box {
     scroll_widget.scrolled_to_end.connect (load_tweets);
     tweet_list.get_placeholder ().hide ();
     user_list.get_placeholder ().hide ();
-    tweet_list.set_adjustment (scroll_widget.get_vadjustment ());
   }
 
   [GtkCallback]

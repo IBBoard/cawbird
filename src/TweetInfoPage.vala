@@ -117,10 +117,10 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     this.mentioned_replies_list_box.set_thread_mode (true);
     this.replied_to_list_box.account = account;
     this.replied_to_list_box.set_thread_mode (true);
-    connect_vadjustment (replies_list_box);
-    connect_vadjustment (self_replies_list_box);
-    connect_vadjustment (mentioned_replies_list_box);
-    connect_vadjustment (replied_to_list_box);
+    Utils.connect_vadjustment (this, replies_list_box, scroll_past_top);
+    Utils.connect_vadjustment (this, self_replies_list_box, scroll_past_top);
+    Utils.connect_vadjustment (this, mentioned_replies_list_box, scroll_past_top);
+    Utils.connect_vadjustment (this, replied_to_list_box, scroll_past_top);
     replied_to_list_box.keynav_failed.connect((direction) => {
       if (direction == Gtk.DirectionType.DOWN) {
         name_button.grab_focus();
@@ -237,39 +237,11 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     this.mm_widget.visible = (Settings.get_media_visiblity () != MediaVisibility.HIDE);
   }
 
-  private void connect_vadjustment (TweetListBox tweet_list_box) {
-    // Ideally we'd just do:
-    // tweet_list_box.set_focus_vadjustment(this.get_vadjustment())
-    // but that gives no way of doing an offset, so we've got to
-    // do all of the calculations ourselves.
-    // https://stackoverflow.com/a/8912336/283242
-    tweet_list_box.set_focus_child.connect((focussed_child) => {
-      if (focussed_child == null) {
-        return;
-      }
-
-      double widget_left, widget_top;
-      focussed_child.translate_coordinates(this, 0, 0, out widget_left, out widget_top);
-      // The coordinate translation doesn't take into account the existing vadjustment! So add it back.
-      widget_top += this.vadjustment.value;
-      Gtk.Allocation alloc;
-      focussed_child.get_allocation(out alloc);
-      var widget_bottom = widget_top + alloc.height;
-      var viewport_top = this.vadjustment.value;
-      var viewport_bottom = viewport_top + this.vadjustment.page_size;
-
-      if (this.vadjustment.value == 0 && widget_top < 0) {
-        max_size_container.max_size += (int)Math.ceil(-widget_top);
-        this.vadjustment.value = 0;
-      }
-      else if (widget_top < viewport_top) {
-        this.vadjustment.value = widget_top;
-      }
-      else if (widget_bottom > viewport_bottom) {
-        this.vadjustment.value = widget_bottom - this.vadjustment.page_size;
-      }
-    });
+  private void scroll_past_top(Gtk.ScrolledWindow parent, ListBox list_box, int over_scroll) {
+    max_size_container.max_size += over_scroll;
+    parent.vadjustment.value = 0;
   }
+
 
   private void media_visiblity_changed_cb () {
     if (Settings.get_media_visiblity () == MediaVisibility.HIDE)
