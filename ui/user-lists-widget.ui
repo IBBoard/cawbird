@@ -97,6 +97,7 @@
         <property name="no-show-all">1</property>
         <property name="margin-start">25</property>
         <property name="margin-end">25</property>
+        <property name="margin-bottom">25</property>
         <property name="shadow-type">in</property>
         <child>
           <object class="GtkListBox" id="subscribed_list_box">
