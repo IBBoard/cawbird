@@ -121,19 +121,21 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       bundle.put_object (TweetInfoPage.KEY_TWEET, ((TweetListEntry)row).tweet);
       main_window.main_widget.switch_page (Page.TWEET_INFO, bundle);
     });
+    Utils.connect_vadjustment (this, tweet_list);
     followers_list.row_activated.connect ((row) => {
       var bundle = new Cb.Bundle ();
       bundle.put_int64 (ProfilePage.KEY_USER_ID, ((UserListEntry)row).user_id);
       bundle.put_string (ProfilePage.KEY_SCREEN_NAME, ((UserListEntry)row).screen_name);
       main_window.main_widget.switch_page (Page.PROFILE, bundle);
     });
+    Utils.connect_vadjustment (this, followers_list);
     following_list.row_activated.connect ((row) => {
       var bundle = new Cb.Bundle ();
       bundle.put_int64 (ProfilePage.KEY_USER_ID, ((UserListEntry)row).user_id);
       bundle.put_string (ProfilePage.KEY_SCREEN_NAME, ((UserListEntry)row).screen_name);
       main_window.main_widget.switch_page (Page.PROFILE, bundle);
     });
-
+    Utils.connect_vadjustment (this, following_list);
 
     user_lists.hide_user_list_entry ();
 
