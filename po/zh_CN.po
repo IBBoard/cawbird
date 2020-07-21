@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-15 18:46+0100\n"
+"POT-Creation-Date: 2020-07-21 16:56+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/cawbird/cawbird/"
@@ -171,6 +171,10 @@ msgstr "给 @%s 发推"
 
 msgid "Protected Profile"
 msgstr ""
+
+#, fuzzy
+msgid "No tweets found"
+msgstr "未找到条目"
 
 msgid "No users found"
 msgstr "未找到用户"
@@ -934,9 +938,6 @@ msgstr "订阅到"
 
 #~ msgid "List"
 #~ msgstr "列表"
-
-#~ msgid "No entries found"
-#~ msgstr "未找到条目"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

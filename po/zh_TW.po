@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-15 18:46+0100\n"
+"POT-Creation-Date: 2020-07-21 16:56+0100\n"
 "PO-Revision-Date: 2018-01-17 19:31+0000\n"
 "Last-Translator: HybridGlucose <a07051226@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/cawbird/cawbird/"
@@ -168,6 +168,10 @@ msgstr "推文給 @%s"
 
 msgid "Protected Profile"
 msgstr "受保護的個人檔案"
+
+#, fuzzy
+msgid "No tweets found"
+msgstr "沒有找到條目"
 
 msgid "No users found"
 msgstr "沒有找到用戶"
@@ -934,9 +938,6 @@ msgstr "訂閱的"
 
 #~ msgid "Loading…"
 #~ msgstr "載入中..."
-
-#~ msgid "No entries found"
-#~ msgstr "沒有找到條目"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

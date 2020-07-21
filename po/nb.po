@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-15 18:46+0100\n"
+"POT-Creation-Date: 2020-07-21 16:56+0100\n"
 "PO-Revision-Date: 2018-02-09 06:34+0000\n"
 "Last-Translator: Kim Malmo <berencamlost@msn.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/cawbird/cawbird/"
@@ -172,6 +172,10 @@ msgstr "Tweet til @%s"
 
 msgid "Protected Profile"
 msgstr "Beskyttet profil"
+
+#, fuzzy
+msgid "No tweets found"
+msgstr "Fant ingen elementer"
 
 msgid "No users found"
 msgstr "Fant ingen brukere"
@@ -946,9 +950,6 @@ msgstr "Abonnert på"
 
 #~ msgid "Loading…"
 #~ msgstr "Laster inn …"
-
-#~ msgid "No entries found"
-#~ msgstr "Fant ingen elementer"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

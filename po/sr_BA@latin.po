@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-15 18:46+0100\n"
+"POT-Creation-Date: 2020-07-21 16:56+0100\n"
 "PO-Revision-Date: 2017-11-20 17:05+0000\n"
 "Last-Translator: Slobodan Terzić <githzerai06@gmail.com>\n"
 "Language-Team: Serbian (Latin) (http://www.transifex.com/cawbird/cawbird/"
@@ -173,6 +173,10 @@ msgstr "Tvituj ka @%s"
 
 msgid "Protected Profile"
 msgstr "Zaštićeni profil"
+
+#, fuzzy
+msgid "No tweets found"
+msgstr "Nema pronađenih unosa"
 
 msgid "No users found"
 msgstr "Nema pronađenih korisnika"
@@ -957,9 +961,6 @@ msgstr "Pretplaćen(a) na"
 
 #~ msgid "Loading…"
 #~ msgstr "Učitavam…"
-
-#~ msgid "No entries found"
-#~ msgstr "Nema pronađenih unosa"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

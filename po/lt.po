@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-15 18:46+0100\n"
+"POT-Creation-Date: 2020-07-21 16:56+0100\n"
 "PO-Revision-Date: 2017-10-22 18:18+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -177,6 +177,10 @@ msgstr "Siųsti tauškalą naudotojui @%s"
 
 msgid "Protected Profile"
 msgstr "Apsaugotas profilis"
+
+#, fuzzy
+msgid "No tweets found"
+msgstr "Nerasta įrašų"
 
 msgid "No users found"
 msgstr "Naudotojų nerasta"
@@ -964,9 +968,6 @@ msgstr "Jūsų prenumeratos"
 
 #~ msgid "Loading…"
 #~ msgstr "Įkeliama…"
-
-#~ msgid "No entries found"
-#~ msgstr "Nerasta įrašų"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

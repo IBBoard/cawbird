@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-15 18:46+0100\n"
+"POT-Creation-Date: 2020-07-21 16:56+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>, 2020\n"
 "Language-Team: Dutch (https://www.transifex.com/cawbird/teams/107135/nl/)\n"
@@ -177,6 +177,10 @@ msgstr "Verstuur een tweet aan @%s"
 
 msgid "Protected Profile"
 msgstr "Afgeschermd profiel"
+
+#, fuzzy
+msgid "No tweets found"
+msgstr "Geen items gevonden"
 
 msgid "No users found"
 msgstr "Er zijn geen gebruikers gevonden"
@@ -966,6 +970,3 @@ msgstr "Geabonneerd op"
 
 #~ msgid "Loading…"
 #~ msgstr "Bezig met laden..."
-
-#~ msgid "No entries found"
-#~ msgstr "Geen items gevonden"

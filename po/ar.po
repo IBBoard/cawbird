@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-15 18:46+0100\n"
+"POT-Creation-Date: 2020-07-21 16:56+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Ammar K <ak.bahassan@gmail.com>, 2020\n"
 "Language-Team: Arabic (http://www.transifex.com/cawbird/cawbird/language/"
@@ -185,6 +185,10 @@ msgstr "غرد لِ@%s"
 
 msgid "Protected Profile"
 msgstr "الحساب محمي "
+
+#, fuzzy
+msgid "No tweets found"
+msgstr "لم يتم العثور على أي شيء"
 
 msgid "No users found"
 msgstr "لم يتم العثور على مستخدمين"
@@ -979,6 +983,3 @@ msgstr "مشترك في"
 
 #~ msgid "Loading…"
 #~ msgstr "…يحمّل"
-
-#~ msgid "No entries found"
-#~ msgstr "لم يتم العثور على أي شيء"

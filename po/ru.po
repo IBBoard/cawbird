@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-15 18:46+0100\n"
+"POT-Creation-Date: 2020-07-21 16:56+0100\n"
 "PO-Revision-Date: 2018-03-01 17:12+0000\n"
 "Last-Translator: Egor Erastov <egor.er24@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -187,6 +187,10 @@ msgstr "Твитнуть @%s "
 
 msgid "Protected Profile"
 msgstr "Защищённый профиль"
+
+#, fuzzy
+msgid "No tweets found"
+msgstr "Нет записей"
 
 msgid "No users found"
 msgstr "Пользователь не найден"
@@ -971,9 +975,6 @@ msgstr "Подписаться"
 
 #~ msgid "List"
 #~ msgstr "Список"
-
-#~ msgid "No entries found"
-#~ msgstr "Нет записей"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

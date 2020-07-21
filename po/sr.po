@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-15 18:46+0100\n"
+"POT-Creation-Date: 2020-07-21 16:56+0100\n"
 "PO-Revision-Date: 2017-11-19 08:34+0000\n"
 "Last-Translator: Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail."
 "com>\n"
@@ -175,6 +175,10 @@ msgstr "Твитуј ка @%s"
 
 msgid "Protected Profile"
 msgstr "Заштићени профил"
+
+#, fuzzy
+msgid "No tweets found"
+msgstr "Нема пронађених уноса"
 
 msgid "No users found"
 msgstr "Нема пронађених корисника"
@@ -959,9 +963,6 @@ msgstr "Претплаћен(а) на"
 
 #~ msgid "Loading…"
 #~ msgstr "Учитавам…"
-
-#~ msgid "No entries found"
-#~ msgstr "Нема пронађених уноса"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

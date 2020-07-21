@@ -68,6 +68,7 @@ class SearchPage : IPage, Gtk.Box {
     tweet_list.row_activated.connect (tweet_row_activated_cb);
     tweet_list.retry_button_clicked.connect (retry_button_clicked_cb);
     tweet_list.account = account;
+    tweet_list.set_placeholder_text(_("No tweets found"));
     Utils.connect_vadjustment (scroll_widget, tweet_list);
     user_list.set_header_func (header_func);
     user_list.set_sort_func (twitter_item_sort_func);
@@ -167,6 +168,9 @@ class SearchPage : IPage, Gtk.Box {
       GLib.Source.remove (this.remove_content_timeout);
       this.remove_content_timeout = 0;
     }
+    else {
+      scroll_widget.hide();
+    }
 
 
     if (term == null) {
@@ -196,6 +200,7 @@ class SearchPage : IPage, Gtk.Box {
       tweet_list.get_placeholder ().hide ();
       user_list.remove_all();
       user_list.get_placeholder ().hide ();
+      scroll_widget.hide();
       this.last_focus_widget  = null;
 
       this.remove_content_timeout = 0;
@@ -227,6 +232,7 @@ class SearchPage : IPage, Gtk.Box {
     user_list.remove_all();
     user_list.set_unempty();
     user_list.get_placeholder().show();
+    scroll_widget.show();
     // Set accessible text
     var accessible_name = _("Users matching \"%s\"".printf(q));
     user_list.get_accessible().set_name(accessible_name);
@@ -320,6 +326,7 @@ class SearchPage : IPage, Gtk.Box {
 
       if (user_list.get_children().length() + users.get_length() <= 0) {
         user_list.set_empty ();
+        user_list.get_placeholder().show();
       }
 
       var final_page = false;
@@ -418,6 +425,7 @@ class SearchPage : IPage, Gtk.Box {
 
       if (tweets.length <= 0) {
         tweet_list.set_empty ();
+        tweet_list.get_placeholder().show();
       }
 
       foreach (Cb.Tweet tweet in tweets) {

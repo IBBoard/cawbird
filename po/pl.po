@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-15 18:46+0100\n"
+"POT-Creation-Date: 2020-07-21 16:56+0100\n"
 "PO-Revision-Date: 2017-10-22 15:14+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -178,6 +178,10 @@ msgstr "Tweet do @%s"
 
 msgid "Protected Profile"
 msgstr "Profil chroniony"
+
+#, fuzzy
+msgid "No tweets found"
+msgstr "Nie odnaleziono żadnych wpisów"
 
 msgid "No users found"
 msgstr "Nie odnaleziono żadnych użytkowników"
@@ -966,9 +970,6 @@ msgstr "Subskrybowano do"
 
 #~ msgid "Loading…"
 #~ msgstr "Wczytywanie…"
-
-#~ msgid "No entries found"
-#~ msgstr "Nie odnaleziono żadnych wpisów"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"
