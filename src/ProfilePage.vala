@@ -426,7 +426,9 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     this.follower_count = followers;
     description_label.label = "<big>%s</big>".printf (desc.replace ("&", "&amp;"));
     tweets_label.label = "%'d".printf(tweets);
+    tweets_button.get_accessible().set_name(ngettext("%d tweet", "%d tweets", tweets).printf(tweets));
     following_label.label = "%'d".printf(following);
+    following_button.get_accessible().set_name(ngettext("Following %d account", "Following %d accounts", following).printf(following));
     update_follower_label ();
 
     if (location != null && location != "") {
@@ -893,6 +895,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
 
   private void update_follower_label () {
     followers_label.label = "%'d".printf(follower_count);
+    followers_button.get_accessible().set_name(ngettext("%d follower", "%d followers", follower_count).printf(follower_count));
   }
 
   public void stream_message_received (Cb.StreamMessageType type,
