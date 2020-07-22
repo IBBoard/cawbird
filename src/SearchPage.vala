@@ -96,15 +96,18 @@ class SearchPage : IPage, Gtk.Box {
     });
     search_button.keynav_failed.connect((direction) => {
       if (direction == Gtk.DirectionType.DOWN) {
-        if (user_list.get_children().length() > 0) {
-          user_list.get_first_visible_row().grab_focus();
-        } else {
-          Gtk.Widget? first_row = tweet_list.get_first_visible_row();
+        Gtk.Widget? first_row = user_list.get_first_visible_row();
+        if (first_row != null) {
+          first_row.grab_focus();
+          return true;
+        }
+        else {
+          first_row = tweet_list.get_first_visible_row();
           if (first_row != null) {
             first_row.grab_focus();
+            return true;
           }
         }
-        return true;
       }
       return false;
     });
