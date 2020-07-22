@@ -622,9 +622,11 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     if (stack.visible_child == action_box) {
       stack.visible_child = grid;
       this.activatable = true;
+      this.grab_focus();
     } else {
       stack.visible_child = action_box;
       this.activatable = false;
+      retweet_button.grab_focus();
     }
   }
 
