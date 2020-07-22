@@ -15,7 +15,7 @@
  *  along with cawbird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class LazyMenuButton : Gtk.ToggleButton {
+public class LazyMenuButton : Gtk.Button {
   public GLib.Menu menu_model { get; set; }
 
   public override void clicked () {
