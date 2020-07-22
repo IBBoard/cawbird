@@ -137,9 +137,16 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     avatar_image.protected_account = tweet.is_flag_set (Cb.TweetState.PROTECTED);
     text_label.label = tweet.get_trimmed_text (Settings.get_text_transform_flags ()).strip ();
     if (tweet.retweeted_tweet != null) {
+      var rt_author = tweet.source_tweet.author;
       rt_label.show ();
       rt_image.show ();
-      rt_label.label = Utils.linkify_user (tweet.source_tweet.author) + " @" + tweet.source_tweet.author.screen_name;
+      rt_label.label = Utils.linkify_user (rt_author) + " @" + rt_author.screen_name;
+      // Set the accessible text as a single string rather than trying to make screen readers read
+      // separate text for the RT icon and the names
+      // TRANSLATORS: replacements are name and handle (without the "@")
+      var rt_by = _("Retweeted by %s (@%s)").printf(rt_author.user_name, rt_author.screen_name);
+      rt_label.get_accessible().set_name(rt_by);
+      rt_label.get_accessible().set_name(rt_by);
     }
 
     if ((tweet.retweeted_tweet != null &&
