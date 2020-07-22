@@ -25,10 +25,12 @@ class FollowButton : Gtk.Button {
         sc.remove_class ("suggested-action");
         sc.add_class ("destructive-action");
         this.stack.visible_child = unfollow_label;
+        get_accessible().set_name(_("Unfollow"));
       } else {
         sc.remove_class ("destructive-action");
         sc.add_class ("suggested-action");
         this.stack.visible_child = follow_label;
+        get_accessible().set_name(_("Follow"));
       }
       this._following = value;
     }
