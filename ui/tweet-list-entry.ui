@@ -190,6 +190,11 @@
                 <property name="pixel-size">12</property>
                 <property name="icon-name">cawbird-favorite-symbolic</property>
                 <property name="no-show-all">1</property>
+                <child internal-child="accessible">
+                  <object class="AtkObject" id="fav_status_image-atkobject">
+                    <property name="AtkObject::accessible-name" translatable="yes">Liked</property>
+                  </object>
+                </child>
                 <style>
                   <class name="dim-label"/>
                 </style>
@@ -208,6 +213,11 @@
                 <property name="pixel-size">12</property>
                 <property name="icon-name">cawbird-retweet-symbolic</property>
                 <property name="no-show-all">1</property>
+                <child internal-child="accessible">
+                  <object class="AtkObject" id="rt_status_image-atkobject">
+                    <property name="AtkObject::accessible-name" translatable="yes">Retweeted</property>
+                  </object>
+                </child>
                 <style>
                   <class name="dim-label"/>
                 </style>
@@ -225,6 +235,11 @@
                 <property name="margin-end">6</property>
                 <property name="pixel-size">12</property>
                 <property name="icon-name">cawbird-conversation-symbolic</property>
+                <child internal-child="accessible">
+                  <object class="AtkObject" id="conversation_image-atkobject">
+                    <property name="AtkObject::accessible-name" translatable="yes">Reply</property>
+                  </object>
+                </child>
                 <style>
                   <class name="dim-label"/>
                 </style>
