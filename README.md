@@ -151,6 +151,18 @@ meson build
 ninja -C build
 ```
 
+Note that executing `build/cawbird` may result in the error:
+
+```Bash
+Settings schema 'uk.co.ibboard.cawbird' is not installed
+```
+
+To correct, install the application:
+
+```Bash
+ninja install -C build
+```
+
 Cawbird installs its application icon into `/usr/share/icons/hicolor/`, so an appropriate call to `gtk-update-icon-cache` might be needed.
 
 ### Build Dependencies
