@@ -43,7 +43,9 @@
             <child>
               <object class="GtkGrid">
                 <property name="visible">1</property>
-
+                <property name="can-focus">1</property>
+                <property name="can-default">1</property>
+                <property name="has-default">1</property>
                 <child>
                   <object class="AvatarWidget" id="avatar_image">
                     <property name="visible">1</property>
@@ -59,6 +61,7 @@
                   <packing>
                     <property name="left-attach">0</property>
                     <property name="top-attach">1</property>
+                    <property name="height">3</property>
                   </packing>
                 </child>
 
@@ -76,48 +79,51 @@
                     <property name="width">5</property>
                   </packing>
                 </child>
-
                 <child>
-                  <object class="GtkBox">
+                  <object class="GtkLabel" id="name_label">
+                    <property name="can-focus">1</property>
                     <property name="visible">1</property>
-                    <property name="orientation">vertical</property>
                     <property name="valign">start</property>
+                    <property name="xalign">0</property>
+                    <property name="ellipsize">end</property>
+                    <property name="hexpand">1</property>
                     <property name="margin-top">12</property>
-                    <child>
-                      <object class="GtkLabel" id="name_label">
-                        <property name="visible">1</property>
-                        <property name="valign">start</property>
-                        <property name="xalign">0</property>
-                        <property name="ellipsize">end</property>
-                        <property name="hexpand">1</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="screen_name_label">
-                        <property name="visible">1</property>
-                        <property name="valign">start</property>
-                        <property name="xalign">0</property>
-                        <property name="label"> </property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="location_label">
-                        <property name="visible">1</property>
-                        <property name="xalign">0</property>
-                        <property name="valign">start</property>
-                        <property name="ellipsize">end</property>
-                      </object>
-                    </child>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
                     <property name="top-attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="screen_name_label">
+                    <property name="can-focus">1</property>
+                    <property name="visible">1</property>
+                    <property name="valign">start</property>
+                    <property name="xalign">0</property>
+                    <property name="label"> </property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="location_label">
+                    <property name="can-focus">1</property>
+                    <property name="visible">1</property>
+                    <property name="xalign">0</property>
+                    <property name="valign">start</property>
+                    <property name="ellipsize">end</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">3</property>
                   </packing>
                 </child>
                 <!-- Info box -->
@@ -174,10 +180,13 @@
                   <packing>
                     <property name="left-attach">2</property>
                     <property name="top-attach">1</property>
+                    <property name="height">3</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkLabel" id="description_label">
+                    <property name="can-focus">1</property>
+                    <property name="selectable">1</property>
                     <property name="visible">1</property>
                     <property name="margin-start">14</property>
                     <property name="margin-end">14</property>
@@ -194,11 +203,12 @@
                   <packing>
                     <property name="left-attach">0</property>
                     <property name="top-attach">6</property>
-                    <property name="width">4</property>
+                    <property name="width">5</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkLabel" id="url_label">
+                    <property name="can-focus">1</property>
                     <property name="visible">0</property>
                     <property name="no-show-all">1</property>
                     <property name="halign">center</property>
