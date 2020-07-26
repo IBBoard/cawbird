@@ -434,6 +434,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     if (location != null && location != "") {
       location_label.visible = true;
       location_label.label = location;
+      location_label.get_accessible().set_name(_("Location: %s".printf(location)));
     } else
       location_label.visible = false;
 
