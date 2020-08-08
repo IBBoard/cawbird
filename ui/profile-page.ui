@@ -43,9 +43,6 @@
             <child>
               <object class="GtkGrid">
                 <property name="visible">1</property>
-                <property name="can-focus">1</property>
-                <property name="can-default">1</property>
-                <property name="has-default">1</property>
                 <child>
                   <object class="AvatarWidget" id="avatar_image">
                     <property name="visible">1</property>
@@ -81,7 +78,6 @@
                 </child>
                 <child>
                   <object class="GtkLabel" id="name_label">
-                    <property name="can-focus">1</property>
                     <property name="visible">1</property>
                     <property name="valign">start</property>
                     <property name="xalign">0</property>
@@ -99,7 +95,6 @@
                 </child>
                 <child>
                   <object class="GtkLabel" id="screen_name_label">
-                    <property name="can-focus">1</property>
                     <property name="visible">1</property>
                     <property name="valign">start</property>
                     <property name="xalign">0</property>
@@ -115,7 +110,6 @@
                 </child>
                 <child>
                   <object class="GtkLabel" id="location_label">
-                    <property name="can-focus">1</property>
                     <property name="visible">1</property>
                     <property name="xalign">0</property>
                     <property name="valign">start</property>
@@ -140,6 +134,7 @@
                         </style>
                         <child>
                           <object class="GtkMenuButton" id="more_button">
+                            <property name="can-default">0</property>
                             <property name="visible">1</property>
                             <property name="halign">end</property>
                             <property name="margin-top">14</property>
@@ -185,8 +180,6 @@
                 </child>
                 <child>
                   <object class="GtkLabel" id="description_label">
-                    <property name="can-focus">1</property>
-                    <property name="selectable">1</property>
                     <property name="visible">1</property>
                     <property name="margin-start">14</property>
                     <property name="margin-end">14</property>
@@ -208,7 +201,6 @@
                 </child>
                 <child>
                   <object class="GtkLabel" id="url_label">
-                    <property name="can-focus">1</property>
                     <property name="visible">0</property>
                     <property name="no-show-all">1</property>
                     <property name="halign">center</property>
@@ -449,6 +441,8 @@
             <property name="vhomogeneous">0</property>
             <child>
               <object class="TweetListBox" id="tweet_list">
+                <property name="can-default">1</property>
+                <property name="has-default">1</property>
                 <property name="visible">1</property>
                 <property name="can-focus">False</property>
                 <property name="vexpand">True</property>
