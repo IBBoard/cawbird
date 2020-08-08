@@ -42,6 +42,7 @@ struct _CbMedia
   char *url;
   char *thumb_url;
   char *target_url;
+  char *alt_text;
 
   int width;
   int height;

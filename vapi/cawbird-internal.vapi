@@ -59,6 +59,7 @@ namespace Cb {
     public string url;
     public string thumb_url;
     public string target_url;
+    public string alt_text;
     public MediaType type;
     public int width;
     public int height;

@@ -2328,6 +2328,176 @@ const string TD10 = """
 }
 """;
 
+const string TWEET_MEDIA_ALT_TEXT = """
+{
+  "created_at" : "Tue Apr 07 15:49:32 +0000 2020",
+  "id" : 1247552095441629184,
+  "id_str" : "1247552095441629184",
+  "full_text" : "https://t.co/oJfMRChWEl",
+  "truncated" : false,
+  "display_text_range" : [
+    0,
+    0
+  ],
+  "entities" : {
+    "hashtags" : [
+    ],
+    "symbols" : [
+    ],
+    "user_mentions" : [
+    ],
+    "urls" : [
+    ],
+    "media" : [
+      {
+        "id" : 1247552036507443200,
+        "id_str" : "1247552036507443200",
+        "indices" : [
+          0,
+          23
+        ],
+        "media_url" : "http://pbs.twimg.com/media/EVAx96bXYAAayMR.png",
+        "media_url_https" : "https://pbs.twimg.com/media/EVAx96bXYAAayMR.png",
+        "url" : "https://t.co/oJfMRChWEl",
+        "display_url" : "pic.twitter.com/oJfMRChWEl",
+        "expanded_url" : "https://twitter.com/IBBTwtr/status/1247552095441629184/photo/1",
+        "type" : "photo",
+        "sizes" : {
+          "small" : {
+            "w" : 492,
+            "h" : 680,
+            "resize" : "fit"
+          },
+          "large" : {
+            "w" : 595,
+            "h" : 823,
+            "resize" : "fit"
+          },
+          "medium" : {
+            "w" : 595,
+            "h" : 823,
+            "resize" : "fit"
+          },
+          "thumb" : {
+            "w" : 150,
+            "h" : 150,
+            "resize" : "crop"
+          }
+        }
+      }
+    ]
+  },
+  "extended_entities" : {
+    "media" : [
+      {
+        "id" : 1247552036507443200,
+        "id_str" : "1247552036507443200",
+        "indices" : [
+          0,
+          23
+        ],
+        "media_url" : "http://pbs.twimg.com/media/EVAx96bXYAAayMR.png",
+        "media_url_https" : "https://pbs.twimg.com/media/EVAx96bXYAAayMR.png",
+        "url" : "https://t.co/oJfMRChWEl",
+        "display_url" : "pic.twitter.com/oJfMRChWEl",
+        "expanded_url" : "https://twitter.com/IBBTwtr/status/1247552095441629184/photo/1",
+        "type" : "photo",
+        "sizes" : {
+          "small" : {
+            "w" : 492,
+            "h" : 680,
+            "resize" : "fit"
+          },
+          "large" : {
+            "w" : 595,
+            "h" : 823,
+            "resize" : "fit"
+          },
+          "medium" : {
+            "w" : 595,
+            "h" : 823,
+            "resize" : "fit"
+          },
+          "thumb" : {
+            "w" : 150,
+            "h" : 150,
+            "resize" : "crop"
+          }
+        },
+        "ext_alt_text" : "Cawbird in dark theme"
+      }
+    ]
+  },
+  "source" : "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+  "in_reply_to_status_id" : null,
+  "in_reply_to_status_id_str" : null,
+  "in_reply_to_user_id" : null,
+  "in_reply_to_user_id_str" : null,
+  "in_reply_to_screen_name" : null,
+  "user" : {
+    "id" : 194913600,
+    "id_str" : "194913600",
+    "name" : "\"Test & Account\"",
+    "screen_name" : "IBBTwtr",
+    "location" : "",
+    "description" : "IBBoard's test account for sending test messages to without disturbing people. THIS ACCOUNT WILL NEVER POST ANYTHING INTERESTING! May be used as a spam trap.",
+    "url" : null,
+    "entities" : {
+      "description" : {
+        "urls" : [
+        ]
+      }
+    },
+    "protected" : false,
+    "followers_count" : 2,
+    "friends_count" : 10,
+    "listed_count" : 0,
+    "created_at" : "Sat Sep 25 09:06:35 +0000 2010",
+    "favourites_count" : 1,
+    "utc_offset" : null,
+    "time_zone" : null,
+    "geo_enabled" : false,
+    "verified" : false,
+    "statuses_count" : 125,
+    "lang" : null,
+    "contributors_enabled" : false,
+    "is_translator" : false,
+    "is_translation_enabled" : false,
+    "profile_background_color" : "C0DEED",
+    "profile_background_image_url" : "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https" : "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile" : false,
+    "profile_image_url" : "http://pbs.twimg.com/profile_images/853335069934669831/k5Y-rjee_normal.jpg",
+    "profile_image_url_https" : "https://pbs.twimg.com/profile_images/853335069934669831/k5Y-rjee_normal.jpg",
+    "profile_image_extensions_alt_text" : null,
+    "profile_link_color" : "1DA1F2",
+    "profile_sidebar_border_color" : "C0DEED",
+    "profile_sidebar_fill_color" : "DDEEF6",
+    "profile_text_color" : "333333",
+    "profile_use_background_image" : true,
+    "has_extended_profile" : false,
+    "default_profile" : true,
+    "default_profile_image" : false,
+    "following" : true,
+    "follow_request_sent" : false,
+    "notifications" : false,
+    "translator_type" : "none"
+  },
+  "geo" : null,
+  "coordinates" : null,
+  "place" : null,
+  "contributors" : null,
+  "is_quote_status" : false,
+  "retweet_count" : 0,
+  "favorite_count" : 0,
+  "favorited" : false,
+  "retweeted" : false,
+  "possibly_sensitive" : false,
+  "lang" : "und"
+}
+
+""";
+
 // """
 // }}}
 
@@ -2607,6 +2777,23 @@ void reply_id () {
   assert (t.source_tweet.entities[0].display_text == "@archillect");
 }
 
+void media_alt_text () {
+  var now = new GLib.DateTime.now_local ();
+  var t = new Cb.Tweet ();
+
+  var parser = new Json.Parser ();
+  try {
+    parser.load_from_data (TWEET_MEDIA_ALT_TEXT);
+  } catch (GLib.Error e) {
+    critical (e.message);
+  }
+  var root = parser.get_root ();
+
+  t.load_from_json (root, 0, now);
+  assert (t.get_medias ().length == 1);
+  assert (t.get_medias ()[0].alt_text == "Cawbird in dark theme");
+}
+
 
 
 int main (string[] args) {
@@ -2628,6 +2815,7 @@ int main (string[] args) {
   GLib.Test.add_func ("/tweet-parsing/rt-reply", rt_reply);
   GLib.Test.add_func ("/tweet-parsing/entity-count", entity_count);
   GLib.Test.add_func ("/tweet-parsing/reply-id", reply_id);
+  GLib.Test.add_func ("/tweet-parsing/media-alt-text", media_alt_text);
 
   return GLib.Test.run ();
 }

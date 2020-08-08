@@ -36,6 +36,7 @@ cb_media_finalize (GObject *object)
   g_free (media->thumb_url);
   g_free (media->target_url);
   g_free (media->url);
+  g_free (media->alt_text);
 
   if (media->animation)
     g_object_unref (media->animation);
@@ -66,6 +67,7 @@ cb_media_init (CbMedia *media)
   media->invalid = FALSE;
   media->surface = NULL;
   media->url     = NULL;
+  media->alt_text = NULL;
   media->percent_loaded = 0;
   media->width = -1;
   media->height = -1;

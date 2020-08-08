@@ -200,11 +200,9 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
   JsonArray *urls;
   JsonArray *hashtags;
   JsonArray *user_mentions;
-  JsonArray *media_arrays[2];
   int media_count;
   guint i, p;
   int url_index = 0;
-  guint n_media_arrays = 0;
   guint n_reply_users = 0;
   int max_entities;
   gboolean direct_duplicate = FALSE;
@@ -382,30 +380,15 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
         }
     }
 
-  /* entities->media and extended_entities contain exactly the same media objects,
-     but extended_entities is not always present, and entities->media doesn't
-     contain all the attached media, so parse both the same way... */
-  if (json_object_has_member (entities, "media"))
-    {
-      media_arrays[n_media_arrays] = json_object_get_array_member (entities, "media");
-      n_media_arrays ++;
-    }
-
+  // The docs say "media" is legacy and go with "extended entities" - https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/extended-entities-object
   if (json_object_has_member (status, "extended_entities"))
     {
-      media_arrays[n_media_arrays] = json_object_get_array_member (json_object_get_object_member (status,
-                                                                                                  "extended_entities"),
-                                                                   "media");
+      JsonArray *media_array = json_object_get_array_member (json_object_get_object_member (status, "extended_entities"), "media");
+      guint array_len = json_array_get_length (media_array);
 
-      n_media_arrays ++;
-    }
-
-  for (i = 0; i < n_media_arrays; i ++)
-    {
-      guint x, k;
-      for (x = 0, p = json_array_get_length (media_arrays[i]); x < p; x ++)
+      for (int i = 0; i < array_len; i ++)
         {
-          JsonObject *media_obj = json_node_get_object (json_array_get_element (media_arrays[i], x));
+          JsonObject *media_obj = json_node_get_object (json_array_get_element (media_array, i));
           const char *media_type = json_object_get_string_member (media_obj, "type");
 
           if (strcmp (media_type, "photo") == 0)
@@ -413,20 +396,6 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
               const char *url = json_object_has_member (media_obj, "media_url_https") ?
                 json_object_get_string_member (media_obj, "media_url_https") :
                 json_object_get_string_member (media_obj, "media_url");
-              gboolean dup = FALSE;
-
-              /* Remove duplicates */
-              for (k = 0; k < t->n_medias; k ++)
-                {
-                  if (t->medias[k] != NULL && strcmp (t->medias[k]->url, url) == 0)
-                    {
-                      dup = TRUE;
-                      break;
-                    }
-                }
-
-              if (dup)
-                continue;
 
               if (is_media_candidate (url))
                 {
@@ -434,6 +403,10 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                   t->medias[t->n_medias]->type = CB_MEDIA_TYPE_IMAGE;
                   t->medias[t->n_medias]->url = g_strdup (url);
                   t->medias[t->n_medias]->target_url = g_strdup_printf ("%s:orig", url);
+                  if (json_object_has_member (media_obj, "ext_alt_text")) {
+                    // Only "extended media" has alt text
+                    t->medias[t->n_medias]->alt_text = g_strdup (json_object_get_string_member (media_obj, "ext_alt_text"));
+                  }
 
                   if (json_object_has_member (media_obj, "sizes"))
                     {
@@ -456,7 +429,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
               JsonObject *variant = NULL;
               int thumb_width  = -1;
               int thumb_height = -1;
-              guint q;
+              guint q, k;
 
               if (json_object_has_member (media_obj, "sizes"))
                 {
@@ -482,35 +455,22 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
 
               if (variant != NULL)
                 {
-                  int n_media = t->n_medias;
                   const char *thumb_url = json_object_has_member (media_obj, "media_url_https") ?
                     json_object_get_string_member (media_obj, "media_url_https") :
                     json_object_get_string_member (media_obj, "media_url");
-                  /* Some tweets have both a video and a thumbnail for that video attached. The tweet json
-                   * will list the image first. The url of the image and the thumb_url of the video will match
-                   */
-                  for (k = 0; k < t->n_medias; k ++)
-                    {
-                      if (t->medias[k] != NULL &&
-                          t->medias[k]->type == CB_MEDIA_TYPE_IMAGE &&
-                          strcmp (t->medias[k]->url, thumb_url) == 0)
-                        {
-                          /* Replace this media */
-                          g_object_unref (t->medias[k]);
-                          n_media = k;
-                          break;
-                        }
-                    }
+                  
+                  t->medias[t->n_medias] = cb_media_new ();
+                  t->medias[t->n_medias]->url = g_strdup (json_object_get_string_member (variant, "url"));
+                  t->medias[t->n_medias]->thumb_url = g_strdup (thumb_url);
+                  t->medias[t->n_medias]->type   = CB_MEDIA_TYPE_TWITTER_VIDEO;
+                  t->medias[t->n_medias]->width  = thumb_width;
+                  t->medias[t->n_medias]->height = thumb_height;
+                  if (json_object_has_member (media_obj, "ext_alt_text")) {
+                    // Only "extended media" for GIFs has alt text. Videos never do.
+                    t->medias[t->n_medias]->alt_text = g_strdup (json_object_get_string_member (media_obj, "ext_alt_text"));
+                  }
 
-                  t->medias[n_media] = cb_media_new ();
-                  t->medias[n_media]->url = g_strdup (json_object_get_string_member (variant, "url"));
-                  t->medias[n_media]->thumb_url = g_strdup (thumb_url);
-                  t->medias[n_media]->type   = CB_MEDIA_TYPE_TWITTER_VIDEO;
-                  t->medias[n_media]->width  = thumb_width;
-                  t->medias[n_media]->height = thumb_height;
-
-                  if (n_media == t->n_medias)
-                    t->n_medias ++;
+                  t->n_medias ++;
                 }
             }
           else
