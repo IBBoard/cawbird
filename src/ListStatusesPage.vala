@@ -158,11 +158,12 @@ class ListStatusesPage : ScrollWidget, IPage {
     uint requested_tweet_count = 25;
     var call = account.proxy.new_call ();
     call.set_function ("1.1/lists/statuses.json");
-    call.add_param ("tweet_mode", "extended");
     call.set_method ("GET");
     debug ("USING LIST ID %s", list_id.to_string ());
     call.add_param ("list_id", list_id.to_string ());
     call.add_param ("count", requested_tweet_count.to_string ());
+    call.add_param ("tweet_mode", "extended");
+    call.add_param ("include_ext_alt_text", "true");
 
     Json.Node? root = null;
     try {
@@ -197,11 +198,12 @@ class ListStatusesPage : ScrollWidget, IPage {
     uint requested_tweet_count = 25;
     var call = account.proxy.new_call ();
     call.set_function ("1.1/lists/statuses.json");
-    call.add_param ("tweet_mode", "extended");
     call.set_method ("GET");
     call.add_param ("list_id", list_id.to_string ());
     call.add_param ("max_id", (tweet_list.model.min_id -1).to_string ());
     call.add_param ("count", requested_tweet_count.to_string ());
+    call.add_param ("tweet_mode", "extended");
+    call.add_param ("include_ext_alt_text", "true");
 
     Json.Node? root = null;
     try {
@@ -311,6 +313,8 @@ class ListStatusesPage : ScrollWidget, IPage {
     call.set_method ("GET");
     call.add_param ("list_id", list_id.to_string ());
     call.add_param ("count", "30");
+    call.add_param ("tweet_mode", "extended");
+    call.add_param ("include_ext_alt_text", "true");
     int64 since_id = tweet_list.model.max_id;
     if (since_id < 0)
       since_id = 1;

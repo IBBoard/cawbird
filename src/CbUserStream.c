@@ -375,6 +375,7 @@ load_timeline_tweets (gpointer user_data)
   rest_proxy_call_add_param (proxy_call, "contributor_details", "true");
   rest_proxy_call_add_param (proxy_call, "include_my_retweet", "true");
   rest_proxy_call_add_param (proxy_call, "tweet_mode", "extended");
+  rest_proxy_call_add_param (proxy_call, "include_ext_alt_text", "true");
 
   if (!is_first_load) {
     char since_id [20];
@@ -462,6 +463,7 @@ load_mentions_tweets (gpointer user_data)
   rest_proxy_call_add_param (proxy_call, "include_my_retweet", "true");
   rest_proxy_call_add_param (proxy_call, "include_entities", "true");
   rest_proxy_call_add_param (proxy_call, "tweet_mode", "extended");
+  rest_proxy_call_add_param (proxy_call, "include_ext_alt_text", "true");
 
   if (!is_first_load) {
     char since_id [20];
@@ -539,6 +541,7 @@ load_favourited_tweets (gpointer user_data)
   rest_proxy_call_add_param (proxy_call, "include_my_retweet", "true");
   rest_proxy_call_add_param (proxy_call, "include_entities", "true");
   rest_proxy_call_add_param (proxy_call, "tweet_mode", "extended");
+  rest_proxy_call_add_param (proxy_call, "include_ext_alt_text", "true");
 
   if (!is_first_load) {
     char since_id [20];

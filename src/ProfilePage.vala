@@ -478,6 +478,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     call.add_param ("contributor_details", "true");
     call.add_param ("tweet_mode", "extended");
     call.add_param ("include_my_retweet", "true");
+    call.add_param ("include_ext_alt_text", "true");
 
 
     Json.Node? root = null;
@@ -522,11 +523,15 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     var call = account.proxy.new_call ();
     call.set_function ("1.1/statuses/user_timeline.json");
     call.set_method ("GET");
-    call.add_param ("user_id", this.user_id.to_string ());
+    if (user_id != 0)
+      call.add_param ("user_id", this.user_id.to_string ());
+    else
+      call.add_param ("screen_name", this.screen_name);
     call.add_param ("count", requested_tweet_count.to_string ());
     call.add_param ("contributor_details", "true");
-    call.add_param ("include_my_retweet", "true");
     call.add_param ("tweet_mode", "extended");
+    call.add_param ("include_my_retweet", "true");
+    call.add_param ("include_ext_alt_text", "true");
     call.add_param ("max_id", (tweet_list.model.min_id - 1).to_string ());
 
     Json.Node? root = null;

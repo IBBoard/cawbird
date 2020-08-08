@@ -603,6 +603,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     call.add_param ("id", tweet_id.to_string ());
     call.add_param ("include_my_retweet", "true");
     call.add_param ("tweet_mode", "extended");
+    call.add_param ("include_ext_alt_text", "true");
     Cb.Utils.load_threaded_async.begin (call, cancellable, (__, res) => {
       Json.Node? root = null;
 
@@ -766,6 +767,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     call.set_method ("GET");
     call.add_param ("id", reply_id.to_string ());
     call.add_param ("tweet_mode", "extended");
+    call.add_param ("include_ext_alt_text", "true");
     call.invoke_async.begin (cancellable, (obj, res) => {
       try {
         call.invoke_async.end (res);

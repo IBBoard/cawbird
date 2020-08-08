@@ -162,6 +162,7 @@ namespace TweetUtils {
     call.add_param ("id", tweet_id.to_string ());
     call.add_param ("include_my_retweet", "true");
     call.add_param ("tweet_mode", "extended");
+    call.add_param ("include_ext_alt_text", "true");
     Cb.Tweet? tweet = null;
     GLib.Error? err = null;
 
@@ -302,6 +303,7 @@ namespace TweetUtils {
       call.set_function (@"1.1/statuses/unretweet/$(tweet.my_retweet).json");
     call.add_param ("tweet_mode", "extended");
     call.add_param ("include_my_retweet", "true");
+    call.add_param ("include_ext_alt_text", "true");
 
     var success = false;
     GLib.Error? err = null;
@@ -408,6 +410,7 @@ namespace TweetUtils {
       call.add_param ("id", string.joinv(",", ids));
       call.add_param ("include_entities", "true");
       call.add_param ("tweet_mode", "extended");
+      call.add_param ("include_ext_alt_text", "true");
 
       Cb.Utils.load_threaded_async.begin (call, cancellable, (_, res) => {
         Json.Node? root = null;
