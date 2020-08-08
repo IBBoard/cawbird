@@ -40,8 +40,8 @@ private class MediaButton : Gtk.Widget {
           this.media_alpha = 1.0;
         }
         bool is_m3u8 = _media.url.has_suffix (".m3u8");
-        ((GLib.SimpleAction)actions.lookup_action ("save-as")).set_enabled (!is_m3u8);
-        this.set_tooltip_text (_media.alt_text);
+        ((GLib.SimpleAction)actions.lookup_action ("save-as")).set_enabled (!is_m3u8);        
+        this.set_tooltip_text(media.alt_text);
       }
       if (value != null && (value.type == Cb.MediaType.IMAGE ||
                             value.type == Cb.MediaType.GIF)) {
@@ -111,6 +111,9 @@ private class MediaButton : Gtk.Widget {
     this.press_gesture.set_propagation_phase (Gtk.PropagationPhase.CAPTURE);
     this.press_gesture.released.connect (gesture_released_cb);
     this.press_gesture.pressed.connect (gesture_pressed_cb);
+    if (media != null) {
+      this.set_tooltip_text(media.alt_text);
+    }
   }
 
   private void media_progress_cb () {
@@ -237,6 +240,19 @@ private class MediaButton : Gtk.Widget {
         ct.paint_with_alpha (this.media_alpha);
         ct.restore ();
         ct.new_path ();
+      }
+
+      if (media.alt_text != null) {
+        Gtk.IconTheme icon_theme = Gtk.IconTheme.get_default();
+        int icon_size = 32;
+        try {
+          Gdk.Pixbuf pixbuf = icon_theme.load_icon_for_scale ("info", icon_size, this.get_scale_factor(), Gtk.IconLookupFlags.USE_BUILTIN);
+          var icon = Gdk.cairo_surface_create_from_pixbuf (pixbuf, this.get_scale_factor(), null);
+          ct.set_source_surface (icon, draw_x / scale, widget_height - icon_size * this.get_scale_factor());
+          ct.paint();
+        } catch (GLib.Error e) {
+          warning(e.message);
+        }
       }
 
       var sc = this.get_style_context ();
