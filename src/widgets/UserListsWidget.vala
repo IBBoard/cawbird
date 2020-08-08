@@ -157,9 +157,11 @@ class UserListsWidget : Gtk.Box {
       collect_obj.emit ();
     });
 
-    var accessible_name = user_id == account.id ? _("Subscribed lists") : _("%s (%s) subscribed lists").printf(name, screen_name);
+    // TRANSLATORS: Value is user's name - used for accessibility text in "list of lists that this user has subscribed to"
+    var accessible_name = user_id == account.id ? _("Subscribed lists") : _("%s subscribed lists").printf(name);
     this.subscribed_list_box.get_accessible().set_name(accessible_name);
-    accessible_name = user_id == account.id ? _("Your lists") : _("%s (%s) lists").printf(name, screen_name);
+    // TRANSLATORS: Value is user's name - used for accessibility text in "list of lists that this user created"
+    accessible_name = user_id == account.id ? _("Your lists") : _("%s lists").printf(name);
     this.user_list_box.get_accessible().set_name(accessible_name);
 
     yield;

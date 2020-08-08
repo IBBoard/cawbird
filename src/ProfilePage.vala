@@ -454,9 +454,12 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     this.name = name;
     this.screen_name = screen_name;
     this.avatar_url = avatar_url;
-    tweet_list.get_accessible().set_name(_("%s (%s) timeline").printf(name, screen_name));
-    followers_list.get_accessible().set_name(_("%s (%s) followers").printf(name, screen_name));
-    following_list.get_accessible().set_name(_("%s (%s) following").printf(name, screen_name));
+    // TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+    tweet_list.get_accessible().set_name(_("%s timeline").printf(name));
+    // TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+    followers_list.get_accessible().set_name(_("%s followers").printf(name));
+    // TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+    following_list.get_accessible().set_name(_("%s following").printf(name));
   }
 
 
