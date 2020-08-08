@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2018-03-01 17:12+0000\n"
 "Last-Translator: Egor Erastov <egor.er24@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -185,8 +185,51 @@ msgstr "Защищённый профиль"
 msgid "Tweet to @%s"
 msgstr "Твитнуть @%s "
 
+#, fuzzy, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] "%s твитнут"
+msgstr[1] "%s твитнут"
+msgstr[2] "%s твитнут"
+msgstr[3] "%s твитнут"
+
+#, fuzzy, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] "Читаешь"
+msgstr[1] "Читаешь"
+msgstr[2] "Читаешь"
+msgstr[3] "Читаешь"
+
+#, fuzzy, c-format
+msgid "Location: %s"
+msgstr "Уведомления"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "Скрыть в ленте"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "Избранные"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "Читаешь"
+
 msgid "Protected Profile"
 msgstr "Защищённый профиль"
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "Избранные"
+msgstr[1] "Избранные"
+msgstr[2] "Избранные"
+msgstr[3] "Избранные"
 
 #, fuzzy
 msgid "No tweets found"
@@ -240,6 +283,11 @@ msgstr[3] "(%d не прочитано)"
 
 msgid "Delete"
 msgstr "Удалить"
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, fuzzy, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr "Ретвит"
 
 #, c-format
 msgid "Block %s"
@@ -459,11 +507,11 @@ msgstr "Открыть"
 msgid "Cancel"
 msgstr "Отмена"
 
-msgid "Follow"
-msgstr "Читать"
-
 msgid "Unfollow"
 msgstr "Не читать"
+
+msgid "Follow"
+msgstr "Читать"
 
 msgid "Copy URL"
 msgstr "Копировать URL"
@@ -760,6 +808,10 @@ msgstr "Беззвучно"
 msgid "Retweets disabled"
 msgstr "Ретвиты отключены"
 
+#, fuzzy
+msgid "More actions"
+msgstr "Упоминания"
+
 msgid "Follows you"
 msgstr "Читают тебя"
 
@@ -951,8 +1003,11 @@ msgstr "В избранные"
 msgid "Reply"
 msgstr "Ответить"
 
+msgid "Liked"
+msgstr ""
+
 #, fuzzy
-msgid "Retweeted by"
+msgid "Retweeted"
 msgstr "Ретвит"
 
 msgid "Unblock"
@@ -972,6 +1027,10 @@ msgstr "Создан"
 
 msgid "Subscribed to"
 msgstr "Подписаться"
+
+#, fuzzy, c-format
+#~ msgid "%s (%s) followers"
+#~ msgstr "Избранные"
 
 #~ msgid "List"
 #~ msgstr "Список"

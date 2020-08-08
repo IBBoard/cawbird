@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/cawbird/cawbird/"
@@ -169,8 +169,42 @@ msgstr "资料已受保护"
 msgid "Tweet to @%s"
 msgstr "给 @%s 发推"
 
+#, fuzzy, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] "%s 已发推"
+
+#, fuzzy, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] "已关注"
+
+#, fuzzy, c-format
+msgid "Location: %s"
+msgstr "通知"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "从时间线上隐藏"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "关注者"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "已关注"
+
 msgid "Protected Profile"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "关注者"
 
 #, fuzzy
 msgid "No tweets found"
@@ -221,6 +255,11 @@ msgstr[0] "(%d 条未读)"
 
 msgid "Delete"
 msgstr "删除"
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, fuzzy, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr "转推"
 
 #, c-format
 msgid "Block %s"
@@ -434,11 +473,11 @@ msgstr "打开"
 msgid "Cancel"
 msgstr "取消"
 
-msgid "Follow"
-msgstr "关注"
-
 msgid "Unfollow"
 msgstr "取消关注"
+
+msgid "Follow"
+msgstr "关注"
 
 msgid "Copy URL"
 msgstr "复制 URL"
@@ -723,6 +762,10 @@ msgstr "已静音"
 msgid "Retweets disabled"
 msgstr "转推已禁用"
 
+#, fuzzy
+msgid "More actions"
+msgstr "提及我的"
+
 msgid "Follows you"
 msgstr "关注您"
 
@@ -914,8 +957,11 @@ msgstr "收藏"
 msgid "Reply"
 msgstr "回复"
 
+msgid "Liked"
+msgstr ""
+
 #, fuzzy
-msgid "Retweeted by"
+msgid "Retweeted"
 msgstr "转推"
 
 msgid "Unblock"
@@ -935,6 +981,10 @@ msgstr "已创建"
 
 msgid "Subscribed to"
 msgstr "订阅到"
+
+#, fuzzy, c-format
+#~ msgid "%s (%s) followers"
+#~ msgstr "关注者"
 
 #~ msgid "List"
 #~ msgstr "列表"

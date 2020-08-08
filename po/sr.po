@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2017-11-19 08:34+0000\n"
 "Last-Translator: Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail."
 "com>\n"
@@ -173,8 +173,48 @@ msgstr "Заштићен профил"
 msgid "Tweet to @%s"
 msgstr "Твитуј ка @%s"
 
+#, fuzzy, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] "%s је твитовао/ла"
+msgstr[1] "%s је твитовао/ла"
+msgstr[2] "%s је твитовао/ла"
+
+#, fuzzy, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] "Прати"
+msgstr[1] "Прати"
+msgstr[2] "Прати"
+
+#, fuzzy, c-format
+msgid "Location: %s"
+msgstr "Обавештења"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "Сакриј са временске линије"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "Пратиоци"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "Прати"
+
 msgid "Protected Profile"
 msgstr "Заштићени профил"
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "Пратиоци"
+msgstr[1] "Пратиоци"
+msgstr[2] "Пратиоци"
 
 #, fuzzy
 msgid "No tweets found"
@@ -227,6 +267,11 @@ msgstr[2] "(%d непрочитаних)"
 
 msgid "Delete"
 msgstr "Обриши"
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, fuzzy, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr "Поново твитуј"
 
 #, c-format
 msgid "Block %s"
@@ -444,11 +489,11 @@ msgstr "Отвори"
 msgid "Cancel"
 msgstr "Откажи"
 
-msgid "Follow"
-msgstr "Прати"
-
 msgid "Unfollow"
 msgstr "Престани са праћењем"
+
+msgid "Follow"
+msgstr "Прати"
 
 msgid "Copy URL"
 msgstr "Копирај УРЛ"
@@ -744,6 +789,10 @@ msgstr "Пригушен(а)"
 msgid "Retweets disabled"
 msgstr "Поновни твитови онемогућени"
 
+#, fuzzy
+msgid "More actions"
+msgstr "Спомињања"
+
 msgid "Follows you"
 msgstr "Прати вас"
 
@@ -936,8 +985,11 @@ msgstr "Стави као омиљено"
 msgid "Reply"
 msgstr "Одговори"
 
+msgid "Liked"
+msgstr ""
+
 #, fuzzy
-msgid "Retweeted by"
+msgid "Retweeted"
 msgstr "Поново твитуј"
 
 msgid "Unblock"
@@ -957,6 +1009,10 @@ msgstr "Направи"
 
 msgid "Subscribed to"
 msgstr "Претплаћен(а) на"
+
+#, fuzzy, c-format
+#~ msgid "%s (%s) followers"
+#~ msgstr "Пратиоци"
 
 #~ msgid "List"
 #~ msgstr "Списак"

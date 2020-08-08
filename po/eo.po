@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2018-02-06 18:45+0000\n"
 "Last-Translator: Iris Ilexiris <iris.ilexiris@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/cawbird/cawbird/language/"
@@ -169,8 +169,45 @@ msgstr "Karakterizon malpublikita"
 msgid "Tweet to @%s"
 msgstr "Tviti al @%s"
 
+#, fuzzy, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] "%s tvitis"
+msgstr[1] "%s tvitis"
+
+#, fuzzy, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] "Postiras"
+msgstr[1] "Postiras"
+
+#, fuzzy, c-format
+msgid "Location: %s"
+msgstr "Avizoj"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "Kaŝi en kronologio"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "Postiroj"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "Postiras"
+
 msgid "Protected Profile"
 msgstr "Karakterizon malpublikita"
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "Postiroj"
+msgstr[1] "Postiroj"
 
 #, fuzzy
 msgid "No tweets found"
@@ -222,6 +259,11 @@ msgstr[1] "(%d nelegitaj)"
 
 msgid "Delete"
 msgstr "Forigi"
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, fuzzy, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr "Retviti"
 
 #, c-format
 msgid "Block %s"
@@ -437,11 +479,11 @@ msgstr "Malfermi"
 msgid "Cancel"
 msgstr "Nuligi"
 
-msgid "Follow"
-msgstr "Postiri"
-
 msgid "Unfollow"
 msgstr "Malpostiri"
+
+msgid "Follow"
+msgstr "Postiri"
 
 msgid "Copy URL"
 msgstr "Kopii URL-on"
@@ -735,6 +777,10 @@ msgstr "Mutigita"
 msgid "Retweets disabled"
 msgstr "Revtitoj malebligita"
 
+#, fuzzy
+msgid "More actions"
+msgstr "Mencioj"
+
 msgid "Follows you"
 msgstr "Postiras vin"
 
@@ -926,8 +972,11 @@ msgstr "Favorati"
 msgid "Reply"
 msgstr "Respondi"
 
+msgid "Liked"
+msgstr ""
+
 #, fuzzy
-msgid "Retweeted by"
+msgid "Retweeted"
 msgstr "Retviti"
 
 msgid "Unblock"
@@ -947,6 +996,10 @@ msgstr "Kreita"
 
 msgid "Subscribed to"
 msgstr "Subskribis al"
+
+#, fuzzy, c-format
+#~ msgid "%s (%s) followers"
+#~ msgstr "Postiroj"
 
 #~ msgid "List"
 #~ msgstr "Listo"

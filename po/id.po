@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Indonesian (Indonesia) (http://www.transifex.com/cawbird/"
@@ -169,8 +169,42 @@ msgstr "Profil dilindungi"
 msgid "Tweet to @%s"
 msgstr "Tweet untuk @%s"
 
+#, fuzzy, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] "%s tweeted"
+
+#, fuzzy, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] "Mengikuti"
+
+#, fuzzy, c-format
+msgid "Location: %s"
+msgstr "Notifikasi"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "Sembunyi di beranda"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "Pengikut"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "Mengikuti"
+
 msgid "Protected Profile"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "Pengikut"
 
 #, fuzzy
 msgid "No tweets found"
@@ -221,6 +255,11 @@ msgstr[0] "(%d belum dibaca)"
 
 msgid "Delete"
 msgstr "Hapus"
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, fuzzy, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr "Retweet"
 
 #, c-format
 msgid "Block %s"
@@ -434,11 +473,11 @@ msgstr "Buka"
 msgid "Cancel"
 msgstr "Batal"
 
-msgid "Follow"
-msgstr "Mengikuti"
-
 msgid "Unfollow"
 msgstr "Batal mengikuti"
+
+msgid "Follow"
+msgstr "Mengikuti"
 
 msgid "Copy URL"
 msgstr "Salin URL"
@@ -729,6 +768,10 @@ msgstr "Meredam"
 msgid "Retweets disabled"
 msgstr "Retweets dinonaktifkan"
 
+#, fuzzy
+msgid "More actions"
+msgstr "Menyebutkan"
+
 msgid "Follows you"
 msgstr "Mengikuti anda"
 
@@ -922,8 +965,11 @@ msgstr "Kesukaan"
 msgid "Reply"
 msgstr "Balas"
 
+msgid "Liked"
+msgstr ""
+
 #, fuzzy
-msgid "Retweeted by"
+msgid "Retweeted"
 msgstr "Retweet"
 
 msgid "Unblock"
@@ -943,6 +989,10 @@ msgstr "Dibuat"
 
 msgid "Subscribed to"
 msgstr "Berlangganan ke"
+
+#, fuzzy, c-format
+#~ msgid "%s (%s) followers"
+#~ msgstr "Pengikut"
 
 #~ msgid "List"
 #~ msgstr "Daftar"

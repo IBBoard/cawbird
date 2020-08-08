@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Spanish (Latin America) (http://www.transifex.com/cawbird/"
@@ -172,8 +172,45 @@ msgstr ""
 msgid "Tweet to @%s"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] "%s tweeteado"
+msgstr[1] "%s tweeteado"
+
+#, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] ""
+msgstr[1] ""
+
+#, fuzzy, c-format
+msgid "Location: %s"
+msgstr "Notificaciones"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "Menciones"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "Dejar de seguir"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "Dejar de seguir"
+
 msgid "Protected Profile"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "Dejar de seguir"
+msgstr[1] "Dejar de seguir"
 
 #, fuzzy
 msgid "No tweets found"
@@ -225,6 +262,11 @@ msgstr[1] ""
 
 msgid "Delete"
 msgstr ""
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, fuzzy, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr "Retweets"
 
 #, c-format
 msgid "Block %s"
@@ -436,11 +478,11 @@ msgstr ""
 msgid "Cancel"
 msgstr "Cancelar"
 
-msgid "Follow"
-msgstr "Seguir"
-
 msgid "Unfollow"
 msgstr "Dejar de seguir"
+
+msgid "Follow"
+msgstr "Seguir"
 
 msgid "Copy URL"
 msgstr ""
@@ -726,6 +768,10 @@ msgstr ""
 msgid "Retweets disabled"
 msgstr ""
 
+#, fuzzy
+msgid "More actions"
+msgstr "Menciones"
+
 msgid "Follows you"
 msgstr ""
 
@@ -917,8 +963,11 @@ msgstr ""
 msgid "Reply"
 msgstr ""
 
+msgid "Liked"
+msgstr ""
+
 #, fuzzy
-msgid "Retweeted by"
+msgid "Retweeted"
 msgstr "Retweets"
 
 msgid "Unblock"

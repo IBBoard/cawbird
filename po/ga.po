@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2017-11-30 16:57+0000\n"
 "Last-Translator: Aoibhe Ní Ghnímh <aoibhe.agnew@gmail.com>\n"
 "Language-Team: Irish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -171,8 +171,54 @@ msgstr ""
 msgid "Tweet to @%s"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] "Atweetáil"
+msgstr[1] "Atweetáil"
+msgstr[2] "Atweetáil"
+msgstr[3] "Atweetáil"
+msgstr[4] "Atweetáil"
+
+#, fuzzy, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] "Á Leanúint"
+msgstr[1] "Á Leanúint"
+msgstr[2] "Á Leanúint"
+msgstr[3] "Á Leanúint"
+msgstr[4] "Á Leanúint"
+
+#, c-format
+msgid "Location: %s"
+msgstr ""
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "Croíthe"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "Leantóirí"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "Á Leanúint"
+
 msgid "Protected Profile"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "Leantóirí"
+msgstr[1] "Leantóirí"
+msgstr[2] "Leantóirí"
+msgstr[3] "Leantóirí"
+msgstr[4] "Leantóirí"
 
 msgid "No tweets found"
 msgstr ""
@@ -226,6 +272,11 @@ msgstr[4] ""
 
 msgid "Delete"
 msgstr "Scrois"
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, fuzzy, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr "Atweetáil"
 
 #, c-format
 msgid "Block %s"
@@ -443,11 +494,11 @@ msgstr "Oscail"
 msgid "Cancel"
 msgstr ""
 
-msgid "Follow"
-msgstr "Lean"
-
 msgid "Unfollow"
 msgstr "Á Leanúint"
+
+msgid "Follow"
+msgstr "Lean"
 
 msgid "Copy URL"
 msgstr ""
@@ -742,6 +793,9 @@ msgstr ""
 msgid "Retweets disabled"
 msgstr ""
 
+msgid "More actions"
+msgstr ""
+
 msgid "Follows you"
 msgstr ""
 
@@ -933,8 +987,11 @@ msgstr ""
 msgid "Reply"
 msgstr "Freagra"
 
+msgid "Liked"
+msgstr ""
+
 #, fuzzy
-msgid "Retweeted by"
+msgid "Retweeted"
 msgstr "Atweetáil"
 
 msgid "Unblock"
@@ -954,6 +1011,10 @@ msgstr ""
 
 msgid "Subscribed to"
 msgstr ""
+
+#, fuzzy, c-format
+#~ msgid "%s (%s) followers"
+#~ msgstr "Leantóirí"
 
 #~ msgid "List"
 #~ msgstr "Liosta"

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>, 2020\n"
 "Language-Team: Dutch (https://www.transifex.com/cawbird/teams/107135/nl/)\n"
@@ -175,8 +175,45 @@ msgstr "Afgeschermd profiel"
 msgid "Tweet to @%s"
 msgstr "Verstuur een tweet aan @%s"
 
+#, fuzzy, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] "%s tweette"
+msgstr[1] "%s tweette"
+
+#, fuzzy, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] "Volgend"
+msgstr[1] "Volgend"
+
+#, fuzzy, c-format
+msgid "Location: %s"
+msgstr "Meldingen"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "Verbergen op tijdlijn"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "Volgers"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "Volgend"
+
 msgid "Protected Profile"
 msgstr "Afgeschermd profiel"
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "Volgers"
+msgstr[1] "Volgers"
 
 #, fuzzy
 msgid "No tweets found"
@@ -228,6 +265,11 @@ msgstr[1] "(%d ongelezen)"
 
 msgid "Delete"
 msgstr "Verwijderen"
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, fuzzy, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr "Retweeten"
 
 #, c-format
 msgid "Block %s"
@@ -452,11 +494,11 @@ msgstr "Openen"
 msgid "Cancel"
 msgstr "Annuleren"
 
-msgid "Follow"
-msgstr "Volgen"
-
 msgid "Unfollow"
 msgstr "Ontvolgen"
+
+msgid "Follow"
+msgstr "Volgen"
 
 msgid "Copy URL"
 msgstr "URL kopiëren"
@@ -750,6 +792,10 @@ msgstr "Genegeerd"
 msgid "Retweets disabled"
 msgstr "Retweets uitschakelen"
 
+#, fuzzy
+msgid "More actions"
+msgstr "Vermeldingen"
+
 msgid "Follows you"
 msgstr "Volgt je"
 
@@ -943,8 +989,11 @@ msgstr "Vind ik leuk"
 msgid "Reply"
 msgstr "Beantwoorden"
 
+msgid "Liked"
+msgstr ""
+
 #, fuzzy
-msgid "Retweeted by"
+msgid "Retweeted"
 msgstr "Retweeten"
 
 msgid "Unblock"
@@ -964,6 +1013,10 @@ msgstr "Aangemaakt"
 
 msgid "Subscribed to"
 msgstr "Geabonneerd op"
+
+#, fuzzy, c-format
+#~ msgid "%s (%s) followers"
+#~ msgstr "Volgers"
 
 #~ msgid "List"
 #~ msgstr "Lijst"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2017-10-22 18:18+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -175,8 +175,48 @@ msgstr "Apsaugotas profilis"
 msgid "Tweet to @%s"
 msgstr "Siųsti tauškalą naudotojui @%s"
 
+#, fuzzy, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] "%s išsiuntė tauškalą"
+msgstr[1] "%s išsiuntė tauškalą"
+msgstr[2] "%s išsiuntė tauškalą"
+
+#, fuzzy, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] "Seka"
+msgstr[1] "Seka"
+msgstr[2] "Seka"
+
+#, fuzzy, c-format
+msgid "Location: %s"
+msgstr "Pranešimai"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "Slėpti laiko juostoje"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "Sekėjų"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "Seka"
+
 msgid "Protected Profile"
 msgstr "Apsaugotas profilis"
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "Sekėjų"
+msgstr[1] "Sekėjų"
+msgstr[2] "Sekėjų"
 
 #, fuzzy
 msgid "No tweets found"
@@ -230,6 +270,11 @@ msgstr[3] "(%d neperskaitytų)"
 
 msgid "Delete"
 msgstr "Ištrinti"
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, fuzzy, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr "Persiųsti"
 
 #, c-format
 msgid "Block %s"
@@ -447,11 +492,11 @@ msgstr "Atverti"
 msgid "Cancel"
 msgstr "Atsisakyti"
 
-msgid "Follow"
-msgstr "Sekti"
-
 msgid "Unfollow"
 msgstr "Nustoti sekti"
+
+msgid "Follow"
+msgstr "Sekti"
 
 msgid "Copy URL"
 msgstr "Kopijuoti URL"
@@ -750,6 +795,10 @@ msgstr "Nutildytas"
 msgid "Retweets disabled"
 msgstr "Tauškalų persiuntimas išjungtas"
 
+#, fuzzy
+msgid "More actions"
+msgstr "Paminėjimai"
+
 msgid "Follows you"
 msgstr "Seka paskui jus"
 
@@ -941,8 +990,11 @@ msgstr "Mėgstamas"
 msgid "Reply"
 msgstr "Atsakyti"
 
+msgid "Liked"
+msgstr ""
+
 #, fuzzy
-msgid "Retweeted by"
+msgid "Retweeted"
 msgstr "Persiųsti"
 
 msgid "Unblock"
@@ -962,6 +1014,10 @@ msgstr "Sukurta"
 
 msgid "Subscribed to"
 msgstr "Jūsų prenumeratos"
+
+#, fuzzy, c-format
+#~ msgid "%s (%s) followers"
+#~ msgstr "Sekėjų"
 
 #~ msgid "List"
 #~ msgstr "Sąrašas"

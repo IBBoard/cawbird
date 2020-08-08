@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2017-10-22 15:14+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -176,8 +176,51 @@ msgstr "Profil chroniony"
 msgid "Tweet to @%s"
 msgstr "Tweet do @%s"
 
+#, fuzzy, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] "Użytkownik %s napisał tweet"
+msgstr[1] "Użytkownik %s napisał tweet"
+msgstr[2] "Użytkownik %s napisał tweet"
+msgstr[3] "Użytkownik %s napisał tweet"
+
+#, fuzzy, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] "Obserwowanie"
+msgstr[1] "Obserwowanie"
+msgstr[2] "Obserwowanie"
+msgstr[3] "Obserwowanie"
+
+#, fuzzy, c-format
+msgid "Location: %s"
+msgstr "Powiadomienia"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "Ukrywanie na osi czasu"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "Obserwujący"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "Obserwowanie"
+
 msgid "Protected Profile"
 msgstr "Profil chroniony"
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "Obserwujący"
+msgstr[1] "Obserwujący"
+msgstr[2] "Obserwujący"
+msgstr[3] "Obserwujący"
 
 #, fuzzy
 msgid "No tweets found"
@@ -231,6 +274,11 @@ msgstr[3] "(%d nieprzeczytanych)"
 
 msgid "Delete"
 msgstr "Usuń"
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, fuzzy, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr "Podanie tweeta dalej"
 
 #, c-format
 msgid "Block %s"
@@ -450,11 +498,11 @@ msgstr "Otwórz"
 msgid "Cancel"
 msgstr "Anuluj"
 
-msgid "Follow"
-msgstr "Obserwuj"
-
 msgid "Unfollow"
 msgstr "Przestań obserwować"
+
+msgid "Follow"
+msgstr "Obserwuj"
 
 msgid "Copy URL"
 msgstr "Skopiuj adres URL"
@@ -751,6 +799,10 @@ msgstr "Wyciszony"
 msgid "Retweets disabled"
 msgstr "Wyłączono podawanie dalej"
 
+#, fuzzy
+msgid "More actions"
+msgstr "Wzmianki"
+
 msgid "Follows you"
 msgstr "Obserwuje cię"
 
@@ -943,8 +995,11 @@ msgstr "Dodaje do ulubionych"
 msgid "Reply"
 msgstr "Odpowiada"
 
+msgid "Liked"
+msgstr ""
+
 #, fuzzy
-msgid "Retweeted by"
+msgid "Retweeted"
 msgstr "Podanie tweeta dalej"
 
 msgid "Unblock"
@@ -964,6 +1019,10 @@ msgstr "Utworzono"
 
 msgid "Subscribed to"
 msgstr "Subskrybowano do"
+
+#, fuzzy, c-format
+#~ msgid "%s (%s) followers"
+#~ msgstr "Obserwujący"
 
 #~ msgid "List"
 #~ msgstr "Lista"

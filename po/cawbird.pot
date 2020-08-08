@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,8 +160,45 @@ msgstr ""
 msgid "Tweet to @%s"
 msgstr ""
 
+#, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] ""
+msgstr[1] ""
+
+#, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] ""
+msgstr[1] ""
+
+#, c-format
+msgid "Location: %s"
+msgstr ""
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, c-format
+msgid "%s timeline"
+msgstr ""
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, c-format
+msgid "%s followers"
+msgstr ""
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, c-format
+msgid "%s following"
+msgstr ""
+
 msgid "Protected Profile"
 msgstr ""
+
+#, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "No tweets found"
 msgstr ""
@@ -211,6 +248,11 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Delete"
+msgstr ""
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, c-format
+msgid "Retweeted by %s (@%s)"
 msgstr ""
 
 #, c-format
@@ -423,10 +465,10 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-msgid "Follow"
+msgid "Unfollow"
 msgstr ""
 
-msgid "Unfollow"
+msgid "Follow"
 msgstr ""
 
 msgid "Copy URL"
@@ -713,6 +755,9 @@ msgstr ""
 msgid "Retweets disabled"
 msgstr ""
 
+msgid "More actions"
+msgstr ""
+
 msgid "Follows you"
 msgstr ""
 
@@ -904,7 +949,10 @@ msgstr ""
 msgid "Reply"
 msgstr ""
 
-msgid "Retweeted by"
+msgid "Liked"
+msgstr ""
+
+msgid "Retweeted"
 msgstr ""
 
 msgid "Unblock"

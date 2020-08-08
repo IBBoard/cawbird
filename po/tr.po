@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Turkish (Turkey) (http://www.transifex.com/cawbird/cawbird/"
@@ -169,8 +169,42 @@ msgstr "Korumalı Hesap"
 msgid "Tweet to @%s"
 msgstr "@%s Kullanıcısına Tweetle"
 
+#, fuzzy, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] "%s Tweetlendi"
+
+#, fuzzy, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] "Takiptekiler"
+
+#, fuzzy, c-format
+msgid "Location: %s"
+msgstr "Bildirimler"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "Bahsedilenler"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "Takipçiler"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "Takiptekiler"
+
 msgid "Protected Profile"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "Takipçiler"
 
 #, fuzzy
 msgid "No tweets found"
@@ -222,6 +256,11 @@ msgstr[1] "(%d Okunmamış)"
 
 msgid "Delete"
 msgstr "Sil"
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, fuzzy, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr "Yeniden Tweetlenenler"
 
 #, c-format
 msgid "Block %s"
@@ -433,11 +472,11 @@ msgstr ""
 msgid "Cancel"
 msgstr "İptal"
 
-msgid "Follow"
-msgstr "Takip Et"
-
 msgid "Unfollow"
 msgstr "Takibi Bırak"
+
+msgid "Follow"
+msgstr "Takip Et"
 
 msgid "Copy URL"
 msgstr ""
@@ -724,6 +763,10 @@ msgstr ""
 msgid "Retweets disabled"
 msgstr "Retweetler Kapalı"
 
+#, fuzzy
+msgid "More actions"
+msgstr "Bahsedilenler"
+
 msgid "Follows you"
 msgstr "Takip edenler"
 
@@ -917,8 +960,11 @@ msgstr "Favori"
 msgid "Reply"
 msgstr "Cevap"
 
+msgid "Liked"
+msgstr ""
+
 #, fuzzy
-msgid "Retweeted by"
+msgid "Retweeted"
 msgstr "Yeniden Tweetlenenler"
 
 msgid "Unblock"
@@ -938,6 +984,10 @@ msgstr "Oluşturuldu"
 
 msgid "Subscribed to"
 msgstr "Abone Olundu"
+
+#, fuzzy, c-format
+#~ msgid "%s (%s) followers"
+#~ msgstr "Takipçiler"
 
 #~ msgid "List"
 #~ msgstr "Liste"

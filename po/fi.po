@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2017-10-22 17:13+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -169,8 +169,45 @@ msgstr "Suojattu profiili"
 msgid "Tweet to @%s"
 msgstr "Twiittaa käyttäjälle @%s"
 
+#, fuzzy, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] "%s twiittasi"
+msgstr[1] "%s twiittasi"
+
+#, fuzzy, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] "Seuraa"
+msgstr[1] "Seuraa"
+
+#, fuzzy, c-format
+msgid "Location: %s"
+msgstr "Ilmoitukset"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "Piilota aikajanalla"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "Seuraajia"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "Seuraa"
+
 msgid "Protected Profile"
 msgstr "Suojattu profiili"
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "Seuraajia"
+msgstr[1] "Seuraajia"
 
 #, fuzzy
 msgid "No tweets found"
@@ -222,6 +259,11 @@ msgstr[1] "(%d lukematonta)"
 
 msgid "Delete"
 msgstr "Poista"
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, fuzzy, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr "Twiittaa uudelleen"
 
 #, c-format
 msgid "Block %s"
@@ -437,11 +479,11 @@ msgstr "Avaa"
 msgid "Cancel"
 msgstr "Peru"
 
-msgid "Follow"
-msgstr "Seuraa"
-
 msgid "Unfollow"
 msgstr "Lopeta seuraaminen"
+
+msgid "Follow"
+msgstr "Seuraa"
 
 msgid "Copy URL"
 msgstr "Kopioi osoite"
@@ -734,6 +776,10 @@ msgstr "Mykistetty"
 msgid "Retweets disabled"
 msgstr "Uudelleentwiittaukset poistettu käytöstä"
 
+#, fuzzy
+msgid "More actions"
+msgstr "Maininnat"
+
 msgid "Follows you"
 msgstr "Seuraa sinua"
 
@@ -926,8 +972,11 @@ msgstr "Suosikki"
 msgid "Reply"
 msgstr "Vastaa"
 
+msgid "Liked"
+msgstr ""
+
 #, fuzzy
-msgid "Retweeted by"
+msgid "Retweeted"
 msgstr "Twiittaa uudelleen"
 
 msgid "Unblock"
@@ -947,6 +996,10 @@ msgstr "Luotu"
 
 msgid "Subscribed to"
 msgstr "Tilannut"
+
+#, fuzzy, c-format
+#~ msgid "%s (%s) followers"
+#~ msgstr "Seuraajia"
 
 #~ msgid "List"
 #~ msgstr "Lista"

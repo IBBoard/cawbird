@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, "
 "2020\n"
@@ -175,8 +175,45 @@ msgstr "Låst profil"
 msgid "Tweet to @%s"
 msgstr "Tweet til @%s"
 
+#, fuzzy, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] "%s retweetet"
+msgstr[1] "%s retweetet"
+
+#, fuzzy, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] "Følger"
+msgstr[1] "Følger"
+
+#, fuzzy, c-format
+msgid "Location: %s"
+msgstr "Notifikationer"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "Skjul i tidslinje"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "Følgere"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "Følger"
+
 msgid "Protected Profile"
 msgstr "Låst Profil"
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "Følgere"
+msgstr[1] "Følgere"
 
 #, fuzzy
 msgid "No tweets found"
@@ -228,6 +265,11 @@ msgstr[1] "(%d ulæste)"
 
 msgid "Delete"
 msgstr "Fjern"
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, fuzzy, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr "Retweet"
 
 #, c-format
 msgid "Block %s"
@@ -446,11 +488,11 @@ msgstr "Åben"
 msgid "Cancel"
 msgstr "Fortryd"
 
-msgid "Follow"
-msgstr "Følg"
-
 msgid "Unfollow"
 msgstr "Følg ikke"
+
+msgid "Follow"
+msgstr "Følg"
 
 msgid "Copy URL"
 msgstr "Kopiere URL"
@@ -744,6 +786,10 @@ msgstr "Muted"
 msgid "Retweets disabled"
 msgstr "Retweets deaktiveret"
 
+#, fuzzy
+msgid "More actions"
+msgstr "Omtaler"
+
 msgid "Follows you"
 msgstr "Følger dig"
 
@@ -935,8 +981,11 @@ msgstr "Favorit"
 msgid "Reply"
 msgstr "Svar"
 
+msgid "Liked"
+msgstr ""
+
 #, fuzzy
-msgid "Retweeted by"
+msgid "Retweeted"
 msgstr "Retweet"
 
 msgid "Unblock"
@@ -956,6 +1005,10 @@ msgstr "Lavet"
 
 msgid "Subscribed to"
 msgstr "Tilmeldt"
+
+#, fuzzy, c-format
+#~ msgid "%s (%s) followers"
+#~ msgstr "Følgere"
 
 #~ msgid "List"
 #~ msgstr "Liste"

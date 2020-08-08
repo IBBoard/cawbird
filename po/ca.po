@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Joan Ensesa <jensesa@protonmail.com>, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/cawbird/teams/107135/ca/)\n"
@@ -176,8 +176,45 @@ msgstr "Perfil protegit"
 msgid "Tweet to @%s"
 msgstr "Piula a @%s"
 
+#, fuzzy, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] "%s ha repiulat"
+msgstr[1] "%s ha repiulat"
+
+#, fuzzy, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] "Seguint"
+msgstr[1] "Seguint"
+
+#, fuzzy, c-format
+msgid "Location: %s"
+msgstr "Notificacions"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "Amaga-ho al timeline"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "Seguidors"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "Seguint"
+
 msgid "Protected Profile"
 msgstr "Perfil protegit"
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "Seguidors"
+msgstr[1] "Seguidors"
 
 #, fuzzy
 msgid "No tweets found"
@@ -229,6 +266,11 @@ msgstr[1] "(%d missatges no llegits)"
 
 msgid "Delete"
 msgstr "Suprimeix"
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, fuzzy, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr "Repiular"
 
 #, c-format
 msgid "Block %s"
@@ -444,11 +486,11 @@ msgstr "Obre"
 msgid "Cancel"
 msgstr "Cancel·la"
 
-msgid "Follow"
-msgstr "Segueix"
-
 msgid "Unfollow"
 msgstr "Deixa de seguir"
+
+msgid "Follow"
+msgstr "Segueix"
 
 msgid "Copy URL"
 msgstr "Copia l'URL"
@@ -740,6 +782,10 @@ msgstr "Silenciat"
 msgid "Retweets disabled"
 msgstr "S'han desactivat les repiulades"
 
+#, fuzzy
+msgid "More actions"
+msgstr "Mencions"
+
 msgid "Follows you"
 msgstr "Us segueix"
 
@@ -931,8 +977,11 @@ msgstr "Favorit"
 msgid "Reply"
 msgstr "Contesta"
 
+msgid "Liked"
+msgstr ""
+
 #, fuzzy
-msgid "Retweeted by"
+msgid "Retweeted"
 msgstr "Repiular"
 
 msgid "Unblock"
@@ -952,6 +1001,10 @@ msgstr "Creat"
 
 msgid "Subscribed to"
 msgstr "Subscrit a"
+
+#, fuzzy, c-format
+#~ msgid "%s (%s) followers"
+#~ msgstr "Seguidors"
 
 #~ msgid "List"
 #~ msgstr "Llista"

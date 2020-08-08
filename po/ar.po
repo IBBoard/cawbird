@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Ammar K <ak.bahassan@gmail.com>, 2020\n"
 "Language-Team: Arabic (http://www.transifex.com/cawbird/cawbird/language/"
@@ -183,8 +183,57 @@ msgstr "ملف محمي"
 msgid "Tweet to @%s"
 msgstr "غرد لِ@%s"
 
+#, fuzzy, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] "%s غرد"
+msgstr[1] "%s غرد"
+msgstr[2] "%s غرد"
+msgstr[3] "%s غرد"
+msgstr[4] "%s غرد"
+msgstr[5] "%s غرد"
+
+#, fuzzy, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] "يتتبع"
+msgstr[1] "يتتبع"
+msgstr[2] "يتتبع"
+msgstr[3] "يتتبع"
+msgstr[4] "يتتبع"
+msgstr[5] "يتتبع"
+
+#, fuzzy, c-format
+msgid "Location: %s"
+msgstr "الإشعارات"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "إخفاء في الخط الزمني"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "المتتبعون"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "يتتبع"
+
 msgid "Protected Profile"
 msgstr "الحساب محمي "
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "المتتبعون"
+msgstr[1] "المتتبعون"
+msgstr[2] "المتتبعون"
+msgstr[3] "المتتبعون"
+msgstr[4] "المتتبعون"
+msgstr[5] "المتتبعون"
 
 #, fuzzy
 msgid "No tweets found"
@@ -240,6 +289,11 @@ msgstr[5] "(%d  غير مقروءة)"
 
 msgid "Delete"
 msgstr "حذف"
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, fuzzy, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr "إعادة التغريد"
 
 #, c-format
 msgid "Block %s"
@@ -459,11 +513,11 @@ msgstr "افتح"
 msgid "Cancel"
 msgstr "ألغ"
 
-msgid "Follow"
-msgstr "تَتبٌع"
-
 msgid "Unfollow"
 msgstr "إلغاء التتبُع"
+
+msgid "Follow"
+msgstr "تَتبٌع"
 
 msgid "Copy URL"
 msgstr "نسخ الرابط"
@@ -765,6 +819,10 @@ msgstr "مكتوم"
 msgid "Retweets disabled"
 msgstr "تعطيل إعادات التغريد"
 
+#, fuzzy
+msgid "More actions"
+msgstr "الإشارات"
+
 msgid "Follows you"
 msgstr "يتَتبعك"
 
@@ -956,8 +1014,11 @@ msgstr "مفضلة"
 msgid "Reply"
 msgstr "رد"
 
+msgid "Liked"
+msgstr ""
+
 #, fuzzy
-msgid "Retweeted by"
+msgid "Retweeted"
 msgstr "إعادة التغريد"
 
 msgid "Unblock"
@@ -977,6 +1038,10 @@ msgstr "تم الإنشاء"
 
 msgid "Subscribed to"
 msgstr "مشترك في"
+
+#, fuzzy, c-format
+#~ msgid "%s (%s) followers"
+#~ msgstr "المتتبعون"
 
 #~ msgid "List"
 #~ msgstr "قائمة"

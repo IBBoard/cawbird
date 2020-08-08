@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/cawbird/cawbird/"
@@ -167,8 +167,42 @@ msgstr "보호되는 프로필"
 msgid "Tweet to @%s"
 msgstr "@%s 에게 트윗"
 
+#, fuzzy, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] "%s 가 트윗함"
+
+#, fuzzy, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] "팔로우 중"
+
+#, fuzzy, c-format
+msgid "Location: %s"
+msgstr "알림"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "타임라인에서 가리기"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "팔로워"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "팔로우 중"
+
 msgid "Protected Profile"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "팔로워"
 
 #, fuzzy
 msgid "No tweets found"
@@ -219,6 +253,11 @@ msgstr[0] "(%d 개의 읽지 않음)"
 
 msgid "Delete"
 msgstr "지우기"
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, fuzzy, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr "리트윗"
 
 #, c-format
 msgid "Block %s"
@@ -432,11 +471,11 @@ msgstr "열기"
 msgid "Cancel"
 msgstr "취소"
 
-msgid "Follow"
-msgstr "팔로우"
-
 msgid "Unfollow"
 msgstr "언팔로우"
+
+msgid "Follow"
+msgstr "팔로우"
 
 msgid "Copy URL"
 msgstr "URL 복사"
@@ -722,6 +761,10 @@ msgstr "음소거됨"
 msgid "Retweets disabled"
 msgstr "리트윗 불가"
 
+#, fuzzy
+msgid "More actions"
+msgstr "멘션"
+
 msgid "Follows you"
 msgstr "당신을 팔로우함"
 
@@ -913,8 +956,11 @@ msgstr "즐겨찾기"
 msgid "Reply"
 msgstr "답장"
 
+msgid "Liked"
+msgstr ""
+
 #, fuzzy
-msgid "Retweeted by"
+msgid "Retweeted"
 msgstr "리트윗"
 
 msgid "Unblock"
@@ -934,6 +980,10 @@ msgstr "만들어짐"
 
 msgid "Subscribed to"
 msgstr "을 구독함"
+
+#, fuzzy, c-format
+#~ msgid "%s (%s) followers"
+#~ msgstr "팔로워"
 
 #~ msgid "List"
 #~ msgstr "리스트"

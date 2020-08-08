@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2017-11-12 23:35+0000\n"
 "Last-Translator: MTD TR <dev.mantendo@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/cawbird/cawbird/"
@@ -168,8 +168,42 @@ msgstr "非公開プロフィール"
 msgid "Tweet to @%s"
 msgstr "@%s にツイート"
 
+#, fuzzy, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] "%s がツイート"
+
+#, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] ""
+
+#, fuzzy, c-format
+msgid "Location: %s"
+msgstr "通知"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "メンション"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "フォロー解除"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "フォロー解除"
+
 msgid "Protected Profile"
 msgstr "非公開アカウント"
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "フォロー解除"
 
 #, fuzzy
 msgid "No tweets found"
@@ -220,6 +254,11 @@ msgstr[0] "(%d 件の未読)"
 
 msgid "Delete"
 msgstr "削除"
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, fuzzy, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr "リツイート"
 
 #, c-format
 msgid "Block %s"
@@ -432,11 +471,11 @@ msgstr ""
 msgid "Cancel"
 msgstr "キャンセル"
 
-msgid "Follow"
-msgstr "フォロー"
-
 msgid "Unfollow"
 msgstr "フォロー解除"
+
+msgid "Follow"
+msgstr "フォロー"
 
 msgid "Copy URL"
 msgstr "URLをコピー"
@@ -723,6 +762,10 @@ msgstr "ミュート済み"
 msgid "Retweets disabled"
 msgstr "リツイートはできません"
 
+#, fuzzy
+msgid "More actions"
+msgstr "メンション"
+
 msgid "Follows you"
 msgstr "フォローされている"
 
@@ -914,8 +957,11 @@ msgstr "お気に入り"
 msgid "Reply"
 msgstr "リプライ"
 
+msgid "Liked"
+msgstr ""
+
 #, fuzzy
-msgid "Retweeted by"
+msgid "Retweeted"
 msgstr "リツイート"
 
 msgid "Unblock"

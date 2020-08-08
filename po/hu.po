@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-07-21 16:56+0100\n"
+"POT-Creation-Date: 2020-08-08 15:12+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -163,8 +163,45 @@ msgstr "Védett profil"
 msgid "Tweet to @%s"
 msgstr ""
 
+#, c-format
+msgid "%d tweet"
+msgid_plural "%d tweets"
+msgstr[0] ""
+msgstr[1] ""
+
+#, fuzzy, c-format
+msgid "Following %d account"
+msgid_plural "Following %d accounts"
+msgstr[0] "Követve"
+msgstr[1] "Követve"
+
+#, fuzzy, c-format
+msgid "Location: %s"
+msgstr "Értesítések"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#, fuzzy, c-format
+msgid "%s timeline"
+msgstr "Kedvencek"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#, fuzzy, c-format
+msgid "%s followers"
+msgstr "Követők"
+
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#, fuzzy, c-format
+msgid "%s following"
+msgstr "Követve"
+
 msgid "Protected Profile"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%d follower"
+msgid_plural "%d followers"
+msgstr[0] "Követők"
+msgstr[1] "Követők"
 
 msgid "No tweets found"
 msgstr ""
@@ -215,6 +252,11 @@ msgstr[1] ""
 
 msgid "Delete"
 msgstr "Törlés"
+
+#. TRANSLATORS: replacements are name and handle (without the "@")
+#, c-format
+msgid "Retweeted by %s (@%s)"
+msgstr ""
 
 #, c-format
 msgid "Block %s"
@@ -426,11 +468,11 @@ msgstr ""
 msgid "Cancel"
 msgstr "Mégse"
 
-msgid "Follow"
-msgstr "Követés"
-
 msgid "Unfollow"
 msgstr ""
+
+msgid "Follow"
+msgstr "Követés"
 
 msgid "Copy URL"
 msgstr ""
@@ -716,6 +758,9 @@ msgstr ""
 msgid "Retweets disabled"
 msgstr ""
 
+msgid "More actions"
+msgstr ""
+
 msgid "Follows you"
 msgstr ""
 
@@ -907,7 +952,10 @@ msgstr ""
 msgid "Reply"
 msgstr "Válasz"
 
-msgid "Retweeted by"
+msgid "Liked"
+msgstr ""
+
+msgid "Retweeted"
 msgstr ""
 
 msgid "Unblock"
@@ -927,6 +975,10 @@ msgstr "Létrehozva"
 
 msgid "Subscribed to"
 msgstr ""
+
+#, fuzzy, c-format
+#~ msgid "%s (%s) followers"
+#~ msgstr "Követők"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"
