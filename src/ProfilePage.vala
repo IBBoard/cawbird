@@ -187,7 +187,6 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     rt_action.activate.connect (retweet_action_activated);
     actions.add_action (rt_action);
 
-
     this.insert_action_group ("user", actions);
   }
 
@@ -455,6 +454,9 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     this.name = name;
     this.screen_name = screen_name;
     this.avatar_url = avatar_url;
+    tweet_list.get_accessible().set_name(_("%s (%s) timeline").printf(name, screen_name));
+    followers_list.get_accessible().set_name(_("%s (%s) followers").printf(name, screen_name));
+    following_list.get_accessible().set_name(_("%s (%s) following").printf(name, screen_name));
   }
 
 
@@ -965,7 +967,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
   private void lists_button_toggled_cb (GLib.Object source) {
     if (((Gtk.RadioButton)source).active) {
       if (!lists_page_inited) {
-        user_lists.load_lists.begin (user_id);
+        user_lists.load_lists.begin (user_id, name, screen_name);
         lists_page_inited = true;
       }
       this.balance_next_upper_change (BOTTOM);

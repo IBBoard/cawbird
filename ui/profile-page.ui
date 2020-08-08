@@ -140,6 +140,11 @@
                             <property name="margin-top">14</property>
                             <property name="margin-start">6</property>
                             <property name="menu-model">more_menu</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="more_button-atkobject">
+                                <property name="AtkObject::accessible-name" translatable="yes">More actions</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                         <child>

@@ -43,12 +43,6 @@ class UserListsWidget : Gtk.Box {
   private bool show_create_entry = true;
 
   public UserListsWidget() {
-    var accessible_name = _("Your lists");
-    this.user_list_box.get_accessible().set_name(accessible_name);
-    this.user_list_box.get_accessible().set_description(accessible_name);
-    accessible_name = _("Subscribed lists");
-    this.subscribed_list_box.get_accessible().set_name(accessible_name);
-    this.subscribed_list_box.get_accessible().set_description(accessible_name);
   }
 
   construct {
@@ -98,7 +92,7 @@ class UserListsWidget : Gtk.Box {
     }
   }
 
-  public async void load_lists (int64 user_id) { // {{{
+  public async void load_lists (int64 user_id, string name = "", string screen_name = "") {
     if (user_id == 0)
       user_id = account.id;
 
@@ -134,7 +128,6 @@ class UserListsWidget : Gtk.Box {
       collect_obj.emit ();
     });
 
-
     var user_call = account.proxy.new_call ();
     user_call.set_function ("1.1/lists/ownerships.json");
     user_call.set_method ("GET");
@@ -164,8 +157,13 @@ class UserListsWidget : Gtk.Box {
       collect_obj.emit ();
     });
 
+    var accessible_name = user_id == account.id ? _("Subscribed lists") : _("%s (%s) subscribed lists").printf(name, screen_name);
+    this.subscribed_list_box.get_accessible().set_name(accessible_name);
+    accessible_name = user_id == account.id ? _("Your lists") : _("%s (%s) lists").printf(name, screen_name);
+    this.user_list_box.get_accessible().set_name(accessible_name);
+
     yield;
-  } // }}}
+  }
 
   private uint lists_received_cb (Json.Node?  root,
                                   Gtk.ListBox list_box)
