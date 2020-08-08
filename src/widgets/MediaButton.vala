@@ -41,7 +41,7 @@ private class MediaButton : Gtk.Widget {
         }
         bool is_m3u8 = _media.url.has_suffix (".m3u8");
         ((GLib.SimpleAction)actions.lookup_action ("save-as")).set_enabled (!is_m3u8);
-
+        this.set_tooltip_text (_media.alt_text);
       }
       if (value != null && (value.type == Cb.MediaType.IMAGE ||
                             value.type == Cb.MediaType.GIF)) {
