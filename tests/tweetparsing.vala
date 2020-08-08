@@ -2498,6 +2498,225 @@ const string TWEET_MEDIA_ALT_TEXT = """
 
 """;
 
+const string TWEET_MEDIA_ADDITIONAL_INFO_ALT_TEXT = """
+{
+  "created_at" : "Thu Aug 06 22:00:01 +0000 2020",
+  "id" : 1291494261444284416,
+  "id_str" : "1291494261444284416",
+  "full_text" : "African designers are stepping in to turn face masks into a fashion statement. https://t.co/oOM55CLO5c",
+  "truncated" : false,
+  "display_text_range" : [
+    0,
+    78
+  ],
+  "entities" : {
+    "hashtags" : [
+    ],
+    "symbols" : [
+    ],
+    "user_mentions" : [
+    ],
+    "urls" : [
+    ],
+    "media" : [
+      {
+        "id" : 1286328013446152194,
+        "id_str" : "1286328013446152194",
+        "indices" : [
+          79,
+          102
+        ],
+        "media_url" : "http://pbs.twimg.com/media/Edn1pu-WAAMMHPk.jpg",
+        "media_url_https" : "https://pbs.twimg.com/media/Edn1pu-WAAMMHPk.jpg",
+        "url" : "https://t.co/oOM55CLO5c",
+        "display_url" : "pic.twitter.com/oOM55CLO5c",
+        "expanded_url" : "https://twitter.com/AJEnglish/status/1291494261444284416/video/1",
+        "type" : "photo",
+        "sizes" : {
+          "thumb" : {
+            "w" : 150,
+            "h" : 150,
+            "resize" : "crop"
+          },
+          "small" : {
+            "w" : 680,
+            "h" : 680,
+            "resize" : "fit"
+          },
+          "medium" : {
+            "w" : 1080,
+            "h" : 1080,
+            "resize" : "fit"
+          },
+          "large" : {
+            "w" : 1080,
+            "h" : 1080,
+            "resize" : "fit"
+          }
+        }
+      }
+    ]
+  },
+  "extended_entities" : {
+    "media" : [
+      {
+        "id" : 1286328013446152194,
+        "id_str" : "1286328013446152194",
+        "indices" : [
+          79,
+          102
+        ],
+        "media_url" : "http://pbs.twimg.com/media/Edn1pu-WAAMMHPk.jpg",
+        "media_url_https" : "https://pbs.twimg.com/media/Edn1pu-WAAMMHPk.jpg",
+        "url" : "https://t.co/oOM55CLO5c",
+        "display_url" : "pic.twitter.com/oOM55CLO5c",
+        "expanded_url" : "https://twitter.com/AJEnglish/status/1291494261444284416/video/1",
+        "type" : "video",
+        "sizes" : {
+          "thumb" : {
+            "w" : 150,
+            "h" : 150,
+            "resize" : "crop"
+          },
+          "small" : {
+            "w" : 680,
+            "h" : 680,
+            "resize" : "fit"
+          },
+          "medium" : {
+            "w" : 1080,
+            "h" : 1080,
+            "resize" : "fit"
+          },
+          "large" : {
+            "w" : 1080,
+            "h" : 1080,
+            "resize" : "fit"
+          }
+        },
+        "video_info" : {
+          "aspect_ratio" : [
+            1,
+            1
+          ],
+          "duration_millis" : 111320,
+          "variants" : [
+            {
+              "content_type" : "application/x-mpegURL",
+              "url" : "https://video.twimg.com/amplify_video/1286328013446152194/pl/swf_ETvJZHSMKdZR.m3u8?tag=13"
+            },
+            {
+              "bitrate" : 1280000,
+              "content_type" : "video/mp4",
+              "url" : "https://video.twimg.com/amplify_video/1286328013446152194/vid/720x720/W3q_MM3yoGVCz6bq.mp4?tag=13"
+            },
+            {
+              "bitrate" : 432000,
+              "content_type" : "video/mp4",
+              "url" : "https://video.twimg.com/amplify_video/1286328013446152194/vid/320x320/UNLrWI0aGWBb1zlf.mp4?tag=13"
+            },
+            {
+              "bitrate" : 832000,
+              "content_type" : "video/mp4",
+              "url" : "https://video.twimg.com/amplify_video/1286328013446152194/vid/480x480/cPvyysKFbXYMDzMt.mp4?tag=13"
+            }
+          ]
+        },
+        "ext_alt_text" : null,
+        "additional_media_info" : {
+          "title" : "Who says face masks have to be boring?",
+          "description" : "More on Aljazeera.com",
+          "embeddable" : true,
+          "monetizable" : true
+        }
+      }
+    ]
+  },
+  "source" : "<a href=\"https://studio.twitter.com\" rel=\"nofollow\">Twitter Media Studio</a>",
+  "in_reply_to_status_id" : null,
+  "in_reply_to_status_id_str" : null,
+  "in_reply_to_user_id" : null,
+  "in_reply_to_user_id_str" : null,
+  "in_reply_to_screen_name" : null,
+  "user" : {
+    "id" : 4970411,
+    "id_str" : "4970411",
+    "name" : "Al Jazeera English",
+    "screen_name" : "AJEnglish",
+    "location" : "Doha, Qatar",
+    "description" : "Hear the human story and join the discussion. For more news follow @AJENews.",
+    "url" : "https://t.co/D38RZjLnhI",
+    "entities" : {
+      "url" : {
+        "urls" : [
+          {
+            "url" : "https://t.co/D38RZjLnhI",
+            "expanded_url" : "http://aljazeera.com",
+            "display_url" : "aljazeera.com",
+            "indices" : [
+              0,
+              23
+            ]
+          }
+        ]
+      },
+      "description" : {
+        "urls" : [
+        ]
+      }
+    },
+    "protected" : false,
+    "followers_count" : 6330005,
+    "friends_count" : 215,
+    "listed_count" : 51127,
+    "created_at" : "Tue Apr 17 08:23:08 +0000 2007",
+    "favourites_count" : 6271,
+    "utc_offset" : null,
+    "time_zone" : null,
+    "geo_enabled" : true,
+    "verified" : true,
+    "statuses_count" : 257128,
+    "lang" : null,
+    "contributors_enabled" : false,
+    "is_translator" : false,
+    "is_translation_enabled" : true,
+    "profile_background_color" : "FFFFFF",
+    "profile_background_image_url" : "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https" : "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile" : true,
+    "profile_image_url" : "http://pbs.twimg.com/profile_images/1190503555901394944/T4qowO0X_normal.jpg",
+    "profile_image_url_https" : "https://pbs.twimg.com/profile_images/1190503555901394944/T4qowO0X_normal.jpg",
+    "profile_banner_url" : "https://pbs.twimg.com/profile_banners/4970411/1592932198",
+    "profile_image_extensions_alt_text" : null,
+    "profile_banner_extensions_alt_text" : null,
+    "profile_link_color" : "234D8C",
+    "profile_sidebar_border_color" : "FFFFFF",
+    "profile_sidebar_fill_color" : "DDDDDD",
+    "profile_text_color" : "000000",
+    "profile_use_background_image" : false,
+    "has_extended_profile" : false,
+    "default_profile" : false,
+    "default_profile_image" : false,
+    "following" : false,
+    "follow_request_sent" : false,
+    "notifications" : false,
+    "translator_type" : "none"
+  },
+  "geo" : null,
+  "coordinates" : null,
+  "place" : null,
+  "contributors" : null,
+  "is_quote_status" : false,
+  "retweet_count" : 139,
+  "favorite_count" : 346,
+  "favorited" : false,
+  "retweeted" : false,
+  "possibly_sensitive" : false,
+  "lang" : "en"
+}
+
+""";
+
 // """
 // }}}
 
@@ -2794,6 +3013,24 @@ void media_alt_text () {
   assert (t.get_medias ()[0].alt_text == "Cawbird in dark theme");
 }
 
+void media_additional_info_alt_text () {
+  var now = new GLib.DateTime.now_local ();
+  var t = new Cb.Tweet ();
+
+  var parser = new Json.Parser ();
+  try {
+    parser.load_from_data (TWEET_MEDIA_ADDITIONAL_INFO_ALT_TEXT);
+  } catch (GLib.Error e) {
+    critical (e.message);
+  }
+  var root = parser.get_root ();
+
+  t.load_from_json (root, 0, now);
+  assert (t.get_medias ().length == 1);
+  debug(t.get_medias ()[0].alt_text);
+  assert (t.get_medias ()[0].alt_text == "Who says face masks have to be boring?\n\nMore on Aljazeera.com");
+}
+
 
 
 int main (string[] args) {
@@ -2816,6 +3053,7 @@ int main (string[] args) {
   GLib.Test.add_func ("/tweet-parsing/entity-count", entity_count);
   GLib.Test.add_func ("/tweet-parsing/reply-id", reply_id);
   GLib.Test.add_func ("/tweet-parsing/media-alt-text", media_alt_text);
+  GLib.Test.add_func ("/tweet-parsing/media-additional-info-alt-text", media_additional_info_alt_text);
 
   return GLib.Test.run ();
 }

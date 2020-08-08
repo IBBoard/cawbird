@@ -469,6 +469,11 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                     // Only "extended media" for GIFs has alt text. Videos never do.
                     t->medias[t->n_medias]->alt_text = g_strdup (json_object_get_string_member (media_obj, "ext_alt_text"));
                   }
+                  
+                  if (t->medias[t->n_medias]->alt_text == NULL && json_object_has_member (media_obj, "additional_media_info")) {
+                    JsonObject *additional_media_info = json_object_get_object_member (media_obj, "additional_media_info");
+                    t->medias[t->n_medias]->alt_text = g_strdup_printf ("%s\n\n%s", json_object_get_string_member (additional_media_info, "title"), json_object_get_string_member (additional_media_info, "description"));
+                  }
 
                   t->n_medias ++;
                 }
