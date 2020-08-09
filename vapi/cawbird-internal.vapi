@@ -423,6 +423,7 @@ namespace Cb {
     public static int MAX_UPLOADS;
     public signal void image_upload_progress (string a, double d);
     public signal void image_upload_finished (string a, string? b);
+    public signal void image_upload_id_assigned (string file_path, int64 media_id);
     public ComposeJob (Cb.UserStream user_stream, Rest.Proxy proxy, Rest.Proxy proxy2, GLib.Cancellable cancellable);
     public void set_reply_id (int64 id);
     public void set_quoted_tweet (Cb.Tweet t);

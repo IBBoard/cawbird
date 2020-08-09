@@ -21,6 +21,8 @@ class AddImageButton : Gtk.Button {
   private const int MIN_HEIGHT = 100;
   private const int ICON_SIZE  = 32;
   public string image_path;
+  public int64 media_id = 0;
+  public string description = "";
   public Cairo.ImageSurface? surface;
 
   public signal void deleted ();

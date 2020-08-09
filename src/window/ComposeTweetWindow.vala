@@ -93,6 +93,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
                                             false);
     upload_proxy.token = account.proxy.token;
     upload_proxy.token_secret = account.proxy.token_secret;
+    this.compose_image_manager.proxy = upload_proxy;
     this.compose_job = new Cb.ComposeJob (account.user_stream,
                                           account.proxy,
                                           upload_proxy,
@@ -105,6 +106,8 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       debug ("%s Finished!", path);
       this.compose_image_manager.end_progress (path, error_msg);
     });
+    this.compose_job.image_upload_id_assigned.connect(this.compose_image_manager.set_media_id);
+
 
     length_label.label = Cb.Tweet.MAX_LENGTH.to_string ();
     load_tweet.begin ();

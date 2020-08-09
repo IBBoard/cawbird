@@ -20,7 +20,10 @@ class ComposeImageManager : Gtk.Container {
   private const int BUTTON_SPACING = 12;
   private GLib.GenericArray<AddImageButton> buttons;
   private GLib.GenericArray<Gtk.Button> close_buttons;
+  private GLib.GenericArray<Gtk.Button> desc_buttons;
   private GLib.GenericArray<Gtk.ProgressBar> progress_bars;
+
+  public Rest.OAuthProxy proxy;
 
   public int n_images {
     get {
@@ -51,6 +54,7 @@ class ComposeImageManager : Gtk.Container {
   construct {
     this.buttons = new GLib.GenericArray<AddImageButton> ();
     this.close_buttons = new GLib.GenericArray<Gtk.Button> ();
+    this.desc_buttons = new GLib.GenericArray<Gtk.Button> ();
     this.progress_bars = new GLib.GenericArray<Gtk.ProgressBar> ();
     this.set_has_window (false);
   }
@@ -67,18 +71,38 @@ class ComposeImageManager : Gtk.Container {
     assert (index >= 0);
 
     this.close_buttons.get (index).hide ();
+    this.desc_buttons.get (index).hide ();
     this.progress_bars.get (index).hide ();
 
     AddImageButton aib = (AddImageButton) this.buttons.get (index);
     aib.deleted.connect (() => {
       this.buttons.remove_index (index);
       this.close_buttons.remove_index (index);
+      this.desc_buttons.remove_index (index);
       this.progress_bars.remove_index (index);
       this.queue_draw ();
       this.image_removed (aib.image_path);
     });
 
     aib.start_remove ();
+  }
+
+  private void image_description_button_clicked(Gtk.Button source) {
+    int index = -1;
+
+    for (int i = 0; i < this.desc_buttons.length; i ++) {
+      if (desc_buttons.get (i) == source) {
+        index = i;
+        break;
+      }
+    }
+    assert (index >= 0);
+    
+    var image_button = this.buttons.get(index);
+    ImageDescriptionWindow description_window = new ImageDescriptionWindow((Gtk.Window)this.get_toplevel(), proxy, image_button.media_id, image_button.description);
+    description_window.description_updated.connect((media_id, description) => { image_button.description = description; });
+    description_window.hide.connect(() => { description_window.destroy(); });
+    description_window.show();
   }
 
   private void reupload_image_cb (Gtk.Button source) {
@@ -101,6 +125,13 @@ class ComposeImageManager : Gtk.Container {
       cb (close_buttons.get (i));
 
       i += this.close_buttons.length - size_before + 1;
+    }
+
+    for (int i = 0; i < this.desc_buttons.length;) {
+      int size_before = this.desc_buttons.length;
+      cb (desc_buttons.get (i));
+
+      i += this.desc_buttons.length - size_before + 1;
     }
 
     for (int i = 0; i < this.progress_bars.length;) {
@@ -133,14 +164,26 @@ class ComposeImageManager : Gtk.Container {
     bar.set_parent (this);
     bar.show_all ();
     this.progress_bars.add (bar);
+
+    // Add the progress bar first so it goes under the image description button
+    var desc_btn = new Gtk.Button.from_icon_name("cawbird-compose-symbolic");
+    desc_btn.set_parent(this);
+    desc_btn.get_style_context ().add_class ("image-button");
+    desc_btn.clicked.connect(image_description_button_clicked);
+    desc_btn.sensitive = false;
+    desc_btn.show();
+    this.desc_buttons.add(desc_btn);
   }
 
   public override void remove (Gtk.Widget widget) {
     widget.unparent ();
     if (widget is AddImageButton)
       this.buttons.remove ((AddImageButton)widget);
-    else if (widget is Gtk.Button)
+    else if (widget is Gtk.Button) {
+      // We only have up to four widgets, so be lazy and try removing from both lists.
       this.close_buttons.remove ((Gtk.Button)widget);
+      this.desc_buttons.remove((Gtk.Button) widget);
+    }
     else
       this.progress_bars.remove ((Gtk.ProgressBar)widget);
   }
@@ -163,10 +206,12 @@ class ComposeImageManager : Gtk.Container {
 
     child_allocation.x = allocation.x;
     child_allocation.y = allocation.y + BUTTON_DELTA;
-    child_allocation.height = int.max (allocation.height - BUTTON_DELTA, 0);
+    child_allocation.height = int.max (allocation.height - 2 * BUTTON_DELTA, 0);
 
     Gtk.Allocation close_allocation = {};
     close_allocation.y = allocation.y;
+    Gtk.Allocation desc_allocation = {};
+
     for (int i = 0, p = this.buttons.length; i < p; i ++) {
       int min, nat;
 
@@ -185,9 +230,15 @@ class ComposeImageManager : Gtk.Container {
       btn.get_preferred_height (out close_allocation.height, out n);
       close_allocation.x = child_allocation.x + child_allocation.width
                            - close_allocation.width + BUTTON_DELTA;
-
       btn.size_allocate (close_allocation);
 
+      Gtk.Widget desc_btn = this.desc_buttons.get (i);
+      desc_btn.get_preferred_width (out desc_allocation.width, out n);
+      desc_btn.get_preferred_height (out desc_allocation.height, out n);
+      desc_allocation.x = child_allocation.x + child_allocation.width
+                           - desc_allocation.width + BUTTON_DELTA;
+      desc_allocation.y = allocation.y + allocation.height - desc_allocation.height;
+      desc_btn.size_allocate (desc_allocation);
 
       /* Progress bar */
       int button_width, button_height;
@@ -221,8 +272,8 @@ class ComposeImageManager : Gtk.Container {
     }
 
     /* We subtract BUTTON_DELTA in size_allocate again */
-    minimum = min + BUTTON_DELTA;
-    natural = nat + BUTTON_DELTA;
+    minimum = min + 2 * BUTTON_DELTA;
+    natural = nat + 2 * BUTTON_DELTA;
   }
 
   public override void get_preferred_height (out int minimum,
@@ -238,8 +289,8 @@ class ComposeImageManager : Gtk.Container {
     }
 
     /* We subtract BUTTON_DELTA in size_allocate again */
-    minimum = min + BUTTON_DELTA;
-    natural = nat + BUTTON_DELTA;
+    minimum = min + 2 * BUTTON_DELTA;
+    natural = nat + 2 * BUTTON_DELTA;
   }
 
   public override void get_preferred_width (out int minimum,
@@ -266,6 +317,11 @@ class ComposeImageManager : Gtk.Container {
 
     for (int i = 0, p = this.close_buttons.length; i < p; i ++) {
       var btn = this.close_buttons.get (i);
+      this.propagate_draw (btn, ct);
+    }
+
+    for (int i = 0, p = this.desc_buttons.length; i < p; i ++) {
+      var btn = this.desc_buttons.get (i);
       this.propagate_draw (btn, ct);
     }
 
@@ -331,6 +387,17 @@ class ComposeImageManager : Gtk.Container {
           style_context.remove_class ("image-success");
           btn.clicked.connect (reupload_image_cb);
         }
+        break;
+      }
+    }
+  }
+
+  public void set_media_id(string image_path, int64 media_id) {
+    for (int i = 0; i < buttons.length; i ++) {
+      var btn = buttons.get (i);
+      if (btn.image_path == image_path) {
+        btn.media_id = media_id;
+        desc_buttons.get(i).sensitive = true;
         break;
       }
     }

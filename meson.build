@@ -142,6 +142,7 @@ cawbird_lib_sources = files([
   'src/window/AboutDialog.vala',
   'src/window/AccountDialog.vala',
   'src/window/ComposeTweetWindow.vala',
+  'src/window/ImageDescriptionWindow.vala',
   'src/window/MediaDialog.vala',
   'src/window/ModifyFilterDialog.vala',
   'src/window/ModifySnippetDialog.vala',

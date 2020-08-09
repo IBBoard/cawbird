@@ -28,6 +28,7 @@ static void do_send (CbComposeJob *self);
 enum {
   IMAGE_UPLOAD_PROGRESS,
   IMAGE_UPLOAD_FINISHED,
+  IMAGE_UPLOAD_ID_ASSIGNED,
   LAST_SIGNAL
 };
 static guint compose_job_signals[LAST_SIGNAL] = { 0 };
@@ -214,6 +215,14 @@ cb_compose_job_class_init (CbComposeJobClass *class)
                                                              NULL, NULL,
                                                              NULL, G_TYPE_NONE,
                                                              2, G_TYPE_STRING, G_TYPE_STRING);
+
+  compose_job_signals[IMAGE_UPLOAD_ID_ASSIGNED] = g_signal_new ("image-upload-id-assigned",
+                                                             G_OBJECT_CLASS_TYPE (gobject_class),
+                                                             G_SIGNAL_RUN_FIRST,
+                                                             0,
+                                                             NULL, NULL,
+                                                             NULL, G_TYPE_NONE,
+                                                             2, G_TYPE_STRING, G_TYPE_INT64);
 }
 
 static void
@@ -296,6 +305,7 @@ image_upload_cb (RestProxyCall *call,
       g_debug ("%s ID: %" G_GINT64_FORMAT, upload->filename, upload->id);
 
       g_signal_emit (self, compose_job_signals[IMAGE_UPLOAD_FINISHED], 0, upload->filename, error_message);
+      g_signal_emit (self, compose_job_signals[IMAGE_UPLOAD_ID_ASSIGNED], 0, upload->filename, upload->id);
 
       g_object_unref (parser);
 
@@ -489,6 +499,7 @@ cb_compose_job_send_async (CbComposeJob        *self,
   rest_proxy_call_set_method (call, "POST");
   rest_proxy_call_add_param (call, "auto_populate_reply_metadata", "true");
   rest_proxy_call_add_param (call, "tweet_mode", "extended");
+  rest_proxy_call_add_param (call, "include_ext_alt_text", "true");
 
   if (self->reply_id != 0)
     {
