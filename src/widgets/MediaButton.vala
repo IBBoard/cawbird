@@ -41,7 +41,7 @@ private class MediaButton : Gtk.Widget {
         }
         bool is_m3u8 = _media.url.has_suffix (".m3u8");
         ((GLib.SimpleAction)actions.lookup_action ("save-as")).set_enabled (!is_m3u8);        
-        this.set_tooltip_text(media.alt_text);
+        set_image_description();
       }
       if (value != null && (value.type == Cb.MediaType.IMAGE ||
                             value.type == Cb.MediaType.GIF)) {
@@ -111,9 +111,7 @@ private class MediaButton : Gtk.Widget {
     this.press_gesture.set_propagation_phase (Gtk.PropagationPhase.CAPTURE);
     this.press_gesture.released.connect (gesture_released_cb);
     this.press_gesture.pressed.connect (gesture_pressed_cb);
-    if (media != null) {
-      this.set_tooltip_text(media.alt_text);
-    }
+    set_image_description();
   }
 
   private void media_progress_cb () {
@@ -550,5 +548,12 @@ private class MediaButton : Gtk.Widget {
     }
 
     return Gdk.EVENT_PROPAGATE;
+  }
+
+  private void set_image_description() {
+    if (media != null) {
+      this.set_tooltip_text(media.alt_text);
+      this.get_accessible().set_description(media.alt_text ?? "");
+    }
   }
 }
