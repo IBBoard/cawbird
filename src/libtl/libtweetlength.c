@@ -939,17 +939,34 @@ count_entities_in_weighted_characters (GArray *entities)
 /*
  * tl_count_weighted_chararacters:
  * input: (nullable): NUL-terminated tweet text
+ * use_short_link: TRUE to count links as t.co link length or FALSE count pure weighted plain text length
  *
  * Returns: The length of @input, in Twitter's weighted characters.
  */
 gsize
-tl_count_weighted_characters (const char *input)
+tl_count_weighted_characters (const char *input, gboolean use_short_link)
 {
   if (input == NULL || input[0] == '\0') {
     return 0;
   }
 
-  return tl_count_weighted_characters_n (input, strlen (input));
+  if (use_short_link) {
+    return tl_count_weighted_characters_n (input, strlen (input));
+  }
+  else {
+    const char *p = input;
+    gsize size = 0;
+    gunichar c;
+   
+    c = g_utf8_get_char (p);
+    while (c != '\0') {
+      size += weighted_length_for_character(c);
+      p = g_utf8_next_char (p);
+      c = g_utf8_get_char (p);
+    }
+
+    return size;
+  }
 }
 
 /*

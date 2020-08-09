@@ -23,7 +23,7 @@ namespace Tl {
   size_t count_characters (string input);
 
   [CCode (cprefix = "tl_", lower_case_cprefix = "tl_", cheader_filename = "libtl/libtweetlength.h")]
-  size_t count_weighted_characters (string input);
+  size_t count_weighted_characters (string input, bool use_short_link = true);
 
   [CCode (cprefix = "tl_", lower_case_cprefix = "tl_", cheader_filename = "libtl/libtweetlength.h",
           array_length_pos = 1)]
