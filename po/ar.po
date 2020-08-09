@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-08 15:12+0100\n"
+"POT-Creation-Date: 2020-08-09 15:59+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Ammar K <ak.bahassan@gmail.com>, 2020\n"
 "Language-Team: Arabic (http://www.transifex.com/cawbird/cawbird/language/"
@@ -737,6 +737,10 @@ msgstr "الفلاتر "
 
 msgid "Users"
 msgstr "المستخدمين"
+
+#, fuzzy
+msgid "Set image description"
+msgstr "الوصف"
 
 msgid "Subscribe"
 msgstr "الإشتراك"

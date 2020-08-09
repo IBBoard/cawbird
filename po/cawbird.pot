@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-08 15:12+0100\n"
+"POT-Creation-Date: 2020-08-09 15:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -672,6 +672,9 @@ msgid "Filtered users"
 msgstr ""
 
 msgid "Users"
+msgstr ""
+
+msgid "Set image description"
 msgstr ""
 
 msgid "Subscribe"

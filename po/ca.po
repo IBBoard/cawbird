@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-08 15:12+0100\n"
+"POT-Creation-Date: 2020-08-09 15:59+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Joan Ensesa <jensesa@protonmail.com>, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/cawbird/teams/107135/ca/)\n"
@@ -700,6 +700,10 @@ msgstr "Filtres"
 
 msgid "Users"
 msgstr "Usuaris"
+
+#, fuzzy
+msgid "Set image description"
+msgstr "Descripció"
 
 msgid "Subscribe"
 msgstr "Subscriu-te"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-08 15:12+0100\n"
+"POT-Creation-Date: 2020-08-09 15:59+0100\n"
 "PO-Revision-Date: 2017-10-22 15:14+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -717,6 +717,10 @@ msgstr "Filtry"
 
 msgid "Users"
 msgstr "Użytkownicy"
+
+#, fuzzy
+msgid "Set image description"
+msgstr "Opis"
 
 msgid "Subscribe"
 msgstr "Subskrybuj"
