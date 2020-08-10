@@ -157,12 +157,14 @@ class ComposeImageManager : Gtk.Container {
     btn.set_parent (this);
     btn.get_style_context ().add_class ("image-button");
     btn.get_style_context ().add_class ("close-button");
+    btn.get_accessible().set_name(_("Remove image"));
     btn.clicked.connect (remove_clicked_cb);
     btn.show ();
     this.close_buttons.add (btn);
 
     var bar = new Gtk.ProgressBar ();
     bar.set_parent (this);
+    bar.get_accessible().set_name(_("Image upload progress"));
     bar.show_all ();
     this.progress_bars.add (bar);
 
@@ -170,6 +172,7 @@ class ComposeImageManager : Gtk.Container {
     var desc_btn = new Gtk.Button.from_icon_name("cawbird-compose-symbolic");
     desc_btn.set_parent(this);
     desc_btn.get_style_context ().add_class ("image-button");
+    desc_btn.get_accessible().set_name(_("Describe image"));
     desc_btn.clicked.connect(image_description_button_clicked);
     desc_btn.sensitive = false;
     desc_btn.show();

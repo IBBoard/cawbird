@@ -20,7 +20,19 @@ class AddImageButton : Gtk.Button {
   private const int MAX_HEIGHT = 150;
   private const int MIN_HEIGHT = 100;
   private const int ICON_SIZE  = 32;
-  public string image_path;
+  private string _image_path;
+  public string image_path {
+    get { return _image_path; }
+    set {
+      _image_path = value;
+      if (value != null) {
+        this.get_accessible().set_description(_image_path.substring(_image_path.last_index_of_char('/') + 1));
+      }
+      else {
+        this.get_accessible().set_description("");
+      }
+    }
+  }
   public int64 media_id = 0;
   public string description = "";
   public Cairo.ImageSurface? surface;
