@@ -199,6 +199,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     string[] failed_paths = {};
 
     for (uint i = 0; i < Cb.ComposeJob.MAX_UPLOADS; i++) {
+      // FIXME: Loading these images stacks the widgets wrong so that you can't get to all of the buttons
       string? image_path = account.db.select ("info").cols ("last_tweet_image_%u".printf(i + 1)).once_string ();
 
       if (image_path != null && image_path.length > 0){
@@ -533,6 +534,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
         this.add_image_button.sensitive = false;
         this.fav_image_button.sensitive = false;
       }
+      update_send_button_sensitivity ();
     }
   }
 
@@ -546,18 +548,15 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
   [GtkCallback]
   public void favorite_image_selected_cb (string path) {
     cancel_clicked ();
-    this.compose_image_manager.show ();
-    this.compose_image_manager.load_image (path, null);
-    this.compose_job.upload_image_async (path);
-    if (this.compose_image_manager.full) {
-      this.add_image_button.sensitive = false;
-      this.fav_image_button.sensitive = false;
+    try {
+      load_image (path);
     }
-
-    if (this.compose_image_manager.n_images > 0)
-      fav_image_view.set_gifs_enabled (false);
-
-    update_send_button_sensitivity ();
+    catch (GLib.Error e) {
+      // TODO: Proper error checking/reporting
+      // But it shouldn't happen because we only just picked it from the fav list,
+      // so the file info should just work
+      warning ("%s (%s)", e.message, path);
+    }
   }
 
   [GtkCallback]
