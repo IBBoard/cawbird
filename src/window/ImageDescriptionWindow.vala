@@ -19,9 +19,11 @@
 class ImageDescriptionWindow : Gtk.Window {
   const int DEFAULT_WIDTH = 450;
   const int MAX_DESCRIPTION_LENGTH = 1000;
-  
+
   public signal void description_updated(int64 media_id, string description);
 
+  [GtkChild]
+  private Gtk.Image image;
   [GtkChild]
   private Gtk.TextView description_text;
   [GtkChild]
@@ -34,23 +36,31 @@ class ImageDescriptionWindow : Gtk.Window {
   private Gtk.Label title_label;
   [GtkChild]
   private Gtk.Stack title_stack;
-
-  public string description {
-    owned get {
-      return description_text.buffer.text;
-    }
-  }
   
   private Rest.OAuthProxy proxy;
   private GLib.Cancellable? cancellable;
   private int64 media_id;
+  private Cairo.ImageSurface image_surface;
 
-  public ImageDescriptionWindow (Gtk.Window? parent, Rest.OAuthProxy proxy, int64 media_id, string description) {
+  public ImageDescriptionWindow (Gtk.Window? parent, Rest.OAuthProxy proxy, int64 media_id, string description, Cairo.ImageSurface image_surface) {
     this.media_id = media_id;
     this.proxy = proxy;
+    this.image_surface = image_surface;
+    description_text.buffer.text = description;
     this.cancellable = new GLib.Cancellable ();
 
-    description_text.buffer.text = description;
+    image.size_allocate.connect((alloc) => {
+      // FIXME: Window won't shrink again after the image gets bigger!
+      Cairo.ImageSurface scaled_surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, alloc.width, alloc.height);
+      Cairo.Context context = new Cairo.Context (scaled_surface);
+      var w = image_surface.get_width () * 1.0;
+      var h = image_surface.get_height () * 1.0;
+      var scale = double.min(1.0, double.min(alloc.width / w, alloc.height / h));
+      context.scale(scale, scale);
+      context.set_source_surface (image_surface, (alloc.width - w * scale) / 2 / scale, (alloc.height - h * scale) / 2 / scale);
+      context.paint ();
+      image.set_from_surface(scaled_surface);
+    });
 
     length_label.label = MAX_DESCRIPTION_LENGTH.to_string ();
 
@@ -75,7 +85,7 @@ class ImageDescriptionWindow : Gtk.Window {
 
     this.add_accel_group (ag);
 
-    this.set_default_size (DEFAULT_WIDTH, (int)(DEFAULT_WIDTH / 2.5));
+    this.set_default_size (DEFAULT_WIDTH, DEFAULT_WIDTH);
     this.update_character_count();
   }
 
@@ -90,7 +100,9 @@ class ImageDescriptionWindow : Gtk.Window {
   }
 
   private void update_character_count () {
-    length_label.label = (MAX_DESCRIPTION_LENGTH - Tl.count_weighted_characters (description_text.buffer.text)).to_string();
+    var chars_remaining = MAX_DESCRIPTION_LENGTH - Tl.count_weighted_characters (description_text.buffer.text);
+    length_label.label = chars_remaining.to_string();
+    length_label.get_accessible().set_description(ngettext("%d character remaining", "%d characters remaining", chars_remaining).printf((int)chars_remaining));
   }
 
   private void set_sending_state (bool sending) {
@@ -127,7 +139,7 @@ class ImageDescriptionWindow : Gtk.Window {
 
       if (success) {
         debug("Image description set");
-        description_updated(media_id, description);
+        description_updated(media_id, description_text.buffer.text);
         hide();
         debug("Hidden");
       } else {

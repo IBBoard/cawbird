@@ -99,7 +99,8 @@ class ComposeImageManager : Gtk.Container {
     assert (index >= 0);
     
     var image_button = this.buttons.get(index);
-    ImageDescriptionWindow description_window = new ImageDescriptionWindow((Gtk.Window)this.get_toplevel(), proxy, image_button.media_id, image_button.description);
+    assert (image_button.surface != null);
+    ImageDescriptionWindow description_window = new ImageDescriptionWindow((Gtk.Window)this.get_toplevel(), proxy, image_button.media_id, image_button.description, image_button.surface);
     description_window.description_updated.connect((media_id, description) => { image_button.description = description; });
     description_window.hide.connect(() => { description_window.destroy(); });
     description_window.show();
