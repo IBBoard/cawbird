@@ -63,14 +63,13 @@
         <property name="visible">1</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkImage" id="image">
+          <object class="ResizableImage" id="image">
             <property name="visible">1</property>
             <property name="margin-start">12</property>
             <property name="margin-end">12</property>
             <property name="margin-top">12</property>
             <property name="margin-bottom">6</property>
             <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
           </object>
         </child>
         <child>
@@ -88,6 +87,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
                 <property name="wrap-mode">word-char</property>
                 <property name="accepts-tab">False</property>
                 <property name="height-request">60</property>
