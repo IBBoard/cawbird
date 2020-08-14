@@ -240,7 +240,7 @@ private class MediaButton : Gtk.Widget {
         ct.new_path ();
       }
 
-      if (media.alt_text != null) {
+      if (media.alt_text != null && media.alt_text != "") {
         Gtk.IconTheme icon_theme = Gtk.IconTheme.get_default();
         int icon_size = 32;
         try {

@@ -473,7 +473,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                   if (t->medias[t->n_medias]->alt_text == NULL && json_object_has_member (media_obj, "additional_media_info")) {
                     JsonObject *additional_media_info = json_object_get_object_member (media_obj, "additional_media_info");
                     if (json_object_has_member (additional_media_info, "title") && json_object_has_member (additional_media_info, "description")) {
-                      t->medias[t->n_medias]->alt_text = g_strdup_printf ("%s\n\n%s", json_object_get_string_member (additional_media_info, "title"), json_object_get_string_member (additional_media_info, "description"));
+                      t->medias[t->n_medias]->alt_text = g_strstrip (g_strdup_printf ("%s\n\n%s", json_object_get_string_member (additional_media_info, "title"), json_object_get_string_member (additional_media_info, "description")));
                     }
                   }
 
