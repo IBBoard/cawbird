@@ -20,7 +20,6 @@
     private const int MIN_HEIGHT     = 40;
     private const int MIN_WIDTH      = 40;
     public Cairo.ImageSurface? image_surface = null;
-    private Gdk.Window? event_window = null;
   
     public ResizableImage () {
         this.get_style_context ().add_class ("inline-media");
@@ -127,100 +126,6 @@
     
         minimum = int.min (media_width, MIN_WIDTH);
         natural = media_width;
-    }
-  
-    public override void realize () {
-        this.set_realized (true);
-        int widget_width = get_allocated_width ();
-        int widget_height = get_allocated_height ();
-
-        int draw_width, draw_height;
-        double scale;
-        this.get_draw_size (widget_width, widget_height, out draw_width, out draw_height, out scale);
-    
-        Gdk.WindowAttr attr = {};
-        attr.x = 0;
-        attr.y = 0;
-        attr.width = draw_width;
-        attr.height = draw_height;
-        attr.window_type = Gdk.WindowType.CHILD;
-        attr.visual = this.get_visual ();
-        attr.wclass = Gdk.WindowWindowClass.INPUT_ONLY;
-        attr.event_mask = this.get_events () |
-                            Gdk.EventMask.BUTTON_PRESS_MASK |
-                            Gdk.EventMask.BUTTON_RELEASE_MASK |
-                            Gdk.EventMask.TOUCH_MASK |
-                            Gdk.EventMask.ENTER_NOTIFY_MASK |
-                            Gdk.EventMask.LEAVE_NOTIFY_MASK;
-    
-        Gdk.WindowAttributesType attr_mask = Gdk.WindowAttributesType.X |
-                                            Gdk.WindowAttributesType.Y;
-        Gdk.Window window = this.get_parent_window ();
-        this.set_window (window);
-        window.ref ();
-    
-        this.event_window = new Gdk.Window (window, attr, attr_mask);
-        this.register_window (this.event_window);
-    }
-  
-    public override void unrealize () {
-        if (this.event_window != null) {
-            this.unregister_window (this.event_window);
-            this.event_window.destroy ();
-            this.event_window = null;
-        }
-
-        base.unrealize ();
-    }
-  
-    public override void map () {
-        base.map ();
-    
-        if (this.event_window != null) {
-            this.event_window.show ();
-        }
-    }
-  
-    public override void unmap () {
-        if (this.event_window != null) {
-            this.event_window.hide ();
-        }
-    
-        base.unmap ();
-    }
-  
-    public override void size_allocate (Gtk.Allocation alloc) {
-        base.size_allocate (alloc);
-    
-        int draw_width;
-        int draw_height;
-        double scale;
-    
-        if (this.get_realized ()) {
-            this.get_draw_size (alloc.width, alloc.height, out draw_width, out draw_height, out scale);
-            int draw_x = (alloc.width / 2) - (draw_width / 2);
-            this.event_window.move_resize (alloc.x + draw_x, alloc.y, draw_width, draw_height);
-        }
-    }
-  
-    public override bool enter_notify_event (Gdk.EventCrossing evt) {
-        if (evt.window == this.event_window &&
-            evt.detail != Gdk.NotifyType.INFERIOR) {
-            this.set_state_flags (this.get_state_flags () | Gtk.StateFlags.PRELIGHT,
-                                true);
-        }
-    
-        return Gdk.EVENT_PROPAGATE;
-    }
-  
-    public override bool leave_notify_event (Gdk.EventCrossing evt) {
-        if (evt.window == this.event_window &&
-            evt.detail != Gdk.NotifyType.INFERIOR) {
-            this.set_state_flags (this.get_state_flags () & ~Gtk.StateFlags.PRELIGHT,
-                                true);
-        }
-    
-        return Gdk.EVENT_PROPAGATE;
     }
   }
   
