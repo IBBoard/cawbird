@@ -17,8 +17,8 @@
 
  private class ResizableImage : Gtk.Image {
     /* We use MIN_ constants in case the media has not yet been loaded */
-    private const int MIN_HEIGHT     = 40;
-    private const int MIN_WIDTH      = 40;
+    private const int MIN_HEIGHT = 120;
+    private const int MIN_WIDTH = 120;
     public Cairo.ImageSurface? image_surface = null;
   
     public ResizableImage () {
@@ -49,7 +49,6 @@
             int draw_width, draw_height;
             double scale;
             this.get_draw_size (widget_width, widget_height, out draw_width, out draw_height, out scale);
-            //debug("Allocation: %d×%d; Media: %d×%d; Scaled: %d×%d (%f)", widget_width, widget_height, image_surface.get_width(), image_surface.get_height(), draw_width, draw_height, scale);
 
             double draw_x = (widget_width - draw_width) / 2;
             
@@ -57,7 +56,6 @@
             ct.rectangle (0, 0, widget_width, widget_height);
             ct.scale (scale, scale);
             double draw_y = (widget_height - draw_height) / 2;
-            //debug("Draw x: %f; Draw y: %f", draw_x, draw_y);
             ct.set_source_surface (image_surface, draw_x / scale, draw_y / scale);
             ct.paint ();
             ct.restore ();
@@ -81,7 +79,7 @@
     public override void get_preferred_height (out int minimum,
                                                out int natural) {
         int media_height = image_surface != null ? image_surface.get_height() : MIN_HEIGHT; 
-        minimum = int.max (media_height, MIN_HEIGHT);
+        minimum = int.min (media_height, MIN_HEIGHT);
         natural = media_height;
     }
   
@@ -94,12 +92,12 @@
       double scale = width / (double) media_width;
       
       if (scale >= 1) {
-        minimum = media_height;
+        natural = media_height;
       } else {
-        minimum = (int) Math.floor (media_height * scale);
+        natural = (int) Math.floor (media_height * scale);
       }
   
-      natural = media_height;
+      minimum = int.min(media_height, MIN_HEIGHT);
     }
   
     public override void get_preferred_width_for_height (int height,
@@ -112,12 +110,12 @@
         double scale = height / (double) media_height;
 
         if (scale >= 1) {
-            minimum = media_width;
+            natural = media_width;
         } else {
-            minimum = (int) Math.floor (media_width * scale);
+            natural = (int) Math.floor (media_width * scale);
         }
     
-        natural = media_width;
+        minimum = int.min(media_width, MIN_WIDTH);
     }
   
     public override void get_preferred_width (out int minimum,
