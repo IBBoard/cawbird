@@ -446,6 +446,8 @@ send_tweet_call_completed_cb (GObject      *source_object,
     }
   else
     {
+      //FIXME: Can we inject missing image descriptions here? They don't get added in v1 API
+      // Hopefully they're added in the new v2 API.
       cb_user_stream_inject_tweet (self->user_stream, CB_STREAM_MESSAGE_TWEET, self->response_payload);
       g_task_return_boolean (send_task, TRUE);
     }
