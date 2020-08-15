@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-09 15:59+0100\n"
+"POT-Creation-Date: 2020-08-15 16:34+0100\n"
 "PO-Revision-Date: 2018-02-06 18:45+0000\n"
 "Last-Translator: Iris Ilexiris <iris.ilexiris@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/cawbird/cawbird/language/"
@@ -554,6 +554,12 @@ msgstr "Nur unu GIF po tvito permesitas."
 
 msgid "Insert Emoji"
 msgstr "Enmeti miensimbolo"
+
+#, c-format
+msgid "%d character remaining"
+msgid_plural "%d characters remaining"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Modify Filter"
 msgstr "Redakti filtrilon"

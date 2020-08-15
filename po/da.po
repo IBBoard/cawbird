@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-09 15:59+0100\n"
+"POT-Creation-Date: 2020-08-15 16:34+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, "
 "2020\n"
@@ -563,6 +563,12 @@ msgstr "Kun én GIF per tweet er tilladt."
 
 msgid "Insert Emoji"
 msgstr "Indsæt Emoji"
+
+#, c-format
+msgid "%d character remaining"
+msgid_plural "%d characters remaining"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Modify Filter"
 msgstr "Rediger filter"
