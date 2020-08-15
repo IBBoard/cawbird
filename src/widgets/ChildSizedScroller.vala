@@ -49,8 +49,8 @@ class ChildSizedScroller : Gtk.ScrolledWindow {
     // the child's idea of width to stretch everything!
 
     public override unowned Atk.Object get_accessible() {
-        unowned var accessible = base.get_accessible();
-        
+        unowned Atk.Object accessible = base.get_accessible();
+
         foreach (Gtk.Widget child in get_children()) {
             if (child.visible) {
                 accessible = child.get_accessible();
