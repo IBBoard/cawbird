@@ -189,17 +189,15 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     this.set_default_size (DEFAULT_WIDTH, (int)(DEFAULT_WIDTH / 2.5));
   }
 
-  private async void load_tweet () {
-    string? last_tweet = account.db.select ("info").cols ("last_tweet").once_string ();
-    if (last_tweet != null && last_tweet.length > 0 &&
-        tweet_text.get_buffer ().text.length == 0) {
-      this.tweet_text.get_buffer ().text = last_tweet;
-    }
+  public override void show () {
+    base.show();
+    load_images.begin();
+  }
 
+  private async void load_images () {
     string[] failed_paths = {};
 
     for (uint i = 0; i < Cb.ComposeJob.MAX_UPLOADS; i++) {
-      // FIXME: Loading these images stacks the widgets wrong so that you can't get to all of the buttons
       string? image_path = account.db.select ("info").cols ("last_tweet_image_%u".printf(i + 1)).once_string ();
 
       if (image_path != null && image_path.length > 0){
@@ -223,6 +221,14 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       image_error_label.label = _("%s: %s").printf(failed_to_log_str, string.joinv(", ", failed_paths));
 
       cancel_button.label = _("Back");
+    }
+  }
+
+  private async void load_tweet () {
+    string? last_tweet = account.db.select ("info").cols ("last_tweet").once_string ();
+    if (last_tweet != null && last_tweet.length > 0 &&
+        tweet_text.get_buffer ().text.length == 0) {
+      this.tweet_text.get_buffer ().text = last_tweet;
     }
 
     int64 last_reply_id = account.db.select ("info").cols ("last_tweet_reply_id").once_i64 ();
