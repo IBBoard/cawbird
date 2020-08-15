@@ -169,7 +169,6 @@ class ComposeImageManager : Gtk.Container {
     bar.show_all ();
     this.progress_bars.add (bar);
 
-    // Add the progress bar first so it (should) go under the image description button
     var desc_btn = new Gtk.Button.from_icon_name("cawbird-compose-symbolic");
     desc_btn.set_parent(this);
     desc_btn.get_style_context ().add_class ("image-button");
@@ -255,7 +254,7 @@ class ComposeImageManager : Gtk.Container {
       bar.get_preferred_width (out bar_allocation.width, out n);
       bar_allocation.width = int.max (button_width - 12, bar_allocation.width);
       bar.get_preferred_height (out bar_allocation.height, out n);
-      bar_allocation.y = child_allocation.y + button_height - bar_allocation.height - 6;
+      bar_allocation.y = child_allocation.y + (child_allocation.height + bar_allocation.height) / 2;
 
       bar.size_allocate (bar_allocation);
 

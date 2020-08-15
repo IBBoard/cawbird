@@ -83,14 +83,14 @@ class AddImageButton : Gtk.Button {
 
       if (draw_width > 0 && draw_height > 0) {
         ct.scale (scale, scale);
-        ct.set_source_surface (this.surface, 0, 0);
+        ct.set_source_surface (this.surface, (widget_width - draw_width) / 2 / scale, (widget_height - draw_height) / 2 / scale);
         ct.fill ();
       }
       ct.restore ();
 
       style_context.render_check (ct,
-                                  (draw_width / 2.0) - (ICON_SIZE / 2.0),
-                                  (draw_height / 2.0) - (ICON_SIZE / 2.0),
+                                  (widget_width / 2.0) - (ICON_SIZE / 2.0),
+                                  (widget_height / 2.0) - (ICON_SIZE / 2.0),
                                   ICON_SIZE,
                                   ICON_SIZE);
     }
