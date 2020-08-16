@@ -7,6 +7,7 @@
 # Geert Wirken <geert@gwirken.nl>, 2014
 # Nathan Follens, 2017
 # Heimen Stoffels <vistausss@outlook.com>, 2014-2015, 2020
+# Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, 2020
 #
 #, fuzzy
 msgid ""
