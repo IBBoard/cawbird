@@ -32,15 +32,15 @@ msgid "Twitter Client"
 msgstr "Twitter klient"
 
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as "
-"Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
 "Cawbird er en GTK+ twitter klient med essentielle funktioner som Direkte "
 "Beskeder (DMs), tweet notifikationer og samtalevisning"
 
 msgid ""
-"Additional features include local viewing of videos, multiple inline images, "
-"Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images,"
+" Lists, Filters, multiple accounts, etc."
 msgstr ""
 "Yderligere funktioner inkludere: Lokal videoafspilning, Flere indlejrede "
 "billeder, Lister, Filtre, Flere konti, osv."
@@ -60,7 +60,8 @@ msgstr "IBBoard"
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Brug Twitter i en desktop applikation"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;"
 
@@ -80,16 +81,15 @@ msgstr "og"
 msgid "and %d others"
 msgstr "samt yderligere %d"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Direct messages with %s"
-msgstr "Direkte Beskeder"
+msgstr "Direkte beskeder med %s"
 
 msgid "Direct Conversation"
 msgstr "Direkte samtale"
 
-#, fuzzy
 msgid "Direct message threads"
-msgstr "Direkte Beskeder"
+msgstr "Direkte beskedtråde"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -104,9 +104,8 @@ msgstr "Ny direkte besked fra %s"
 msgid "Direct Messages"
 msgstr "Direkte Beskeder"
 
-#, fuzzy
 msgid "Favourites timeline"
-msgstr "Favorite tweet"
+msgstr "Favorit tidslinje"
 
 msgid "Favorites"
 msgstr "Favoritter"
@@ -117,9 +116,8 @@ msgstr "Nyt Filter"
 msgid "Filters"
 msgstr "Filtre"
 
-#, fuzzy
 msgid "Home timeline"
-msgstr "Skjul i tidslinje"
+msgstr "Hjemme tidslinje"
 
 #, c-format
 msgid "%s retweeted %s"
@@ -138,9 +136,9 @@ msgstr[1] "%d nye Tweets!"
 msgid "Home"
 msgstr "Hjem"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s list tweets"
-msgstr "%s retweetet"
+msgstr "%s tråds tweets"
 
 msgid "Lists"
 msgstr "Lister"
@@ -154,9 +152,8 @@ msgstr "Forfat Tweet"
 msgid "Add new Account"
 msgstr "Ny Konto"
 
-#, fuzzy
 msgid "Mentions timeline"
-msgstr "Skjul i tidslinje"
+msgstr "Omtale tidslinje"
 
 #, c-format
 msgid "%s mentioned %s"
@@ -175,60 +172,62 @@ msgstr "Låst profil"
 msgid "Tweet to @%s"
 msgstr "Tweet til @%s"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%d tweet"
 msgid_plural "%d tweets"
-msgstr[0] "%s retweetet"
-msgstr[1] "%s retweetet"
+msgstr[0] "%d tweet"
+msgstr[1] "%d tweets"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Following %d account"
 msgid_plural "Following %d accounts"
-msgstr[0] "Følger"
-msgstr[1] "Følger"
+msgstr[0] "Følger %d konto"
+msgstr[1] "Følger %d konti"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Location: %s"
-msgstr "Notifikationer"
+msgstr "Position: %s"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
-#, fuzzy, c-format
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile
+#. timeline view
+#, c-format
 msgid "%s timeline"
-msgstr "Skjul i tidslinje"
+msgstr "%s tidslinje"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
-#, fuzzy, c-format
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of
+#. users following the user
+#, c-format
 msgid "%s followers"
-msgstr "Følgere"
+msgstr "%s følgere"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
-#, fuzzy, c-format
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of
+#. users followed by the user
+#, c-format
 msgid "%s following"
-msgstr "Følger"
+msgstr "%s følger"
 
 msgid "Protected Profile"
 msgstr "Låst Profil"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%d follower"
 msgid_plural "%d followers"
-msgstr[0] "Følgere"
-msgstr[1] "Følgere"
+msgstr[0] "%d følger"
+msgstr[1] "%d følgere"
 
-#, fuzzy
 msgid "No tweets found"
-msgstr "Ingen poster fundet"
+msgstr "Ingen tweets fundet"
 
 msgid "No users found"
 msgstr "Ingen brugere fundet"
 
 #, c-format
 msgid "Users matching \"%s\""
-msgstr ""
+msgstr "Brugere som matcher \"%s\""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Tweets matching \"%s\""
-msgstr "Tweet til @%s"
+msgstr "Tweets der matcher \"%s\""
 
 msgid "Search"
 msgstr "Søg"
@@ -267,9 +266,9 @@ msgid "Delete"
 msgstr "Fjern"
 
 #. TRANSLATORS: replacements are name and handle (without the "@")
-#, fuzzy, c-format
+#, c-format
 msgid "Retweeted by %s (@%s)"
-msgstr "Retweet"
+msgstr "Retweetet af %s (@%s)"
 
 #, c-format
 msgid "Block %s"
@@ -360,8 +359,8 @@ msgid ""
 "This request looks like it might be automated. To protect our users from "
 "spam and other malicious activity, we can’t complete this action right now."
 msgstr ""
-"Denne anmodning virker automatiseret. For at beskytte vores brugere fra spam "
-"og andre ondsindet aktiviteter, kan vi ikke udføre denne handling lige nu."
+"Denne anmodning virker automatiseret. For at beskytte vores brugere fra spam"
+" og andre ondsindet aktiviteter, kan vi ikke udføre denne handling lige nu."
 
 msgid "User must verify login"
 msgstr "Bruger skal validere login"
@@ -385,8 +384,8 @@ msgid "A media id was not found."
 msgstr "Et medie id kunne ikke findes."
 
 msgid ""
-"To protect our users from spam and other malicious activity, this account is "
-"temporarily locked."
+"To protect our users from spam and other malicious activity, this account is"
+" temporarily locked."
 msgstr ""
 "For at beskytte brugere fra spam og andre ondsindede aktiviteter, er denne "
 "konto blevet låst."
@@ -428,8 +427,8 @@ msgstr "Nu"
 #, c-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d minut siden"
+msgstr[1] "%d minutter siden"
 
 #. TRANSLATORS: short-form "x minutes ago"
 #, c-format
@@ -439,29 +438,33 @@ msgstr "%dm"
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d time siden"
+msgstr[1] "%d timer siden"
 
 #. TRANSLATORS: short-form "x hours ago"
 #, c-format
 msgid "%dh"
 msgstr "%dt"
 
-#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from this year - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B"
-msgstr ""
+msgstr "%e %B"
 
-#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from this year - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b"
-msgstr ""
+msgstr "%e %b"
 
-#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from previous years - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B %Y"
-msgstr ""
+msgstr "%e %B %Y"
 
-#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from previous years - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b %Y"
-msgstr ""
+msgstr "%e %b %Y"
 
 msgid "Don't have a Twitter account yet?"
 msgstr "Har du ikke en Twitter konto endnu?"
@@ -537,7 +540,8 @@ msgstr[0] "Kunne ikke indlæse billede"
 msgstr[1] "Kunne ikke indlæse %u billeder"
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
+#. <path>, <path>"
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -567,8 +571,8 @@ msgstr "Indsæt Emoji"
 #, c-format
 msgid "%d character remaining"
 msgid_plural "%d characters remaining"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d tegn tilbage"
+msgstr[1] "%d tegn tilbage"
 
 msgid "Modify Filter"
 msgstr "Rediger filter"
@@ -595,7 +599,8 @@ msgid "Snippet already exists"
 msgstr "Snippet eksistere allerede"
 
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
+"#newisalwaysbetter"
 msgstr ""
 "Hej, tjek lige denne nye #Cawbird version! \\ (•◡•) / #cool "
 "#newisalwaysbetter"
@@ -616,8 +621,8 @@ msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
 msgstr ""
-"For at autentificere Cawbird skal du have en PIN fra twitter.com fra kontoen "
-"du ønsker at tilføje"
+"For at autentificere Cawbird skal du have en PIN fra twitter.com fra kontoen"
+" du ønsker at tilføje"
 
 msgid "Request PIN"
 msgstr "Anmod om PIN"
@@ -700,20 +705,17 @@ msgstr "Tilføj Billede"
 msgid "Show favorite images"
 msgstr "Vis favorit billeder"
 
-#, fuzzy
 msgid "Filtered terms"
-msgstr "Filtre"
+msgstr "Filtrerede termer"
 
-#, fuzzy
 msgid "Filtered users"
-msgstr "Filtre"
+msgstr "Filtrerede brugere"
 
 msgid "Users"
 msgstr "Brugere"
 
-#, fuzzy
 msgid "Set image description"
-msgstr "Beskrivelse"
+msgstr "Angiv billede beskrivelse"
 
 msgid "Subscribe"
 msgstr "Tilmeld"
@@ -796,9 +798,8 @@ msgstr "Muted"
 msgid "Retweets disabled"
 msgstr "Retweets deaktiveret"
 
-#, fuzzy
 msgid "More actions"
-msgstr "Omtaler"
+msgstr "Flere handlinger"
 
 msgid "Follows you"
 msgstr "Følger dig"
@@ -992,11 +993,10 @@ msgid "Reply"
 msgstr "Svar"
 
 msgid "Liked"
-msgstr ""
+msgstr "Liked"
 
-#, fuzzy
 msgid "Retweeted"
-msgstr "Retweet"
+msgstr "Retweetet"
 
 msgid "Unblock"
 msgstr "Unblocker"
@@ -1015,13 +1015,3 @@ msgstr "Lavet"
 
 msgid "Subscribed to"
 msgstr "Tilmeldt"
-
-#, fuzzy, c-format
-#~ msgid "%s (%s) followers"
-#~ msgstr "Følgere"
-
-#~ msgid "List"
-#~ msgstr "Liste"
-
-#~ msgid "Loading…"
-#~ msgstr "Indlæser..."
