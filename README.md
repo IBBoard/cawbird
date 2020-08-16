@@ -34,6 +34,8 @@ These packages are currently available for:
   * Testing
   * Unstable
 
+i586, x86_64 (amd64) and aarch64 (arm64) are available on most platforms (where supported by the distro).
+
 ### Official distro repositories
 
 The following distros currently have their own official packages:
@@ -134,6 +136,14 @@ Previously, the following issues have occurred that were outside of our control:
 ## Translations
 
   Since February 2020, there has been a [Cawbird project on Transifex](https://www.transifex.com/cawbird/cawbird/dashboard/). Users can sign up on Transifex for free to help translate Cawbird.
+
+## Testing
+
+Since August 2020, there has been a [Cawbird "unstable" package](https://software.opensuse.org//download.html?project=home%3AIBBoard%3Acawbird-unstable&package=cawbird-unstable) built on the Open Build Service. These packages are intended for users who can't build Cawbird from source but want to test new features.
+
+**Do not** use the unstable release unless you are testing new features and understand the risks. *They are not intended for everyday use*. They will be updated intermittently with new features from `git master`. They may have bugs. They may not get patched. They may be behind the main release. They may break things and eat your homework.
+
+It is recommended that you backup `~/.config/cawbird` before running Cawbird-Unstable.
 
 ## Contributing
 
