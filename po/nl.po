@@ -30,16 +30,16 @@ msgid "Twitter Client"
 msgstr "Twittertoepassing"
 
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as "
-"Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
 "Cawbird is een geïntegreerde GTK+ Twittertoepassing met ondersteuning voor "
 "de belangrijkste functionaliteiten, zoals privéberichten (DM's), "
 "tweetmeldingen en gespreksweergaven."
 
 msgid ""
-"Additional features include local viewing of videos, multiple inline images, "
-"Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images,"
+" Lists, Filters, multiple accounts, etc."
 msgstr ""
 "Daarnaast kun je video's afspelen, meerdere bijgevoegde afbeeldingen tonen, "
 "en is er ondersteuning voor lijsten, filters, meerdere accounts en nog veel "
@@ -60,7 +60,8 @@ msgstr "IBBoard"
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Gebruik Twitter vanuit een normale bureaubladtoepassing"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;"
 
@@ -80,16 +81,15 @@ msgstr "en"
 msgid "and %d others"
 msgstr "en %d anderen"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Direct messages with %s"
-msgstr "Privéberichten"
+msgstr "Privégesprek met %s"
 
 msgid "Direct Conversation"
 msgstr "Privégesprek"
 
-#, fuzzy
 msgid "Direct message threads"
-msgstr "Privéberichten"
+msgstr "Privégesprekken"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -104,9 +104,8 @@ msgstr "Nieuw privébericht van %s"
 msgid "Direct Messages"
 msgstr "Privéberichten"
 
-#, fuzzy
 msgid "Favourites timeline"
-msgstr "Vind ik leuk"
+msgstr "Tijdlijn met vind-ik-leuks"
 
 msgid "Favorites"
 msgstr "Vind-ik-leuks"
@@ -117,9 +116,8 @@ msgstr "Filter toevoegen"
 msgid "Filters"
 msgstr "Filters"
 
-#, fuzzy
 msgid "Home timeline"
-msgstr "Verbergen op tijdlijn"
+msgstr "Startpaginatijdlijn"
 
 #, c-format
 msgid "%s retweeted %s"
@@ -138,9 +136,9 @@ msgstr[1] "%d nieuwe tweets!"
 msgid "Home"
 msgstr "Startpagina"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s list tweets"
-msgstr "%s tweette"
+msgstr "Tweets op de %s-lijst"
 
 msgid "Lists"
 msgstr "Lijsten"
@@ -154,9 +152,8 @@ msgstr "Tweet opstellen"
 msgid "Add new Account"
 msgstr "Account toevoegen"
 
-#, fuzzy
 msgid "Mentions timeline"
-msgstr "Verbergen op tijdlijn"
+msgstr "Vermeldingentijdlijn"
 
 #, c-format
 msgid "%s mentioned %s"
@@ -175,60 +172,62 @@ msgstr "Afgeschermd profiel"
 msgid "Tweet to @%s"
 msgstr "Verstuur een tweet aan @%s"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%d tweet"
 msgid_plural "%d tweets"
-msgstr[0] "%s tweette"
-msgstr[1] "%s tweette"
+msgstr[0] "%d tweet"
+msgstr[1] "%d tweets"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Following %d account"
 msgid_plural "Following %d accounts"
-msgstr[0] "Volgend"
-msgstr[1] "Volgend"
+msgstr[0] "Volgt %d account"
+msgstr[1] "Volgt %d accounts"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Location: %s"
-msgstr "Meldingen"
+msgstr "Locatie: %s"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
-#, fuzzy, c-format
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile
+#. timeline view
+#, c-format
 msgid "%s timeline"
-msgstr "Verbergen op tijdlijn"
+msgstr "%s's tijdlijn"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
-#, fuzzy, c-format
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of
+#. users following the user
+#, c-format
 msgid "%s followers"
-msgstr "Volgers"
+msgstr "%s's volgers"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
-#, fuzzy, c-format
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of
+#. users followed by the user
+#, c-format
 msgid "%s following"
-msgstr "Volgend"
+msgstr "Gevolgd door %s"
 
 msgid "Protected Profile"
 msgstr "Afgeschermd profiel"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%d follower"
 msgid_plural "%d followers"
-msgstr[0] "Volgers"
-msgstr[1] "Volgers"
+msgstr[0] "%d volger"
+msgstr[1] "%d volgers"
 
-#, fuzzy
 msgid "No tweets found"
-msgstr "Geen items gevonden"
+msgstr "Geen tweets gevonden"
 
 msgid "No users found"
 msgstr "Er zijn geen gebruikers gevonden"
 
 #, c-format
 msgid "Users matching \"%s\""
-msgstr ""
+msgstr "Gebruikers die overeenkomen men \"%s\""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Tweets matching \"%s\""
-msgstr "Verstuur een tweet aan @%s"
+msgstr "Tweets die overeenkomen met \"%s\""
 
 msgid "Search"
 msgstr "Zoeken"
@@ -267,9 +266,9 @@ msgid "Delete"
 msgstr "Verwijderen"
 
 #. TRANSLATORS: replacements are name and handle (without the "@")
-#, fuzzy, c-format
+#, c-format
 msgid "Retweeted by %s (@%s)"
-msgstr "Retweeten"
+msgstr "Geretweet door %s (@%s)"
 
 #, c-format
 msgid "Block %s"
@@ -363,8 +362,8 @@ msgid ""
 "This request looks like it might be automated. To protect our users from "
 "spam and other malicious activity, we can’t complete this action right now."
 msgstr ""
-"Dit verzoek lijkt geautomatiseerd. Om gebruikers te beschermen tegen spam en "
-"andere schadelijke activiteit, kunnen we deze handeling nu niet uitvoeren."
+"Dit verzoek lijkt geautomatiseerd. Om gebruikers te beschermen tegen spam en"
+" andere schadelijke activiteit, kunnen we deze handeling nu niet uitvoeren."
 
 msgid "User must verify login"
 msgstr "Je moet je inlogverzoek goedkeuren"
@@ -390,8 +389,8 @@ msgid "A media id was not found."
 msgstr "Er is geen media-id gevonden."
 
 msgid ""
-"To protect our users from spam and other malicious activity, this account is "
-"temporarily locked."
+"To protect our users from spam and other malicious activity, this account is"
+" temporarily locked."
 msgstr ""
 "Om gebruikers te beschermen tegen spam en andere schadelijke activiteit, is "
 "dit account tijdelijk geblokkeerd."
@@ -434,8 +433,8 @@ msgstr "Nu"
 #, c-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d minuut geleden"
+msgstr[1] "%d minuten geleden"
 
 #. TRANSLATORS: short-form "x minutes ago"
 #, c-format
@@ -445,29 +444,33 @@ msgstr "%dm"
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d uur geleden"
+msgstr[1] "%d uur geleden"
 
 #. TRANSLATORS: short-form "x hours ago"
 #, c-format
 msgid "%dh"
 msgstr "%du"
 
-#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from this year - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B"
-msgstr ""
+msgstr "%e %B"
 
-#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from this year - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b"
-msgstr ""
+msgstr "%e %b"
 
-#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from previous years - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B %Y"
-msgstr ""
+msgstr "%e %B %Y"
 
-#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from previous years - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b %Y"
-msgstr ""
+msgstr "%e %b %Y"
 
 msgid "Don't have a Twitter account yet?"
 msgstr "Heb je nog geen Twitter-account?"
@@ -543,7 +546,8 @@ msgstr[0] "De afbeelding kan niet worden geladen"
 msgstr[1] "%u afbeeldingen kunnen niet worden geladen"
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
+#. <path>, <path>"
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -573,8 +577,8 @@ msgstr "Emoji invoegen"
 #, c-format
 msgid "%d character remaining"
 msgid_plural "%d characters remaining"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Nog %d teken mogelijk"
+msgstr[1] "Nog %d tekens mogelijk"
 
 msgid "Modify Filter"
 msgstr "Filter aanpassen"
@@ -601,7 +605,8 @@ msgid "Snippet already exists"
 msgstr "Het fragment bestaat al"
 
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
+"#newisalwaysbetter"
 msgstr ""
 "Hé! Kijk eens naar deze nieuwe #Cawbird-versie! \\ (•◡•) / #cool "
 "#nieuwisaltijdbeter"
@@ -622,8 +627,8 @@ msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
 msgstr ""
-"Geef Cawbird toestemming door op twitter.com een pincode op te halen van het "
-"toe te voegen account"
+"Geef Cawbird toestemming door op twitter.com een pincode op te halen van het"
+" toe te voegen account"
 
 msgid "Request PIN"
 msgstr "Pincode aanvragen"
@@ -706,20 +711,17 @@ msgstr "Afbeelding toevoegen"
 msgid "Show favorite images"
 msgstr "Leuk gevonden afbeeldingen tonen"
 
-#, fuzzy
 msgid "Filtered terms"
-msgstr "Filters"
+msgstr "Gefilterde zoektermen"
 
-#, fuzzy
 msgid "Filtered users"
-msgstr "Filters"
+msgstr "Gefilterde gebruikers"
 
 msgid "Users"
 msgstr "Gebruikers"
 
-#, fuzzy
 msgid "Set image description"
-msgstr "Omschrijving"
+msgstr "Afbeeldingsomschrijving instellen"
 
 msgid "Subscribe"
 msgstr "Abonneren"
@@ -802,9 +804,8 @@ msgstr "Genegeerd"
 msgid "Retweets disabled"
 msgstr "Retweets uitschakelen"
 
-#, fuzzy
 msgid "More actions"
-msgstr "Vermeldingen"
+msgstr "Meer acties"
 
 msgid "Follows you"
 msgstr "Volgt je"
@@ -1000,11 +1001,10 @@ msgid "Reply"
 msgstr "Beantwoorden"
 
 msgid "Liked"
-msgstr ""
+msgstr "Leuk gevonden"
 
-#, fuzzy
 msgid "Retweeted"
-msgstr "Retweeten"
+msgstr "Geretweet"
 
 msgid "Unblock"
 msgstr "Deblokkeren"
@@ -1023,13 +1023,3 @@ msgstr "Aangemaakt"
 
 msgid "Subscribed to"
 msgstr "Geabonneerd op"
-
-#, fuzzy, c-format
-#~ msgid "%s (%s) followers"
-#~ msgstr "Volgers"
-
-#~ msgid "List"
-#~ msgstr "Lijst"
-
-#~ msgid "Loading…"
-#~ msgstr "Bezig met laden..."
