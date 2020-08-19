@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-15 16:34+0100\n"
+"POT-Creation-Date: 2020-08-19 20:42+0100\n"
 "PO-Revision-Date: 2018-02-09 06:34+0000\n"
 "Last-Translator: Kim Malmo <berencamlost@msn.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/cawbird/cawbird/"
@@ -546,6 +546,10 @@ msgstr "Valgte fil er ikke et bilde."
 #, c-format
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
+msgstr "Valgt bilde er for stort. Maksimal filstørrelse per bilde er %'d MB"
+
+#, fuzzy, c-format
+msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
 msgstr "Valgt bilde er for stort. Maksimal filstørrelse per bilde er %'d MB"
 
 msgid "Only one GIF file per tweet is allowed."

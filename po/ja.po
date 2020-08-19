@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-15 16:34+0100\n"
+"POT-Creation-Date: 2020-08-19 20:42+0100\n"
 "PO-Revision-Date: 2017-11-12 23:35+0000\n"
 "Last-Translator: MTD TR <dev.mantendo@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/cawbird/cawbird/"
@@ -534,6 +534,10 @@ msgstr ""
 #, c-format
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
+msgstr "選択された画像は大きすぎます。最大ファイルサイズは%'dMBです"
+
+#, fuzzy, c-format
+msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
 msgstr "選択された画像は大きすぎます。最大ファイルサイズは%'dMBです"
 
 msgid "Only one GIF file per tweet is allowed."

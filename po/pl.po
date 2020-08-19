@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-15 16:34+0100\n"
+"POT-Creation-Date: 2020-08-19 20:42+0100\n"
 "PO-Revision-Date: 2017-10-22 15:14+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -570,6 +570,11 @@ msgstr "Wybrany plik nie jest obrazem."
 #, c-format
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
+msgstr ""
+"Wybrany obraz jest za duży. Maksymalny rozmiar pliku na obraz to %'d MB."
+
+#, fuzzy, c-format
+msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
 msgstr ""
 "Wybrany obraz jest za duży. Maksymalny rozmiar pliku na obraz to %'d MB."
 

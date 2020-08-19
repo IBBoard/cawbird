@@ -511,20 +511,29 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     GLib.FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_TYPE + "," +
                                           GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," +
                                           GLib.FileAttribute.STANDARD_SIZE, 0);
+    var content_type = info.get_content_type();
+    var is_image = content_type.has_prefix("image/");
+    var is_gif = is_image && content_type == "image/gif";
+    var file_size = info.get_size();
 
-    if (!info.get_content_type ().has_prefix ("image/")) {
+    if (!is_image) {
       stack.visible_child = image_error_grid;
       image_error_label.label = _("Selected file is not an image.");
       cancel_button.label = _("Back");
       send_button.sensitive = false;
-    } else if (info.get_size () > Twitter.MAX_BYTES_PER_IMAGE) {
+    } else if (!is_gif && file_size > Twitter.MAX_BYTES_PER_IMAGE) {
       stack.visible_child = image_error_grid;
       image_error_label.label = _("The selected image is too big. The maximum file size per image is %'d MB")
                                 .printf (Twitter.MAX_BYTES_PER_IMAGE / 1024 / 1024);
       cancel_button.label = _("Back");
       send_button.sensitive = false;
-    } else if (filename.has_suffix (".gif") &&
-               this.compose_image_manager.n_images > 0) {
+    } else if (is_gif && file_size > Twitter.MAX_BYTES_PER_GIF) {
+      stack.visible_child = image_error_grid;
+      image_error_label.label = _("The selected GIF is too big. The maximum file size per GIF is %'d MB")
+                                .printf (Twitter.MAX_BYTES_PER_GIF / 1024 / 1024);
+      cancel_button.label = _("Back");
+      send_button.sensitive = false;
+    } else if (is_gif && this.compose_image_manager.n_images > 0) {
       stack.visible_child = image_error_grid;
       image_error_label.label = _("Only one GIF file per tweet is allowed.");
       cancel_button.label = _("Back");
