@@ -379,7 +379,6 @@ cb_compose_job_upload_image_async (CbComposeJob *self,
   rest_proxy_call_upload (call,
                           image_upload_cb,
                           G_OBJECT (self),
-                          upload->cancellable,
                           upload,
                           NULL);
   g_object_unref (call);
@@ -465,8 +464,10 @@ do_send (CbComposeJob *self)
   g_assert (self->send_call != NULL);
   g_assert (self->send_task != NULL);
 
-  if (media_ids)
-    rest_proxy_call_take_param (self->send_call, "media_ids", media_ids);
+  if (media_ids) {
+    rest_proxy_call_add_param (self->send_call, "media_ids", media_ids);
+    g_free(media_ids);
+  }
 
 #ifdef DEBUG
   {
@@ -509,7 +510,8 @@ cb_compose_job_send_async (CbComposeJob        *self,
 
       g_assert (self->quoted_tweet == NULL);
 
-      rest_proxy_call_take_param (call, "in_reply_to_status_id", id_str);
+      rest_proxy_call_add_param (call, "in_reply_to_status_id", id_str);
+      g_free(id_str);
     }
   else if (self->quoted_tweet != NULL)
     {
@@ -538,7 +540,7 @@ cb_compose_job_send_async (CbComposeJob        *self,
 
       if (upload_count == 0)
         {
-          rest_proxy_call_take_param (call, "attachment_url", quoted_url);
+          rest_proxy_call_add_param (call, "attachment_url", quoted_url);
         }
       else
         {
@@ -546,9 +548,10 @@ cb_compose_job_send_async (CbComposeJob        *self,
           g_free(self->text);
           self->text = new_text;
         }
+        g_free(quoted_url);
     }
 
-  rest_proxy_call_take_param (call, "status", g_steal_pointer (&self->text));
+  rest_proxy_call_add_param (call, "status", self->text);
 
 
   self->send_call = call;

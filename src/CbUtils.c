@@ -561,7 +561,7 @@ call_done_cb (GObject      *source_object,
       return;
     }
 
-  payload = rest_proxy_call_take_payload (call);
+  payload = g_strdup(rest_proxy_call_get_payload (call));
 
   g_task_set_task_data (task, payload, g_free);
   g_task_run_in_thread (task, parse_json_async);

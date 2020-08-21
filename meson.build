@@ -6,7 +6,6 @@ project('Cawbird', ['vala', 'c'],
 
 gnome = import('gnome')
 srcdir = include_directories('src')
-restdir = include_directories('src/rest/')
 
 # This is apparently bad practice, but it solves our "undefined reference to symbol 'floor@@GLIBC_2.2.5'" build problem
 cc = meson.get_compiler('c')
@@ -16,6 +15,7 @@ min_glib_version = '2.44'
 
 glib_dep = dependency('glib-2.0', version: '>=' + min_glib_version)
 gtk_dep  = dependency('gtk+-3.0', version: '>=3.22')
+rest_dep = dependency('rest-0.7')
 json_dep = dependency('json-glib-1.0')
 sql_dep  = dependency('sqlite3')
 soup_dep = dependency('libsoup-2.4')
@@ -23,6 +23,7 @@ soup_dep = dependency('libsoup-2.4')
 cb_deps = [
   glib_dep,
   gtk_dep,
+  rest_dep,
   json_dep,
   sql_dep,
   soup_dep,
@@ -175,23 +176,12 @@ cawbird_lib_sources = files([
   'src/CbUserCompletionModel.c',
   'src/CbEmojiChooser.c',
 
-  # Rest sources
-  'src/rest/rest/rest-param.c',
-  'src/rest/rest/rest-params.c',
-  'src/rest/rest/rest-proxy.c',
-  'src/rest/rest/rest-proxy-call.c',
-  'src/rest/rest/rest-main.c',
-  'src/rest/rest/oauth-proxy.c',
-  'src/rest/rest/oauth-proxy-call.c',
-  'src/rest/rest/sha1.c',
-
   # libtweetlength sources (TODO: Should be a meson subproject)
   # https://github.com/baedert/libtweetlength
   'src/libtl/libtweetlength.c',
 
   # Vapi files
   'vapi/cawbird-internal.vapi',
-  'vapi/rest-0.7.vapi',
   'vapi/libtl.vapi'
 ])
 
@@ -214,7 +204,7 @@ cb_lib = static_library(
   'cawbird',
   cawbird_lib_sources,
   dependencies: cb_deps,
-  include_directories: [srcdir, restdir],
+  include_directories: [srcdir],
   vala_args: [
     meson.source_root() + '/vapi/config.vapi',
     '--target-glib=' + min_glib_version,
@@ -228,7 +218,7 @@ cb_lib = static_library(
 cb_dep = declare_dependency(
   link_with: cb_lib,
   dependencies: cb_deps,
-  include_directories: [srcdir, restdir],
+  include_directories: [srcdir],
 )
 
 
@@ -241,7 +231,6 @@ executable(
   include_directories: srcdir,
   vala_args: [
     meson.source_root() + '/vapi/cawbird-internal.vapi',
-    meson.source_root() + '/vapi/rest-0.7.vapi',
     meson.source_root() + '/vapi/libtl.vapi',
   ],
   install: true

@@ -19,7 +19,7 @@
 #define __CB_USER_STREAM_H__
 
 #include <glib-object.h>
-#include "rest/rest/rest-proxy.h"
+#include <rest/rest-proxy.h>
 #include "CbMessageReceiver.h"
 #include "CbTypes.h"
 

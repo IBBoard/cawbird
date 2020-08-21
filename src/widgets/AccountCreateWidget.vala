@@ -44,30 +44,36 @@ class AccountCreateWidget : Gtk.Box {
     pin_entry.buffer.inserted_text.connect (pin_changed_cb);
   }
 
+  private void pin_request_cb (Rest.OAuthProxy proxy, Error? error, Object? weak_object) {
+    if (error != null) {
+      Utils.show_error_dialog (error, this.main_window);
+      critical (error.message);
+      return;
+    }
+    
+    string uri = "http://twitter.com/oauth/authorize?oauth_token=" + acc.proxy.get_token();
+    debug ("Trying to open %s", uri);
+
+    try {
+      GLib.AppInfo.launch_default_for_uri (uri, null);
+    } catch (GLib.Error e) {
+      this.show_error (_("Could not open %s").printf ("<a href=\"" + uri + "\">" + uri + "</a>"));
+      Utils.show_error_dialog (e, this.main_window);
+      critical ("Could not open %s", uri);
+      critical (e.message);
+    }
+  }
+
   public void open_pin_request_site () {
     acc.init_proxy (false, true);
-    
-    acc.proxy.request_token_async.begin ("oauth/request_token", "oob", null, (obj, res) => {
-      try {
-        acc.proxy.request_token_async.end (res);
-      } catch (GLib.Error e) {
-        Utils.show_error_dialog (e, this.main_window);
-        critical (e.message);
-        return;
+    try {
+      if (!acc.proxy.request_token_async ("oauth/request_token", "oob", pin_request_cb, this)) {
+        show_error(_("Failed to retrieve request token"));
       }
-
-      string uri = "http://twitter.com/oauth/authorize?oauth_token=" + acc.proxy.get_token();
-      debug ("Trying to open %s", uri);
-
-      try {
-        GLib.AppInfo.launch_default_for_uri (uri, null);
-      } catch (GLib.Error e) {
-        this.show_error (_("Could not open %s").printf ("<a href=\"" + uri + "\">" + uri + "</a>"));
-        Utils.show_error_dialog (e, this.main_window);
-        critical ("Could not open %s", uri);
-        critical (e.message);
-      }
-    });
+    } catch(GLib.Error e) {
+      Utils.show_error_dialog (e, this.main_window);
+      critical (e.message);
+    }
   }
 
   [GtkCallback]
@@ -85,11 +91,9 @@ class AccountCreateWidget : Gtk.Box {
     this.do_confirm.begin ();
   }
 
-  private async void do_confirm () {
-    try {
-      yield acc.proxy.access_token_async ("oauth/access_token", pin_entry.get_text (), null);
-    } catch (GLib.Error e) {
-      critical (e.message);
+  private void confirm_cb (Rest.OAuthProxy proxy, Error? error, Object? weak_object) {
+    if (error != null) {
+      critical (error.message);
       // We just assume that it was the wrong code
       show_error (_("Wrong PIN"));
       pin_entry.sensitive = true;
@@ -102,39 +106,55 @@ class AccountCreateWidget : Gtk.Box {
     call.set_function ("1.1/account/settings.json");
     call.set_method ("GET");
 
-    Json.Node? root_node;
+    
+    Cb.Utils.load_threaded_async.begin (call, null, (obj, res) => {
+      Json.Node? root_node;
+      try {
+        root_node = Cb.Utils.load_threaded_async.end(res);
+      } catch (GLib.Error e) {
+        warning ("Could not get json data: %s", e.message);
+        return;
+      }
+
+      Json.Object root = root_node.get_object ();
+      string screen_name = root.get_string_member ("screen_name");
+      debug ("Checking for %s", screen_name);
+      Account? existing_account = Account.query_account (screen_name);
+      if (existing_account != null) {
+        result_received (false, existing_account);
+        critical ("Account is already in use");
+        show_error (_("Account already in use"));
+        pin_entry.sensitive = true;
+        pin_entry.text = "";
+        request_pin_button.sensitive = true;
+        return;
+      }
+  
+      acc.query_user_info_by_screen_name.begin (screen_name, (obj, res) => {
+        acc.query_user_info_by_screen_name.end(res);
+        debug ("user info call");
+        acc.init_database ();
+        acc.save_info();
+        acc.db.insert ("common")
+              .val ("token", acc.proxy.token)
+              .val ("token_secret", acc.proxy.token_secret)
+              .run ();
+        acc.init_proxy (true, true);
+        cawbird.account_added (acc);
+        result_received (true, acc);
+      });
+    });
+  }
+
+  private async void do_confirm () {
     try {
-      root_node = yield Cb.Utils.load_threaded_async (call, null);
+      if (!acc.proxy.access_token_async ("oauth/access_token", pin_entry.get_text (), confirm_cb, this)) {
+        show_error(_("Failed to retrieve access token"));
+      }
     } catch (GLib.Error e) {
-      warning ("Could not get json data: %s", e.message);
-      return;
+      Utils.show_error_dialog (e, this.main_window);
+      critical (e.message);
     }
-
-    Json.Object root = root_node.get_object ();
-    string screen_name = root.get_string_member ("screen_name");
-    debug ("Checking for %s", screen_name);
-    Account? existing_account = Account.query_account (screen_name);
-    if (existing_account != null) {
-      result_received (false, existing_account);
-      critical ("Account is already in use");
-      show_error (_("Account already in use"));
-      pin_entry.sensitive = true;
-      pin_entry.text = "";
-      request_pin_button.sensitive = true;
-      return;
-    }
-
-    yield acc.query_user_info_by_screen_name (screen_name);
-    debug ("user info call");
-    acc.init_database ();
-    acc.save_info();
-    acc.db.insert ("common")
-          .val ("token", acc.proxy.token)
-          .val ("token_secret", acc.proxy.token_secret)
-          .run ();
-    acc.init_proxy (true, true);
-    cawbird.account_added (acc);
-    result_received (true, acc);
   }
 
   private void show_error (string err) {

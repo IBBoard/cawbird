@@ -21,8 +21,8 @@
 #include <gtk/gtk.h>
 #include <glib-object.h>
 #include "CbTypes.h"
-#include "rest/rest-proxy-call.h"
-#include "rest/rest-proxy.h"
+#include <rest/rest-proxy-call.h>
+#include <rest/rest-proxy.h>
 
 typedef GtkWidget * (*CbUtilsCreateWidgetFunc) (gpointer *data, gpointer *user_data);
 

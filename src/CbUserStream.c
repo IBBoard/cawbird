@@ -18,7 +18,7 @@
 #include "cawbird.h"
 #include "CbUserStream.h"
 #include "CbUtils.h"
-#include "rest/rest/oauth-proxy.h"
+#include <rest/oauth-proxy.h>
 #include <string.h>
 
 #define short_url_length 23

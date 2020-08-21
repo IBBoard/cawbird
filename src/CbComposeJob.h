@@ -21,7 +21,7 @@
 #include <glib-object.h>
 #include "CbTweet.h"
 #include "CbUserStream.h"
-#include "rest/rest-proxy.h"
+#include <rest/rest-proxy.h>
 
 G_BEGIN_DECLS
 
