@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-19 20:42+0100\n"
+"POT-Creation-Date: 2020-08-21 20:43+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/cawbird/cawbird/"
@@ -458,11 +458,17 @@ msgstr "注册一个"
 msgid "Could not open %s"
 msgstr "无法打开 %s"
 
+msgid "Failed to retrieve request token"
+msgstr ""
+
 msgid "Wrong PIN"
 msgstr "PIN 码错误"
 
 msgid "Account already in use"
 msgstr "账户已在使用中"
+
+msgid "Failed to retrieve access token"
+msgstr ""
 
 msgid "Select Image"
 msgstr "选择图片"
@@ -625,7 +631,12 @@ msgstr "网站"
 msgid "Autostart"
 msgstr "自动登入"
 
-msgid "Do you really want to delete this account?"
+#, fuzzy
+msgid "Remove Account"
+msgstr "删除"
+
+#, fuzzy
+msgid "Do you really want to remove this account?"
 msgstr "您确定要删除此账户吗？"
 
 msgctxt "emoji category"

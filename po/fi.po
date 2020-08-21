@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-19 20:42+0100\n"
+"POT-Creation-Date: 2020-08-21 20:43+0100\n"
 "PO-Revision-Date: 2017-10-22 17:13+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -464,11 +464,17 @@ msgstr "Luo uusi tili"
 msgid "Could not open %s"
 msgstr "Kohteen %s avaaminen ei onnistunut"
 
+msgid "Failed to retrieve request token"
+msgstr ""
+
 msgid "Wrong PIN"
 msgstr "Väärä PIN"
 
 msgid "Account already in use"
 msgstr "Tili on jo käytössä"
+
+msgid "Failed to retrieve access token"
+msgstr ""
 
 msgid "Select Image"
 msgstr "Valitse kuva"
@@ -641,7 +647,12 @@ msgstr "Verkkosivusto"
 msgid "Autostart"
 msgstr "Käynnistä automaattisesti"
 
-msgid "Do you really want to delete this account?"
+#, fuzzy
+msgid "Remove Account"
+msgstr "Poista"
+
+#, fuzzy
+msgid "Do you really want to remove this account?"
 msgstr "Haluatko varmasti poistaa tämän tilin?"
 
 msgctxt "emoji category"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-19 20:42+0100\n"
+"POT-Creation-Date: 2020-08-21 20:43+0100\n"
 "PO-Revision-Date: 2017-10-22 18:18+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -477,11 +477,17 @@ msgstr "Susikurkite paskyrą"
 msgid "Could not open %s"
 msgstr "Nepavyko atverti %s"
 
+msgid "Failed to retrieve request token"
+msgstr ""
+
 msgid "Wrong PIN"
 msgstr "Neteisingas PIN"
 
 msgid "Account already in use"
 msgstr "Paskyra jau yra naudojama"
+
+msgid "Failed to retrieve access token"
+msgstr ""
 
 msgid "Select Image"
 msgstr "Pasirinkite paveikslą"
@@ -662,7 +668,12 @@ msgstr "Svetainė"
 msgid "Autostart"
 msgstr "Paleisti įjungus"
 
-msgid "Do you really want to delete this account?"
+#, fuzzy
+msgid "Remove Account"
+msgstr "Ištrinti"
+
+#, fuzzy
+msgid "Do you really want to remove this account?"
 msgstr "Ar tikrai norite ištrinti šią paskyrą?"
 
 msgctxt "emoji category"

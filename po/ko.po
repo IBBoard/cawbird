@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-19 20:42+0100\n"
+"POT-Creation-Date: 2020-08-21 20:43+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/cawbird/cawbird/"
@@ -456,11 +456,17 @@ msgstr "하나 만들기"
 msgid "Could not open %s"
 msgstr "%s 을 열 수 없음"
 
+msgid "Failed to retrieve request token"
+msgstr ""
+
 msgid "Wrong PIN"
 msgstr "올바르지 않은 PIN"
 
 msgid "Account already in use"
 msgstr "계정이 이미 사용 중"
+
+msgid "Failed to retrieve access token"
+msgstr ""
 
 msgid "Select Image"
 msgstr "이미지 선택"
@@ -624,7 +630,12 @@ msgstr "웹사이트"
 msgid "Autostart"
 msgstr "자동 시작"
 
-msgid "Do you really want to delete this account?"
+#, fuzzy
+msgid "Remove Account"
+msgstr "지우기"
+
+#, fuzzy
+msgid "Do you really want to remove this account?"
 msgstr "정말 이 계정을 지울건가요?"
 
 msgctxt "emoji category"

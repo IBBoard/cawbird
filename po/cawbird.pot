@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-19 20:42+0100\n"
+"POT-Creation-Date: 2020-08-21 20:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -450,10 +450,16 @@ msgstr ""
 msgid "Could not open %s"
 msgstr ""
 
+msgid "Failed to retrieve request token"
+msgstr ""
+
 msgid "Wrong PIN"
 msgstr ""
 
 msgid "Account already in use"
+msgstr ""
+
+msgid "Failed to retrieve access token"
 msgstr ""
 
 msgid "Select Image"
@@ -621,7 +627,10 @@ msgstr ""
 msgid "Autostart"
 msgstr ""
 
-msgid "Do you really want to delete this account?"
+msgid "Remove Account"
+msgstr ""
+
+msgid "Do you really want to remove this account?"
 msgstr ""
 
 msgctxt "emoji category"

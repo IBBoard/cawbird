@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-19 20:42+0100\n"
+"POT-Creation-Date: 2020-08-21 20:43+0100\n"
 "PO-Revision-Date: 2018-02-06 18:45+0000\n"
 "Last-Translator: Iris Ilexiris <iris.ilexiris@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/cawbird/cawbird/language/"
@@ -464,11 +464,17 @@ msgstr "Krei konton"
 msgid "Could not open %s"
 msgstr "Ne povis malfermi %s"
 
+msgid "Failed to retrieve request token"
+msgstr ""
+
 msgid "Wrong PIN"
 msgstr "Malĝustan PIN-on"
 
 msgid "Account already in use"
 msgstr "Konto jam uzas"
+
+msgid "Failed to retrieve access token"
+msgstr ""
 
 msgid "Select Image"
 msgstr "Elekti bildon"
@@ -643,7 +649,12 @@ msgstr "Retpaĝo"
 msgid "Autostart"
 msgstr "Aŭtomata komenci"
 
-msgid "Do you really want to delete this account?"
+#, fuzzy
+msgid "Remove Account"
+msgstr "Forigi"
+
+#, fuzzy
+msgid "Do you really want to remove this account?"
 msgstr "Ĉu vi vere volas forigi ĉi tiun konton?"
 
 msgctxt "emoji category"

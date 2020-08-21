@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-19 20:42+0100\n"
+"POT-Creation-Date: 2020-08-21 20:43+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>, 2020\n"
 "Language-Team: Dutch (https://www.transifex.com/cawbird/teams/107135/nl/)\n"
@@ -474,11 +474,17 @@ msgstr "Maak een account aan"
 msgid "Could not open %s"
 msgstr "Het openen van %s is mislukt"
 
+msgid "Failed to retrieve request token"
+msgstr ""
+
 msgid "Wrong PIN"
 msgstr "De pincode is onjuist"
 
 msgid "Account already in use"
 msgstr "Dit account is al in gebruik"
+
+msgid "Failed to retrieve access token"
+msgstr ""
 
 msgid "Select Image"
 msgstr "Afbeelding selecteren"
@@ -653,7 +659,12 @@ msgstr "Website"
 msgid "Autostart"
 msgstr "Automatisch laden"
 
-msgid "Do you really want to delete this account?"
+#, fuzzy
+msgid "Remove Account"
+msgstr "Verwijderen"
+
+#, fuzzy
+msgid "Do you really want to remove this account?"
 msgstr "Weet je zeker dat je dit account wilt verwijderen?"
 
 msgctxt "emoji category"

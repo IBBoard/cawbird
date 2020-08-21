@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-19 20:42+0100\n"
+"POT-Creation-Date: 2020-08-21 20:43+0100\n"
 "PO-Revision-Date: 2018-02-09 06:34+0000\n"
 "Last-Translator: Kim Malmo <berencamlost@msn.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/cawbird/cawbird/"
@@ -465,11 +465,17 @@ msgstr "Lag konto"
 msgid "Could not open %s"
 msgstr "Klarte ikke å åpne %s"
 
+msgid "Failed to retrieve request token"
+msgstr ""
+
 msgid "Wrong PIN"
 msgstr "Feil PIN"
 
 msgid "Account already in use"
 msgstr "Konto allerede i bruk"
+
+msgid "Failed to retrieve access token"
+msgstr ""
 
 msgid "Select Image"
 msgstr "Velg bild"
@@ -638,7 +644,12 @@ msgstr "Nettside"
 msgid "Autostart"
 msgstr "Autostart"
 
-msgid "Do you really want to delete this account?"
+#, fuzzy
+msgid "Remove Account"
+msgstr "Slett"
+
+#, fuzzy
+msgid "Do you really want to remove this account?"
 msgstr "Er du sikker på at du vil slette denne kontoen?"
 
 msgctxt "emoji category"

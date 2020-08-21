@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-19 20:42+0100\n"
+"POT-Creation-Date: 2020-08-21 20:43+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, "
 "2020\n"
@@ -468,11 +468,17 @@ msgstr "Lav en"
 msgid "Could not open %s"
 msgstr "Kunne ikke åbne %s"
 
+msgid "Failed to retrieve request token"
+msgstr ""
+
 msgid "Wrong PIN"
 msgstr "Forkert PIN"
 
 msgid "Account already in use"
 msgstr "Konto er allerede i brug"
+
+msgid "Failed to retrieve access token"
+msgstr ""
 
 msgid "Select Image"
 msgstr "Vælg billede"
@@ -647,7 +653,12 @@ msgstr "Hjemmeside"
 msgid "Autostart"
 msgstr "Autostart"
 
-msgid "Do you really want to delete this account?"
+#, fuzzy
+msgid "Remove Account"
+msgstr "Fjern"
+
+#, fuzzy
+msgid "Do you really want to remove this account?"
 msgstr "Vil du virkelig fjerne denne konto?"
 
 msgctxt "emoji category"

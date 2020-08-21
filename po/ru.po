@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-19 20:42+0100\n"
+"POT-Creation-Date: 2020-08-21 20:43+0100\n"
 "PO-Revision-Date: 2018-03-01 17:12+0000\n"
 "Last-Translator: Egor Erastov <egor.er24@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -492,11 +492,17 @@ msgstr "Создать"
 msgid "Could not open %s"
 msgstr "Не могу открыть %s"
 
+msgid "Failed to retrieve request token"
+msgstr ""
+
 msgid "Wrong PIN"
 msgstr "Неверный PIN"
 
 msgid "Account already in use"
 msgstr "Аккаунт уже используется"
+
+msgid "Failed to retrieve access token"
+msgstr ""
 
 msgid "Select Image"
 msgstr "Выбрать изображение"
@@ -676,7 +682,12 @@ msgstr "Вебсайт"
 msgid "Autostart"
 msgstr "Автозапуск"
 
-msgid "Do you really want to delete this account?"
+#, fuzzy
+msgid "Remove Account"
+msgstr "Удалить"
+
+#, fuzzy
+msgid "Do you really want to remove this account?"
 msgstr "Вы действительно хотите удалить данный аккаунт?"
 
 msgctxt "emoji category"

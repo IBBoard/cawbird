@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-19 20:42+0100\n"
+"POT-Creation-Date: 2020-08-21 20:43+0100\n"
 "PO-Revision-Date: 2017-11-19 08:34+0000\n"
 "Last-Translator: Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail."
 "com>\n"
@@ -474,11 +474,17 @@ msgstr "Направи налог"
 msgid "Could not open %s"
 msgstr "Не могу да отворим %s"
 
+msgid "Failed to retrieve request token"
+msgstr ""
+
 msgid "Wrong PIN"
 msgstr "Погрешан ПИН"
 
 msgid "Account already in use"
 msgstr "Налог се већ користи"
+
+msgid "Failed to retrieve access token"
+msgstr ""
 
 msgid "Select Image"
 msgstr "Изабери слику"
@@ -656,7 +662,12 @@ msgstr "Веб сајт"
 msgid "Autostart"
 msgstr "Самостално покрени"
 
-msgid "Do you really want to delete this account?"
+#, fuzzy
+msgid "Remove Account"
+msgstr "Обриши"
+
+#, fuzzy
+msgid "Do you really want to remove this account?"
 msgstr "Да ли стварно желите обрисати овај налог?"
 
 msgctxt "emoji category"

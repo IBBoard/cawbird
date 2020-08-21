@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-19 20:42+0100\n"
+"POT-Creation-Date: 2020-08-21 20:43+0100\n"
 "PO-Revision-Date: 2017-11-12 23:35+0000\n"
 "Last-Translator: MTD TR <dev.mantendo@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/cawbird/cawbird/"
@@ -456,11 +456,17 @@ msgstr ""
 msgid "Could not open %s"
 msgstr "%sを開けませんでした"
 
+msgid "Failed to retrieve request token"
+msgstr ""
+
 msgid "Wrong PIN"
 msgstr "誤ったPIN"
 
 msgid "Account already in use"
 msgstr "アカウントはすでに使われています"
+
+msgid "Failed to retrieve access token"
+msgstr ""
 
 msgid "Select Image"
 msgstr "画像を選択"
@@ -625,7 +631,12 @@ msgstr ""
 msgid "Autostart"
 msgstr "自動起動"
 
-msgid "Do you really want to delete this account?"
+#, fuzzy
+msgid "Remove Account"
+msgstr "削除"
+
+#, fuzzy
+msgid "Do you really want to remove this account?"
 msgstr "このアカウントを削除しますか？"
 
 msgctxt "emoji category"

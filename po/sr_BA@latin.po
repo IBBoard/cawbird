@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-19 20:42+0100\n"
+"POT-Creation-Date: 2020-08-21 20:43+0100\n"
 "PO-Revision-Date: 2017-11-20 17:05+0000\n"
 "Last-Translator: Slobodan Terzić <githzerai06@gmail.com>\n"
 "Language-Team: Serbian (Latin) (http://www.transifex.com/cawbird/cawbird/"
@@ -472,11 +472,17 @@ msgstr "Napravi nalog"
 msgid "Could not open %s"
 msgstr "Ne mogu da otvorim %s"
 
+msgid "Failed to retrieve request token"
+msgstr ""
+
 msgid "Wrong PIN"
 msgstr "Pogrešan PIN"
 
 msgid "Account already in use"
 msgstr "Nalog se već koristi"
+
+msgid "Failed to retrieve access token"
+msgstr ""
 
 msgid "Select Image"
 msgstr "Izaberi sliku"
@@ -654,7 +660,12 @@ msgstr "Veb sajt"
 msgid "Autostart"
 msgstr "Samostalno pokreni"
 
-msgid "Do you really want to delete this account?"
+#, fuzzy
+msgid "Remove Account"
+msgstr "Obriši"
+
+#, fuzzy
+msgid "Do you really want to remove this account?"
 msgstr "Da li stvarno želite obrisati ovaj nalog?"
 
 msgctxt "emoji category"
