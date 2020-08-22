@@ -88,6 +88,7 @@ class MediaDialog : Gtk.Window {
 
     next_revealer.set_visible (cur_index != this.media.length - 1);
     previous_revealer.set_visible (cur_index != 0);
+    this.set_position(Gtk.WindowPosition.CENTER_ON_PARENT);
   }
 
   private void next_media () {
