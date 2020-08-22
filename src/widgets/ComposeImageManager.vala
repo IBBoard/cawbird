@@ -48,8 +48,8 @@ class ComposeImageManager : Gtk.Container {
     }
   }
 
-  public signal void image_removed (string image_path);
-  public signal void image_reloaded (string image_path);
+  public signal void image_removed (string uuid);
+  public signal void image_reloaded (string uuid);
 
   construct {
     this.buttons = new GLib.GenericArray<AddImageButton> ();
@@ -57,6 +57,20 @@ class ComposeImageManager : Gtk.Container {
     this.desc_buttons = new GLib.GenericArray<Gtk.Button> ();
     this.progress_bars = new GLib.GenericArray<Gtk.ProgressBar> ();
     this.set_has_window (false);
+  }
+
+  public string? get_path_for_uuid(string uuid) {
+    string? path = null;
+
+    
+    for (int i = 0; i < buttons.length; i ++) {
+      var btn = buttons.get (i);
+      if (btn.uuid == uuid) {
+        path = btn.image_path;
+      }
+    }
+
+    return path;
   }
 
   private void remove_clicked_cb (Gtk.Button source) {
@@ -81,7 +95,7 @@ class ComposeImageManager : Gtk.Container {
       this.desc_buttons.remove_index (index);
       this.progress_bars.remove_index (index);
       this.queue_draw ();
-      this.image_removed (aib.image_path);
+      this.image_removed (aib.uuid);
     });
 
     aib.start_remove ();
@@ -113,7 +127,7 @@ class ComposeImageManager : Gtk.Container {
     }
 
     aib.clicked.disconnect (reupload_image_cb);
-    this.image_reloaded (aib.image_path);
+    this.image_reloaded (aib.uuid);
   }
 
   // GtkContainer API {{{
@@ -338,7 +352,7 @@ class ComposeImageManager : Gtk.Container {
   }
   // }}}
 
-  public void load_image (string path, Gdk.Pixbuf? image) {
+  public string load_image (string path, Gdk.Pixbuf? image) {
 #if DEBUG
     assert (!this.full);
 #endif
@@ -354,17 +368,19 @@ class ComposeImageManager : Gtk.Container {
     var button = new AddImageButton ();
     button.surface = surface;
     button.image_path = path;
+    button.uuid = GLib.Uuid.string_random();
 
     button.hexpand = false;
     button.halign = Gtk.Align.START;
     button.show ();
     this.add (button);
+    return button.uuid;
   }
 
-  public void set_image_progress (string image_path, double progress) {
+  public void set_image_progress (string uuid, double progress) {
     for (int i = 0; i < buttons.length; i ++) {
       var btn = buttons.get (i);
-      if (btn.image_path == image_path) {
+      if (btn.uuid == uuid) {
         var progress_bar = progress_bars.get (i);
         progress_bar.set_fraction (progress);
         if (progress == 1.0) {
@@ -375,10 +391,10 @@ class ComposeImageManager : Gtk.Container {
     }
   }
 
-  public void end_progress (string image_path, string? error_message) {
+  public void end_progress (string uuid, string? error_message) {
     for (int i = 0; i < buttons.length; i ++) {
       var btn = buttons.get (i);
-      if (btn.image_path == image_path) {
+      if (btn.uuid == uuid) {
         var style_context = btn.get_style_context ();
         style_context.remove_class ("image-progress");
 
@@ -386,7 +402,7 @@ class ComposeImageManager : Gtk.Container {
           style_context.add_class ("image-success");
           style_context.remove_class ("image-error");
         } else {
-          warning ("%s: %s", image_path, error_message);
+          warning ("%s: %s", btn.image_path, error_message);
           style_context.add_class ("image-error");
           style_context.remove_class ("image-success");
           btn.clicked.connect (reupload_image_cb);
@@ -396,10 +412,10 @@ class ComposeImageManager : Gtk.Container {
     }
   }
 
-  public void set_media_id(string image_path, int64 media_id) {
+  public void set_media_id(string uuid, int64 media_id) {
     for (int i = 0; i < buttons.length; i ++) {
       var btn = buttons.get (i);
-      if (btn.image_path == image_path) {
+      if (btn.uuid == uuid) {
         btn.media_id = media_id;
         desc_buttons.get(i).sensitive = true;
         break;

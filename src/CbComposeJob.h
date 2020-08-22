@@ -33,7 +33,8 @@ G_DECLARE_FINAL_TYPE (CbComposeJob, cb_compose_job, CB, COMPOSE_JOB, GObject);
 typedef struct {
   GCancellable *cancellable;
   char *filename;
-  gint64 id; /* 0 when not uploaded yet */
+  char *uuid; // Internal ID to differentiate multiple uploads of the same file
+  gint64 id; /* Twitter's ID 0 when not uploaded yet */
 } ImageUpload;
 
 struct _CbComposeJob
@@ -61,9 +62,10 @@ CbComposeJob *cb_compose_job_new                (CbUserStream         *user_stre
                                                  RestProxy            *upload_proxy,
                                                  GCancellable         *cancellable);
 void          cb_compose_job_upload_image_async (CbComposeJob         *self,
-                                                 const char           *image_path);
+                                                 const char           *image_path,
+                                                 const char   *uuid);
 void          cb_compose_job_abort_image_upload (CbComposeJob         *self,
-                                                 const char           *image_path);
+                                                 const char           *uuid);
 void          cb_compose_job_set_reply_id       (CbComposeJob         *self,
                                                  gint64                reply_id);
 void          cb_compose_job_set_quoted_tweet   (CbComposeJob         *self,

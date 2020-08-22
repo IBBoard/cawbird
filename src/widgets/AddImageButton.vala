@@ -33,6 +33,7 @@ class AddImageButton : Gtk.Button {
       }
     }
   }
+  public string uuid;
   public int64 media_id = 0;
   public string description = "";
   public Cairo.ImageSurface? surface;

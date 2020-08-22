@@ -37,6 +37,7 @@ static void
 image_upload_free (ImageUpload *u)
 {
   g_clear_pointer (&u->filename, g_free);
+  g_clear_pointer (&u->uuid, g_free);
   g_clear_object (&u->cancellable);
 }
 
@@ -265,10 +266,10 @@ image_upload_cb (RestProxyCall *call,
     {
       /* We also get here when aborting, in which case @upload is already garbage */
       if (error->code != REST_PROXY_ERROR_CANCELLED &&
-          upload->filename != NULL)
+          upload->uuid != NULL)
         g_signal_emit (self, compose_job_signals[IMAGE_UPLOAD_FINISHED],
                        0,
-                       upload->filename, error->message);
+                       upload->uuid, error->message);
       return;
     }
 
@@ -280,7 +281,7 @@ image_upload_cb (RestProxyCall *call,
       return;
     }
 
-  g_signal_emit (self, compose_job_signals[IMAGE_UPLOAD_PROGRESS], 0, upload->filename, percent);
+  g_signal_emit (self, compose_job_signals[IMAGE_UPLOAD_PROGRESS], 0, upload->uuid, percent);
 
   if (uploaded == total)
     {
@@ -304,8 +305,8 @@ image_upload_cb (RestProxyCall *call,
 
       g_debug ("%s ID: %" G_GINT64_FORMAT, upload->filename, upload->id);
 
-      g_signal_emit (self, compose_job_signals[IMAGE_UPLOAD_FINISHED], 0, upload->filename, error_message);
-      g_signal_emit (self, compose_job_signals[IMAGE_UPLOAD_ID_ASSIGNED], 0, upload->filename, upload->id);
+      g_signal_emit (self, compose_job_signals[IMAGE_UPLOAD_FINISHED], 0, upload->uuid, error_message);
+      g_signal_emit (self, compose_job_signals[IMAGE_UPLOAD_ID_ASSIGNED], 0, upload->uuid, upload->id);
 
       g_object_unref (parser);
 
@@ -326,7 +327,8 @@ image_upload_cb (RestProxyCall *call,
 
 void
 cb_compose_job_upload_image_async (CbComposeJob *self,
-                                   const char   *image_path)
+                                   const char   *image_path,
+                                   const char   *uuid)
 {
   ImageUpload *upload = NULL;
   RestProxyCall *call;
@@ -350,6 +352,7 @@ cb_compose_job_upload_image_async (CbComposeJob *self,
   g_assert (upload != NULL);
 
   upload->filename = g_strdup (image_path);
+  upload->uuid = g_strdup(uuid);
   upload->cancellable = g_cancellable_new ();
 
   file = g_file_new_for_path (image_path);
@@ -386,7 +389,7 @@ cb_compose_job_upload_image_async (CbComposeJob *self,
 
 void
 cb_compose_job_abort_image_upload (CbComposeJob *self,
-                                   const char   *image_path)
+                                   const char   *uuid)
 {
   guint i;
 
@@ -394,8 +397,8 @@ cb_compose_job_abort_image_upload (CbComposeJob *self,
     {
       ImageUpload *upload = &self->image_uploads[i];
 
-      if (upload->filename != NULL &&
-          strcmp (upload->filename, image_path) == 0)
+      if (upload->uuid != NULL &&
+          strcmp (upload->uuid, uuid) == 0)
         {
           g_cancellable_cancel (upload->cancellable);
           image_upload_free (upload);

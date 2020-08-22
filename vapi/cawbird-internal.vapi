@@ -428,8 +428,8 @@ namespace Cb {
     public void set_reply_id (int64 id);
     public void set_quoted_tweet (Cb.Tweet t);
     public void set_text (string s);
-    public void upload_image_async (string p);
-    public void abort_image_upload (string s);
+    public void upload_image_async (string path, string uuid);
+    public void abort_image_upload (string uuid);
     public async bool send_async (GLib.Cancellable c) throws GLib.Error;
     // https://wiki.gnome.org/Projects/Vala/ManualBindings#Array_Lengths
     public uint get_n_filepaths();
