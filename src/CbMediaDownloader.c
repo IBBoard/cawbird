@@ -494,6 +494,7 @@ is_twitter_media_candidate (const char *url)
 #ifdef VIDEO
          g_str_has_prefix (url, "/photo/1/") ||
          g_str_has_prefix (url, "video.twimg.com/ext_tw_video") ||
+         g_str_has_prefix (url, "video.twimg.com/amplify_video") ||
 #endif
          g_str_has_prefix (url, "pbs.twimg.com/media/")
    ;
