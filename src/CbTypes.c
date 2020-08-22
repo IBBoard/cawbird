@@ -411,10 +411,11 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                   if (json_object_has_member (media_obj, "sizes"))
                     {
                       JsonObject *sizes = json_object_get_object_member (media_obj, "sizes");
-                      JsonObject *medium = json_object_get_object_member (sizes, "medium");
+                      JsonObject *small = json_object_get_object_member (sizes, "small");
 
-                      t->medias[t->n_medias]->width  = json_object_get_int_member (medium, "w");
-                      t->medias[t->n_medias]->height = json_object_get_int_member (medium, "h");
+                      t->medias[t->n_medias]->width  = json_object_get_int_member (small, "w");
+                      t->medias[t->n_medias]->height = json_object_get_int_member (small, "h");
+                      t->medias[t->n_medias]->thumb_url = g_strdup_printf ("%s:small", url);
                     }
 
                   t->n_medias ++;
@@ -427,6 +428,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
               JsonObject *video_info = json_object_get_object_member (media_obj, "video_info");
               JsonArray  *variants = json_object_get_array_member (video_info, "variants");
               JsonObject *variant = NULL;
+              gchar *thumb_url = NULL;
               int thumb_width  = -1;
               int thumb_height = -1;
               guint q, k;
@@ -434,10 +436,15 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
               if (json_object_has_member (media_obj, "sizes"))
                 {
                   JsonObject *sizes = json_object_get_object_member (media_obj, "sizes");
-                  JsonObject *medium = json_object_get_object_member (sizes, "medium");
+                  JsonObject *small = json_object_get_object_member (sizes, "small");
 
-                  thumb_width  = json_object_get_int_member (medium, "w");
-                  thumb_height = json_object_get_int_member (medium, "h");
+                  thumb_width  = json_object_get_int_member (small, "w");
+                  thumb_height = json_object_get_int_member (small, "h");
+
+                  const char *url = json_object_has_member (media_obj, "media_url_https") ?
+                    json_object_get_string_member (media_obj, "media_url_https") :
+                    json_object_get_string_member (media_obj, "media_url");
+                  thumb_url = g_strdup_printf ("%s:small", url);
                 }
 
               for (k = 0, q = json_array_get_length (variants); k < q; k ++)
@@ -454,11 +461,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                 variant = json_node_get_object (json_array_get_element (variants, 0));
 
               if (variant != NULL)
-                {
-                  const char *thumb_url = json_object_has_member (media_obj, "media_url_https") ?
-                    json_object_get_string_member (media_obj, "media_url_https") :
-                    json_object_get_string_member (media_obj, "media_url");
-                  
+                {                  
                   t->medias[t->n_medias] = cb_media_new ();
                   t->medias[t->n_medias]->url = g_strdup (json_object_get_string_member (variant, "url"));
                   t->medias[t->n_medias]->thumb_url = g_strdup (thumb_url);
@@ -479,6 +482,10 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
 
                   t->n_medias ++;
                 }
+              
+              if (thumb_url != NULL) {
+                g_free(thumb_url);
+              }
             }
           else
             {
