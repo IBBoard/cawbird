@@ -413,9 +413,14 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                       JsonObject *sizes = json_object_get_object_member (media_obj, "sizes");
                       JsonObject *small = json_object_get_object_member (sizes, "small");
 
-                      t->medias[t->n_medias]->width  = json_object_get_int_member (small, "w");
-                      t->medias[t->n_medias]->height = json_object_get_int_member (small, "h");
+                      t->medias[t->n_medias]->thumb_width  = json_object_get_int_member (small, "w");
+                      t->medias[t->n_medias]->thumb_height = json_object_get_int_member (small, "h");
                       t->medias[t->n_medias]->thumb_url = g_strdup_printf ("%s:small", url);
+
+                      JsonObject *large = json_object_get_object_member (sizes, "large");
+
+                      t->medias[t->n_medias]->width  = json_object_get_int_member (large, "w");
+                      t->medias[t->n_medias]->height = json_object_get_int_member (large, "h");
                     }
 
                   t->n_medias ++;
@@ -431,6 +436,8 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
               gchar *thumb_url = NULL;
               int thumb_width  = -1;
               int thumb_height = -1;
+              int width = -1;
+              int height = -1;
               guint q, k;
 
               if (json_object_has_member (media_obj, "sizes"))
@@ -445,6 +452,11 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                     json_object_get_string_member (media_obj, "media_url_https") :
                     json_object_get_string_member (media_obj, "media_url");
                   thumb_url = g_strdup_printf ("%s:small", url);
+
+                  JsonObject *large = json_object_get_object_member (sizes, "large");
+
+                  width  = json_object_get_int_member (large, "w");
+                  height = json_object_get_int_member (large, "h");
                 }
 
               for (k = 0, q = json_array_get_length (variants); k < q; k ++)
@@ -466,8 +478,11 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                   t->medias[t->n_medias]->url = g_strdup (json_object_get_string_member (variant, "url"));
                   t->medias[t->n_medias]->thumb_url = g_strdup (thumb_url);
                   t->medias[t->n_medias]->type   = CB_MEDIA_TYPE_TWITTER_VIDEO;
-                  t->medias[t->n_medias]->width  = thumb_width;
-                  t->medias[t->n_medias]->height = thumb_height;
+                  t->medias[t->n_medias]->width  = width;
+                  t->medias[t->n_medias]->height = height;
+                  t->medias[t->n_medias]->thumb_width  = thumb_width;
+                  t->medias[t->n_medias]->thumb_height = thumb_height;
+                  g_debug("Video: %d×%d; Thumb: %d×%d", width, height, thumb_width, thumb_height);
                   if (json_object_has_member (media_obj, "ext_alt_text")) {
                     // Only "extended media" for GIFs has alt text. Videos never do.
                     t->medias[t->n_medias]->alt_text = g_strdup (json_object_get_string_member (media_obj, "ext_alt_text"));

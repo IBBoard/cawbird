@@ -46,6 +46,8 @@ struct _CbMedia
 
   int width;
   int height;
+  int thumb_width;
+  int thumb_height;
 
   CbMediaType type;
   guint loaded : 1;

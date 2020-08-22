@@ -24,6 +24,9 @@ cb_media_image_widget_finalize (GObject *object)
   CbMediaImageWidget *self = CB_MEDIA_IMAGE_WIDGET (object);
 
   g_clear_object (&self->drag_gesture);
+  if (self->image_surface != NULL) {
+    cairo_surface_destroy(self->image_surface);
+  }
 
   G_OBJECT_CLASS (cb_media_image_widget_parent_class)->finalize (object);
 }
@@ -99,10 +102,17 @@ cb_media_image_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
 
   self = CB_MEDIA_IMAGE_WIDGET (g_object_new (CB_TYPE_MEDIA_IMAGE_WIDGET, NULL));
 
-  if (media->type == CB_MEDIA_TYPE_GIF)
+  if (media->type == CB_MEDIA_TYPE_GIF) {
     gtk_image_set_from_animation (GTK_IMAGE (self->image), media->animation);
-  else
-    gtk_image_set_from_surface (GTK_IMAGE (self->image), media->surface);
+  }
+  else {
+    self->image_surface = cairo_image_surface_create(cairo_image_surface_get_format(media->surface), media->width, media->height);
+    cairo_t *ct = cairo_create(self->image_surface);
+    cairo_scale(ct, media->width * 1.0 / media->thumb_width, media->height * 1.0 / media->thumb_height);
+    cairo_set_source_surface (ct, media->surface, 0, 0);
+    cairo_paint(ct);
+    gtk_image_set_from_surface (GTK_IMAGE (self->image), self->image_surface);
+  }
 
   win_width = media->width;
   win_height = media->height;

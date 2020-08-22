@@ -63,6 +63,8 @@ namespace Cb {
     public MediaType type;
     public int width;
     public int height;
+    public int thumb_width;
+    public int thumb_height;
     public double percent_loaded;
     public Cairo.ImageSurface? surface;
     public Gdk.PixbufAnimation? animation;

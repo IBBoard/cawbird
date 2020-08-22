@@ -126,8 +126,8 @@ load_animation (GInputStream *input_stream,
       goto out;
     }
 
-  media->width   = gdk_pixbuf_get_width (frame);
-  media->height  = gdk_pixbuf_get_height (frame);
+  media->thumb_width   = gdk_pixbuf_get_width (frame);
+  media->thumb_height  = gdk_pixbuf_get_height (frame);
   media->loaded  = TRUE;
   media->invalid = FALSE;
 

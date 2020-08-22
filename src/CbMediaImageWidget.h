@@ -31,6 +31,8 @@ struct _CbMediaImageWidget
   GtkWidget *image;
   GtkGesture *drag_gesture;
 
+  cairo_surface_t *image_surface;
+
   double drag_start_hvalue;
   double drag_start_vvalue;
 
