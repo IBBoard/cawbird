@@ -115,6 +115,7 @@ cb_media_image_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
       cairo_scale(ct, scale_width, scale_height);
       cairo_set_source_surface (ct, media->surface, 0, 0);
       cairo_paint(ct);
+      cairo_destroy(ct);
       gtk_image_set_from_surface (GTK_IMAGE (self->image), self->image_surface);
 
     }
