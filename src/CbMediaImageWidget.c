@@ -106,12 +106,21 @@ cb_media_image_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
     gtk_image_set_from_animation (GTK_IMAGE (self->image), media->animation);
   }
   else {
-    self->image_surface = cairo_image_surface_create(cairo_image_surface_get_format(media->surface), media->width, media->height);
-    cairo_t *ct = cairo_create(self->image_surface);
-    cairo_scale(ct, media->width * 1.0 / media->thumb_width, media->height * 1.0 / media->thumb_height);
-    cairo_set_source_surface (ct, media->surface, 0, 0);
-    cairo_paint(ct);
-    gtk_image_set_from_surface (GTK_IMAGE (self->image), self->image_surface);
+    double scale_width = media->width * 1.0 / media->thumb_width;
+    double scale_height = media->height * 1.0 / media->thumb_height;
+
+    if (scale_width != 1 || scale_height != 1) {
+      self->image_surface = cairo_image_surface_create(cairo_image_surface_get_format(media->surface), media->width, media->height);
+      cairo_t *ct = cairo_create(self->image_surface);
+      cairo_scale(ct, scale_width, scale_height);
+      cairo_set_source_surface (ct, media->surface, 0, 0);
+      cairo_paint(ct);
+      gtk_image_set_from_surface (GTK_IMAGE (self->image), self->image_surface);
+
+    }
+    else {
+      gtk_image_set_from_surface (GTK_IMAGE (self->image), media->surface);
+    }
   }
 
   win_width = media->width;
