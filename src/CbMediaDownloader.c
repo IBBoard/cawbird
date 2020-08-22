@@ -128,6 +128,18 @@ load_animation (GInputStream *input_stream,
 
   media->thumb_width   = gdk_pixbuf_get_width (frame);
   media->thumb_height  = gdk_pixbuf_get_height (frame);
+
+  // Take these sizes as full size if full size isn't set.
+  // This happens when loading third-party images which don't have
+  // Twitter's scaling variants.
+  if (media->width == -1) {
+    media->width = media->thumb_width;
+  }
+
+  if (media->height == -1) {
+    media->height = media->thumb_height;
+  }
+
   media->loaded  = TRUE;
   media->invalid = FALSE;
 
