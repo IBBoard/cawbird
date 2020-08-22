@@ -71,6 +71,8 @@ cb_media_init (CbMedia *media)
   media->percent_loaded = 0;
   media->width = -1;
   media->height = -1;
+  media->thumb_width = -1;
+  media->thumb_height = -1;
 }
 
 CbMedia *
