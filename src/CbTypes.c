@@ -417,6 +417,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                       t->medias[t->n_medias]->thumb_height = json_object_get_int_member (small, "h");
                       t->medias[t->n_medias]->thumb_url = g_strdup_printf ("%s:small", url);
 
+                      // User "large" as an approximation of full size (although it's still capped at 2048px)
                       JsonObject *large = json_object_get_object_member (sizes, "large");
 
                       t->medias[t->n_medias]->width  = json_object_get_int_member (large, "w");
@@ -461,6 +462,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                     json_object_get_string_member (media_obj, "media_url");
                   thumb_url = g_strdup_printf ("%s:small", url);
 
+                  // User "large" as an approximation of full size (although it's still capped at 2048px)
                   JsonObject *large = json_object_get_object_member (sizes, "large");
 
                   width  = json_object_get_int_member (large, "w");

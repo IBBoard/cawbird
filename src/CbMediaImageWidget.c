@@ -159,28 +159,21 @@ cb_media_image_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
   win_height = media->height;
 
   if (win_width > max_dimensions->width)
-    {
-      win_width = max_dimensions->width;
-    }
-  else
-    {
-      g_object_set (self,
-                    "hscrollbar-policy", GTK_POLICY_NEVER,
-                    NULL);
-    }
+  {
+    win_width = max_dimensions->width;
+  }
 
   if (win_height > max_dimensions->height)
-    {
-      win_height = max_dimensions->height;
-    }
-  else
-    {
-      g_object_set (self,
-                    "vscrollbar-policy", GTK_POLICY_NEVER,
-                    NULL);
-    }
+  {
+    win_height = max_dimensions->height;
+  }
 
-
+  // Set the size request based on the capped assumed image size.
+  // The image may grow if the highres version is >2048px *but*
+  // because of how we calculate max dimensions then that should
+  // only affect people with >1080p monitors. Everyone will see
+  // the image move, but >1080p may get scrolling when the window
+  // could have expanded if we knew the size in advance.
   gtk_widget_set_size_request (GTK_WIDGET (self), win_width, win_height);
 
   return GTK_WIDGET (self);
