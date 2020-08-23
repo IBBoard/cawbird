@@ -296,7 +296,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       if (mm_widget != null) {
         this.mm_widget.hide ();
       }
-      if (mm_widget != null) {
+      if (quoted_mm_widget != null) {
         this.quoted_mm_widget.hide ();
       }
     }
