@@ -430,7 +430,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                 const char *url = json_object_has_member (media_obj, "media_url_https") ?
                   json_object_get_string_member (media_obj, "media_url_https") :
                   json_object_get_string_member (media_obj, "media_url");
-                g_warning("URL %s was marked as type photo but not a media candidate");
+                g_warning("URL %s was marked as type photo but not a media candidate", url);
               }
               
 
@@ -490,7 +490,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                   t->medias[t->n_medias]->height = height;
                   t->medias[t->n_medias]->thumb_width  = thumb_width;
                   t->medias[t->n_medias]->thumb_height = thumb_height;
-                  g_debug("Video: %d×%d; Thumb: %d×%d", width, height, thumb_width, thumb_height);
+
                   if (json_object_has_member (media_obj, "ext_alt_text")) {
                     // Only "extended media" for GIFs has alt text. Videos never do.
                     t->medias[t->n_medias]->alt_text = g_strdup (json_object_get_string_member (media_obj, "ext_alt_text"));

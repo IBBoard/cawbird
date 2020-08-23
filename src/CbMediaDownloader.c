@@ -92,7 +92,7 @@ load_animation (GInputStream *input_stream,
     {
       return;
     }
-  // XXX: How often does this function need to do what it says (and potentially use lots of memory temporarily, as it decodes a video until it can make a picture)?
+
   frame = gdk_pixbuf_animation_get_static_image (animation);
 
   if (g_cancellable_is_cancelled (cancellable))
@@ -100,14 +100,13 @@ load_animation (GInputStream *input_stream,
       g_object_unref (animation);
       return;
     }
-  g_debug("MEM Image is %s", gdk_pixbuf_animation_is_static_image (animation) ? "static" : "animated");
+
   if (!gdk_pixbuf_animation_is_static_image (animation))
     *target_animation = animation; /* Takes ref */
   else
     *target_animation = NULL;
 
   has_alpha = gdk_pixbuf_get_has_alpha (frame);
-  g_debug("MEM Creating %d×%d %d bit surface", gdk_pixbuf_get_width (frame), gdk_pixbuf_get_height (frame), has_alpha ? 32 : 24);
   surface = cairo_image_surface_create (has_alpha ? CAIRO_FORMAT_ARGB32 : CAIRO_FORMAT_RGB24,
                                         gdk_pixbuf_get_width (frame),
                                         gdk_pixbuf_get_height (frame));
@@ -168,7 +167,6 @@ load_media_url (const char *url, LoadingData *task_data,
   input_stream = g_memory_input_stream_new_from_data (msg->response_body->data,
                                                       msg->response_body->length,
                                                       NULL);
-  g_debug("MEM Loading animation for %s", url);
   load_animation (input_stream, surface, animation, cancellable, error);
   g_input_stream_close (input_stream, NULL, NULL);
   g_object_unref (input_stream);

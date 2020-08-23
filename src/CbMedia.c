@@ -32,7 +32,6 @@ static void
 cb_media_finalize (GObject *object)
 {
   CbMedia *media = CB_MEDIA (object);
-  g_debug("MEM Finalising %s with %d references", media->url, cairo_surface_get_reference_count(media->surface));
   cairo_surface_destroy (media->surface);
   if (media->surface_hires != NULL) {
     cairo_surface_destroy (media->surface_hires);
