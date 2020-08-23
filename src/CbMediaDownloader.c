@@ -53,7 +53,9 @@ mark_invalid (CbMedia *media)
 {
   media->invalid = TRUE;
   media->loaded  = TRUE;
+  media->loading = FALSE;
   media->loaded_hires = TRUE;
+  media->loading_hires = FALSE;
   cb_media_loading_finished (media);
   cb_media_loading_hires_finished (media);
 }
@@ -435,8 +437,10 @@ cb_media_downloader_load_async (CbMediaDownloader   *downloader,
   g_return_if_fail (CB_IS_MEDIA_DOWNLOADER (downloader));
   g_return_if_fail (CB_IS_MEDIA (media));
   g_return_if_fail (!media->loaded);
+  g_return_if_fail (!media->loading);
   g_return_if_fail (media->surface == NULL);
 
+  media->loading = TRUE;
   task = g_task_new (downloader, downloader->cancellable, callback, user_data);
   data = g_new0 (LoadingData, 1);
   data->media = g_object_ref (media);
@@ -513,8 +517,10 @@ cb_media_downloader_load_hires_async (CbMediaDownloader   *downloader,
   g_return_if_fail (CB_IS_MEDIA_DOWNLOADER (downloader));
   g_return_if_fail (CB_IS_MEDIA (media));
   g_return_if_fail (!media->loaded_hires);
+  g_return_if_fail (!media->loading_hires);
   g_return_if_fail (media->surface_hires == NULL);
 
+  media->loading_hires = TRUE;
   task = g_task_new (downloader, downloader->cancellable, callback, user_data);
   data = g_new0 (LoadingData, 1);
   data->media = g_object_ref (media);

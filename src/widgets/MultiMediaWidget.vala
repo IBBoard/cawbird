@@ -31,6 +31,23 @@ public class MultiMediaWidget : Gtk.Box {
     this.homogeneous = true;
   }
 
+  public MultiMediaWidget () {
+    this.notify["visible"].connect(() => {
+      if (!this.visible) {
+        return;
+      }
+
+      for (int i = 0; i < media_count; i ++) {
+        if (media_buttons[i] != null) {
+          var media = media_buttons[i].media;
+          if (!media.loaded && !media.loading) {
+            Cb.MediaDownloader.get_default().load_async.begin (media);
+          }
+        }
+      }
+    });
+  }
+
   public void set_all_media (Cb.Media[] medias) {
     this.remove_all ();
     this.media_buttons = new MediaButton[medias.length];
@@ -64,6 +81,10 @@ public class MultiMediaWidget : Gtk.Box {
     } else {
       media_buttons[index].media = media;
       media.progress.connect (media_loaded_cb);
+
+      if (!media.loading && this.visible) {
+        Cb.MediaDownloader.get_default().load_async.begin (media);
+      }
     }
     button.visible = true;
     button.clicked.connect (button_clicked_cb);
@@ -80,7 +101,7 @@ public class MultiMediaWidget : Gtk.Box {
 
 
   private void media_loaded_cb (Cb.Media source) {
-    if (source.percent_loaded < 100)
+    if (source.percent_loaded < 1)
       return;
 
     if (source.invalid) {

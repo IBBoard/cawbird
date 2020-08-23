@@ -219,8 +219,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
         scroller.visible = false;
         this.grid.child_set (w, "top-attach", 2);
       }
-
-      mm_widget.visible = (Settings.get_media_visiblity () == MediaVisibility.SHOW);
     }
 
     if (tweet.has_quoted_inline_media ()) {
@@ -233,8 +231,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       quoted_mm_widget.media_clicked.connect (quoted_media_clicked_cb);
       quoted_mm_widget.media_invalid.connect (quoted_media_invalid_cb);
       quoted_mm_widget.window = main_window;
-
-      quoted_mm_widget.visible = (Settings.get_media_visiblity () == MediaVisibility.SHOW);
     }
 
     if (tweet.has_inline_media () || tweet.has_quoted_inline_media ()) {
@@ -709,6 +705,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       media_stack = null;
     }
     mm_widget = _mm_widget;
+    mm_widget.visible = (Settings.get_media_visiblity () == MediaVisibility.SHOW);
   }
 
 

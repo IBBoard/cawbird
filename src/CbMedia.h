@@ -50,7 +50,9 @@ struct _CbMedia
   int thumb_height;
 
   CbMediaType type;
+  guint loading: 1;
   guint loaded : 1;
+  guint loading_hires: 1;
   guint loaded_hires : 1;
   guint invalid : 1;
   double percent_loaded;

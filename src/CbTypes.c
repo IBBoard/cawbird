@@ -543,9 +543,6 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
   g_debug ("Wasted media   : %d", media_count  - t->n_medias);
 #endif
 
-  if (t->n_medias > 0)
-    cb_media_downloader_load_all (cb_media_downloader_get_default (), t);
-
   if (t->n_entities > 0)
     {
       guint i, k;

@@ -73,7 +73,9 @@ cb_media_init (CbMedia *media)
 {
   media->surface = NULL;
   media->animation = NULL;
+  media->loading = FALSE;
   media->loaded  = FALSE;
+  media->loading_hires = FALSE;
   media->loaded_hires = FALSE;
   media->invalid = FALSE;
   media->surface = NULL;
@@ -142,6 +144,7 @@ cb_media_loading_finished (CbMedia *media)
   g_return_if_fail (CB_IS_MEDIA (media));
 
   media->loaded = TRUE;
+  media->loading = FALSE;
 
   cb_media_update_progress (media, 1.0);
 }
@@ -189,6 +192,7 @@ cb_media_loading_hires_finished (CbMedia *media)
   g_return_if_fail (CB_IS_MEDIA (media));
 
   media->loaded_hires = TRUE;
+  media->loading_hires = FALSE;
 
   cb_media_update_hires_progress (media, 1.0);
 }

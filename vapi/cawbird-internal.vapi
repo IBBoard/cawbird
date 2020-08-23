@@ -54,7 +54,10 @@ namespace Cb {
   [CCode (cprefix = "CbMedia_", lower_case_cprefix = "cb_media_", cheader_filename = "CbMedia.h")]
   public class Media : GLib.Object {
     public int64 length;
+    public bool loading;
     public bool loaded;
+    public bool loading_hires;
+    public bool loaded_hires;
     public bool invalid;
     public string url;
     public string thumb_url;
@@ -66,7 +69,9 @@ namespace Cb {
     public int thumb_width;
     public int thumb_height;
     public double percent_loaded;
+    public double percent_loaded_hires;
     public Cairo.ImageSurface? surface;
+    public Cairo.ImageSurface? surface_hires;
     public Gdk.PixbufAnimation? animation;
     public signal void progress();
 
