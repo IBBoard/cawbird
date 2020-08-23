@@ -401,7 +401,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                 {
                   t->medias[t->n_medias] = cb_media_new ();
                   t->medias[t->n_medias]->type = CB_MEDIA_TYPE_IMAGE;
-                  t->medias[t->n_medias]->url = g_strdup_printf ("%s:orig", url);
+                  t->medias[t->n_medias]->url = g_strdup_printf ("%s:large", url);
                   t->medias[t->n_medias]->target_url = g_strdup_printf ("%s:orig", url);
                   if (json_object_has_member (media_obj, "ext_alt_text")) {
                     // Only "extended media" has alt text
@@ -417,7 +417,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                       t->medias[t->n_medias]->thumb_height = json_object_get_int_member (small, "h");
                       t->medias[t->n_medias]->thumb_url = g_strdup_printf ("%s:small", url);
 
-                      // User "large" as an approximation of full size (although it's still capped at 2048px)
+                      // We'll show images at "large" size, and original size is available via the target URL
                       JsonObject *large = json_object_get_object_member (sizes, "large");
 
                       t->medias[t->n_medias]->width  = json_object_get_int_member (large, "w");
@@ -463,6 +463,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                   thumb_url = g_strdup_printf ("%s:small", url);
 
                   // User "large" as an approximation of full size (although it's still capped at 2048px)
+                  // Videos are unlikely to be above 2048px, though
                   JsonObject *large = json_object_get_object_member (sizes, "large");
 
                   width  = json_object_get_int_member (large, "w");
