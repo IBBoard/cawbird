@@ -18,6 +18,19 @@
 
 G_DEFINE_TYPE (CbMediaImageWidget, cb_media_image_widget, GTK_TYPE_SCROLLED_WINDOW)
 
+typedef struct {
+  CbMediaImageWidget *widget;
+  CbMedia *media;
+} LoadingData;
+
+static void
+loading_data_free (LoadingData *data)
+{
+  g_object_unref (data->media);
+  g_object_unref (data->widget);
+  g_free (data);
+}
+
 static void
 cb_media_image_widget_finalize (GObject *object)
 {
@@ -89,10 +102,22 @@ cb_media_image_widget_init (CbMediaImageWidget *self)
   g_signal_connect (self->drag_gesture, "drag-update", G_CALLBACK (drag_update_cb), self);
 }
 
+void
+hires_complete (GObject *source_object, GAsyncResult *res, gpointer user_data) {
+  LoadingData *data = user_data;
+  CbMediaImageWidget *self = CB_MEDIA_IMAGE_WIDGET(data->widget);
+  CbMedia *media = data->media;
+  gtk_image_set_from_surface (GTK_IMAGE (self->image), media->surface_hires);
+  cairo_surface_destroy(self->image_surface);
+  self->image_surface = NULL;
+  loading_data_free (user_data);
+}
+
 GtkWidget *
 cb_media_image_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
 {
   CbMediaImageWidget *self;
+  LoadingData *data;
   int win_width;
   int win_height;
 
@@ -104,6 +129,9 @@ cb_media_image_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
 
   if (media->type == CB_MEDIA_TYPE_GIF) {
     gtk_image_set_from_animation (GTK_IMAGE (self->image), media->animation);
+  }
+  else if (media->surface_hires != NULL) {
+    gtk_image_set_from_surface (GTK_IMAGE (self->image), media->surface_hires);
   }
   else {
     double scale_width = media->width * 1.0 / media->thumb_width;
@@ -117,7 +145,10 @@ cb_media_image_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
       cairo_paint(ct);
       cairo_destroy(ct);
       gtk_image_set_from_surface (GTK_IMAGE (self->image), self->image_surface);
-
+      data = g_new0 (LoadingData, 1);
+      data->widget = g_object_ref (self);
+      data->media = g_object_ref (media);
+      cb_media_downloader_load_hires_async (cb_media_downloader_get_default(), media, hires_complete, data);
     }
     else {
       gtk_image_set_from_surface (GTK_IMAGE (self->image), media->surface);

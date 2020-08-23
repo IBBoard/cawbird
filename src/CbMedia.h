@@ -51,10 +51,13 @@ struct _CbMedia
 
   CbMediaType type;
   guint loaded : 1;
+  guint loaded_hires : 1;
   guint invalid : 1;
   double percent_loaded;
+  double percent_loaded_hires;
 
   cairo_surface_t *surface;
+  cairo_surface_t *surface_hires;
   GdkPixbufAnimation *animation;
 };
 
@@ -68,6 +71,9 @@ gboolean    cb_media_is_video         (CbMedia *media);
 void        cb_media_loading_finished (CbMedia *media);
 void        cb_media_update_progress  (CbMedia *media,
                                        double   progress);
+void        cb_media_loading_hires_finished (CbMedia *media);
+void        cb_media_update_hires_progress (CbMedia *media,
+                                            double   progress);
 CbMediaType cb_media_type_from_url    (const char *url);
 
 G_END_DECLS

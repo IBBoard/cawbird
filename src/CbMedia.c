@@ -22,6 +22,7 @@ G_DEFINE_TYPE (CbMedia, cb_media, G_TYPE_OBJECT);
 
 enum {
   PROGRESS,
+  HIRES_PROGRESS,
   LAST_SIGNAL
 };
 static guint media_signals[LAST_SIGNAL] = { 0 };
@@ -33,6 +34,9 @@ cb_media_finalize (GObject *object)
   CbMedia *media = CB_MEDIA (object);
   g_debug("MEM Finalising %s with %d references", media->url, cairo_surface_get_reference_count(media->surface));
   cairo_surface_destroy (media->surface);
+  if (media->surface_hires != NULL) {
+    cairo_surface_destroy (media->surface_hires);
+  }
   g_free (media->thumb_url);
   g_free (media->target_url);
   g_free (media->url);
@@ -56,6 +60,13 @@ cb_media_class_init (CbMediaClass *class)
                                           0,
                                           NULL, NULL,
                                           NULL, G_TYPE_NONE, 0);
+
+  media_signals[HIRES_PROGRESS] = g_signal_new ("hires-progress",
+                                                G_OBJECT_CLASS_TYPE (gobject_class),
+                                                G_SIGNAL_RUN_FIRST,
+                                                0,
+                                                NULL, NULL,
+                                                NULL, G_TYPE_NONE, 0);
 }
 
 static void
@@ -64,11 +75,14 @@ cb_media_init (CbMedia *media)
   media->surface = NULL;
   media->animation = NULL;
   media->loaded  = FALSE;
+  media->loaded_hires = FALSE;
   media->invalid = FALSE;
   media->surface = NULL;
+  media->surface_hires = NULL;
   media->url     = NULL;
   media->alt_text = NULL;
   media->percent_loaded = 0;
+  media->percent_loaded_hires = 0;
   media->width = -1;
   media->height = -1;
   media->thumb_width = -1;
@@ -143,4 +157,39 @@ cb_media_type_from_url (const char *url)
     return CB_MEDIA_TYPE_GIF;
 
   return CB_MEDIA_TYPE_IMAGE;
+}
+
+static gboolean
+emit_media_hires_progress (gpointer data)
+{
+  CbMedia *media = data;
+
+  g_return_val_if_fail (CB_IS_MEDIA (media), G_SOURCE_REMOVE);
+
+  g_signal_emit (data, media_signals[HIRES_PROGRESS], 0);
+
+  return G_SOURCE_REMOVE;
+}
+
+void
+cb_media_update_hires_progress (CbMedia *media, double progress)
+{
+  g_return_if_fail (CB_IS_MEDIA (media));
+  g_return_if_fail (progress >= 0);
+
+  media->percent_loaded_hires = progress;
+
+  g_main_context_invoke (NULL,
+                         emit_media_hires_progress,
+                         media);
+}
+
+void
+cb_media_loading_hires_finished (CbMedia *media)
+{
+  g_return_if_fail (CB_IS_MEDIA (media));
+
+  media->loaded_hires = TRUE;
+
+  cb_media_update_hires_progress (media, 1.0);
 }

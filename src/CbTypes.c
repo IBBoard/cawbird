@@ -401,7 +401,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                 {
                   t->medias[t->n_medias] = cb_media_new ();
                   t->medias[t->n_medias]->type = CB_MEDIA_TYPE_IMAGE;
-                  t->medias[t->n_medias]->url = g_strdup (url);
+                  t->medias[t->n_medias]->url = g_strdup_printf ("%s:orig", url);
                   t->medias[t->n_medias]->target_url = g_strdup_printf ("%s:orig", url);
                   if (json_object_has_member (media_obj, "ext_alt_text")) {
                     // Only "extended media" has alt text
@@ -425,6 +425,14 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
 
                   t->n_medias ++;
                 }
+              else
+              {
+                const char *url = json_object_has_member (media_obj, "media_url_https") ?
+                  json_object_get_string_member (media_obj, "media_url_https") :
+                  json_object_get_string_member (media_obj, "media_url");
+                g_warning("URL %s was marked as type photo but not a media candidate");
+              }
+              
 
             }
           else if (strcmp (media_type, "video")        == 0 ||

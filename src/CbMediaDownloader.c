@@ -53,7 +53,9 @@ mark_invalid (CbMedia *media)
 {
   media->invalid = TRUE;
   media->loaded  = TRUE;
+  media->loaded_hires = TRUE;
   cb_media_loading_finished (media);
+  cb_media_loading_hires_finished (media);
 }
 
 static const char *
@@ -74,22 +76,20 @@ canonicalize_url (const char *url)
 
 static void
 load_animation (GInputStream *input_stream,
-                CbMedia      *media,
-                GCancellable *cancellable)
+                cairo_surface_t **target_surface,
+                GdkPixbufAnimation **target_animation,
+                GCancellable *cancellable,
+                GError **error)
 {
   GdkPixbufAnimation *animation;
   GdkPixbuf *frame;
-  GError *error = NULL;
   cairo_surface_t *surface;
   cairo_t *ct;
   gboolean has_alpha;
 
-  animation = gdk_pixbuf_animation_new_from_stream (input_stream, NULL, &error);
-  if (error)
+  animation = gdk_pixbuf_animation_new_from_stream (input_stream, NULL, error);
+  if (*error)
     {
-      g_warning ("Couldn't load pixbuf: %s (%s)", error->message, media->url);
-      mark_invalid (media);
-      g_error_free (error);
       return;
     }
   // XXX: How often does this function need to do what it says (and potentially use lots of memory temporarily, as it decodes a video until it can make a picture)?
@@ -102,9 +102,9 @@ load_animation (GInputStream *input_stream,
     }
   g_debug("MEM Image is %s", gdk_pixbuf_animation_is_static_image (animation) ? "static" : "animated");
   if (!gdk_pixbuf_animation_is_static_image (animation))
-    media->animation = animation; /* Takes ref */
+    *target_animation = animation; /* Takes ref */
   else
-    media->animation = NULL;
+    *target_animation = NULL;
 
   has_alpha = gdk_pixbuf_get_has_alpha (frame);
   g_debug("MEM Creating %d×%d %d bit surface", gdk_pixbuf_get_width (frame), gdk_pixbuf_get_height (frame), has_alpha ? 32 : 24);
@@ -116,38 +116,63 @@ load_animation (GInputStream *input_stream,
   gdk_cairo_set_source_pixbuf (ct, frame, 0.0, 0.0);
   cairo_paint (ct);
   cairo_destroy (ct);
+  
+  *target_surface = surface;
 
-  media->surface = surface;
+  if (*target_animation == NULL) {
+    g_object_unref (animation);
+  }
+}
 
-  if (media->surface == NULL)
+static void
+load_media_url (const char *url, LoadingData *task_data,
+                cairo_surface_t **surface,
+                GdkPixbufAnimation **animation,
+                GCallback progress_callback,
+                GCancellable *cancellable,
+                GError **error,
+                gpointer data) {
+  SoupMessage *msg;
+  GInputStream *input_stream;
+
+  msg = soup_message_new ("GET", url);
+  if (msg == NULL)
     {
-      g_warning ("Surface of %p is null", media);
-      mark_invalid (media);
-      goto out;
+      // FIXME: Return an error
+      //mark_invalid (media);
+      //g_warning ("soup_message_new failed for URI '%s'",
+                 //media->thumb_url ? media->thumb_url : media->url);
+      return;
     }
 
-  media->thumb_width   = gdk_pixbuf_get_width (frame);
-  media->thumb_height  = gdk_pixbuf_get_height (frame);
-
-  // Take these sizes as full size if full size isn't set.
-  // This happens when loading third-party images which don't have
-  // Twitter's scaling variants.
-  if (media->width == -1) {
-    media->width = media->thumb_width;
+  if (progress_callback != NULL) {
+    g_signal_connect (msg, "got-chunk", progress_callback, data);
   }
+  soup_session_send_message (task_data->soup_session, msg);
 
-  if (media->height == -1) {
-    media->height = media->thumb_height;
-  }
+  if (msg->status_code != SOUP_STATUS_OK)
+    {
+      //g_debug ("Request on '%s' returned status '%s'",
+               //media->thumb_url ? media->thumb_url : media->url,
+               //soup_status_get_phrase (msg->status_code));
 
-  media->loaded  = TRUE;
-  media->invalid = FALSE;
+      //mark_invalid (media);
+      //FIXME: Return an error
+      g_object_unref (msg);
+      return;
+    }
 
-out:
-  if (media->animation == NULL)
-    g_object_unref (animation);
+  if (g_cancellable_is_cancelled (cancellable))
+    return;
 
-  cb_media_loading_finished (media);
+  input_stream = g_memory_input_stream_new_from_data (msg->response_body->data,
+                                                      msg->response_body->length,
+                                                      NULL);
+  g_debug("MEM Loading animation for %s", url);
+  load_animation (input_stream, surface, animation, cancellable, error);
+  g_input_stream_close (input_stream, NULL, NULL);
+  g_object_unref (input_stream);
+  g_object_unref (msg);
 }
 
 static void
@@ -302,8 +327,6 @@ cb_media_downloader_load_threaded (CbMediaDownloader *downloader,
                                    GCancellable      *cancellable)
 {
   const char *url;
-  SoupMessage *msg;
-  GInputStream *input_stream;
   CbMedia *media;
 
   g_return_if_fail (CB_IS_MEDIA_DOWNLOADER (downloader));
@@ -356,40 +379,35 @@ cb_media_downloader_load_threaded (CbMediaDownloader *downloader,
   if (g_cancellable_is_cancelled (cancellable))
     return;
 
+  char *download_url = media->thumb_url ? media->thumb_url : media->url;
+  GError *error = NULL;
+  load_media_url (download_url, task_data, &media->surface, &media->animation, G_CALLBACK(update_media_progress), cancellable, &error, media);  
 
-  msg = soup_message_new ("GET", media->thumb_url ? media->thumb_url : media->url);
-  if (msg == NULL)
-    {
-      mark_invalid (media);
-      g_warning ("soup_message_new failed for URI '%s'",
-                 media->thumb_url ? media->thumb_url : media->url);
-      return;
-    }
-  g_signal_connect (msg, "got-chunk", G_CALLBACK (update_media_progress), media);
-  soup_session_send_message (task_data->soup_session, msg);
-
-  if (msg->status_code != SOUP_STATUS_OK)
-    {
-      g_debug ("Request on '%s' returned status '%s'",
-               media->thumb_url ? media->thumb_url : media->url,
-               soup_status_get_phrase (msg->status_code));
-
-      mark_invalid (media);
-      g_object_unref (msg);
-      return;
-    }
-
-  if (g_cancellable_is_cancelled (cancellable))
+  if (error) {
+    g_warning ("Couldn't load pixbuf: %s (%s)", error->message, download_url);
+    mark_invalid (media);
+    g_error_free (error);
     return;
+  }
 
-  input_stream = g_memory_input_stream_new_from_data (msg->response_body->data,
-                                                      msg->response_body->length,
-                                                      NULL);
-  g_debug("MEM Loading animation for %s", media->url);
-  load_animation (input_stream, media, cancellable);
-  g_input_stream_close (input_stream, NULL, NULL);
-  g_object_unref (input_stream);
-  g_object_unref (msg);
+  media->thumb_width   = cairo_image_surface_get_width(media->surface);
+  media->thumb_height  = cairo_image_surface_get_height(media->surface);
+
+  // Take these sizes as full size if full size isn't set.
+  // This happens when loading third-party images which don't have
+  // Twitter's scaling variants.
+  if (media->width == -1) {
+    media->width = media->thumb_width;
+  }
+
+  if (media->height == -1) {
+    media->height = media->thumb_height;
+  }
+
+  media->loaded  = TRUE;
+  media->invalid = FALSE;
+
+  cb_media_loading_finished (media);
 }
 
 void
@@ -428,6 +446,84 @@ cb_media_downloader_load_async (CbMediaDownloader   *downloader,
   g_task_set_task_data (task, data, (GDestroyNotify)loading_data_free);
 
   g_task_run_in_thread (task, load_in_thread);
+}
+
+static void
+update_media_hires_progress (SoupMessage *msg,
+                       SoupBuffer  *chunk,
+                       gpointer     user_data)
+{
+  CbMedia *media = user_data;
+
+  if (msg->response_headers == NULL) return;
+
+  double chunk_percent = chunk->length / (double)soup_message_headers_get_content_length (msg->response_headers);
+
+  cb_media_update_hires_progress (media, media->percent_loaded_hires + chunk_percent);
+}
+
+static void
+cb_media_downloader_load_hires_threaded (CbMediaDownloader *downloader,
+                                         LoadingData       *task_data,
+                                         GCancellable      *cancellable)
+{
+  CbMedia *media;
+
+  g_return_if_fail (CB_IS_MEDIA_DOWNLOADER (downloader));
+
+  media = task_data->media;
+
+  GError *error = NULL;
+  load_media_url (media->url, task_data, &media->surface_hires, &media->animation, G_CALLBACK(update_media_hires_progress), cancellable, &error, media);  
+
+  if (error) {
+    g_warning ("Couldn't load hires pixbuf: %s (%s)", error->message, media->url);
+    g_error_free (error);
+    return;
+  }
+
+  media->width = cairo_image_surface_get_width(media->surface_hires);
+  media->height = cairo_image_surface_get_height(media->surface_hires);
+
+  cb_media_loading_hires_finished (media);
+}
+
+void
+load_hires_in_thread (GTask        *task,
+                gpointer      source_object,
+                gpointer      task_data,
+                GCancellable *cancellable)
+{
+  CbMediaDownloader *downloader = source_object;
+  LoadingData *data = task_data;
+
+  cb_media_downloader_load_hires_threaded (downloader, data, cancellable);
+
+  g_task_return_boolean (task, TRUE);
+  g_object_unref (task);
+}
+
+void
+cb_media_downloader_load_hires_async (CbMediaDownloader   *downloader,
+                                      CbMedia             *media,
+                                      GAsyncReadyCallback  callback,
+                                      gpointer             user_data)
+{
+  GTask *task;
+  LoadingData *data;
+
+  g_return_if_fail (CB_IS_MEDIA_DOWNLOADER (downloader));
+  g_return_if_fail (CB_IS_MEDIA (media));
+  g_return_if_fail (!media->loaded_hires);
+  g_return_if_fail (media->surface_hires == NULL);
+
+  task = g_task_new (downloader, downloader->cancellable, callback, user_data);
+  data = g_new0 (LoadingData, 1);
+  data->media = g_object_ref (media);
+  data->soup_session = soup_session_new ();
+  g_task_set_task_data (task, data, (GDestroyNotify)loading_data_free);
+
+  g_task_run_in_thread (task, load_hires_in_thread);
 }
 
 gboolean
