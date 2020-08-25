@@ -96,6 +96,7 @@ namespace Cb {
   public class MediaDownloader : GLib.Object {
     public static unowned MediaDownloader get_default ();
     public async void load_async (Media media);
+    public async void load_hires_async (Media media);
     public void disable ();
     public void shutdown ();
   }

@@ -32,6 +32,12 @@ class MediaDialog : Gtk.Window {
                       int      start_media_index,
                       Gdk.Rectangle max_dimensions) {
     this.media = media;
+    var downloader = Cb.MediaDownloader.get_default();
+    foreach (Cb.Media m in media){
+      if (!m.loaded_hires && !m.loading_hires) {
+        downloader.load_hires_async.begin (m);
+      }
+    }
     Cb.Media cur_media = media[start_media_index];
     this.cur_index = start_media_index;
     this.max_dimensions = max_dimensions;
