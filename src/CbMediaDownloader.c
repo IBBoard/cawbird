@@ -390,23 +390,6 @@ cb_media_downloader_load_threaded (CbMediaDownloader *downloader,
     return;
   }
 
-  media->thumb_width   = cairo_image_surface_get_width(media->surface);
-  media->thumb_height  = cairo_image_surface_get_height(media->surface);
-
-  // Take these sizes as full size if full size isn't set.
-  // This happens when loading third-party images which don't have
-  // Twitter's scaling variants.
-  if (media->width == -1) {
-    media->width = media->thumb_width;
-  }
-
-  if (media->height == -1) {
-    media->height = media->thumb_height;
-  }
-
-  media->loaded  = TRUE;
-  media->invalid = FALSE;
-
   cb_media_loading_finished (media);
 }
 

@@ -77,6 +77,7 @@ void        cb_media_loading_hires_finished (CbMedia *media);
 void        cb_media_update_hires_progress (CbMedia *media,
                                             double   progress);
 CbMediaType cb_media_type_from_url    (const char *url);
+cairo_surface_t * cb_media_get_highest_res_surface (CbMedia *media);
 
 G_END_DECLS
 

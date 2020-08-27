@@ -133,32 +133,27 @@ cb_media_image_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
   if (media->type == CB_MEDIA_TYPE_GIF) {
     gtk_image_set_from_animation (GTK_IMAGE (self->image), media->animation);
   }
-  else if (media->surface_hires != NULL) {
-    gtk_image_set_from_surface (GTK_IMAGE (self->image), media->surface_hires);
+  else if (media->loaded_hires) {
+    gtk_image_set_from_surface (GTK_IMAGE (self->image), cb_media_get_highest_res_surface(media));
   }
   else {
     double scale_width = media->width * 1.0 / media->thumb_width;
     double scale_height = media->height * 1.0 / media->thumb_height;
 
-    if (scale_width != 1 || scale_height != 1) {
-      data = g_new0 (LoadingData, 1);
-      data->widget = g_object_ref (self);
-      data->media = g_object_ref (media);
-      g_signal_connect(media, "hires-progress", G_CALLBACK(hires_progress), data);
-      self->image_surface = cairo_image_surface_create(cairo_image_surface_get_format(media->surface), media->width, media->height);
-      cairo_t *ct = cairo_create(self->image_surface);
-      cairo_scale(ct, scale_width, scale_height);
-      cairo_set_source_surface (ct, media->surface, 0, 0);
-      cairo_paint(ct);
-      cairo_destroy(ct);
-      gtk_image_set_from_surface (GTK_IMAGE (self->image), self->image_surface);
-      if (!media->loading) {
-        // NULL callback because we should pick it up from the earlier g_signal_connect
-        cb_media_downloader_load_hires_async (cb_media_downloader_get_default(), media, NULL, NULL);
-      }
-    }
-    else {
-      gtk_image_set_from_surface (GTK_IMAGE (self->image), media->surface);
+    data = g_new0 (LoadingData, 1);
+    data->widget = g_object_ref (self);
+    data->media = g_object_ref (media);
+    g_signal_connect(media, "hires-progress", G_CALLBACK(hires_progress), data);
+    self->image_surface = cairo_image_surface_create(cairo_image_surface_get_format(media->surface), media->width, media->height);
+    cairo_t *ct = cairo_create(self->image_surface);
+    cairo_scale(ct, scale_width, scale_height);
+    cairo_set_source_surface (ct, media->surface, 0, 0);
+    cairo_paint(ct);
+    cairo_destroy(ct);
+    gtk_image_set_from_surface (GTK_IMAGE (self->image), self->image_surface);
+    if (!media->loading) {
+      // NULL callback because we should pick it up from the earlier g_signal_connect
+      cb_media_downloader_load_hires_async (cb_media_downloader_get_default(), media, NULL, NULL);
     }
   }
 
