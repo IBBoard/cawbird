@@ -516,9 +516,11 @@ cb_media_downloader_load_hires_async (CbMediaDownloader   *downloader,
 
   g_return_if_fail (CB_IS_MEDIA_DOWNLOADER (downloader));
   g_return_if_fail (CB_IS_MEDIA (media));
-  g_return_if_fail (!media->loaded_hires);
-  g_return_if_fail (!media->loading_hires);
   g_return_if_fail (media->surface_hires == NULL);
+
+  if (media->loading_hires || media->loaded_hires) {
+    return;
+  }
 
   media->loading_hires = TRUE;
   task = g_task_new (downloader, downloader->cancellable, callback, user_data);
