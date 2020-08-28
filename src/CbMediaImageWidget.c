@@ -18,19 +18,6 @@
 
 G_DEFINE_TYPE (CbMediaImageWidget, cb_media_image_widget, GTK_TYPE_SCROLLED_WINDOW)
 
-typedef struct {
-  CbMediaImageWidget *widget;
-  CbMedia *media;
-} LoadingData;
-
-static void
-loading_data_free (LoadingData *data)
-{
-  g_object_unref (data->media);
-  g_object_unref (data->widget);
-  g_free (data);
-}
-
 static void
 cb_media_image_widget_finalize (GObject *object)
 {
@@ -103,24 +90,20 @@ cb_media_image_widget_init (CbMediaImageWidget *self)
 }
 
 void
-hires_progress (CbMedia *_media, gpointer user_data) {
-  if (!_media->loaded_hires) {
+hires_progress (CbMedia *media, gpointer user_data) {
+  if (!media->loaded_hires) {
     return;
   }
-  LoadingData *data = user_data;
-  CbMediaImageWidget *self = CB_MEDIA_IMAGE_WIDGET(data->widget);
-  CbMedia *media = data->media;
+  CbMediaImageWidget *self = CB_MEDIA_IMAGE_WIDGET(user_data);
   gtk_image_set_from_surface (GTK_IMAGE (self->image), media->surface_hires);
   cairo_surface_destroy(self->image_surface);
   self->image_surface = NULL;
-  loading_data_free (user_data);
 }
 
 GtkWidget *
 cb_media_image_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
 {
   CbMediaImageWidget *self;
-  LoadingData *data;
   int win_width;
   int win_height;
 
@@ -139,11 +122,7 @@ cb_media_image_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
   else {
     double scale_width = media->width * 1.0 / media->thumb_width;
     double scale_height = media->height * 1.0 / media->thumb_height;
-
-    data = g_new0 (LoadingData, 1);
-    data->widget = g_object_ref (self);
-    data->media = g_object_ref (media);
-    g_signal_connect(media, "hires-progress", G_CALLBACK(hires_progress), data);
+    g_signal_connect(media, "hires-progress", G_CALLBACK(hires_progress), self);
     self->image_surface = cairo_image_surface_create(cairo_image_surface_get_format(media->surface), media->width, media->height);
     cairo_t *ct = cairo_create(self->image_surface);
     cairo_scale(ct, scale_width, scale_height);
