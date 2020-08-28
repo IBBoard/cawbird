@@ -23,6 +23,10 @@ class MediaDialog : Gtk.Window {
   private Gtk.Revealer next_revealer;
   [GtkChild]
   private Gtk.Revealer previous_revealer;
+  [GtkChild]
+  private Gtk.Revealer media_count_revealer;
+  [GtkChild]
+  private Gtk.Label media_count;
   private unowned Cb.Media[] media;
   private int cur_index = 0;
   private Gtk.GestureMultiPress button_gesture;
@@ -38,7 +42,6 @@ class MediaDialog : Gtk.Window {
         downloader.load_hires_async.begin (m);
       }
     }
-    Cb.Media cur_media = media[start_media_index];
     this.cur_index = start_media_index;
     this.max_dimensions = max_dimensions;
     this.button_gesture = new Gtk.GestureMultiPress (this);
@@ -49,9 +52,10 @@ class MediaDialog : Gtk.Window {
     if (media.length == 1) {
       next_revealer.hide ();
       previous_revealer.hide ();
+      media_count_revealer.hide ();
     }
 
-    change_media (cur_media);
+    change_media (start_media_index);
   }
 
   private void button_released_cb (int    n_press,
@@ -61,7 +65,7 @@ class MediaDialog : Gtk.Window {
     button_gesture.set_state (Gtk.EventSequenceState.CLAIMED);
   }
 
-  private void change_media (Cb.Media media) {
+  private void change_media (int new_index) {
     /* Remove the current child */
     var cur_child = frame.get_child ();
     int cur_width = 0, cur_height = 0,
@@ -73,6 +77,7 @@ class MediaDialog : Gtk.Window {
       cur_child.get_size_request (out cur_width, out cur_height);
     }
 
+    Cb.Media media = this.media[new_index];
     Gtk.Widget new_widget = null;
     if (media.is_video ()) {
       new_widget = new Cb.MediaVideoWidget (media, max_dimensions);
@@ -92,22 +97,24 @@ class MediaDialog : Gtk.Window {
     }
     this.queue_resize ();
 
+    cur_index = new_index;
     next_revealer.set_visible (cur_index != this.media.length - 1);
     previous_revealer.set_visible (cur_index != 0);
+    // Translators: Values are current image index (1-based) and total image count. Pluralisation is based on total image count.
+    // Should only be seen when image count is two or more.
+    media_count.set_text(ngettext("Image %d of %d", "Image %d of %d", this.media.length).printf(cur_index + 1, this.media.length));
     this.set_position(Gtk.WindowPosition.CENTER_ON_PARENT);
   }
 
   private void next_media () {
     if (cur_index < media.length - 1) {
-      cur_index ++;
-      change_media (media[cur_index]);
+      change_media (cur_index + 1);
     }
   }
 
   private void previous_media () {
     if (cur_index > 0) {
-      cur_index --;
-      change_media (media[cur_index]);
+      change_media (cur_index - 1);
     }
   }
 
@@ -138,6 +145,7 @@ class MediaDialog : Gtk.Window {
         event.detail != Gdk.NotifyType.INFERIOR) {
       next_revealer.reveal_child = true;
       previous_revealer.reveal_child = true;
+      media_count_revealer.reveal_child = true;
     }
 
     return false;
@@ -148,6 +156,7 @@ class MediaDialog : Gtk.Window {
         event.detail != Gdk.NotifyType.INFERIOR) {
       next_revealer.reveal_child = false;
       previous_revealer.reveal_child = false;
+      media_count_revealer.reveal_child = false;
     }
 
     return false;
