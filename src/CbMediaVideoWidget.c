@@ -378,6 +378,9 @@ cb_media_video_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
         g_warn_if_reached ();
     }
 
+  gtk_widget_set_tooltip_text (GTK_WIDGET (self), media->alt_text);
+  atk_object_set_description(gtk_widget_get_accessible(GTK_WIDGET(self)), media->alt_text == NULL ? "" : media->alt_text);
+
   return self;
 }
 

@@ -150,6 +150,8 @@ cb_media_image_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
   }
 
   gtk_widget_set_size_request (GTK_WIDGET (self), win_width, win_height);
+  gtk_widget_set_tooltip_text (GTK_WIDGET (self), media->alt_text);
+  atk_object_set_description(gtk_widget_get_accessible(GTK_WIDGET(self)), media->alt_text == NULL ? "" : media->alt_text);
 
   return GTK_WIDGET (self);
 }
