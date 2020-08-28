@@ -98,8 +98,6 @@ class MediaDialog : Gtk.Window {
     this.queue_resize ();
 
     cur_index = new_index;
-    next_revealer.set_visible (cur_index != this.media.length - 1);
-    previous_revealer.set_visible (cur_index != 0);
     // Translators: Values are current image index (1-based) and total image count. Pluralisation is based on total image count.
     // Should only be seen when image count is two or more.
     media_count.set_text(ngettext("Image %d of %d", "Image %d of %d", this.media.length).printf(cur_index + 1, this.media.length));
@@ -107,15 +105,11 @@ class MediaDialog : Gtk.Window {
   }
 
   private void next_media () {
-    if (cur_index < media.length - 1) {
-      change_media (cur_index + 1);
-    }
+    change_media ((cur_index + 1) % media.length);
   }
 
   private void previous_media () {
-    if (cur_index > 0) {
-      change_media (cur_index - 1);
-    }
+    change_media (cur_index != 0 ? cur_index - 1 : media.length - 1);
   }
 
   [GtkCallback]
