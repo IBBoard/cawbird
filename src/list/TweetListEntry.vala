@@ -135,7 +135,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     }
     avatar_image.verified = tweet.is_flag_set (Cb.TweetState.VERIFIED);
     avatar_image.protected_account = tweet.is_flag_set (Cb.TweetState.PROTECTED);
-    text_label.label = tweet.get_trimmed_text (Settings.get_text_transform_flags ()).strip ();
+    
     if (tweet.retweeted_tweet != null) {
       var rt_author = tweet.source_tweet.author;
       rt_label.show ();
@@ -169,11 +169,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
     if (tweet.quoted_tweet != null) {
       this.create_quote_grid (tweet.quoted_tweet.reply_id != 0);
-      quote_label.label = Cb.TextTransform.tweet (ref tweet.quoted_tweet,
-                                                 Settings.get_text_transform_flags (),
-                                                 0);
-      if (quote_label.label.length == 0)
-        quote_label.hide ();
 
       quote_name.set_markup (Utils.linkify_user (tweet.quoted_tweet.author));
       quote_name.tooltip_text = tweet.quoted_tweet.author.user_name;
@@ -212,13 +207,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       mm_widget.media_clicked.connect (media_clicked_cb);
       mm_widget.media_invalid.connect (media_invalid_cb);
       mm_widget.window = main_window;
-
-      if (text_label.label.length == 0) {
-        // Move the media widget up (to overlap with avatar) if there's no text
-        // We don't do this for quoted images because there is no avatar
-        scroller.visible = false;
-        this.grid.child_set (w, "top-attach", 2);
-      }
     }
 
     if (tweet.has_quoted_inline_media ()) {
@@ -268,14 +256,15 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
     values_set = true;
 
+    set_tweet_text();
     update_time_delta ();
 
     // TODO All these settings signal connections with lots of tweets could be costly...
-    Settings.get ().changed["text-transform-flags"].connect (transform_flags_changed_cb);
+    Settings.get ().changed["text-transform-flags"].connect (set_tweet_text);
   }
 
   ~TweetListEntry () {
-    Settings.get ().changed["text-transform-flags"].disconnect (transform_flags_changed_cb);
+    Settings.get ().changed["text-transform-flags"].disconnect (set_tweet_text);
 
     if (tweet.is_flag_set (Cb.TweetState.NSFW) || tweet.is_quoted_flag_set (Cb.TweetState.NSFW))
       Settings.get ().changed["hide-nsfw-content"].disconnect (hide_nsfw_content_changed_cb);
@@ -300,14 +289,24 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
         this.quoted_mm_widget.hide ();
       }
     }
+
+    set_tweet_text();
   }
 
-  private void transform_flags_changed_cb () {
-    text_label.label = tweet.get_trimmed_text (Settings.get_text_transform_flags ());
+  private void set_tweet_text() {
+    Cb.TransformFlags transform_flags = Settings.get_text_transform_flags ();
+
+    if (Settings.get_media_visiblity () != MediaVisibility.SHOW) {
+      // Forcefully unset "remove media links" so people can see there's media without loading it
+      transform_flags &= ~Cb.TransformFlags.REMOVE_MEDIA_LINKS;
+    }
+
+    text_label.label = tweet.get_trimmed_text (transform_flags);
     if (this.tweet.quoted_tweet != null) {
-      this.quote_label.label = Cb.TextTransform.tweet (ref tweet.quoted_tweet,
-                                                       Settings.get_text_transform_flags (),
-                                                       0);
+      this.quote_label.label = Cb.TextTransform.tweet (ref tweet.quoted_tweet, transform_flags, 0);
+      if (quote_label.label == "") {
+        quote_label.hide ();
+      }
     }
 
     if (this.mm_widget != null) {
@@ -315,7 +314,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
       // Move the media widget up (to overlap with avatar) if there's no text
       // We don't do this for quoted images because there is no avatar
-      if (text_label.label.length == 0)
+      if (text_label.label == "")
         this.grid.child_set (w, "top-attach", 2);
       else
         this.grid.child_set (w, "top-attach", 3);
