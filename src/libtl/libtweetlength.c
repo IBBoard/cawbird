@@ -1,5 +1,5 @@
 /*  This file is part of libtweetlength
- *  Copyright (C) 2017 Timm Bäder (Corebird)
+ *  Copyright (C) 2017 Timm Bäder
  *
  *  libtweetlength is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -252,19 +252,10 @@ token_is_tld (const Token *t,
     }
   }
 
-  for (i = 0; i < G_N_ELEMENTS (SPECIAL_CCTLDS); i ++) {
-    if (t->length_in_characters == SPECIAL_CCTLDS[i].length &&
-        strncasecmp (t->start, SPECIAL_CCTLDS[i].str, t->length_in_bytes) == 0) {
+  for (i = 0; i < G_N_ELEMENTS (CCTLDS); i ++) {
+    if (t->length_in_characters == CCTLDS[i].length &&
+        strncasecmp (t->start, CCTLDS[i].str, t->length_in_bytes) == 0) {
       return TRUE;
-    }
-  }
-
-  if (has_protocol) {
-    for (i = 0; i < G_N_ELEMENTS (CCTLDS); i ++) {
-      if (t->length_in_characters == CCTLDS[i].length &&
-          strncasecmp (t->start, CCTLDS[i].str, t->length_in_bytes) == 0) {
-        return TRUE;
-      }
     }
   }
 
@@ -424,7 +415,9 @@ parse_link_tail (GArray      *entities,
 {
   guint i = *current_position;
   const Token *t;
-
+#ifdef LIBTL_DEBUG
+  g_debug ("--------");
+#endif
   gsize paren_level = 0;
   int first_paren_index = -1;
   for (;;) {
@@ -439,6 +432,9 @@ parse_link_tail (GArray      *entities,
 
       if (first_paren_index == -1) {
         first_paren_index = i;
+#ifdef LIBTL_DEBUG
+        g_debug ("First paren index: %d", (int)first_paren_index);
+#endif
       }
       paren_level ++;
       if (paren_level == 3) {
@@ -447,7 +443,13 @@ parse_link_tail (GArray      *entities,
     } else if (tokens[i].type == TOK_CLOSE_PAREN) {
       if (first_paren_index == -1) {
         first_paren_index = i;
+#ifdef LIBTL_DEBUG
+        g_debug ("First paren index: %d", (int)first_paren_index);
+#endif
       }
+#ifdef LIBTL_DEBUG
+      g_debug ("Close paren");
+#endif
       paren_level --;
     }
 
@@ -458,7 +460,10 @@ parse_link_tail (GArray      *entities,
       break;
     }
   }
-
+#ifdef LIBTL_DEBUG
+  g_debug ("After i: %u", i);
+  g_debug ("paren level: %d", (int)paren_level);
+#endif
   if (paren_level != 0) {
     g_assert (first_paren_index != -1);
     i = first_paren_index - 1; // Before that paren
@@ -536,6 +541,9 @@ parse_link (GArray      *entities,
   guint tld_index = i;
   guint tld_iter = i;
   gboolean tld_found = FALSE;
+#ifdef LIBTL_DEBUG
+  g_debug ("Looking for TLD starting from %u of %ld", i, n_tokens);
+#endif
   while (tld_iter < n_tokens - 1) {
     const Token *t = &tokens[tld_iter];
 
@@ -560,10 +568,16 @@ parse_link (GArray      *entities,
         token_is_tld (&tokens[tld_iter + 1], has_protocol)) {
       tld_index = tld_iter;
       tld_found = TRUE;
+#ifdef LIBTL_DEBUG
+      g_debug ("TLD found at %u", tld_iter);
+#endif
     }
 
     tld_iter ++;
   }
+#ifdef LIBTL_DEBUG
+  g_debug ("tld_index: %u", tld_index);
+#endif
 
   if (tld_index >= n_tokens - 1 ||
       !tld_found ||
@@ -587,6 +601,9 @@ parse_link (GArray      *entities,
     }
   }
 
+#ifdef LIBTL_DEBUG
+  g_debug ("After reading a port: %u", i);
+#endif
 
   // To continue a link, the next token must be a slash or a question mark
   // If it isn't, we stop here.
@@ -613,6 +630,9 @@ parse_link (GArray      *entities,
     }
   }
 
+#ifdef LIBTL_DEBUG
+  g_debug ("end_token = i = %u", i);
+#endif
   end_token = i;
   g_assert (end_token < n_tokens);
 
@@ -957,7 +977,7 @@ tl_count_weighted_characters (const char *input, gboolean use_short_link)
     const char *p = input;
     gsize size = 0;
     gunichar c;
-   
+
     c = g_utf8_get_char (p);
     while (c != '\0') {
       size += weighted_length_for_character(c);
@@ -1056,12 +1076,30 @@ tl_extract_entities_internal (const char *input,
   guint result_index = 0;
 
   tokens = tokenize (input, length_in_bytes);
+
+#ifdef LIBTL_DEBUG
+  g_debug ("############ %s: %.*s", __FUNCTION__, (guint)length_in_bytes, input);
+  for (guint i = 0; i < tokens->len; i ++) {
+    const Token *t = &g_array_index (tokens, Token, i);
+    g_debug ("Token %u: Type: %d, Length: %u, Text:%.*s, start char: %u, chars: %u", i, t->type, (guint)t->length_in_bytes,
+         (int)t->length_in_bytes, t->start, (guint)t->start_character_index, (guint)t->length_in_characters);
+  }
+#endif
+
   n_tokens = tokens->len;
   token_array = (const Token *)g_array_free (tokens, FALSE);
   entities = parse (token_array, n_tokens, extract_text_entities, &n_relevant_entities);
 
   *out_text_length = count_entities_in_characters (entities);
   g_free ((char *)token_array);
+
+#ifdef LIBTL_DEBUG
+  for (guint i = 0; i < entities->len; i ++) {
+    const TlEntity *e = &g_array_index (entities, TlEntity, i);
+    g_debug ("TlEntity %u: Text: '%.*s', Type: %u, Bytes: %u, Length: %u, start character: %u", i, (int)e->length_in_bytes, e->start,
+               e->type, (guint)e->length_in_bytes, (guint)entity_length_in_characters (e), (guint)e->start_character_index);
+  }
+#endif
 
   // Only pass mentions, hashtags and links out
   result_entities = g_malloc (sizeof (TlEntity) * n_relevant_entities);
