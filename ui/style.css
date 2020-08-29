@@ -228,9 +228,8 @@ replyindicator {
   opacity: 0.4;
 }
 
-label.name, label.name link {
+label.name link {
   color: @theme_fg_color;
-  font-weight: bold;
 }
 
 /* Override the earlier rule to read-only

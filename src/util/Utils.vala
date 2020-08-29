@@ -411,17 +411,24 @@ namespace Utils {
     yield;
   }
 
-  public string linkify_user (Cb.UserIdentity user) {
+  public string linkify_user (Cb.UserIdentity user, bool boldify = false) {
+    var username = GLib.Markup.escape_text(user.user_name);
     var buff = new StringBuilder ();
+    if (boldify) {
+      buff.append("<b>");
+    }
     buff.append ("<span underline='none'><a href=\"@")
         .append (user.id.to_string ())
         .append ("/@")
         .append (user.screen_name)
-        .append ("\" title=\"@")
-        .append (user.screen_name)
+        .append ("\" title=\"")
+        .append (username)
         .append ("\">")
-        .append (GLib.Markup.escape_text(user.user_name))
+        .append (username)
         .append ("</a></span>");
+    if (boldify) {
+      buff.append("</b>");
+    }
     return buff.str;
   }
 

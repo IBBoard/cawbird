@@ -23,8 +23,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   };
 
   [GtkChild]
-  private Gtk.Label screen_name_label;
-  [GtkChild]
   private Gtk.Label name_label;
   [GtkChild]
   private Gtk.Label time_delta_label;
@@ -61,7 +59,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   private Gtk.Label? quote_label = null;
   private Gtk.Label? quote_name = null;
   private Gtk.Label? quote_time_delta = null;
-  private Gtk.Label? quote_screen_name = null;
   private Gtk.Label? quote_reply_label = null;
   private Gtk.Grid? quote_grid = null;
   private Gtk.Stack? media_stack = null;
@@ -115,17 +112,15 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     this.main_window = main_window;
 
     var name = tweet.get_user_name ();
+    var screen_name = "@" + tweet.get_screen_name ();
     Cb.UserIdentity author;
     if (tweet.retweeted_tweet != null) {
       author = tweet.retweeted_tweet.author;
     } else {
       author = tweet.source_tweet.author;
     }
-    name_label.set_markup (Utils.linkify_user (author));
-    name_label.tooltip_text = name;
-    var screen_name = "@" + tweet.get_screen_name ();
-    screen_name_label.label = screen_name;
-    screen_name_label.tooltip_text = screen_name;
+    name_label.set_markup (Utils.linkify_user (author, true) + "  " + screen_name);
+    name_label.tooltip_text = name + " " + screen_name;
     if (tweet.avatar_url != null) {
       string avatar_url = tweet.avatar_url;
       if (this.get_scale_factor () == 2)
@@ -169,11 +164,9 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
     if (tweet.quoted_tweet != null) {
       this.create_quote_grid (tweet.quoted_tweet.reply_id != 0);
-
-      quote_name.set_markup (Utils.linkify_user (tweet.quoted_tweet.author));
-      quote_name.tooltip_text = tweet.quoted_tweet.author.user_name;
-      quote_screen_name.label = "@" + tweet.quoted_tweet.author.screen_name;
-      quote_screen_name.tooltip_text = "@" + tweet.quoted_tweet.author.screen_name;
+      var quoted_screen_name = "@" + tweet.quoted_tweet.author.screen_name;
+      quote_name.set_markup (Utils.linkify_user (tweet.quoted_tweet.author) + "  " + quoted_screen_name);
+      quote_name.tooltip_text = tweet.quoted_tweet.author.user_name + "  " + quoted_screen_name;
       if (tweet.quoted_tweet.reply_id != 0) {
         var buff = new GLib.StringBuilder ();
         Cb.Utils.write_reply_text (ref tweet.quoted_tweet, buff);
@@ -734,16 +727,10 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     quote_name.valign = Gtk.Align.BASELINE;
     quote_name.margin_start = 12;
     quote_name.margin_end = 6;
+    quote_name.ellipsize = Pango.EllipsizeMode.END;
     quote_name.activate_link.connect (quote_link_activated_cb);
     quote_name.get_style_context ().add_class ("name");
-    quote_grid.attach (quote_name, 0, 0, 1, 1);
-
-    this.quote_screen_name = new Gtk.Label ("");
-    quote_screen_name.halign = Gtk.Align.START;
-    quote_screen_name.valign = Gtk.Align.BASELINE;
-    quote_screen_name.hexpand = true;
-    quote_screen_name.get_style_context ().add_class ("dim-label");
-    quote_grid.attach (quote_screen_name, 1, 0, 1, 1);
+    quote_grid.attach (quote_name, 0, 0, 2, 1);
 
     if (reply) {
       this.quote_reply_label = new Gtk.Label ("");
