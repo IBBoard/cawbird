@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-21 20:43+0100\n"
+"POT-Creation-Date: 2020-08-29 11:40+0100\n"
 "PO-Revision-Date: 2017-11-20 17:05+0000\n"
 "Last-Translator: Slobodan Terzić <githzerai06@gmail.com>\n"
 "Language-Team: Serbian (Latin) (http://www.transifex.com/cawbird/cawbird/"
@@ -581,6 +581,15 @@ msgstr "Ubaci emodži"
 #, c-format
 msgid "%d character remaining"
 msgid_plural "%d characters remaining"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#. TRANSLATORS: Values are current image index (1-based) and total image count. Pluralisation is based on total image count.
+#. Should only be seen when image count is two or more.
+#, c-format
+msgid "Image %d of %d"
+msgid_plural "Image %d of %d"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""

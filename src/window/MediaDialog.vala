@@ -98,7 +98,7 @@ class MediaDialog : Gtk.Window {
     this.queue_resize ();
 
     cur_index = new_index;
-    // Translators: Values are current image index (1-based) and total image count. Pluralisation is based on total image count.
+    // TRANSLATORS: Values are current image index (1-based) and total image count. Pluralisation is based on total image count.
     // Should only be seen when image count is two or more.
     media_count.set_text(ngettext("Image %d of %d", "Image %d of %d", this.media.length).printf(cur_index + 1, this.media.length));
     this.set_position(Gtk.WindowPosition.CENTER_ON_PARENT);
