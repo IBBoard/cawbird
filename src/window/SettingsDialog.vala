@@ -77,6 +77,18 @@ class SettingsDialog : Gtk.Window {
                           "active", SettingsBindFlags.DEFAULT);
     Settings.get ().bind ("media-visibility", media_visibility_combobox, "active-id",
                           SettingsBindFlags.DEFAULT);
+    Settings.get ().changed["media-visibility"].connect(() => {
+      block_flag_emission = true;
+      if (Settings.get_media_visiblity () == MediaVisibility.SHOW) {
+        remove_media_links_switch.sensitive = true;
+        remove_media_links_switch.active = (Cb.TransformFlags.REMOVE_MEDIA_LINKS in Settings.get_text_transform_flags ());
+      }
+      else {
+        remove_media_links_switch.sensitive = false;
+        remove_media_links_switch.active = false;
+      }
+      block_flag_emission = false;
+    });
 
     // Tweets page
 
