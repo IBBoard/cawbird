@@ -314,10 +314,14 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
       // Move the media widget up (to overlap with avatar) if there's no text
       // We don't do this for quoted images because there is no avatar
-      if (text_label.label == "")
+      if (text_label.label == "") {
         this.grid.child_set (w, "top-attach", 2);
-      else
+        scroller.hide();
+      }
+      else {
         this.grid.child_set (w, "top-attach", 3);
+        scroller.show();
+      }
     }
   }
 
