@@ -422,7 +422,7 @@ namespace Utils {
         .append ("/@")
         .append (user.screen_name)
         .append ("\" title=\"")
-        .append (username)
+        .append (GLib.Markup.escape_text(username))
         .append ("\">")
         .append (username)
         .append ("</a></span>");
