@@ -143,6 +143,12 @@ cb_media_loading_finished (CbMedia *media)
 {
   g_return_if_fail (CB_IS_MEDIA (media));
 
+  if (media->invalid) {
+    // Short-circuit for invalid media
+    cb_media_update_progress (media, 1.0);
+    return;
+  }
+
   media->thumb_width   = cairo_image_surface_get_width(media->surface);
   media->thumb_height  = cairo_image_surface_get_height(media->surface);
 
