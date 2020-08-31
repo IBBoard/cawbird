@@ -17,6 +17,8 @@
 
 [GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/tweet-list-entry.ui")]
 public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
+  private static int RESPONSIVE_LIMIT = 440;
+
   private const GLib.ActionEntry[] action_entries = {
     {"quote", quote_activated},
     {"delete", delete_activated}
@@ -705,6 +707,36 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   }
 
 
+  public override void size_allocate(Gtk.Allocation allocation) {
+    if (allocation.width < RESPONSIVE_LIMIT) {
+      grid.child_set (avatar_image, "height", 2);
+      grid.child_set (scroller, "left-attach", 0);
+      grid.child_set (scroller, "width", 6);
+      if (mm_widget != null) {
+        Gtk.Widget w = media_stack != null ? ((Gtk.Widget)media_stack) : ((Gtk.Widget)mm_widget);
+        grid.child_set (w, "left-attach", 0);
+        grid.child_set (w, "width", 6);
+      }
+      if (quote_grid != null) {
+        grid.child_set (quote_grid, "left-attach", 0);
+        grid.child_set (quote_grid, "width", 6);
+      }
+    } else {
+      grid.child_set (avatar_image, "height", 3);
+      grid.child_set (scroller, "left-attach", 1);
+      grid.child_set (scroller, "width", 5);
+      if (mm_widget != null) {
+        Gtk.Widget w = media_stack != null ? ((Gtk.Widget)media_stack) : ((Gtk.Widget)mm_widget);
+        grid.child_set (w, "left-attach", 1);
+        grid.child_set (w, "width", 5);
+      }
+      if (quote_grid != null) {
+        grid.child_set (quote_grid, "left-attach", 1);
+        grid.child_set (quote_grid, "width", 5);
+      }
+    }
+    base.size_allocate(allocation);
+  }
 
   private bool quote_link_activated_cb (string uri) {
     if (this._read_only) {
