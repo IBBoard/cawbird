@@ -78,7 +78,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       if (quoted_mm_widget != null)
         quoted_mm_widget.sensitive = !value;
 
-      name_label.set_text(tweet.get_user_name());
+      name_label.set_markup("<b>" + GLib.Markup.escape_text(tweet.get_user_name()) + "</b>  @" + tweet.get_screen_name());
       this.get_style_context ().add_class ("read-only");
       this._read_only = value;
     }
