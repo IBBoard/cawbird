@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the cawbird package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-# Translators: 
+# Translators:
 # Geert Wirken <geert@gwirken.nl>, 2014
 # Nathan Follens, 2017
 # Heimen Stoffels <vistausss@outlook.com>, 2014-2015, 2020
