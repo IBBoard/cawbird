@@ -196,7 +196,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     if (tweet.has_inline_media ()) {
       this.create_media_widget (tweet.is_flag_set (Cb.TweetState.NSFW), out this.mm_widget, out this.media_stack);
       Gtk.Widget w = media_stack != null ? ((Gtk.Widget)media_stack) : ((Gtk.Widget)mm_widget);
-      this.grid.attach (w, 1, 3, 6, 1);
+      this.grid.attach (w, 2, 3, 5, 1);
       mm_widget.restrict_height = restrict_height;
       mm_widget.set_all_media (tweet.get_medias ());
       mm_widget.media_clicked.connect (media_clicked_cb);
@@ -711,27 +711,31 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     if (allocation.width < RESPONSIVE_LIMIT) {
       grid.child_set (avatar_image, "height", 2);
       grid.child_set (scroller, "left-attach", 0);
-      grid.child_set (scroller, "width", 6);
+      grid.child_set (scroller, "width", 7);
+      grid.child_set (rt_image, "left-attach", 0);
+      grid.child_set (rt_label, "left-attach", 1);
       if (mm_widget != null) {
         Gtk.Widget w = media_stack != null ? ((Gtk.Widget)media_stack) : ((Gtk.Widget)mm_widget);
         grid.child_set (w, "left-attach", 0);
-        grid.child_set (w, "width", 6);
+        grid.child_set (w, "width", 7);
       }
       if (quote_grid != null) {
         grid.child_set (quote_grid, "left-attach", 0);
-        grid.child_set (quote_grid, "width", 6);
+        grid.child_set (quote_grid, "width", 7);
       }
     } else {
       grid.child_set (avatar_image, "height", 3);
-      grid.child_set (scroller, "left-attach", 1);
+      grid.child_set (scroller, "left-attach", 2);
       grid.child_set (scroller, "width", 5);
+      grid.child_set (rt_image, "left-attach", 1);
+      grid.child_set (rt_label, "left-attach", 2);
       if (mm_widget != null) {
         Gtk.Widget w = media_stack != null ? ((Gtk.Widget)media_stack) : ((Gtk.Widget)mm_widget);
-        grid.child_set (w, "left-attach", 1);
+        grid.child_set (w, "left-attach", 2);
         grid.child_set (w, "width", 5);
       }
       if (quote_grid != null) {
-        grid.child_set (quote_grid, "left-attach", 1);
+        grid.child_set (quote_grid, "left-attach", 2);
         grid.child_set (quote_grid, "width", 5);
       }
     }
@@ -804,6 +808,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     quote_grid.attach (quote_time_delta, 2, 0, 1, 1);
 
     quote_grid.show_all ();
-    this.grid.attach (quote_grid, 1, 4, 6, 1);
+    this.grid.attach (quote_grid, 2, 4, 5, 1);
   }
 }
