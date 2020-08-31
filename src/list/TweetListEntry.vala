@@ -167,7 +167,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     if (tweet.quoted_tweet != null) {
       this.create_quote_grid (tweet.quoted_tweet.reply_id != 0);
       var quoted_screen_name = "@" + tweet.quoted_tweet.author.screen_name;
-      quote_name.set_markup (Utils.linkify_user (tweet.quoted_tweet.author) + "  " + quoted_screen_name);
+      quote_name.set_markup (Utils.linkify_user (tweet.quoted_tweet.author, true) + "  " + quoted_screen_name);
       quote_name.tooltip_text = tweet.quoted_tweet.author.user_name + "  " + quoted_screen_name;
       if (tweet.quoted_tweet.reply_id != 0) {
         var buff = new GLib.StringBuilder ();
