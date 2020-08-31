@@ -33,7 +33,10 @@ class UserFilterEntry : Gtk.ListBoxRow, Cb.TwitterItem {
   private Gtk.Revealer revealer;
 
   public new string name {
-    set { name_label.label = value; }
+    set {
+      name_label.label = value;
+      name_label.set_tooltip_text(value);
+    }
   }
 
   public string screen_name {

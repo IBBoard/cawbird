@@ -48,6 +48,7 @@
                     <property name="margin-bottom">1</property>
                     <property name="yalign">1</property>
                     <property name="hexpand">1</property>
+                    <property name="ellipsize">end</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
