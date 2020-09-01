@@ -17,7 +17,6 @@
 
 [GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/tweet-list-entry.ui")]
 public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
-  private static int RESPONSIVE_LIMIT = 440;
 
   private const GLib.ActionEntry[] action_entries = {
     {"quote", quote_activated},
@@ -708,7 +707,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
 
   public override void size_allocate(Gtk.Allocation allocation) {
-    if (allocation.width < RESPONSIVE_LIMIT) {
+    if (allocation.width < Cawbird.RESPONSIVE_LIMIT) {
       grid.child_set (avatar_image, "height", 2);
       grid.child_set (scroller, "left-attach", 0);
       grid.child_set (scroller, "width", 7);

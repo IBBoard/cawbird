@@ -10,7 +10,7 @@
         <property name="margin-top">4</property>
         <property name="margin-bottom">4</property>
         <child>
-          <object class="GtkBox">
+          <object class="GtkBox" id="create_box">
             <property name="visible">1</property>
             <child>
               <object class="GtkImage">
@@ -39,17 +39,21 @@
           <object class="GtkRevealer" id="revealer">
             <property name="visible">1</property>
             <child>
-              <object class="GtkBox">
+              <object class="GtkGrid" id="grid">
                 <property name="visible">1</property>
-                <property name="spacing">12</property>
                 <property name="margin-bottom">6</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">1</property>
                     <property name="valign">baseline</property>
                     <property name="margin-start">6</property>
+                    <property name="margin-bottom">6</property>
                     <property name="label" translatable="yes">Name:</property>
                   </object>
+                  <packing>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">0</property>
+                  </packing>
                 </child>
                 <child>
                   <object class="GtkEntry" id="list_name_entry">
@@ -57,10 +61,14 @@
                     <property name="can-focus">1</property>
                     <property name="valign">baseline</property>
                     <property name="hexpand">1</property>
+                    <property name="margin-start">6</property>
+                    <property name="margin-end">6</property>
+                    <property name="margin-bottom">6</property>
                     <signal name="activate" handler="create_list_button_clicked_cb" swapped="no"/>
                   </object>
                   <packing>
-                    <property name="position">1</property>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">0</property>
                   </packing>
                 </child>
                 <child>
@@ -71,14 +79,17 @@
                     <property name="valign">baseline</property>
                     <property name="sensitive">0</property>
                     <property name="label" translatable="yes">Create</property>
+                    <property name="margin-start">6</property>
                     <property name="margin-end">6</property>
+                    <property name="margin-bottom">6</property>
                     <style>
                       <class name="suggested-action"/>
                     </style>
                     <signal name="clicked" handler="create_list_button_clicked_cb" swapped="no"/>
                   </object>
                   <packing>
-                    <property name="position">2</property>
+                    <property name="left-attach">2</property>
+                    <property name="top-attach">0</property>
                   </packing>
                 </child>
               </object>

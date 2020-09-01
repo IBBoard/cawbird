@@ -18,6 +18,7 @@
 bool STRESSTEST = false;
 
 public class Cawbird : Gtk.Application {
+  public static int RESPONSIVE_LIMIT = 440;
   public static Sql.Database db;
   public static Cb.SnippetManager snippet_manager;
   public signal void account_added (Account acc);
