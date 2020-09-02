@@ -43,7 +43,7 @@
                 <property name="visible">1</property>
                 <property name="margin-bottom">6</property>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="list_name_label">
                     <property name="visible">1</property>
                     <property name="valign">baseline</property>
                     <property name="margin-start">6</property>

@@ -22,6 +22,8 @@ class NewListEntry : Gtk.ListBoxRow {
   [GtkChild]
   private Gtk.Grid grid;
   [GtkChild]
+  private Gtk.Label list_name_label;
+  [GtkChild]
   private Gtk.Entry list_name_entry;
   [GtkChild]
   private Gtk.Revealer revealer;
@@ -45,6 +47,21 @@ class NewListEntry : Gtk.ListBoxRow {
     revealer.reveal_child = false;
     this.activatable = true;
     list_name_entry.text = "";
+  }
+
+  public override void get_preferred_width (out int min, out int nat) {
+    min = nat = 0;
+    int child_min, child_nat;
+    list_name_label.get_preferred_width (out child_min, out child_nat);
+    min += child_min;
+    nat += child_nat;
+    list_name_entry.get_preferred_width (out child_min, out child_nat);
+    min += child_min;
+    nat += child_nat;
+    create_list_button.get_preferred_width (out child_min, out child_nat);
+    // We can wrap when narrow enough, so ignore the create button for min and only include in natural size (because we'll take the space if possible)
+    nat += child_nat;
+    debug("Preferred new list width: %d, %d", min, nat);
   }
 
   public override void get_preferred_height_for_width (int width, out int min, out int nat) {
