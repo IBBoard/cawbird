@@ -711,31 +711,37 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       grid.child_set (avatar_image, "height", 2);
       grid.child_set (scroller, "left-attach", 0);
       grid.child_set (scroller, "width", 7);
+      scroller.set ("margin-start", 6);
       grid.child_set (rt_image, "left-attach", 0);
       grid.child_set (rt_label, "left-attach", 1);
       if (mm_widget != null) {
         Gtk.Widget w = media_stack != null ? ((Gtk.Widget)media_stack) : ((Gtk.Widget)mm_widget);
         grid.child_set (w, "left-attach", 0);
         grid.child_set (w, "width", 7);
+        w.set ("margin-start", 6);
       }
       if (quote_grid != null) {
         grid.child_set (quote_grid, "left-attach", 0);
         grid.child_set (quote_grid, "width", 7);
+        quote_grid.set ("margin-start", 6);
       }
     } else {
       grid.child_set (avatar_image, "height", 3);
       grid.child_set (scroller, "left-attach", 2);
       grid.child_set (scroller, "width", 5);
+      scroller.set ("margin-start", 0);
       grid.child_set (rt_image, "left-attach", 1);
       grid.child_set (rt_label, "left-attach", 2);
       if (mm_widget != null) {
         Gtk.Widget w = media_stack != null ? ((Gtk.Widget)media_stack) : ((Gtk.Widget)mm_widget);
         grid.child_set (w, "left-attach", 2);
         grid.child_set (w, "width", 5);
+        w.set ("margin-start", 0);
       }
       if (quote_grid != null) {
         grid.child_set (quote_grid, "left-attach", 2);
         grid.child_set (quote_grid, "width", 5);
+        quote_grid.set ("margin-start", 0);
       }
     }
     base.size_allocate(allocation);
