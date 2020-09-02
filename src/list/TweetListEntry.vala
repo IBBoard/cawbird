@@ -705,6 +705,98 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     mm_widget.visible = (Settings.get_media_visiblity () == MediaVisibility.SHOW);
   }
 
+  public override void get_preferred_height_for_width (int width, out int min, out int nat) {
+    int margins = 0;
+    var style = this.get_style_context();
+    var style_margin = style.get_margin(0);
+    var style_padding = style.get_padding(0);
+    var style_borders = style.get_border(0);
+    margins += style_margin.left + style_margin.right;
+    margins += style_padding.left + style_padding.right;
+    margins += style_borders.left + style_borders.right;
+    GLib.Value val = GLib.Value(typeof(int));
+    grid.get_property("margin-start", ref val);
+    margins += val.get_int();
+    grid.get_property("margin-end", ref val);
+    margins += val.get_int();
+    width -= margins;
+
+    int avatar_min, avatar_nat;
+    avatar_image.get_preferred_height_for_width(width, out avatar_min, out avatar_nat);
+
+    int child_min, child_nat;
+    min = nat = 0;
+
+    int avatar_width;
+    avatar_image.get_preferred_width (out avatar_width, out child_nat);
+
+    // Name and reply label are always next to the avatar, no matter the scale
+    name_label.get_preferred_height_for_width(width - avatar_width, out child_min, out child_nat);
+    min += child_min;
+    nat += child_nat;
+    reply_label.get_preferred_height_for_width(width - avatar_width, out child_min, out child_nat);
+    min += child_min;
+    nat += child_nat;
+
+    if (width < Cawbird.RESPONSIVE_LIMIT) {
+      // In "responsive" mode the text sits under the avatar, so take whichever is taller:
+      // the avatar or the user's name and the "Replying to" line (if it was set)
+      min = int.max(avatar_min, min);
+      nat = int.max(avatar_nat, nat);
+
+      scroller.get_property ("margin-start", ref val);
+
+      if (val.get_int() == 0) {
+        // Crossing the responsive threshold, so subtract the extra margin we'll add as we allocate
+        width -= 6;
+      }
+    }
+    else {
+      // All the other widgets don't fill the column under the avatar, so reduce the width
+      // that they calculate from
+      width -= avatar_width;
+    }
+
+    scroller.get_preferred_height_for_width(width, out child_min, out child_nat);
+    min += child_min;
+    nat += child_nat;
+
+    if (mm_widget != null) {
+      mm_widget.get_preferred_height_for_width(width, out child_min, out child_nat);
+      min += child_min;
+      nat += child_nat;
+    }
+
+    if (quote_grid != null) {
+      quote_grid.get_preferred_height_for_width(width, out child_min, out child_nat);
+      min += child_min;
+      nat += child_nat;
+    }
+
+    if (rt_label.visible) {
+      int child2_min, child2_nat;
+      rt_label.get_preferred_height_for_width(width, out child_min, out child_nat);
+      rt_image.get_preferred_height_for_width(width, out child2_min, out child2_nat);
+      min += int.max(child_min, child2_min);
+      nat += int.max(child_nat, child2_nat);
+    }
+
+    min = int.max(avatar_min, min);
+    nat = int.max(avatar_nat, nat);
+
+    // Add the vertical GTK margins
+    grid.get_property("margin-top", ref val);
+    min += val.get_int();
+    nat += val.get_int();
+    grid.get_property("margin-bottom", ref val);
+    min += val.get_int();
+    nat += val.get_int();
+
+    // And any CSS values
+    var css_extra_height = style_margin.top + style_margin.bottom + style_padding.top + style_padding.bottom + style_borders.top + style_borders.bottom;
+    min += css_extra_height;
+    nat += css_extra_height;
+  }
 
   public override void size_allocate(Gtk.Allocation allocation) {
     if (allocation.width < Cawbird.RESPONSIVE_LIMIT) {
