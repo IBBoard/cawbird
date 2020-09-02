@@ -38,12 +38,29 @@ class FollowButton : Gtk.Button {
   private Gtk.Stack stack;
   private Gtk.Label follow_label;
   private Gtk.Label unfollow_label;
+  private bool _compact = false;
+  public bool compact {
+    get { return _compact; }
+    set {
+      _compact = value;
+      if (_compact) {
+        this.follow_label.label = "+";
+        this.unfollow_label.label = "-";
+      }
+      else {
+        this.follow_label.label = _("Follow");
+        this.unfollow_label.label = _("Unfollow");
+      }
+    }
+  }
 
   construct {
     this.stack = new Gtk.Stack ();
 
     this.follow_label = new Gtk.Label (_("Follow"));
     this.unfollow_label = new Gtk.Label (_("Unfollow"));
+    this.follow_label.get_accessible().set_name(_("Follow"));
+    this.unfollow_label.get_accessible().set_name(_("Unfollow"));
 
     stack.add (follow_label);
     stack.add (unfollow_label);

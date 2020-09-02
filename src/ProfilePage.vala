@@ -190,6 +190,18 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     this.insert_action_group ("user", actions);
   }
 
+  public override void size_allocate(Gtk.Allocation allocation) {
+    if (allocation.width < Cawbird.RESPONSIVE_LIMIT) {
+      follow_button.set_property("margin-end", 6);
+      follow_button.compact = true;
+    }
+    else {
+      follow_button.set_property("margin-end", 16);
+      follow_button.compact = false;
+    }
+    base.size_allocate(allocation);
+  }
+
   private void set_user_id (int64 user_id) {
     this.user_id = user_id;
     follow_button.sensitive = (user_id != account.id);
