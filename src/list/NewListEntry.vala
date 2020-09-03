@@ -61,7 +61,6 @@ class NewListEntry : Gtk.ListBoxRow {
     create_list_button.get_preferred_width (out child_min, out child_nat);
     // We can wrap when narrow enough, so ignore the create button for min and only include in natural size (because we'll take the space if possible)
     nat += child_nat;
-    debug("Preferred new list width: %d, %d", min, nat);
   }
 
   public override void get_preferred_height_for_width (int width, out int min, out int nat) {
