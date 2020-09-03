@@ -283,17 +283,40 @@ public class AccountDialog : Gtk.Window {
     debug ("Open main windows: %d", n_main_windows);
 
     if (account_window != null) {
-      if (n_main_windows > 1)
+      if (n_main_windows > 1) {
         account_window.destroy ();
-      else
-        ((MainWindow)account_window).change_account (null);
+      }
+      else {
+        Account first_acct = null;
+        Account first_startup_acct = null;
+        startup_accounts = Settings.get ().get_strv ("startup-accounts");
+        string startup_acct = null;
+        if (startup_accounts.length > 0) {
+          startup_acct = startup_accounts[0];
+        }
+
+        for (uint i = 0; i < Account.get_n (); i ++) {
+          var acct = Account.get_nth (i);
+          if (acct.screen_name == Account.DUMMY || acct.screen_name == account.screen_name) {
+            continue;
+          }
+          else if (acct.screen_name == startup_acct) {
+            first_startup_acct = acct;
+          }
+          else if (first_acct == null) {
+            first_acct = acct;
+          }
+        }
+
+        ((MainWindow)account_window).change_account (first_startup_acct ?? first_acct);
+      }
     }
 
 
     /* Remove the account from the global list of accounts */
-    Account acc_to_remove = Account.query_account_by_id (account.id);
+    Account acc_to_remove = Account.query_account_by_id (acc_id);
     cb.account_removed (acc_to_remove);
-    Account.remove_account (account.screen_name);
+    Account.remove_account (acc_to_remove.screen_name);
 
 
     /* Close this dialog */
