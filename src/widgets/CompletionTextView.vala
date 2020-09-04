@@ -373,12 +373,19 @@ class CompletionTextView : Gtk.TextView {
     }
 
     /* Check if the word ends with a 'special' character like ?!_ */
-    char end_char = cur_word.get (n_chars - 1);
-    bool word_has_alpha_end = (end_char.isalpha () || end_char.isdigit ()) &&
-                              end_char.isgraph () || end_char == '@';
+    unichar end_char = '\0';
+    // We've got to loop back from the end because get_char works on byte index, not on Unicode character index!
+    for (int i = cur_word.length; i >= 0; i--) {
+      if (cur_word.valid_char(i)) {
+        end_char = cur_word.get_char (i);
+        break;
+      }
+    }
 
-    if (!cur_word.has_prefix ("@") ||
-        !word_has_alpha_end ||
+    bool word_has_valid_end = end_char.isalpha() || end_char.isdigit() || end_char == '_' || n_chars == 1;
+
+    if (cur_word[0] != '@' ||
+        !word_has_valid_end ||
         this.buffer.has_selection) {
       hide_completion_window ();
       return;
