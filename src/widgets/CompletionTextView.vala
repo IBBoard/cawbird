@@ -24,7 +24,6 @@ class CompletionTextView : Gtk.TextView {
     "snippet"
   };
   private Gtk.Window completion_window;
-  private int current_match = 0;
   private string? current_word = null;
   private GLib.Cancellable? completion_cancellable = null;
 
@@ -33,8 +32,10 @@ class CompletionTextView : Gtk.TextView {
     set {
       _default_listbox = false;
       Cb.Utils.unbind_non_gobject_model (completion_list, completion_model);
+      completion_list.row_activated.disconnect(insert_user_completion);
       this.completion_list = value;
       Cb.Utils.bind_non_gobject_model (completion_list, completion_model, create_completion_row);
+      completion_list.row_activated.connect(insert_user_completion);
     }
   }
 
@@ -213,7 +214,8 @@ class CompletionTextView : Gtk.TextView {
         if (n_results == 0)
           return Gdk.EVENT_PROPAGATE;
 
-        this.current_match = (current_match + 1) % n_results;
+        var current_match = completion_list.get_selected_row().get_index();
+        current_match = (current_match + 1) % n_results;
         var row = completion_list.get_row_at_index (current_match);
         if (_default_listbox) {
           row.grab_focus ();
@@ -223,6 +225,7 @@ class CompletionTextView : Gtk.TextView {
         return Gdk.EVENT_STOP;
 
       case Gdk.Key.Up:
+        var current_match = completion_list.get_selected_row().get_index();
         current_match --;
         if (current_match < 0) current_match = n_results - 1;
         var row = completion_list.get_row_at_index (current_match);
@@ -236,14 +239,7 @@ class CompletionTextView : Gtk.TextView {
       case Gdk.Key.Return:
         if (n_results == 0)
           return Gdk.EVENT_PROPAGATE;
-        if (current_match == -1)
-          current_match = 0;
-        var row = completion_list.get_row_at_index (current_match);
-        assert (row is UserCompletionRow);
-        string compl = ((UserCompletionRow)row).get_screen_name ();
-        insert_completion (compl.substring (1));
-        current_match = -1;
-        hide_completion_window ();
+        insert_user_completion();
         return Gdk.EVENT_STOP;
 
       case Gdk.Key.Escape:
@@ -252,6 +248,19 @@ class CompletionTextView : Gtk.TextView {
 
       default:
         return Gdk.EVENT_PROPAGATE;
+    }
+  }
+
+  private void insert_user_completion () {
+    var row = completion_list.get_selected_row();
+    var list_had_focus = row.has_focus;
+    assert (row is UserCompletionRow);
+    string compl = ((UserCompletionRow)row).get_screen_name ();
+    insert_completion (compl.substring (1));
+    hide_completion_window ();
+    if (list_had_focus) {
+      debug ("Grabbing focus");
+      this.grab_focus();
     }
   }
 
@@ -403,7 +412,6 @@ class CompletionTextView : Gtk.TextView {
       bool corpus_was_empty = (corpus.length == 0);
       if (corpus.length > 0) {
         select_completion_row (completion_list.get_row_at_index (0));
-        current_match = 0;
       }
       corpus = null; /* Make sure we won't use it again */
 
@@ -424,7 +432,6 @@ class CompletionTextView : Gtk.TextView {
         completion_model.insert_items (users);
         if (users.length > 0 && corpus_was_empty) {
           select_completion_row (completion_list.get_row_at_index (0));
-          current_match = 0;
         }
       });
 
@@ -526,6 +533,8 @@ class UserCompletionRow : Gtk.ListBoxRow {
   public UserCompletionRow (int64 id, string user_name, string screen_name, bool verified, bool protected_account) {
     user_name_label = new Gtk.Label (user_name);
     screen_name_label = new Gtk.Label ("@" + screen_name);
+
+    this.activatable = true;
 
     var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
     user_name_label.set_valign (Gtk.Align.BASELINE);
