@@ -259,7 +259,6 @@ class CompletionTextView : Gtk.TextView {
     insert_completion (compl.substring (1));
     hide_completion_window ();
     if (list_had_focus) {
-      debug ("Grabbing focus");
       this.grab_focus();
     }
   }
