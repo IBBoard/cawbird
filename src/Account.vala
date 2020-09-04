@@ -19,6 +19,8 @@ public class Account : GLib.Object {
   public const string DUMMY = "screen_name";
   public int64 id;
   public int64 migration_date;
+  public bool suppress_dm_notifications;
+  public bool suppress_mention_notifications;
   public Sql.Database db;
   public string screen_name;
   public string name;
@@ -623,6 +625,22 @@ public class Account : GLib.Object {
 
     // Set the migrated value so that we don't try again
     Cawbird.db.update ("accounts").vali64 ("migrated", GLib.get_real_time ()).where_eqi ("id", this.id).run ();
+  }
+
+  // Notification suppression is used for first creation so that users don't get swamped
+  // with notifications. Unsurpressing is done in two parts because we fetch notifications
+  // and DMs separately and so one can be finished before the other.
+  public void suppress_notifications() {
+    this.suppress_dm_notifications = true;
+    this.suppress_mention_notifications = true;
+  }
+
+  public void unsuppress_dm_notifications() {
+    this.suppress_dm_notifications = false;
+  }
+
+  public void unsuppress_mention_notifications() {
+    this.suppress_mention_notifications = false;
   }
 
   /** Static stuff ********************************************************************/

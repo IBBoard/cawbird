@@ -139,6 +139,7 @@ class AccountCreateWidget : Gtk.Box {
               .val ("token", acc.proxy.token)
               .val ("token_secret", acc.proxy.token_secret)
               .run ();
+        acc.suppress_notifications();
         acc.init_proxy (true, true);
         cawbird.account_added (acc);
         result_received (true, acc);

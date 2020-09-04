@@ -41,6 +41,7 @@ class DMThreadsPage : IPage, Cb.MessageReceiver, ScrollWidget {
   private Gtk.ListBox thread_list;
   private Gtk.ListBox top_list;
   private Gtk.ListBoxRow? progress_row = null;
+  private GLib.GenericSet<int64?> suppressed_dms;
 
   private DMManager manager;
 
@@ -48,6 +49,7 @@ class DMThreadsPage : IPage, Cb.MessageReceiver, ScrollWidget {
   public DMThreadsPage (int id, Account account) {
     this.id = id;
     this.account = account;
+    this.suppressed_dms = new GLib.GenericSet<int64?>(GLib.int64_hash, GLib.int64_equal);
     this.manager = new DMManager.for_account (account);
     this.manager.message_received.connect (dm_received_cb);
     this.manager.thread_changed.connect (thread_changed_cb);
@@ -144,7 +146,7 @@ class DMThreadsPage : IPage, Cb.MessageReceiver, ScrollWidget {
     return row;
   }
 
-  void dm_received_cb (DMThread thread, string text, bool initial) {
+  void dm_received_cb (DMThread thread, int64 message_id, string text) {
     assert (thread.user.id != account.id);
 
     if (thread.user.id != account.id) {
@@ -154,9 +156,7 @@ class DMThreadsPage : IPage, Cb.MessageReceiver, ScrollWidget {
       }
     }
 
-    if (!initial) {
-      this.notify_new_dm (thread, text);
-    }
+    this.notify_new_dm (thread, message_id, text);
   }
 
   void thread_changed_cb (DMThread thread) {
@@ -171,10 +171,18 @@ class DMThreadsPage : IPage, Cb.MessageReceiver, ScrollWidget {
       }
     }
   }
+
   public void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
     if (type == Cb.StreamMessageType.DIRECT_MESSAGE) {
       var obj = root.get_object ();
+      if (account.suppress_dm_notifications) {
+        var dm_id = int64.parse(obj.get_string_member ("id"));
+        suppressed_dms.add(dm_id);
+      }
       this.manager.insert_message (obj);
+    }
+    else if (type == Cb.StreamMessageType.DIRECT_MESSAGES_LOADED) {
+      account.unsuppress_dm_notifications();
     }
   }
 
@@ -220,9 +228,14 @@ class DMThreadsPage : IPage, Cb.MessageReceiver, ScrollWidget {
     start_conversation_entry.unreveal ();
   }
 
-  private void notify_new_dm (DMThread thread, string msg_text) {
+  private void notify_new_dm (DMThread thread, int64 message_id, string msg_text) {
     if (!Settings.notify_new_dms ())
       return;
+    
+    if (suppressed_dms.contains(message_id)) {
+      suppressed_dms.remove(message_id);
+      return;
+    }
 
     string sender_screen_name = thread.user.screen_name;
     int64 sender_id = thread.user.id;

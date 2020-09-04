@@ -48,7 +48,8 @@ namespace Cb {
 
     TIMELINE_LOADED,
     MENTIONS_LOADED,
-    FAVORITES_LOADED
+    FAVORITES_LOADED,
+    DIRECT_MESSAGES_LOADED
   }
 
   [CCode (cprefix = "CbMedia_", lower_case_cprefix = "cb_media_", cheader_filename = "CbMedia.h")]

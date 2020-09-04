@@ -41,6 +41,7 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
       add_tweet (root);
     } else if (type == Cb.StreamMessageType.MENTIONS_LOADED) {
       this.preload_is_complete = true;
+      account.unsuppress_mention_notifications();
     } else if (type == Cb.StreamMessageType.DELETE) {
       int64 id = root.get_object ().get_object_member ("delete")
                      .get_object_member ("status").get_int_member ("id");
@@ -96,7 +97,7 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
     if (preload_is_complete)
       this.unread_count ++;
 
-    if (preload_is_complete && Settings.notify_new_mentions ()) {
+    if (preload_is_complete && !account.suppress_mention_notifications && Settings.notify_new_mentions ()) {
       string text;
       if (t.retweeted_tweet != null)
         text = Utils.unescape_html (t.retweeted_tweet.text);

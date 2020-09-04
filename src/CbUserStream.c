@@ -598,6 +598,8 @@ load_dm_tweets_done  (GObject *source_object,
 
   g_debug ("Got %d DMs", len);
 
+  gboolean first_load = self->last_dm_id == 0;
+
   for (guint i = len; i > 0; i--) {
     JsonNode *node = json_array_get_element (root_arr, i - 1);
     JsonObject *obj = json_node_get_object (node);
@@ -619,6 +621,10 @@ load_dm_tweets_done  (GObject *source_object,
     self->last_dm_id = id;
     g_debug("New DM with type: %s", type);
     stream_tweet (self, message_type, node);
+  }
+
+  if (first_load) {
+    stream_tweet (self, CB_STREAM_MESSAGE_DIRECT_MESSAGES_LOADED, json_node_new(JSON_NODE_NULL));
   }
 
   g_cancellable_cancel(self->dm_cancellable);

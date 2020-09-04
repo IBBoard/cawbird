@@ -86,6 +86,7 @@ class UserEventReceiver : GLib.Object, Cb.MessageReceiver {
       case Cb.StreamMessageType.DIRECT_MESSAGE:
         var cb = (Cawbird) GLib.Application.get_default ();
         if (!cb.is_window_open_for_user_id (account.id) &&
+            !account.suppress_dm_notifications &&
             Settings.notify_new_dms ()) {
           var dm_obj = root_node.get_object ().get_object_member ("direct_message");
           var sender_obj = dm_obj.get_object_member ("sender");
@@ -103,6 +104,7 @@ class UserEventReceiver : GLib.Object, Cb.MessageReceiver {
       case Cb.StreamMessageType.MENTION:
         var cb = (Cawbird) GLib.Application.get_default ();
         if (!cb.is_window_open_for_user_id (account.id) &&
+            !account.suppress_mention_notifications &&
             Settings.notify_new_mentions ()) {
           var tweet_obj = root_node.get_object ();
           string text = tweet_obj.get_string_member ("text");

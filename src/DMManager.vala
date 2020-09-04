@@ -24,7 +24,7 @@ public class DMManager : GLib.Object {
     }
   }
 
-  public signal void message_received (DMThread thread, string text, bool initial);
+  public signal void message_received (DMThread thread, int64 message_id, string text);
   public signal void thread_changed (DMThread thread);
 
   public DMManager.for_account (Account account) {
@@ -101,7 +101,7 @@ public class DMManager : GLib.Object {
   }
 
   public void insert_message (Json.Object dm_obj) {
-    update_thread (dm_obj);
+    update_thread.begin (dm_obj);
   }
 
   private async void update_thread (Json.Object dm_obj) {
@@ -226,8 +226,7 @@ public class DMManager : GLib.Object {
     if (sender_id != account.id && threads_model.has_thread (sender_id)) {
       DMThread thread = threads_model.get_thread (sender_id);
       threads_model.increase_unread_count (sender_id);
-      //TODO: Check whether the third parameter matters here
-      this.message_received (thread, text, false);
+      this.message_received (thread, message_id, text);
       this.thread_changed (thread);
     }
   }
