@@ -75,7 +75,7 @@
             <li>Fixed a usability issue where removing an account with multiple other accounts available showed the "Add account" interface with no account selector instead of showing another account</li>
             <li>Fixed show/hide bug for media in quoted tweets</li>
             <li>Put other users's lists in the correct place (created or subscribed)</li>
-            <li>Fixed builds on platforms without an implicit `#include <string.h>`</li>
+            <li>Fixed builds on platforms without an implicit `#include &lt;string.h&gt;`</li>
           </ul>
         </li>
       </ul>
