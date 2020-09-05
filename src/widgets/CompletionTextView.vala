@@ -366,26 +366,9 @@ class CompletionTextView : Gtk.TextView {
     string cur_word = get_cursor_word (null, null);
     int n_chars = cur_word.char_count ();
 
-    if (n_chars == 0) {
-      hide_completion_window ();
-      return;
-    }
-
-    /* Check if the word ends with a 'special' character like ?!_ */
-    unichar end_char = '\0';
-    // We've got to loop back from the end because get_char works on byte index, not on Unicode character index!
-    for (int i = cur_word.length; i >= 0; i--) {
-      if (cur_word.valid_char(i)) {
-        end_char = cur_word.get_char (i);
-        break;
-      }
-    }
-
-    bool word_has_valid_end = end_char.isalpha() || end_char.isdigit() || end_char == '_' || n_chars == 1;
-
-    if (cur_word[0] != '@' ||
-        !word_has_valid_end ||
-        this.buffer.has_selection) {
+    if (n_chars < 2 || cur_word[0] != '@'
+        || !cur_word.get_char(1).isalnum()
+        || this.buffer.has_selection) {
       hide_completion_window ();
       return;
     }
@@ -398,8 +381,9 @@ class CompletionTextView : Gtk.TextView {
       return;
     }
 
-    if (cur_word != this.current_word) {
+    cur_word = "\"%s\"".printf(cur_word.replace("\\", "\\\\").replace("\"", "\\\""));
 
+    if (cur_word != this.current_word) {
       if (this.completion_cancellable != null) {
         debug ("Cancelling earlier completion call...");
         this.completion_cancellable.cancel ();
@@ -424,6 +408,7 @@ class CompletionTextView : Gtk.TextView {
       /* Now also query users from the Twitter server, in case our local cache doesn't have anything
          worthwhile */
       this.completion_cancellable = new GLib.Cancellable ();
+      
       Cb.Utils.query_users_async.begin (account.proxy, cur_word, completion_cancellable, (obj, res) => {
         Cb.UserIdentity[] users;
         try {
