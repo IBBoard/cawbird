@@ -44,6 +44,42 @@
   <url type="bugtracker">https://github.com/ibboard/cawbird/issues</url>
 
   <releases>
+    <release version="1.2.0" date="2020-09-05">
+      <p>Changes in Cawbird 1.2.0:</p>
+      <ul>
+        <li>Improvements:
+          <ul>
+            <li>Resolved major accessibility issue with timelines and improved other bits of accessibility by naming/describing widgets (#143)</li>
+            <li>Added ability to read descriptions on images (#11)</li>
+            <li>Added ability to add descriptions to images when posting (#10)</li>
+            <li>Reduced notifications when first logging in (#137)</li>
+            <li>Window can now be reduced to a narrower width and has a "responsive" layout for tweets (#57)</li>
+            <li>Reduce memory usage by loading smaller (600px) thumbnails and only loading images on demand (#142). Also reduces bandwidth use (especially with images disabled)</li>
+            <li>Let image sets loop back to start, and show progress through images (#172)</li>
+            <li>Made "Replying to" on Tweet info page list all users (including self-reply) so that it is more obvious when the tweet is part of a thread (#158)</li>
+            <li>Reworked @-mention completion so that it works with multilingual text</li>
+            <li>Adjust "media link removal" behaviour so that we still show the link when image loading is disabled so that users know there is media</li>
+            <li>Stopped shipping librest and started using system version</li>
+            <li>Made account removal less "scary" - now removes rather than deleting account</li>
+            <li>Improved consistency of progress status while searching</li>
+            <li>Updated Danish translation (thanks @mads5408) and Dutch translation (thanks @Vistaus) to 100% coverage</li>
+          </ul>
+        </li>
+        <li>Bug fixes:
+          <ul>
+            <li>Update handling of top-level domains to resolve character counting mismatch (#64)</li>
+            <li>Handle repeated attachment of the same image with the same path (#34)</li>
+            <li>Fix scrolling back to older tweets in thread on some platforms (#164)</li>
+            <li>Fixed @-mention completion not handling underscores</li>
+            <li>Fixed a crash when removing the currently open account</li>
+            <li>Fixed a usability issue where removing an account with multiple other accounts available showed the "Add account" interface with no account selector instead of showing another account</li>
+            <li>Fixed show/hide bug for media in quoted tweets</li>
+            <li>Put other users's lists in the correct place (created or subscribed)</li>
+            <li>Fixed builds on platforms without an implicit `#include <string.h>`</li>
+          </ul>
+        </li>
+      </ul>
+    </release>
     <release version="1.1.0" date="2020-05-31">
       <p>Changes in Cawbird 1.1.0:</p>
       <ul>
