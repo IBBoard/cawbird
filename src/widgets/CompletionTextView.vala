@@ -439,37 +439,36 @@ class CompletionTextView : Gtk.TextView {
     Gtk.TextIter cursor_iter;
     this.buffer.get_iter_at_mark (out cursor_iter, cursor_mark);
 
-    /* Check if the current "word" is just "@" */
-    var test_iter = Gtk.TextIter ();
-    test_iter.assign (cursor_iter);
-
+    start_iter = end_iter = cursor_iter;
 
     for (;;) {
-      Gtk.TextIter left_iter = test_iter;
-      left_iter.assign (test_iter);
-
+      Gtk.TextIter left_iter = start_iter;
       left_iter.backward_char ();
 
-      string s = this.buffer.get_text (left_iter, test_iter, false);
-      unichar c = s.get_char (0);
-      assert (s.char_count () == 1 ||
-              s.char_count () == 0);
+      unichar c = left_iter.get_char();
 
-      if (left_iter.is_start ())
-        test_iter.assign (left_iter);
-
-      if (c.isspace() || left_iter.is_start ()) {
+      if (c.isspace()) {
         break;
       }
 
-      test_iter.assign (left_iter);
+      start_iter = left_iter;
+
+      if (start_iter.is_start()) {
+        break;
+      }
     }
 
-    start_iter = test_iter;
-    start_iter.assign (test_iter);
-    end_iter = cursor_iter;
-    end_iter.assign (cursor_iter);
-    return this.buffer.get_text (test_iter, cursor_iter, false);
+    for (;;) {
+      unichar c = end_iter.get_char();
+
+      if (c == 0 || c.isspace()) {
+        break;
+      }
+
+      end_iter.forward_char ();
+    }
+
+    return this.buffer.get_text (start_iter, end_iter, false);
   }
 
   private void insert_completion (string compl) {
