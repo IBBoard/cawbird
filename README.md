@@ -101,7 +101,7 @@ Due to [changes in the Twitter API](https://developer.twitter.com/en/docs/accoun
 
 All limitations are limitations imposed by Twitter and are not the fault of the Cawbird client. They have affected [all third-party client applications](http://apps-of-a-feather.com/).
 
-Cawbird is also unable to implement the following features because Twitter does not provide a way for third-party applications to get the data:
+Cawbird has also been unable to implement the following features because Twitter did not provide a way for third-party applications to get the data:
 
 * Notification of Likes, RTs, quote tweets and any other interaction that appears in the "All" tab of twitter.com's Notifications but not in "Mentions"
   * No API is available for other notifications, only a [mentions API](https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-mentions_timeline)
@@ -123,6 +123,8 @@ Cawbird is also unable to implement the following features because Twitter does 
   * No API is available
   * Twitter doesn't even mark posts so that we can direct people to the web
   * This results in @TwitterDev [posting a message](https://mobile.twitter.com/TwitterDev/status/1222596295090757636) that many devs can't see!
+
+As of July 2020, Twitter has [announced v2 of the API](https://blog.twitter.com/developer/en_us/topics/tools/2020/introducing_new_twitter_api.html) and may support some of these features. We are [looking in to this](https://github.com/IBBoard/cawbird/issues/180) as that parts of the API are made available.
 
 ## Known issues
 
