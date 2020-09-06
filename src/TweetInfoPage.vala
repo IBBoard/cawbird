@@ -630,10 +630,10 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
         tweet.load_from_json (root, account.id, now);
       }
 
-      string with = root_object.get_string_member ("source");
-      with = "<span underline='none'>" + extract_source (with) + "</span>";
+      string source_client = root_object.get_string_member ("source");
+      source_client = "<span underline='none'>" + extract_source (source_client) + "</span>";
 
-      set_tweet_data (tweet, with);
+      set_tweet_data (tweet, source_client);
 
       if (tweet.retweeted_tweet == null)
         load_replied_to_tweet (tweet.source_tweet.reply_id);
