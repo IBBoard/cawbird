@@ -1,7 +1,7 @@
 {
   "app-id":"uk.co.ibboard.cawbird",
   "runtime":"org.gnome.Platform",
-  "runtime-version":"3.34",
+  "runtime-version":"3.36",
   "sdk":"org.gnome.Sdk",
   "command":"cawbird",
   "desktop-file-name-prefix":"(Development) ",
@@ -30,7 +30,6 @@
     "/share/vala"
   ],
   "modules":[
-    "modules/gst-plugins-bad.json",
     {
       "name":"enchant",
       "config-opts":[
@@ -43,8 +42,8 @@
       "sources":[
         {
           "type":"archive",
-          "url":"https://github.com/AbiWord/enchant/releases/download/v2.2.7/enchant-2.2.7.tar.gz",
-          "sha256":"1b22976135812b35cb5b8d21a53ad11d5e7c1426c93f51e7a314a2a42cab3a09"
+          "url":"https://github.com/AbiWord/enchant/releases/download/v2.2.11/enchant-2.2.11.tar.gz",
+          "sha256":"a29c5777c4e45fcac2595c15c49d6d2aa434fa5e7c993dff3f9f367b65fe472a"
         }
       ]
     },
@@ -53,8 +52,8 @@
       "sources":[
         {
           "type":"archive",
-          "url":"https://download.gnome.org/sources/rest/0.7/rest-0.7.93.tar.xz",
-          "sha256":"c710644455340a44ddc005c645c466f05c0d779993138ea21a62c6082108b216"
+          "url":"https://download.gnome.org/sources/rest/0.8/rest-0.8.1.tar.xz",
+          "sha256":"0513aad38e5d3cedd4ae3c551634e3be1b9baaa79775e53b2dba9456f15b01c9"
         }
       ]
     },
@@ -66,8 +65,8 @@
       "sources":[
         {
           "type":"archive",
-          "url":"https://download.gnome.org/sources/gspell/1.8/gspell-1.8.2.tar.xz",
-          "sha256":"bb9195c3a95bacf556d0203e9691f7489e0d3bc5ae1e5a440c89b2f2435d3ed6"
+          "url":"https://download.gnome.org/sources/gspell/1.8/gspell-1.8.4.tar.xz",
+          "sha256":"cf4d16a716e813449bd631405dc1001ea89537b8cdae2b8abfb3999212bd43b4"
         }
       ]
     },
