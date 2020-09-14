@@ -120,8 +120,8 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     } else {
       author = tweet.source_tweet.author;
     }
-    name_label.set_markup (Utils.linkify_user (author, true) + "  " + screen_name);
-    name_label.tooltip_text = name + " " + screen_name;
+    name_label.set_markup ("%s  &#x2068;%s&#x2069;".printf(Utils.linkify_user (author, true), screen_name));
+    name_label.tooltip_text = "%s \u2068%s\u2069".printf(name, screen_name);
     if (tweet.avatar_url != null) {
       string avatar_url = tweet.avatar_url;
       if (this.get_scale_factor () == 2)
@@ -136,7 +136,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       var rt_author = tweet.source_tweet.author;
       rt_label.show ();
       rt_image.show ();
-      rt_label.label = Utils.linkify_user (rt_author) + " @" + rt_author.screen_name;
+      rt_label.label = "%s  &#x2068;@%s&#x2069;".printf(Utils.linkify_user (rt_author), rt_author.screen_name);
       // Set the accessible text as a single string rather than trying to make screen readers read
       // separate text for the RT icon and the names
       // TRANSLATORS: replacements are name and handle (without the "@")
@@ -166,8 +166,8 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     if (tweet.quoted_tweet != null) {
       this.create_quote_grid (tweet.quoted_tweet.reply_id != 0);
       var quoted_screen_name = "@" + tweet.quoted_tweet.author.screen_name;
-      quote_name.set_markup (Utils.linkify_user (tweet.quoted_tweet.author, true) + "  " + quoted_screen_name);
-      quote_name.tooltip_text = tweet.quoted_tweet.author.user_name + "  " + quoted_screen_name;
+      quote_name.set_markup ("%s  &#x2068;%s&#x2069;".printf(Utils.linkify_user (tweet.quoted_tweet.author, true), quoted_screen_name));
+      quote_name.tooltip_text = "%s \u2068%s\u2069".printf(tweet.quoted_tweet.author.user_name, quoted_screen_name);
       if (tweet.quoted_tweet.reply_id != 0) {
         var buff = new GLib.StringBuilder ();
         Cb.Utils.write_reply_text (ref tweet.quoted_tweet, buff);

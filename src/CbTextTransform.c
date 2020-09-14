@@ -312,7 +312,7 @@ cb_text_transform_text (const char   *text,
         }
       else
         {
-          g_string_append (str, "<span underline=\"none\"><a href=\"");
+          g_string_append (str, "<span underline=\"none\">&#x2068;<a href=\"");
           g_string_append (str, entity->target ? entity->target : entity->display_text);
           g_string_append (str, "\"");
 
@@ -331,7 +331,7 @@ cb_text_transform_text (const char   *text,
 
           g_string_append (str, ">");
           g_string_append (str, entity->display_text);
-          g_string_append (str,"</a></span>");
+          g_string_append (str,"</a>&#x2069;</span>");
         }
 
       last_end = entity_to;
