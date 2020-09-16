@@ -554,7 +554,7 @@ call_done_cb (GObject      *source_object,
     {
       if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
         {
-          g_warning ("%s(%s): %p, %s", __FILE__, __FUNCTION__, call, error->message);
+          g_warning ("%s(%s): %p, %s %s", __FILE__, __FUNCTION__, call, rest_proxy_call_get_function(call), error->message);
         }
 
       g_task_return_error (task, error);
