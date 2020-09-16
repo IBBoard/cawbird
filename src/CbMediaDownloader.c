@@ -139,10 +139,7 @@ load_media_url (const char *url, LoadingData *task_data,
   msg = soup_message_new ("GET", url);
   if (msg == NULL)
     {
-      // FIXME: Return an error
-      //mark_invalid (media);
-      //g_warning ("soup_message_new failed for URI '%s'",
-                 //media->thumb_url ? media->thumb_url : media->url);
+      g_set_error (error, CB_MEDIA_DOWNLOADER_ERROR, CB_MEDIA_DOWNLOADER_ERROR_SOUP_MESSAGE_NEW, "soup_message_new failed for URI '%s'", url);
       return;
     }
 
@@ -153,12 +150,7 @@ load_media_url (const char *url, LoadingData *task_data,
 
   if (msg->status_code != SOUP_STATUS_OK)
     {
-      //g_debug ("Request on '%s' returned status '%s'",
-               //media->thumb_url ? media->thumb_url : media->url,
-               //soup_status_get_phrase (msg->status_code));
-
-      //mark_invalid (media);
-      //FIXME: Return an error
+      g_set_error (error, CB_MEDIA_DOWNLOADER_ERROR, msg->status_code, "Request on '%s' returned status '%s'", url, soup_status_get_phrase (msg->status_code));
       g_object_unref (msg);
       return;
     }
@@ -608,4 +600,13 @@ cb_media_downloader_init (CbMediaDownloader *downloader)
 static void
 cb_media_downloader_class_init (CbMediaDownloaderClass *class)
 {
+}
+
+GQuark
+cb_media_downloader_error_quark (void)
+{
+	static GQuark error;
+	if (!error)
+		error = g_quark_from_static_string ("cb_media_downloader_error_quark");
+	return error;
 }

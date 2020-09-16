@@ -59,4 +59,13 @@ gboolean is_twitter_media_candidate (const char *url);
 
 G_END_DECLS
 
+typedef enum {
+  CB_MEDIA_DOWNLOADER_ERROR_UNKNOWN,
+  CB_MEDIA_DOWNLOADER_ERROR_SOUP_MESSAGE_NEW
+  // We also use all SOUP_STATUS_... codes
+} CbMediaDownloaderErrorCode;
+
+#define CB_MEDIA_DOWNLOADER_ERROR cb_media_downloader_error_quark()
+GQuark cb_media_downloader_error_quark (void);
+
 #endif
