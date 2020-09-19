@@ -39,6 +39,9 @@ struct _CbMediaImageWidget
 
   gulong hadj_changed_id;
   gulong vadj_changed_id;
+
+  CbMedia *media;
+  gulong hires_progress_id;
 };
 typedef struct _CbMediaImageWidget CbMediaImageWidget;
 
