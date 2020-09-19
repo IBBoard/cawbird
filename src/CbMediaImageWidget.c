@@ -28,6 +28,10 @@ cb_media_image_widget_finalize (GObject *object)
     cairo_surface_destroy(self->image_surface);
   }
 
+  if (self->media && self->hires_progress_id) {
+    g_signal_handler_disconnect (self->media, self->hires_progress_id);
+  }
+
   G_OBJECT_CLASS (cb_media_image_widget_parent_class)->finalize (object);
 }
 
@@ -122,7 +126,8 @@ cb_media_image_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
   else {
     double scale_width = media->width * 1.0 / media->thumb_width;
     double scale_height = media->height * 1.0 / media->thumb_height;
-    g_signal_connect(media, "hires-progress", G_CALLBACK(hires_progress), self);
+    self->media = media;
+    self->hires_progress_id = g_signal_connect(media, "hires-progress", G_CALLBACK(hires_progress), self);
     self->image_surface = cairo_image_surface_create(cairo_image_surface_get_format(media->surface), media->width, media->height);
     cairo_t *ct = cairo_create(self->image_surface);
     cairo_scale(ct, scale_width, scale_height);
