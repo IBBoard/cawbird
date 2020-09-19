@@ -260,7 +260,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
         loading_stack.visible_child = loading_error_label;
       } else if (e.domain == Rest.ProxyError.quark() && e.code == new Rest.ProxyError.SSL ("workaround").code) {
         debug ("Reloading user profile on SSL failure");
-        load_profile_data (user_id);
+        load_profile_data.begin (user_id);
       } else {
         warning (e.message);
       }
@@ -498,7 +498,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
 
       if (e.domain == Rest.ProxyError.quark() && e.code == new Rest.ProxyError.SSL ("workaround").code) {
         debug ("Reloading user timeline on SSL failure");
-        load_tweets ();
+        load_tweets.begin ();
       }
 
       return;
