@@ -384,19 +384,19 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
           text_urls[i] = Cb.TextEntity () {
             from = (uint)e.start_character_index,
             to   = (uint)(e.start_character_index + e.length_in_characters),
-            target = e.start->ndup(e.length_in_bytes),
-            original_text = e.start->ndup(e.length_in_bytes),
-            display_text = e.start->ndup(e.length_in_bytes),
-            tooltip_text = e.start->ndup(e.length_in_bytes)
+            target = e.start->substring(0, (long)e.length_in_bytes),
+            original_text = e.start->substring(0, (long)e.length_in_bytes),
+            display_text = e.start->substring(0, (long)e.length_in_bytes),
+            tooltip_text = e.start->substring(0, (long)e.length_in_bytes)
           };
         } else if (e.type == Tl.EntityType.MENTION) {
           text_urls[i] = Cb.TextEntity () {
             from = (uint)e.start_character_index,
             to   = (uint)(e.start_character_index + e.length_in_characters),
             target = "@0/%.*s".printf (e.length_in_bytes, e.start),
-            original_text = e.start->ndup(e.length_in_bytes),
-            display_text = e.start->ndup(e.length_in_bytes),
-            tooltip_text = e.start->ndup(e.length_in_bytes)
+            original_text = e.start->substring(0, (long)e.length_in_bytes),
+            display_text = e.start->substring(0, (long)e.length_in_bytes),
+            tooltip_text = e.start->substring(0, (long)e.length_in_bytes)
           };
         }
 
