@@ -146,7 +146,7 @@ void multiple_links () {
                                          0, 0, 0);
 
 
-  string spec = """<span underline="none"><a href="http://mirgehendirurlsaus.com" title="http://mirgehendirurlsaus.com">mirgehendirurlsaus.com</a></span>    <span underline="none"><a href="http://foobar.com" title="http://foobar.com">foobar.com</a></span>    <span underline="none"><a href="http://hahaaha.com" title="http://hahaaha.com">hahaaha.com</a></span>   <span underline="none"><a href="http://huehue.org" title="http://huehue.org">huehue.org</a></span>""";
+  string spec = """<span underline="none">&#x2068;<a href="http://mirgehendirurlsaus.com" title="http://mirgehendirurlsaus.com">mirgehendirurlsaus.com</a>&#x2069;</span>    <span underline="none">&#x2068;<a href="http://foobar.com" title="http://foobar.com">foobar.com</a>&#x2069;</span>    <span underline="none">&#x2068;<a href="http://hahaaha.com" title="http://hahaaha.com">hahaaha.com</a>&#x2069;</span>   <span underline="none">&#x2068;<a href="http://huehue.org" title="http://huehue.org">huehue.org</a>&#x2069;</span>""";
 
   assert (result == spec);
 }
