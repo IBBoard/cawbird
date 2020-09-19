@@ -539,7 +539,8 @@ void bug69_old_bad_encoding () {
 
   good_tweet.load_from_json (good_root, 0, now);
 
-  assert (good_tweet.get_real_text().substring(0, 137) == bad_tweet.get_real_text());
+  var bad_tweet_text = bad_tweet.get_real_text();
+  assert (good_tweet.get_real_text().substring(0, bad_tweet_text.length) == bad_tweet_text);
 }
 
 void bug70_substring_memory_allocation() {
@@ -1206,11 +1207,11 @@ const string bug69_good_tweet = """
   "created_at" : "Fri Dec 20 14:17:23 +0000 2019",
   "id" : 1208028629059420161,
   "id_str" : "1208028629059420161",
-  "full_text" : "for i in `seq 1 254` ; do ping -W1 -c 1 10.0.0.$i &gt; /dev/null &amp;&amp; echo 10.0.0.$i ; done #scan network 10.0.0.0 for active hosts\n\n(Copy of https://t.co/0hUF8hx8Lj to compare JSON)",
+  "full_text" : "for i in `seq 1 254` ; do ping -W1 -c 1 10.0.0.$i &gt; /dev/null &amp;&amp; echo 10.0.0.$i ; done #scan network 10.0.0.0 for active hosts &amp; stuff",
   "truncated" : false,
   "display_text_range" : [
     0,
-    188
+    200
   ],
   "entities" : {
     "hashtags" : [
@@ -1227,15 +1228,6 @@ const string bug69_good_tweet = """
     "user_mentions" : [
     ],
     "urls" : [
-      {
-        "url" : "https://t.co/0hUF8hx8Lj",
-        "expanded_url" : "https://twitter.com/climagic/status/6705176552",
-        "display_url" : "twitter.com/climagic/statu…",
-        "indices" : [
-          148,
-          171
-        ]
-      }
     ]
   },
   "source" : "<a href=\"https://ibboard.co.uk/cawbird/\" rel=\"nofollow\">Cawbird</a>",
@@ -1422,14 +1414,13 @@ const string bug69_good_tweet = """
 }
 """;
 
-// Note: This is currently a copy-and-paste of the `bug69_good_tweet` quoted tweet
-// since we can't load it directly and do a Ctrl+k to dump the JSON because of the bug!
+// This is a tweaked version of the good tweet because
 const string bug69_bad_tweet = """
 {
   "created_at" : "Tue Dec 15 19:25:44 +0000 2009",
   "id" : 6705176552,
   "id_str" : "6705176552",
-  "full_text" : "for i in `seq 1 254` ; do ping -W1 -c 1 10.0.0.$i &gt; /dev/null && echo 10.0.0.$i ; done #scan network 10.0.0.0 for active hosts",
+  "full_text" : "for i in `seq 1 254` ; do ping -W1 -c 1 10.0.0.$i &gt; /dev/null && echo 10.0.0.$i ; done #scan network 10.0.0.0 for active hosts & stuff",
   "truncated" : false,
   "display_text_range" : [
     0,

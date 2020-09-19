@@ -183,6 +183,7 @@ cb_text_transform_text (const char   *text,
   const  guint text_len   = g_utf8_strlen (text, -1);
   int i;
   char *end_str;
+  char *encoded_before;
   gboolean last_entity_was_trailing = FALSE;
   guint last_end   = 0;
   guint cur_end    = text_len;
@@ -235,7 +236,6 @@ cb_text_transform_text (const char   *text,
     {
       CbTextEntity *entity = &entities[i];
       char *before;
-      char *encoded_before;
       char *entity_text;
       guint entity_to;
       guint entity_from;
@@ -338,8 +338,10 @@ cb_text_transform_text (const char   *text,
     }
 
   end_str = g_utf8_substring (text, last_end, text_len);
-  g_string_append (str, end_str);
+  encoded_before = cb_text_transform_fix_encoding (end_str);
+  g_string_append (str, encoded_before);
 
+  g_free (encoded_before);
   g_free (end_str);
 
   return g_string_free (str, FALSE);
