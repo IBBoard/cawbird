@@ -44,6 +44,22 @@
   <url type="bugtracker">https://github.com/ibboard/cawbird/issues</url>
 
   <releases>
+    <release version="1.2.1" date="2020-09-20">
+      <p>Changes in Cawbird 1.2.1:</p>
+      <ul>
+        <li>Bug fixes:
+          <ul>
+            <li>Fix crashes when images do not load correctly (#195)</li>
+            <li>Fix crashes when high-res image loads after dialog closes (#196)</li>
+          </ul>
+        </li>
+        <li>Improvements:
+          <ul>
+            <li>Improve rendering of @-handles in mixed right-to-left/left-to-right text (#194)</li>
+          </ul>
+        </li>
+      </ul>
+    </release>
     <release version="1.2.0" date="2020-09-05">
       <p>Changes in Cawbird 1.2.0:</p>
       <ul>
