@@ -50,7 +50,7 @@
         <li>Bug fixes:
           <ul>
             <li>Fix crashes when images do not load correctly (#195)</li>
-            <li>Fix crashes when high-res image loads after dialog closes (#196)</li>
+            <li>Fix crashes when high-res image loads after dialog closes (#196) thanks to @lucaswerkmeister</li>
           </ul>
         </li>
         <li>Improvements:
