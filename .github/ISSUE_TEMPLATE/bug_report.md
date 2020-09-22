@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Create a report to help us fix problems and errors
 title: ''
 labels: ''
 assignees: ''
@@ -30,3 +30,5 @@ If applicable, add screenshots to help explain your problem.
 
 **Additional context**
 Add any other context about the problem here.
+
+Running `G_MESSAGES_DEBUG=cawbird cawbird` can give useful debug output.
