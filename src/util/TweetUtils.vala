@@ -399,6 +399,12 @@ namespace TweetUtils {
       }
 
       var search_statuses = search_root.get_object().get_array_member("statuses");
+
+      if (search_statuses.get_length() == 0) {
+        search_for_tweets_json.callback();
+        return;
+      }
+
       string[] ids = {};
       search_statuses.foreach_element ((array, index, node) => {
         ids += node.get_object().get_string_member("id_str");
