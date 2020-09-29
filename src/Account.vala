@@ -225,7 +225,7 @@ public class Account : GLib.Object {
       this.website = "";
 
 
-    string avatar_url = root.get_string_member ("profile_image_url");
+    string avatar_url = root.get_string_member ("profile_image_url_https");
     values_changed |= yield update_avatar (avatar_url);
 
     if (values_changed) {

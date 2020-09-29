@@ -111,7 +111,7 @@ public class Twitter : GLib.Object {
 
     this.avatar_cache.add (user_id, null, null);
 
-    string avatar_url = yield this.get_user_string_member (account, user_id, "profile_image_url");
+    string avatar_url = yield this.get_user_string_member (account, user_id, "profile_image_url_https");
 
     if (avatar_url == null) {
       return null;

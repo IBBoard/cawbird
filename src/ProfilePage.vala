@@ -273,7 +273,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     int64 id = root.get_int_member ("id");
     this.user_id = id;
 
-    string avatar_url = root.get_string_member("profile_image_url");
+    string avatar_url = root.get_string_member("profile_image_url_https");
     int scale = this.get_scale_factor ();
 
     /* Always load the 200x200 px version even in loDPI since there's no 100x100px version */
@@ -580,7 +580,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
 
     users_array.foreach_element ((array, index, node) => {
       var user_obj = node.get_object ();
-      string avatar_url = user_obj.get_string_member ("profile_image_url");
+      string avatar_url = user_obj.get_string_member ("profile_image_url_https");
 
       if (this.get_scale_factor () == 2)
         avatar_url = avatar_url.replace ("_normal", "_bigger");
@@ -624,7 +624,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
 
     users_array.foreach_element ((array, index, node) => {
       var user_obj = node.get_object ();
-      string avatar_url = user_obj.get_string_member ("profile_image_url");
+      string avatar_url = user_obj.get_string_member ("profile_image_url_https");
 
       if (this.get_scale_factor () == 2)
         avatar_url = avatar_url.replace ("_normal", "_bigger");

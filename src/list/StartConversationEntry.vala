@@ -193,7 +193,7 @@ class StartConversationEntry : Gtk.ListBoxRow {
         }
 
         string name = root.get_string_member ("name");
-        string avatar_url = root.get_string_member ("profile_image_url");
+        string avatar_url = root.get_string_member ("profile_image_url_https");
         start (user_id, screen_name, name, avatar_url);
 
         name_entry.sensitive = true;

@@ -213,7 +213,7 @@ cb_tweet_load_from_json (CbTweet   *tweet,
       cb_mini_tweet_parse (tweet->retweeted_tweet, rt);
       cb_mini_tweet_parse_entities (tweet->retweeted_tweet, rt);
 
-      tweet->avatar_url = g_strdup (json_object_get_string_member (rt_user, "profile_image_url"));
+      tweet->avatar_url = g_strdup (json_object_get_string_member (rt_user, "profile_image_url_https"));
       if (json_object_get_boolean_member (rt_user, "protected"))
         tweet->state |= CB_TWEET_STATE_PROTECTED;
 
@@ -227,7 +227,7 @@ cb_tweet_load_from_json (CbTweet   *tweet,
   else
     {
       cb_mini_tweet_parse_entities (&tweet->source_tweet, status);
-      tweet->avatar_url = g_strdup (json_object_get_string_member (user, "profile_image_url"));
+      tweet->avatar_url = g_strdup (json_object_get_string_member (user, "profile_image_url_https"));
 
       if (json_object_get_boolean_member (user, "protected"))
         tweet->state |= CB_TWEET_STATE_PROTECTED;

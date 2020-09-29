@@ -203,7 +203,7 @@ class FilterPage : Gtk.ScrolledWindow, IPage, Cb.MessageReceiver {
       }
     }
 
-    string avatar_url = user_obj.get_string_member ("profile_image_url");
+    string avatar_url = user_obj.get_string_member ("profile_image_url_https");
 
     if (this.get_scale_factor () == 2)
       avatar_url = avatar_url.replace ("_normal", "_bigger");
