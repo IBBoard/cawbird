@@ -57,7 +57,11 @@ namespace TweetUtils {
        */
       var parser = new Json.Parser();
       parser.load_from_data (json);
-      var obj = parser.get_root().get_object();
+      var node = parser.get_root();
+      if (node == null) {
+          return new GLib.Error (get_error_domain(), 0, "Twitter error is not valid JSON: %s", json);
+      }
+      var obj = node.get_object();
       var errors = obj.get_array_member("errors");
       // Assume there's always at least one, and we just take the first
       var error = errors.get_element(0).get_object();
