@@ -304,6 +304,98 @@ namespace Utils {
     return back;
   }
 
+  /**
+   * Gets the word string (and matching begin/end iterators) around the cursor in the buffer (terminated by whitespace)
+   */
+  public string get_cursor_word (Gtk.TextBuffer buffer, out Gtk.TextIter start_iter, out Gtk.TextIter end_iter) {
+    Gtk.TextMark cursor_mark = buffer.get_insert ();
+    Gtk.TextIter cursor_iter;
+    buffer.get_iter_at_mark (out cursor_iter, cursor_mark);
+
+    start_iter = end_iter = cursor_iter;
+
+    for (;;) {
+      Gtk.TextIter left_iter = start_iter;
+      left_iter.backward_char ();
+
+      unichar c = left_iter.get_char();
+
+      if (c.isspace()) {
+        break;
+      }
+
+      start_iter = left_iter;
+
+      if (start_iter.is_start()) {
+        break;
+      }
+    }
+
+    for (;;) {
+      unichar c = end_iter.get_char();
+
+      if (c == 0 || c.isspace()) {
+        break;
+      }
+
+      end_iter.forward_char ();
+    }
+
+    return buffer.get_text (start_iter, end_iter, false);
+  }
+
+  /**
+   * Gets the @-mention string (and matching begin/end iterators) around the cursor in the buffer, ignoring preceding and
+   * following punctiation
+   */
+  public string get_cursor_mention_word (Gtk.TextBuffer buffer, out Gtk.TextIter start_iter, out Gtk.TextIter end_iter) {
+    string cursor_word = get_cursor_word (buffer, out start_iter, out end_iter);
+    bool changed = false;
+
+    for (;;) {
+      unichar c = start_iter.get_char();
+
+      if (c == 0 || c == '@') {
+        break;
+      }
+      else if (c.ispunct()) {
+        changed = true;
+        start_iter.forward_char();
+      }
+      else {
+        cursor_word = "";
+        end_iter = start_iter;
+        break;
+      }
+    }
+
+    for (;;) {
+      if (end_iter.get_offset() <= start_iter.get_offset()) {
+        break;
+      }
+
+      Gtk.TextIter prev_iter = end_iter;
+      prev_iter.backward_char();
+      unichar c = prev_iter.get_char();
+
+      if (!c.ispunct()) {
+        break;
+      }
+
+      end_iter = prev_iter;
+      changed = true;
+
+      if (end_iter.is_start()) {
+        break;
+      }
+    }
+
+    if (changed) {
+      cursor_word = buffer.get_text(start_iter, end_iter, false);
+    }
+
+    return cursor_word;
+  }
 
   public void load_custom_icons () {
     var icon_theme  = Gtk.IconTheme.get_default ();

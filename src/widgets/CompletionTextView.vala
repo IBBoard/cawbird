@@ -135,16 +135,7 @@ class CompletionTextView : Gtk.TextView {
   private bool insert_snippet () {
     Gtk.TextIter cursor_word_start;
     Gtk.TextIter cursor_word_end;
-    string cursor_word = get_cursor_word (out cursor_word_start,
-                                          out cursor_word_end);
-
-    /* See the git log for an explanation */
-    if (cursor_word.get_char (0) == ' ' ||
-        cursor_word.get_char (0) == '\t' ||
-        cursor_word.get_char (0) == '\n') {
-      cursor_word = cursor_word.substring (1);
-      cursor_word_start.forward_char ();
-    }
+    string cursor_word = Utils.get_cursor_word (this.buffer, out cursor_word_start, out cursor_word_end);
 
     string? snippet = Cawbird.snippet_manager.get_snippet (cursor_word.strip ());
 
@@ -256,7 +247,22 @@ class CompletionTextView : Gtk.TextView {
     var list_had_focus = row.has_focus;
     assert (row is UserCompletionRow);
     string compl = ((UserCompletionRow)row).get_screen_name ();
-    insert_completion (compl.substring (1));
+    this.buffer.freeze_notify ();
+    Gtk.TextIter start_word_iter;
+    Gtk.TextIter end_word_iter;
+    Utils.get_cursor_mention_word (this.buffer, out start_word_iter, out end_word_iter);
+    var start_offset = start_word_iter.get_offset();
+    this.buffer.delete_range (start_word_iter, end_word_iter);
+    this.buffer.get_iter_at_offset(out start_word_iter, start_offset);
+    var next_char = start_word_iter.get_char();
+
+    if (next_char == 0 || !next_char.ispunct()) {
+      this.buffer.insert_text (ref start_word_iter, compl + " ", compl.length + 1);
+    }
+    else {
+      this.buffer.insert_text (ref start_word_iter, compl, compl.length);
+    }
+    this.buffer.thaw_notify ();
     hide_completion_window ();
     if (list_had_focus) {
       this.grab_focus();
@@ -363,11 +369,10 @@ class CompletionTextView : Gtk.TextView {
 
 
   private void update_completion_listbox () {
-    string cur_word = get_cursor_word (null, null);
+    string cur_word = Utils.get_cursor_mention_word (this.buffer, null, null);
     int n_chars = cur_word.char_count ();
 
     if (n_chars < 2 || cur_word[0] != '@'
-        || !cur_word.get_char(1).isalnum()
         || this.buffer.has_selection) {
       hide_completion_window ();
       return;
@@ -375,11 +380,6 @@ class CompletionTextView : Gtk.TextView {
 
     // Strip off the @
     cur_word = cur_word.substring (1);
-
-    if (cur_word == null || cur_word.length == 0) {
-      hide_completion_window ();
-      return;
-    }
 
     if (cur_word != this.current_word) {
       if (this.completion_cancellable != null) {
@@ -403,86 +403,45 @@ class CompletionTextView : Gtk.TextView {
       }
       corpus = null; /* Make sure we won't use it again */
 
-      /* Now also query users from the Twitter server, in case our local cache doesn't have anything
-         worthwhile */
-      this.completion_cancellable = new GLib.Cancellable ();
-      var cur_word_query = "\"%s\"".printf(cur_word.replace("\\", "\\\\").replace("\"", "\\\""));
-      Cb.Utils.query_users_async.begin (account.proxy, cur_word_query, completion_cancellable, (obj, res) => {
-        Cb.UserIdentity[] users;
-        try {
-          users = Cb.Utils.query_users_async.end (res);
-        } catch (GLib.Error e) {
-          if (!(e is GLib.IOError.CANCELLED))
-            warning ("User completion call error: %s", e.message);
 
-          return;
+      bool has_alnum = false;
+      unichar c;
+      for (int i = 0; cur_word.get_next_char (ref i, out c);) {
+        if (c.isalnum()) {
+          debug("Found alnum at %d: %s\n", i, c.to_string ());
+          has_alnum = true;
+          break;
         }
+      }
 
-        completion_model.insert_items (users);
-        if (users.length > 0 && corpus_was_empty) {
-          select_completion_row (completion_list.get_row_at_index (0));
-        }
-      });
+      // Only query the API if there are alphanumeric characters, because Twitter won't search "@_"
+      if (has_alnum) {
+        /* Now also query users from the Twitter server, in case our local cache doesn't have anything
+          worthwhile */
+        this.completion_cancellable = new GLib.Cancellable ();
+        var cur_word_query = "\"%s\"".printf(cur_word.replace("\\", "\\\\").replace("\"", "\\\""));
+        Cb.Utils.query_users_async.begin (account.proxy, cur_word_query, completion_cancellable, (obj, res) => {
+          Cb.UserIdentity[] users;
+          try {
+            users = Cb.Utils.query_users_async.end (res);
+          } catch (GLib.Error e) {
+            if (!(e is GLib.IOError.CANCELLED))
+              warning ("User completion call error: %s", e.message);
+
+            return;
+          }
+
+          completion_model.insert_items (users);
+          if (users.length > 0 && corpus_was_empty) {
+            select_completion_row (completion_list.get_row_at_index (0));
+          }
+        });
+      }
 
       this.current_word = cur_word;
 
       completion_list.show_all ();
     }
-  }
-
-  private string get_cursor_word (out Gtk.TextIter start_iter,
-                                  out Gtk.TextIter end_iter) {
-
-    Gtk.TextMark cursor_mark = this.buffer.get_insert ();
-    Gtk.TextIter cursor_iter;
-    this.buffer.get_iter_at_mark (out cursor_iter, cursor_mark);
-
-    start_iter = end_iter = cursor_iter;
-
-    for (;;) {
-      Gtk.TextIter left_iter = start_iter;
-      left_iter.backward_char ();
-
-      unichar c = left_iter.get_char();
-
-      if (c.isspace()) {
-        break;
-      }
-
-      start_iter = left_iter;
-
-      if (start_iter.is_start()) {
-        break;
-      }
-    }
-
-    for (;;) {
-      unichar c = end_iter.get_char();
-
-      if (c == 0 || c.isspace()) {
-        break;
-      }
-
-      end_iter.forward_char ();
-    }
-
-    return this.buffer.get_text (start_iter, end_iter, false);
-  }
-
-  private void insert_completion (string compl) {
-    this.buffer.freeze_notify ();
-    Gtk.TextIter start_word_iter;
-    Gtk.TextIter end_word_iter;
-    string word_to_delete = get_cursor_word (out start_word_iter,
-                                             out end_word_iter);
-    debug ("Delete word: %s", word_to_delete);
-    this.buffer.delete_range (start_word_iter, end_word_iter);
-
-    Gtk.TextMark cursor_mark = this.buffer.get_insert ();
-    this.buffer.get_iter_at_mark (out start_word_iter, cursor_mark);
-
-    this.buffer.insert_text (ref start_word_iter, "@" + compl + " ", compl.length + 2);
-    this.buffer.thaw_notify ();
   }
 
   private Gtk.Widget create_completion_row (void *id_ptr) {
