@@ -381,8 +381,6 @@ class CompletionTextView : Gtk.TextView {
       return;
     }
 
-    cur_word = "\"%s\"".printf(cur_word.replace("\\", "\\\\").replace("\"", "\\\""));
-
     if (cur_word != this.current_word) {
       if (this.completion_cancellable != null) {
         debug ("Cancelling earlier completion call...");
@@ -408,8 +406,8 @@ class CompletionTextView : Gtk.TextView {
       /* Now also query users from the Twitter server, in case our local cache doesn't have anything
          worthwhile */
       this.completion_cancellable = new GLib.Cancellable ();
-      
-      Cb.Utils.query_users_async.begin (account.proxy, cur_word, completion_cancellable, (obj, res) => {
+      var cur_word_query = "\"%s\"".printf(cur_word.replace("\\", "\\\\").replace("\"", "\\\""));
+      Cb.Utils.query_users_async.begin (account.proxy, cur_word_query, completion_cancellable, (obj, res) => {
         Cb.UserIdentity[] users;
         try {
           users = Cb.Utils.query_users_async.end (res);
