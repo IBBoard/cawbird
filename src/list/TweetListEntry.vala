@@ -706,6 +706,16 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   }
 
   public override void get_preferred_height_for_width (int width, out int min, out int nat) {
+    Gtk.Allocation cur_allocation;
+    get_allocation(out cur_allocation);
+
+    if ((width > Cawbird.RESPONSIVE_LIMIT) == (cur_allocation.width > Cawbird.RESPONSIVE_LIMIT)) {
+      // We're staying the same side of the limit, so let GTK do everything
+      base.get_preferred_height_for_width(width, out min, out nat);
+      return;
+    }
+
+    // We're crossing the responsive threshold, so approximate a calculation.
     int margins = 0;
     var style = this.get_style_context();
     var style_margin = style.get_margin(0);
