@@ -709,7 +709,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     Gtk.Allocation cur_allocation;
     get_allocation(out cur_allocation);
 
-    if ((width > Cawbird.RESPONSIVE_LIMIT) == (cur_allocation.width > Cawbird.RESPONSIVE_LIMIT)) {
+    if ((width < Cawbird.RESPONSIVE_LIMIT) == (cur_allocation.width < Cawbird.RESPONSIVE_LIMIT)) {
       // We're staying the same side of the limit, so let GTK do everything
       base.get_preferred_height_for_width(width, out min, out nat);
       return;
