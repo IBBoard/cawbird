@@ -717,6 +717,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
     // We're crossing the responsive threshold, so approximate a calculation.
     int margins = 0;
+    var orig_width = width;
     var style = this.get_style_context();
     var style_margin = style.get_margin(0);
     var style_padding = style.get_padding(0);
@@ -748,7 +749,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     min += child_min;
     nat += child_nat;
 
-    if (width < Cawbird.RESPONSIVE_LIMIT) {
+    if (orig_width < Cawbird.RESPONSIVE_LIMIT) {
       // In "responsive" mode the text sits under the avatar, so take whichever is taller:
       // the avatar or the user's name and the "Replying to" line (if it was set)
       min = int.max(avatar_min, min);
