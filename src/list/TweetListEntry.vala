@@ -773,7 +773,8 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     nat += child_nat;
 
     if (mm_widget != null) {
-      mm_widget.get_preferred_height_for_width(width, out child_min, out child_nat);
+      Gtk.Widget w = media_stack != null ? ((Gtk.Widget)media_stack) : ((Gtk.Widget)mm_widget);
+      w.get_preferred_height_for_width(width, out child_min, out child_nat);
       min += child_min;
       nat += child_nat;
     }
