@@ -754,23 +754,25 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       // the avatar or the user's name and the "Replying to" line (if it was set)
       min = int.max(avatar_min, min);
       nat = int.max(avatar_nat, nat);
-
-      scroller.get_property ("margin-start", ref val);
-
-      if (val.get_int() == 0) {
-        // Crossing the responsive threshold, so subtract the extra margin we'll add as we allocate
-        width -= 6;
-      }
+      // Subtract the extra margin we'll add during allocation
+      width -= 6;
     }
     else {
       // All the other widgets don't fill the column under the avatar, so reduce the width
       // that they calculate from
       width -= avatar_width;
+      // But pretend it is a little wider because they still have their margins until allocation
+      width += 6;
     }
 
     scroller.get_preferred_height_for_width(width, out child_min, out child_nat);
     min += child_min;
     nat += child_nat;
+
+    // If the text is short in "wide mode" then the avatar may still be the tallest thing
+    // so check our minimums
+    min = int.max(avatar_min, min);
+    nat = int.max(avatar_nat, nat);
 
     if (mm_widget != null) {
       Gtk.Widget w = media_stack != null ? ((Gtk.Widget)media_stack) : ((Gtk.Widget)mm_widget);
