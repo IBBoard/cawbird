@@ -188,6 +188,30 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     DMThreadsPage threads_page = ((DMThreadsPage)main_window.get_page (Page.DM_THREADS));
     threads_page.adjust_unread_count_for_user_id (user_id);
 
+    load_dms.begin(user_id, screen_name, (obj, res) => {
+      load_dms.end(res);
+
+      account.user_counter.user_seen (user_id, screen_name, name);
+
+      scroll_widget.scroll_down_next (false, true);
+
+      // Focus the text entry
+      text_view.grab_focus ();
+
+      if (this.update_time_delta_timeout != 0) {
+        GLib.Source.remove(this.update_time_delta_timeout);
+      }
+
+      this.update_time_delta_timeout = GLib.Timeout.add(1000 * 60, () => { 
+        messages_list.get_children().foreach((dm_list_entry) => {
+          ((DMListEntry)dm_list_entry).update_time_delta();
+        });
+        return GLib.Source.CONTINUE;
+      });
+    });
+  }
+
+  private async void load_dms(int64 user_id, string screen_name) {
     // Load messages
     var query = account.db.select ("dms")
                            .cols ("from_id", "to_id", "text", "message_json",
@@ -198,48 +222,40 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     else
       query.where (@"`from_id`='$user_id' OR `to_id`='$user_id'");
 
+    string[,] values = new string[35,8];
+    int row_num = 0;
+
+    // We can't `yield` async methods in the callback
+    // so load DMs in order by loading into memory and then parsing/adding
     query.order ("timestamp DESC")
          .limit (35)
          .run ((vals) => {
-      int64 id = int64.parse (vals[7]);      
-      string json = vals[3];
+           for (int i = 0; i < vals.length; i++) {
+             values[row_num,i] = vals[i];
+            }
+            row_num++;
+           return true;
+         });
+
+    for (int i = 0; i < row_num; i++) {
+      int64 id = int64.parse (values[i,7]);      
+      string json = values[i,3];
 
       if (json != "") {
         try {
           Json.Parser parser = new Json.Parser ();
           parser.load_from_data (json);
           Json.Node node = parser.get_root ();
-          debug("Adding DM from JSON");
-          handle_dm.begin(Cb.StreamMessageType.DIRECT_MESSAGE, node);
+          yield handle_dm(Cb.StreamMessageType.DIRECT_MESSAGE, node);
         } catch (Error e) {
           warning ("Unable to parse the DM json string: %s\n", e.message);
         }
       } else {
-        debug("Adding DM from text");
-        add_entry.begin (id, int64.parse (vals[0]), int64.parse (vals[1]), vals[2], vals[4], vals[5], int64.parse (vals[6]));
+        yield add_entry (id, int64.parse (values[i,0]), int64.parse (values[i,1]), values[i,2], values[i,4], values[i,5], int64.parse (values[i,6]));
       }
-      name = vals[3];
-      screen_name = vals[4];
-      return true;
-    });
-    
-    account.user_counter.user_seen (user_id, screen_name, name);
-
-    scroll_widget.scroll_down_next (false, true);
-
-    // Focus the text entry
-    text_view.grab_focus ();
-
-    if (this.update_time_delta_timeout != 0) {
-      GLib.Source.remove(this.update_time_delta_timeout);
+      name = values[i,3];
+      screen_name = values[i,4];
     }
-
-    this.update_time_delta_timeout = GLib.Timeout.add(1000 * 60, () => { 
-      messages_list.get_children().foreach((dm_list_entry) => {
-        ((DMListEntry)dm_list_entry).update_time_delta();
-      });
-      return GLib.Source.CONTINUE;
-    });
   }
 
   public void on_leave () {
