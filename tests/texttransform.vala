@@ -466,6 +466,99 @@ void new_reply () {
   assert (!text.contains ("t.co"));
 }
 
+void trailing_new_lines () {
+  var entities = new Cb.TextEntity[1];
+  entities[0] = Cb.TextEntity () {
+    from = 11,
+    to   = 31,
+    original_text = "pic.twitter.com/test",
+    display_text = "pic.twitter.com/test",
+    tooltip_text = "pic.twitter.com/test",
+    target       = "https://pic.twitter.com/test"
+  };
+
+  string source_text = "foo bar\r\n\r\npic.twitter.com/test";
+  string result = Cb.TextTransform.text (source_text,
+                                         entities,
+                                         Cb.TransformFlags.REMOVE_MEDIA_LINKS,
+                                         0,
+                                         0);
+  assert(result == "foo bar");
+
+  entities[0] = Cb.TextEntity () {
+    from = 8,
+    to   = 28,
+    original_text = "pic.twitter.com/test",
+    display_text = "pic.twitter.com/test",
+    tooltip_text = "pic.twitter.com/test",
+    target       = "https://pic.twitter.com/test"
+  };
+
+  source_text = "foo bar pic.twitter.com/test\r\n\r\n";
+  result = Cb.TextTransform.text (source_text,
+                                  entities,
+                                  Cb.TransformFlags.REMOVE_MEDIA_LINKS,
+                                  0,
+                                  0);
+  assert(result == "foo bar");
+
+  string text = "Hey, #totally inappropriate @baedert!\r\n\r\n #baedertworship #thefeels #foobar";
+
+  entities = new Cb.TextEntity[5];
+
+  entities[0] = Cb.TextEntity () {
+    from = 5,
+    to = 13,
+    original_text = "#totally",
+    display_text = "#totally",
+    target = "foobar"
+  };
+
+  entities[1] = Cb.TextEntity () {
+    from = 28,
+    to = 36,
+    original_text = "@baedert",
+    display_text = "@baedert",
+    target = "blubb"
+  };
+
+  entities[2] = Cb.TextEntity () {
+    from = 42,
+    to = 57,
+    original_text = "#baedertworship",
+    display_text = "#baedertworship",
+    target = "bla"
+  };
+
+  entities[3] = Cb.TextEntity () {
+    from = 58,
+    to = 67,
+    original_text = "#thefeels",
+    display_text = "#thefeels",
+    target = "foobar"
+  };
+
+  entities[4] = Cb.TextEntity () {
+    from = 68,
+    to = 75,
+    original_text = "#foobar",
+    display_text = "#foobar",
+    target = "bla"
+  };
+
+  result = Cb.TextTransform.text (text,
+                                  entities,
+                                  Cb.TransformFlags.REMOVE_TRAILING_HASHTAGS, 0, 0);
+
+  assert (result.contains (">@baedert<")); // Mention should still be a link
+  assert (result.contains (">#totally<"));
+  assert (result[result.length - 1] == '!');
+  assert (!result.contains ("#baedertworship"));
+  assert (!result.contains ("#thefeels"));
+  assert (!result.contains ("#foobar"));
+  assert (!result.contains ("   ")); // 3 spaces between the 3 hashtags
+}
+
 void bug1 () {
   var t = new Cb.Tweet ();
   var parser = new Json.Parser ();
@@ -645,6 +738,7 @@ int main (string[] args) {
   GLib.Test.add_func ("/tt/trailing-hashtags-media-link-after", trailing_hashtags_link_after);
   GLib.Test.add_func ("/tt/no-quoted-link", no_quoted_link);
   GLib.Test.add_func ("/tt/new-reply", new_reply);
+  GLib.Test.add_func ("/tt/trailing_newlines", trailing_new_lines);
   GLib.Test.add_func ("/tt/bug1", bug1);
   GLib.Test.add_func ("/tt/bug69-encode-text", bug69_encode_text);
   GLib.Test.add_func ("/tt/bug69-old-bad-encoding", bug69_old_bad_encoding);

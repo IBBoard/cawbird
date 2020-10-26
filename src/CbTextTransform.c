@@ -344,7 +344,7 @@ cb_text_transform_text (const char   *text,
   g_free (encoded_before);
   g_free (end_str);
 
-  return g_string_free (str, FALSE);
+  return g_strchomp(g_string_free (str, FALSE));
 }
 
 
