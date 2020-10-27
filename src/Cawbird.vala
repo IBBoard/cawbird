@@ -258,6 +258,7 @@ public class Cawbird : Gtk.Application {
     typeof (LazyMenuButton).ensure ();
     typeof (FavImageView).ensure ();
     typeof (Cb.EmojiChooser).ensure ();
+    typeof (ChildSizedScroller).ensure ();
 
 #if DEBUG
     GLib.Environment.set_variable ("G_MESSAGES_DEBUG", "cawbird", true);
