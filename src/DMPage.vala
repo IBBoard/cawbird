@@ -42,6 +42,8 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
   private DMPlaceholderBox placeholder_box = new DMPlaceholderBox ();
 
   public int64 user_id;
+  private string user_name;
+  private string screen_name;
   private bool was_scrolled_down = false;
   private uint update_time_delta_timeout = 0;
 
@@ -163,12 +165,10 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
       return;
 
     this.user_id = user_id;
-    string screen_name;
-    string name = null;
     if ((screen_name = args.get_string (KEY_SCREEN_NAME)) != null) {
       // If the screen name is set then it's a new conversation
       // So show the placeholder with name and avatar
-      name = args.get_string (KEY_USER_NAME);
+      user_name = args.get_string (KEY_USER_NAME);
       placeholder_box.user_id = user_id;
       placeholder_box.screen_name = screen_name;
       placeholder_box.name = name;
@@ -176,8 +176,8 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
       placeholder_box.load_avatar ();
     }
 
-    messages_list.get_accessible().set_name(_("Direct messages with %s").printf(name));
-    messages_list.get_accessible().set_description(_("Direct messages with %s").printf(name));
+    messages_list.get_accessible().set_name(_("Direct messages with %s").printf(user_name));
+    messages_list.get_accessible().set_description(_("Direct messages with %s").printf(user_name));
 
     text_view.set_account (this.account);
 
@@ -191,7 +191,10 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     load_dms.begin(user_id, screen_name, (obj, res) => {
       load_dms.end(res);
 
-      account.user_counter.user_seen (user_id, screen_name, name);
+      messages_list.get_accessible().set_name(_("Direct messages with %s").printf(user_name));
+      messages_list.get_accessible().set_description(_("Direct messages with %s").printf(user_name));
+
+      account.user_counter.user_seen (user_id, screen_name, user_name);
 
       scroll_widget.scroll_down_next (false, true);
 
@@ -253,8 +256,12 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
       } else {
         yield add_entry (id, int64.parse (values[i,0]), int64.parse (values[i,1]), values[i,2], values[i,4], values[i,5], int64.parse (values[i,6]));
       }
-      name = values[i,3];
-      screen_name = values[i,4];
+      if (user_name == null) {
+        user_name = values[i,3];
+      }
+      if (screen_name == null) {
+        screen_name = values[i,4];
+      }
     }
   }
 
