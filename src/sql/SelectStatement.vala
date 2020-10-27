@@ -23,6 +23,7 @@ namespace Sql {
     private StringBuilder query_builder = new StringBuilder ();
     private GLib.GenericArray<string> bindings = new GLib.GenericArray<string>();
     private string table_name;
+    private bool where_set = false;
 
     public SelectStatement (string table_name) {
       query_builder.append ("SELECT ");
@@ -45,32 +46,32 @@ namespace Sql {
     }
 
     public SelectStatement where (string stmt) {
-      query_builder.append (" WHERE ").append (stmt);
+      if (!where_set) {
+        query_builder.append (" WHERE ");
+        where_set = true;
+      }
+      query_builder.append (stmt);
       return this;
     }
 
     public SelectStatement where_eq (string field, string val) {
-      query_builder.append (" WHERE `").append (field).append ("` = ?");
+      where(@"`$field` = ?");
       bindings.add(val);
       return this;
     }
 
-    public SelectStatement where_eq2 (string field, string val) {
-      query_builder.append ("`").append (field).append ("` = ?");
-      bindings.add(val);
-      return this;
+    public SelectStatement where_eqi (string w, int64 v) {
+      return where_eq (w, v.to_string());
     }
 
     public SelectStatement where_prefix (string field, string prefix) {
-      query_builder.append (" WHERE `").append (field).append ("` LIKE ?");
+      where(@"`$field` LIKE ?");
       bindings.add(prefix + "%");
       return this;
     }
 
     public SelectStatement where_prefix2 (string field, string prefix) {
-      query_builder.append ("`").append (field).append ("` LIKE ?");
-      bindings.add(prefix + "%");
-      return this;
+      return where_prefix(field, prefix);
     }
 
     public SelectStatement or () {
@@ -85,11 +86,6 @@ namespace Sql {
 
     public SelectStatement nocase () {
       query_builder.append (" COLLATE NOCASE");
-      return this;
-    }
-
-    public SelectStatement where_eqi (string w, int64 v) {
-      this.where_eq (w, v.to_string());
       return this;
     }
 

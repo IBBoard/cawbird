@@ -70,7 +70,7 @@ public class DMManager : GLib.Object {
     int64 id = account.db.select ("dms")
                           .cols ("id")
                           .where_eqi ("id", dm_id)
-                          .and ().where_eq2 ("message_json", "")
+                          .and ().where_eq ("message_json", "")
                           .once_i64 ();
     return id == dm_id;
   }
