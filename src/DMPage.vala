@@ -41,6 +41,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
   private ScrollWidget scroll_widget;
   private DMPlaceholderBox placeholder_box = new DMPlaceholderBox ();
 
+  private int64 first_dm_id;
   public int64 user_id;
   private string user_name;
   private string screen_name;
@@ -65,6 +66,9 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
       } else {
         this.was_scrolled_down = false;
       }
+    });
+    scroll_widget.scrolled_to_start.connect((value) => {
+      load_dms.begin();
     });
   }
 
@@ -155,8 +159,16 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     new_msg.load_avatar (yield Twitter.get ().get_avatar_url (account, sender_id));
     messages_list.add (new_msg);
 
-    if (scroll_widget.scrolled_down)
+    if (dm_id < first_dm_id) {
+      first_dm_id = dm_id;
+    }
+
+    if (scroll_widget.scrolled_down) {
       scroll_widget.scroll_down_next ();
+    }
+    else {
+      scroll_widget.balance_next_upper_change (TOP);
+    }
   }
 
   public void on_join (int page_id, Cb.Bundle? args) {
@@ -164,6 +176,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     if (user_id == 0)
       return;
 
+    first_dm_id = int64.MAX;
     this.user_id = user_id;
     if ((screen_name = args.get_string (KEY_SCREEN_NAME)) != null) {
       // If the screen name is set then it's a new conversation
@@ -188,7 +201,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     DMThreadsPage threads_page = ((DMThreadsPage)main_window.get_page (Page.DM_THREADS));
     threads_page.adjust_unread_count_for_user_id (user_id);
 
-    load_dms.begin(user_id, screen_name, (obj, res) => {
+    load_dms.begin((obj, res) => {
       load_dms.end(res);
 
       messages_list.get_accessible().set_name(_("Direct messages with %s").printf(user_name));
@@ -214,16 +227,26 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     });
   }
 
-  private async void load_dms(int64 user_id, string screen_name) {
+  private async void load_dms() {
     // Load messages
     var query = account.db.select ("dms")
                            .cols ("from_id", "to_id", "text", "message_json",
                                   "from_name", "from_screen_name",
                                   "timestamp", "id");
-    if (user_id == account.id)
-      query.where (@"`from_id`='$user_id' AND `to_id`='$user_id'");
-    else
-      query.where (@"`from_id`='$user_id' OR `to_id`='$user_id'");
+    var dm_is_in_thread = "";
+    if (user_id == account.id) {
+      dm_is_in_thread = @"(`from_id`='$user_id' AND `to_id`='$user_id')";
+    }
+    else {
+      dm_is_in_thread = @"(`from_id`='$user_id' OR `to_id`='$user_id')";
+    }
+
+    if (first_dm_id != int64.MAX) {
+      query.where_lt("id", first_dm_id).and().where(dm_is_in_thread);
+    }
+    else {
+      query.where(dm_is_in_thread);
+    }
 
     string[,] values = new string[35,8];
     int row_num = 0;
@@ -241,7 +264,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
          });
 
     for (int i = 0; i < row_num; i++) {
-      int64 id = int64.parse (values[i,7]);      
+      int64 id = int64.parse (values[i,7]);
       string json = values[i,3];
 
       if (json != "") {

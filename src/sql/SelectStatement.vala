@@ -64,6 +64,12 @@ namespace Sql {
       return where_eq (w, v.to_string());
     }
 
+    public SelectStatement where_lt (string field, int64 val) {
+      where(@"`$field` < ?");
+      bindings.add(val.to_string());
+      return this;
+    }
+
     public SelectStatement where_prefix (string field, string prefix) {
       where(@"`$field` LIKE ?");
       bindings.add(prefix + "%");
