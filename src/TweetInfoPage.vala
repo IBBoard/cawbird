@@ -54,6 +54,8 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
   [GtkChild]
   private Gtk.Box main_box;
   [GtkChild]
+  private Gtk.Box lower_content;
+  [GtkChild]
   private MultiMediaWidget mm_widget;
   [GtkChild]
   private Gtk.Label text_label;
@@ -89,8 +91,6 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
   private Gtk.Label time_label;
   [GtkChild]
   private Gtk.Label source_label;
-  [GtkChild]
-  private MaxSizeContainer max_size_container;
   [GtkChild]
   private Gtk.Stack main_stack;
   [GtkChild]
@@ -174,28 +174,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     grid.set_redraw_on_allocate (true);
 
     mm_widget.media_clicked.connect ((m, i) => TweetUtils.handle_media_click (tweet.get_medias (), main_window, i));
-    this.scroll_event.connect ((evt) => {
-      double evt_delta_x, evt_delta_y;
-      var success = evt.get_scroll_deltas(out evt_delta_x, out evt_delta_y);
 
-      if (!success) {
-        Gdk.ScrollDirection scroll_dir;
-        success = evt.get_scroll_direction(out scroll_dir);
-
-        if (success && scroll_dir == Gdk.ScrollDirection.UP) {
-          evt_delta_y = -1;
-        } else {
-          evt_delta_y = 0;
-        }
-      }
-
-      if (evt_delta_y < 0 && this.vadjustment.value == 0 && tweet.is_reply()) {
-        int inc = (int)(vadjustment.step_increment * (-evt_delta_y));
-        max_size_container.max_size += inc;
-        return true;
-      }
-      return false;
-    });
     replied_to_list_box.row_activated.connect ((row) => {
       var bundle = new Cb.Bundle ();
       bundle.put_int (KEY_MODE, TweetInfoPage.BY_INSTANCE);
@@ -234,10 +213,13 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
   }
 
   private void scroll_past_top(Gtk.ScrolledWindow parent, Gtk.ListBox list_box, int over_scroll) {
-    max_size_container.max_size += over_scroll;
     parent.vadjustment.value = 0;
   }
 
+  public override void size_allocate(Gtk.Allocation allocation) {
+    base.size_allocate(allocation);
+    lower_content.set_size_request(-1, allocation.height);
+  }
 
   private void media_visiblity_changed_cb () {
     if (Settings.get_media_visiblity () == MediaVisibility.HIDE)
@@ -268,7 +250,6 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
     bool existing = args.get_bool (KEY_EXISTING);
 
-    max_size_container.max_size = 0;
     main_stack.visible_child = main_box;
     missing_tweet_label.hide ();
 
@@ -757,6 +738,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       return;
     }
 
+    this.balance_next_upper_change(TOP);
     replied_to_list_box.show ();
     var call = account.proxy.new_call ();
     call.set_function ("1.1/statuses/show.json");
@@ -797,6 +779,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       var tweet = new Cb.Tweet ();
       tweet.load_from_json (parser.get_root (), account.id, new GLib.DateTime.now_local ());
       replied_to_list_box.model.add (tweet);
+      this.balance_next_upper_change(TOP);
       if (tweet.retweeted_tweet == null)
         load_replied_to_tweet (tweet.source_tweet.reply_id);
       else
