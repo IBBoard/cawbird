@@ -87,9 +87,10 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
     if (account.blocked_or_muted (t.get_user_id ()))
       return;
 
-    this.balance_next_upper_change (TOP);
-    if (preload_is_complete)
+    if (preload_is_complete) {
+      this.balance_next_upper_change (TOP);
       t.set_seen (false);
+    }
     tweet_list.model.add (t);
 
 
