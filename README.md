@@ -169,10 +169,10 @@ Note that executing `build/cawbird` may result in the error:
 Settings schema 'uk.co.ibboard.cawbird' is not installed
 ```
 
-To correct, install the application:
+To fix this, use the schemas from the build directory:
 
 ```Bash
-ninja install -C build
+GSETTINGS_SCHEMA_DIR=build/data/ GSETTINGS_BACKEND='memory' build/cawbird
 ```
 
 Cawbird installs its application icon into `/usr/share/icons/hicolor/`, so an appropriate call to `gtk-update-icon-cache` might be needed.

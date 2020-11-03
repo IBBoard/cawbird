@@ -35,7 +35,7 @@ configure_file(
   install_dir: join_paths(get_option('datadir'), 'dbus-1/services')
 )
 
-gnome.compile_schemas()
+gnome.compile_schemas(build_by_default: true)
 
 # Install all application icons in one go
 install_subdir(
