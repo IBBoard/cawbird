@@ -27,28 +27,18 @@
     <file preprocess="xml-stripblanks">ui/modify-snippet-dialog.ui</file>
     <file preprocess="xml-stripblanks">ui/shortcuts-window.ui</file>
     <file preprocess="xml-stripblanks">ui/cb-emoji-chooser.ui</file>
-    <file>data/16x16/apps/cawbird-compose-symbolic.symbolic.png</file>
-    <file>data/16x16/apps/cawbird-conversation-symbolic.symbolic.png</file>
-    <file>data/16x16/apps/cawbird-dms-symbolic.symbolic.png</file>
-    <file>data/16x16/apps/cawbird-filter-symbolic.symbolic.png</file>
-    <file>data/16x16/apps/cawbird-mentions-symbolic.symbolic.png</file>
-    <file>data/16x16/apps/cawbird-new-window-symbolic.symbolic.png</file>
-    <file>data/16x16/apps/cawbird-retweet-symbolic.symbolic.png</file>
-    <file>data/16x16/apps/cawbird-profile-symbolic.symbolic.png</file>
-    <file>data/16x16/apps/cawbird-favorite-symbolic.symbolic.png</file>
-    <file>data/16x16/apps/cawbird-user-home-symbolic.symbolic.png</file>
-    <file>data/16x16/apps/cawbird-edit-find-symbolic.symbolic.png</file>
-    <file>data/32x32/apps/cawbird-compose-symbolic.symbolic.png</file>
-    <file>data/32x32/apps/cawbird-conversation-symbolic.symbolic.png</file>
-    <file>data/32x32/apps/cawbird-dms-symbolic.symbolic.png</file>
-    <file>data/32x32/apps/cawbird-filter-symbolic.symbolic.png</file>
-    <file>data/32x32/apps/cawbird-mentions-symbolic.symbolic.png</file>
-    <file>data/32x32/apps/cawbird-new-window-symbolic.symbolic.png</file>
-    <file>data/32x32/apps/cawbird-retweet-symbolic.symbolic.png</file>
-    <file>data/32x32/apps/cawbird-profile-symbolic.symbolic.png</file>
-    <file>data/32x32/apps/cawbird-favorite-symbolic.symbolic.png</file>
-    <file>data/32x32/apps/cawbird-user-home-symbolic.symbolic.png</file>
-    <file>data/32x32/apps/cawbird-edit-find-symbolic.symbolic.png</file>
+    <file>data/symbolic/apps/cawbird-compose-symbolic.svg</file>
+    <file>data/symbolic/apps/cawbird-conversation-symbolic.svg</file>
+    <file>data/symbolic/apps/cawbird-dms-symbolic.svg</file>
+    <file>data/symbolic/apps/cawbird-filter-symbolic.svg</file>
+    <file>data/symbolic/apps/cawbird-mentions-symbolic.svg</file>
+    <file>data/symbolic/apps/cawbird-new-window-symbolic.svg</file>
+    <file>data/symbolic/apps/cawbird-reply-symbolic.svg</file>
+    <file>data/symbolic/apps/cawbird-retweet-symbolic.svg</file>
+    <file>data/symbolic/apps/cawbird-profile-symbolic.svg</file>
+    <file>data/symbolic/apps/cawbird-favorite-symbolic.svg</file>
+    <file>data/symbolic/apps/cawbird-user-home-symbolic.svg</file>
+    <file>data/symbolic/apps/cawbird-edit-find-symbolic.svg</file>
     <file>data/play.png</file>
     <file>data/play@2.png</file>
     <file>data/verified-small.png</file>

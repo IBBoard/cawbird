@@ -89,7 +89,7 @@
                   <object class="GtkImage">
                     <property name="visible">1</property>
                     <property name="pixel-size">16</property>
-                    <property name="icon-name">mail-replied-symbolic</property>
+                    <property name="icon-name">cawbird-reply-symbolic</property>
                   </object>
                 </child>
               </object>
