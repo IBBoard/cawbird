@@ -14,14 +14,17 @@ i18n.merge_file(
   install: true,
   install_dir: join_paths(get_option('datadir'), 'applications')
 )
-i18n.merge_file(
-  input:  'uk.co.ibboard.cawbird.appdata.xml.in',
-  output: 'uk.co.ibboard.cawbird.appdata.xml',
-  po_dir: '../po/',
-  type:   'xml',
-  install: true,
-  install_dir: join_paths(get_option('datadir'), 'metainfo')
-)
+
+if get_option('appdata')
+  i18n.merge_file(
+    input:  'uk.co.ibboard.cawbird.appdata.xml.in',
+    output: 'uk.co.ibboard.cawbird.appdata.xml',
+    po_dir: '../po/',
+    type:   'xml',
+    install: true,
+    install_dir: join_paths(get_option('datadir'), 'metainfo')
+  )
+endif
 
 install_man('cawbird.1')
 
