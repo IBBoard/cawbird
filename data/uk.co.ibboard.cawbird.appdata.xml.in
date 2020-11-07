@@ -42,6 +42,7 @@
   <developer_name>IBBoard</developer_name>
 
   <url type="bugtracker">https://github.com/ibboard/cawbird/issues</url>
+  <url type="translate">https://www.transifex.com/cawbird/cawbird/</url>
 
   <releases>
     <release version="1.2.1" date="2020-09-20">
