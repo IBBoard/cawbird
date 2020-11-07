@@ -52,7 +52,9 @@ struct _CbUserStream
   guint favourited_timeout;
   GCancellable *favourited_cancellable;
 
+  gint64 first_dm_id;
   gint64 last_dm_id;
+  gint64 new_last_dm_id; // Placeholder for the next value of last_dm_id so that we can page back if lots of tweets came in
   guint dm_timeout;
   GCancellable *dm_cancellable;
 

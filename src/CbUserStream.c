@@ -554,6 +554,10 @@ load_favourited_tweets (gpointer user_data)
   return TRUE;
 }
 
+// Fix a cyclic definition
+void
+load_dm_tweets_with_cursor (gpointer user_data, const gchar *cursor);
+
 void
 load_dm_tweets_done  (GObject *source_object,
                         GAsyncResult *result,
@@ -598,7 +602,8 @@ load_dm_tweets_done  (GObject *source_object,
 
   g_debug ("Got %d DMs", len);
 
-  gboolean first_load = self->last_dm_id == 0;
+  gboolean all_newer = TRUE;
+  gboolean all_older = TRUE;
 
   for (guint i = len; i > 0; i--) {
     JsonNode *node = json_array_get_element (root_arr, i - 1);
@@ -612,27 +617,48 @@ load_dm_tweets_done  (GObject *source_object,
 
     gint64 id = strtol (json_object_get_string_member (obj, "id"), NULL, 10);
 
-    if (id <= self->last_dm_id) {
+    if (id < self->first_dm_id) {
+      self->first_dm_id = id;
+      all_newer = FALSE;
+    }
+    else if (id <= self->last_dm_id) {
+      all_older = FALSE;
+      all_newer = FALSE;
       // DMs behave differently to other "timelines" so we need to ignore messages we've seen
-      // And we assume we've seen it if it has an older ID
+      // And we assume we've seen it if it has an older ID. But we can't break because later
+      // in the collection is newer and might be unseen.
       continue;
     }
-
-    self->last_dm_id = id;
+    else {
+      all_older = FALSE;
+      if (id > self->new_last_dm_id) {
+        self->new_last_dm_id = id;
+      }
+    }
     g_debug("New DM with type: %s", type);
     stream_tweet (self, message_type, node);
   }
 
-  if (first_load) {
-    stream_tweet (self, CB_STREAM_MESSAGE_DIRECT_MESSAGES_LOADED, json_node_new(JSON_NODE_NULL));
-  }
-
   g_cancellable_cancel(self->dm_cancellable);
   self->dm_cancellable = NULL;
+
+  if ((all_newer || all_older) && json_object_has_member(root_obj, "next_cursor")) {
+    const gchar *cursor = json_object_get_string_member(root_obj, "next_cursor");
+    load_dm_tweets_with_cursor(user_data, cursor);
+  }
+  else {
+    gboolean first_load = self->last_dm_id == 0;
+
+    if (first_load) {
+      stream_tweet (self, CB_STREAM_MESSAGE_DIRECT_MESSAGES_LOADED, json_node_new(JSON_NODE_NULL));
+    }
+
+    self->last_dm_id = self->new_last_dm_id;
+  }
 }
 
-gboolean
-load_dm_tweets (gpointer user_data)
+void
+load_dm_tweets_with_cursor (gpointer user_data, const gchar *cursor)
 {
   CbUserStream *self = user_data;
 
@@ -642,13 +668,22 @@ load_dm_tweets (gpointer user_data)
   }
 
   RestProxyCall *proxy_call = rest_proxy_new_call (self->proxy);
-  g_debug("Loading DM tweets");
   rest_proxy_call_set_function (proxy_call, "1.1/direct_messages/events/list.json");
   rest_proxy_call_set_method (proxy_call, "GET");
   rest_proxy_call_add_param (proxy_call, "count", "50");
+  if (cursor) {
+    rest_proxy_call_add_param(proxy_call, "cursor", cursor);
+  }
+  g_debug("Loading DM tweets for cursor %s", cursor ? cursor : "none");
 
   self->dm_cancellable = g_cancellable_new();
   cb_utils_load_threaded_async (proxy_call, self->dm_cancellable, load_dm_tweets_done, self);
+}
+
+gboolean
+load_dm_tweets (gpointer user_data)
+{
+  load_dm_tweets_with_cursor(user_data, NULL);
   return TRUE;
 }
 
