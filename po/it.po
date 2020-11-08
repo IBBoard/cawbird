@@ -1,8 +1,8 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) YEAR 2013-2018 Timm Bäder, 2018-2020 IBBoard
 # This file is distributed under the same license as the cawbird package.
-# ALBANO BATTISTELLA <albano_battistella@hotmail.com>, 2020.
-#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
 # Translators:
 # Daniele Napolitano <dnax88@gmail.com>, 2014
 # Emanuele Rocco Petrone <emaeleptrn@gmail.com>, 2018
@@ -10,7 +10,9 @@
 # Nicola Stanislao Vitale <nivit@rocketmail.com>, 2015
 # Tassoman, 2017
 # Albano Battistella <albano_battistella@hotmail.com>, 2019-2020
-#
+# ScardracS <marco.scardovi95@gmail.com>, 2020
+# Dieg 0 <dieg0sky008@gmail.com>, 2020
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -18,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2020-08-29 11:40+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
-"Last-Translator: albanobattistella <albano_battistella@hotmail.com>, 2020\n"
+"Last-Translator: Dieg 0 <dieg0sky008@gmail.com>, 2020\n"
 "Language-Team: Italian (https://www.transifex.com/cawbird/teams/107135/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -33,15 +35,15 @@ msgid "Twitter Client"
 msgstr "Client Twitter"
 
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as "
-"Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
 "Cawbird è un client twitter nativo GTK+ che fornisce funzioni vitali come "
 "messaggi diretti (DM), notifiche dei tweet e vista delle conversazioni."
 
 msgid ""
-"Additional features include local viewing of videos, multiple inline images, "
-"Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images,"
+" Lists, Filters, multiple accounts, etc."
 msgstr ""
 "Funzionalità aggiuntive includono riproduzione locale dei video, più "
 "immagini in una riga, liste, filtri, account multipli ecc."
@@ -61,7 +63,8 @@ msgstr "IBBoard"
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Usa Twitter come una normale applicazione desktop"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "Twitter;"
 
@@ -81,16 +84,15 @@ msgstr "e"
 msgid "and %d others"
 msgstr "e %d altri"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Direct messages with %s"
-msgstr "Messaggi diretti"
+msgstr "Messaggi diretti con %s"
 
 msgid "Direct Conversation"
 msgstr "Conversazione diretta"
 
-#, fuzzy
 msgid "Direct message threads"
-msgstr "Messaggi diretti"
+msgstr "Thread dei messaggi diretti"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -105,9 +107,8 @@ msgstr "Nuovo messaggio diretto da %s"
 msgid "Direct Messages"
 msgstr "Messaggi diretti"
 
-#, fuzzy
 msgid "Favourites timeline"
-msgstr "Tweet preferito"
+msgstr "Timeline dei favoriti"
 
 msgid "Favorites"
 msgstr "Preferiti"
@@ -118,9 +119,8 @@ msgstr "Aggiungi un nuovo filtro"
 msgid "Filters"
 msgstr "Filtri"
 
-#, fuzzy
 msgid "Home timeline"
-msgstr "Nascondere nella timeline"
+msgstr "Timeline della home"
 
 #, c-format
 msgid "%s retweeted %s"
@@ -139,9 +139,9 @@ msgstr[1] "%d nuovi Tweet!"
 msgid "Home"
 msgstr "Home"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s list tweets"
-msgstr "%s ritwittato"
+msgstr "%s lista dei tweet"
 
 msgid "Lists"
 msgstr "Liste"
@@ -155,9 +155,8 @@ msgstr "Componi tweet"
 msgid "Add new Account"
 msgstr "Aggiungi un nuovo account"
 
-#, fuzzy
 msgid "Mentions timeline"
-msgstr "Nascondere nella timeline"
+msgstr "Timeline delle mezioni"
 
 #, c-format
 msgid "%s mentioned %s"
@@ -176,60 +175,62 @@ msgstr "Profilo protetto"
 msgid "Tweet to @%s"
 msgstr "Twitta a @%s"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%d tweet"
 msgid_plural "%d tweets"
-msgstr[0] "%s ritwittato"
-msgstr[1] "%s ritwittato"
+msgstr[0] "%d tweet"
+msgstr[1] "%d tweets"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Following %d account"
 msgid_plural "Following %d accounts"
-msgstr[0] "Following"
-msgstr[1] "Following"
+msgstr[0] "%d account seguito"
+msgstr[1] "%d account seguiti"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Location: %s"
-msgstr "Notifiche"
+msgstr "Da: %s"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
-#, fuzzy, c-format
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile
+#. timeline view
+#, c-format
 msgid "%s timeline"
-msgstr "Nascondere nella timeline"
+msgstr "Timeline di %s"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
-#, fuzzy, c-format
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of
+#. users following the user
+#, c-format
 msgid "%s followers"
-msgstr "Followers"
+msgstr "%s followers "
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
-#, fuzzy, c-format
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of
+#. users followed by the user
+#, c-format
 msgid "%s following"
-msgstr "Following"
+msgstr "Seguiti da %s"
 
 msgid "Protected Profile"
 msgstr "Profilo protetto"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%d follower"
 msgid_plural "%d followers"
-msgstr[0] "Followers"
-msgstr[1] "Followers"
+msgstr[0] "%d follower"
+msgstr[1] "%d followers"
 
-#, fuzzy
 msgid "No tweets found"
-msgstr "Nessun risultato trovato"
+msgstr "Nessun tweet trovato"
 
 msgid "No users found"
 msgstr "Nessun utente"
 
 #, c-format
 msgid "Users matching \"%s\""
-msgstr ""
+msgstr "Profili trovati: \"%s\""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Tweets matching \"%s\""
-msgstr "Twitta a @%s"
+msgstr "Tweets trovati: \"%s\""
 
 msgid "Search"
 msgstr "Cerca"
@@ -268,9 +269,9 @@ msgid "Delete"
 msgstr "Elimina"
 
 #. TRANSLATORS: replacements are name and handle (without the "@")
-#, fuzzy, c-format
+#, c-format
 msgid "Retweeted by %s (@%s)"
-msgstr "Retweet"
+msgstr "Ritwittato da %s (@%s)"
 
 #, c-format
 msgid "Block %s"
@@ -295,7 +296,8 @@ msgid "User has been suspended."
 msgstr "L'utente è stato sospeso."
 
 msgid "Your account is suspended and is not permitted to access this feature"
-msgstr "Il tuo account è sospeso e non è consentito accedere a questa funzione"
+msgstr ""
+"Il tuo account è sospeso e non è consentito accedere a questa funzione"
 
 msgid "Rate limit exceeded"
 msgstr "Tasso limite superato"
@@ -307,7 +309,8 @@ msgid "The specified user is not a subscriber of this list."
 msgstr "L'utente specificato non è un abbonato di questo elenco."
 
 msgid "The user you are trying to remove from the list is not a member."
-msgstr "L'utente che si sta tentando di rimuovere dall'elenco non è un membro."
+msgstr ""
+"L'utente che si sta tentando di rimuovere dall'elenco non è un membro."
 
 msgid "Account update failed: value is too long."
 msgstr "Aggiornamento dell'account non riuscito: il valore è troppo lungo."
@@ -362,9 +365,9 @@ msgid ""
 "This request looks like it might be automated. To protect our users from "
 "spam and other malicious activity, we can’t complete this action right now."
 msgstr ""
-"Questa richiesta sembra essere automatizzata. Per proteggere i nostri utenti "
-"da spam e altre attività dannose, al momento non possiamo completare questa "
-"azione."
+"Questa richiesta sembra essere automatizzata. Per proteggere i nostri utenti"
+" da spam e altre attività dannose, al momento non possiamo completare questa"
+" azione."
 
 msgid "User must verify login"
 msgstr "L'utente deve verificare l'accesso"
@@ -388,8 +391,8 @@ msgid "A media id was not found."
 msgstr "Non è stato trovato un ID media."
 
 msgid ""
-"To protect our users from spam and other malicious activity, this account is "
-"temporarily locked."
+"To protect our users from spam and other malicious activity, this account is"
+" temporarily locked."
 msgstr ""
 "Per proteggere i nostri utenti da spam e altre attività dannose, questo "
 "account è temporaneamente bloccato."
@@ -430,8 +433,8 @@ msgstr "Adesso"
 #, c-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d minuto fa"
+msgstr[1] "%d minuti fa"
 
 #. TRANSLATORS: short-form "x minutes ago"
 #, c-format
@@ -441,29 +444,33 @@ msgstr "%dm"
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d ora fa"
+msgstr[1] "%d ore fa"
 
 #. TRANSLATORS: short-form "x hours ago"
 #, c-format
 msgid "%dh"
 msgstr "%dh"
 
-#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from this year - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B"
-msgstr ""
+msgstr "%e di %B"
 
-#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from this year - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b"
-msgstr ""
+msgstr "%e %b"
 
-#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from previous years - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B %Y"
-msgstr ""
+msgstr "%e %B %Y"
 
-#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from previous years - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b %Y"
-msgstr ""
+msgstr "%e %b %Y"
 
 msgid "Don't have a Twitter account yet?"
 msgstr "Non hai ancora un account Twitter?"
@@ -476,7 +483,7 @@ msgid "Could not open %s"
 msgstr "Non posso aprire %s"
 
 msgid "Failed to retrieve request token"
-msgstr ""
+msgstr "Richiesta del token non trovata"
 
 msgid "Wrong PIN"
 msgstr "PIN sbagliato"
@@ -485,7 +492,7 @@ msgid "Account already in use"
 msgstr "Account già in uso"
 
 msgid "Failed to retrieve access token"
-msgstr ""
+msgstr "Token d'accesso non trovato"
 
 msgid "Select Image"
 msgstr "Sfoglia"
@@ -545,7 +552,8 @@ msgstr[0] "Impossibile caricare l'immagine"
 msgstr[1] "Carcamento immagini %u fallito."
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
+#. <path>, <path>"
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -566,11 +574,11 @@ msgstr ""
 "L'immagine selezionata è troppo grossa. La dimensione massima consentita è "
 "%'d MB"
 
-#, fuzzy, c-format
+#, c-format
 msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
 msgstr ""
-"L'immagine selezionata è troppo grossa. La dimensione massima consentita è "
-"%'d MB"
+"Il GIF selezionato è troppo grande. La dimensione massima per GIF è di %'d "
+"MB"
 
 msgid "Only one GIF file per tweet is allowed."
 msgstr "È consentita solo una gif per tweet."
@@ -581,16 +589,17 @@ msgstr "Inserisci emoji"
 #, c-format
 msgid "%d character remaining"
 msgid_plural "%d characters remaining"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d lettera rimasta"
+msgstr[1] "%d lettere rimaste"
 
-#. TRANSLATORS: Values are current image index (1-based) and total image count. Pluralisation is based on total image count.
+#. TRANSLATORS: Values are current image index (1-based) and total image
+#. count. Pluralisation is based on total image count.
 #. Should only be seen when image count is two or more.
 #, c-format
 msgid "Image %d of %d"
 msgid_plural "Image %d of %d"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Immagine %d su %d"
+msgstr[1] "Immagine %d su %d"
 
 msgid "Modify Filter"
 msgstr "Modifica filtro"
@@ -617,7 +626,8 @@ msgid "Snippet already exists"
 msgstr "Lo snippet esiste già"
 
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
+"#newisalwaysbetter"
 msgstr ""
 "Ehi, scarica la nuova versione di #Cawbird \\ (•◡•) / #cool "
 "#newisalwaysbetter"
@@ -668,13 +678,11 @@ msgstr "Sito web"
 msgid "Autostart"
 msgstr "Avvio automatico"
 
-#, fuzzy
 msgid "Remove Account"
-msgstr "Elimina"
+msgstr "Rimuovi account"
 
-#, fuzzy
 msgid "Do you really want to remove this account?"
-msgstr "Vuoi davvero rimuovere questo account?"
+msgstr "Vuoi VERAMENTE rimuovere questo account?"
 
 msgctxt "emoji category"
 msgid "Smileys & People"
@@ -727,20 +735,17 @@ msgstr "Aggiungi immagine"
 msgid "Show favorite images"
 msgstr "Mostra le immagini preferite"
 
-#, fuzzy
 msgid "Filtered terms"
-msgstr "Filtri"
+msgstr "Parole filtrate"
 
-#, fuzzy
 msgid "Filtered users"
-msgstr "Filtri"
+msgstr "Utenti filtrati"
 
 msgid "Users"
 msgstr "Utenti"
 
-#, fuzzy
 msgid "Set image description"
-msgstr "Descrizione"
+msgstr "Aggiungi una descrizione"
 
 msgid "Subscribe"
 msgstr "Sottoscrivi"
@@ -823,9 +828,8 @@ msgstr "Silenziato"
 msgid "Retweets disabled"
 msgstr "Retweet disabilitati"
 
-#, fuzzy
 msgid "More actions"
-msgstr "Menzioni"
+msgstr "Altro"
 
 msgid "Follows you"
 msgstr "Ti segue"
@@ -1021,11 +1025,10 @@ msgid "Reply"
 msgstr "Rispondi"
 
 msgid "Liked"
-msgstr ""
+msgstr "Piaciuti"
 
-#, fuzzy
 msgid "Retweeted"
-msgstr "Retweet"
+msgstr "Ritwittato"
 
 msgid "Unblock"
 msgstr "Sblocca"
@@ -1044,13 +1047,3 @@ msgstr "Creato"
 
 msgid "Subscribed to"
 msgstr "Sottoscritto a"
-
-#, fuzzy, c-format
-#~ msgid "%s (%s) followers"
-#~ msgstr "Followers"
-
-#~ msgid "List"
-#~ msgstr "Lista"
-
-#~ msgid "Loading…"
-#~ msgstr "Caricamento..."
