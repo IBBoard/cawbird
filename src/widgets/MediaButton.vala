@@ -92,12 +92,12 @@ private class MediaButton : Gtk.Widget {
   }
 
   public MediaButton (Cb.Media? media, bool restrict_height = false) {
-    this.media = media;
     this.restrict_height = restrict_height;
     this.get_style_context ().add_class ("inline-media");
     actions = new GLib.SimpleActionGroup ();
     actions.add_action_entries (action_entries, this);
     this.insert_action_group ("media", actions);
+    this.media = media;
 
     this.menu_model = new GLib.Menu ();
     menu_model.append (_("Open in Browser"), "media.open-in-browser");
