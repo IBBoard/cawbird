@@ -4,8 +4,12 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# IBBoard . <github@ibboard.co.uk>, 2020
-# albanobattistella <albano_battistella@hotmail.com>, 2020
+# Daniele Napolitano <dnax88@gmail.com>, 2014
+# Emanuele Rocco Petrone <emaeleptrn@gmail.com>, 2018
+# Matteo Castelli <Mtt.Castelli@gmail.com>, 2016
+# Nicola Stanislao Vitale <nivit@rocketmail.com>, 2015
+# Tassoman, 2017
+# Albano Battistella <albano_battistella@hotmail.com>, 2019-2020
 # ScardracS <marco.scardovi95@gmail.com>, 2020
 # Dieg 0 <dieg0sky008@gmail.com>, 2020
 # 
@@ -18,10 +22,10 @@ msgstr ""
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Dieg 0 <dieg0sky008@gmail.com>, 2020\n"
 "Language-Team: Italian (https://www.transifex.com/cawbird/teams/107135/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Cawbird"
