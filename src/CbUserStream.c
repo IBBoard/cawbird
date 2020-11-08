@@ -641,19 +641,26 @@ load_dm_tweets_done  (GObject *source_object,
 
   g_cancellable_cancel(self->dm_cancellable);
   self->dm_cancellable = NULL;
+  
+  gboolean first_load = self->last_dm_id == 0;
+  // Limit fetches for throttling. 5 at first load lets us load ~300 old DMs from last 30 days.
+  // 1 recursion when scheduled every 2 minutes runs right to the "15/15min" limit.
+  // This *should* only cause throttling problems just when someone has a big backlog AND has
+  // lots of tweets coming in every 2 minutes.
+  unsigned char max_recursions = first_load ? 5 : 1;
 
-  if ((all_newer || all_older) && json_object_has_member(root_obj, "next_cursor")) {
+  if ((all_newer || all_older) && self->dm_recursions < max_recursions && json_object_has_member(root_obj, "next_cursor")) {
+    self->dm_recursions++;
     const gchar *cursor = json_object_get_string_member(root_obj, "next_cursor");
     load_dm_tweets_with_cursor(user_data, cursor);
   }
   else {
-    gboolean first_load = self->last_dm_id == 0;
-
     if (first_load) {
       stream_tweet (self, CB_STREAM_MESSAGE_DIRECT_MESSAGES_LOADED, json_node_new(JSON_NODE_NULL));
     }
 
     self->last_dm_id = self->new_last_dm_id;
+    self->dm_recursions = 0;
   }
 }
 
