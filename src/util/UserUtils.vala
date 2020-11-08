@@ -21,7 +21,7 @@ const uint FRIENDSHIP_WANT_RETWEETS = 1 << 2;
 const uint FRIENDSHIP_BLOCKING      = 1 << 3;
 const uint FRIENDSHIP_CAN_DM        = 1 << 4;
 
-struct Cursor {
+struct JsonCursor {
   int64 next_cursor;
   bool full;
   Json.Node? json_object;
@@ -76,9 +76,9 @@ namespace UserUtils {
     return friendship;
   }
 
-  async Cursor? load_followers (Account account,
+  async JsonCursor? load_followers (Account account,
                                 int64   user_id,
-                                Cursor? old_cursor)
+                                JsonCursor? old_cursor)
   {
     const int requested = 25;
     var call = account.proxy.new_call ();
@@ -104,7 +104,7 @@ namespace UserUtils {
 
     var user_array = root_obj.get_array_member ("users");
 
-    Cursor cursor = Cursor ();
+    JsonCursor cursor = JsonCursor ();
     cursor.next_cursor = root_obj.get_int_member ("next_cursor");
     cursor.full = (user_array.get_length () < requested);
     cursor.json_object = root_obj.get_member ("users");
@@ -112,9 +112,9 @@ namespace UserUtils {
     return cursor;
   }
 
-  async Cursor? load_following (Account account,
+  async JsonCursor? load_following (Account account,
                                 int64   user_id,
-                                Cursor? old_cursor)
+                                JsonCursor? old_cursor)
   {
     const int requested = 25;
     var call = account.proxy.new_call ();
@@ -140,7 +140,7 @@ namespace UserUtils {
 
     var user_array = root_obj.get_array_member ("users");
 
-    Cursor cursor = Cursor ();
+    JsonCursor cursor = JsonCursor ();
     cursor.next_cursor = root_obj.get_int_member ("next_cursor");
     cursor.full = (user_array.get_length () < requested);
     cursor.json_object = root_obj.get_member ("users");

@@ -100,9 +100,9 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
   private bool retweet_item_blocked = false;
   private bool tweets_loading = false;
   private bool followers_loading = false;
-  private Cursor? followers_cursor = null;
+  private JsonCursor? followers_cursor = null;
   private bool following_loading = false;
-  private Cursor? following_cursor = null;
+  private JsonCursor? following_cursor = null;
   private GLib.SimpleActionGroup actions;
 
   public ProfilePage (int id, Account account) {

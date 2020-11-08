@@ -19,6 +19,12 @@
 #define _CB_UTILS_H_
 
 #include <gtk/gtk.h>
+#ifdef GDK_WINDOWING_X11
+#include <gdk/gdkx.h>
+#endif
+//#ifdef GDK_WINDOWING_WAYLAND
+//#include <gdk/gdkwayland.h>
+//#endif 
 #include <glib-object.h>
 #include "CbTypes.h"
 #include <rest/rest-proxy-call.h>
@@ -71,6 +77,7 @@ CbUserIdentity * cb_utils_query_users_finish (GAsyncResult  *result,
                                               int           *out_length,
                                               GError       **error);
 
+void cb_utils_init_gui ();
 
 static inline void
 cb_clear_source (guint *id)

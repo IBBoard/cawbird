@@ -35,6 +35,7 @@ enable_debug = get_option('buildtype') == 'debug' or get_option('buildtype') == 
 enable_video = get_option('video')
 enable_spellcheck = get_option('spellcheck')
 enable_examples = get_option('examples')
+enable_x11 = get_option('x11')
 
 # Project arguments
 
@@ -62,6 +63,10 @@ if (enable_spellcheck)
   add_project_arguments('-DSPELLCHECK', language: 'c')
   add_project_arguments('-D', 'SPELLCHECK', language: 'vala')
   cb_deps += [dependency('gspell-1', version: '>=1.0')]
+endif
+
+if (enable_x11)
+  cb_deps += [dependency('x11')]
 endif
 
 

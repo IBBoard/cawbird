@@ -336,6 +336,7 @@ namespace Cb {
   [CCode (cprefix = "CbUtils_", lower_case_cprefix = "cb_utils_", cheader_filename =
           "CbUtils.h")]
   namespace Utils {
+    public void init_gui ();
     public delegate Gtk.Widget CreateWidgetFunc (void *item);
     public void bind_model (Gtk.Widget listbox, GLib.ListModel model, Gtk.ListBoxCreateWidgetFunc func);
     public void bind_non_gobject_model (Gtk.Widget listbox, GLib.ListModel model, Cb.Utils.CreateWidgetFunc func);

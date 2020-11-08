@@ -16,6 +16,8 @@
  */
 
 int main (string[] args) {
+  Cb.Utils.init_gui();
+
 #if VIDEO
   Gst.init (ref args);
 #endif

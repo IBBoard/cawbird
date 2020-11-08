@@ -705,3 +705,22 @@ cb_utils_query_users_finish (GAsyncResult  *result,
 
   return ids;
 }
+
+void
+cb_utils_init_gui ()
+{
+  // We appear to need to do this in C rather than Vala as the only way to get the macros
+  GdkDisplay *display = gdk_display_get_default ();
+//#ifdef GDK_WINDOWING_WAYLAND
+//  if (GDK_IS_WAYLAND_DISPLAY (display))
+//  {
+//    // Nothing Wayland-specific to do at the moment
+//  }
+//#endif
+#ifdef GDK_WINDOWING_X11
+  if (GDK_IS_X11_DISPLAY (display))
+  {
+    XInitThreads ();
+  }
+#endif
+}
