@@ -16,7 +16,8 @@
  */
 
 int main (string[] args) {
-  Cb.Utils.init_gui();
+  // Pass just the args and not the command or else things fail
+  Cb.Utils.init_gui(args[1:args.length]);
 
 #if VIDEO
   Gst.init (ref args);

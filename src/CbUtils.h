@@ -77,7 +77,7 @@ CbUserIdentity * cb_utils_query_users_finish (GAsyncResult  *result,
                                               int           *out_length,
                                               GError       **error);
 
-void cb_utils_init_gui ();
+void cb_utils_init_gui (gint *argc, gchar ***argv);
 
 static inline void
 cb_clear_source (guint *id)
