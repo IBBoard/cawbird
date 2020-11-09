@@ -443,6 +443,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
               JsonArray  *variants = json_object_get_array_member (video_info, "variants");
               JsonObject *variant = NULL;
               gchar *thumb_url = NULL;
+              const char *target_url = NULL;
               int thumb_width  = -1;
               int thumb_height = -1;
               int width = -1;
@@ -476,6 +477,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                   if (strcmp (json_object_get_string_member (v, "content_type"), "application/x-mpegURL") == 0)
                     {
                       variant = v;
+                      target_url = json_object_get_string_member(media_obj, "expanded_url");
                       break;
                     }
                 }
@@ -488,6 +490,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                   t->medias[t->n_medias] = cb_media_new ();
                   t->medias[t->n_medias]->url = g_strdup (json_object_get_string_member (variant, "url"));
                   t->medias[t->n_medias]->thumb_url = g_strdup (thumb_url);
+                  t->medias[t->n_medias]->target_url = target_url ? g_strdup(target_url) : NULL;
                   t->medias[t->n_medias]->type   = CB_MEDIA_TYPE_TWITTER_VIDEO;
                   t->medias[t->n_medias]->width  = width;
                   t->medias[t->n_medias]->height = height;
