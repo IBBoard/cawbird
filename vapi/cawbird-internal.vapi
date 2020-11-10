@@ -55,6 +55,7 @@ namespace Cb {
   [CCode (cprefix = "CbMedia_", lower_case_cprefix = "cb_media_", cheader_filename = "CbMedia.h")]
   public class Media : GLib.Object {
     public int64 length;
+    public bool requires_authentication;
     public bool loading;
     public bool loaded;
     public bool loading_hires;
@@ -336,7 +337,7 @@ namespace Cb {
   [CCode (cprefix = "CbUtils_", lower_case_cprefix = "cb_utils_", cheader_filename =
           "CbUtils.h")]
   namespace Utils {
-    public void init_gui ([CCode (array_length_pos = 0.1)] string[] args);
+    public void init_gui ([CCode (array_length_pos = 0.1)] ref unowned string[] args);
     public delegate Gtk.Widget CreateWidgetFunc (void *item);
     public void bind_model (Gtk.Widget listbox, GLib.ListModel model, Gtk.ListBoxCreateWidgetFunc func);
     public void bind_non_gobject_model (Gtk.Widget listbox, GLib.ListModel model, Cb.Utils.CreateWidgetFunc func);
