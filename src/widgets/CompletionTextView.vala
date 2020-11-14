@@ -55,6 +55,7 @@ class CompletionTextView : Gtk.TextView {
     completion_window.set_screen (this.get_screen ());
 
     completion_list = new Gtk.ListBox ();
+    completion_list.row_activated.connect(insert_user_completion);
     completion_model = new Cb.UserCompletionModel ();
     Cb.Utils.bind_non_gobject_model (completion_list, completion_model, create_completion_row);
     var placeholder_label = new Gtk.Label (_("No users found"));
