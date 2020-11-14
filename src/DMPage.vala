@@ -150,7 +150,9 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     if (message_data.has_member ("entities")) {
       var entity_nodes = message_data.get_object_member ("entities");
       var url_nodes = entity_nodes.get_array_member ("urls");
-      entities = new Cb.TextEntity[url_nodes.get_length ()];
+      var hashtag_nodes = entity_nodes.get_array_member ("hashtags");
+      var user_mention_nodes = entity_nodes.get_array_member("user_mentions");
+      entities = new Cb.TextEntity[url_nodes.get_length () + hashtag_nodes.get_length() + user_mention_nodes.get_length()];
       url_nodes.foreach_element((arr, index, node) => {
         var url = node.get_object();
         string expanded_url = url.get_string_member("expanded_url");
@@ -162,6 +164,35 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
           original_text = url.get_string_member ("url"),
           tooltip_text = expanded_url,
           display_text = url.get_string_member ("display_url")
+        };
+      });
+      var offset = url_nodes.get_length();      
+      hashtag_nodes.foreach_element((arr, index, node) => {
+        var hashtag = node.get_object();
+        Json.Array indices = hashtag.get_array_member ("indices");
+        var hashtag_text = "#%s".printf(hashtag.get_string_member("text"));
+        entities[offset + index] = Cb.TextEntity() {
+          from = (uint)indices.get_int_element (0),
+          to   = (uint)indices.get_int_element (1) ,
+          target = null,
+          original_text = hashtag_text,
+          tooltip_text = hashtag_text,
+          display_text = hashtag_text
+        };
+      });
+      offset += hashtag_nodes.get_length();      
+      user_mention_nodes.foreach_element((arr, index, node) => {
+        var user_mention = node.get_object();
+        Json.Array indices = user_mention.get_array_member ("indices");
+        var mention_screen_name = "@%s".printf(user_mention.get_string_member("screen_name"));
+        var id_str = user_mention.get_string_member("id_str");
+        entities[offset + index] = Cb.TextEntity() {
+          from = (uint)indices.get_int_element (0),
+          to   = (uint)indices.get_int_element (1) ,
+          target = "@%s/%s".printf(id_str, mention_screen_name),
+          original_text = mention_screen_name,
+          tooltip_text = user_mention.get_string_member("name"),
+          display_text = mention_screen_name
         };
       });
     }

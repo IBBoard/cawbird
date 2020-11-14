@@ -150,6 +150,10 @@ class DMListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
     text_label.set_use_markup (true);
     text_label.set_selectable (true);
     text_label.show ();
+    text_label.activate_link.connect((uri) => {
+      this.grab_focus ();
+      return TweetUtils.activate_link (uri, main_window);
+    });
     grid.attach (text_label, 1, 1, 3, 1);
 
     name_button.clicked.connect (() => {
