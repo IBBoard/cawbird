@@ -10,6 +10,7 @@ srcdir = include_directories('src')
 # This is apparently bad practice, but it solves our "undefined reference to symbol 'floor@@GLIBC_2.2.5'" build problem
 cc = meson.get_compiler('c')
 libm = cc.find_library('m', required : false)
+oauth = cc.find_library('oauth')
 
 min_glib_version = '2.44'
 
@@ -27,6 +28,7 @@ cb_deps = [
   json_dep,
   sql_dep,
   soup_dep,
+  oauth,
   libm
 ]
 

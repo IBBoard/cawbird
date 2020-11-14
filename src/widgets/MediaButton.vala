@@ -39,13 +39,12 @@ private class MediaButton : Gtk.Widget {
         } else {
           this.media_alpha = 1.0;
         }
-        bool is_m3u8 = _media.url.has_suffix (".m3u8");
+        bool is_m3u8 = _media.url.contains(".m3u8"); // Some URLs have query strings, so we can't just suffix
         ((GLib.SimpleAction)actions.lookup_action ("save-as")).set_enabled (!is_m3u8);        
         set_image_description();
-      }
-      if (value != null && (value.type == Cb.MediaType.IMAGE ||
-                            value.type == Cb.MediaType.GIF)) {
-        menu_model.append (_("Copy URL"), "media.copy-url");
+        if (!is_m3u8 && !_media.requires_authentication()) {
+          menu_model.append (_("Copy URL"), "media.copy-url");
+        }
       }
     }
   }
@@ -97,12 +96,12 @@ private class MediaButton : Gtk.Widget {
     actions = new GLib.SimpleActionGroup ();
     actions.add_action_entries (action_entries, this);
     this.insert_action_group ("media", actions);
-    this.media = media;
 
     this.menu_model = new GLib.Menu ();
     menu_model.append (_("Open in Browser"), "media.open-in-browser");
-
     menu_model.append (_("Save as…"), "media.save-as");
+    
+    this.media = media;
 
     this.layout = this.create_pango_layout ("0%");
     this.press_gesture = new Gtk.GestureMultiPress (this);

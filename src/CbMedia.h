@@ -49,6 +49,11 @@ struct _CbMedia
   int thumb_width;
   int thumb_height;
 
+  gchar *consumer_key;
+  gchar *consumer_secret;
+  gchar *token;
+  gchar *token_secret;
+
   CbMediaType type;
   guint loading: 1;
   guint loaded : 1;
@@ -70,6 +75,7 @@ G_DECLARE_FINAL_TYPE (CbMedia, cb_media, CB, MEDIA, GObject);
 
 CbMedia *   cb_media_new              (void);
 gboolean    cb_media_is_video         (CbMedia *media);
+gboolean    cb_media_requires_authentication (CbMedia *media);
 void        cb_media_loading_finished (CbMedia *media);
 void        cb_media_update_progress  (CbMedia *media,
                                        double   progress);

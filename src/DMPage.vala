@@ -115,48 +115,17 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     Json.Object dm_msg_data = dm_msg.get_object_member ("message_data");
 
     var text = dm_msg_data.get_string_member ("text");
-    if (dm_msg_data.has_member ("entities")) {
-      var urls = dm_msg_data.get_object_member ("entities").get_array_member ("urls");
-      var url_list = new Cb.TextEntity[urls.get_length ()];
-      urls.foreach_element((arr, index, node) => {
-        var url = node.get_object();
-        string expanded_url = url.get_string_member("expanded_url");
-
-        Json.Array indices = url.get_array_member ("indices");
-        url_list[index] = Cb.TextEntity() {
-          from = (uint)indices.get_int_element (0),
-          to   = (uint)indices.get_int_element (1) ,
-          target = expanded_url.replace ("&", "&amp;"),
-          original_text = url.get_string_member ("url"),
-          tooltip_text = expanded_url,
-          display_text = url.get_string_member ("display_url")
-        };
-      });
-      text = Cb.TextTransform.text (text,
-                                    url_list,
-                                    0, 0, 0);
-    }
-
     string? sender_user_name = yield Twitter.get ().get_user_name (account, sender_id);
     string? sender_screen_name = yield Twitter.get ().get_screen_name (account, sender_id);
     int64 timestamp = int64.parse(dm_obj.get_string_member ("created_timestamp")) / 1000;
-    yield add_entry (dm_id, sender_id, recipient_id, text, sender_user_name, sender_screen_name, timestamp);
+    yield add_entry (dm_id, sender_id, text, sender_user_name, sender_screen_name, dm_msg_data, timestamp);
   }
 
-  private async void add_entry (int64 dm_id, int64 sender_id, int64 recipient_id,
-                          string text,
+  private async void add_entry (int64 dm_id, int64 sender_id, string text,
                           string sender_user_name, string sender_screen_name,
+                          Json.Object? message_data,
                           int64 timestamp) {
-    var new_msg = new DMListEntry ();
-    new_msg.id = dm_id;
-    new_msg.text = text;
-    new_msg.name = sender_user_name;
-    new_msg.screen_name = sender_screen_name;
-    new_msg.timestamp = timestamp;
-    new_msg.main_window = main_window;
-    new_msg.user_id = sender_id;
-    new_msg.update_time_delta ();
-    new_msg.load_avatar (yield Twitter.get ().get_avatar_url (account, sender_id));
+    var new_msg = create_list_entry(dm_id, sender_id, text, sender_user_name, sender_screen_name, message_data, timestamp);
     messages_list.add (new_msg);
 
     if (dm_id < first_dm_id) {
@@ -169,6 +138,129 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     else {
       scroll_widget.balance_next_upper_change (TOP);
     }
+  }
+
+  private DMListEntry create_list_entry(int64 dm_id, int64 sender_id, string text,
+                                        string sender_user_name, string sender_screen_name,
+                                        Json.Object? message_data,
+                                        int64 timestamp) {
+    Cb.TextEntity[] entities;
+    Cb.Media? media = null;
+
+    if (message_data.has_member ("entities")) {
+      var entity_nodes = message_data.get_object_member ("entities");
+      var url_nodes = entity_nodes.get_array_member ("urls");
+      entities = new Cb.TextEntity[url_nodes.get_length ()];
+      url_nodes.foreach_element((arr, index, node) => {
+        var url = node.get_object();
+        string expanded_url = url.get_string_member("expanded_url");
+        Json.Array indices = url.get_array_member ("indices");
+        entities[index] = Cb.TextEntity() {
+          from = (uint)indices.get_int_element (0),
+          to   = (uint)indices.get_int_element (1) ,
+          target = expanded_url.replace ("&", "&amp;"),
+          original_text = url.get_string_member ("url"),
+          tooltip_text = expanded_url,
+          display_text = url.get_string_member ("display_url")
+        };
+      });
+    }
+    else {
+      entities = new Cb.TextEntity[0];
+    }
+    
+    if (message_data.has_member("attachment")) {
+      var attachment = message_data.get_object_member("attachment");
+      if (attachment.get_string_member("type") == "media") {
+        var media_node = attachment.get_object_member("media");
+        media = new Cb.Media();
+        
+        var media_type = media_node.get_string_member("type");
+        var url = media_node.get_string_member("media_url_https");
+
+        var sizes = media_node.get_object_member("sizes");
+
+        var small_size = sizes.get_object_member("small");
+        media.thumb_width = (int)small_size.get_int_member("w");
+        media.thumb_height = (int)small_size.get_int_member("h");
+        media.thumb_url = "%s:small".printf(url);
+
+        var large_size = sizes.get_object_member("large");
+        media.thumb_width = (int)large_size.get_int_member("w");
+        media.thumb_height = (int)large_size.get_int_member("h");
+
+        if (media_node.has_member("ext_alt_text")) {
+          media.alt_text = media_node.get_string_member("ext_alt_text");
+        }
+        
+        if (media_type == "photo") {
+          media.target_url = "%s:orig".printf(url);
+          media.url = "%s:large".printf(url);
+          media.type = Cb.MediaType.IMAGE;
+        }
+        else if (media_type == "video" || media_type == "animated_gif") {
+          if (media.alt_text == null && media_node.has_member("additional_media_info")) {
+            var additional_media_info = media_node.get_object_member("additional_media_info");
+            if (additional_media_info.has_member("title") && additional_media_info.has_member("description")) {
+              media.alt_text = "%s\n\n%s".printf(additional_media_info.get_string_member("title"),
+                                                 additional_media_info.get_string_member("description"))
+                                         .strip();
+            }
+          }
+          Json.Object? variant = null;
+          Json.Array variants = media_node.get_object_member("video_info").get_array_member("variants");
+          uint variant_count = variants.get_length();
+          for (int i = 0; i < variant_count; i++) {
+            var media_variant = variants.get_object_element(i);
+            if (media_variant.get_string_member("content_type") == "application/x-mpegURL") {
+              variant = media_variant;
+              media.target_url = media_node.get_string_member("expanded_url");
+              break;
+            }
+          }
+          if (variant == null && variant_count > 0) {
+            variant = variants.get_object_element(0);
+          }
+          if (variant != null) {
+            media.url = variant.get_string_member("url");
+            media.type = Cb.MediaType.TWITTER_VIDEO;
+          }
+          else {
+            // It all went wrong, so trash the object
+            media = null;
+          }
+        }
+        else {
+          media = null;
+        }
+      }
+
+      if (media != null) {
+        if (media.url.has_prefix("https://ton.twitter.com/")) {
+          media.consumer_key = account.proxy.consumer_key;
+          media.consumer_secret = account.proxy.consumer_secret;
+          media.token = account.proxy.token;
+          media.token_secret = account.proxy.token_secret;
+        }
+        Cb.MediaDownloader.get_default().load_async.begin (media);
+      }
+    }
+    var new_msg = new DMListEntry ();
+    new_msg.id = dm_id;
+    new_msg.text = text;
+    new_msg.name = sender_user_name;
+    new_msg.screen_name = sender_screen_name;
+    new_msg.timestamp = timestamp;
+    new_msg.main_window = main_window;
+    new_msg.user_id = sender_id;
+    new_msg.media = media;
+    new_msg.message_data = message_data;
+    new_msg.set_entities(entities);
+    new_msg.update_time_delta ();
+    Twitter.get ().get_avatar_url.begin (account, sender_id, (obj, res) => {
+      new_msg.load_avatar (Twitter.get ().get_avatar_url.end(res));
+    });
+    return new_msg;
   }
 
   public void on_join (int page_id, Cb.Bundle? args) {
@@ -277,7 +369,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
           warning ("Unable to parse the DM json string: %s\n", e.message);
         }
       } else {
-        yield add_entry (id, int64.parse (values[i,0]), int64.parse (values[i,1]), values[i,2], values[i,4], values[i,5], int64.parse (values[i,6]));
+        yield add_entry (id, int64.parse (values[i,0]), values[i,2], values[i,4], values[i,5], null, int64.parse (values[i,6]));
       }
       if (user_name == null) {
         user_name = values[i,3];

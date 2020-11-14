@@ -55,12 +55,15 @@ namespace Cb {
   [CCode (cprefix = "CbMedia_", lower_case_cprefix = "cb_media_", cheader_filename = "CbMedia.h")]
   public class Media : GLib.Object {
     public int64 length;
-    public bool requires_authentication;
     public bool loading;
     public bool loaded;
     public bool loading_hires;
     public bool loaded_hires;
     public bool invalid;
+    public string consumer_key;
+    public string consumer_secret;
+    public string token;
+    public string token_secret;
     public string url;
     public string thumb_url;
     public string target_url;
@@ -79,6 +82,7 @@ namespace Cb {
 
     public Media();
     public bool is_video ();
+    public bool requires_authentication();
   }
 
   [CCode (cprefix = "CbUserIdentity_", lower_case_cprefix = "cb_user_identity_", cheader_filename = "CbTypes.h",

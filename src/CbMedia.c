@@ -41,6 +41,19 @@ cb_media_finalize (GObject *object)
   g_free (media->url);
   g_free (media->alt_text);
 
+  if (media->consumer_key) {
+    g_free (media->consumer_key);
+  }
+  if (media->consumer_secret) {
+    g_free (media->consumer_secret);
+  }
+  if (media->token) {
+    g_free (media->token);
+  }
+  if (media->token_secret) {
+    g_free (media->token_secret);
+  }
+
   if (media->animation)
     g_object_unref (media->animation);
 
@@ -80,6 +93,10 @@ cb_media_init (CbMedia *media)
   media->invalid = FALSE;
   media->surface = NULL;
   media->surface_hires = NULL;
+  media->consumer_key = NULL;
+  media->consumer_secret = NULL;
+  media->token = NULL;
+  media->token_secret = NULL;
   media->url     = NULL;
   media->alt_text = NULL;
   media->percent_loaded = 0;
@@ -111,6 +128,11 @@ cb_media_is_video (CbMedia *media)
     }
 
   return FALSE;
+}
+
+gboolean
+cb_media_requires_authentication (CbMedia *media) {
+  return media->consumer_key && media->consumer_secret && media->token && media->token_secret;
 }
 
 static gboolean

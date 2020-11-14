@@ -16,25 +16,71 @@
  */
 
 class DMListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
+  private Gtk.Grid grid;
   private AvatarWidget avatar_image;
   private Gtk.Label text_label;
   private Gtk.Label screen_name_label;
   private TextButton name_button;
   private Gtk.Label time_delta_label;
+  private MediaButton media_button;
+  private string _text;
+  private Json.Object? _message_data;
+  private Cb.Media? _media;
+  private Cb.TextEntity[] _entities;
 
   public string text {
-    set {text_label.label = value; }
+    set { 
+      _text = value;
+      if (_message_data == null) {
+        text_label.label = value;
+        text_label.visible = value != null && value != "";
+      }
+    }
   }
+
   public string screen_name {
     set {
       screen_name_label.label = "@" + value;
       screen_name_label.tooltip_text = "@" + value;
     }
   }
+
   public new string name {
     set {
       name_button.set_text (value);
       name_button.tooltip_text = value;
+    }
+  }
+
+  public Cb.Media media {
+    get { return _media; }
+    set {
+      _media = value;
+      if (_media != null) {
+        if (media_button == null) {
+          media_button = new MediaButton(media);
+          grid.attach (media_button, 1, 2, 3, 1);
+          media_button.clicked.connect(media_clicked_cb);
+          media_button.show();
+        }
+        else {
+          media_button.media = _media;
+        }
+      }
+    }
+  }
+
+  // A property would be nice, but Cb.TextEntity isn't a GLib.Object so we can't
+  public void set_entities(Cb.TextEntity[] value) {
+    _entities = value;
+    set_dm_text();
+  }
+
+  public Json.Object? message_data {
+    get { return _message_data; }
+    set {
+      _message_data = value;
+      set_dm_text();
     }
   }
 
@@ -57,7 +103,7 @@ class DMListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
     this.set_activatable (false);
     this.get_style_context ().add_class ("tweet");
 
-    var grid = new Gtk.Grid ();
+    grid = new Gtk.Grid ();
     grid.margin = 6;
     grid.show ();
     this.add (grid);
@@ -68,7 +114,7 @@ class DMListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
     avatar_image.margin = 4;
     avatar_image.margin_end = 12;
     avatar_image.show ();
-    grid.attach (avatar_image, 0, 0, 1, 2);
+    grid.attach (avatar_image, 0, 0, 1, 3);
 
     this.name_button = new TextButton ();
     name_button.set_valign (Gtk.Align.BASELINE);
@@ -113,7 +159,50 @@ class DMListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
       main_window.main_widget.switch_page (Page.PROFILE, bundle);
     });
 
+    this._entities = new Cb.TextEntity[0];
+
+    this.key_release_event.connect(key_released_cb);
+    Settings.get ().changed["text-transform-flags"].connect(set_dm_text);
+
     this.show ();
+  }
+
+  ~DMListEntry() {
+    Settings.get ().changed["text-transform-flags"].disconnect(set_dm_text);
+  }
+
+  [GtkCallback]
+  private bool key_released_cb (Gdk.EventKey evt) {
+#if DEBUG
+    switch(evt.keyval) {
+      case Gdk.Key.k:
+        if (_message_data != null) {
+          var gen = new Json.Generator();
+          var node = new Json.Node(Json.NodeType.OBJECT);
+          node.set_object(_message_data);
+          gen.set_root(node);
+          gen.set_pretty(true);
+          string json = gen.to_data(null);
+          stderr.printf(json + "\n");
+        }
+        else {
+          stderr.printf("Old format DM - no JSON\n");
+        }
+        return Gdk.EVENT_STOP;
+    }
+#endif
+    return Gdk.EVENT_PROPAGATE;
+  }
+
+  private void set_dm_text() {
+    if (_message_data != null) {
+      var msg = _message_data.get_string_member ("text");
+      // Force removing media links, because they don't actually work for DMs
+      var flags = Settings.get_text_transform_flags () | Cb.TransformFlags.REMOVE_MEDIA_LINKS;
+      msg = Cb.TextTransform.text (msg, _entities, flags, 0, 0);
+      text_label.label = msg;
+      text_label.visible = msg != "";
+    }
   }
 
   public void load_avatar (string avatar_url) {
@@ -150,6 +239,10 @@ class DMListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
 
   public void set_last_set_timediff (GLib.TimeSpan span) {
     this.last_timediff = span;
+  }
+
+  private void media_clicked_cb(MediaButton button, double px, double py) {
+    TweetUtils.handle_media_click ({media}, this.main_window, 0);
   }
 }
 

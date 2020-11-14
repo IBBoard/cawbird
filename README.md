@@ -185,6 +185,7 @@ Cawbird installs its application icon into `/usr/share/icons/hicolor/`, so an ap
 * `sqlite3`
 * `libsoup-2.4`
 * `librest-0.7`
+* `liboauth`
 * `gettext >= 0.19.7`
 * `vala >= 0.28` (makedep)
 * `meson` (makedep)

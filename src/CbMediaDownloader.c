@@ -17,6 +17,7 @@
 
 #include "CbMediaDownloader.h"
 #include <libsoup/soup.h>
+#include <oauth.h>
 #include <gdk/gdk.h>
 #include <string.h>
 
@@ -129,6 +130,10 @@ static void
 load_media_url (const char *url, LoadingData *task_data,
                 cairo_surface_t **surface,
                 GdkPixbufAnimation **animation,
+                gchar *consumer_key,
+                gchar *consumer_secret,
+                gchar *token,
+                gchar *token_secret,
                 GCallback progress_callback,
                 GCancellable *cancellable,
                 GError **error,
@@ -142,6 +147,23 @@ load_media_url (const char *url, LoadingData *task_data,
       g_set_error (error, CB_MEDIA_DOWNLOADER_ERROR, CB_MEDIA_DOWNLOADER_ERROR_SOUP_MESSAGE_NEW, "soup_message_new failed for URI '%s'", url);
       return;
     }
+
+  if (consumer_key && consumer_secret && token && token_secret) {
+    gchar *oauth_authorization_parameters;
+    gchar **url_parameters = NULL;
+    int url_parameters_length;
+    gchar *authorization_text;
+    url_parameters_length = oauth_split_url_parameters (url, &url_parameters);
+    oauth_sign_array2_process (&url_parameters_length, &url_parameters,
+                                NULL, OA_HMAC, msg->method,
+                                consumer_key, consumer_secret, token, token_secret);
+    oauth_authorization_parameters = oauth_serialize_url_sep (url_parameters_length, 1, url_parameters, ", ", 6);
+    authorization_text = g_strdup_printf ("OAuth realm=\"\", %s", oauth_authorization_parameters);
+    soup_message_headers_append (msg->request_headers, "Authorization", authorization_text);
+
+    oauth_free_array (&url_parameters_length, &url_parameters);
+    free (oauth_authorization_parameters);
+  }
 
   if (progress_callback != NULL) {
     g_signal_connect (msg, "got-chunk", progress_callback, data);
@@ -373,7 +395,9 @@ cb_media_downloader_load_threaded (CbMediaDownloader *downloader,
 
   char *download_url = media->thumb_url ? media->thumb_url : media->url;
   GError *error = NULL;
-  load_media_url (download_url, task_data, &media->surface, &media->animation, G_CALLBACK(update_media_progress), cancellable, &error, media);  
+  load_media_url (download_url, task_data, &media->surface, &media->animation,
+                  media->consumer_key, media->consumer_secret, media->token, media->token_secret,
+                  G_CALLBACK(update_media_progress), cancellable, &error, media);  
 
   if (error) {
     g_warning ("Couldn't load pixbuf: %s (%s)", error->message, download_url);
@@ -451,7 +475,9 @@ cb_media_downloader_load_hires_threaded (CbMediaDownloader *downloader,
   media = task_data->media;
 
   GError *error = NULL;
-  load_media_url (media->url, task_data, &media->surface_hires, &media->animation, G_CALLBACK(update_media_hires_progress), cancellable, &error, media);  
+  load_media_url (media->url, task_data, &media->surface_hires, &media->animation,
+                  media->consumer_key, media->consumer_secret, media->token, media->token_secret,
+                  G_CALLBACK(update_media_hires_progress), cancellable, &error, media);  
 
   if (error) {
     g_warning ("Couldn't load hires pixbuf: %s (%s)", error->message, media->url);
