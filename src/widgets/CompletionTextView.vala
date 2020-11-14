@@ -332,19 +332,31 @@ class CompletionTextView : Gtk.TextView {
       return;
     }
 
-    debug ("show_completion_window");
     int x, y;
     Gtk.Allocation alloc;
     this.get_allocation (out alloc);
-    this.get_window (Gtk.TextWindowType.WIDGET).get_origin (out x, out y);
-    y += alloc.height;
+    var window = this.get_window (Gtk.TextWindowType.WIDGET);
+    window.get_origin (out x, out y);
+    Gdk.Display default_display = Gdk.Display.get_default();
+    Gdk.Monitor current_monitor = default_display.get_monitor_at_window(window);
+    Gdk.Rectangle workarea = current_monitor.get_workarea();
+    int completion_height = 100;
+
+    // If it will fit below the text box then put it below, else put it above.
+    // This stops the completion being shown off-screen.
+    if (y + alloc.height + completion_height <= workarea.height) {
+      y += alloc.height;
+    }
+    else {
+      y -= completion_height;
+    }
 
     /* +2 for the size and -1 for x since we account for the
        frame size around the text view */
     completion_window.set_attached_to (this);
     completion_window.set_transient_for ((Gtk.Window) this.get_toplevel ());
     completion_window.move (x - 1, y);
-    completion_window.resize (alloc.width + 2, 50);
+    completion_window.resize (alloc.width + 2, completion_height);
     completion_window.show_all ();
   }
 
