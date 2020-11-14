@@ -147,7 +147,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     Cb.TextEntity[] entities;
     Cb.Media? media = null;
 
-    if (message_data.has_member ("entities")) {
+    if (message_data != null && message_data.has_member ("entities")) {
       var entity_nodes = message_data.get_object_member ("entities");
       var url_nodes = entity_nodes.get_array_member ("urls");
       var hashtag_nodes = entity_nodes.get_array_member ("hashtags");
@@ -200,7 +200,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
       entities = new Cb.TextEntity[0];
     }
     
-    if (message_data.has_member("attachment")) {
+    if (message_data != null && message_data.has_member("attachment")) {
       var attachment = message_data.get_object_member("attachment");
       if (attachment.get_string_member("type") == "media") {
         var media_node = attachment.get_object_member("media");
