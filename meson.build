@@ -111,6 +111,8 @@ cawbird_lib_sources = files([
   'src/list/FavImageRow.vala',
   'src/model/DMThreadsModel.vala',
   'src/sql/Database.vala',
+  'src/sql/BaseStatement.vala',
+  'src/sql/DeleteStatement.vala',
   'src/sql/InsertStatement.vala',
   'src/sql/SelectStatement.vala',
   'src/sql/UpdateStatement.vala',

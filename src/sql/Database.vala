@@ -95,6 +95,12 @@ public class Database : GLib.Object {
     return stmt;
   }
 
+  public Sql.DeleteStatement delete (string table_name) {
+    var stmt = new DeleteStatement (table_name);
+    stmt.db = db;
+    return stmt;
+  }
+
   public void begin_transaction () {
     db.exec ("BEGIN TRANSACTION;");
   }

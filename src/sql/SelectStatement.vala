@@ -18,12 +18,8 @@
 namespace Sql {
   public delegate bool SelectCallback (string[] vals);
 
-  public class SelectStatement : GLib.Object {
-    public unowned Sqlite.Database db;
-    private StringBuilder query_builder = new StringBuilder ();
-    private GLib.GenericArray<string> bindings = new GLib.GenericArray<string>();
+  public class SelectStatement : Sql.BaseStatement<Sql.SelectStatement> {
     private string table_name;
-    private bool where_set = false;
 
     public SelectStatement (string table_name) {
       query_builder.append ("SELECT ");
@@ -42,56 +38,6 @@ namespace Sql {
     public SelectStatement count (string col) {
       query_builder.append ("count(`").append (col).append ("`)");
       query_builder.append (" FROM `").append (table_name).append ("`");
-      return this;
-    }
-
-    public SelectStatement where (string stmt) {
-      if (!where_set) {
-        query_builder.append (" WHERE ");
-        where_set = true;
-      }
-      query_builder.append (stmt);
-      return this;
-    }
-
-    public SelectStatement where_eq (string field, string val) {
-      where(@"`$field` = ?");
-      bindings.add(val);
-      return this;
-    }
-
-    public SelectStatement where_eqi (string w, int64 v) {
-      return where_eq (w, v.to_string());
-    }
-
-    public SelectStatement where_lt (string field, int64 val) {
-      where(@"`$field` < ?");
-      bindings.add(val.to_string());
-      return this;
-    }
-
-    public SelectStatement where_prefix (string field, string prefix) {
-      where(@"`$field` LIKE ?");
-      bindings.add(prefix + "%");
-      return this;
-    }
-
-    public SelectStatement where_prefix2 (string field, string prefix) {
-      return where_prefix(field, prefix);
-    }
-
-    public SelectStatement or () {
-      query_builder.append (" OR ");
-      return this;
-    }
-
-    public SelectStatement and () {
-      query_builder.append (" AND ");
-      return this;
-    }
-
-    public SelectStatement nocase () {
-      query_builder.append (" COLLATE NOCASE");
       return this;
     }
 
