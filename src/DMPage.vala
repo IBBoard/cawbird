@@ -39,6 +39,12 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
   private Gtk.ListBox messages_list;
   [GtkChild]
   private ScrollWidget scroll_widget;
+  [GtkChild]
+  private Gtk.Stack action_stack;
+  [GtkChild]
+  private Gtk.Box reply_box;
+  [GtkChild]
+  private Gtk.Button delete_button;
   private DMPlaceholderBox placeholder_box = new DMPlaceholderBox ();
 
   private int64 first_dm_id;
@@ -288,6 +294,14 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     new_msg.message_data = message_data;
     new_msg.set_entities(entities);
     new_msg.update_time_delta ();
+    new_msg.avatar_clicked.connect(() => {
+      if (has_checked_items()) {
+        action_stack.visible_child = delete_button;
+      }
+      else {
+        action_stack.visible_child = reply_box;
+      }
+    });
     Twitter.get ().get_avatar_url.begin (account, sender_id, (obj, res) => {
       new_msg.load_avatar (Twitter.get ().get_avatar_url.end(res));
     });
@@ -348,6 +362,8 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
         return GLib.Source.CONTINUE;
       });
     });
+
+    action_stack.visible_child = reply_box;
   }
 
   private async void load_dms() {
@@ -484,6 +500,75 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     send_button.sensitive = text_length > 0;
   }
 
+  private bool has_checked_items () {
+    var dm_messages = messages_list.get_children();
+    // Assume the user is deleting recent messages and keeping older content, so work from the bottom up
+    dm_messages.reverse();
+    foreach (Gtk.Widget widget in dm_messages) {
+      if (widget is DMListEntry) {
+        var dm_message_entry = (DMListEntry)widget;
+        if (dm_message_entry.is_checked) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  [GtkCallback]
+  private void delete_button_clicked_cb (Gtk.Button button) {
+    delete_button.sensitive = false;
+    var deletable_widgets = new GLib.GenericArray<DMListEntry>();
+    messages_list.foreach((widget) => {
+      if (widget is DMListEntry) {
+        var dm_message_entry = (DMListEntry)widget;
+        if (dm_message_entry.is_checked) {
+          deletable_widgets.add(dm_message_entry);
+        }
+      }
+    });
+    var collect_obj = new Collect(deletable_widgets.length);
+    collect_obj.finished.connect((e) => {
+      if (e != null) {
+        Utils.show_error_dialog (e, this.main_window);
+      }
+      delete_button.sensitive = true;
+      action_stack.visible_child = reply_box;
+    });
+    deletable_widgets.foreach((dm_message_entry) => {
+      delete_dm(dm_message_entry, collect_obj);
+    });
+  }
+
+  private void delete_dm(DMListEntry dm_message_entry, Collect collect_obj) {
+    dm_message_entry.sensitive = false;
+    var call = new OAuthProxyCallWithQueryString(account.proxy);
+    call.set_function ("1.1/direct_messages/events/destroy.json");
+    call.set_method ("DELETE");
+    call.add_param("id", dm_message_entry.id.to_string());
+    call.invoke_async.begin(null, (obj, res) => {
+      try {
+        call.invoke_async.end (res);
+        collect_obj.emit();
+        account.db.delete("dms").where_eqi("id", dm_message_entry.id).run();
+        messages_list.remove(dm_message_entry);
+      } catch (GLib.Error e) {
+        var err = TweetUtils.failed_request_to_error (call, e);
+        if (err.code == 34) {
+          // Already deleted
+          collect_obj.emit();
+          account.db.delete("dms").where_eqi("id", dm_message_entry.id).run();
+          messages_list.remove(dm_message_entry);
+          return;
+        }
+        dm_message_entry.sensitive = true;
+        dm_message_entry.is_checked = false;
+        collect_obj.emit(err);
+        return;
+      }
+    });
+  }
 
   public string get_title () {
     return _("Direct Conversation");

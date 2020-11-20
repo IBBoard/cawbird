@@ -90,6 +90,7 @@ cawbird_lib_sources = files([
   'src/MentionsTimeline.vala',
   'src/NotificationManager.vala',
   'src/OAuthProxyCallWithBody.vala',
+  'src/OAuthProxyCallWithQueryString.vala',
   'src/ProfilePage.vala',
   'src/SearchPage.vala',
   'src/Settings.vala',

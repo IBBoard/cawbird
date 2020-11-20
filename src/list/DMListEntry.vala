@@ -18,6 +18,7 @@
 class DMListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
   private Gtk.Grid grid;
   private AvatarWidget avatar_image;
+  private Gtk.CheckButton delete_checkbutton;
   private Gtk.Label text_label;
   private Gtk.Label screen_name_label;
   private TextButton name_button;
@@ -27,6 +28,17 @@ class DMListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
   private Json.Object? _message_data;
   private Cb.Media? _media;
   private Cb.TextEntity[] _entities;
+
+  public bool is_checked {
+    get {
+      return delete_checkbutton.active;
+    }
+    set {
+      set_checked(value);
+    }
+  }
+
+  public signal void avatar_clicked();
 
   public string text {
     set { 
@@ -111,10 +123,27 @@ class DMListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
     this.avatar_image = new AvatarWidget ();
     avatar_image.size = 48;
     avatar_image.set_valign (Gtk.Align.START);
-    avatar_image.margin = 4;
-    avatar_image.margin_end = 12;
-    avatar_image.show ();
-    grid.attach (avatar_image, 0, 0, 1, 3);
+    avatar_image.show();
+    delete_checkbutton = new Gtk.CheckButton();
+    delete_checkbutton.halign = Gtk.Align.CENTER;
+    delete_checkbutton.valign = Gtk.Align.CENTER;
+    delete_checkbutton.button_release_event.connect(avatar_button_release_cb);
+    delete_checkbutton.enter_notify_event.connect(Utils.set_pointer_on_mouseover);
+    delete_checkbutton.leave_notify_event.connect(Utils.set_pointer_on_mouseover);
+    var avatar_overlay = new Gtk.Overlay();
+    avatar_overlay.add(avatar_image);
+    avatar_overlay.add_overlay(delete_checkbutton);
+    avatar_overlay.show();
+    var event_box = new Gtk.EventBox();
+    event_box.margin = 4;
+    event_box.margin_end = 12;
+    event_box.valign = Gtk.Align.START;
+    event_box.add(avatar_overlay);
+    event_box.button_release_event.connect(avatar_button_release_cb);
+    event_box.enter_notify_event.connect(Utils.set_pointer_on_mouseover);
+    event_box.leave_notify_event.connect(Utils.set_pointer_on_mouseover);
+    event_box.show();
+    grid.attach (event_box, 0, 0, 1, 3);
 
     this.name_button = new TextButton ();
     name_button.set_valign (Gtk.Align.BASELINE);
@@ -198,6 +227,16 @@ class DMListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
     return Gdk.EVENT_PROPAGATE;
   }
 
+  private bool avatar_button_release_cb(Gtk.Widget widget, Gdk.EventButton event) {
+    if (event.button == Gdk.BUTTON_PRIMARY) {
+      set_checked(!is_checked);
+      avatar_clicked();
+      return Gdk.EVENT_STOP;
+    }
+    return Gdk.EVENT_PROPAGATE;
+
+  }
+
   private void set_dm_text() {
     if (_message_data != null) {
       var msg = _message_data.get_string_member ("text");
@@ -247,6 +286,19 @@ class DMListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
 
   private void media_clicked_cb(MediaButton button, double px, double py) {
     TweetUtils.handle_media_click ({media}, this.main_window, 0);
+  }
+
+  private void set_checked(bool checked) {
+    if (checked) {
+      avatar_image.opacity = 0.5;
+      delete_checkbutton.active = true;
+      delete_checkbutton.show();
+    }
+    else {
+      avatar_image.opacity = 1;
+      delete_checkbutton.active = false;
+      delete_checkbutton.hide();
+    }
   }
 }
 

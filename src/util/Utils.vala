@@ -558,4 +558,14 @@ namespace Utils {
       }
     });
   }
+
+  public bool set_pointer_on_mouseover(Gdk.EventCrossing event){
+    if (event.type == Gdk.EventType.ENTER_NOTIFY) {
+      event.window.set_cursor(new Gdk.Cursor.from_name(event.window.get_display(), "pointer"));
+    }
+    else if (event.type == Gdk.EventType.LEAVE_NOTIFY) {
+      event.window.set_cursor(null);
+    }
+    return Gdk.EVENT_PROPAGATE;
+  }
 }

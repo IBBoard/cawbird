@@ -25,53 +25,72 @@
             </packing>
           </child>
           <child>
-            <object class="GtkBox">
+            <object class="GtkStack" id="action_stack">
               <property name="visible">1</property>
-              <property name="height-request">70</property>
+              <property name="transition-type">crossfade</property>
               <child>
-                <object class="GtkFrame">
+                <object class="GtkBox" id="reply_box">
                   <property name="visible">1</property>
-                  <property name="margin">6</property>
+                  <property name="height-request">70</property>
                   <child>
-                    <object class="GtkScrolledWindow">
+                    <object class="GtkFrame">
                       <property name="visible">1</property>
+                      <property name="margin">6</property>
                       <child>
-                        <object class="CompletionTextView" id="text_view">
-                          <property name="visible">True</property>
-                          <property name="can-focus">True</property>
-                          <property name="hexpand">True</property>
-                          <property name="wrap-mode">word-char</property>
-                          <property name="accepts-tab">False</property>
-                          <property name="left-margin">0</property>
-                          <property name="right-margin">0</property>
-                          <signal name="key_press_event" handler="text_view_key_press_cb"/>
+                        <object class="GtkScrolledWindow">
+                          <property name="visible">1</property>
+                          <child>
+                            <object class="CompletionTextView" id="text_view">
+                              <property name="visible">True</property>
+                              <property name="can-focus">True</property>
+                              <property name="hexpand">True</property>
+                              <property name="wrap-mode">word-char</property>
+                              <property name="accepts-tab">False</property>
+                              <property name="left-margin">0</property>
+                              <property name="right-margin">0</property>
+                              <signal name="key_press_event" handler="text_view_key_press_cb"/>
+                            </object>
+                          </child>
                         </object>
                       </child>
                     </object>
+                    <packing>
+                      <property name="expand">1</property>
+                    </packing>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="send_button">
+                      <property name="label" translatable="yes">Send</property>
+                      <property name="visible">1</property>
+                      <property name="can-focus">1</property>
+                      <property name="receives-default">1</property>
+                      <property name="margin-end">6</property>
+                      <property name="margin-top">6</property>
+                      <property name="margin-bottom">6</property>
+                      <property name="valign">start</property>
+                      <signal name="clicked" handler="send_button_clicked_cb" swapped="no"/>
+                      <style>
+                        <class name="suggested-action"/>
+                      </style>
+                    </object>
+                    <packing>
+                      <property name="position">1</property>
+                    </packing>
                   </child>
                 </object>
-                <packing>
-                  <property name="expand">1</property>
-                </packing>
               </child>
               <child>
-                <object class="GtkButton" id="send_button">
-                  <property name="label" translatable="yes">Send</property>
-                  <property name="visible">1</property>
-                  <property name="can-focus">1</property>
-                  <property name="receives-default">1</property>
-                  <property name="margin-end">6</property>
-                  <property name="margin-top">6</property>
-                  <property name="margin-bottom">6</property>
-                  <property name="valign">start</property>
-                  <signal name="clicked" handler="send_button_clicked_cb" swapped="no"/>
+                <object class="GtkButton" id="delete_button">
+                  <property name="label" translatable="yes">Delete</property>
+                  <property name="visible">True</property>
+                  <property name="can-focus">True</property>
+                  <property name="halign">center</property>
+                  <property name="valign">center</property>
+                  <signal name="clicked" handler="delete_button_clicked_cb"/>
                   <style>
-                    <class name="suggested-action"/>
+                    <class name="destructive-action"/>
                   </style>
                 </object>
-                <packing>
-                  <property name="position">1</property>
-                </packing>
               </child>
             </object>
             <packing>
