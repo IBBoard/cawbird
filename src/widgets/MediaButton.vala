@@ -110,6 +110,8 @@ private class MediaButton : Gtk.Widget {
     this.press_gesture.set_propagation_phase (Gtk.PropagationPhase.CAPTURE);
     this.press_gesture.released.connect (gesture_released_cb);
     this.press_gesture.pressed.connect (gesture_pressed_cb);
+    this.enter_notify_event.connect(Utils.set_pointer_on_mouseover);
+    this.leave_notify_event.connect(Utils.set_pointer_on_mouseover);
     set_image_description();
   }
 
