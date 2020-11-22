@@ -81,11 +81,7 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
     if (t.retweeted_tweet != null && get_rt_flags (t) > 0)
       return;
 
-    if (account.filter_matches (t))
-      return;
-
-    if (account.blocked_or_muted (t.get_user_id ()))
-      return;
+    TweetUtils.set_tweet_hidden_flags(t, account);
 
     if (preload_is_complete) {
       this.balance_next_upper_change (TOP);

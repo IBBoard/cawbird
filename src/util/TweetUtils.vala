@@ -456,6 +456,40 @@ namespace TweetUtils {
     return statuses == null ? new List<unowned Json.Node>() : statuses.copy();
   }
 
+  void set_tweet_hidden_flags(Cb.Tweet t, Account account) {
+    if (account.filter_matches (t)) {
+      t.set_flag (Cb.TweetState.HIDDEN_FILTERED);
+    }
+    if (t.retweeted_tweet != null) {
+      if (account.is_blocked (t.source_tweet.author.id)) {
+        t.set_flag (Cb.TweetState.HIDDEN_RETWEETER_BLOCKED);
+      }
+      if (account.is_muted (t.source_tweet.author.id)) {
+        t.set_flag (Cb.TweetState.HIDDEN_RETWEETER_MUTED);
+      }
+      if (account.is_blocked (t.retweeted_tweet.author.id)) {
+        t.set_flag (Cb.TweetState.HIDDEN_AUTHOR_BLOCKED);
+      }
+      if (account.is_muted (t.retweeted_tweet.author.id)) {
+        t.set_flag (Cb.TweetState.HIDDEN_AUTHOR_MUTED);
+      }
+      foreach (int64 id in account.disabled_rts) {
+        if (id == t.source_tweet.author.id) {
+          t.set_flag(Cb.TweetState.HIDDEN_RTS_DISABLED);
+          break;
+        }
+      }
+    }
+    else {
+      if (account.is_blocked (t.source_tweet.author.id)) {
+        t.set_flag (Cb.TweetState.HIDDEN_AUTHOR_BLOCKED);
+      }
+      if (account.is_muted (t.source_tweet.author.id)) {
+        t.set_flag (Cb.TweetState.HIDDEN_AUTHOR_MUTED);
+      }
+    }
+  }
+
   async Cb.Tweet[] search_for_tweets(Account account, string search_query, int64 max_id = -1, int64 since_id = -1, uint count = 35, GLib.Cancellable? cancellable = null) throws GLib.Error {
     var statuses = yield search_for_tweets_json(account, search_query, max_id, since_id, count, cancellable);
     Cb.Tweet[] tweets = {};
@@ -464,6 +498,7 @@ namespace TweetUtils {
     statuses.foreach ((node) => {
       var tweet = new Cb.Tweet ();
       tweet.load_from_json (node, account.id, now);
+      set_tweet_hidden_flags(tweet, account);
       tweets += tweet;
     });
 
@@ -579,8 +614,7 @@ namespace TweetUtils {
       if (tweet.retweeted_tweet != null)
         account.user_counter.id_seen (ref tweet.retweeted_tweet.author);
 
-      if (account.filter_matches (tweet))
-        tweet.set_flag (Cb.TweetState.HIDDEN_FILTERED);
+      set_tweet_hidden_flags(tweet, account);
 
       tweet_list.model.add (tweet);
     }

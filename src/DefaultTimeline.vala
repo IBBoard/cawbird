@@ -224,9 +224,7 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
    *      (not the author of the retweet!), we already get the source
    *      tweet by other means, so don't display it again.
    *   3) It's a retweet from the authenticating user itself
-   *   4) If the tweet was retweeted by a user that is on the list of
-   *      users the authenticating user disabled RTs for.
-   *   5) If the retweet is already in the timeline. There's no other
+   *   4) If the retweet is already in the timeline. There's no other
    *      way of checking the case where 2 independend users retweet
    *      the same tweet.
    */
@@ -243,20 +241,11 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
 
     /* third case */
     if (t.retweeted_tweet != null &&
-        t.retweeted_tweet.author.id == account.id)
+        t.source_tweet.author.id == account.id)
       flags |= Cb.TweetState.HIDDEN_FORCE;
 
-    /* Fourth case */
-    foreach (int64 id in account.disabled_rts) {
-      if (id == t.source_tweet.author.id) {
-        flags |= Cb.TweetState.HIDDEN_RTS_DISABLED;
-        break;
-      }
-    }
-
-
     if (t.retweeted_tweet != null) {
-      /* Fifth case */
+      /* Fourth case */
       foreach (Gtk.Widget w in tweet_list.get_children ()) {
         if (w is TweetListEntry) {
           var tt = ((TweetListEntry)w).tweet;
