@@ -40,6 +40,8 @@ i586, x86_64 (amd64) and aarch64 (arm64) are available on most platforms (where 
 
 The following distros currently have their own official packages:
 
+* [Alpine Linux / postmarketOS (Edge)](https://pkgs.alpinelinux.org/packages?name=cawbird&branch=edge)
+  * `sudo apk add cawbird`
 * [Fedora (30+)](https://apps.fedoraproject.org/packages/cawbird)
   * `sudo dnf install cawbird`
 * [NixOS (19.09+)](https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/cawbird/default.nix)
