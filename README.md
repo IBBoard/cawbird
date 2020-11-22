@@ -42,6 +42,8 @@ The following distros currently have their own official packages:
 
 * [Alpine Linux / postmarketOS (Edge)](https://pkgs.alpinelinux.org/packages?name=cawbird&branch=edge)
   * `sudo apk add cawbird`
+* [Arch Linux](https://www.archlinux.org/packages/community/x86_64/cawbird/) ("Community")
+  * `pacman -Syu cawbird`
 * [Fedora (30+)](https://apps.fedoraproject.org/packages/cawbird)
   * `sudo dnf install cawbird`
 * [NixOS (19.09+)](https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/cawbird/default.nix)
