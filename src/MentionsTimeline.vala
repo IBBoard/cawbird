@@ -34,7 +34,7 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
     this.tweet_list.account= account;
   }
 
-  private void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
+  protected override void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
     if (type == Cb.StreamMessageType.TWEET) {
       Utils.set_rt_from_tweet (root, this.tweet_list.model, this.account);
     } else if (type == Cb.StreamMessageType.MENTION) {
@@ -42,18 +42,8 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
     } else if (type == Cb.StreamMessageType.MENTIONS_LOADED) {
       this.preload_is_complete = true;
       account.unsuppress_mention_notifications();
-    } else if (type == Cb.StreamMessageType.DELETE) {
-      int64 id = root.get_object ().get_object_member ("delete")
-                     .get_object_member ("status").get_int_member ("id");
-      delete_tweet (id);
-    } else if (type == Cb.StreamMessageType.RT_DELETE) {
-      Utils.unrt_tweet (root, this.tweet_list.model);
-    } else if (type == Cb.StreamMessageType.EVENT_FAVORITE) {
-      int64 id = root.get_object ().get_int_member ("id");
-      toggle_favorite (id, true);
-    } else if (type == Cb.StreamMessageType.EVENT_UNFAVORITE) {
-      int64 id = root.get_object ().get_object_member ("target_object").get_int_member ("id");
-      toggle_favorite (id, false);
+    } else {
+      base.stream_message_received (type, root);
     }
   }
 

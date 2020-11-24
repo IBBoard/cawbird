@@ -385,6 +385,15 @@ public class Account : GLib.Object {
     this.filters.add (f);
   }
 
+  public bool disabled_rts_for (int64 user_id) {
+    foreach (int64 id in disabled_rts) {
+      if (id == user_id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   /**
    * Checks if any of the filters associated to this acount match
    * the given tweet.

@@ -34,7 +34,7 @@ class FavoritesTimeline : Cb.MessageReceiver, DefaultTimeline {
     this.tweet_list.account = account;
   }
 
-  private void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
+  protected override void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
     if (type == Cb.StreamMessageType.TWEET) {    
       if (root.get_object ().has_member ("retweeted_status")) {
         Utils.set_rt_from_tweet (root, this.tweet_list.model, this.account);
@@ -63,6 +63,11 @@ class FavoritesTimeline : Cb.MessageReceiver, DefaultTimeline {
     } else if (type == Cb.StreamMessageType.EVENT_UNFAVORITE) {
       int64 id = root.get_object ().get_object_member ("target_object").get_int_member ("id");
       toggle_favorite (id, false);
+    }
+    else {
+      // We don't do a full fall back to DefaultTimeline here because we want to keep content
+      // we liked from people we then blocked/muted so that we can remove it
+      handle_core_stream_messages (type, root);
     }
   }
 

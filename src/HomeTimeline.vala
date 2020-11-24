@@ -36,41 +36,25 @@ public class HomeTimeline : Cb.MessageReceiver, DefaultTimeline {
     this.tweet_list.account = account;
   }
 
-  public void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
+  protected override void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
     if (type == Cb.StreamMessageType.TWEET) {
       add_tweet (root);
-    } else if (type == Cb.StreamMessageType.TIMELINE_LOADED) {
+    }
+    else if (type == Cb.StreamMessageType.TIMELINE_LOADED) {
       this.preload_is_complete = true;
-    } else if (type == Cb.StreamMessageType.DELETE) {
-      int64 id = root.get_object ().get_object_member ("delete")
-                     .get_object_member ("status").get_int_member ("id");
-      delete_tweet (id);
-    } else if (type == Cb.StreamMessageType.RT_DELETE) {
-      Utils.unrt_tweet (root, this.tweet_list.model);
-    } else if (type == Cb.StreamMessageType.EVENT_FAVORITE) {
-      int64 id = root.get_object ().get_int_member ("id");
-      toggle_favorite (id, true);
-    } else if (type == Cb.StreamMessageType.EVENT_UNFAVORITE) {
-      int64 id = root.get_object ().get_object_member ("target_object").get_int_member ("id");
-      int64 source_id = root.get_object ().get_object_member ("source").get_int_member ("id");
-      if (source_id == account.id)
-        toggle_favorite (id, false);
-    } else if (type == Cb.StreamMessageType.EVENT_BLOCK) {
-      int64 user_id = root.get_object ().get_object_member ("target").get_int_member ("id");
-      hide_tweets_from (user_id, Cb.TweetState.HIDDEN_AUTHOR_BLOCKED);
-    } else if (type == Cb.StreamMessageType.EVENT_UNBLOCK) {
-      int64 user_id = root.get_object ().get_object_member ("target").get_int_member ("id");
-      show_tweets_from (user_id, Cb.TweetState.HIDDEN_AUTHOR_BLOCKED);
-    } else if (type == Cb.StreamMessageType.EVENT_MUTE) {
-      int64 user_id = root.get_object ().get_object_member ("target").get_int_member ("id");
-      hide_tweets_from (user_id, Cb.TweetState.HIDDEN_AUTHOR_MUTED);
-    } else if (type == Cb.StreamMessageType.EVENT_UNMUTE) {
-      int64 user_id = root.get_object ().get_object_member ("target").get_int_member ("id");
-      show_tweets_from (user_id, Cb.TweetState.HIDDEN_AUTHOR_MUTED);
+    }
+    else if (type == Cb.StreamMessageType.EVENT_UNFOLLOW) {
+      hide_tweets_from (root, Cb.TweetState.HIDDEN_UNFOLLOWED);
+    }
+    else if (type == Cb.StreamMessageType.EVENT_FOLLOW) {
+      show_tweets_from (root, Cb.TweetState.HIDDEN_UNFOLLOWED);
+    }
+    else {
+      base.stream_message_received (type, root);
     }
   }
 
-  private void add_tweet (Json.Node obj) {
+  protected void add_tweet (Json.Node obj) {
     GLib.DateTime now = new GLib.DateTime.now_local ();
     Cb.Tweet t = new Cb.Tweet ();
     t.load_from_json (obj, this.account.id, now);
@@ -172,30 +156,6 @@ public class HomeTimeline : Cb.MessageReceiver, DefaultTimeline {
                                 "%d new Tweets!", unread_count).printf (unread_count);
       account.notifications.send (summary, "");
     }
-  }
-
-  public void hide_tweets_from (int64 user_id, Cb.TweetState reason) {
-    Cb.TweetModel tm = (Cb.TweetModel) tweet_list.model;
-
-    tm.toggle_flag_on_user_tweets (user_id, reason, true);
-  }
-
-  public void show_tweets_from (int64 user_id, Cb.TweetState reason) {
-    Cb.TweetModel tm = (Cb.TweetModel) tweet_list.model;
-
-    tm.toggle_flag_on_user_tweets (user_id, reason, false);
-  }
-
-  public void hide_retweets_from (int64 user_id, Cb.TweetState reason) {
-    Cb.TweetModel tm = (Cb.TweetModel) tweet_list.model;
-
-    tm.toggle_flag_on_user_retweets (user_id, reason, true);
-  }
-
-  public void show_retweets_from (int64 user_id, Cb.TweetState reason) {
-    Cb.TweetModel tm = (Cb.TweetModel) tweet_list.model;
-
-    tm.toggle_flag_on_user_retweets (user_id, reason, false);
   }
 
   public override string get_title () {

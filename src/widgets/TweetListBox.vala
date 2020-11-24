@@ -109,4 +109,20 @@ public class TweetListBox : ListBox {
   public new void remove_all () {
     this.model.clear();
   }
+
+  public void hide_tweets_from (int64 user_id, Cb.TweetState reason) {
+    model.toggle_flag_on_user_tweets (user_id, reason, true);
+  }
+
+  public void show_tweets_from (int64 user_id, Cb.TweetState reason) {
+    model.toggle_flag_on_user_tweets (user_id, reason, false);
+  }
+
+  public void hide_retweets_from (int64 user_id, Cb.TweetState reason) {
+    model.toggle_flag_on_user_retweets (user_id, reason, true);
+  }
+
+  public void show_retweets_from (int64 user_id, Cb.TweetState reason) {
+    model.toggle_flag_on_user_retweets (user_id, reason, false);
+  }
 }

@@ -83,6 +83,66 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
     this.hexpand = true;
   }
 
+  protected bool handle_core_stream_messages (Cb.StreamMessageType type, Json.Node root) {
+    if (type == Cb.StreamMessageType.DELETE) {
+      int64 id = root.get_object ().get_object_member ("delete")
+                     .get_object_member ("status").get_int_member ("id");
+      delete_tweet (id);
+    } else if (type == Cb.StreamMessageType.RT_DELETE) {
+      Utils.unrt_tweet (root, this.tweet_list.model);
+    } else if (type == Cb.StreamMessageType.EVENT_FAVORITE) {
+      int64 id = root.get_object ().get_int_member ("id");
+      toggle_favorite (id, true);
+    } else if (type == Cb.StreamMessageType.EVENT_UNFAVORITE) {
+      int64 id = root.get_object ().get_object_member ("target_object").get_int_member ("id");
+      toggle_favorite (id, false);
+    } else {
+      return false;
+    }
+    return true;
+  }
+
+  protected virtual void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
+    bool handled = handle_core_stream_messages (type, root);
+    if (!handled) {
+      if (type == Cb.StreamMessageType.EVENT_BLOCK) {
+        hide_tweets_from (root, Cb.TweetState.HIDDEN_AUTHOR_BLOCKED, Cb.TweetState.HIDDEN_RETWEETER_BLOCKED);
+      } else if (type == Cb.StreamMessageType.EVENT_UNBLOCK) {
+        show_tweets_from (root, Cb.TweetState.HIDDEN_AUTHOR_BLOCKED, Cb.TweetState.HIDDEN_RETWEETER_BLOCKED);
+      } else if (type == Cb.StreamMessageType.EVENT_MUTE) {
+        hide_tweets_from (root, Cb.TweetState.HIDDEN_AUTHOR_MUTED, Cb.TweetState.HIDDEN_RETWEETER_MUTED);
+      } else if (type == Cb.StreamMessageType.EVENT_UNMUTE) {
+        show_tweets_from (root, Cb.TweetState.HIDDEN_AUTHOR_MUTED, Cb.TweetState.HIDDEN_RETWEETER_MUTED);
+      } else if (type == Cb.StreamMessageType.EVENT_HIDE_RTS) {
+        tweet_list.hide_retweets_from (get_user_id (root), Cb.TweetState.HIDDEN_RTS_DISABLED);      
+      } else if (type == Cb.StreamMessageType.EVENT_SHOW_RTS) {
+        tweet_list.show_retweets_from (get_user_id (root), Cb.TweetState.HIDDEN_RTS_DISABLED);        
+      }
+    }
+  }
+
+  private int64 get_user_id (Json.Node root) {
+    return root.get_object ().get_object_member ("target").get_int_member ("id");
+  }
+
+  protected void show_tweets_from (Json.Node root, Cb.TweetState tweet_reason, Cb.TweetState retweet_reason = 0) {
+    if (retweet_reason == 0) {
+      retweet_reason = tweet_reason;
+    }
+    int64 user_id = get_user_id(root);
+    tweet_list.show_tweets_from (user_id, tweet_reason);
+    tweet_list.show_retweets_from (user_id, retweet_reason);
+  }
+
+  protected void hide_tweets_from (Json.Node root, Cb.TweetState tweet_reason, Cb.TweetState retweet_reason = 0) {
+    if (retweet_reason == 0) {
+      retweet_reason = tweet_reason;
+    }
+    int64 user_id = get_user_id(root);
+    tweet_list.hide_tweets_from (user_id, tweet_reason);
+    tweet_list.hide_retweets_from (user_id, retweet_reason);
+  }
+
   public virtual void on_join (int page_id, Cb.Bundle? args) {
     if (STRESSTEST)
       return;

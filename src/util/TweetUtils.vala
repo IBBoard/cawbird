@@ -473,11 +473,8 @@ namespace TweetUtils {
       if (account.is_muted (t.retweeted_tweet.author.id)) {
         t.set_flag (Cb.TweetState.HIDDEN_AUTHOR_MUTED);
       }
-      foreach (int64 id in account.disabled_rts) {
-        if (id == t.source_tweet.author.id) {
-          t.set_flag(Cb.TweetState.HIDDEN_RTS_DISABLED);
-          break;
-        }
+      if (account.disabled_rts_for (t.source_tweet.author.id)) {
+        t.set_flag(Cb.TweetState.HIDDEN_RTS_DISABLED);
       }
     }
     else {
@@ -503,6 +500,43 @@ namespace TweetUtils {
     });
 
     return tweets;
+  }
+
+  private void inject_user_action (int64 user_id, Account account, Cb.StreamMessageType action) {
+    var message = @"{ \"target\": { \"id\":$(user_id) } }";
+    account.user_stream.inject_tweet(action, message);
+  }
+
+  public void inject_user_mute (int64 user_id, Account account) {
+    inject_user_action(user_id, account, Cb.StreamMessageType.EVENT_MUTE);
+  }
+
+  public void inject_user_unmute (int64 user_id, Account account) {
+    inject_user_action(user_id, account, Cb.StreamMessageType.EVENT_UNMUTE);
+  }
+
+  public void inject_user_block (int64 user_id, Account account) {
+    inject_user_action(user_id, account, Cb.StreamMessageType.EVENT_BLOCK);
+  }
+
+  public void inject_user_unblock (int64 user_id, Account account) {
+    inject_user_action(user_id, account, Cb.StreamMessageType.EVENT_UNBLOCK);
+  }
+
+  public void inject_user_follow (int64 user_id, Account account) {
+    inject_user_action(user_id, account, Cb.StreamMessageType.EVENT_FOLLOW);
+  }
+
+  public void inject_user_unfollow (int64 user_id, Account account) {
+    inject_user_action(user_id, account, Cb.StreamMessageType.EVENT_UNFOLLOW);
+  }
+
+  public void inject_user_hide_rts (int64 user_id, Account account) {
+    inject_user_action(user_id, account, Cb.StreamMessageType.EVENT_HIDE_RTS);
+  }
+
+  public void inject_user_show_rts (int64 user_id, Account account) {
+    inject_user_action(user_id, account, Cb.StreamMessageType.EVENT_SHOW_RTS);
   }
 
   private void inject_deletion (int64 id, Account account) {
