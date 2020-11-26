@@ -1,7 +1,7 @@
 {
   "app-id":"uk.co.ibboard.cawbird",
   "runtime":"org.gnome.Platform",
-  "runtime-version":"3.36",
+  "runtime-version":"3.38",
   "sdk":"org.gnome.Sdk",
   "command":"cawbird",
   "desktop-file-name-prefix":"(Development) ",
@@ -42,8 +42,8 @@
       "sources":[
         {
           "type":"archive",
-          "url":"https://github.com/AbiWord/enchant/releases/download/v2.2.11/enchant-2.2.11.tar.gz",
-          "sha256":"a29c5777c4e45fcac2595c15c49d6d2aa434fa5e7c993dff3f9f367b65fe472a"
+          "url":"https://github.com/AbiWord/enchant/releases/download/v2.2.13/enchant-2.2.13.tar.gz",
+          "sha256":"eab9f90d79039133660029616e2a684644bd524be5dc43340d4cfc3fb3c68a20"
         }
       ]
     },
@@ -65,10 +65,23 @@
       "sources":[
         {
           "type":"archive",
-          "url":"https://download.gnome.org/sources/gspell/1.8/gspell-1.8.4.tar.xz",
-          "sha256":"cf4d16a716e813449bd631405dc1001ea89537b8cdae2b8abfb3999212bd43b4"
+          "url":"https://download.gnome.org/sources/gspell/1.9/gspell-1.9.1.tar.xz",
+          "sha256":"dcbb769dfdde8e3c0a8ed3102ce7e661abbf7ddf85df08b29915e92cd723abdd"
         }
       ]
+    },
+    {
+    	"name":"oauth",
+      "config-opts":[
+        "--enable-nss"
+      ],
+    	"sources":[
+    		{
+    			"type":"archive",
+    			"url":"http://downloads.sourceforge.net/liboauth/liboauth-1.0.3.tar.gz",
+    			"sha256":"0df60157b052f0e774ade8a8bac59d6e8d4b464058cc55f9208d72e41156811f"
+    		}
+    	]
     },
     {
       "name":"cawbird",
