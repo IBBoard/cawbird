@@ -430,7 +430,18 @@ cb_tweet_get_filter_text (CbTweet *tweet)
 
   g_string_append (string, text);
   g_free (text);
-  g_string_append_c (string, '[');
+
+  int n_mentions;
+  char ** mentions = cb_tweet_get_mentions(tweet, &n_mentions);
+
+  for (int i = 0; i < n_mentions; i++) {
+    g_string_append (string, " @");
+    g_string_append (string, mentions[i]);
+  }
+
+  g_free (mentions);
+
+  g_string_append (string, " [");
 
   if (tweet->retweeted_tweet != NULL)
     g_string_append (string, "rt");
