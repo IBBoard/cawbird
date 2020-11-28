@@ -710,18 +710,10 @@ void
 cb_utils_init_gui (gint *argc, gchar ***argv)
 {
   // We appear to need to do this in C rather than Vala as the only way to get the macros
-  gdk_init (argc, argv);
-  GdkDisplay *display = gdk_display_get_default ();
-//#ifdef GDK_WINDOWING_WAYLAND
-//  if (GDK_IS_WAYLAND_DISPLAY (display))
-//  {
-//    // Nothing Wayland-specific to do at the moment
-//  }
-//#endif
+#ifdef GDK_WINDOWING_WAYLAND
+  // Nothing Wayland-specific to do at the moment
+#endif
 #ifdef GDK_WINDOWING_X11
-  if (GDK_IS_X11_DISPLAY (display))
-  {
-    XInitThreads ();
-  }
+  XInitThreads ();
 #endif
 }
