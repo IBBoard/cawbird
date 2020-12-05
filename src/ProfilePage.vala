@@ -515,6 +515,8 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
                            tweet_list,
                            account);
     tweets_loading = false;
+    // TODO: Check whether we've got an empty list (all hidden) and load more.
+    // TODO: Track last hidden tweet ID in model so that we don't keep loading newest tweets every time (get_oldest_hidden_id() rather than tracking, because it's a corner case?)
   }
 
   private async void load_older_tweets () {
