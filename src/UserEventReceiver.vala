@@ -119,6 +119,9 @@ class UserEventReceiver : GLib.Object, Cb.MessageReceiver {
           account.notifications.send (summary, text);
         }
         break;
+      default:
+        // Do nothing. There's no relevance to the user's account settings or notifications
+        break;
     }
   }
 
