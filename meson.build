@@ -84,6 +84,7 @@ cawbird_lib_sources = files([
   'src/ListsPage.vala',
   'src/MainWidget.vala',
   'src/MainWindow.vala',
+  'src/MediaUpload.vala',
   'src/MentionsTimeline.vala',
   'src/NotificationManager.vala',
   'src/OAuthProxyCallWithBody.vala',
