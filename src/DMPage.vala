@@ -45,6 +45,21 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
   private Gtk.Box reply_box;
   [GtkChild]
   private Gtk.Button delete_button;
+  [GtkChild]
+  private ComposeImageManager compose_image_manager;
+  [GtkChild]
+  private Gtk.Button add_image_button;
+  [GtkChild]
+  private FavImageView fav_image_view;
+  [GtkChild]
+  private Gtk.Button fav_image_button;
+  [GtkChild]
+  private Gtk.Box add_button_box;
+  [GtkChild]
+  private Gtk.Label image_error_label;
+  private Cb.EmojiChooser? emoji_chooser = null;
+  private Gtk.Button? emoji_button = null;
+  private GLib.Cancellable? cancellable;
   private DMPlaceholderBox placeholder_box = new DMPlaceholderBox ();
 
   private int64 first_dm_id;
@@ -53,12 +68,14 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
   private string screen_name;
   private bool was_scrolled_down = false;
   private uint update_time_delta_timeout = 0;
+  private MediaUpload media_upload;
 
   public DMPage (int id, Account account) {
     this.id = id;
     this.account = account;
+    this.cancellable = new GLib.Cancellable();
     send_button.sensitive = false;
-    text_view.buffer.changed.connect (recalc_length);
+    text_view.buffer.changed.connect (set_send_sensitive_state);
     messages_list.set_sort_func (twitter_item_sort_func_inv);
     placeholder_box.show ();
     messages_list.set_placeholder(placeholder_box);
@@ -76,6 +93,30 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     scroll_widget.scrolled_to_start.connect((value) => {
       load_dms.begin();
     });
+    compose_image_manager.proxy = account.proxy;
+    compose_image_manager.image_removed.connect ((uuid) => {
+      media_upload = null;
+      this.add_image_button.sensitive = true;
+      this.fav_image_button.sensitive = true;
+      this.compose_image_manager.hide ();
+    });
+    compose_image_manager.image_reloaded.connect ((upload) => {
+      if (upload.cancellable != null) {
+        upload.cancellable.cancel();
+      }
+      TweetUtils.upload_media.begin (upload, account, null);
+      set_send_sensitive_state();
+    });
+
+    /* The GTK+ version might not have this emoji data variant */
+    try {
+      if (GLib.resources_get_info ("/org/gtk/libgtk/emoji/emoji.data",
+                                   GLib.ResourceLookupFlags.NONE, null, null)) {
+        setup_emoji_chooser ();
+      }
+    } catch (GLib.Error e) {
+      // Ignore, just don't show the emoji chooser
+    }    
   }
 
   public void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
@@ -313,6 +354,8 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     if (user_id == 0)
       return;
 
+    media_upload = null;
+    image_error_label.visible = false;
     first_dm_id = int64.MAX;
     this.user_id = user_id;
     if ((screen_name = args.get_string (KEY_SCREEN_NAME)) != null) {
@@ -462,6 +505,14 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     var msg_data = new Json.Object();
     msg_create.set_object_member("message_data", msg_data);
     msg_data.set_string_member("text", text_view.buffer.text);
+    if (media_upload != null) {
+      var attachment = new Json.Object();
+      msg_data.set_object_member("attachment", attachment);      
+      attachment.set_string_member("type", "media");
+      var media = new Json.Object();
+      attachment.set_object_member("media", media);
+      media.set_int_member("id", media_upload.media_id);
+    }
     string json_dump = gen.to_data (null);
 
     var call = new OAuthProxyCallWithBody(account.proxy, json_dump);
@@ -480,6 +531,9 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
       unowned string back = call.get_payload();
       account.user_stream.inject_tweet (Cb.StreamMessageType.DIRECT_MESSAGE, back);
       text_view.buffer.text = "";
+      compose_image_manager.clear();
+      compose_image_manager.hide();
+      media_upload = null;
     });
   }
 
@@ -494,10 +548,9 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     return Gdk.EVENT_PROPAGATE;
   }
 
-  private void recalc_length () {
+  private void set_send_sensitive_state() {
     uint text_length = text_view.buffer.text.length;
-    // TODO: Re-enable send button when we have new API sending working!
-    send_button.sensitive = text_length > 0;
+    send_button.sensitive = ((text_length > 0 && media_upload == null) || (media_upload != null && media_upload.is_uploaded())) && !image_error_label.visible;
   }
 
   private bool has_checked_items () {
@@ -568,6 +621,119 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
         return;
       }
     });
+  }
+
+  [GtkCallback]
+  private void add_image_clicked_cb (Gtk.Button source) {
+    var filechooser = new Gtk.FileChooserNative (_("Select Image"),
+                                                 this.main_window,
+                                                 Gtk.FileChooserAction.OPEN,
+                                                 _("Open"),
+                                                 _("Cancel"));
+
+
+    var filter = new Gtk.FileFilter ();
+    filter.add_mime_type ("image/png");
+    filter.add_mime_type ("image/jpeg");
+    filter.add_mime_type ("image/gif");
+    filechooser.set_filter (filter);
+
+    if (filechooser.run () == Gtk.ResponseType.ACCEPT) {
+      var filename = filechooser.get_filename ();
+      try {
+        load_image (filename);
+      }
+      catch (GLib.Error e) {
+        // TODO: Proper error checking/reporting
+        // But it shouldn't happen because we only just picked it, so the file info
+        // should just work
+        warning ("%s (%s)", e.message, filename);
+      }
+    }
+  }
+
+  private void load_image (string filename) throws GLib.Error {
+    /* Get file size */
+    var file = GLib.File.new_for_path (filename);
+    GLib.FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_TYPE + "," +
+                                          GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," +
+                                          GLib.FileAttribute.STANDARD_SIZE, 0);
+    var content_type = info.get_content_type();
+    var is_image = content_type.has_prefix("image/");
+    var is_gif = is_image && content_type == "image/gif";
+    var file_size = info.get_size();
+
+    if (!is_image) {
+      image_error_label.label = _("Selected file is not an image.");
+      image_error_label.visible = true;
+    } else if (!is_gif && file_size > Twitter.MAX_BYTES_PER_IMAGE) {
+      image_error_label.label = _("The selected image is too big. The maximum file size per image is %'d MB")
+                                .printf (Twitter.MAX_BYTES_PER_IMAGE / 1024 / 1024);
+      image_error_label.visible = true;
+    } else if (is_gif && file_size > Twitter.MAX_BYTES_PER_GIF) {
+      image_error_label.label = _("The selected GIF is too big. The maximum file size per GIF is %'d MB")
+                                .printf (Twitter.MAX_BYTES_PER_GIF / 1024 / 1024);
+      image_error_label.visible = true;
+    } else {
+      media_upload = new MediaUpload(filename, true);
+      media_upload.progress_complete.connect((message) => {
+        set_send_sensitive_state();
+      });
+      this.compose_image_manager.show ();
+      this.compose_image_manager.load_media (media_upload);
+      TweetUtils.upload_media.begin (media_upload, account, cancellable);
+      this.add_image_button.sensitive = false;
+      this.fav_image_button.sensitive = false;
+      image_error_label.visible = false;
+    }
+    set_send_sensitive_state();
+  }
+
+  [GtkCallback]
+  public void fav_image_button_clicked_cb () {
+    action_stack.visible_child_name = "fav-images";
+    this.fav_image_view.load_images ();
+  }
+
+  [GtkCallback]
+  public void favorite_image_selected_cb (string path) {
+    try {
+      load_image (path);
+      action_stack.visible_child = reply_box;
+    }
+    catch (GLib.Error e) {
+      // TODO: Proper error checking/reporting
+      // But it shouldn't happen because we only just picked it from the fav list,
+      // so the file info should just work
+      warning ("%s (%s)", e.message, path);
+    }
+  }
+
+
+  private void setup_emoji_chooser () {
+    this.emoji_chooser = new Cb.EmojiChooser ();
+
+    if (!emoji_chooser.try_init ()) {
+      this.emoji_chooser = null;
+      return;
+    }
+
+    emoji_chooser.emoji_picked.connect ((text) => {
+      this.text_view.insert_at_cursor (text);
+      action_stack.visible_child = reply_box;
+    });
+    emoji_chooser.show_all ();
+    action_stack.add (emoji_chooser);
+
+    this.emoji_button = new Gtk.Button.with_label ("🐧");
+    emoji_button.get_accessible().set_name(_("Insert Emoji"));
+    emoji_button.clicked.connect (() => {
+      this.emoji_chooser.populate ();
+      action_stack.visible_child = this.emoji_chooser;
+    });
+
+    emoji_button.show_all ();
+    add_button_box.add (emoji_button);
   }
 
   public string get_title () {

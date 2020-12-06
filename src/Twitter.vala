@@ -32,8 +32,8 @@ public class Twitter : GLib.Object {
   // Limit was once 3MB for GIFs and 5MB for images and Corebird used 3MB throughout.
   // In 2020 it's 5MB image, 15MB GIF and video - https://developer.twitter.com/en/docs/media/upload-media/overview
   public const int MAX_BYTES_PER_IMAGE    = 1024 * 1024 * 5;
-  public const int MAX_BYTES_PER_GIF      = 1024 * 1024 * 5; //15; // From experimentation then don't appear to be able to go above 10MB without using the chunked API and flagging as a GIF
-  public const int MAX_BYTES_PER_VIDEO    = 1024 * 1024 * 15; // Video requires the "chunked upload" API
+  public const int MAX_BYTES_PER_GIF      = 1024 * 1024 * 15;
+  public const int MAX_BYTES_PER_VIDEO    = 1024 * 1024 * 15;
   public const int short_url_length       = 23;
   public const int max_media_per_upload   = 4;
   public static Cairo.Surface no_avatar;

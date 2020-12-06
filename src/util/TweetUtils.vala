@@ -15,6 +15,92 @@
  *  along with cawbird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+class MediaUpload {
+  public string id { get; private set; }
+  public string? filepath {
+    owned get {
+      return file.get_path();
+    }
+  }
+  public string filetype {
+    get {
+      return fileinfo.get_content_type ();
+    }
+  }
+  public string media_category {
+    owned get {
+      var prefix = dm ? "dm" : "tweet";
+      string cat;
+      if (filetype.has_prefix("video/")) {
+        cat = "%s_video".printf(prefix);
+      }
+      else if (filetype == "image/gif") {
+        cat = "%s_gif".printf(prefix);
+      }
+      else {
+        cat = "%s_image".printf(prefix);
+      }
+      return cat;
+    }
+  }
+  private int64 _media_id = -1;
+  public int64 media_id {
+    get { return _media_id; }
+    set {
+      _media_id = value;
+      media_id_assigned();
+    }
+  }
+  private File file;
+  private FileInfo fileinfo;
+  private bool dm;
+  public int64 filesize {
+    get {
+      return fileinfo.get_size();
+    }
+  }
+  private double _progress = 0;
+  public double progress {
+    get {
+      return _progress;
+    }
+    set {
+      _progress = value;
+      progress_updated(_progress);
+    }
+  }
+  private bool upload_finalized;
+  public GLib.Cancellable cancellable { get; private set; }
+  public signal void progress_updated(double progress);
+  public signal void progress_complete(string? error_message = null);
+  public signal void media_id_assigned();
+
+  public MediaUpload(string filepath, bool for_dm = false) throws GLib.Error {
+    id = GLib.Uuid.string_random();
+    file = File.new_for_path(filepath);
+    fileinfo = file.query_info(GLib.FileAttribute.STANDARD_TYPE + "," +
+                               GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," +
+                               GLib.FileAttribute.STANDARD_SIZE, 0);
+    dm = for_dm;
+    cancellable = new GLib.Cancellable();
+  }
+
+  public FileInputStream read() throws GLib.Error {
+    return file.read();
+  }
+
+  public void finalize_upload() {
+    debug("Finalizing upload");
+    progress = 1.0;
+    upload_finalized = true;
+    progress_complete();
+  }
+
+  public bool is_uploaded() {
+    return upload_finalized;
+  }
+}
+
 namespace TweetUtils {
   public Quark get_error_domain() {
     return Quark.from_string("tweet-action");
@@ -542,6 +628,133 @@ namespace TweetUtils {
   private void inject_deletion (int64 id, Account account) {
     var message = @"{ \"delete\":{ \"status\":{ \"id\":$(id), \"id_str\":\"$(id)\", \"user_id\":$(account.id), \"user_id_str\":\"$(account.id)\" } } }";
     account.user_stream.inject_tweet(Cb.StreamMessageType.DELETE, message);
+  }
+
+  async bool upload_media(MediaUpload media_upload, Account account, GLib.Cancellable? cancellable = null) throws GLib.Error {
+    var upload_proxy = new Rest.OAuthProxy(account.proxy.consumer_key,
+                                           account.proxy.consumer_secret,
+                                           "https://upload.twitter.com/",
+                                           false);
+    upload_proxy.set_token(account.proxy.token);
+    upload_proxy.set_token_secret(account.proxy.token_secret);
+    var init_call = upload_proxy.new_call();
+    init_call.set_function("1.1/media/upload.json");
+    init_call.set_method("POST");
+    init_call.add_param("command", "INIT");
+    init_call.add_param("total_bytes", media_upload.filesize.to_string());
+    init_call.add_param("media_type", media_upload.filetype);
+    init_call.add_param("media_category", media_upload.media_category);
+    var root = yield Cb.Utils.load_threaded_async(init_call, cancellable);
+
+    if (root == null) {
+      warning("Null response uploading %s", media_upload.filepath);
+      return false;
+    }
+
+    media_upload.media_id = root.get_object().get_int_member("media_id");
+    debug("Uploading media_id %lld", media_upload.media_id);
+    var file_reader = media_upload.read();
+    var chunk_idx = 0;
+    var max_chunk_size = 5 * 1024 * 1024;
+    size_t total_uploaded = 0;
+    int64 filesize = media_upload.filesize;
+    media_upload.progress = 0;
+    while (total_uploaded < filesize) {
+      var append_call = upload_proxy.new_call();
+      var chunk = file_reader.read_bytes(max_chunk_size);
+      append_call.set_function("1.1/media/upload.json");
+      append_call.set_method("POST");
+      append_call.add_param("command", "APPEND");
+      append_call.add_param("media_id", media_upload.media_id.to_string());
+      append_call.add_param("segment_index", chunk_idx.to_string());
+      var media_param = new Rest.Param.full("media", Rest.MemoryUse.COPY, chunk.get_data(), "multipart/form-data", media_upload.filepath);
+      append_call.add_param_full(media_param);
+      try {
+        // FIXME: We should be able to use `upload` to get more granular progress, but it loses the closures and we end up with null objects and then segfaults
+        // (But sometimes the segfaults are in slice allocation within widget resizing)
+        yield append_call.invoke_async(cancellable);
+        /*
+        append_call.upload((call, total, uploaded, error, weak_object) => {
+          if (error != null) {
+            if (media_upload != null) {
+              media_upload.progress_complete(error.message);
+            }
+            // TODO: Handle error
+            warning("Upload error: %s", error.message);
+            upload_media.callback();
+            return;
+          }
+          if (media_upload != null) {
+            media_upload.progress = (double)(total_uploaded + uploaded) / (double)filesize;
+          }
+          else {
+            debug("Media upload was null");
+          }
+          if (total == uploaded) {
+            upload_media.callback();
+            return;
+          }
+        }, cancellable);
+        yield; */
+      }
+      catch (GLib.Error e) {
+        // TODO: Implement retry
+        warning("ERROR: %s", e.message);
+        warning("%s", append_call.get_payload());
+      }
+      debug("Setting total progress");
+      total_uploaded += chunk.get_size();
+      media_upload.progress = (double)total_uploaded / (double)filesize;
+      chunk_idx++;
+    }
+
+    debug("Finalising…");
+    var finalise_call = upload_proxy.new_call();
+    finalise_call.set_function("1.1/media/upload.json");
+    finalise_call.set_method("POST");
+    finalise_call.add_param("command", "FINALIZE");
+    finalise_call.add_param("media_id", media_upload.media_id.to_string());
+    root = yield Cb.Utils.load_threaded_async(finalise_call, cancellable);
+
+    if (root == null) {
+      warning("Null response finalising %s", media_upload.filepath);
+      return false;
+    }
+
+    var object = root.get_object();
+    while (object.has_member("processing_info")) {
+      var processing_info = object.get_object_member("processing_info");
+      var state = processing_info.get_string_member("state");
+      if (state == "succeeded") {
+        break;
+      }
+      else if (state == "failed") {
+        // TODO: Translate. But how often does it fail? The only example given is "Unsupported video format"
+        media_upload.progress_complete(processing_info.get_object_member("error").get_string_member("message"));
+        return false;
+      }
+      else {
+        var delay = (uint) object.get_object_member("processing_info").get_int_member("check_after_secs");
+        GLib.Timeout.add (delay * 1000, () => {
+            upload_media.callback ();
+            return false;
+          }, GLib.Priority.DEFAULT);
+        yield;
+        var status_call = upload_proxy.new_call();
+        status_call.set_function("1.1/media/upload.json");
+        status_call.set_method("GET");
+        status_call.add_param("command", "STATUS");
+        status_call.add_param("media_id", media_upload.media_id.to_string());
+        root = yield Cb.Utils.load_threaded_async(status_call, cancellable);
+        if (root == null) {
+          warning("Null response checking status of %s", media_upload.filepath);
+          return false;
+        }
+        object = root.get_object();
+      }
+    }
+    media_upload.finalize_upload();
+    return true;
   }
 
   /**

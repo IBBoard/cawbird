@@ -20,21 +20,16 @@ class AddImageButton : Gtk.Button {
   private const int MAX_HEIGHT = 150;
   private const int MIN_HEIGHT = 100;
   private const int ICON_SIZE  = 32;
-  private string _image_path;
-  public string image_path {
-    get { return _image_path; }
-    set {
-      _image_path = value;
-      if (value != null) {
-        this.get_accessible().set_description(_image_path.substring(_image_path.last_index_of_char('/') + 1));
-      }
-      else {
-        this.get_accessible().set_description("");
-      }
-    }
+  private MediaUpload _media_upload;
+  public string? image_path {
+    owned get { return _media_upload.filepath; }
   }
-  public string uuid;
-  public int64 media_id = 0;
+  public string uuid {
+    get { return _media_upload.id; }
+  }
+  public int64 media_id {
+    get { return _media_upload.media_id; }
+  }
   public string description = "";
   public Cairo.ImageSurface? surface;
 
@@ -42,6 +37,11 @@ class AddImageButton : Gtk.Button {
 
   private double delete_factor = 1.0;
   private uint64 delete_transition_start;
+
+  public AddImageButton(MediaUpload upload) {
+    _media_upload = upload;
+    this.get_accessible().set_description(upload.filepath.substring(upload.filepath.last_index_of_char('/') + 1));
+  }
 
   construct {
     this.set_has_window (false);
