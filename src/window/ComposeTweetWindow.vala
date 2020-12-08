@@ -261,8 +261,9 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       }
 
       if (this.reply_to == null) {
-        string message = candidate_mode == Mode.QUOTE ? "Error fetching quoted tweet: %s\n\nSave unsent tweet?" :
-                                                        "Error fetching reply tweet: %s\n\nSave unsent tweet?";
+        // TRANSLATORS: %s is the error message returned by Twitter (e.g. "Not Found")
+        string message = candidate_mode == Mode.QUOTE ? _("Error fetching quoted tweet: %s\n\nSave unsent tweet?") :
+                                                        _("Error fetching reply tweet: %s\n\nSave unsent tweet?");
         var messagedialog = new Gtk.MessageDialog (this,
                                                   Gtk.DialogFlags.MODAL,
                                                   Gtk.MessageType.WARNING,

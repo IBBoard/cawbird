@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-29 11:40+0100\n"
+"POT-Creation-Date: 2020-12-08 20:19+0000\n"
 "PO-Revision-Date: 2017-10-22 18:18+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -79,6 +79,34 @@ msgstr "ir %d kitiems"
 #, fuzzy, c-format
 msgid "Direct messages with %s"
 msgstr "Tiesioginės žinutės"
+
+msgid "Select Image"
+msgstr "Pasirinkite paveikslą"
+
+msgid "Open"
+msgstr "Atverti"
+
+msgid "Cancel"
+msgstr "Atsisakyti"
+
+msgid "Selected file is not an image."
+msgstr "Pasirinktas failas nėra paveikslas."
+
+#, c-format
+msgid ""
+"The selected image is too big. The maximum file size per image is %'d MB"
+msgstr ""
+"Pasirinktas paveikslas yra per didelis. Didžiausias vieno paveikslo failo "
+"dydis yra %'d MB"
+
+#, fuzzy, c-format
+msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
+msgstr ""
+"Pasirinktas paveikslas yra per didelis. Didžiausias vieno paveikslo failo "
+"dydis yra %'d MB"
+
+msgid "Insert Emoji"
+msgstr "Įterpti jaustuką"
 
 msgid "Direct Conversation"
 msgstr "Tiesioginis pokalbis"
@@ -489,15 +517,6 @@ msgstr "Paskyra jau yra naudojama"
 msgid "Failed to retrieve access token"
 msgstr ""
 
-msgid "Select Image"
-msgstr "Pasirinkite paveikslą"
-
-msgid "Open"
-msgstr "Atverti"
-
-msgid "Cancel"
-msgstr "Atsisakyti"
-
 msgid "Unfollow"
 msgstr "Nustoti sekti"
 
@@ -560,30 +579,26 @@ msgstr ""
 msgid "Back"
 msgstr "Grįžti"
 
-msgid "Quote tweet"
-msgstr "Cituoti tauškalą"
-
-msgid "Selected file is not an image."
-msgstr "Pasirinktas failas nėra paveikslas."
+#. TRANSLATORS: %s is the error message returned by Twitter (e.g. "Not Found")
+#, c-format
+msgid ""
+"Error fetching quoted tweet: %s\n"
+"\n"
+"Save unsent tweet?"
+msgstr ""
 
 #, c-format
 msgid ""
-"The selected image is too big. The maximum file size per image is %'d MB"
+"Error fetching reply tweet: %s\n"
+"\n"
+"Save unsent tweet?"
 msgstr ""
-"Pasirinktas paveikslas yra per didelis. Didžiausias vieno paveikslo failo "
-"dydis yra %'d MB"
 
-#, fuzzy, c-format
-msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
-msgstr ""
-"Pasirinktas paveikslas yra per didelis. Didžiausias vieno paveikslo failo "
-"dydis yra %'d MB"
+msgid "Quote tweet"
+msgstr "Cituoti tauškalą"
 
 msgid "Only one GIF file per tweet is allowed."
 msgstr "Viename tauškale leidžiamas tik vienas GIF failas."
-
-msgid "Insert Emoji"
-msgstr "Įterpti jaustuką"
 
 #, c-format
 msgid "%d character remaining"

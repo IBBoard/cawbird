@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-29 11:40+0100\n"
+"POT-Creation-Date: 2020-12-08 20:19+0000\n"
 "PO-Revision-Date: 2017-10-22 17:13+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -77,6 +77,32 @@ msgstr "ja %d muulle"
 #, fuzzy, c-format
 msgid "Direct messages with %s"
 msgstr "Yksityisviestit"
+
+msgid "Select Image"
+msgstr "Valitse kuva"
+
+msgid "Open"
+msgstr "Avaa"
+
+msgid "Cancel"
+msgstr "Peru"
+
+msgid "Selected file is not an image."
+msgstr "Valittu tiedosto ei ole kuva."
+
+#, c-format
+msgid ""
+"The selected image is too big. The maximum file size per image is %'d MB"
+msgstr ""
+"Valittu kuva on liian suuri. Kuva voi olla kooltaan korkeintaan %'d Mt."
+
+#, fuzzy, c-format
+msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
+msgstr ""
+"Valittu kuva on liian suuri. Kuva voi olla kooltaan korkeintaan %'d Mt."
+
+msgid "Insert Emoji"
+msgstr "Lisää emoji"
 
 msgid "Direct Conversation"
 msgstr "Yksityiskeskustelu"
@@ -476,15 +502,6 @@ msgstr "Tili on jo käytössä"
 msgid "Failed to retrieve access token"
 msgstr ""
 
-msgid "Select Image"
-msgstr "Valitse kuva"
-
-msgid "Open"
-msgstr "Avaa"
-
-msgid "Cancel"
-msgstr "Peru"
-
 msgid "Unfollow"
 msgstr "Lopeta seuraaminen"
 
@@ -542,28 +559,26 @@ msgstr ""
 msgid "Back"
 msgstr "Takaisin"
 
-msgid "Quote tweet"
-msgstr "Lainaa twiittiä"
-
-msgid "Selected file is not an image."
-msgstr "Valittu tiedosto ei ole kuva."
+#. TRANSLATORS: %s is the error message returned by Twitter (e.g. "Not Found")
+#, c-format
+msgid ""
+"Error fetching quoted tweet: %s\n"
+"\n"
+"Save unsent tweet?"
+msgstr ""
 
 #, c-format
 msgid ""
-"The selected image is too big. The maximum file size per image is %'d MB"
+"Error fetching reply tweet: %s\n"
+"\n"
+"Save unsent tweet?"
 msgstr ""
-"Valittu kuva on liian suuri. Kuva voi olla kooltaan korkeintaan %'d Mt."
 
-#, fuzzy, c-format
-msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
-msgstr ""
-"Valittu kuva on liian suuri. Kuva voi olla kooltaan korkeintaan %'d Mt."
+msgid "Quote tweet"
+msgstr "Lainaa twiittiä"
 
 msgid "Only one GIF file per tweet is allowed."
 msgstr "Vain yksi GIF-tiedosto per twiitti on sallittu."
-
-msgid "Insert Emoji"
-msgstr "Lisää emoji"
 
 #, c-format
 msgid "%d character remaining"

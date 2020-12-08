@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-29 11:40+0100\n"
+"POT-Creation-Date: 2020-12-08 20:19+0000\n"
 "PO-Revision-Date: 2017-11-12 23:35+0000\n"
 "Last-Translator: MTD TR <dev.mantendo@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/cawbird/cawbird/"
@@ -79,6 +79,30 @@ msgstr ""
 #, fuzzy, c-format
 msgid "Direct messages with %s"
 msgstr "ダイレクトメッセージ"
+
+msgid "Select Image"
+msgstr "画像を選択"
+
+msgid "Open"
+msgstr ""
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Selected file is not an image."
+msgstr ""
+
+#, c-format
+msgid ""
+"The selected image is too big. The maximum file size per image is %'d MB"
+msgstr "選択された画像は大きすぎます。最大ファイルサイズは%'dMBです"
+
+#, fuzzy, c-format
+msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
+msgstr "選択された画像は大きすぎます。最大ファイルサイズは%'dMBです"
+
+msgid "Insert Emoji"
+msgstr ""
 
 msgid "Direct Conversation"
 msgstr ""
@@ -468,15 +492,6 @@ msgstr "アカウントはすでに使われています"
 msgid "Failed to retrieve access token"
 msgstr ""
 
-msgid "Select Image"
-msgstr "画像を選択"
-
-msgid "Open"
-msgstr ""
-
-msgid "Cancel"
-msgstr "キャンセル"
-
 msgid "Unfollow"
 msgstr "フォロー解除"
 
@@ -531,26 +546,26 @@ msgstr ""
 msgid "Back"
 msgstr "戻る"
 
-msgid "Quote tweet"
-msgstr ""
-
-msgid "Selected file is not an image."
+#. TRANSLATORS: %s is the error message returned by Twitter (e.g. "Not Found")
+#, c-format
+msgid ""
+"Error fetching quoted tweet: %s\n"
+"\n"
+"Save unsent tweet?"
 msgstr ""
 
 #, c-format
 msgid ""
-"The selected image is too big. The maximum file size per image is %'d MB"
-msgstr "選択された画像は大きすぎます。最大ファイルサイズは%'dMBです"
+"Error fetching reply tweet: %s\n"
+"\n"
+"Save unsent tweet?"
+msgstr ""
 
-#, fuzzy, c-format
-msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
-msgstr "選択された画像は大きすぎます。最大ファイルサイズは%'dMBです"
+msgid "Quote tweet"
+msgstr ""
 
 msgid "Only one GIF file per tweet is allowed."
 msgstr "1つのツイートには1つのGIFファイルしか添付できません。"
-
-msgid "Insert Emoji"
-msgstr ""
 
 #, c-format
 msgid "%d character remaining"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-29 11:40+0100\n"
+"POT-Creation-Date: 2020-12-08 20:19+0000\n"
 "PO-Revision-Date: 2017-11-19 08:34+0000\n"
 "Last-Translator: Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail."
 "com>\n"
@@ -79,6 +79,34 @@ msgstr "и %d других"
 #, fuzzy, c-format
 msgid "Direct messages with %s"
 msgstr "Директне поруке"
+
+msgid "Select Image"
+msgstr "Изабери слику"
+
+msgid "Open"
+msgstr "Отвори"
+
+msgid "Cancel"
+msgstr "Откажи"
+
+msgid "Selected file is not an image."
+msgstr "Изабрана датотека није слика."
+
+#, c-format
+msgid ""
+"The selected image is too big. The maximum file size per image is %'d MB"
+msgstr ""
+"Изабрана слика је сувише велика. Највећа дозвољена величина датотеке по "
+"слици је %'d мегабајта"
+
+#, fuzzy, c-format
+msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
+msgstr ""
+"Изабрана слика је сувише велика. Највећа дозвољена величина датотеке по "
+"слици је %'d мегабајта"
+
+msgid "Insert Emoji"
+msgstr "Убаци емоџи"
 
 msgid "Direct Conversation"
 msgstr "Директни разговори"
@@ -486,15 +514,6 @@ msgstr "Налог се већ користи"
 msgid "Failed to retrieve access token"
 msgstr ""
 
-msgid "Select Image"
-msgstr "Изабери слику"
-
-msgid "Open"
-msgstr "Отвори"
-
-msgid "Cancel"
-msgstr "Откажи"
-
 msgid "Unfollow"
 msgstr "Престани са праћењем"
 
@@ -555,30 +574,26 @@ msgstr ""
 msgid "Back"
 msgstr "Назад"
 
-msgid "Quote tweet"
-msgstr "Цитирај твит"
-
-msgid "Selected file is not an image."
-msgstr "Изабрана датотека није слика."
+#. TRANSLATORS: %s is the error message returned by Twitter (e.g. "Not Found")
+#, c-format
+msgid ""
+"Error fetching quoted tweet: %s\n"
+"\n"
+"Save unsent tweet?"
+msgstr ""
 
 #, c-format
 msgid ""
-"The selected image is too big. The maximum file size per image is %'d MB"
+"Error fetching reply tweet: %s\n"
+"\n"
+"Save unsent tweet?"
 msgstr ""
-"Изабрана слика је сувише велика. Највећа дозвољена величина датотеке по "
-"слици је %'d мегабајта"
 
-#, fuzzy, c-format
-msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
-msgstr ""
-"Изабрана слика је сувише велика. Највећа дозвољена величина датотеке по "
-"слици је %'d мегабајта"
+msgid "Quote tweet"
+msgstr "Цитирај твит"
 
 msgid "Only one GIF file per tweet is allowed."
 msgstr "Дозвољен је само један ГИФ по твиту."
-
-msgid "Insert Emoji"
-msgstr "Убаци емоџи"
 
 #, c-format
 msgid "%d character remaining"

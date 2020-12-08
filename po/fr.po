@@ -2,7 +2,7 @@
 # Copyright (C) YEAR 2013-2018 Timm Bäder, 2018-2020 IBBoard
 # This file is distributed under the same license as the cawbird package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 # Translators:
 # akern <alex.thierry@openmailbox.org>, 2016
 # Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>, 2017
@@ -16,13 +16,13 @@
 # Prince Ofsky <princeofsky@gmail.com>, 2020
 # b86ed1d35b1d961a2deda4048cbeb435_9cc1908 <292f9acf80cf4cd77a412d609587069a_937386>, 2020
 # Mattherix <mattherix@protonmail.com>, 2020
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-29 11:40+0100\n"
+"POT-Creation-Date: 2020-12-08 20:19+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Mattherix <mattherix@protonmail.com>, 2020\n"
 "Language-Team: French (https://www.transifex.com/cawbird/teams/107135/fr/)\n"
@@ -39,19 +39,19 @@ msgid "Twitter Client"
 msgstr "Client Twitter"
 
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as"
-" Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as "
+"Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
 "Cawbird est un client Twitter natif en GTK+ proposant les fonctions vitales "
 "telles que les messages directs (dm), les notifications, les vues en "
 "conversations."
 
 msgid ""
-"Additional features include local viewing of videos, multiple inline images,"
-" Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images, "
+"Lists, Filters, multiple accounts, etc."
 msgstr ""
-"Les fonctions additionnelles incluent le visionnage en local des vidéos, les"
-" insertions multiples d'images, les listes, les filtres, les comptes "
+"Les fonctions additionnelles incluent le visionnage en local des vidéos, les "
+"insertions multiples d'images, les listes, les filtres, les comptes "
 "multiples, etc."
 
 msgid "Generic timeline view when using Cawbird"
@@ -69,8 +69,7 @@ msgstr "IBBoard"
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Utiliser Twitter depuis une application de bureau classique"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or
-#. localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;"
 
@@ -93,6 +92,34 @@ msgstr "et %d autres"
 #, c-format
 msgid "Direct messages with %s"
 msgstr "Message direct avec %s"
+
+msgid "Select Image"
+msgstr "Sélectionner une image"
+
+msgid "Open"
+msgstr "Ouvrir"
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "Selected file is not an image."
+msgstr "Le fichier sélectionnée n'est pas une image."
+
+#, c-format
+msgid ""
+"The selected image is too big. The maximum file size per image is %'d MB"
+msgstr ""
+"L'image sélectionnée est trop grosse. La taille maximale autorisée par image "
+"est de %'d Mo"
+
+#, c-format
+msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
+msgstr ""
+"Le sélectionné est trop gros. La taille maximale autorisée par GIF est de "
+"%'d Mo"
+
+msgid "Insert Emoji"
+msgstr "Insérer Emoji"
 
 msgid "Direct Conversation"
 msgstr "Conversation directe"
@@ -197,20 +224,17 @@ msgstr[1] "Suit %d comptes"
 msgid "Location: %s"
 msgstr "Localisation: %s"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for profile
-#. timeline view
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
 #, c-format
 msgid "%s timeline"
 msgstr "%s timeline"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of
-#. users following the user
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
 #, c-format
 msgid "%s followers"
 msgstr "%s abonnés"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of
-#. users followed by the user
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
 #, c-format
 msgid "%s following"
 msgstr "%s abonnements"
@@ -335,8 +359,8 @@ msgstr "Pas de status trouvez avec cette ID."
 
 msgid "You cannot send messages to users who are not following you."
 msgstr ""
-"Vous ne pouvez pas envoyer de message à des utilisateurs qui ne vous suivent"
-" pas."
+"Vous ne pouvez pas envoyer de message à des utilisateurs qui ne vous suivent "
+"pas."
 
 msgid "There was an error sending your message."
 msgstr "Il y a eu une erreur lors de l'envoi de votre message."
@@ -400,8 +424,8 @@ msgid "A media id was not found."
 msgstr "L'identifiant du media n'a pas été trouvé."
 
 msgid ""
-"To protect our users from spam and other malicious activity, this account is"
-" temporarily locked."
+"To protect our users from spam and other malicious activity, this account is "
+"temporarily locked."
 msgstr ""
 "Pour protéger nos utilisateur du spam et d'autre activités malicieuse, ce "
 "compte est temporairement bloqué."
@@ -460,23 +484,19 @@ msgstr[1] "Il y a %d heures"
 msgid "%dh"
 msgstr "%dh"
 
-#. TRANSLATORS: Full-text date format for tweets from this year - see
-#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B"
 msgstr "%e %B"
 
-#. TRANSLATORS: Short date format for tweets from this year - see
-#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b"
 msgstr "%e %b"
 
-#. TRANSLATORS: Full-text date format for tweets from previous years - see
-#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B %Y"
 msgstr "%e %B %Y"
 
-#. TRANSLATORS: Short date format for tweets from previous years - see
-#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b %Y"
 msgstr "%e %b %Y"
 
@@ -501,15 +521,6 @@ msgstr "Compte déjà en utilisation"
 
 msgid "Failed to retrieve access token"
 msgstr "Impossible de récupérer le jeton d'accès"
-
-msgid "Select Image"
-msgstr "Sélectionner une image"
-
-msgid "Open"
-msgstr "Ouvrir"
-
-msgid "Cancel"
-msgstr "Annuler"
 
 msgid "Unfollow"
 msgstr "Se désabonner"
@@ -560,8 +571,7 @@ msgstr[0] "Erreur lors du chargement de l'image"
 msgstr[1] "Erreur lors du chargement de %u images"
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
-#. <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -569,30 +579,26 @@ msgstr "%s: %s"
 msgid "Back"
 msgstr "Retour"
 
-msgid "Quote tweet"
-msgstr "Citer le tweet"
-
-msgid "Selected file is not an image."
-msgstr "Le fichier sélectionnée n'est pas une image."
+#. TRANSLATORS: %s is the error message returned by Twitter (e.g. "Not Found")
+#, c-format
+msgid ""
+"Error fetching quoted tweet: %s\n"
+"\n"
+"Save unsent tweet?"
+msgstr ""
 
 #, c-format
 msgid ""
-"The selected image is too big. The maximum file size per image is %'d MB"
+"Error fetching reply tweet: %s\n"
+"\n"
+"Save unsent tweet?"
 msgstr ""
-"L'image sélectionnée est trop grosse. La taille maximale autorisée par image"
-" est de %'d Mo"
 
-#, c-format
-msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
-msgstr ""
-"Le sélectionné est trop gros. La taille maximale autorisée par GIF est de "
-"%'d Mo"
+msgid "Quote tweet"
+msgstr "Citer le tweet"
 
 msgid "Only one GIF file per tweet is allowed."
 msgstr "Seulement un GIF par tweet est autorisé."
-
-msgid "Insert Emoji"
-msgstr "Insérer Emoji"
 
 #, c-format
 msgid "%d character remaining"
@@ -600,8 +606,7 @@ msgid_plural "%d characters remaining"
 msgstr[0] "%d caractère restant"
 msgstr[1] "%d caractères restant"
 
-#. TRANSLATORS: Values are current image index (1-based) and total image
-#. count. Pluralisation is based on total image count.
+#. TRANSLATORS: Values are current image index (1-based) and total image count. Pluralisation is based on total image count.
 #. Should only be seen when image count is two or more.
 #, c-format
 msgid "Image %d of %d"
@@ -634,11 +639,9 @@ msgid "Snippet already exists"
 msgstr "Le snippet existe déjà"
 
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
-"#newisalwaysbetter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
 msgstr ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
-"#newisalwaysbetter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
 
 msgid "Add to or Remove User From List"
 msgstr "Ajouter ou supprimer des utilisateurs de la liste"

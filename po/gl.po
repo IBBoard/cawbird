@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-29 11:40+0100\n"
+"POT-Creation-Date: 2020-12-08 20:19+0000\n"
 "PO-Revision-Date: 2017-12-22 02:49+0000\n"
 "Last-Translator: antiparvos\n"
 "Language-Team: Galician (http://www.transifex.com/cawbird/cawbird/language/"
@@ -78,6 +78,30 @@ msgstr "e %d máis"
 #, fuzzy, c-format
 msgid "Direct messages with %s"
 msgstr "Mensaxes directas"
+
+msgid "Select Image"
+msgstr "Seleccionar imaxe"
+
+msgid "Open"
+msgstr "Abrir"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Selected file is not an image."
+msgstr "O ficheiro seleccionado non é unha imaxe."
+
+#, c-format
+msgid ""
+"The selected image is too big. The maximum file size per image is %'d MB"
+msgstr "A imaxe é grande de máis. O tamaño máximo permitido son %'d MB"
+
+#, fuzzy, c-format
+msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
+msgstr "A imaxe é grande de máis. O tamaño máximo permitido son %'d MB"
+
+msgid "Insert Emoji"
+msgstr "Inserir emoji"
 
 msgid "Direct Conversation"
 msgstr "Conversa directa"
@@ -477,15 +501,6 @@ msgstr "Xa se está usando esta conta"
 msgid "Failed to retrieve access token"
 msgstr ""
 
-msgid "Select Image"
-msgstr "Seleccionar imaxe"
-
-msgid "Open"
-msgstr "Abrir"
-
-msgid "Cancel"
-msgstr "Cancelar"
-
 msgid "Unfollow"
 msgstr "Non seguir"
 
@@ -543,26 +558,26 @@ msgstr ""
 msgid "Back"
 msgstr "Volver"
 
-msgid "Quote tweet"
-msgstr "Citar chío"
-
-msgid "Selected file is not an image."
-msgstr "O ficheiro seleccionado non é unha imaxe."
+#. TRANSLATORS: %s is the error message returned by Twitter (e.g. "Not Found")
+#, c-format
+msgid ""
+"Error fetching quoted tweet: %s\n"
+"\n"
+"Save unsent tweet?"
+msgstr ""
 
 #, c-format
 msgid ""
-"The selected image is too big. The maximum file size per image is %'d MB"
-msgstr "A imaxe é grande de máis. O tamaño máximo permitido son %'d MB"
+"Error fetching reply tweet: %s\n"
+"\n"
+"Save unsent tweet?"
+msgstr ""
 
-#, fuzzy, c-format
-msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
-msgstr "A imaxe é grande de máis. O tamaño máximo permitido son %'d MB"
+msgid "Quote tweet"
+msgstr "Citar chío"
 
 msgid "Only one GIF file per tweet is allowed."
 msgstr "Só se permite un ficheiro GIF por chío."
-
-msgid "Insert Emoji"
-msgstr "Inserir emoji"
 
 #, c-format
 msgid "%d character remaining"

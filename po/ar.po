@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-29 11:40+0100\n"
+"POT-Creation-Date: 2020-12-08 20:19+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Ammar K <ak.bahassan@gmail.com>, 2020\n"
 "Language-Team: Arabic (http://www.transifex.com/cawbird/cawbird/language/"
@@ -83,6 +83,30 @@ msgstr "و %d آخرين"
 #, fuzzy, c-format
 msgid "Direct messages with %s"
 msgstr "رسائل مباشرة"
+
+msgid "Select Image"
+msgstr "اختيار صورة"
+
+msgid "Open"
+msgstr "افتح"
+
+msgid "Cancel"
+msgstr "ألغ"
+
+msgid "Selected file is not an image."
+msgstr "الملف المحدد ليس صورة."
+
+#, c-format
+msgid ""
+"The selected image is too big. The maximum file size per image is %'d MB"
+msgstr "حجم الصورة المحددة كبيرة جدا. الحجم الاقصى لكل صورة هو %'d MB"
+
+#, fuzzy, c-format
+msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
+msgstr "حجم الصورة المحددة كبيرة جدا. الحجم الاقصى لكل صورة هو %'d MB"
+
+msgid "Insert Emoji"
+msgstr "اضافة Emoji"
 
 msgid "Direct Conversation"
 msgstr "محادثة مباشرة"
@@ -510,15 +534,6 @@ msgstr "الحساب قيد الاستخدام"
 msgid "Failed to retrieve access token"
 msgstr ""
 
-msgid "Select Image"
-msgstr "اختيار صورة"
-
-msgid "Open"
-msgstr "افتح"
-
-msgid "Cancel"
-msgstr "ألغ"
-
 msgid "Unfollow"
 msgstr "إلغاء التتبُع"
 
@@ -588,26 +603,26 @@ msgstr ""
 msgid "Back"
 msgstr "عودة"
 
-msgid "Quote tweet"
-msgstr "إقتباس التغريدة"
-
-msgid "Selected file is not an image."
-msgstr "الملف المحدد ليس صورة."
+#. TRANSLATORS: %s is the error message returned by Twitter (e.g. "Not Found")
+#, c-format
+msgid ""
+"Error fetching quoted tweet: %s\n"
+"\n"
+"Save unsent tweet?"
+msgstr ""
 
 #, c-format
 msgid ""
-"The selected image is too big. The maximum file size per image is %'d MB"
-msgstr "حجم الصورة المحددة كبيرة جدا. الحجم الاقصى لكل صورة هو %'d MB"
+"Error fetching reply tweet: %s\n"
+"\n"
+"Save unsent tweet?"
+msgstr ""
 
-#, fuzzy, c-format
-msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
-msgstr "حجم الصورة المحددة كبيرة جدا. الحجم الاقصى لكل صورة هو %'d MB"
+msgid "Quote tweet"
+msgstr "إقتباس التغريدة"
 
 msgid "Only one GIF file per tweet is allowed."
 msgstr "يسمح بإستخدام GIF واحد فقط للتغريدة."
-
-msgid "Insert Emoji"
-msgstr "اضافة Emoji"
 
 #, c-format
 msgid "%d character remaining"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-29 11:40+0100\n"
+"POT-Creation-Date: 2020-12-08 20:19+0000\n"
 "PO-Revision-Date: 2018-01-17 19:31+0000\n"
 "Last-Translator: HybridGlucose <a07051226@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/cawbird/cawbird/"
@@ -76,6 +76,30 @@ msgstr "和其他 %d 人"
 #, fuzzy, c-format
 msgid "Direct messages with %s"
 msgstr "訊息"
+
+msgid "Select Image"
+msgstr "選擇媒體"
+
+msgid "Open"
+msgstr "開啟"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Selected file is not an image."
+msgstr "所選擇的檔案並非影像或圖片。"
+
+#, c-format
+msgid ""
+"The selected image is too big. The maximum file size per image is %'d MB"
+msgstr "所選擇的媒體檔案太大。大小上限為 %'d MB。"
+
+#, fuzzy, c-format
+msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
+msgstr "所選擇的媒體檔案太大。大小上限為 %'d MB。"
+
+msgid "Insert Emoji"
+msgstr "插入顏文字"
 
 msgid "Direct Conversation"
 msgstr "對話"
@@ -467,15 +491,6 @@ msgstr "此帳戶已被加入過"
 msgid "Failed to retrieve access token"
 msgstr ""
 
-msgid "Select Image"
-msgstr "選擇媒體"
-
-msgid "Open"
-msgstr "開啟"
-
-msgid "Cancel"
-msgstr "取消"
-
 msgid "Unfollow"
 msgstr "取消跟隨"
 
@@ -530,26 +545,26 @@ msgstr ""
 msgid "Back"
 msgstr "返回"
 
-msgid "Quote tweet"
-msgstr "引用推文"
-
-msgid "Selected file is not an image."
-msgstr "所選擇的檔案並非影像或圖片。"
+#. TRANSLATORS: %s is the error message returned by Twitter (e.g. "Not Found")
+#, c-format
+msgid ""
+"Error fetching quoted tweet: %s\n"
+"\n"
+"Save unsent tweet?"
+msgstr ""
 
 #, c-format
 msgid ""
-"The selected image is too big. The maximum file size per image is %'d MB"
-msgstr "所選擇的媒體檔案太大。大小上限為 %'d MB。"
+"Error fetching reply tweet: %s\n"
+"\n"
+"Save unsent tweet?"
+msgstr ""
 
-#, fuzzy, c-format
-msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
-msgstr "所選擇的媒體檔案太大。大小上限為 %'d MB。"
+msgid "Quote tweet"
+msgstr "引用推文"
 
 msgid "Only one GIF file per tweet is allowed."
 msgstr "每一則推文只允許一個GIF檔案."
-
-msgid "Insert Emoji"
-msgstr "插入顏文字"
 
 #, c-format
 msgid "%d character remaining"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-29 11:40+0100\n"
+"POT-Creation-Date: 2020-12-08 20:19+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Ukrainian (Ukraine) (http://www.transifex.com/cawbird/cawbird/"
@@ -78,6 +78,30 @@ msgstr ""
 #, fuzzy, c-format
 msgid "Direct messages with %s"
 msgstr "Приватне повідомлення"
+
+msgid "Select Image"
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Cancel"
+msgstr "Скасувати"
+
+msgid "Selected file is not an image."
+msgstr ""
+
+#, c-format
+msgid ""
+"The selected image is too big. The maximum file size per image is %'d MB"
+msgstr ""
+
+#, c-format
+msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
+msgstr ""
+
+msgid "Insert Emoji"
+msgstr ""
 
 msgid "Direct Conversation"
 msgstr "Прямі розмови"
@@ -485,15 +509,6 @@ msgstr "Акаунт вже використовується"
 msgid "Failed to retrieve access token"
 msgstr ""
 
-msgid "Select Image"
-msgstr ""
-
-msgid "Open"
-msgstr ""
-
-msgid "Cancel"
-msgstr "Скасувати"
-
 msgid "Unfollow"
 msgstr "Не читати"
 
@@ -556,25 +571,25 @@ msgstr ""
 msgid "Back"
 msgstr "Назад"
 
-msgid "Quote tweet"
-msgstr "Цитувати твіт"
-
-msgid "Selected file is not an image."
+#. TRANSLATORS: %s is the error message returned by Twitter (e.g. "Not Found")
+#, c-format
+msgid ""
+"Error fetching quoted tweet: %s\n"
+"\n"
+"Save unsent tweet?"
 msgstr ""
 
 #, c-format
 msgid ""
-"The selected image is too big. The maximum file size per image is %'d MB"
+"Error fetching reply tweet: %s\n"
+"\n"
+"Save unsent tweet?"
 msgstr ""
 
-#, c-format
-msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
-msgstr ""
+msgid "Quote tweet"
+msgstr "Цитувати твіт"
 
 msgid "Only one GIF file per tweet is allowed."
-msgstr ""
-
-msgid "Insert Emoji"
 msgstr ""
 
 #, c-format

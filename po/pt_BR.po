@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-29 11:40+0100\n"
+"POT-Creation-Date: 2020-12-08 20:19+0000\n"
 "PO-Revision-Date: 2018-01-02 18:35+0000\n"
 "Last-Translator: Vanderlei Ventura <vanderleiventura82@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/cawbird/cawbird/"
@@ -84,6 +84,34 @@ msgstr "e %d outros"
 #, fuzzy, c-format
 msgid "Direct messages with %s"
 msgstr "Mensagens diretas"
+
+msgid "Select Image"
+msgstr "Selecione a image"
+
+msgid "Open"
+msgstr "Abrir"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Selected file is not an image."
+msgstr ""
+
+#, c-format
+msgid ""
+"The selected image is too big. The maximum file size per image is %'d MB"
+msgstr ""
+"A imagem selecionada é muito grande. O tamanho máximo do arquivo por imagem "
+"é %'d MB"
+
+#, fuzzy, c-format
+msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
+msgstr ""
+"A imagem selecionada é muito grande. O tamanho máximo do arquivo por imagem "
+"é %'d MB"
+
+msgid "Insert Emoji"
+msgstr ""
 
 msgid "Direct Conversation"
 msgstr "Conversa direta"
@@ -483,15 +511,6 @@ msgstr "Conta já em uso"
 msgid "Failed to retrieve access token"
 msgstr ""
 
-msgid "Select Image"
-msgstr "Selecione a image"
-
-msgid "Open"
-msgstr "Abrir"
-
-msgid "Cancel"
-msgstr "Cancelar"
-
 msgid "Unfollow"
 msgstr "Deixar de seguir"
 
@@ -549,30 +568,26 @@ msgstr ""
 msgid "Back"
 msgstr "Voltar"
 
-msgid "Quote tweet"
-msgstr "Citar tweet"
-
-msgid "Selected file is not an image."
+#. TRANSLATORS: %s is the error message returned by Twitter (e.g. "Not Found")
+#, c-format
+msgid ""
+"Error fetching quoted tweet: %s\n"
+"\n"
+"Save unsent tweet?"
 msgstr ""
 
 #, c-format
 msgid ""
-"The selected image is too big. The maximum file size per image is %'d MB"
+"Error fetching reply tweet: %s\n"
+"\n"
+"Save unsent tweet?"
 msgstr ""
-"A imagem selecionada é muito grande. O tamanho máximo do arquivo por imagem "
-"é %'d MB"
 
-#, fuzzy, c-format
-msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
-msgstr ""
-"A imagem selecionada é muito grande. O tamanho máximo do arquivo por imagem "
-"é %'d MB"
+msgid "Quote tweet"
+msgstr "Citar tweet"
 
 msgid "Only one GIF file per tweet is allowed."
 msgstr "Somente um arquivo GIF por tweet é permitido."
-
-msgid "Insert Emoji"
-msgstr ""
 
 #, c-format
 msgid "%d character remaining"

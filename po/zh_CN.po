@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-29 11:40+0100\n"
+"POT-Creation-Date: 2020-12-08 20:19+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/cawbird/cawbird/"
@@ -79,6 +79,30 @@ msgstr ""
 #, fuzzy, c-format
 msgid "Direct messages with %s"
 msgstr "私信"
+
+msgid "Select Image"
+msgstr "选择图片"
+
+msgid "Open"
+msgstr "打开"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Selected file is not an image."
+msgstr ""
+
+#, c-format
+msgid ""
+"The selected image is too big. The maximum file size per image is %'d MB"
+msgstr "所选图像过大，每张图象大小上限为 %'d MB"
+
+#, fuzzy, c-format
+msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
+msgstr "所选图像过大，每张图象大小上限为 %'d MB"
+
+msgid "Insert Emoji"
+msgstr ""
 
 msgid "Direct Conversation"
 msgstr "直接对话"
@@ -470,15 +494,6 @@ msgstr "账户已在使用中"
 msgid "Failed to retrieve access token"
 msgstr ""
 
-msgid "Select Image"
-msgstr "选择图片"
-
-msgid "Open"
-msgstr "打开"
-
-msgid "Cancel"
-msgstr "取消"
-
 msgid "Unfollow"
 msgstr "取消关注"
 
@@ -533,25 +548,25 @@ msgstr ""
 msgid "Back"
 msgstr "返回"
 
-msgid "Quote tweet"
-msgstr "引用推文"
-
-msgid "Selected file is not an image."
+#. TRANSLATORS: %s is the error message returned by Twitter (e.g. "Not Found")
+#, c-format
+msgid ""
+"Error fetching quoted tweet: %s\n"
+"\n"
+"Save unsent tweet?"
 msgstr ""
 
 #, c-format
 msgid ""
-"The selected image is too big. The maximum file size per image is %'d MB"
-msgstr "所选图像过大，每张图象大小上限为 %'d MB"
-
-#, fuzzy, c-format
-msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
-msgstr "所选图像过大，每张图象大小上限为 %'d MB"
-
-msgid "Only one GIF file per tweet is allowed."
+"Error fetching reply tweet: %s\n"
+"\n"
+"Save unsent tweet?"
 msgstr ""
 
-msgid "Insert Emoji"
+msgid "Quote tweet"
+msgstr "引用推文"
+
+msgid "Only one GIF file per tweet is allowed."
 msgstr ""
 
 #, c-format

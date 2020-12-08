@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-08-29 11:40+0100\n"
+"POT-Creation-Date: 2020-12-08 20:19+0000\n"
 "PO-Revision-Date: 2018-02-06 18:45+0000\n"
 "Last-Translator: Iris Ilexiris <iris.ilexiris@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/cawbird/cawbird/language/"
@@ -77,6 +77,34 @@ msgstr "kaj %d aligentuloj"
 #, fuzzy, c-format
 msgid "Direct messages with %s"
 msgstr "Tujmesaĝoj"
+
+msgid "Select Image"
+msgstr "Elekti bildon"
+
+msgid "Open"
+msgstr "Malfermi"
+
+msgid "Cancel"
+msgstr "Nuligi"
+
+msgid "Selected file is not an image."
+msgstr "La elektita dosiero ne estas bildo."
+
+#, c-format
+msgid ""
+"The selected image is too big. The maximum file size per image is %'d MB"
+msgstr ""
+"La elektita bildon estas tro granda. La maksimuma dosierlargo por imagoj "
+"estas %'d MB."
+
+#, fuzzy, c-format
+msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
+msgstr ""
+"La elektita bildon estas tro granda. La maksimuma dosierlargo por imagoj "
+"estas %'d MB."
+
+msgid "Insert Emoji"
+msgstr "Enmeti miensimbolo"
 
 msgid "Direct Conversation"
 msgstr "Tujinterparolo"
@@ -476,15 +504,6 @@ msgstr "Konto jam uzas"
 msgid "Failed to retrieve access token"
 msgstr ""
 
-msgid "Select Image"
-msgstr "Elekti bildon"
-
-msgid "Open"
-msgstr "Malfermi"
-
-msgid "Cancel"
-msgstr "Nuligi"
-
 msgid "Unfollow"
 msgstr "Malpostiri"
 
@@ -542,30 +561,26 @@ msgstr ""
 msgid "Back"
 msgstr "Reiri"
 
-msgid "Quote tweet"
-msgstr "Citi tviton"
-
-msgid "Selected file is not an image."
-msgstr "La elektita dosiero ne estas bildo."
+#. TRANSLATORS: %s is the error message returned by Twitter (e.g. "Not Found")
+#, c-format
+msgid ""
+"Error fetching quoted tweet: %s\n"
+"\n"
+"Save unsent tweet?"
+msgstr ""
 
 #, c-format
 msgid ""
-"The selected image is too big. The maximum file size per image is %'d MB"
+"Error fetching reply tweet: %s\n"
+"\n"
+"Save unsent tweet?"
 msgstr ""
-"La elektita bildon estas tro granda. La maksimuma dosierlargo por imagoj "
-"estas %'d MB."
 
-#, fuzzy, c-format
-msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
-msgstr ""
-"La elektita bildon estas tro granda. La maksimuma dosierlargo por imagoj "
-"estas %'d MB."
+msgid "Quote tweet"
+msgstr "Citi tviton"
 
 msgid "Only one GIF file per tweet is allowed."
 msgstr "Nur unu GIF po tvito permesitas."
-
-msgid "Insert Emoji"
-msgstr "Enmeti miensimbolo"
 
 #, c-format
 msgid "%d character remaining"
