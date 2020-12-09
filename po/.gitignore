@@ -1,6 +1,0 @@
-_*.pot
-*.gmo
-stamp-it
-Makefile.in.in
-.intltool-merge-cache
-POTFILES
