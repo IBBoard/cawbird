@@ -72,6 +72,7 @@ endif
 cawbird_lib_sources = files([
   'src/Account.vala',
   'src/Cawbird.vala',
+  'src/ComposedTweet.vala',
   'src/DMManager.vala',
   'src/DMPage.vala',
   'src/DMThreadsPage.vala',
@@ -96,6 +97,7 @@ cawbird_lib_sources = files([
   'src/Twitter.vala',
   'src/UserEventReceiver.vala',
   'src/async/Collect.vala',
+  'src/async/CollectById.vala',
   'src/list/AddListEntry.vala',
   'src/list/DMListEntry.vala',
   'src/list/DMThreadEntry.vala',
@@ -179,7 +181,6 @@ cawbird_lib_sources = files([
   'src/CbMediaVideoWidget.c',
   'src/CbUserStream.c',
   'src/CbMessageReceiver.c',
-  'src/CbComposeJob.c',
   'src/CbUserCompletionModel.c',
   'src/CbEmojiChooser.c',
 

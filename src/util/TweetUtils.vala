@@ -195,6 +195,107 @@ namespace TweetUtils {
   }
 
   /**
+   * Posts a new tweet.
+   */
+  async bool post_tweet (Account account, ComposedTweet tweet) throws GLib.Error {
+    var media_attachments = tweet.get_attachments();
+
+    if (media_attachments.length > 0) {
+      GLib.Error err = null;
+      var mutex = GLib.Mutex();
+      var collect = new CollectById();
+      var yielded = false;
+      collect.finished.connect((error) => {
+        if (error != null) {
+          err = error;
+        }
+        mutex.lock();
+        try {
+          if (yielded) {
+            post_tweet.callback();
+          }
+        }
+        finally {
+          mutex.unlock();
+        }
+      });
+
+      foreach (MediaUpload upload in media_attachments) {
+        collect.add(upload.id);
+        // Connect to progress_complete first so we don't have race conditions
+        // The CollectById makes sure we don't double-count
+        ulong handler_id = 0;
+        handler_id = upload.progress_complete.connect((error) => {
+          if (error != null) {
+            err = error;
+          }
+          collect.emit(upload.id, err);
+          upload.disconnect(handler_id);
+        });
+        if (upload.is_uploaded()) {
+          upload.disconnect(handler_id);
+          collect.emit(upload.id);
+        }
+      }
+
+      // XXX: There may be a better way to do this, but this is the best way I can think of to only yield (and call back) when we need to
+      // The other options involve race conditions with potentially bigger windows for the check to say "not uploaded" and the upload to complete before we connect,
+      // or we end up doing a callback when we've not yielded (or we want to do an impossible "connect, yield, and then check if anything had already finished")
+      mutex.lock();
+      if (!collect.done && !collect.errored) {
+        yielded = true;
+        mutex.unlock();
+        yield;
+      }
+
+      if (err != null) {
+        throw err;
+      }
+    }
+
+    return yield do_post_tweet (account, tweet);
+  }
+
+  private string map_upload_to_id (MediaUpload upload) {
+    return upload.media_id.to_string();
+  }
+
+  private async bool do_post_tweet (Account account, ComposedTweet tweet) throws GLib.Error {
+    var call = account.proxy.new_call();
+    call.set_method("POST");
+    call.set_function("1.1/statuses/update.json");
+    call.add_param("auto_populate_reply_metadata", "true");
+    call.add_param("tweet_mode", "extended");
+    call.add_param("include_ext_alt_text", "true");
+
+    if (tweet.reply_to_id > 0) {
+      call.add_param("in_reply_to_status_id", tweet.reply_to_id.to_string());
+    }
+    else if (tweet.has_quote_attachment()) {
+      call.add_param("attachment_url", tweet.get_quoted_url());
+    }
+
+    var media_attachments = tweet.get_attachments();
+
+    if (media_attachments.length > 0) {
+      // Vala 0.50 can't infer the TARGET type from the return type, so we need to cast to help it
+      var ids = map(media_attachments, (MapFunction<MediaUpload, string>)map_upload_to_id);
+      call.add_param("media_ids", string.joinv(",", ids));
+    }
+
+    call.add_param("status", tweet.get_text());
+
+    try {
+      yield call.invoke_async(null);
+    }
+    catch (GLib.Error e) {
+      throw failed_request_to_error (call, e);
+    }
+    inject_tweet (call.get_payload(), account);
+    return true;
+  }
+
+  /**
    * Deletes the given tweet.
    *
    * @param account The account to delete the tweet from
@@ -500,6 +601,10 @@ namespace TweetUtils {
     });
 
     return tweets;
+  }
+
+  public void inject_tweet (string json, Account account) {
+    account.user_stream.inject_tweet(Cb.StreamMessageType.TWEET, json);
   }
 
   private void inject_user_action (int64 user_id, Account account, Cb.StreamMessageType action) {

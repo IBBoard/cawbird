@@ -133,6 +133,16 @@ inline double ease_out_cubic (double t) {
   return p * p * p +1;
 }
 
+public delegate TARGET MapFunction<SOURCE, TARGET>(SOURCE src);
+
+TARGET[] map<SOURCE, TARGET>(SOURCE[] arr, MapFunction<SOURCE, TARGET> map_func) {
+  var mapped = new GenericArray<TARGET>(arr.length);
+  foreach (SOURCE src in arr) {
+    mapped.add(map_func(src));
+  }
+  return mapped.data;
+}
+
 namespace Utils {
   /**
    * Removes the retweet flag from a tweet in a model based on a new "un-retweeted" message
