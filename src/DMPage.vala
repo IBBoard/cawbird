@@ -676,8 +676,13 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
       image_error_label.visible = true;
     } else {
       media_upload = new MediaUpload(filename, true);
-      media_upload.progress_complete.connect((message) => {
-        set_send_sensitive_state();
+      media_upload.progress_complete.connect((err) => {
+        if (err != null) {
+          Utils.show_error_dialog(err, this.main_window);
+        }
+        else {
+          set_send_sensitive_state();
+        }
       });
       this.compose_image_manager.show ();
       this.compose_image_manager.load_media (media_upload);

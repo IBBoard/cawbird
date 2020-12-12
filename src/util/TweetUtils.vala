@@ -544,7 +544,7 @@ namespace TweetUtils {
     account.user_stream.inject_tweet(Cb.StreamMessageType.DELETE, message);
   }
 
-  async bool upload_media(MediaUpload media_upload, Account account, GLib.Cancellable? cancellable = null) throws GLib.Error {
+  async bool upload_media(MediaUpload media_upload, Account account, GLib.Cancellable? cancellable = null) {
     var upload_proxy = new Rest.OAuthProxy(account.proxy.consumer_key,
                                            account.proxy.consumer_secret,
                                            "https://upload.twitter.com/",
@@ -558,7 +558,14 @@ namespace TweetUtils {
     init_call.add_param("total_bytes", media_upload.filesize.to_string());
     init_call.add_param("media_type", media_upload.filetype);
     init_call.add_param("media_category", media_upload.media_category);
-    var root = yield Cb.Utils.load_threaded_async(init_call, cancellable);
+    Json.Node root;
+    try {
+      root = yield Cb.Utils.load_threaded_async(init_call, cancellable);
+    }
+    catch (GLib.Error e) {
+      media_upload.progress_complete(TweetUtils.failed_request_to_error (init_call, e));
+      return false;
+    }
 
     if (root == null) {
       warning("Null response uploading %s", media_upload.filepath);
@@ -566,16 +573,30 @@ namespace TweetUtils {
     }
 
     media_upload.media_id = root.get_object().get_int_member("media_id");
-    debug("Uploading media_id %lld", media_upload.media_id);
-    var file_reader = media_upload.read();
+    GLib.FileInputStream file_reader = null;
+    try {
+      file_reader = media_upload.read();
+    }
+    catch (GLib.Error e) {
+      media_upload.progress_complete(e);
+      return false;
+    }
     var chunk_idx = 0;
     var max_chunk_size = 5 * 1024 * 1024;
     size_t total_uploaded = 0;
     int64 filesize = media_upload.filesize;
     media_upload.progress = 0;
+
     while (total_uploaded < filesize) {
       var append_call = upload_proxy.new_call();
-      var chunk = file_reader.read_bytes(max_chunk_size);
+      GLib.Bytes chunk;
+      try {
+        chunk = file_reader.read_bytes(max_chunk_size);
+      }
+      catch (GLib.Error e) {
+        media_upload.progress_complete(e);
+        return false;
+      }
       append_call.set_function("1.1/media/upload.json");
       append_call.set_method("POST");
       append_call.add_param("command", "APPEND");
@@ -583,6 +604,7 @@ namespace TweetUtils {
       append_call.add_param("segment_index", chunk_idx.to_string());
       var media_param = new Rest.Param.full("media", Rest.MemoryUse.COPY, chunk.get_data(), "multipart/form-data", media_upload.filepath);
       append_call.add_param_full(media_param);
+
       try {
         // FIXME: We should be able to use `upload` to get more granular progress, but it loses the closures and we end up with null objects and then segfaults
         // (But sometimes the segfaults are in slice allocation within widget resizing)
@@ -612,23 +634,28 @@ namespace TweetUtils {
         yield; */
       }
       catch (GLib.Error e) {
-        // TODO: Implement retry
-        warning("ERROR: %s", e.message);
-        warning("%s", append_call.get_payload());
+        media_upload.progress_complete(TweetUtils.failed_request_to_error (append_call, e));
+        return false;
       }
-      debug("Setting total progress");
+
       total_uploaded += chunk.get_size();
       media_upload.progress = (double)total_uploaded / (double)filesize;
       chunk_idx++;
     }
 
-    debug("Finalising…");
     var finalise_call = upload_proxy.new_call();
     finalise_call.set_function("1.1/media/upload.json");
     finalise_call.set_method("POST");
     finalise_call.add_param("command", "FINALIZE");
     finalise_call.add_param("media_id", media_upload.media_id.to_string());
-    root = yield Cb.Utils.load_threaded_async(finalise_call, cancellable);
+
+    try {
+      root = yield Cb.Utils.load_threaded_async(finalise_call, cancellable);
+    }
+    catch (GLib.Error e) {
+      media_upload.progress_complete(TweetUtils.failed_request_to_error (finalise_call, e));
+      return false;
+    }
 
     if (root == null) {
       warning("Null response finalising %s", media_upload.filepath);
@@ -644,11 +671,13 @@ namespace TweetUtils {
       }
       else if (state == "failed") {
         // TODO: Translate. But how often does it fail? The only example given is "Unsupported video format"
-        media_upload.progress_complete(processing_info.get_object_member("error").get_string_member("message"));
+        var message = processing_info.get_object_member("error").get_string_member("message");
+        media_upload.progress_complete(new GLib.Error.literal(TweetUtils.get_error_domain(), 0, message));
         return false;
       }
       else {
         var delay = (uint) object.get_object_member("processing_info").get_int_member("check_after_secs");
+        debug("Media upload processing - check after %u seconds", delay);
         GLib.Timeout.add (delay * 1000, () => {
             upload_media.callback ();
             return false;
@@ -659,7 +688,15 @@ namespace TweetUtils {
         status_call.set_method("GET");
         status_call.add_param("command", "STATUS");
         status_call.add_param("media_id", media_upload.media_id.to_string());
-        root = yield Cb.Utils.load_threaded_async(status_call, cancellable);
+
+        try {
+          root = yield Cb.Utils.load_threaded_async(status_call, cancellable);
+        }
+        catch (GLib.Error e) {
+          media_upload.progress_complete(TweetUtils.failed_request_to_error (finalise_call, e));
+          return false;
+        }
+
         if (root == null) {
           warning("Null response checking status of %s", media_upload.filepath);
           return false;

@@ -375,9 +375,8 @@ class ComposeImageManager : Gtk.Container {
     upload.progress_updated.connect ((progress) => {
       set_image_progress (upload.id, progress);
     });
-    upload.progress_complete.connect ((msg) => {
-      // TODO: We can handle an error message here
-      end_progress (upload.id, msg);
+    upload.progress_complete.connect ((error) => {
+      end_progress (upload.id, error);
     });
     upload.media_id_assigned.connect(() => {
       set_media_id(upload.id);
@@ -408,7 +407,7 @@ class ComposeImageManager : Gtk.Container {
     }
   }
 
-  public void end_progress (string uuid, string? error_message) {
+  public void end_progress (string uuid, GLib.Error? error) {
     for (int i = 0; i < buttons.length; i ++) {
       var btn = buttons.get (i);
       if (btn.uuid == uuid) {
@@ -416,11 +415,11 @@ class ComposeImageManager : Gtk.Container {
         var style_context = btn.get_style_context ();
         style_context.remove_class ("image-progress");
 
-        if (error_message == null) {
+        if (error == null) {
           style_context.add_class ("image-success");
           style_context.remove_class ("image-error");
         } else {
-          warning ("%s: %s", btn.image_path, error_message);
+          warning ("%s: %s", btn.image_path, error.message);
           style_context.add_class ("image-error");
           style_context.remove_class ("image-success");
           btn.clicked.connect (reupload_image_cb);

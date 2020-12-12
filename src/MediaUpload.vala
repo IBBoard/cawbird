@@ -15,7 +15,7 @@
  *  along with cawbird.  If not, see <http://www.gnu.org/licenses/>.
  */
  
- class MediaUpload {
+ class MediaUpload : GLib.Object {
     public string id { get; private set; }
     public string? filepath {
       owned get {
@@ -72,7 +72,7 @@
     private bool upload_finalized;
     public GLib.Cancellable cancellable { get; private set; }
     public signal void progress_updated(double progress);
-    public signal void progress_complete(string? error_message = null);
+    public signal void progress_complete(GLib.Error? error = null);
     public signal void media_id_assigned();
   
     public MediaUpload(string filepath, bool for_dm = false) throws GLib.Error {
