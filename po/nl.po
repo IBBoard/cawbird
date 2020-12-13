@@ -2,12 +2,12 @@
 # Copyright (C) YEAR 2013-2018 Timm Bäder, 2018-2020 IBBoard
 # This file is distributed under the same license as the cawbird package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 # Translators:
 # Geert Wirken <geert@gwirken.nl>, 2014
 # Nathan Follens, 2017
 # Heimen Stoffels <vistausss@outlook.com>, 2014-2015, 2020
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
