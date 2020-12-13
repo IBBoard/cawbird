@@ -253,6 +253,10 @@ progressbar.horizontal.embedded-progress>trough>progress {
   background-color: alpha(black, 0.3);
 }
 
+.fav-image-item:disabled {
+  opacity:0.5
+}
+
 .invisible-links link:link {
   color:inherit;
 }
