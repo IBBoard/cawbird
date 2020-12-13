@@ -2,12 +2,11 @@
 # Copyright (C) YEAR 2013-2018 Timm Bäder, 2018-2020 IBBoard
 # This file is distributed under the same license as the cawbird package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 # Translators:
-# Geert Wirken <geert@gwirken.nl>, 2014
-# Nathan Follens, 2017
-# Heimen Stoffels <vistausss@outlook.com>, 2014-2015, 2020
-#
+# IBBoard . <github@ibboard.co.uk>, 2020
+# Heimen Stoffels <vistausss@outlook.com>, 2020
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -17,10 +16,10 @@ msgstr ""
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>, 2020\n"
 "Language-Team: Dutch (https://www.transifex.com/cawbird/teams/107135/nl/)\n"
-"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Cawbird"
@@ -30,20 +29,20 @@ msgid "Twitter Client"
 msgstr "Twittertoepassing"
 
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as "
-"Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
 "Cawbird is een geïntegreerde GTK+ Twittertoepassing met ondersteuning voor "
 "de belangrijkste functionaliteiten, zoals privéberichten (DM's), "
 "tweetmeldingen en gespreksweergaven."
 
 msgid ""
-"Additional features include local viewing of videos, multiple inline images, "
-"Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images,"
+" Lists, Filters, multiple accounts, etc."
 msgstr ""
-"Daarnaast kun je video's afspelen, meerdere bijgevoegde afbeeldingen tonen, "
-"en is er ondersteuning voor lijsten, filters, meerdere accounts en nog veel "
-"meer."
+"Daarnaast kun je video's afspelen, meerdere bijgevoegde afbeeldingen "
+"bekijken en is er ondersteuning voor lijsten, filters, meerdere accounts en "
+"nog veel meer."
 
 msgid "Generic timeline view when using Cawbird"
 msgstr "Algemene tijdlijnweergave gebruiken"
@@ -60,7 +59,8 @@ msgstr "IBBoard"
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Gebruik Twitter vanuit een normale bureaubladtoepassing"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;"
 
@@ -85,7 +85,7 @@ msgid "Direct messages with %s"
 msgstr "Privégesprek met %s"
 
 msgid "Select Image"
-msgstr "Afbeelding selecteren"
+msgstr "Afbeelding kiezen"
 
 msgid "Open"
 msgstr "Openen"
@@ -94,14 +94,14 @@ msgid "Cancel"
 msgstr "Annuleren"
 
 msgid "Selected file is not an image."
-msgstr "Het geselecteerde bestand is geen afbeelding."
+msgstr "Het gekozen bestand is geen afbeelding."
 
 #, c-format
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
 msgstr ""
-"De geselecteerde afbeelding is te groot. De maximale bestandsgrootte is %'d "
-"MB per afbeelding."
+"De gekozen afbeelding is te groot. De maximale bestandsgrootte is %'d MB per"
+" afbeelding."
 
 #, c-format
 msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
@@ -214,17 +214,20 @@ msgstr[1] "Volgt %d accounts"
 msgid "Location: %s"
 msgstr "Locatie: %s"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile
+#. timeline view
 #, c-format
 msgid "%s timeline"
 msgstr "%s's tijdlijn"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of
+#. users following the user
 #, c-format
 msgid "%s followers"
 msgstr "%s's volgers"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of
+#. users followed by the user
 #, c-format
 msgid "%s following"
 msgstr "Gevolgd door %s"
@@ -239,14 +242,14 @@ msgstr[0] "%d volger"
 msgstr[1] "%d volgers"
 
 msgid "No tweets found"
-msgstr "Geen tweets gevonden"
+msgstr "Er zijn geen tweets gevonden"
 
 msgid "No users found"
 msgstr "Er zijn geen gebruikers gevonden"
 
 #, c-format
 msgid "Users matching \"%s\""
-msgstr "Gebruikers die overeenkomen men \"%s\""
+msgstr "Gebruikers die overeenkomen met \"%s\""
 
 #, c-format
 msgid "Tweets matching \"%s\""
@@ -317,8 +320,7 @@ msgstr "Deze gebruiker is tijdelijk verbannen."
 
 msgid "Your account is suspended and is not permitted to access this feature"
 msgstr ""
-"Je account is tijdelijk uitgeschakeld en kunt deze functie daarom niet "
-"gebruiken"
+"Je kunt deze functie niet gebruiken omdat je account tijdelijk verbannen is."
 
 msgid "Rate limit exceeded"
 msgstr "Gebruikspercentage overschreden"
@@ -385,8 +387,8 @@ msgid ""
 "This request looks like it might be automated. To protect our users from "
 "spam and other malicious activity, we can’t complete this action right now."
 msgstr ""
-"Dit verzoek lijkt geautomatiseerd. Om gebruikers te beschermen tegen spam en "
-"andere schadelijke activiteit, kunnen we deze handeling nu niet uitvoeren."
+"Dit verzoek lijkt geautomatiseerd. Om gebruikers te beschermen tegen spam en"
+" andere schadelijke activiteit, kunnen we deze handeling nu niet uitvoeren."
 
 msgid "User must verify login"
 msgstr "Je moet je inlogverzoek goedkeuren"
@@ -402,7 +404,7 @@ msgstr "Je negeert de opgegeven gebruiker niet."
 
 msgid "Animated GIFs are not allowed when uploading multiple images."
 msgstr ""
-"Bewegende GIF's zijn niet toegestaan bij het uploaden van meerdere "
+"Bewegende gif's zijn niet toegestaan bij het uploaden van meerdere "
 "afbeeldingen."
 
 msgid "The validation of media ids failed."
@@ -412,8 +414,8 @@ msgid "A media id was not found."
 msgstr "Er is geen media-id gevonden."
 
 msgid ""
-"To protect our users from spam and other malicious activity, this account is "
-"temporarily locked."
+"To protect our users from spam and other malicious activity, this account is"
+" temporarily locked."
 msgstr ""
 "Om gebruikers te beschermen tegen spam en andere schadelijke activiteit, is "
 "dit account tijdelijk geblokkeerd."
@@ -475,19 +477,23 @@ msgstr[1] "%d uur geleden"
 msgid "%dh"
 msgstr "%du"
 
-#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from this year - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B"
 msgstr "%e %B"
 
-#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from this year - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b"
 msgstr "%e %b"
 
-#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from previous years - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B %Y"
 msgstr "%e %B %Y"
 
-#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from previous years - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b %Y"
 msgstr "%e %b %Y"
 
@@ -535,7 +541,7 @@ msgid "Save"
 msgstr "Opslaan"
 
 msgid "Select Banner Image"
-msgstr "Omslagfoto selecteren"
+msgstr "Omslagfoto kiezen"
 
 msgid "Image does not meet minimum size requirements:"
 msgstr "De afbeelding voldoet niet aan de minimumafmetingen:"
@@ -562,7 +568,8 @@ msgstr[0] "De afbeelding kan niet worden geladen"
 msgstr[1] "%u afbeeldingen kunnen niet worden geladen"
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
+#. <path>, <path>"
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -577,6 +584,9 @@ msgid ""
 "\n"
 "Save unsent tweet?"
 msgstr ""
+"De tweet kan niet worden geciteerd: %s\n"
+"\n"
+"Wil je de onverstuurde tweet bewaren?"
 
 #, c-format
 msgid ""
@@ -584,12 +594,15 @@ msgid ""
 "\n"
 "Save unsent tweet?"
 msgstr ""
+"De tweet kan niet worden beantwoord: %s\n"
+"\n"
+"Wil je de onverstuurde tweet bewaren?"
 
 msgid "Quote tweet"
 msgstr "Tweet citeren"
 
 msgid "Only one GIF file per tweet is allowed."
-msgstr "Per tweet wordt slechts één GIF-bestand toegestaan."
+msgstr "Er wordt slechts één gif-bestand per tweet toegestaan."
 
 #, c-format
 msgid "%d character remaining"
@@ -597,7 +610,8 @@ msgid_plural "%d characters remaining"
 msgstr[0] "Nog %d teken mogelijk"
 msgstr[1] "Nog %d tekens mogelijk"
 
-#. TRANSLATORS: Values are current image index (1-based) and total image count. Pluralisation is based on total image count.
+#. TRANSLATORS: Values are current image index (1-based) and total image
+#. count. Pluralisation is based on total image count.
 #. Should only be seen when image count is two or more.
 #, c-format
 msgid "Image %d of %d"
@@ -618,21 +632,22 @@ msgid "Modify Snippet"
 msgstr "Fragment bewerken"
 
 msgid "Snippet can't be empty"
-msgstr "Het fragment mag niet leeg worden gelaten"
+msgstr "Het fragment mag niet blanco zijn"
 
 msgid "Replacement can't be empty"
-msgstr "De vervanging mag niet leeg worden gelaten"
+msgstr "De vervanging mag niet blanco zijn"
 
 msgid "Snippet may not contain whitespace"
 msgstr "Het fragment mag geen witruimte bevatten"
 
 msgid "Snippet already exists"
-msgstr "Het fragment bestaat al"
+msgstr "Dit fragment bestaat al"
 
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
+"#newisalwaysbetter"
 msgstr ""
-"Hé! Kijk eens naar deze nieuwe #Cawbird-versie! \\ (•◡•) / #cool "
+"Hé, kijk eens naar deze nieuwe #Cawbird-versie! \\ (•◡•) / #cool "
 "#nieuwisaltijdbeter"
 
 msgid "Add to or Remove User From List"
@@ -651,8 +666,8 @@ msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
 msgstr ""
-"Geef Cawbird toestemming door op twitter.com een pincode op te halen van het "
-"toe te voegen account"
+"Geef Cawbird toestemming door op twitter.com een pincode op te halen van het"
+" toe te voegen account"
 
 msgid "Request PIN"
 msgstr "Pincode aanvragen"
@@ -724,7 +739,7 @@ msgid "Flags"
 msgstr "Vlaggen"
 
 msgid "No Results Found"
-msgstr "Geen resultaten gevonden"
+msgstr "Geen zoekresultaten"
 
 msgid "Try a different search"
 msgstr "Probeer een andere zoekopdracht"
@@ -862,13 +877,13 @@ msgid "Hide in timeline"
 msgstr "Verbergen op tijdlijn"
 
 msgid "Auto scroll on new tweets"
-msgstr "Automatisch scrollen bij nieuwe tweets"
+msgstr "Automatisch scrollen naar nieuwste tweets"
 
 msgid "Double-click activation"
 msgstr "Tweet openen door te dubbelklikken"
 
 msgid "Interface"
-msgstr "Uiterlijk"
+msgstr "Vormgeving"
 
 msgid "On New Tweets"
 msgstr "Bij nieuwe tweets"
@@ -920,7 +935,7 @@ msgstr "Je hebt geen fragmenten ingesteld."
 
 msgid "You can activate snippets by writing the keyword and pressing TAB."
 msgstr ""
-"Activeer fragmenten door het trefwoord te typen en daarna op de tabtoets te "
+"Activeer fragmenten door het trefwoord te typen en op de tabtoets te "
 "drukken."
 
 msgid "Snippets"
