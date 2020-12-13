@@ -94,7 +94,7 @@ msgid "Cancel"
 msgstr "Annuleren"
 
 msgid "Selected file is not an image."
-msgstr "Het geselecteerde bestand is geen afbeelding."
+msgstr "Het gekozen bestand is geen afbeelding."
 
 #, c-format
 msgid ""
