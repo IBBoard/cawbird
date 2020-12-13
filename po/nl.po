@@ -602,7 +602,7 @@ msgid "Quote tweet"
 msgstr "Tweet citeren"
 
 msgid "Only one GIF file per tweet is allowed."
-msgstr "Er wocdt slechts één gif-bestand per tweet toegestaan."
+msgstr "Er wordt slechts één gif-bestand per tweet toegestaan."
 
 #, c-format
 msgid "%d character remaining"
