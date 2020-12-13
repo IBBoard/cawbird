@@ -479,7 +479,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
 
   [GtkCallback]
   private void send_button_clicked_cb () {
-    if (text_view.buffer.text.length == 0)
+    if (text_view.buffer.text.length == 0 && compose_image_manager.n_images == 0)
       return;
 
     send_button.sensitive = false;
