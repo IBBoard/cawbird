@@ -77,7 +77,7 @@ class ComposedTweet {
             return "";
         }
         else {
-            var mini_tweet = quoted_tweet.retweeted_tweet != null ? quoted_tweet.retweeted_tweet : quoted_tweet.source_tweet;
+            var mini_tweet = _quoted_tweet.retweeted_tweet != null ? _quoted_tweet.retweeted_tweet : _quoted_tweet.source_tweet;
             return "https://twitter.com/%s/status/%s".printf(mini_tweet.author.screen_name, mini_tweet.id.to_string());
         }
     }
