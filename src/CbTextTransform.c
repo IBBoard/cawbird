@@ -98,7 +98,7 @@ cb_text_transform_fix_encoding (const char *text)
   gchar *valid_string;
   guint valid_start = 0;
   guint cur_pos = 0;
-  guint entity_pos;
+  guint entity_pos = 0;
   gboolean in_entity = FALSE;
   str = text;
   fixed_string = g_string_new (NULL);
