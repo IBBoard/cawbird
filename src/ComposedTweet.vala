@@ -24,20 +24,11 @@ class ComposedTweet {
             return _reply_to_id;
         }
         set {
-            assert(quoted_tweet == null);
+            assert(_quoted_tweet_url == null);
             _reply_to_id = value;
         }
     }
-    private Cb.Tweet? _quoted_tweet;
-    public Cb.Tweet? quoted_tweet {
-        get {
-            return _quoted_tweet;
-        }
-        set {
-            assert(reply_to_id == -1);
-            _quoted_tweet = value;
-        }
-     }
+    private string? _quoted_tweet_url;
 
     public signal void ready();
 
@@ -60,7 +51,7 @@ class ComposedTweet {
     }
 
     public string get_text() {
-        if (_quoted_tweet != null && _uploads.length > 0) {
+        if (_quoted_tweet_url != null && _uploads.length > 0) {
             return "%s %s".printf(_text, get_quoted_url());
         }
         else {
@@ -69,16 +60,23 @@ class ComposedTweet {
     }
 
     public bool has_quote_attachment() {
-        return _quoted_tweet != null && _uploads.length == 0;
+        return _quoted_tweet_url != null && _uploads.length == 0;
     }
 
-    public string get_quoted_url() {
-        if (_quoted_tweet == null) {
-            return "";
+    public void set_quoted_tweet(Cb.Tweet tweet) {
+        assert(reply_to_id == -1);
+
+        // We can't do this with a ternary to get the relevant mini tweet and then have one format string for that because
+        // it somehow causes segfaults when the minitweet ends up having gibberish values (like an ID of 0 and thousands of media attachments!)
+        if (tweet.retweeted_tweet != null) {
+            _quoted_tweet_url = "https://twitter.com/%s/status/%s".printf(tweet.retweeted_tweet.author.screen_name, tweet.retweeted_tweet.id.to_string());    
         }
         else {
-            var mini_tweet = _quoted_tweet.retweeted_tweet != null ? _quoted_tweet.retweeted_tweet : _quoted_tweet.source_tweet;
-            return "https://twitter.com/%s/status/%s".printf(mini_tweet.author.screen_name, mini_tweet.id.to_string());
+            _quoted_tweet_url = "https://twitter.com/%s/status/%s".printf(tweet.source_tweet.author.screen_name, tweet.source_tweet.id.to_string());
         }
+     }
+
+    public string get_quoted_url() {
+        return _quoted_tweet_url == null ? "" : _quoted_tweet_url;
     }
 }

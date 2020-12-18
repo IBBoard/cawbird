@@ -356,7 +356,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       tweet.reply_to_id = this.referenced_tweet.id;
     }
     else if (this.mode == Mode.QUOTE) {
-      tweet.quoted_tweet = this.referenced_tweet;
+      tweet.set_quoted_tweet(this.referenced_tweet);
     }
 
     foreach (MediaUpload upload in compose_image_manager.get_uploads()) {
