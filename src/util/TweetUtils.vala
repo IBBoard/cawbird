@@ -15,6 +15,9 @@
  *  along with cawbird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+int MAX_CHUNK_SIZE = 5 * 1024 * 1024;
+
 namespace TweetUtils {
   public Quark get_error_domain() {
     return Quark.from_string("tweet-action");
@@ -649,6 +652,38 @@ namespace TweetUtils {
     account.user_stream.inject_tweet(Cb.StreamMessageType.DELETE, message);
   }
 
+  private delegate bool UploadMediaCallback();
+
+  private class UploadProgress {
+    private MediaUpload _upload;
+    private double _filesize;
+    private double _total_uploaded;
+    private UploadMediaCallback _cb;
+
+    public UploadProgress(MediaUpload media_upload, int64 filesize, size_t total_uploaded, UploadMediaCallback callback) {
+      _upload = media_upload;
+      _filesize = (double)filesize;
+      _total_uploaded = (double)total_uploaded;
+      _cb = callback;
+    }
+
+    public void callback(Rest.ProxyCall call, size_t total, size_t uploaded, GLib.Error? error, GLib.Object? weak_object){
+      if (error != null) {
+        warning("Upload error: %s", error.message);
+        _upload.progress_complete(error);
+        _cb();
+        return;
+      }
+
+      _upload.progress = (_total_uploaded + uploaded) / _filesize;
+
+      if (total == uploaded) {
+        _cb();
+        return;
+      }
+    }
+  }
+
   async bool upload_media(MediaUpload media_upload, Account account, GLib.Cancellable? cancellable = null) {
     var upload_proxy = new Rest.OAuthProxy(account.proxy.consumer_key,
                                            account.proxy.consumer_secret,
@@ -687,7 +722,6 @@ namespace TweetUtils {
       return false;
     }
     var chunk_idx = 0;
-    var max_chunk_size = 5 * 1024 * 1024;
     size_t total_uploaded = 0;
     int64 filesize = media_upload.filesize;
     media_upload.progress = 0;
@@ -696,7 +730,7 @@ namespace TweetUtils {
       var append_call = upload_proxy.new_call();
       GLib.Bytes chunk;
       try {
-        chunk = file_reader.read_bytes(max_chunk_size);
+        chunk = file_reader.read_bytes(MAX_CHUNK_SIZE);
       }
       catch (GLib.Error e) {
         media_upload.progress_complete(e);
@@ -711,32 +745,11 @@ namespace TweetUtils {
       append_call.add_param_full(media_param);
 
       try {
-        // FIXME: We should be able to use `upload` to get more granular progress, but it loses the closures and we end up with null objects and then segfaults
-        // (But sometimes the segfaults are in slice allocation within widget resizing)
-        yield append_call.invoke_async(cancellable);
-        /*
-        append_call.upload((call, total, uploaded, error, weak_object) => {
-          if (error != null) {
-            if (media_upload != null) {
-              media_upload.progress_complete(error.message);
-            }
-            // TODO: Handle error
-            warning("Upload error: %s", error.message);
-            upload_media.callback();
-            return;
-          }
-          if (media_upload != null) {
-            media_upload.progress = (double)(total_uploaded + uploaded) / (double)filesize;
-          }
-          else {
-            debug("Media upload was null");
-          }
-          if (total == uploaded) {
-            upload_media.callback();
-            return;
-          }
-        }, cancellable);
-        yield; */
+        // Use a helper object to work around Vala only expecting a calback to be called once before freeing its closure,
+        // which causes segfaults
+        var upload_progress = new UploadProgress(media_upload, filesize, total_uploaded, upload_media.callback);
+        append_call.upload(upload_progress.callback, cancellable);
+        yield;
       }
       catch (GLib.Error e) {
         media_upload.progress_complete(TweetUtils.failed_request_to_error (append_call, e));
