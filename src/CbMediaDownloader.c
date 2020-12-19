@@ -19,6 +19,7 @@
 #include <libsoup/soup.h>
 #include <oauth.h>
 #include <gdk/gdk.h>
+#include <stdlib.h>
 #include <string.h>
 
 G_DEFINE_TYPE (CbMediaDownloader, cb_media_downloader, G_TYPE_OBJECT);
