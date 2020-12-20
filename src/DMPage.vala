@@ -61,12 +61,13 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
   private Gtk.Button? emoji_button = null;
   private GLib.Cancellable? cancellable;
   private DMPlaceholderBox placeholder_box = new DMPlaceholderBox ();
-
+  
   private int64 first_dm_id;
   public int64 user_id;
   private string user_name;
   private string screen_name;
   private bool was_scrolled_down = false;
+  private bool first_load = true;
   private uint update_time_delta_timeout = 0;
   private MediaUpload media_upload;
 
@@ -106,17 +107,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
       }
       TweetUtils.upload_media.begin (upload, account, null);
       set_send_sensitive_state();
-    });
-
-    /* The GTK+ version might not have this emoji data variant */
-    try {
-      if (GLib.resources_get_info ("/org/gtk/libgtk/emoji/emoji.data",
-                                   GLib.ResourceLookupFlags.NONE, null, null)) {
-        setup_emoji_chooser ();
-      }
-    } catch (GLib.Error e) {
-      // Ignore, just don't show the emoji chooser
-    }    
+    });  
   }
 
   public void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
@@ -353,6 +344,25 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     int64 user_id = args.get_int64 (KEY_SENDER_ID);
     if (user_id == 0)
       return;
+
+    if (first_load) {
+      /* The GTK+ version might not have this emoji data variant */
+      /* And we might not want to display our emoji picker if we're on a tiny screen (e.g. a phone) */
+      try {      
+        Gdk.Display default_display = Gdk.Display.get_default();
+        Gdk.Monitor current_monitor = default_display.get_monitor_at_window(parent.get_window());
+        Gdk.Rectangle workarea = current_monitor.get_workarea();
+        if (workarea.width >= Cawbird.RESPONSIVE_LIMIT &&
+            GLib.resources_get_info ("/org/gtk/libgtk/emoji/emoji.data",
+                                     GLib.ResourceLookupFlags.NONE, null, null)) {
+          setup_emoji_chooser ();
+        }
+      } catch (GLib.Error e) {
+        // Ignore, just don't show the emoji chooser
+      }
+
+      first_load = false;
+    }
 
     media_upload = null;
     image_error_label.visible = false;
