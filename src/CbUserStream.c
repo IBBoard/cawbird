@@ -217,7 +217,7 @@ stream_tweet (CbUserStream *self,
 
   JsonGenerator *gen = json_generator_new ();
   json_generator_set_root (gen, node);
-  json_generator_set_pretty (gen, TRUE);
+  json_generator_set_pretty (gen, FALSE);
   gchar *json_dump = json_generator_to_data (gen, NULL);
   g_print ("%s", json_dump);
 #endif
@@ -587,10 +587,9 @@ load_dm_tweets_done  (GObject *source_object,
 
   JsonGenerator *gen = json_generator_new ();
   json_generator_set_root (gen, root_node);
-  json_generator_set_pretty (gen, TRUE);
+  json_generator_set_pretty (gen, FALSE);
   gchar *json_dump = json_generator_to_data (gen, NULL);
   g_print ("%s", json_dump);
-  g_print("Done DMs");
 #endif
 
   root_obj = json_node_get_object (root_node);
