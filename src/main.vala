@@ -16,9 +16,9 @@
  */
 
 int main (string[] args) {
-  // Pass just the args and not the command or else things fail
-  Cb.Utils.init_gui(ref args);
-
+#if X11
+  X.init_threads();
+#endif
 #if VIDEO
   Gst.init (ref args);
 #endif

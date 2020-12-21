@@ -705,15 +705,3 @@ cb_utils_query_users_finish (GAsyncResult  *result,
 
   return ids;
 }
-
-void
-cb_utils_init_gui (gint *argc, gchar ***argv)
-{
-  // We appear to need to do this in C rather than Vala as the only way to get the macros
-#ifdef GDK_WINDOWING_WAYLAND
-  // Nothing Wayland-specific to do at the moment
-#endif
-#ifdef GDK_WINDOWING_X11
-  XInitThreads ();
-#endif
-}

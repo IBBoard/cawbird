@@ -65,6 +65,8 @@ if (enable_spellcheck)
 endif
 
 if (enable_x11)
+  add_project_arguments('-DX11', language: 'c')
+  add_project_arguments('-D', 'X11', language: 'vala')
   cb_deps += [dependency('x11')]
 endif
 
