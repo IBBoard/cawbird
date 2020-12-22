@@ -48,7 +48,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
   [GtkChild]
   private ComposeImageManager compose_image_manager;
   [GtkChild]
-  private Gtk.Button add_image_button;
+  private Gtk.Button add_media_button;
   [GtkChild]
   private FavImageView fav_image_view;
   [GtkChild]
@@ -97,7 +97,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     compose_image_manager.proxy = account.proxy;
     compose_image_manager.image_removed.connect ((uuid) => {
       media_upload = null;
-      this.add_image_button.sensitive = true;
+      this.add_media_button.sensitive = true;
       this.fav_image_button.sensitive = true;
       this.compose_image_manager.hide ();
     });
@@ -634,7 +634,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
   }
 
   [GtkCallback]
-  private void add_image_clicked_cb (Gtk.Button source) {
+  private void add_media_clicked_cb (Gtk.Button source) {
     var filechooser = new Gtk.FileChooserNative (_("Select Image"),
                                                  this.main_window,
                                                  Gtk.FileChooserAction.OPEN,
@@ -646,6 +646,9 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     filter.add_mime_type ("image/png");
     filter.add_mime_type ("image/jpeg");
     filter.add_mime_type ("image/gif");
+    filter.add_mime_type ("image/webp");
+    filter.add_mime_type ("video/mpeg");
+    filter.add_mime_type ("video/mp4");
     filechooser.set_filter (filter);
 
     if (filechooser.run () == Gtk.ResponseType.ACCEPT) {
@@ -669,13 +672,18 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
                                           GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," +
                                           GLib.FileAttribute.STANDARD_SIZE, 0);
     var content_type = info.get_content_type();
+    var is_video = content_type.has_prefix("video/");
     var is_image = content_type.has_prefix("image/");
     var is_gif = is_image && content_type == "image/gif";
     var file_size = info.get_size();
 
-    if (!is_image) {
-      image_error_label.label = _("Selected file is not an image.");
+    if (!is_image && !is_video) {
+      image_error_label.label = _("Selected file is not an image or video.");
       image_error_label.visible = true;
+    } else if (is_video && file_size > Twitter.MAX_BYTES_PER_VIDEO) {
+      image_error_label.label = _("The selected video is too big. The maximum file size per video is %'d MB")
+                                .printf (Twitter.MAX_BYTES_PER_VIDEO / 1024 / 1024);
+                                image_error_label.visible = true;
     } else if (!is_gif && file_size > Twitter.MAX_BYTES_PER_IMAGE) {
       image_error_label.label = _("The selected image is too big. The maximum file size per image is %'d MB")
                                 .printf (Twitter.MAX_BYTES_PER_IMAGE / 1024 / 1024);
@@ -697,7 +705,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
       this.compose_image_manager.show ();
       this.compose_image_manager.load_media (media_upload);
       TweetUtils.upload_media.begin (media_upload, account, cancellable);
-      this.add_image_button.sensitive = false;
+      this.add_media_button.sensitive = false;
       this.fav_image_button.sensitive = false;
       image_error_label.visible = false;
     }

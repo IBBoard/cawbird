@@ -42,7 +42,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
   [GtkChild]
   private ComposeImageManager compose_image_manager;
   [GtkChild]
-  private Gtk.Button add_image_button;
+  private Gtk.Button add_media_button;
   [GtkChild]
   private Gtk.Stack stack;
   [GtkChild]
@@ -130,7 +130,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
 
     this.compose_image_manager.image_removed.connect ((upload) => {
       if (!this.compose_image_manager.full) {
-        this.add_image_button.sensitive = true;
+        this.add_media_button.sensitive = true;
         this.fav_image_button.sensitive = true;
       }
 
@@ -138,7 +138,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
 
       if (path != null && path.down ().has_suffix (".gif")) {
         fav_image_view.set_gifs_enabled (true);
-        this.add_image_button.sensitive = true;
+        this.add_media_button.sensitive = true;
         this.fav_image_button.sensitive = true;
       }
 
@@ -338,7 +338,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
 
     tweet_text.sensitive = !sending;
     fav_image_button.sensitive = !sending;
-    add_image_button.sensitive = !sending;
+    add_media_button.sensitive = !sending;
 
     if (emoji_button != null)
     {
@@ -474,7 +474,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
   }
 
   [GtkCallback]
-  private void add_image_clicked_cb (Gtk.Button source) {
+  private void add_media_clicked_cb (Gtk.Button source) {
     var filechooser = new Gtk.FileChooserNative (_("Select Image"),
                                                  this,
                                                  Gtk.FileChooserAction.OPEN,
@@ -486,6 +486,9 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     filter.add_mime_type ("image/png");
     filter.add_mime_type ("image/jpeg");
     filter.add_mime_type ("image/gif");
+    filter.add_mime_type ("image/webp");
+    filter.add_mime_type ("video/mpeg");
+    filter.add_mime_type ("video/mp4");
     filechooser.set_filter (filter);
 
     if (filechooser.run () == Gtk.ResponseType.ACCEPT) {
@@ -513,15 +516,23 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
                                           GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," +
                                           GLib.FileAttribute.STANDARD_SIZE, 0);
     var content_type = info.get_content_type();
+    var is_video = content_type.has_prefix("video/");
     var is_image = content_type.has_prefix("image/");
     var is_gif = is_image && content_type == "image/gif";
     var file_size = info.get_size();
 
-    if (!is_image) {
+
+    if (!is_image && !is_video) {
       stack.visible_child = image_error_grid;
-      image_error_label.label = _("Selected file is not an image.");
+      image_error_label.label = _("Selected file is not an image or video.");
       cancel_button.label = _("Back");
       send_button.sensitive = false;
+    } else if (is_video && file_size > Twitter.MAX_BYTES_PER_VIDEO) {
+      stack.visible_child = image_error_grid;
+      image_error_label.label = _("The selected video is too big. The maximum file size per video is %'d MB")
+                                .printf (Twitter.MAX_BYTES_PER_VIDEO / 1024 / 1024);
+      cancel_button.label = _("Back");
+      send_button.sensitive = false;      
     } else if (!is_gif && file_size > Twitter.MAX_BYTES_PER_IMAGE) {
       stack.visible_child = image_error_grid;
       image_error_label.label = _("The selected image is too big. The maximum file size per image is %'d MB")
@@ -548,7 +559,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
         fav_image_view.set_gifs_enabled (false);
       }
       if (this.compose_image_manager.full) {
-        this.add_image_button.sensitive = false;
+        this.add_media_button.sensitive = false;
         this.fav_image_button.sensitive = false;
       }
       update_send_button_sensitivity ();

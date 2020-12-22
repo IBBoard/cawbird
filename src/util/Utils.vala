@@ -80,6 +80,7 @@ int twitter_item_sort_func_inv (Gtk.ListBoxRow a, Gtk.ListBoxRow b) {
 Cairo.Surface? load_surface (string path)
 {
   try {
+    // FIXME: Use a different method if it is a video
     var p = new Gdk.Pixbuf.from_file (path);
     var s = Gdk.cairo_surface_create_from_pixbuf (p, 1, null);
     return s;
