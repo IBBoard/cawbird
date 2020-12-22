@@ -724,11 +724,15 @@ public class Account : GLib.Object {
     if (GLib.unlikely (accounts == null))
       lookup_accounts ();
 
+    var lower_screen_name = screen_name.down();
+
     for (uint i = 0; i < accounts.length; i ++) {
       unowned Account a = accounts.get (i);
 
-      if (screen_name == a.screen_name ||
-          screen_name == "@" + a.screen_name)
+      var acct_screen_name = a.screen_name.down();
+
+      if (lower_screen_name == acct_screen_name ||
+          lower_screen_name == "@" + acct_screen_name)
         return a;
     }
     return null;
