@@ -3,6 +3,7 @@
 data/uk.co.ibboard.cawbird.appdata.xml.in
 data/uk.co.ibboard.cawbird.desktop.in
 src/CbUtils.c
+src/Cawbird.vala
 src/DMPage.vala
 src/DMThreadsPage.vala
 src/DefaultTimeline.vala

@@ -46,9 +46,7 @@ public class Cawbird : Gtk.Application {
 
 
   public Cawbird () {
-    GLib.Object(application_id:   "uk.co.ibboard.cawbird",
-                flags:            ApplicationFlags.HANDLES_COMMAND_LINE);
-                //register_session: true);
+    GLib.Object(application_id:   "uk.co.ibboard.cawbird");
     active_accounts = new GLib.GenericArray<Account> ();
 
     /* Create the directories here already since the database below needs it */
@@ -115,63 +113,48 @@ public class Cawbird : Gtk.Application {
     }
 
     snippet_manager = new Cb.SnippetManager (db.get_sqlite_db ());
-  }
-
-  public override int command_line (ApplicationCommandLine cmd) {
-    string? compose_screen_name = null;
-    bool start_service = false;
-    bool stop_service = false;
-    bool print_startup_accounts = false;
-    bool stresstest = false;
-    string? account_name = null;
 
     OptionEntry[] options = new OptionEntry[7];
-    options[0] = {"tweet", 't', 0, OptionArg.STRING, ref compose_screen_name,
-                  "Shows only the 'compose tweet' window for the given account, nothing else.", "account name"};
-    options[1] = {"start-service", 's', 0, OptionArg.NONE, ref start_service,
-                  "Start service", null};
-    options[2] = {"stop-service", 'p', 0, OptionArg.NONE, ref stop_service,
-                  "Stop service, if it has been started as a service", null};
-    options[3] = {"print-startup-accounts", 'a', 0, OptionArg.NONE, ref print_startup_accounts,
-                  "Print configured startup accounts", null};
-    options[4] = {"account", 'c', 0, OptionArg.STRING, ref account_name,
-                  "Open the window for the given account", "account name"};
-    options[5] = {"stresstest", 'r', GLib.OptionFlags.HIDDEN, OptionArg.NONE, ref stresstest,
-                  "Debugging only.", null};
-
+    // TRANSLATORS: Description of the `--tweet` option for the command-line
+    options[0] = {"tweet", 't', 0, OptionArg.STRING, null, _("Shows only the 'compose tweet' window for the given account, nothing else."), 
+                  // TRANSLATORS: Used as the placeholder for the account name in the `--help` output
+                  _("account-name") };
+    // TRANSLATORS: Description of the `--start-service` option for the command-line
+    options[1] = {"start-service", 's', 0, OptionArg.NONE, null, _("Start service"), null};
+    // TRANSLATORS: Description of the `--stop-service` option for the command-line
+    options[2] = {"stop-service", 'p', 0, OptionArg.NONE, null, _("Stop service, if it has been started as a service"), null};
+    // TRANSLATORS: Description of the `--print-startup-accounts` option for the command-line
+    options[3] = {"print-startup-accounts", 'a', 0, OptionArg.NONE, null, _("Print configured startup accounts"), null};
+    // TRANSLATORS: Description of the `--account` option for the command-line
+    options[4] = {"account", 'c', 0, OptionArg.STRING, null, _("Open the window for the given account"), _("account-name")};
+    options[5] = {"stresstest", 'r', GLib.OptionFlags.HIDDEN, OptionArg.NONE, null, "Debugging only.", null};
     options[6] = {null};
-
-    string[] args = cmd.get_arguments ();
-    string*[] _args = new string[args.length];
-    for (int i = 0; i < args.length; i++) {
-      _args[i] = args[i];
-    }
-
-    try {
-      var opt_context = new OptionContext ("");
-      opt_context.set_help_enabled (true);
-      opt_context.add_main_entries (options, Config.GETTEXT_PACKAGE);
-      opt_context.add_group (Gtk.get_option_group (false));
+    this.add_main_option_entries(options);
 #if VIDEO
-      opt_context.add_group (Gst.init_get_option_group ());
+    this.add_option_group (Gst.init_get_option_group ());
 #endif
-      unowned string[] tmp = _args;
-      opt_context.parse (ref tmp);
-    } catch (GLib.OptionError e) {
-      cmd.print ("Use --help to see available options\n");
-      quit ();
-      return -1;
+    this.handle_local_options.connect(handle_handle_local_options);
+    this.command_line.connect(handle_handle_global_options);
+    this.activate.connect(handle_activate);
+    this.startup.connect(handle_startup);
+    this.shutdown.connect(handle_shutdown);
+  }
+
+  private int handle_handle_local_options(GLib.VariantDict options) {
+    if (options.contains("print-startup-accounts")) {
+      string[] startup_accounts = Settings.get ().get_strv ("startup-accounts");
+      foreach (unowned string acc in startup_accounts) {
+        stdout.printf ("%s\n", acc);
+      }
+      return 0;
     }
+    return -1;
+  }
 
-    if (stop_service && start_service) {
-      error ("Can't stop and start service at the same time.");
-    }
-
-    if (stresstest)
-      STRESSTEST = true;
-
-
-    if (stop_service) {
+  private int handle_handle_global_options (GLib.ApplicationCommandLine cmd_line) {
+    var name = null;
+    var options = cmd_line.get_options_dict();
+    if (options.contains("stop-service")) {
       if (this.started_as_service) {
         debug ("Stopping service");
         /* Starting as a service adds an extra hold() */
@@ -179,22 +162,25 @@ public class Cawbird : Gtk.Application {
       } else {
         warning ("--stop-service passed, but cawbird has not been started as a service");
       }
-    } else if (print_startup_accounts) {
-      string[] startup_accounts = Settings.get ().get_strv ("startup-accounts");
-      foreach (unowned string acc in startup_accounts) {
-        stdout.printf ("%s\n", acc);
+      return 0;
+    } else if (options.contains("start-service")) {
+      if (!this.started_as_service) {
+        this.started_as_service = true;
       }
-    } else if (start_service && !this.started_as_service) {
-      this.started_as_service = true;
-      this.activate ();
-    } else {
-      open_startup_windows (compose_screen_name, account_name);
+      return 0;
+    } else if (options.lookup("tweet", "s", ref name)) {
+      open_startup_windows (name, null);        
+      return 0;
+    }
+    else if (options.lookup("account", "s", ref name)) {
+      open_startup_windows(null, name);
+      return 0;
     }
 
     return 0;
   }
 
-  public override void activate () {
+  private void handle_activate () {
     if (started_as_service) {
       this.hold ();
 
@@ -251,8 +237,7 @@ public class Cawbird : Gtk.Application {
     shortcuts_window.show ();
   }
 
-  public override void startup () {
-    base.startup ();
+  private void handle_startup () {
     this.set_resource_base_path ("/uk/co/ibboard/cawbird");
 
     typeof (LazyMenuButton).ensure ();
@@ -313,9 +298,8 @@ public class Cawbird : Gtk.Application {
 
   }
 
-  public override void shutdown () {
+  private void handle_shutdown () {
     Cb.MediaDownloader.get_default ().shutdown ();
-    base.shutdown ();
   }
 
   /**

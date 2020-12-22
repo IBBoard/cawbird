@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-12-08 20:19+0000\n"
+"POT-Creation-Date: 2020-12-22 16:47+0000\n"
 "PO-Revision-Date: 2018-03-01 17:12+0000\n"
 "Last-Translator: Egor Erastov <egor.er24@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -84,6 +84,32 @@ msgstr "и"
 #. * in a tweet
 #, c-format
 msgid "and %d others"
+msgstr ""
+
+#. TRANSLATORS: Description of the `--tweet` option for the command-line
+msgid ""
+"Shows only the 'compose tweet' window for the given account, nothing else."
+msgstr ""
+
+#. TRANSLATORS: Used as the placeholder for the account name in the `--help` output
+msgid "account-name"
+msgstr ""
+
+#. TRANSLATORS: Description of the `--start-service` option for the command-line
+msgid "Start service"
+msgstr ""
+
+#. TRANSLATORS: Description of the `--stop-service` option for the command-line
+msgid "Stop service, if it has been started as a service"
+msgstr ""
+
+#. TRANSLATORS: Description of the `--print-startup-accounts` option for the command-line
+#, fuzzy
+msgid "Print configured startup accounts"
+msgstr "Настройки аккаунтов"
+
+#. TRANSLATORS: Description of the `--account` option for the command-line
+msgid "Open the window for the given account"
 msgstr ""
 
 #, fuzzy, c-format
