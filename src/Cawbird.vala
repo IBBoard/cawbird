@@ -133,14 +133,14 @@ public class Cawbird : Gtk.Application {
 #if VIDEO
     this.add_option_group (Gst.init_get_option_group ());
 #endif
-    this.handle_local_options.connect(handle_handle_local_options);
-    this.command_line.connect(handle_handle_global_options);
+    this.handle_local_options.connect(do_handle_local_options);
+    this.command_line.connect(handle_global_options);
     this.activate.connect(handle_activate);
     this.startup.connect(handle_startup);
     this.shutdown.connect(handle_shutdown);
   }
 
-  private int handle_handle_local_options(GLib.VariantDict options) {
+  private int do_handle_local_options(GLib.VariantDict options) {
     if (options.contains("print-startup-accounts")) {
       string[] startup_accounts = Settings.get ().get_strv ("startup-accounts");
       foreach (unowned string acc in startup_accounts) {
@@ -151,7 +151,7 @@ public class Cawbird : Gtk.Application {
     return -1;
   }
 
-  private int handle_handle_global_options (GLib.ApplicationCommandLine cmd_line) {
+  private int handle_global_options (GLib.ApplicationCommandLine cmd_line) {
     var name = null;
     var options = cmd_line.get_options_dict();
     if (options.contains("stop-service")) {
@@ -177,7 +177,7 @@ public class Cawbird : Gtk.Application {
       return 0;
     }
 
-    return 0;
+    return -1;
   }
 
   private void handle_activate () {
