@@ -94,6 +94,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     scroll_widget.scrolled_to_start.connect((value) => {
       load_dms.begin();
     });
+    compose_image_manager.max_images = 1;
     compose_image_manager.proxy = account.proxy;
     compose_image_manager.image_removed.connect ((uuid) => {
       media_upload = null;
@@ -635,20 +636,23 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
 
   [GtkCallback]
   private void add_media_clicked_cb (Gtk.Button source) {
-    var filechooser = new Gtk.FileChooserNative (_("Select Image"),
+    var filechooser = new Gtk.FileChooserNative (_("Select Media"),
                                                  this.main_window,
                                                  Gtk.FileChooserAction.OPEN,
                                                  _("Open"),
                                                  _("Cancel"));
 
-
     var filter = new Gtk.FileFilter ();
     filter.add_mime_type ("image/png");
     filter.add_mime_type ("image/jpeg");
-    filter.add_mime_type ("image/gif");
     filter.add_mime_type ("image/webp");
-    filter.add_mime_type ("video/mpeg");
-    filter.add_mime_type ("video/mp4");
+    filter.add_mime_type ("image/gif");
+
+    if (compose_image_manager.n_images == 0) {
+      filter.add_mime_type ("video/mpeg");
+      filter.add_mime_type ("video/mp4");
+    }
+
     filechooser.set_filter (filter);
 
     if (filechooser.run () == Gtk.ResponseType.ACCEPT) {
@@ -674,7 +678,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     var content_type = info.get_content_type();
     var is_video = content_type.has_prefix("video/");
     var is_image = content_type.has_prefix("image/");
-    var is_gif = is_image && content_type == "image/gif";
+    var is_animated_gif = is_image && Utils.is_animated_gif(filename);
     var file_size = info.get_size();
 
     if (!is_image && !is_video) {
@@ -684,11 +688,11 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
       image_error_label.label = _("The selected video is too big. The maximum file size per video is %'d MB")
                                 .printf (Twitter.MAX_BYTES_PER_VIDEO / 1024 / 1024);
                                 image_error_label.visible = true;
-    } else if (!is_gif && file_size > Twitter.MAX_BYTES_PER_IMAGE) {
+    } else if (!is_animated_gif && file_size > Twitter.MAX_BYTES_PER_IMAGE) {
       image_error_label.label = _("The selected image is too big. The maximum file size per image is %'d MB")
                                 .printf (Twitter.MAX_BYTES_PER_IMAGE / 1024 / 1024);
       image_error_label.visible = true;
-    } else if (is_gif && file_size > Twitter.MAX_BYTES_PER_GIF) {
+    } else if (is_animated_gif && file_size > Twitter.MAX_BYTES_PER_GIF) {
       image_error_label.label = _("The selected GIF is too big. The maximum file size per GIF is %'d MB")
                                 .printf (Twitter.MAX_BYTES_PER_GIF / 1024 / 1024);
       image_error_label.visible = true;

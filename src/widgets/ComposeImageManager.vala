@@ -31,10 +31,25 @@ class ComposeImageManager : Gtk.Container {
       return this.buttons.length;
     }
   }
+
+  public int max_images { get; set; default = Twitter.max_media_per_upload; }
+
+  // Is there an *animated* GIF?
   public bool has_gif {
     get {
-      for (int i = 0; i < buttons.length; i ++) {
-        if (buttons.get (i).image_path.has_suffix (".gif")) {
+      for (int i = 0; i < uploads.length; i ++) {
+        if (uploads.get (i).media_category.has_suffix("gif")) {
+          return true;
+        }
+      }
+      return false;
+
+    }
+  }
+  public bool has_video {
+    get {
+      for (int i = 0; i < uploads.length; i ++) {
+        if (uploads.get (i).media_category.has_suffix("video")) {
           return true;
         }
       }
@@ -44,8 +59,8 @@ class ComposeImageManager : Gtk.Container {
   }
   public bool full {
     get {
-      return this.buttons.length == Twitter.max_media_per_upload ||
-             this.has_gif;
+      return this.buttons.length == max_images ||
+             this.has_gif || this.has_video;
     }
   }
 

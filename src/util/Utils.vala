@@ -579,4 +579,20 @@ namespace Utils {
     }
     return Gdk.EVENT_PROPAGATE;
   }
+
+  public bool is_animated_gif(string filepath) {
+    if (filepath.has_suffix(".gif")) {
+      // Be lazy and light-weight and assume GIFs are ".gif" rather than doing proper type checking
+      try {
+        var gif = new Gdk.PixbufAnimation.from_file(filepath);
+        return !gif.is_static_image();
+      }
+      catch (GLib.Error e) {
+        return false;
+      }
+    }
+    else {
+      return false;
+    }
+  }
 }

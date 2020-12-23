@@ -36,20 +36,12 @@
             cat = "%s_video".printf(prefix);
           }
           else if (filetype == "image/gif") {
-            try {
-              // Animated GIFs are "blah_gif" but static GIFs are "blah_image"
-              var gif = new Gdk.PixbufAnimation.from_file(filepath);
-              if (gif.is_static_image()) {
-                cat = "%s_image".printf(prefix);
-              }
-              else {
-                cat = "%s_gif".printf(prefix);
-              }
-            }
-            catch (GLib.Error e) {
-              // If PixbufAnimation failed then it'll error later anyway, and we don't want to
-              // throw errors from a property, so assume it's animated and see what the API does later
+            // Animated GIFs are "blah_gif" but static GIFs are "blah_image"
+            if (Utils.is_animated_gif(filepath)) {
               cat = "%s_gif".printf(prefix);
+            }
+            else {
+              cat = "%s_image".printf(prefix);
             }
           }
           else {
