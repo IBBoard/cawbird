@@ -788,8 +788,14 @@ namespace TweetUtils {
         break;
       }
       else if (state == "failed") {
-        // TODO: Translate. But how often does it fail? The only example given is "Unsupported video format"
-        var message = processing_info.get_object_member("error").get_string_member("message");
+        var error_code = processing_info.get_object_member("error").get_int_member("code");
+        string message;
+        if (error_code == 1) {
+          message = _("Invalid media file");
+        }
+        else {
+          message = _("Unknown error code %lld during upload").printf(error_code);
+        }
         media_upload.progress_complete(new GLib.Error.literal(TweetUtils.get_error_domain(), 0, message));
         return false;
       }
