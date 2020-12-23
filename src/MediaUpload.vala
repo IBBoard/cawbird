@@ -27,18 +27,34 @@
         return fileinfo.get_content_type ();
       }
     }
+    private string? cat;
     public string media_category {
       owned get {
-        var prefix = dm ? "dm" : "tweet";
-        string cat;
-        if (filetype.has_prefix("video/")) {
-          cat = "%s_video".printf(prefix);
-        }
-        else if (filetype == "image/gif") {
-          cat = "%s_gif".printf(prefix);
-        }
-        else {
-          cat = "%s_image".printf(prefix);
+        if (cat == null) {
+          var prefix = dm ? "dm" : "tweet";
+          if (filetype.has_prefix("video/")) {
+            cat = "%s_video".printf(prefix);
+          }
+          else if (filetype == "image/gif") {
+            try {
+              // Animated GIFs are "blah_gif" but static GIFs are "blah_image"
+              var gif = new Gdk.PixbufAnimation.from_file(filepath);
+              if (gif.is_static_image()) {
+                cat = "%s_image".printf(prefix);
+              }
+              else {
+                cat = "%s_gif".printf(prefix);
+              }
+            }
+            catch (GLib.Error e) {
+              // If PixbufAnimation failed then it'll error later anyway, and we don't want to
+              // throw errors from a property, so assume it's animated and see what the API does later
+              cat = "%s_gif".printf(prefix);
+            }
+          }
+          else {
+            cat = "%s_image".printf(prefix);
+          }
         }
         return cat;
       }
