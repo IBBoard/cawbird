@@ -203,6 +203,12 @@ Note that the above packages are just rough estimations, the actual package name
 
 If you pass `--disable-video` to the configure script, you don't need any gstreamer dependency but won't be able to view any videos.
 
+## Copyright
+
+Cawbird is released under the GPL v3 - see [COPYING](./COPYING) for more details.
+
+The [video fallback image](data/symbolic/apps/cawbird-video-placeholder.svg) is a Creative Commons "CC BY" licensed work [by Iris Li](https://thenounproject.com/term/film-reel/20395/).
+
 ## Footnotes
 
 <a name="footnote1"></a>1: [home:IBBoard:desktop](https://build.opensuse.org/project/show/home:IBBoard:desktop)

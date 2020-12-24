@@ -33,6 +33,10 @@ enum Page {
   NEXT = 2048
 }
 
+public Quark get_error_domain() {
+  return Quark.from_string("cawbird-utils");
+}
+
 static Soup.Session SOUP_SESSION = null;
 
 const int TRANSITION_DURATION = 200 * 1000;
@@ -75,18 +79,75 @@ int twitter_item_sort_func_inv (Gtk.ListBoxRow a, Gtk.ListBoxRow b) {
   return 1;
 }
 
-
-
 Cairo.Surface? load_surface (string path)
 {
   try {
-    // FIXME: Use a different method if it is a video
     var p = new Gdk.Pixbuf.from_file (path);
     var s = Gdk.cairo_surface_create_from_pixbuf (p, 1, null);
     return s;
   } catch (GLib.Error e) {
     warning (e.message);
     return null;
+  }
+}
+
+Cairo.Surface create_video_placeholder_surface ()
+{
+  try {
+    Gdk.Pixbuf pixbuf;
+    try {
+      pixbuf = Gtk.IconTheme.get_default().load_icon("video-x-generic", 512, 0);
+    }
+    catch (GLib.Error e) {
+      pixbuf = new Gdk.Pixbuf.from_resource("/uk/co/ibboard/cawbird/data/symbolic/apps/cawbird-video-placeholder.svg");
+    }
+    return Gdk.cairo_surface_create_from_pixbuf (pixbuf, 1, null);
+  }
+  catch (GLib.Error e) {
+    warning("Failed to load video icon *and* fallback resource!");
+    return new Cairo.ImageSurface(Cairo.Format.RGB24, 512, 512);
+  }
+}
+
+Cairo.Surface? load_surface_for_video (string path)
+{
+  try {
+    // Based on https://gitlab.freedesktop.org/gstreamer/gst-plugins-base/-/blob/master/tests/examples/snapshot/snapshot.c
+    var playbin = Gst.parse_launch("uridecodebin uri=file://%s ! videoconvert ! videoscale ! appsink name=sink caps=\"video/x-raw,format=BGRx,pixel-aspect-ratio=1/1\"".printf(path));
+    playbin.set_state(Gst.State.PAUSED);
+    // Wait for the state change
+    playbin.get_state(null, null, 5 * Gst.SECOND);
+    playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.KEY_UNIT | Gst.SeekFlags.FLUSH, 1000);
+    var sink = ((Gst.Bin)playbin).get_by_name("sink");
+    Gst.Sample sample;
+    Signal.emit_by_name(sink, "pull-preroll", out sample, null);
+    if(sample == null) {
+      throw new GLib.Error(get_error_domain(), 1, "Null GStreamer sample");
+    }
+    var sample_caps = sample.get_caps();
+    if(sample_caps == null) {
+      throw new GLib.Error(get_error_domain(), 2, "Null GStreamer sample caps");
+    }
+    unowned Gst.Structure structure = sample_caps.get_structure(0);
+    int width = structure.get_value("width").get_int();
+    int height = structure.get_value("height").get_int();
+    var buffer = sample.get_buffer();
+    size_t offset;
+    size_t max_size;
+    var size = buffer.get_sizes(out offset, out max_size);
+    uint8[] data;
+    buffer.extract_dup(offset, size, out data);
+    // Paint one surface on to another so that we don't have to keep the byte array around
+    var screencap_surface = new Cairo.ImageSurface.for_data(data, Cairo.Format.RGB24, width, height, Cairo.Format.RGB24.stride_for_width(width));
+    var surface = new Cairo.ImageSurface(Cairo.Format.RGB24, width, height);
+    var context = new Cairo.Context(surface);
+    context.set_source_surface(screencap_surface, 0, 0);
+    context.paint();
+    return surface;
+  }
+  catch (GLib.Error e) {
+    warning("Error creating thumbnail from video for %s: %s", path, e.message);
+    return create_video_placeholder_surface();
   }
 }
 

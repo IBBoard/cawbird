@@ -404,7 +404,13 @@ class ComposeImageManager : Gtk.Container {
 
     this.uploads.add(upload);
 
-    Cairo.ImageSurface surface = (Cairo.ImageSurface) load_surface (upload.filepath);
+    Cairo.ImageSurface surface;
+    if (upload.media_category.has_suffix("video")) {
+      surface = (Cairo.ImageSurface)load_surface_for_video (upload.filepath);
+    }
+    else {
+      surface = (Cairo.ImageSurface)load_surface (upload.filepath);
+    }
 
     var button = new AddImageButton (upload);
     button.surface = surface;
