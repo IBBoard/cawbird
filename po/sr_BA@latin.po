@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-12-22 16:47+0000\n"
+"POT-Creation-Date: 2020-12-24 20:53+0000\n"
 "PO-Revision-Date: 2017-11-20 17:05+0000\n"
 "Last-Translator: Slobodan Terzić <githzerai06@gmail.com>\n"
 "Language-Team: Serbian (Latin) (http://www.transifex.com/cawbird/cawbird/"
@@ -104,7 +104,8 @@ msgstr ""
 msgid "Direct messages with %s"
 msgstr "Direktne poruke"
 
-msgid "Select Image"
+#, fuzzy
+msgid "Select Media"
 msgstr "Izaberi sliku"
 
 msgid "Open"
@@ -113,8 +114,16 @@ msgstr "Otvori"
 msgid "Cancel"
 msgstr "Otkaži"
 
-msgid "Selected file is not an image."
+#, fuzzy
+msgid "Selected file is not an image or video."
 msgstr "Izabrana datoteka nije slika."
+
+#, fuzzy, c-format
+msgid ""
+"The selected video is too big. The maximum file size per video is %'d MB"
+msgstr ""
+"Izabrana slika je suviše velika. Najveća dozvoljena veličina datoteke po "
+"slici je %'d megabajta"
 
 #, c-format
 msgid ""
@@ -473,6 +482,13 @@ msgstr ""
 msgid "The original Tweet author restricted who can reply to this Tweet."
 msgstr ""
 
+msgid "Invalid media file"
+msgstr ""
+
+#, c-format
+msgid "Unknown error code %lld during upload"
+msgstr ""
+
 msgid "Now"
 msgstr "sada"
 
@@ -537,6 +553,9 @@ msgstr "Nalog se već koristi"
 
 msgid "Failed to retrieve access token"
 msgstr ""
+
+msgid "Select Image"
+msgstr "Izaberi sliku"
 
 msgid "Unfollow"
 msgstr "Prestani sa praćenjem"
@@ -616,7 +635,8 @@ msgstr ""
 msgid "Quote tweet"
 msgstr "Citiraj tvit"
 
-msgid "Only one GIF file per tweet is allowed."
+#, fuzzy
+msgid "Only one animated GIF file per tweet is allowed."
 msgstr "Dozvoljen je samo jedan GIF po tvitu."
 
 #, c-format
@@ -763,8 +783,8 @@ msgstr "Probajte sa drugačijom pretragom"
 msgid "Send"
 msgstr "Pošalji"
 
-msgid "Add Image"
-msgstr "Dodaj sliku"
+msgid "Add Media"
+msgstr ""
 
 msgid "Show favorite images"
 msgstr "Prikaži omiljene slike"
@@ -1085,6 +1105,9 @@ msgstr "Napravi"
 
 msgid "Subscribed to"
 msgstr "Pretplaćen(a) na"
+
+#~ msgid "Add Image"
+#~ msgstr "Dodaj sliku"
 
 #, fuzzy, c-format
 #~ msgid "%s (%s) followers"

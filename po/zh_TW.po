@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-12-22 16:47+0000\n"
+"POT-Creation-Date: 2020-12-24 20:53+0000\n"
 "PO-Revision-Date: 2018-01-17 19:31+0000\n"
 "Last-Translator: HybridGlucose <a07051226@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/cawbird/cawbird/"
@@ -103,7 +103,8 @@ msgstr ""
 msgid "Direct messages with %s"
 msgstr "訊息"
 
-msgid "Select Image"
+#, fuzzy
+msgid "Select Media"
 msgstr "選擇媒體"
 
 msgid "Open"
@@ -112,8 +113,14 @@ msgstr "開啟"
 msgid "Cancel"
 msgstr "取消"
 
-msgid "Selected file is not an image."
+#, fuzzy
+msgid "Selected file is not an image or video."
 msgstr "所選擇的檔案並非影像或圖片。"
+
+#, fuzzy, c-format
+msgid ""
+"The selected video is too big. The maximum file size per video is %'d MB"
+msgstr "所選擇的媒體檔案太大。大小上限為 %'d MB。"
 
 #, c-format
 msgid ""
@@ -456,6 +463,13 @@ msgstr ""
 msgid "The original Tweet author restricted who can reply to this Tweet."
 msgstr ""
 
+msgid "Invalid media file"
+msgstr ""
+
+#, c-format
+msgid "Unknown error code %lld during upload"
+msgstr ""
+
 msgid "Now"
 msgstr "現在"
 
@@ -516,6 +530,9 @@ msgstr "此帳戶已被加入過"
 
 msgid "Failed to retrieve access token"
 msgstr ""
+
+msgid "Select Image"
+msgstr "選擇媒體"
 
 msgid "Unfollow"
 msgstr "取消跟隨"
@@ -589,7 +606,8 @@ msgstr ""
 msgid "Quote tweet"
 msgstr "引用推文"
 
-msgid "Only one GIF file per tweet is allowed."
+#, fuzzy
+msgid "Only one animated GIF file per tweet is allowed."
 msgstr "每一則推文只允許一個GIF檔案."
 
 #, c-format
@@ -729,8 +747,8 @@ msgstr "試試其他的吧"
 msgid "Send"
 msgstr "推文"
 
-msgid "Add Image"
-msgstr "新增媒體"
+msgid "Add Media"
+msgstr ""
 
 msgid "Show favorite images"
 msgstr "顯示加入常用的媒體"
@@ -1050,6 +1068,9 @@ msgstr "建立"
 
 msgid "Subscribed to"
 msgstr "訂閱的"
+
+#~ msgid "Add Image"
+#~ msgstr "新增媒體"
 
 #, fuzzy, c-format
 #~ msgid "%s (%s) followers"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-12-22 16:47+0000\n"
+"POT-Creation-Date: 2020-12-24 20:53+0000\n"
 "PO-Revision-Date: 2017-10-22 15:14+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -107,7 +107,8 @@ msgstr ""
 msgid "Direct messages with %s"
 msgstr "Wiadomości prywatne"
 
-msgid "Select Image"
+#, fuzzy
+msgid "Select Media"
 msgstr "Wybór obrazu"
 
 msgid "Open"
@@ -116,8 +117,15 @@ msgstr "Otwórz"
 msgid "Cancel"
 msgstr "Anuluj"
 
-msgid "Selected file is not an image."
+#, fuzzy
+msgid "Selected file is not an image or video."
 msgstr "Wybrany plik nie jest obrazem."
+
+#, fuzzy, c-format
+msgid ""
+"The selected video is too big. The maximum file size per video is %'d MB"
+msgstr ""
+"Wybrany obraz jest za duży. Maksymalny rozmiar pliku na obraz to %'d MB."
 
 #, c-format
 msgid ""
@@ -480,6 +488,13 @@ msgstr ""
 msgid "The original Tweet author restricted who can reply to this Tweet."
 msgstr ""
 
+msgid "Invalid media file"
+msgstr ""
+
+#, c-format
+msgid "Unknown error code %lld during upload"
+msgstr ""
+
 msgid "Now"
 msgstr "Teraz"
 
@@ -546,6 +561,9 @@ msgstr "Konto jest już używane"
 
 msgid "Failed to retrieve access token"
 msgstr ""
+
+msgid "Select Image"
+msgstr "Wybór obrazu"
 
 msgid "Unfollow"
 msgstr "Przestań obserwować"
@@ -628,7 +646,8 @@ msgstr ""
 msgid "Quote tweet"
 msgstr "Cytowanie tweeta"
 
-msgid "Only one GIF file per tweet is allowed."
+#, fuzzy
+msgid "Only one animated GIF file per tweet is allowed."
 msgstr "Dozwolony jest tylko jeden plik GIF na tweet."
 
 #, c-format
@@ -776,8 +795,8 @@ msgstr "Proszę spróbować innych słów"
 msgid "Send"
 msgstr "Wyślij"
 
-msgid "Add Image"
-msgstr "Dodaj obraz"
+msgid "Add Media"
+msgstr ""
 
 msgid "Show favorite images"
 msgstr "Wyświetla ulubione obrazy"
@@ -1098,6 +1117,9 @@ msgstr "Utworzono"
 
 msgid "Subscribed to"
 msgstr "Subskrybowano do"
+
+#~ msgid "Add Image"
+#~ msgstr "Dodaj obraz"
 
 #, fuzzy, c-format
 #~ msgid "%s (%s) followers"

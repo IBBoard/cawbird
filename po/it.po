@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-12-22 16:47+0000\n"
+"POT-Creation-Date: 2020-12-24 20:53+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Dieg 0 <dieg0sky008@gmail.com>, 2020\n"
 "Language-Team: Italian (https://www.transifex.com/cawbird/teams/107135/it/)\n"
@@ -113,7 +113,8 @@ msgstr ""
 msgid "Direct messages with %s"
 msgstr "Messaggi diretti con %s"
 
-msgid "Select Image"
+#, fuzzy
+msgid "Select Media"
 msgstr "Sfoglia"
 
 msgid "Open"
@@ -122,8 +123,16 @@ msgstr "Aprire"
 msgid "Cancel"
 msgstr "Annulla"
 
-msgid "Selected file is not an image."
+#, fuzzy
+msgid "Selected file is not an image or video."
 msgstr "Il file selezionato non è un'immagine"
+
+#, fuzzy, c-format
+msgid ""
+"The selected video is too big. The maximum file size per video is %'d MB"
+msgstr ""
+"L'immagine selezionata è troppo grossa. La dimensione massima consentita è "
+"%'d MB"
 
 #, c-format
 msgid ""
@@ -474,6 +483,14 @@ msgid "The original Tweet author restricted who can reply to this Tweet."
 msgstr ""
 "L'autore originale del Tweet ha limitato chi può rispondere a questo Tweet."
 
+#, fuzzy
+msgid "Invalid media file"
+msgstr "La convalida degli ID media non è riuscita."
+
+#, c-format
+msgid "Unknown error code %lld during upload"
+msgstr ""
+
 msgid "Now"
 msgstr "Adesso"
 
@@ -536,6 +553,9 @@ msgstr "Account già in uso"
 
 msgid "Failed to retrieve access token"
 msgstr "Token d'accesso non trovato"
+
+msgid "Select Image"
+msgstr "Sfoglia"
 
 msgid "Unfollow"
 msgstr "Non seguire"
@@ -612,7 +632,8 @@ msgstr ""
 msgid "Quote tweet"
 msgstr "Cita il tweet"
 
-msgid "Only one GIF file per tweet is allowed."
+#, fuzzy
+msgid "Only one animated GIF file per tweet is allowed."
 msgstr "È consentita solo una gif per tweet."
 
 #, c-format
@@ -756,8 +777,8 @@ msgstr "Prova una ricerca differente"
 msgid "Send"
 msgstr "Invia"
 
-msgid "Add Image"
-msgstr "Aggiungi immagine"
+msgid "Add Media"
+msgstr ""
 
 msgid "Show favorite images"
 msgstr "Mostra le immagini preferite"
@@ -1074,3 +1095,6 @@ msgstr "Creato"
 
 msgid "Subscribed to"
 msgstr "Sottoscritto a"
+
+#~ msgid "Add Image"
+#~ msgstr "Aggiungi immagine"

@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-12-22 16:47+0000\n"
+"POT-Creation-Date: 2020-12-24 20:53+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Mattherix <mattherix@protonmail.com>, 2020\n"
 "Language-Team: French (https://www.transifex.com/cawbird/teams/107135/fr/)\n"
@@ -119,7 +119,8 @@ msgstr ""
 msgid "Direct messages with %s"
 msgstr "Message direct avec %s"
 
-msgid "Select Image"
+#, fuzzy
+msgid "Select Media"
 msgstr "Sélectionner une image"
 
 msgid "Open"
@@ -128,8 +129,16 @@ msgstr "Ouvrir"
 msgid "Cancel"
 msgstr "Annuler"
 
-msgid "Selected file is not an image."
+#, fuzzy
+msgid "Selected file is not an image or video."
 msgstr "Le fichier sélectionnée n'est pas une image."
+
+#, fuzzy, c-format
+msgid ""
+"The selected video is too big. The maximum file size per video is %'d MB"
+msgstr ""
+"L'image sélectionnée est trop grosse. La taille maximale autorisée par image "
+"est de %'d Mo"
 
 #, c-format
 msgid ""
@@ -485,6 +494,14 @@ msgstr "Invalide / application suspendue"
 msgid "The original Tweet author restricted who can reply to this Tweet."
 msgstr "L'auteur du Tweet original a restreint qui peut répondre à ce Tweet."
 
+#, fuzzy
+msgid "Invalid media file"
+msgstr "La validation des identifiants du média a échoué."
+
+#, c-format
+msgid "Unknown error code %lld during upload"
+msgstr ""
+
 msgid "Now"
 msgstr "Maintenant"
 
@@ -547,6 +564,9 @@ msgstr "Compte déjà en utilisation"
 
 msgid "Failed to retrieve access token"
 msgstr "Impossible de récupérer le jeton d'accès"
+
+msgid "Select Image"
+msgstr "Sélectionner une image"
 
 msgid "Unfollow"
 msgstr "Se désabonner"
@@ -623,7 +643,8 @@ msgstr ""
 msgid "Quote tweet"
 msgstr "Citer le tweet"
 
-msgid "Only one GIF file per tweet is allowed."
+#, fuzzy
+msgid "Only one animated GIF file per tweet is allowed."
 msgstr "Seulement un GIF par tweet est autorisé."
 
 #, c-format
@@ -766,8 +787,8 @@ msgstr "Essayez d'effectuer une autre recherche"
 msgid "Send"
 msgstr "Envoyer"
 
-msgid "Add Image"
-msgstr "Ajouter une image"
+msgid "Add Media"
+msgstr ""
 
 msgid "Show favorite images"
 msgstr "Montrer les images favorites"
@@ -1083,3 +1104,6 @@ msgstr "Créé"
 
 msgid "Subscribed to"
 msgstr "S'inscrire"
+
+#~ msgid "Add Image"
+#~ msgstr "Ajouter une image"

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-12-22 16:47+0000\n"
+"POT-Creation-Date: 2020-12-24 20:53+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Ammar K <ak.bahassan@gmail.com>, 2020\n"
 "Language-Team: Arabic (http://www.transifex.com/cawbird/cawbird/language/"
@@ -109,7 +109,8 @@ msgstr ""
 msgid "Direct messages with %s"
 msgstr "رسائل مباشرة"
 
-msgid "Select Image"
+#, fuzzy
+msgid "Select Media"
 msgstr "اختيار صورة"
 
 msgid "Open"
@@ -118,8 +119,14 @@ msgstr "افتح"
 msgid "Cancel"
 msgstr "ألغ"
 
-msgid "Selected file is not an image."
+#, fuzzy
+msgid "Selected file is not an image or video."
 msgstr "الملف المحدد ليس صورة."
+
+#, fuzzy, c-format
+msgid ""
+"The selected video is too big. The maximum file size per video is %'d MB"
+msgstr "حجم الصورة المحددة كبيرة جدا. الحجم الاقصى لكل صورة هو %'d MB"
 
 #, c-format
 msgid ""
@@ -488,6 +495,13 @@ msgstr ""
 msgid "The original Tweet author restricted who can reply to this Tweet."
 msgstr ""
 
+msgid "Invalid media file"
+msgstr ""
+
+#, c-format
+msgid "Unknown error code %lld during upload"
+msgstr ""
+
 msgid "Now"
 msgstr "الآن"
 
@@ -558,6 +572,9 @@ msgstr "الحساب قيد الاستخدام"
 
 msgid "Failed to retrieve access token"
 msgstr ""
+
+msgid "Select Image"
+msgstr "اختيار صورة"
 
 msgid "Unfollow"
 msgstr "إلغاء التتبُع"
@@ -646,7 +663,8 @@ msgstr ""
 msgid "Quote tweet"
 msgstr "إقتباس التغريدة"
 
-msgid "Only one GIF file per tweet is allowed."
+#, fuzzy
+msgid "Only one animated GIF file per tweet is allowed."
 msgstr "يسمح بإستخدام GIF واحد فقط للتغريدة."
 
 #, c-format
@@ -798,8 +816,8 @@ msgstr ""
 msgid "Send"
 msgstr "إرسال"
 
-msgid "Add Image"
-msgstr "إضافة صورة "
+msgid "Add Media"
+msgstr ""
 
 msgid "Show favorite images"
 msgstr "اظهر الصور المفضلة"
@@ -1119,6 +1137,9 @@ msgstr "تم الإنشاء"
 
 msgid "Subscribed to"
 msgstr "مشترك في"
+
+#~ msgid "Add Image"
+#~ msgstr "إضافة صورة "
 
 #, fuzzy, c-format
 #~ msgid "%s (%s) followers"

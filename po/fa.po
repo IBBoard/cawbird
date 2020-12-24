@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-12-22 16:47+0000\n"
+"POT-Creation-Date: 2020-12-24 20:53+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Persian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -100,7 +100,7 @@ msgstr ""
 msgid "Direct messages with %s"
 msgstr "پیام مستقیم"
 
-msgid "Select Image"
+msgid "Select Media"
 msgstr ""
 
 msgid "Open"
@@ -109,7 +109,12 @@ msgstr ""
 msgid "Cancel"
 msgstr "انصراف"
 
-msgid "Selected file is not an image."
+msgid "Selected file is not an image or video."
+msgstr ""
+
+#, c-format
+msgid ""
+"The selected video is too big. The maximum file size per video is %'d MB"
 msgstr ""
 
 #, c-format
@@ -449,6 +454,13 @@ msgstr ""
 msgid "The original Tweet author restricted who can reply to this Tweet."
 msgstr ""
 
+msgid "Invalid media file"
+msgstr ""
+
+#, c-format
+msgid "Unknown error code %lld during upload"
+msgstr ""
+
 msgid "Now"
 msgstr "اکنون"
 
@@ -508,6 +520,9 @@ msgid "Account already in use"
 msgstr ""
 
 msgid "Failed to retrieve access token"
+msgstr ""
+
+msgid "Select Image"
 msgstr ""
 
 msgid "Unfollow"
@@ -582,7 +597,7 @@ msgstr ""
 msgid "Quote tweet"
 msgstr ""
 
-msgid "Only one GIF file per tweet is allowed."
+msgid "Only one animated GIF file per tweet is allowed."
 msgstr ""
 
 #, c-format
@@ -721,7 +736,7 @@ msgstr ""
 msgid "Send"
 msgstr "ارسال کن"
 
-msgid "Add Image"
+msgid "Add Media"
 msgstr ""
 
 msgid "Show favorite images"
