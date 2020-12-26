@@ -229,4 +229,9 @@
     <content_attribute id="social-info">mild</content_attribute>
     <content_attribute id="social-audio">moderate</content_attribute>
   </content_rating>
+
+  <custom>
+    <value key="Purism::form_factor">workstation</value>
+    <value key="Purism::form_factor">mobile</value>
+  </custom>
 </component>
