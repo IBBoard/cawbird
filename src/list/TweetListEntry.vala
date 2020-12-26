@@ -136,7 +136,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       // TRANSLATORS: replacements are name and handle (without the "@")
       var rt_by = _("Retweeted by %s (@%s)").printf(rt_author.user_name, rt_author.screen_name);
       rt_label.get_accessible().set_name(rt_by);
-      rt_label.get_accessible().set_name(rt_by);
     }
 
     if ((tweet.retweeted_tweet != null &&
