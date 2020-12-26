@@ -44,8 +44,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   [GtkChild]
   private Gtk.Grid grid;
   [GtkChild]
-  private Gtk.Stack stack;
-  [GtkChild]
   private Gtk.Box action_box;
   [GtkChild]
   private Gtk.Label reply_label;
@@ -78,7 +76,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   }
   public bool shows_actions {
     get {
-      return stack.visible_child == action_box;
+      return action_box.visible;
     }
   }
   private unowned Account account;
@@ -579,7 +577,8 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
     if (tweet.is_flag_set (Cb.TweetState.DELETED)) {
       this.sensitive = false;
-      stack.visible_child = grid;
+      grid.show();
+      action_box.hide();
     }
 
     this.values_set = true;
@@ -649,12 +648,19 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     if (this._read_only)
       return;
 
-    if (stack.visible_child == action_box) {
-      stack.visible_child = grid;
+    if (action_box.visible) {
+      grid.show();
+      action_box.hide();
       this.activatable = true;
       this.grab_focus();
     } else {
-      stack.visible_child = action_box;
+      // We can't use size groups because they only work when all elements are visible
+      // So kludge an approximation with set_size_request on the action box (which will always be the shortest widget)
+      // XXX: Currently doesn't take into account changes in grid height while grid is hidden
+      var grid_height = grid.get_allocated_height() + grid.get_margin_top() + grid.get_margin_bottom();
+      action_box.set_size_request(-1, grid_height);
+      action_box.show();
+      grid.hide();
       this.activatable = false;
       retweet_button.grab_focus();
     }
