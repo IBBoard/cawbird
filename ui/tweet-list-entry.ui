@@ -8,7 +8,7 @@
       </item>
       <item>
         <attribute name="label" translatable="yes">Delete</attribute>
-        <attribute name="action">tweet.delete</attribute>
+        <attribute name="action">destructive-actions.delete</attribute>
       </item>
     </section>
   </menu>
