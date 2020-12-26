@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-12-24 20:53+0000\n"
+"POT-Creation-Date: 2020-12-26 11:56+0000\n"
 "PO-Revision-Date: 2017-11-19 08:34+0000\n"
 "Last-Translator: Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail."
 "com>\n"
@@ -335,6 +335,10 @@ msgstr "Обриши"
 #, fuzzy, c-format
 msgid "Retweeted by %s (@%s)"
 msgstr "Поново твитуј"
+
+#, fuzzy
+msgid "Are you sure you want to delete this tweet?"
+msgstr "Да ли стварно желите обрисати овај налог?"
 
 #, c-format
 msgid "Block %s"

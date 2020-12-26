@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-12-24 20:53+0000\n"
+"POT-Creation-Date: 2020-12-26 11:56+0000\n"
 "PO-Revision-Date: 2017-10-22 15:14+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -339,6 +339,10 @@ msgstr "Usuń"
 #, fuzzy, c-format
 msgid "Retweeted by %s (@%s)"
 msgstr "Podanie tweeta dalej"
+
+#, fuzzy
+msgid "Are you sure you want to delete this tweet?"
+msgstr "Na pewno usunąć to konto?"
 
 #, c-format
 msgid "Block %s"

@@ -478,8 +478,19 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   }
 
   private void delete_activated () {
-    delete_first_activated = true;
-    delete_tweet ();
+    var dialog = new Gtk.MessageDialog(main_window, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, _("Are you sure you want to delete this tweet?"));
+    var result = dialog.run();
+    dialog.destroy();
+
+    if (result == Gtk.ResponseType.YES) {
+      delete_first_activated = true;
+      delete_tweet ();
+    }
+    else {
+      if (shows_actions) {
+        toggle_mode ();
+      }
+    }
   }
 
   [GtkCallback]

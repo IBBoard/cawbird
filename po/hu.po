@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2020-12-24 20:53+0000\n"
+"POT-Creation-Date: 2020-12-26 11:56+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -310,6 +310,9 @@ msgstr "Törlés"
 #. TRANSLATORS: replacements are name and handle (without the "@")
 #, c-format
 msgid "Retweeted by %s (@%s)"
+msgstr ""
+
+msgid "Are you sure you want to delete this tweet?"
 msgstr ""
 
 #, c-format
