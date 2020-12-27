@@ -532,7 +532,7 @@ public class Account : GLib.Object {
 
   public void add_disabled_rts_id (int64 user_id) {
     this.disabled_rts.resize (this.disabled_rts.length + 1);
-    this.disabled_rts[this.disabled_rts.length - 1] = id;
+    this.disabled_rts[this.disabled_rts.length - 1] = user_id;
   }
 
   public void remove_disabled_rts_id (int64 user_id) {
@@ -544,10 +544,10 @@ public class Account : GLib.Object {
 
     int o = 0;
     for (int i = 0; i < this.disabled_rts.length; i++) {
-      if (this.disabled_rts[i] == id) {
+      if (this.disabled_rts[i] == user_id) {
         continue;
       }
-      disabled_rts[o] = this.disabled_rts[i];
+      new_disabled_rts[o] = this.disabled_rts[i];
       o ++;
     }
     this.disabled_rts = new_disabled_rts;
