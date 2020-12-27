@@ -852,16 +852,20 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   }
 
   public override void size_allocate(Gtk.Allocation allocation) {
-    var current_width = get_allocated_width();
+    var cur_width = get_allocated_width();
+    var new_width = allocation.width;
 
-    if (shows_actions && current_width != allocation.width) {
+    if (shows_actions && cur_width != new_width) {
       // The grid widget controls our height, but we can't get it right unless it is visible
       toggle_mode();
     }
 
-    if ((allocation.width < Cawbird.RESPONSIVE_LIMIT) != (current_width < Cawbird.RESPONSIVE_LIMIT) || current_width <= 1) {
+    var new_size_is_responsive = new_width < Cawbird.RESPONSIVE_LIMIT;
+    var cur_size_is_responsive = cur_width < Cawbird.RESPONSIVE_LIMIT;
+
+    if (new_size_is_responsive != cur_size_is_responsive || cur_width <= 1) {
       // We've crossed the threshold, so reallocate as appropriate
-      if (allocation.width < Cawbird.RESPONSIVE_LIMIT) {
+      if (new_size_is_responsive) {
         grid.child_set (avatar_image, "height", 2);
         grid.child_set (scroller, "left-attach", 0);
         grid.child_set (scroller, "width", 7);
