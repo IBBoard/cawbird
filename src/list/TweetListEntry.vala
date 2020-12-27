@@ -656,7 +656,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     } else {
       // We can't use size groups because they only work when all elements are visible
       // So kludge an approximation with set_size_request on the action box (which will always be the shortest widget)
-      // XXX: Currently doesn't take into account changes in grid height while grid is hidden
       var grid_height = grid.get_allocated_height() + grid.get_margin_top() + grid.get_margin_bottom();
       action_box.set_size_request(-1, grid_height);
       action_box.show();
@@ -853,7 +852,14 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   }
 
   public override void size_allocate(Gtk.Allocation allocation) {
-    if ((allocation.width < Cawbird.RESPONSIVE_LIMIT) != (get_allocated_width() < Cawbird.RESPONSIVE_LIMIT) || get_allocated_width() <= 1) {
+    var current_width = get_allocated_width();
+
+    if (shows_actions && current_width != allocation.width) {
+      // The grid widget controls our height, but we can't get it right unless it is visible
+      toggle_mode();
+    }
+
+    if ((allocation.width < Cawbird.RESPONSIVE_LIMIT) != (current_width < Cawbird.RESPONSIVE_LIMIT) || current_width <= 1) {
       // We've crossed the threshold, so reallocate as appropriate
       if (allocation.width < Cawbird.RESPONSIVE_LIMIT) {
         grid.child_set (avatar_image, "height", 2);
