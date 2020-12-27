@@ -743,7 +743,11 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       tweet_list.model.clear ();
       user_lists.clear_lists ();
       lists_page_inited = false;
-      load_tweets.begin ();
+      load_tweets.begin (() => {
+        // Try to load more in case we loaded tweets with RTs disabled
+        //and didn't fetch enough in one go
+        fill_tweet_list.begin();
+      });
     } else {
       /* Still load the friendship since muted/blocked/etc. may have changed */
       load_friendship.begin ();
@@ -938,12 +942,30 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     } else if (type == Cb.StreamMessageType.RT_DELETE) {
       Utils.unrt_tweet (root_node, this.tweet_list.model);
     } else if (type == Cb.StreamMessageType.EVENT_HIDE_RTS) {
-      tweet_list.hide_retweets_from (get_user_id (root_node), Cb.TweetState.HIDDEN_RTS_DISABLED);      
+      tweet_list.hide_retweets_from (get_user_id (root_node), Cb.TweetState.HIDDEN_RTS_DISABLED);
+      fill_tweet_list.begin();
     } else if (type == Cb.StreamMessageType.EVENT_SHOW_RTS) {
       tweet_list.show_retweets_from (get_user_id (root_node), Cb.TweetState.HIDDEN_RTS_DISABLED);        
     }
     // We could also hide tweets in the profile on block/mute, but Twitter gives you a "show anyway" button so we'll continue just showing them
     // If you block someone and don't want to see their tweets then don't go to the profile!
+  }
+
+  private async void fill_tweet_list() {
+    // Try to load more tweets if we may not have enough because we disabled RTs from this user
+    // But don't try too many times or we'll burn up all of our requests
+    for (int i = 0; i < 5; i++) {
+      GLib.Idle.add(() => {
+        // Give the scroller time to update its status
+        fill_tweet_list.callback();
+        return GLib.Source.REMOVE;
+      });
+      yield;
+      if (this.is_scrollable) {
+        break;            
+      }
+      yield load_older_tweets();
+    }
   }
 
   private int64 get_user_id (Json.Node root) {

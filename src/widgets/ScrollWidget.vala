@@ -38,6 +38,11 @@ public class ScrollWidget : Gtk.ScrolledWindow {
       return vadjustment.value <= 5;
     }
   }
+  public bool is_scrollable {
+    get {
+      return vadjustment.upper > vadjustment.page_size;
+    }
+  }
   //Transition times
   private int64 start_time;
   private int64 end_time;
