@@ -30,16 +30,16 @@ msgid "Twitter Client"
 msgstr "Twittertoepassing"
 
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as "
-"Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
 "Cawbird is een geïntegreerde GTK+ Twittertoepassing met ondersteuning voor "
 "de belangrijkste functionaliteiten, zoals privéberichten (DM's), "
 "tweetmeldingen en gespreksweergaven."
 
 msgid ""
-"Additional features include local viewing of videos, multiple inline images, "
-"Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images,"
+" Lists, Filters, multiple accounts, etc."
 msgstr ""
 "Daarnaast kun je video's afspelen, meerdere bijgevoegde afbeeldingen "
 "bekijken en is er ondersteuning voor lijsten, filters, meerdere accounts en "
@@ -60,7 +60,8 @@ msgstr "IBBoard"
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Gebruik Twitter vanuit een normale bureaubladtoepassing"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;"
 
@@ -84,22 +85,26 @@ msgstr "en %d anderen"
 msgid ""
 "Shows only the 'compose tweet' window for the given account, nothing else."
 msgstr ""
-"Toont alleen het venster 'Tweet opstellen' van het opgegeven account en niks "
-"anders."
+"Toont alleen het venster 'Tweet opstellen' van het opgegeven account en niks"
+" anders."
 
-#. TRANSLATORS: Used as the placeholder for the account name in the `--help` output
+#. TRANSLATORS: Used as the placeholder for the account name in the `--help`
+#. output
 msgid "account-name"
 msgstr "accountnaam"
 
-#. TRANSLATORS: Description of the `--start-service` option for the command-line
+#. TRANSLATORS: Description of the `--start-service` option for the command-
+#. line
 msgid "Start service"
 msgstr "Start de dienst"
 
-#. TRANSLATORS: Description of the `--stop-service` option for the command-line
+#. TRANSLATORS: Description of the `--stop-service` option for the command-
+#. line
 msgid "Stop service, if it has been started as a service"
 msgstr "Stop de dienst indien deze gestart is"
 
-#. TRANSLATORS: Description of the `--print-startup-accounts` option for the command-line
+#. TRANSLATORS: Description of the `--print-startup-accounts` option for the
+#. command-line
 msgid "Print configured startup accounts"
 msgstr "Toon de ingestelde accounts die automatisch moeten worden geladen"
 
@@ -134,8 +139,8 @@ msgstr ""
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
 msgstr ""
-"De gekozen afbeelding is te groot. De maximale bestandsgrootte is %'d MB per "
-"afbeelding."
+"De gekozen afbeelding is te groot. De maximale bestandsgrootte is %'d MB per"
+" afbeelding."
 
 #, c-format
 msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
@@ -248,17 +253,20 @@ msgstr[1] "Volgt %d accounts"
 msgid "Location: %s"
 msgstr "Locatie: %s"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile
+#. timeline view
 #, c-format
 msgid "%s timeline"
 msgstr "%s's tijdlijn"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of
+#. users following the user
 #, c-format
 msgid "%s followers"
 msgstr "%s's volgers"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of
+#. users followed by the user
 #, c-format
 msgid "%s following"
 msgstr "Gevolgd door %s"
@@ -327,9 +335,8 @@ msgstr "Verwijderen"
 msgid "Retweeted by %s (@%s)"
 msgstr "Geretweet door %s (@%s)"
 
-#, fuzzy
 msgid "Are you sure you want to delete this tweet?"
-msgstr "Weet je zeker dat je dit account wilt verwijderen?"
+msgstr "Weet je zeker dat je deze tweet wilt verwijderen?"
 
 #, c-format
 msgid "Block %s"
@@ -422,8 +429,8 @@ msgid ""
 "This request looks like it might be automated. To protect our users from "
 "spam and other malicious activity, we can’t complete this action right now."
 msgstr ""
-"Dit verzoek lijkt geautomatiseerd. Om gebruikers te beschermen tegen spam en "
-"andere schadelijke activiteit, kunnen we deze handeling nu niet uitvoeren."
+"Dit verzoek lijkt geautomatiseerd. Om gebruikers te beschermen tegen spam en"
+" andere schadelijke activiteit, kunnen we deze handeling nu niet uitvoeren."
 
 msgid "User must verify login"
 msgstr "Je moet je inlogverzoek goedkeuren"
@@ -449,8 +456,8 @@ msgid "A media id was not found."
 msgstr "Er is geen media-id gevonden."
 
 msgid ""
-"To protect our users from spam and other malicious activity, this account is "
-"temporarily locked."
+"To protect our users from spam and other malicious activity, this account is"
+" temporarily locked."
 msgstr ""
 "Om gebruikers te beschermen tegen spam en andere schadelijke activiteit, is "
 "dit account tijdelijk geblokkeerd."
@@ -520,19 +527,23 @@ msgstr[1] "%d uur geleden"
 msgid "%dh"
 msgstr "%du"
 
-#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from this year - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B"
 msgstr "%e %B"
 
-#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from this year - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b"
 msgstr "%e %b"
 
-#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from previous years - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B %Y"
 msgstr "%e %B %Y"
 
-#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from previous years - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b %Y"
 msgstr "%e %b %Y"
 
@@ -610,7 +621,8 @@ msgstr[0] "De afbeelding kan niet worden geladen"
 msgstr[1] "%u afbeeldingen kunnen niet worden geladen"
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
+#. <path>, <path>"
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -651,7 +663,8 @@ msgid_plural "%d characters remaining"
 msgstr[0] "Nog %d teken mogelijk"
 msgstr[1] "Nog %d tekens mogelijk"
 
-#. TRANSLATORS: Values are current image index (1-based) and total image count. Pluralisation is based on total image count.
+#. TRANSLATORS: Values are current image index (1-based) and total image
+#. count. Pluralisation is based on total image count.
 #. Should only be seen when image count is two or more.
 #, c-format
 msgid "Image %d of %d"
@@ -684,7 +697,8 @@ msgid "Snippet already exists"
 msgstr "Dit fragment bestaat al"
 
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
+"#newisalwaysbetter"
 msgstr ""
 "Hé, kijk eens naar deze nieuwe #Cawbird-versie! \\ (•◡•) / #cool "
 "#nieuwisaltijdbeter"
@@ -705,8 +719,8 @@ msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
 msgstr ""
-"Geef Cawbird toestemming door op twitter.com een pincode op te halen van het "
-"toe te voegen account"
+"Geef Cawbird toestemming door op twitter.com een pincode op te halen van het"
+" toe te voegen account"
 
 msgid "Request PIN"
 msgstr "Pincode aanvragen"
@@ -974,7 +988,8 @@ msgstr "Je hebt geen fragmenten ingesteld."
 
 msgid "You can activate snippets by writing the keyword and pressing TAB."
 msgstr ""
-"Activeer fragmenten door het trefwoord te typen en op de tabtoets te drukken."
+"Activeer fragmenten door het trefwoord te typen en op de tabtoets te "
+"drukken."
 
 msgid "Snippets"
 msgstr "Fragmenten"
