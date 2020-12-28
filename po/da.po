@@ -32,15 +32,15 @@ msgid "Twitter Client"
 msgstr "Twitter klient"
 
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as "
-"Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
 "Cawbird er en GTK+ twitter klient med essentielle funktioner som Direkte "
 "Beskeder (DMs), tweet notifikationer og samtalevisning"
 
 msgid ""
-"Additional features include local viewing of videos, multiple inline images, "
-"Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images,"
+" Lists, Filters, multiple accounts, etc."
 msgstr ""
 "Yderligere funktioner inkludere: Lokal videoafspilning, Flere indlejrede "
 "billeder, Lister, Filtre, Flere konti, osv."
@@ -60,7 +60,8 @@ msgstr "IBBoard"
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Brug Twitter i en desktop applikation"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;"
 
@@ -85,19 +86,23 @@ msgid ""
 "Shows only the 'compose tweet' window for the given account, nothing else."
 msgstr "Viser kun 'Forfat tweet' vinduet for den angivne konto, intet andet."
 
-#. TRANSLATORS: Used as the placeholder for the account name in the `--help` output
+#. TRANSLATORS: Used as the placeholder for the account name in the `--help`
+#. output
 msgid "account-name"
 msgstr "Konto-navn"
 
-#. TRANSLATORS: Description of the `--start-service` option for the command-line
+#. TRANSLATORS: Description of the `--start-service` option for the command-
+#. line
 msgid "Start service"
 msgstr "Start service"
 
-#. TRANSLATORS: Description of the `--stop-service` option for the command-line
+#. TRANSLATORS: Description of the `--stop-service` option for the command-
+#. line
 msgid "Stop service, if it has been started as a service"
 msgstr "Stop service, hvis den er startet som en service"
 
-#. TRANSLATORS: Description of the `--print-startup-accounts` option for the command-line
+#. TRANSLATORS: Description of the `--print-startup-accounts` option for the
+#. command-line
 msgid "Print configured startup accounts"
 msgstr "Print konfigureret opstarts konti"
 
@@ -109,9 +114,8 @@ msgstr "Åben vinduet for den angivne konto"
 msgid "Direct messages with %s"
 msgstr "Direkte beskeder med %s"
 
-#, fuzzy
 msgid "Select Media"
-msgstr "Vælg billede"
+msgstr "Vælg Medie"
 
 msgid "Open"
 msgstr "Åben"
@@ -119,16 +123,14 @@ msgstr "Åben"
 msgid "Cancel"
 msgstr "Fortryd"
 
-#, fuzzy
 msgid "Selected file is not an image or video."
-msgstr "Den valgte fil er ikke et billede."
+msgstr "Den valgte fil er ikke et billede eller en video."
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The selected video is too big. The maximum file size per video is %'d MB"
 msgstr ""
-"Det valgte billede er for stort. Den maksimale filstørrelse pr. billede er "
-"%'d MB"
+"Den valgte video er for stor. Den maksimale filstørrelse pr. video er %'d MB"
 
 #, c-format
 msgid ""
@@ -247,17 +249,20 @@ msgstr[1] "Følger %d konti"
 msgid "Location: %s"
 msgstr "Position: %s"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile
+#. timeline view
 #, c-format
 msgid "%s timeline"
 msgstr "%s tidslinje"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of
+#. users following the user
 #, c-format
 msgid "%s followers"
 msgstr "%s følgere"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of
+#. users followed by the user
 #, c-format
 msgid "%s following"
 msgstr "%s følger"
@@ -326,9 +331,8 @@ msgstr "Fjern"
 msgid "Retweeted by %s (@%s)"
 msgstr "Retweetet af %s (@%s)"
 
-#, fuzzy
 msgid "Are you sure you want to delete this tweet?"
-msgstr "Ønsker du virkeligt at fjerne denne konto?"
+msgstr "Er du sikker på at du ønsker at slette dette tweet?"
 
 #, c-format
 msgid "Block %s"
@@ -419,8 +423,8 @@ msgid ""
 "This request looks like it might be automated. To protect our users from "
 "spam and other malicious activity, we can’t complete this action right now."
 msgstr ""
-"Denne anmodning virker automatiseret. For at beskytte vores brugere fra spam "
-"og andre ondsindet aktiviteter, kan vi ikke udføre denne handling lige nu."
+"Denne anmodning virker automatiseret. For at beskytte vores brugere fra spam"
+" og andre ondsindet aktiviteter, kan vi ikke udføre denne handling lige nu."
 
 msgid "User must verify login"
 msgstr "Bruger skal validere login"
@@ -444,8 +448,8 @@ msgid "A media id was not found."
 msgstr "Et medie id kunne ikke findes."
 
 msgid ""
-"To protect our users from spam and other malicious activity, this account is "
-"temporarily locked."
+"To protect our users from spam and other malicious activity, this account is"
+" temporarily locked."
 msgstr ""
 "For at beskytte brugere fra spam og andre ondsindede aktiviteter, er denne "
 "konto blevet låst."
@@ -481,13 +485,12 @@ msgstr ""
 "Forfatteren af det originale tweet har begrænset hvem der kan svare på "
 "tweetet."
 
-#, fuzzy
 msgid "Invalid media file"
-msgstr "Valideringen af medie id fejlede."
+msgstr "Ugyldig medie fil"
 
 #, c-format
 msgid "Unknown error code %lld during upload"
-msgstr ""
+msgstr "Ukendt fejlkode %lld under upload"
 
 msgid "Now"
 msgstr "Nu"
@@ -514,19 +517,23 @@ msgstr[1] "%d timer siden"
 msgid "%dh"
 msgstr "%dt"
 
-#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from this year - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B"
 msgstr "%e %B"
 
-#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from this year - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b"
 msgstr "%e %b"
 
-#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from previous years - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B %Y"
 msgstr "%e %B %Y"
 
-#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from previous years - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b %Y"
 msgstr "%e %b %Y"
 
@@ -604,7 +611,8 @@ msgstr[0] "Kunne ikke indlæse billede"
 msgstr[1] "Kunne ikke indlæse %u billeder"
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
+#. <path>, <path>"
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -636,9 +644,8 @@ msgstr ""
 msgid "Quote tweet"
 msgstr "Citerer tweet"
 
-#, fuzzy
 msgid "Only one animated GIF file per tweet is allowed."
-msgstr "Kun én GIF per tweet er tilladt."
+msgstr "Kun en animeret GIF fil per tweet er tilladt."
 
 #, c-format
 msgid "%d character remaining"
@@ -646,7 +653,8 @@ msgid_plural "%d characters remaining"
 msgstr[0] "%d tegn tilbage"
 msgstr[1] "%d tegn tilbage"
 
-#. TRANSLATORS: Values are current image index (1-based) and total image count. Pluralisation is based on total image count.
+#. TRANSLATORS: Values are current image index (1-based) and total image
+#. count. Pluralisation is based on total image count.
 #. Should only be seen when image count is two or more.
 #, c-format
 msgid "Image %d of %d"
@@ -679,7 +687,8 @@ msgid "Snippet already exists"
 msgstr "Snippet eksistere allerede"
 
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
+"#newisalwaysbetter"
 msgstr ""
 "Hej, tjek lige denne nye #Cawbird version! \\ (•◡•) / #cool "
 "#newisalwaysbetter"
@@ -700,8 +709,8 @@ msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
 msgstr ""
-"For at autentificere Cawbird skal du have en PIN fra twitter.com fra kontoen "
-"du ønsker at tilføje"
+"For at autentificere Cawbird skal du have en PIN fra twitter.com fra kontoen"
+" du ønsker at tilføje"
 
 msgid "Request PIN"
 msgstr "Anmod om PIN"
@@ -782,7 +791,7 @@ msgid "Send"
 msgstr "Send"
 
 msgid "Add Media"
-msgstr ""
+msgstr "Tilføj Medie"
 
 msgid "Show favorite images"
 msgstr "Vis favorit billeder"
@@ -1097,6 +1106,3 @@ msgstr "Lavet"
 
 msgid "Subscribed to"
 msgstr "Tilmeldt"
-
-#~ msgid "Add Image"
-#~ msgstr "Tilføj Billede"
