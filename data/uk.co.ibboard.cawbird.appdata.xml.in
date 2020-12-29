@@ -17,17 +17,21 @@
   <url type="homepage">https://ibboard.co.uk/cawbird/</url>
   <launchable type="desktop-id">uk.co.ibboard.cawbird.desktop</launchable>
   <screenshots>
-    <screenshot height="450" width="800" type="default">
+    <screenshot height="1032" width="481" type="default">
       <image>https://ibboard.co.uk/cawbird/appdata/screenshot1.jpg</image>
       <caption>Generic timeline view when using Cawbird</caption>
     </screenshot>
-    <screenshot height="450" width="800">
+    <screenshot height="956" width="564">
       <image>https://ibboard.co.uk/cawbird/appdata/screenshot2.jpg</image>
       <caption>Typical Twitter profile</caption>
     </screenshot>
-    <screenshot height="450" width="800">
+    <screenshot height="956" width="564">
       <image>https://ibboard.co.uk/cawbird/appdata/screenshot3.jpg</image>
       <caption>Account settings can be configured</caption>
+    </screenshot>
+    <screenshot height="688" width="1283">
+      <image>https://ibboard.co.uk/cawbird/appdata/screenshot4.jpg</image>
+      <caption>Cawbird in different themes (Adwaita, Adwaita dark variant, High Contrast and Adwaita Dark Green)</caption>
     </screenshot>
   </screenshots>
   <kudos>
