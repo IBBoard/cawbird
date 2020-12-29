@@ -313,7 +313,7 @@ cb_text_transform_text (const char   *text,
       else
         {
           g_string_append (str, "<span underline=\"none\">&#x2068;<a href=\"");
-          g_string_append (str, entity->target ? entity->target : entity->display_text);
+          g_string_append (str, cb_utils_escape_ampersands(entity->target ? entity->target : entity->display_text));
           g_string_append (str, "\"");
 
           if (entity->tooltip_text != NULL)

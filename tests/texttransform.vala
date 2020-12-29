@@ -61,6 +61,27 @@ void url_at_end () {
   assert (result.contains ("target_text"));
 }
 
+void url_with_ampersand () {
+  var entities = new Cb.TextEntity[1];
+  entities[0] = Cb.TextEntity () {
+    from = 8,
+    to   = 11,
+    original_text = "foo",
+    display_text = "display_text",
+    tooltip_text = "tooltip_text",
+    target       = "https://example.com/?param1&param2"
+  };
+
+  string source_text = "foo bar foo";
+  string result = Cb.TextTransform.text (source_text,
+                                         entities,
+                                         0,
+                                         0,
+                                         0);
+
+  assert(result.contains("href=\"https://example.com/?param1&amp;param2\""));
+}
+
 
 void utf8 () {
   var entities = new Cb.TextEntity[1];
@@ -728,6 +749,7 @@ int main (string[] args) {
   GLib.Test.add_func ("/tt/normal", normal);
   GLib.Test.add_func ("/tt/simple", simple);
   GLib.Test.add_func ("/tt/url-at-end", url_at_end);
+  GLib.Test.add_func ("/tt/url-with-ampersand", url_with_ampersand);
   GLib.Test.add_func ("/tt/utf8", utf8);
   GLib.Test.add_func ("/tt/expand-links", expand_links);
   GLib.Test.add_func ("/tt/multiple-links", multiple_links);
