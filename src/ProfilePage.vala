@@ -35,6 +35,9 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     set {
       main_window = value;
       user_lists.main_window = value;
+      tweet_list.main_window = main_window;
+      followers_list.main_window = main_window;
+      followers_list.main_window = main_window;
     }
   }
   public unowned Account account;

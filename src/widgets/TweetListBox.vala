@@ -26,6 +26,7 @@ public class TweetListBox : ListBox {
       return _action_entry;
     }
   }
+  public MainWindow main_window { private get; set; }
 
   public TweetListBox () {
   }
@@ -48,7 +49,7 @@ public class TweetListBox : ListBox {
     assert (obj is Cb.Tweet);
 
     var row = new TweetListEntry ((Cb.Tweet) obj,
-                                  (MainWindow) get_toplevel (),
+                                  main_window,
                                   this.account);
     row.fade_in ();
     return row;
