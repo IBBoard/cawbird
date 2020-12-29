@@ -56,12 +56,10 @@ public class MainWidget : Gtk.Box {
     stack.notify["transition-running"].connect(() => {
       if (stack.transition_running == false) {
         var visible_child = stack.visible_child;
-        stack.get_children().foreach((w) => { if (w != visible_child) { w.hide(); }});
+        stack.get_children().foreach((w) => { if (w != visible_child) { stack.remove(w); }});
       }
     });
     this.add (stack);
-
-    stack.add (stack_impostor);
 
     pages     = new IPage[11];
     pages[0]  = new HomeTimeline (Page.STREAM, account);
@@ -85,7 +83,7 @@ public class MainWidget : Gtk.Box {
         account.user_stream.register ((Cb.MessageReceiver)page);
 
       page.create_radio_button (dummy_button);
-      stack.add (page);
+
       if (page.get_radio_button () != null) {
         top_box.add (page.get_radio_button ());
         page.get_radio_button ().clicked.connect (() => {
@@ -146,12 +144,18 @@ public class MainWidget : Gtk.Box {
       args = history.get_current_bundle ();
     }
 
+    IPage page = pages[page_id];
+
     if (page_id == current_page) {
-      stack_impostor.clone (pages[page_id]);
+      stack_impostor.clone (page);
       var transition_type = stack.transition_type;
       stack.transition_type = Gtk.StackTransitionType.NONE;
+      if (stack_impostor.parent == null) {
+        stack.add(stack_impostor);
+      }
       stack.set_visible_child (stack_impostor);
       stack.transition_type = transition_type;
+      stack.remove(page);
     }
 
     if (current_page != -1)
@@ -166,7 +170,6 @@ public class MainWidget : Gtk.Box {
     /* XXX The following will cause switch_page to be called twice
        because setting the active property of the button will cause
        the clicked event to be emitted, which will call switch_page. */
-    IPage page = pages[page_id];
     Gtk.ToggleButton button = page.get_radio_button ();
     page_switch_lock = true;
     if (button != null)
@@ -174,10 +177,13 @@ public class MainWidget : Gtk.Box {
     else
       dummy_button.active = true;
 
+    if (page.parent == null) {
+      stack.add(page);
+    }
     /* on_join first, then set_visible_child so the new page is still !child-visible,
        so e.g. GtkStack transitions inside the page aren't animated */
     page.on_join (page_id, args);
-    page.show();
+    page.show_all();
     stack.set_visible_child (page);
     ((MainWindow)this.parent).set_window_title (page.get_title (), stack.transition_type);
 

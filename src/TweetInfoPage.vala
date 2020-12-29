@@ -38,6 +38,10 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
   public unowned MainWindow window {
     set {
       main_window = value;
+      replied_to_list_box.main_window = main_window;
+      replies_list_box.main_window = main_window;
+      self_replies_list_box.main_window = main_window;
+      mentioned_replies_list_box.main_window = main_window;
     }
   }
   public unowned Account account;

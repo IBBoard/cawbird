@@ -29,6 +29,7 @@ class SearchPage : IPage, Cb.MessageReceiver, Gtk.Box {
   public unowned MainWindow window {
     set {
       main_window = value;
+      tweet_list.main_window = main_window;
     }
   }
 

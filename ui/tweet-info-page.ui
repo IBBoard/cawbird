@@ -30,6 +30,7 @@
                 <child>
                   <object class="GtkLabel" id="missing_tweet_label">
                     <property name="visible">0</property>
+                    <property name="no-show-all">1</property>
                     <property name="margin-top">18</property>
                     <property name="margin-bottom">18</property>
                     <property name="margin-start">6</property>
@@ -41,6 +42,7 @@
                 <child>
                   <object class="TweetListBox" id="replied_to_list_box">
                     <property name="visible">0</property>
+                    <property name="no-show-all">1</property>
                     <property name="can-focus">False</property>
                     <property name="selection-mode">none</property>
                   </object>
@@ -439,21 +441,24 @@
 
                 <child>
                   <object class="TweetListBox" id="self_replies_list_box">
-                    <property name="visible">1</property>
+                    <property name="visible">0</property>
+                    <property name="no-show-all">1</property>
                     <property name="selection-mode">none</property>
                     <property name="hexpand">1</property>
                   </object>
                 </child>
                 <child>
                   <object class="TweetListBox" id="mentioned_replies_list_box">
-                    <property name="visible">1</property>
+                    <property name="visible">0</property>
+                    <property name="no-show-all">1</property>
                     <property name="selection-mode">none</property>
                     <property name="hexpand">1</property>
                   </object>
                 </child>
                 <child>
                   <object class="TweetListBox" id="replies_list_box">
-                    <property name="visible">1</property>
+                    <property name="visible">0</property>
+                    <property name="no-show-all">1</property>
                     <property name="selection-mode">none</property>
                     <property name="hexpand">1</property>
                   </object>
