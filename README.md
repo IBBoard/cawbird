@@ -19,22 +19,23 @@ These packages are currently available for:
   * openSUSE Leap 15.1
   * openSUSE Leap 15.2
 * Fedora
-  * Fedora 31
   * Fedora 32
+  * Fedora 33
   * Fedora Rawhide
 * CentOS
   * CentOS 7
-  * CentOS 8
+  * CentOS 8 (including Streams)
 * Ubuntu
   * Ubuntu 18.04 (Bionic Beaver)
-  * Ubuntu 19.10 (Eoan Ermine)
   * Ubuntu 20.04 (Focal Fossa)
+  * Ubuntu 20.10 (Groovy Gorilla)
 * Debian
   * 10 (Buster)
   * Testing
   * Unstable
+  * Raspbian 10
 
-i586, x86_64 (amd64) and aarch64 (arm64) are available on most platforms (where supported by the distro).
+i586, x86_64 (amd64), aarch64 (arm64) and armv7l are available on most platforms (where supported by the distro).
 
 ### Official distro repositories
 
