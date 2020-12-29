@@ -56,10 +56,16 @@ public class MainWidget : Gtk.Box {
     stack.notify["transition-running"].connect(() => {
       if (stack.transition_running == false) {
         var visible_child = stack.visible_child;
-        stack.get_children().foreach((w) => { if (w != visible_child) { stack.remove(w); }});
+        stack.get_children().foreach((w) => {
+          if (w != visible_child && w != stack_impostor) {
+           stack.remove(w); 
+          }
+        });
       }
     });
     this.add (stack);
+
+    stack.add (stack_impostor);
 
     pages     = new IPage[11];
     pages[0]  = new HomeTimeline (Page.STREAM, account);
@@ -150,9 +156,6 @@ public class MainWidget : Gtk.Box {
       stack_impostor.clone (page);
       var transition_type = stack.transition_type;
       stack.transition_type = Gtk.StackTransitionType.NONE;
-      if (stack_impostor.parent == null) {
-        stack.add(stack_impostor);
-      }
       stack.set_visible_child (stack_impostor);
       stack.transition_type = transition_type;
       stack.remove(page);
