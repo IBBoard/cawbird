@@ -106,17 +106,19 @@ class UserEventReceiver : GLib.Object, Cb.MessageReceiver {
         if (!cb.is_window_open_for_user_id (account.id) &&
             !account.suppress_mention_notifications &&
             Settings.notify_new_mentions ()) {
-          var tweet_obj = root_node.get_object ();
-          string text = tweet_obj.get_string_member ("text");
-          var author_obj = tweet_obj.get_object_member ("user");
-          // TODO: Care about retweets/quotes!
-          // XXX : And media?
+          Cb.Tweet tweet = new Cb.Tweet();
+          tweet.load_from_json(root_node, account.id, new GLib.DateTime.now_local());
+          TweetUtils.set_tweet_hidden_flags(tweet, account);
 
-          string author_name = author_obj.get_string_member ("name");
-          string summary = _("%s mentioned %s").printf (author_name,
-                                                        account.name);
+          // Only notify on non-hidden tweets - if the user is blocking it for some reason, so don't shove it in their face!
+          if (!tweet.is_hidden()) {
+            // TODO: Care about retweets/quotes!
+            // XXX : And media?
+            string summary = _("%s mentioned %s").printf (tweet.source_tweet.author.user_name,
+                                                          account.name);
 
-          account.notifications.send (summary, text);
+            account.notifications.send (summary, tweet.get_real_text());
+          }
         }
         break;
       default:

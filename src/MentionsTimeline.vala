@@ -81,10 +81,15 @@ class MentionsTimeline : Cb.MessageReceiver, DefaultTimeline {
 
 
     base.scroll_up (t);
-    if (preload_is_complete)
+    if (preload_is_complete && !t.is_hidden())
       this.unread_count ++;
 
-    if (preload_is_complete && !account.suppress_mention_notifications && Settings.notify_new_mentions ()) {
+    // Notify if:
+    // 1) Preload is complete (we've done our first load - prevents notifications for old mentions on startup)
+    // 2) We're not suppressing notifications for this account (same purpose, but reusable setting to other parts of the UI)
+    // 3) The user wants to be notified
+    // 4) The tweet isn't hidden (i.e. the user doesn't want to see something in the content)
+    if (preload_is_complete && !account.suppress_mention_notifications && Settings.notify_new_mentions () && !t.is_hidden()) {
       string text;
       if (t.retweeted_tweet != null)
         text = Utils.unescape_html (t.retweeted_tweet.text);
