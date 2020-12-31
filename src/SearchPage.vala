@@ -16,7 +16,7 @@
  */
 
 [GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/search-page.ui")]
-class SearchPage : IPage, Gtk.Box {
+class SearchPage : IPage, Cb.MessageReceiver, Gtk.Box {
   public const int KEY_QUERY = 0;
   private const int USER_COUNT = 3;
   /** The unread count here is always zero */
@@ -150,6 +150,44 @@ class SearchPage : IPage, Gtk.Box {
     scroll_widget.scrolled_to_end.connect (load_tweets);
     tweet_list.get_placeholder ().hide ();
     user_list.get_placeholder ().hide ();
+  }
+
+  protected virtual void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
+    if (type == Cb.StreamMessageType.EVENT_BLOCK) {
+      hide_tweets_from (root, Cb.TweetState.HIDDEN_AUTHOR_BLOCKED, Cb.TweetState.HIDDEN_RETWEETER_BLOCKED);
+    } else if (type == Cb.StreamMessageType.EVENT_UNBLOCK) {
+      show_tweets_from (root, Cb.TweetState.HIDDEN_AUTHOR_BLOCKED, Cb.TweetState.HIDDEN_RETWEETER_BLOCKED);
+    } else if (type == Cb.StreamMessageType.EVENT_MUTE) {
+      hide_tweets_from (root, Cb.TweetState.HIDDEN_AUTHOR_MUTED, Cb.TweetState.HIDDEN_RETWEETER_MUTED);
+    } else if (type == Cb.StreamMessageType.EVENT_UNMUTE) {
+      show_tweets_from (root, Cb.TweetState.HIDDEN_AUTHOR_MUTED, Cb.TweetState.HIDDEN_RETWEETER_MUTED);
+    } else if (type == Cb.StreamMessageType.EVENT_HIDE_RTS) {
+      tweet_list.hide_retweets_from (get_user_id (root), Cb.TweetState.HIDDEN_RTS_DISABLED);      
+    } else if (type == Cb.StreamMessageType.EVENT_SHOW_RTS) {
+      tweet_list.show_retweets_from (get_user_id (root), Cb.TweetState.HIDDEN_RTS_DISABLED);        
+    }
+  }
+
+  private int64 get_user_id (Json.Node root) {
+    return root.get_object ().get_object_member ("target").get_int_member ("id");
+  }
+
+  protected void show_tweets_from (Json.Node root, Cb.TweetState tweet_reason, Cb.TweetState retweet_reason = 0) {
+    if (retweet_reason == 0) {
+      retweet_reason = tweet_reason;
+    }
+    int64 user_id = get_user_id(root);
+    tweet_list.show_tweets_from (user_id, tweet_reason);
+    tweet_list.show_retweets_from (user_id, retweet_reason);
+  }
+
+  protected void hide_tweets_from (Json.Node root, Cb.TweetState tweet_reason, Cb.TweetState retweet_reason = 0) {
+    if (retweet_reason == 0) {
+      retweet_reason = tweet_reason;
+    }
+    int64 user_id = get_user_id(root);
+    tweet_list.hide_tweets_from (user_id, tweet_reason);
+    tweet_list.hide_retweets_from (user_id, retweet_reason);
   }
 
   [GtkCallback]
