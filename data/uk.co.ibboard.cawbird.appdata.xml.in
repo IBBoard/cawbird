@@ -49,6 +49,56 @@
   <url type="translate">https://www.transifex.com/cawbird/cawbird/</url>
 
   <releases>
+    <release version="1.3" date="2020-12-31">
+      <p>Cawbird version 1.3 is the "look after yourself" edition. We've got lots of features and fixes, but there are several key improvements to
+      managing your interactions that should have been implemented/fixed sooner. Our priority is making Cawbird accessible and letting users
+      control their experience on Twitter.</p>
+      <ul>
+        <li>Improvements:
+          <ul>
+            <li>Apply filtering across all feeds (including search)</li>
+            <li>Apply changes to filtering, muting, blocking and hiding RTs across all feeds instantly</li>
+            <li>Allow the filtering of mentioned @-handles</li>
+            <li>Load media in DMs and linkify users and hashtags (#12)</li>
+            <li>Added ability to send media in DMs (#14)</li>
+            <li>Added ability to delete DMs (#7)</li>
+            <li>Load older DMs (#3)</li>
+            <li>Add ability to upload videos and larger animated GIFs (#248)</li>
+            <li>Use HTTPS avatars throughout</li>
+            <li>Translations: Dutch and Danish (complete), Italian and French (updated)</li>
+          </ul>
+        </li>
+        <li>Design changes:
+          <ul>
+            <li>More accessible approach to loading "replied to" tweets (#164)</li>
+            <li>Improved user completion behaviour and interaction with user completion list</li>
+            <li>Added outline to media upload indicator to make it clearer on light images</li>
+            <li>Remove whitespace around tweets (e.g. when user has new lines and then a quoted URL or media that we're displaying)</li>
+            <li>Allow Compose view to shrink to narrower screens (e.g. for PinePhone) (#212)</li>
+          </ul>
+        </li>
+        <li>Fixes:
+          <ul>
+            <li>Fix DM load order</li>
+            <li>Fix missing "reply" icon by providing our own (#208)</li>
+            <li>Fixed crashes when playing video (#123)</li>
+            <li>Avoid a crash when returned JSON is invalid (#200)</li>
+            <li>Fixed widget height calculations for responsive and non-responsive views (#202)</li>
+            <li>Fixed layout when starting in responsive width</li>
+            <li>Avoid an unnecessary request for tweets when loading timelines</li>
+            <li>Fixed completion query for known users</li>
+            <li>Fixed various run-time and compiler warnings</li>
+            <li>Fixed handling of command-line parameters (#246)</li>
+          </ul>
+        </li>
+        <li>Developer:
+          <ul>
+            <li>Added "appdata" build config to allow building on platforms without AppStream (#35)</li>
+            <li>Changed Meson configuration and instructions to allow running dev version without installing</li>
+          </ul>
+        </li>
+      </ul>
+    </release>
     <release version="1.2.1" date="2020-09-20">
       <p>Changes in Cawbird 1.2.1:</p>
       <ul>
