@@ -1012,4 +1012,9 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       user_stack.visible_child = user_lists;
     }
   }
+
+  public override void rerun_filters () {
+    debug("Rerunning profile page filters");
+    TweetUtils.rerun_filters(tweet_list, account);
+  }
 }

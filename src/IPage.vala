@@ -30,4 +30,6 @@ public interface IPage : Gtk.Widget {
   }
 
   public virtual void double_open () {}
+
+  public virtual void rerun_filters () {}
 }

@@ -541,9 +541,7 @@ public class MainWindow : Gtk.ApplicationWindow {
   }
 
   public void rerun_filters () {
-    /* We only do this for stream + mentions at the moment */
-    ((DefaultTimeline)get_page (Page.STREAM)).rerun_filters ();
-    ((DefaultTimeline)get_page (Page.MENTIONS)).rerun_filters ();
+    main_widget.rerun_filters();
   }
 
   public void set_window_title (string title,

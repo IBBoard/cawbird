@@ -188,6 +188,12 @@ public class MainWidget : Gtk.Box {
     return pages[page_id];
   }
 
+  public void rerun_filters() {
+    foreach (IPage page in pages) {
+      page.rerun_filters();
+    }
+  }
+
   public void stop () {
     for (int i = 0; i < pages.length; i++) {
       IPage page = pages[i];

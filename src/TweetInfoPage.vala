@@ -779,6 +779,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       /* If we get here, the tweet is not protected so we can just use it */
       var tweet = new Cb.Tweet ();
       tweet.load_from_json (parser.get_root (), account.id, new GLib.DateTime.now_local ());
+      TweetUtils.set_tweet_hidden_flags(tweet, account);
       replied_to_list_box.model.add (tweet);
       this.balance_next_upper_change(TOP);
       if (tweet.retweeted_tweet == null)
@@ -1059,5 +1060,12 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
         this.values_set = true;
       }
     }
+  }
+
+  public override void rerun_filters () {
+    TweetUtils.rerun_filters(replied_to_list_box, account);
+    TweetUtils.rerun_filters(self_replies_list_box, account);
+    TweetUtils.rerun_filters(mentioned_replies_list_box, account);
+    TweetUtils.rerun_filters(replies_list_box, account);
   }
 }

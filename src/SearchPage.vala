@@ -476,6 +476,10 @@ class SearchPage : IPage, Gtk.Box {
   public bool handles_double_open () {
     return true;
   }
+
+  public override void rerun_filters () {
+    TweetUtils.rerun_filters(tweet_list, account);
+  }
 }
 
 class LoadMoreEntry : Gtk.ListBoxRow, Cb.TwitterItem {
