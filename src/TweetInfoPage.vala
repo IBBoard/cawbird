@@ -679,6 +679,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
       var t = new Cb.Tweet ();
       t.load_from_json (node, account.id, now);
+      TweetUtils.set_tweet_hidden_flags(t, account);
 
       if (reply_screen_name == screen_name_lower) {
         // Must be relevant by now, so matching screen name means it's more of the author's thread
