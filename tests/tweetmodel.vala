@@ -291,6 +291,85 @@ void tweet_removal_zero_length_handling () {
   tm.remove_oldest_n_visible (0);
 }
 
+void tweet_removal_leaves_newer_hidden_tweets() {
+  var tm = new Cb.TweetModel ();
+
+  //add 10 visible tweets
+  for (int i = 0; i < 10; i ++) {
+    var t = new Cb.Tweet ();
+    t.id = 100 - i;
+    tm.add (t);
+  }
+
+  // now add 2 invisible tweets
+  {
+    var t = new Cb.Tweet ();
+    t.id = 200;
+    t.set_flag (Cb.TweetState.HIDDEN_FORCE);
+    tm.add (t);
+
+    assert (tm.get_n_items () == 10);
+
+    t = new Cb.Tweet ();
+    t.id = 201;
+    t.set_flag (Cb.TweetState.HIDDEN_UNFOLLOWED);
+    tm.add (t);
+
+    assert (tm.get_n_items () == 10);
+  }
+
+  // We should have 10 now
+  assert (tm.get_n_items () == 10);
+  // And two hidden tweets
+  assert (tm.hidden_tweets.length == 2);
+
+  // Now remove the last 5 visible ones.
+  // This should remove 2 invisible tweets as well as 5 visible ones
+  // Leaving the model with 5 remaining tweets
+  tm.remove_oldest_n_visible (5);
+
+  assert (tm.get_n_items () == 5);
+  assert (tm.hidden_tweets.length == 2);
+
+  for (int i = 0; i < 5; i++) {
+    assert (((Cb.Tweet)tm.get_item (i)).id == 100 - i);
+  }
+}
+
+void tweet_model_set_unset_flags () {
+  var tm = new Cb.TweetModel ();
+  var t = new Cb.Tweet();
+  t.id = 100;
+  tm.add(t);
+  var newer = new Cb.Tweet ();
+  newer.id = 200;
+  tm.add(newer);
+  var older = new Cb.Tweet ();
+  older.id = 10;
+  tm.add(older);
+  assert(tm.get_n_items() == 3);
+  assert(tm.hidden_tweets.length == 0);
+  assert(tm.min_id == 10);
+  assert(tm.max_id == 200);
+  // Older hidden tweets get removed (because we can scroll back to reload them)
+  tm.set_tweet_flag(older, Cb.TweetState.HIDDEN_FILTERED);
+  assert(tm.get_n_items() == 2);
+  assert(tm.hidden_tweets.length == 0);
+  assert(tm.min_id == 100);
+  assert(tm.max_id == 200);
+  // Newer hidden tweets remain
+  tm.set_tweet_flag(newer, Cb.TweetState.HIDDEN_FILTERED);
+  assert(tm.get_n_items() == 1);
+  assert(tm.hidden_tweets.length == 1);
+  assert(tm.min_id == 100);
+  assert(tm.max_id == 100);
+  // And can be put back
+  tm.unset_tweet_flag(newer, Cb.TweetState.HIDDEN_FILTERED);
+  assert(tm.get_n_items() == 2);
+  assert(tm.hidden_tweets.length == 0);
+  assert(tm.min_id == 100);
+  assert(tm.max_id == 200);
+}
 
 void contains () {
   var tm = new Cb.TweetModel ();
@@ -973,6 +1052,8 @@ int main (string[] args) {
   GLib.Test.add_func ("/tweetmodel/tweet-removal", tweet_removal);
   GLib.Test.add_func ("/tweetmodel/tweet-removal-thread-mode", tweet_removal_thread_mode);
   GLib.Test.add_func ("/tweetmodel/tweet-removal-zero-length", tweet_removal_zero_length_handling);
+  GLib.Test.add_func ("/tweetmodel/tweet-removal-leaves-newer-tweets", tweet_removal_leaves_newer_hidden_tweets);
+  GLib.Test.add_func ("/tweetmodel/set-unset-flags", tweet_model_set_unset_flags);
   GLib.Test.add_func ("/tweetmodel/contains", contains);
   GLib.Test.add_func ("/tweetmodel/index-of", index_of);
   GLib.Test.add_func ("/tweetmodel/index-of-thread-mode", index_of_thread_mode);

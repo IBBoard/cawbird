@@ -125,19 +125,7 @@ update_min_max_id (CbTweetModel *self,
           CbTweet *t = g_ptr_array_index (self->tweets, self->thread_mode ? self->tweets->len - 1 : 0);
 
           self->max_id = t->id;
-
-          /* We just removed the tweet with the max_id, so now remove all
-           * hidden tweets that have a id greater than the now max id! */
-          for (i = 0; i < self->hidden_tweets->len; i ++)
-            {
-              CbTweet *t = g_ptr_array_index (self->hidden_tweets, i);
-
-              if (t->id > self->max_id)
-                {
-                  g_ptr_array_remove_index (self->hidden_tweets, i);
-                  i --;
-                }
-            }
+          // Don't remove newer (higher ID) hidden tweets in case we unhide them later
         }
       else
         {
