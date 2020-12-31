@@ -1062,7 +1062,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     }
   }
 
-  public override void rerun_filters () {
+  public void rerun_filters () {
     TweetUtils.rerun_filters(replied_to_list_box, account);
     TweetUtils.rerun_filters(self_replies_list_box, account);
     TweetUtils.rerun_filters(mentioned_replies_list_box, account);

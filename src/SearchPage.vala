@@ -515,7 +515,7 @@ class SearchPage : IPage, Cb.MessageReceiver, Gtk.Box {
     return true;
   }
 
-  public override void rerun_filters () {
+  public void rerun_filters () {
     TweetUtils.rerun_filters(tweet_list, account);
   }
 }

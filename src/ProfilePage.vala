@@ -1013,7 +1013,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     }
   }
 
-  public override void rerun_filters () {
+  public void rerun_filters () {
     debug("Rerunning profile page filters");
     TweetUtils.rerun_filters(tweet_list, account);
   }

@@ -405,7 +405,7 @@ class ListStatusesPage : ScrollWidget, Cb.MessageReceiver, IPage {
   public void create_radio_button (Gtk.RadioButton? group) {}
   public Gtk.RadioButton? get_radio_button () {return null;}
 
-  public override void rerun_filters () {
+  public void rerun_filters () {
     TweetUtils.rerun_filters(tweet_list, account);
   }
 }

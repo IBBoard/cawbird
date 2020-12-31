@@ -419,7 +419,7 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
     });
   }
 
-  public override void rerun_filters () {
+  public void rerun_filters () {
     unread_count -= TweetUtils.rerun_filters(tweet_list, account);
   }
 }
