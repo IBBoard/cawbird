@@ -515,11 +515,9 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
                            tweet_list,
                            account);
     tweets_loading = false;
-    // TODO: Check whether we've got an empty list (all hidden) and load more.
-    // TODO: Track last hidden tweet ID in model so that we don't keep loading newest tweets every time (get_oldest_hidden_id() rather than tracking, because it's a corner case?)
   }
 
-  private async void load_older_tweets () {
+  private async void load_older_tweets (int count_multiplier = 1) {
     if (tweets_loading)
       return;
 
@@ -527,7 +525,8 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       return;
 
     tweets_loading = true;
-    int requested_tweet_count = 15;
+    int requested_tweet_count = 15 * count_multiplier;
+    debug("Loading %d tweets", requested_tweet_count);
     var call = account.proxy.new_call ();
     call.set_function ("1.1/statuses/user_timeline.json");
     call.set_method ("GET");
@@ -954,6 +953,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
   private async void fill_tweet_list() {
     // Try to load more tweets if we may not have enough because we disabled RTs from this user
     // But don't try too many times or we'll burn up all of our requests
+    var count_multiplier = 1;
     for (int i = 0; i < 5; i++) {
       GLib.Idle.add(() => {
         // Give the scroller time to update its status
@@ -964,7 +964,11 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       if (this.is_scrollable) {
         break;            
       }
-      yield load_older_tweets();
+      var prev_min_id = tweet_list.model.min_id;
+      yield load_older_tweets(count_multiplier);
+      if (tweet_list.model.min_id == prev_min_id) {
+        count_multiplier++;
+      }
     }
   }
 
