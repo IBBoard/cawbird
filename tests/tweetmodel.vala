@@ -18,7 +18,6 @@ bool is_thread_mode_sorted (Cb.TweetModel tm) {
   for (int i = 1; i < tm.get_n_items (); i ++) {
     Cb.Tweet t = (Cb.Tweet)tm.get_item (i);
     int64 id = t.retweeted_tweet == null ? t.id : t.retweeted_tweet.id;
-    debug("ID: %lld", id);
 
     if (id < last_id) return false;
 
@@ -229,7 +228,6 @@ void tweet_removal () {
   assert (tm.hidden_tweets.length == 0);
 
   for (int i = 0; i < 5; i++) {
-    debug("%lld", ((Cb.Tweet)tm.get_item (0)).id);
     assert (((Cb.Tweet)tm.get_item (i)).id == 100 - i);
   }
 }
@@ -276,7 +274,6 @@ void tweet_removal_thread_mode () {
   assert (tm.hidden_tweets.length == 0);
 
   for (int i = 0; i < 5; i++) {
-    debug("%lld", ((Cb.Tweet)tm.get_item (0)).id);
     assert (((Cb.Tweet)tm.get_item (i)).id == 96 + i);
   }
 }
@@ -489,7 +486,6 @@ void remove_older () {
 
   assert (tm.get_n_items () == 50);
   tm.remove_tweets_later_than (25);
-  debug("%u", tm.get_n_items ());
   assert (tm.get_n_items () == 24);
   assert (tm.max_id == 24);
   assert (tm.min_id == 1);
@@ -913,7 +909,6 @@ void hidden_remove_oldest_n_visible_thread_mode () {
   tm.remove_oldest_n_visible (10);
   assert (tm.get_n_items () == 10);
   for (int i = 0; i < 10; i ++) {
-    debug("%lld", ((Cb.Tweet)tm.get_item (i)).id);
     assert (((Cb.Tweet)tm.get_item (i)).id >= 30);
   }
 
