@@ -610,25 +610,29 @@ namespace TweetUtils {
     account.user_stream.inject_tweet(Cb.StreamMessageType.TWEET, json);
   }
 
-  private void inject_user_action (int64 user_id, Account account, Cb.StreamMessageType action) {
-    var message = @"{ \"target\": { \"id\":$(user_id) } }";
+  private void inject_user_action_json (string user_json, Account account, Cb.StreamMessageType action) {
+    var message = @"{ \"target\": $(user_json) }";
     account.user_stream.inject_tweet(action, message);
   }
 
-  public void inject_user_mute (int64 user_id, Account account) {
-    inject_user_action(user_id, account, Cb.StreamMessageType.EVENT_MUTE);
+  private void inject_user_action (int64 user_id, Account account, Cb.StreamMessageType action) {
+    inject_user_action_json(@"{ \"id\":$(user_id) }", account, action);
   }
 
-  public void inject_user_unmute (int64 user_id, Account account) {
-    inject_user_action(user_id, account, Cb.StreamMessageType.EVENT_UNMUTE);
+  public void inject_user_mute (string user_json, Account account) {
+    inject_user_action_json(user_json, account, Cb.StreamMessageType.EVENT_MUTE);
   }
 
-  public void inject_user_block (int64 user_id, Account account) {
-    inject_user_action(user_id, account, Cb.StreamMessageType.EVENT_BLOCK);
+  public void inject_user_unmute (string user_json, Account account) {
+    inject_user_action_json(user_json, account, Cb.StreamMessageType.EVENT_UNMUTE);
   }
 
-  public void inject_user_unblock (int64 user_id, Account account) {
-    inject_user_action(user_id, account, Cb.StreamMessageType.EVENT_UNBLOCK);
+  public void inject_user_block (string user_json, Account account) {
+    inject_user_action_json(user_json, account, Cb.StreamMessageType.EVENT_BLOCK);
+  }
+
+  public void inject_user_unblock (string user_json, Account account) {
+    inject_user_action_json(user_json, account, Cb.StreamMessageType.EVENT_UNBLOCK);
   }
 
   public void inject_user_follow (int64 user_id, Account account) {

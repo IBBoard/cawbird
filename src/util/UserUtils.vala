@@ -167,6 +167,12 @@ namespace UserUtils {
     call.invoke_async.begin (null, (obj, res) => {
       try {
         call.invoke_async.end (res);
+        if (setting) {
+          TweetUtils.inject_user_mute(call.get_payload(), account);
+        }
+        else {
+          TweetUtils.inject_user_unmute(call.get_payload(), account);
+        }
       } catch (GLib.Error e) {
         var tmp_err = TweetUtils.failed_request_to_error (call, e);
 
@@ -196,11 +202,19 @@ namespace UserUtils {
     }
 
     call.add_param ("user_id", to_block.to_string ());
+    call.add_param ("include_entities", "false");
+    call.add_param ("skip_status", "true");
     GLib.Error? err = null;
     
     call.invoke_async.begin (null, (obj, res) => {
       try {
         call.invoke_async.end (res);
+        if (setting) {
+          TweetUtils.inject_user_block(call.get_payload(), account);
+        }
+        else {
+          TweetUtils.inject_user_unblock(call.get_payload(), account);
+        }
       } catch (GLib.Error e) {
         var tmp_err = TweetUtils.failed_request_to_error (call, e);
         debug("Error: %s", tmp_err.message);

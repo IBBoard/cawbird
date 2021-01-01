@@ -816,12 +816,9 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       try {
         UserUtils.block_user.end (res);
         a.set_state(!current_state);
-        if (current_state) {
-          TweetUtils.inject_user_unblock (user_id, account);
-        } else {
+        if (!current_state) {
           this.follow_button.following = false;
-          this.follow_button.sensitive = (this.user_id != this.account.id);          
-          TweetUtils.inject_user_block (user_id, account);
+          this.follow_button.sensitive = (this.user_id != this.account.id);
         }
         set_user_blocked (!current_state);
       } catch (GLib.Error e) {
@@ -839,11 +836,6 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       try {
         UserUtils.mute_user.end (res);
         a.set_state (!setting);
-        if (setting) {
-          TweetUtils.inject_user_unmute (user_id, account);
-        } else {
-          TweetUtils.inject_user_mute (user_id, account);
-        }
       } catch (GLib.Error e) {
         Utils.show_error_dialog (e, this.main_window);
       } finally {
