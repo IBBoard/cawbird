@@ -31,6 +31,8 @@ class UserFilterEntry : Gtk.ListBoxRow, Cb.TwitterItem {
   private Gtk.Grid grid;
   [GtkChild]
   private Gtk.Revealer revealer;
+  [GtkChild]
+  private Gtk.Button delete_button;
 
   public new string name {
     set {
@@ -56,8 +58,28 @@ class UserFilterEntry : Gtk.ListBoxRow, Cb.TwitterItem {
 
   public signal void deleted (int64 id);
 
-  public bool muted = false;
-  public bool blocked = false;
+  private bool _muted = false;
+  private bool _blocked = false;
+
+  public bool muted {
+    get { return _muted; }
+    set {
+      _muted = value;
+      if (muted && !blocked) {
+        delete_button.label = _("Unmute");
+      }
+      // Else the blocking takes priority
+    }
+  }
+  public bool blocked {
+    get { return _blocked; }
+    set {
+      _blocked = value;
+      if (blocked) {
+        delete_button.label = _("Unblock");
+      }
+    }
+  }
   private GLib.TimeSpan last_timediff;
 
   private void real_set_avatar (string avatar_url) {
