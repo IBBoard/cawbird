@@ -485,7 +485,7 @@ public class Account : GLib.Object {
       if (this.muted[i] == id) {
         continue;
       }
-      muted[o] = this.muted[i];
+      new_muted[o] = this.muted[i];
       o ++;
     }
     this.muted = new_muted;
@@ -516,7 +516,7 @@ public class Account : GLib.Object {
       if (this.blocked[i] == id) {
         continue;
       }
-      blocked[o] = this.blocked[i];
+      new_blocked[o] = this.blocked[i];
       o ++;
     }
     this.blocked = new_blocked;
