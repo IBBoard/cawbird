@@ -218,8 +218,8 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
 
   private async void load_friendship () {
     /* Set muted and blocked status now, let the friendship update it */
-    set_user_blocked (account.is_blocked (user_id));
     set_user_muted (account.is_muted (user_id));
+    set_user_blocked (account.is_blocked (user_id));
     /* We (maybe) re-enable this later when the friendship object has arrived */
     ((SimpleAction)actions.lookup_action ("toggle-retweets")).set_enabled (false);
     ((SimpleAction)actions.lookup_action ("add-remove-list")).set_enabled (user_id != account.id);
@@ -230,6 +230,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     uint fr = yield UserUtils.load_friendship (account, this.user_id, this.screen_name);
 
     follows_you_label.visible = (fr & FRIENDSHIP_FOLLOWED_BY) > 0;
+    set_user_muted ((fr & FRIENDSHIP_MUTING) > 0);
     set_user_blocked ((fr & FRIENDSHIP_BLOCKING) > 0);
     set_retweets_disabled ((fr & FRIENDSHIP_FOLLOWING) > 0 &&
                            (fr & FRIENDSHIP_WANT_RETWEETS) == 0);
@@ -470,6 +471,9 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
 
 
   private async void load_tweets () {
+    if (account.blocked_or_muted (user_id)) {
+      return;
+    }
     tweet_list.set_unempty ();
     tweets_loading = true;
     int requested_tweet_count = 10;
@@ -727,6 +731,9 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
 
 
     data_cancellable = new GLib.Cancellable ();
+    tweet_list.reset_placeholder_text ();
+    followers_list.reset_placeholder_text ();
+    following_list.reset_placeholder_text ();
 
     if (user_id != this.user_id) {
       reset_data ();
@@ -751,9 +758,6 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       /* Still load the friendship since muted/blocked/etc. may have changed */
       load_friendship.begin ();
     }
-    tweet_list.reset_placeholder_text ();
-    followers_list.reset_placeholder_text ();
-    following_list.reset_placeholder_text ();
     tweets_button.active = true;
     //user_stack.visible_child = tweet_list;
   }
@@ -820,7 +824,6 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
           this.follow_button.following = false;
           this.follow_button.sensitive = (this.user_id != this.account.id);
         }
-        set_user_blocked (!current_state);
       } catch (GLib.Error e) {
         Utils.show_error_dialog (e, this.main_window);
       } finally {
@@ -876,9 +879,30 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     });
   }
 
+  private void hide_tweets(Cb.TweetState reason, string message) {
+    tweet_list.hide_tweets_from(user_id, reason);
+    tweet_list.hide_retweets_from(user_id, reason);
+    tweet_list.set_placeholder_text(message);
+    tweet_list.set_empty();
+  }
+
+  private void show_tweets(Cb.TweetState reason) {
+    tweet_list.show_tweets_from(user_id, reason);
+    tweet_list.show_retweets_from(user_id, reason);
+    if (tweet_list.model.get_n_items() == 0) {
+      load_tweets.begin();
+    }
+  }
 
   private void set_user_blocked (bool blocked) {
     ((SimpleAction)actions.lookup_action ("toggle-blocked")).set_state (new GLib.Variant.boolean (blocked));
+    var reason = Cb.TweetState.HIDDEN_AUTHOR_BLOCKED;
+    if (blocked) {
+      hide_tweets(reason, _("User is blocked"));
+    }
+    else {
+      show_tweets(reason);
+    }
   }
 
   private bool get_user_blocked () {
@@ -887,6 +911,13 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
 
   private void set_user_muted (bool muted) {
     ((SimpleAction)actions.lookup_action ("toggle-muted")).set_state (new GLib.Variant.boolean (muted));
+    var reason = Cb.TweetState.HIDDEN_AUTHOR_MUTED;
+    if (muted) {
+      hide_tweets(reason, _("User is muted"));
+    }
+    else {
+      show_tweets(reason);
+    }
   }
 
   private bool get_user_muted () {
@@ -933,13 +964,39 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     } else if (type == Cb.StreamMessageType.RT_DELETE) {
       Utils.unrt_tweet (root_node, this.tweet_list.model);
     } else if (type == Cb.StreamMessageType.EVENT_HIDE_RTS) {
-      tweet_list.hide_retweets_from (get_user_id (root_node), Cb.TweetState.HIDDEN_RTS_DISABLED);
-      fill_tweet_list.begin();
+      var event_user_id = get_user_id (root_node);
+      if (event_user_id == user_id) {
+        tweet_list.hide_retweets_from (event_user_id, Cb.TweetState.HIDDEN_RTS_DISABLED);
+        fill_tweet_list.begin();
+      }
     } else if (type == Cb.StreamMessageType.EVENT_SHOW_RTS) {
-      tweet_list.show_retweets_from (get_user_id (root_node), Cb.TweetState.HIDDEN_RTS_DISABLED);        
+      var event_user_id = get_user_id (root_node);
+      if (event_user_id == user_id) {
+        tweet_list.show_retweets_from (event_user_id, Cb.TweetState.HIDDEN_RTS_DISABLED);
+      }
+    } else if (type == Cb.StreamMessageType.EVENT_BLOCK) {
+      var event_user_id = get_user_id (root_node);
+      if (event_user_id == user_id) {
+        set_user_blocked (true);
+      }
+    } else if (type == Cb.StreamMessageType.EVENT_MUTE) {
+      var event_user_id = get_user_id (root_node);
+      debug("Got mute for %lld vs %lld", event_user_id, user_id);
+      if (event_user_id == user_id) {
+        set_user_muted (true);
+      }
+    } else if (type == Cb.StreamMessageType.EVENT_UNBLOCK) {
+      var event_user_id = get_user_id (root_node);
+      if (event_user_id == user_id) {
+        set_user_blocked (false);
+      }
+    } else if (type == Cb.StreamMessageType.EVENT_UNMUTE) {
+      var event_user_id = get_user_id (root_node);
+      debug("Got unmute for %lld vs %lld", event_user_id, user_id);
+      if (event_user_id == user_id) {
+        set_user_muted (false);
+      }
     }
-    // We could also hide tweets in the profile on block/mute, but Twitter gives you a "show anyway" button so we'll continue just showing them
-    // If you block someone and don't want to see their tweets then don't go to the profile!
   }
 
   private async void fill_tweet_list() {

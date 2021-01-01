@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 11:23+0000\n"
+"POT-Creation-Date: 2021-01-01 11:44+0000\n"
 "PO-Revision-Date: 2018-02-09 06:34+0000\n"
 "Last-Translator: Kim Malmo <berencamlost@msn.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/cawbird/cawbird/"
@@ -265,6 +265,12 @@ msgstr "Følger"
 
 msgid "Protected Profile"
 msgstr "Beskyttet profil"
+
+msgid "User is blocked"
+msgstr ""
+
+msgid "User is muted"
+msgstr ""
 
 #, fuzzy, c-format
 msgid "%d follower"

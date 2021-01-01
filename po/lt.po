@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 11:23+0000\n"
+"POT-Creation-Date: 2021-01-01 11:44+0000\n"
 "PO-Revision-Date: 2017-10-22 18:18+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -278,6 +278,12 @@ msgstr "Seka"
 
 msgid "Protected Profile"
 msgstr "Apsaugotas profilis"
+
+msgid "User is blocked"
+msgstr ""
+
+msgid "User is muted"
+msgstr ""
 
 #, fuzzy, c-format
 msgid "%d follower"

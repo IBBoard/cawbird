@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 11:23+0000\n"
+"POT-Creation-Date: 2021-01-01 11:44+0000\n"
 "PO-Revision-Date: 2018-01-17 19:31+0000\n"
 "Last-Translator: HybridGlucose <a07051226@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/cawbird/cawbird/"
@@ -259,6 +259,12 @@ msgstr "正在關注"
 
 msgid "Protected Profile"
 msgstr "受保護的個人檔案"
+
+msgid "User is blocked"
+msgstr ""
+
+msgid "User is muted"
+msgstr ""
 
 #, fuzzy, c-format
 msgid "%d follower"
