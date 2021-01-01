@@ -586,7 +586,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       var user_obj = node.get_object ();
       string avatar_url = user_obj.get_string_member ("profile_image_url_https");
 
-      if (this.get_scale_factor () == 2)
+      if (this.get_scale_factor () >= 2)
         avatar_url = avatar_url.replace ("_normal", "_bigger");
 
 
@@ -630,7 +630,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       var user_obj = node.get_object ();
       string avatar_url = user_obj.get_string_member ("profile_image_url_https");
 
-      if (this.get_scale_factor () == 2)
+      if (this.get_scale_factor () >= 2)
         avatar_url = avatar_url.replace ("_normal", "_bigger");
 
       var entry = new UserListEntry ();

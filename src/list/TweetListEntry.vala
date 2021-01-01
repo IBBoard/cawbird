@@ -118,7 +118,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     name_label.tooltip_text = "%s \u2068%s\u2069".printf(name, screen_name);
     if (tweet.avatar_url != null) {
       string avatar_url = tweet.avatar_url;
-      if (this.get_scale_factor () == 2)
+      if (this.get_scale_factor () >= 2)
         avatar_url = avatar_url.replace ("_normal", "_bigger");
       Twitter.get ().get_avatar.begin (tweet.get_user_id (), avatar_url, avatar_image,
                                        48 * this.get_scale_factor ());

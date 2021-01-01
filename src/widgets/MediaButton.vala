@@ -235,7 +235,7 @@ private class MediaButton : Gtk.Widget {
 
         ct.save ();
         ct.rectangle (x, y, PLAY_ICON_SIZE, PLAY_ICON_SIZE);
-        ct.set_source_surface (play_icons[this.get_scale_factor () - 1], x, y);
+        ct.set_source_surface (play_icons[this.get_scale_factor () == 1 ? 0 : 1], x, y);
         ct.paint_with_alpha (this.media_alpha);
         ct.restore ();
         ct.new_path ();

@@ -250,7 +250,7 @@ class DMListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
 
   public void load_avatar (string avatar_url) {
     string url = avatar_url;
-    if (this.get_scale_factor () == 2)
+    if (this.get_scale_factor () >= 2)
       url = url.replace ("_normal", "_bigger");
 
     Twitter.get ().get_avatar.begin (user_id, url, avatar_image, 48 * this.get_scale_factor ());

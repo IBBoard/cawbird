@@ -430,7 +430,7 @@ class SearchPage : IPage, Cb.MessageReceiver, Gtk.Box {
       var entry = new UserListEntry ();
       string avatar_url = user_obj.get_string_member ("profile_image_url_https");
 
-      if (this.get_scale_factor () == 2)
+      if (this.get_scale_factor () >= 2)
         avatar_url = avatar_url.replace ("_normal", "_bigger");
 
       entry.user_id = user_obj.get_int_member ("id");

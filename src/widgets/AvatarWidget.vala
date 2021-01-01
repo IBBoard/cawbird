@@ -217,7 +217,7 @@ public class AvatarWidget : Gtk.Widget {
         verified_scale = (double)this._size / 100.0;
       }
 
-      int scale_factor = this.get_scale_factor () - 1;
+      int scale_factor = this.get_scale_factor () == 1 ? 0 : 1;
       Cairo.Surface verified_img = verified_icons[scale_factor * 2 + index];
       ctx.scale (verified_scale, verified_scale);
       ctx.set_source_surface (verified_img,
@@ -236,7 +236,7 @@ public class AvatarWidget : Gtk.Widget {
         protected_scale = (double)this._size / 100.0;
       }
 
-      int scale_factor = this.get_scale_factor () - 1;
+      int scale_factor = this.get_scale_factor () == 1 ? 0 : 1;
       Cairo.Surface protected_account_img = protected_account_icons[scale_factor * 2 + index];
       ctx.scale (protected_scale, protected_scale);
       double protected_y = (height  - (PROTECTED_ACCOUNT_SIZES[index] * protected_scale)) / protected_scale;
