@@ -530,7 +530,6 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
 
     tweets_loading = true;
     int requested_tweet_count = 15 * count_multiplier;
-    debug("Loading %d tweets", requested_tweet_count);
     var call = account.proxy.new_call ();
     call.set_function ("1.1/statuses/user_timeline.json");
     call.set_method ("GET");
@@ -981,7 +980,6 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       }
     } else if (type == Cb.StreamMessageType.EVENT_MUTE) {
       var event_user_id = get_user_id (root_node);
-      debug("Got mute for %lld vs %lld", event_user_id, user_id);
       if (event_user_id == user_id) {
         set_user_muted (true);
       }
@@ -992,7 +990,6 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       }
     } else if (type == Cb.StreamMessageType.EVENT_UNMUTE) {
       var event_user_id = get_user_id (root_node);
-      debug("Got unmute for %lld vs %lld", event_user_id, user_id);
       if (event_user_id == user_id) {
         set_user_muted (false);
       }
@@ -1067,7 +1064,6 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
   }
 
   public void rerun_filters () {
-    debug("Rerunning profile page filters");
     TweetUtils.rerun_filters(tweet_list, account);
   }
 }
