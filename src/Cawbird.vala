@@ -509,8 +509,9 @@ public class Cawbird : Gtk.Application {
     }
 
     acc.init_proxy ();
-    acc.user_stream.start ();
-    acc.init_information.begin ();
+    acc.init_information.begin (() => {
+      acc.user_stream.start ();
+    });
 
     this.active_accounts.add (acc);
   }
