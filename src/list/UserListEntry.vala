@@ -42,6 +42,12 @@ class UserListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
       return screen_name_label.label.substring (1);
     }
   }
+
+  public int name_display_length {
+    get { return name_label.max_width_chars; }
+    set { name_label.max_width_chars = value; }
+  }
+
   public void set_screen_name (string sn) {
     screen_name_label.label = sn;
     screen_name_label.tooltip_text = sn;

@@ -198,6 +198,19 @@ public class MainWindow : Gtk.ApplicationWindow {
     load_geometry ();
   }
 
+  public override void size_allocate(Gtk.Allocation allocation) {
+    if ((allocation.width < Cawbird.RESPONSIVE_LIMIT) != (get_allocated_width() < Cawbird.RESPONSIVE_LIMIT) || get_allocated_width() == 1) {
+      var new_length = (allocation.width < Cawbird.RESPONSIVE_LIMIT) ? 15 : 25;
+      foreach (Gtk.Widget ule in account_list.get_children ()) {
+        if (ule is UserListEntry) {
+          ((UserListEntry)ule).name_display_length = new_length;
+        }
+      }
+    }
+
+    base.size_allocate(allocation);
+  }
+
   private void back_button_clicked_cb () {
     main_widget.switch_page (Page.PREVIOUS);
   }
