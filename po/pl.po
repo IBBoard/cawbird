@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2017-10-22 15:14+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -952,11 +952,23 @@ msgstr "Aktywacja podwójnym kliknięciem"
 msgid "Interface"
 msgstr "Interfejs"
 
+msgid "Round avatars"
+msgstr "Okrągłe awatary"
+
+msgid "Remove trailing hashtags"
+msgstr "Usuwanie końcowych znaczników #"
+
+msgid "Remove media links"
+msgstr "Usuwanie odnośników do multimediów"
+
+msgid "Hide inappropriate content"
+msgstr "Ukrywanie nieodpowiednich treści"
+
 msgid "On New Tweets"
 msgstr "Po otrzymaniu nowych tweetów"
 
-msgid "Actions"
-msgstr "Działania"
+msgid "Notifications"
+msgstr "Powiadomienia"
 
 msgid "On New Mentions"
 msgstr "Po otrzymaniu nowych wzmianek"
@@ -981,21 +993,6 @@ msgstr "Co dwadzieścia pięć"
 
 msgid "Stack 50"
 msgstr "Co pięćdziesiąt"
-
-msgid "Notifications"
-msgstr "Powiadomienia"
-
-msgid "Round avatars"
-msgstr "Okrągłe awatary"
-
-msgid "Remove trailing hashtags"
-msgstr "Usuwanie końcowych znaczników #"
-
-msgid "Remove media links"
-msgstr "Usuwanie odnośników do multimediów"
-
-msgid "Hide inappropriate content"
-msgstr "Ukrywanie nieodpowiednich treści"
 
 msgid "No snippets configured."
 msgstr "Nie skonfigurowano żadnych wstawek."
@@ -1132,6 +1129,9 @@ msgstr "Utworzono"
 
 msgid "Subscribed to"
 msgstr "Subskrybowano do"
+
+#~ msgid "Actions"
+#~ msgstr "Działania"
 
 #~ msgid "Add Image"
 #~ msgstr "Dodaj obraz"

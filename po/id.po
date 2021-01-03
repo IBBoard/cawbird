@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Indonesian (Indonesia) (http://www.transifex.com/cawbird/"
@@ -916,11 +916,23 @@ msgstr "Aktivasi klik-ganda"
 msgid "Interface"
 msgstr "Antarmuka"
 
+msgid "Round avatars"
+msgstr "Avatar bulat"
+
+msgid "Remove trailing hashtags"
+msgstr "Hapus hastag sisa"
+
+msgid "Remove media links"
+msgstr "Hapus tautan media"
+
+msgid "Hide inappropriate content"
+msgstr "Sembunyikan konten yang tidak sesuai"
+
 msgid "On New Tweets"
 msgstr "Pada Tweets Baru"
 
-msgid "Actions"
-msgstr "Aksi"
+msgid "Notifications"
+msgstr "Notifikasi"
 
 msgid "On New Mentions"
 msgstr "Pada Menyebutkan Baru"
@@ -945,21 +957,6 @@ msgstr "Stack 25"
 
 msgid "Stack 50"
 msgstr "Stack 50"
-
-msgid "Notifications"
-msgstr "Notifikasi"
-
-msgid "Round avatars"
-msgstr "Avatar bulat"
-
-msgid "Remove trailing hashtags"
-msgstr "Hapus hastag sisa"
-
-msgid "Remove media links"
-msgstr "Hapus tautan media"
-
-msgid "Hide inappropriate content"
-msgstr "Sembunyikan konten yang tidak sesuai"
 
 msgid "No snippets configured."
 msgstr "Tidak ada potongan yang terkonfigurasi."
@@ -1097,6 +1094,9 @@ msgstr "Dibuat"
 
 msgid "Subscribed to"
 msgstr "Berlangganan ke"
+
+#~ msgid "Actions"
+#~ msgstr "Aksi"
 
 #~ msgid "Add Image"
 #~ msgstr "Tambah Gambar"

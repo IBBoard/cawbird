@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2017-11-19 08:34+0000\n"
 "Last-Translator: Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail."
 "com>\n"
@@ -942,11 +942,23 @@ msgstr "Активирај на дупли клик"
 msgid "Interface"
 msgstr "Интерфејс"
 
+msgid "Round avatars"
+msgstr "Округли аватари"
+
+msgid "Remove trailing hashtags"
+msgstr "Уклони пратеће тарабице"
+
+msgid "Remove media links"
+msgstr "Уклони мултимедијалне везе"
+
+msgid "Hide inappropriate content"
+msgstr "Сакриј неприкладни садржај"
+
 msgid "On New Tweets"
 msgstr "При новим твитовима"
 
-msgid "Actions"
-msgstr "Радње"
+msgid "Notifications"
+msgstr "Обавештења"
 
 msgid "On New Mentions"
 msgstr "При новим спомињањима"
@@ -971,21 +983,6 @@ msgstr "Сакуп 25"
 
 msgid "Stack 50"
 msgstr "Сакупи 50"
-
-msgid "Notifications"
-msgstr "Обавештења"
-
-msgid "Round avatars"
-msgstr "Округли аватари"
-
-msgid "Remove trailing hashtags"
-msgstr "Уклони пратеће тарабице"
-
-msgid "Remove media links"
-msgstr "Уклони мултимедијалне везе"
-
-msgid "Hide inappropriate content"
-msgstr "Сакриј неприкладни садржај"
 
 msgid "No snippets configured."
 msgstr "Нема подешених исечака."
@@ -1122,6 +1119,9 @@ msgstr "Направи"
 
 msgid "Subscribed to"
 msgstr "Претплаћен(а) на"
+
+#~ msgid "Actions"
+#~ msgstr "Радње"
 
 #~ msgid "Add Image"
 #~ msgstr "Додај слику"

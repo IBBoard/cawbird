@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Mattherix <mattherix@protonmail.com>, 2020\n"
 "Language-Team: French (https://www.transifex.com/cawbird/teams/107135/fr/)\n"
@@ -940,11 +940,23 @@ msgstr "Activation par double clic"
 msgid "Interface"
 msgstr "Interface"
 
+msgid "Round avatars"
+msgstr "Avatars ronds"
+
+msgid "Remove trailing hashtags"
+msgstr "Supprimer les hashtags superflus"
+
+msgid "Remove media links"
+msgstr "Supprimer les liens vers les média"
+
+msgid "Hide inappropriate content"
+msgstr "Cacher le contenu inapproprié"
+
 msgid "On New Tweets"
 msgstr "Lors de nouveaux tweets"
 
-msgid "Actions"
-msgstr "Actions"
+msgid "Notifications"
+msgstr "Notifications"
 
 msgid "On New Mentions"
 msgstr "Lors de nouvelles mentions"
@@ -969,21 +981,6 @@ msgstr "Tous les 25"
 
 msgid "Stack 50"
 msgstr "Tous les 50"
-
-msgid "Notifications"
-msgstr "Notifications"
-
-msgid "Round avatars"
-msgstr "Avatars ronds"
-
-msgid "Remove trailing hashtags"
-msgstr "Supprimer les hashtags superflus"
-
-msgid "Remove media links"
-msgstr "Supprimer les liens vers les média"
-
-msgid "Hide inappropriate content"
-msgstr "Cacher le contenu inapproprié"
 
 msgid "No snippets configured."
 msgstr "Pas de snippets configurés."
@@ -1119,6 +1116,9 @@ msgstr "Créé"
 
 msgid "Subscribed to"
 msgstr "S'inscrire"
+
+#~ msgid "Actions"
+#~ msgstr "Actions"
 
 #~ msgid "Add Image"
 #~ msgstr "Ajouter une image"

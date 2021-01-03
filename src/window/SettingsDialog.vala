@@ -53,16 +53,6 @@ class SettingsDialog : Gtk.Window {
   public SettingsDialog (Cawbird application) {
     this.application = application;
 
-    // Notifications Page
-    Settings.get ().bind ("round-avatars", round_avatar_switch, "active",
-                          SettingsBindFlags.DEFAULT);
-    Settings.get ().bind ("new-tweets-notify", on_new_tweets_combobox, "active-id",
-                          SettingsBindFlags.DEFAULT);
-    Settings.get ().bind ("new-mentions-notify", on_new_mentions_switch, "active",
-                          SettingsBindFlags.DEFAULT);
-    Settings.get ().bind ("new-dms-notify", on_new_dms_switch, "active",
-                          SettingsBindFlags.DEFAULT);
-
     // Interface page
     auto_scroll_on_new_tweets_switch.notify["active"].connect (() => {
       on_new_tweets_combobox.sensitive = !auto_scroll_on_new_tweets_switch.active;
@@ -91,6 +81,14 @@ class SettingsDialog : Gtk.Window {
     });
 
     // Tweets page
+    Settings.get ().bind ("round-avatars", round_avatar_switch, "active",
+        SettingsBindFlags.DEFAULT);
+    Settings.get ().bind ("new-tweets-notify", on_new_tweets_combobox, "active-id",
+        SettingsBindFlags.DEFAULT);
+    Settings.get ().bind ("new-mentions-notify", on_new_mentions_switch, "active",
+        SettingsBindFlags.DEFAULT);
+    Settings.get ().bind ("new-dms-notify", on_new_dms_switch, "active",
+        SettingsBindFlags.DEFAULT);
 
     // Set up sample tweet {{{
     var sample_tweet = new Cb.Tweet ();
@@ -272,10 +270,8 @@ class SettingsDialog : Gtk.Window {
     ag.connect (Gdk.Key.@1, Gdk.ModifierType.MOD1_MASK, Gtk.AccelFlags.LOCKED,
         () => {main_stack.visible_child_name = "interface"; return true;});
     ag.connect (Gdk.Key.@2, Gdk.ModifierType.MOD1_MASK, Gtk.AccelFlags.LOCKED,
-        () => {main_stack.visible_child_name = "notifications"; return true;});
-    ag.connect (Gdk.Key.@3, Gdk.ModifierType.MOD1_MASK, Gtk.AccelFlags.LOCKED,
         () => {main_stack.visible_child_name = "tweet"; return true;});
-    ag.connect (Gdk.Key.@4, Gdk.ModifierType.MOD1_MASK, Gtk.AccelFlags.LOCKED,
+    ag.connect (Gdk.Key.@3, Gdk.ModifierType.MOD1_MASK, Gtk.AccelFlags.LOCKED,
         () => {main_stack.visible_child_name = "snippets"; return true;});
 
 

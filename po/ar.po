@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Ammar K <ak.bahassan@gmail.com>, 2020\n"
 "Language-Team: Arabic (http://www.transifex.com/cawbird/cawbird/language/"
@@ -973,11 +973,23 @@ msgstr ""
 msgid "Interface"
 msgstr "الواجهة"
 
+msgid "Round avatars"
+msgstr "صور رمزية مستديرة"
+
+msgid "Remove trailing hashtags"
+msgstr "إزالة الهاشتقات الزائدة"
+
+msgid "Remove media links"
+msgstr "إزالة روابط الوسائط"
+
+msgid "Hide inappropriate content"
+msgstr "اخفي المحتوى الغير لائق"
+
 msgid "On New Tweets"
 msgstr ""
 
-msgid "Actions"
-msgstr "العمليات"
+msgid "Notifications"
+msgstr "الإشعارات"
 
 msgid "On New Mentions"
 msgstr ""
@@ -1002,21 +1014,6 @@ msgstr "تجميع 25"
 
 msgid "Stack 50"
 msgstr "تجميع 50"
-
-msgid "Notifications"
-msgstr "الإشعارات"
-
-msgid "Round avatars"
-msgstr "صور رمزية مستديرة"
-
-msgid "Remove trailing hashtags"
-msgstr "إزالة الهاشتقات الزائدة"
-
-msgid "Remove media links"
-msgstr "إزالة روابط الوسائط"
-
-msgid "Hide inappropriate content"
-msgstr "اخفي المحتوى الغير لائق"
 
 msgid "No snippets configured."
 msgstr ""
@@ -1152,6 +1149,9 @@ msgstr "تم الإنشاء"
 
 msgid "Subscribed to"
 msgstr "مشترك في"
+
+#~ msgid "Actions"
+#~ msgstr "العمليات"
 
 #~ msgid "Add Image"
 #~ msgstr "إضافة صورة "

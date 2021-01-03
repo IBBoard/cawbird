@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2017-10-22 18:18+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -948,11 +948,23 @@ msgstr "Aktyvavimas dvikarčiu spustelėjimu"
 msgid "Interface"
 msgstr "Sąsaja"
 
+msgid "Round avatars"
+msgstr "Apvalinti avatarus"
+
+msgid "Remove trailing hashtags"
+msgstr "Šalinti besivelkančius saitažodžius"
+
+msgid "Remove media links"
+msgstr "Šalinti medijos nuorodas"
+
+msgid "Hide inappropriate content"
+msgstr "Slėpti netinkamą turinį"
+
 msgid "On New Tweets"
 msgstr "Esant naujiems tauškalams"
 
-msgid "Actions"
-msgstr "Veiksmai"
+msgid "Notifications"
+msgstr "Pranešimai"
 
 msgid "On New Mentions"
 msgstr "Esant naujiems paminėjimams"
@@ -977,21 +989,6 @@ msgstr "Dėklui iš 25"
 
 msgid "Stack 50"
 msgstr "Dėklui iš 50"
-
-msgid "Notifications"
-msgstr "Pranešimai"
-
-msgid "Round avatars"
-msgstr "Apvalinti avatarus"
-
-msgid "Remove trailing hashtags"
-msgstr "Šalinti besivelkančius saitažodžius"
-
-msgid "Remove media links"
-msgstr "Šalinti medijos nuorodas"
-
-msgid "Hide inappropriate content"
-msgstr "Slėpti netinkamą turinį"
 
 msgid "No snippets configured."
 msgstr "Nėra sukonfigūruotų iškarpų."
@@ -1127,6 +1124,9 @@ msgstr "Sukurta"
 
 msgid "Subscribed to"
 msgstr "Jūsų prenumeratos"
+
+#~ msgid "Actions"
+#~ msgstr "Veiksmai"
 
 #~ msgid "Add Image"
 #~ msgstr "Pridėti paveikslą"

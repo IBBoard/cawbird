@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Turkish (Turkey) (http://www.transifex.com/cawbird/cawbird/"
@@ -904,11 +904,23 @@ msgstr "Etkinleştirmek İçin Çift Tıkla"
 msgid "Interface"
 msgstr "Arayüz"
 
+msgid "Round avatars"
+msgstr "Yuvarlak Avatarlar"
+
+msgid "Remove trailing hashtags"
+msgstr "Tekrarlayan Hashtagleri Kaldır"
+
+msgid "Remove media links"
+msgstr "Medya Linklerini Kaldır"
+
+msgid "Hide inappropriate content"
+msgstr ""
+
 msgid "On New Tweets"
 msgstr "Yeni Tweetlerde"
 
-msgid "Actions"
-msgstr "Etkileşimler"
+msgid "Notifications"
+msgstr "Bildirimler"
 
 msgid "On New Mentions"
 msgstr "Yeni Cevaplarda"
@@ -933,21 +945,6 @@ msgstr "25 destek"
 
 msgid "Stack 50"
 msgstr "50 destek"
-
-msgid "Notifications"
-msgstr "Bildirimler"
-
-msgid "Round avatars"
-msgstr "Yuvarlak Avatarlar"
-
-msgid "Remove trailing hashtags"
-msgstr "Tekrarlayan Hashtagleri Kaldır"
-
-msgid "Remove media links"
-msgstr "Medya Linklerini Kaldır"
-
-msgid "Hide inappropriate content"
-msgstr ""
 
 msgid "No snippets configured."
 msgstr "Yapılandırılmış Parçalar Yok."
@@ -1085,6 +1082,9 @@ msgstr "Oluşturuldu"
 
 msgid "Subscribed to"
 msgstr "Abone Olundu"
+
+#~ msgid "Actions"
+#~ msgstr "Etkileşimler"
 
 #, fuzzy, c-format
 #~ msgid "%s (%s) followers"

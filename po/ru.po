@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2018-03-01 17:12+0000\n"
 "Last-Translator: Egor Erastov <egor.er24@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -961,11 +961,23 @@ msgstr "Активация по двойному клику"
 msgid "Interface"
 msgstr "Интерфейс"
 
+msgid "Round avatars"
+msgstr "Округлять аватары"
+
+msgid "Remove trailing hashtags"
+msgstr "Удалить завершающие хэштеги"
+
+msgid "Remove media links"
+msgstr "Удалить ссылки на медиа"
+
+msgid "Hide inappropriate content"
+msgstr "Спрятать неуместные картинки"
+
 msgid "On New Tweets"
 msgstr "К новым твитам"
 
-msgid "Actions"
-msgstr "Действия"
+msgid "Notifications"
+msgstr "Уведомления"
 
 msgid "On New Mentions"
 msgstr "К новым упоминаниям"
@@ -990,21 +1002,6 @@ msgstr "Стек 25"
 
 msgid "Stack 50"
 msgstr "Стек 50"
-
-msgid "Notifications"
-msgstr "Уведомления"
-
-msgid "Round avatars"
-msgstr "Округлять аватары"
-
-msgid "Remove trailing hashtags"
-msgstr "Удалить завершающие хэштеги"
-
-msgid "Remove media links"
-msgstr "Удалить ссылки на медиа"
-
-msgid "Hide inappropriate content"
-msgstr "Спрятать неуместные картинки"
 
 msgid "No snippets configured."
 msgstr "Настроенных сниппетов нет."
@@ -1140,6 +1137,9 @@ msgstr "Создан"
 
 msgid "Subscribed to"
 msgstr "Подписаться"
+
+#~ msgid "Actions"
+#~ msgstr "Действия"
 
 #~ msgid "Add Image"
 #~ msgstr "Добавить изображение"

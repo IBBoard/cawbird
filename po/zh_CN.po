@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/cawbird/cawbird/"
@@ -905,11 +905,23 @@ msgstr "双击激活"
 msgid "Interface"
 msgstr "外观"
 
+msgid "Round avatars"
+msgstr "圆形头像"
+
+msgid "Remove trailing hashtags"
+msgstr "移除尾部标签"
+
+msgid "Remove media links"
+msgstr "移除媒体链接"
+
+msgid "Hide inappropriate content"
+msgstr "隐藏不适宜内容"
+
 msgid "On New Tweets"
 msgstr "新推文"
 
-msgid "Actions"
-msgstr "行为"
+msgid "Notifications"
+msgstr "通知"
 
 msgid "On New Mentions"
 msgstr "新提及"
@@ -934,21 +946,6 @@ msgstr "25 条"
 
 msgid "Stack 50"
 msgstr "50 条"
-
-msgid "Notifications"
-msgstr "通知"
-
-msgid "Round avatars"
-msgstr "圆形头像"
-
-msgid "Remove trailing hashtags"
-msgstr "移除尾部标签"
-
-msgid "Remove media links"
-msgstr "移除媒体链接"
-
-msgid "Hide inappropriate content"
-msgstr "隐藏不适宜内容"
 
 msgid "No snippets configured."
 msgstr "未配置任何插件"
@@ -1084,6 +1081,9 @@ msgstr "已创建"
 
 msgid "Subscribed to"
 msgstr "订阅到"
+
+#~ msgid "Actions"
+#~ msgstr "行为"
 
 #~ msgid "Add Image"
 #~ msgstr "添加图像"

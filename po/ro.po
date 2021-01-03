@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.com/cawbird/cawbird/"
@@ -923,11 +923,23 @@ msgstr "Activare prin dublu click"
 msgid "Interface"
 msgstr "Interfaţă"
 
+msgid "Round avatars"
+msgstr "Avatare rotunde"
+
+msgid "Remove trailing hashtags"
+msgstr "Şterge hashtag-urile de la sfârşit"
+
+msgid "Remove media links"
+msgstr "Şterge linkurile media"
+
+msgid "Hide inappropriate content"
+msgstr ""
+
 msgid "On New Tweets"
 msgstr "La tweeturi noi"
 
-msgid "Actions"
-msgstr "Acţiuni"
+msgid "Notifications"
+msgstr "Notificări"
 
 msgid "On New Mentions"
 msgstr "La menţionări noi"
@@ -952,21 +964,6 @@ msgstr "Câte 25"
 
 msgid "Stack 50"
 msgstr "Câte 50"
-
-msgid "Notifications"
-msgstr "Notificări"
-
-msgid "Round avatars"
-msgstr "Avatare rotunde"
-
-msgid "Remove trailing hashtags"
-msgstr "Şterge hashtag-urile de la sfârşit"
-
-msgid "Remove media links"
-msgstr "Şterge linkurile media"
-
-msgid "Hide inappropriate content"
-msgstr ""
 
 msgid "No snippets configured."
 msgstr "Nici un fragment de text configurat."
@@ -1103,6 +1100,9 @@ msgstr "Creat"
 
 msgid "Subscribed to"
 msgstr "Abonat la"
+
+#~ msgid "Actions"
+#~ msgstr "Acţiuni"
 
 #, fuzzy, c-format
 #~ msgid "%s (%s) followers"

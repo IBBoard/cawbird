@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2017-10-22 17:13+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -925,11 +925,23 @@ msgstr "Kaksoisnapsautuksen aktivointi"
 msgid "Interface"
 msgstr "Käyttöliittymä"
 
+msgid "Round avatars"
+msgstr "Pyöreät avatarit"
+
+msgid "Remove trailing hashtags"
+msgstr "Poista lopussa olevat hashtagit"
+
+msgid "Remove media links"
+msgstr "Poista medialinkit"
+
+msgid "Hide inappropriate content"
+msgstr "Piilota asiaton sisältö"
+
 msgid "On New Tweets"
 msgstr "Uusissa twiiteissä"
 
-msgid "Actions"
-msgstr "Toiminnot"
+msgid "Notifications"
+msgstr "Ilmoitukset"
 
 msgid "On New Mentions"
 msgstr "Uusissa maininnoissa"
@@ -954,21 +966,6 @@ msgstr "25 pino"
 
 msgid "Stack 50"
 msgstr "50 pino"
-
-msgid "Notifications"
-msgstr "Ilmoitukset"
-
-msgid "Round avatars"
-msgstr "Pyöreät avatarit"
-
-msgid "Remove trailing hashtags"
-msgstr "Poista lopussa olevat hashtagit"
-
-msgid "Remove media links"
-msgstr "Poista medialinkit"
-
-msgid "Hide inappropriate content"
-msgstr "Piilota asiaton sisältö"
 
 msgid "No snippets configured."
 msgstr "Tekstileikkeitä ei ole määritetty."
@@ -1105,6 +1102,9 @@ msgstr "Luotu"
 
 msgid "Subscribed to"
 msgstr "Tilannut"
+
+#~ msgid "Actions"
+#~ msgstr "Toiminnot"
 
 #~ msgid "Add Image"
 #~ msgstr "Lisää kuva"

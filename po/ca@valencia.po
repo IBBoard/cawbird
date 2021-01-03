@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/cawbird/cawbird/"
@@ -907,11 +907,23 @@ msgstr ""
 msgid "Interface"
 msgstr "Interfície"
 
+msgid "Round avatars"
+msgstr ""
+
+msgid "Remove trailing hashtags"
+msgstr ""
+
+msgid "Remove media links"
+msgstr ""
+
+msgid "Hide inappropriate content"
+msgstr ""
+
 msgid "On New Tweets"
 msgstr "Quan hi haja piulades noves"
 
-msgid "Actions"
-msgstr "Accions"
+msgid "Notifications"
+msgstr "Notificacions"
 
 msgid "On New Mentions"
 msgstr "Quan hi haja mencions noves"
@@ -936,21 +948,6 @@ msgstr "Stack 25"
 
 msgid "Stack 50"
 msgstr "Stack 50"
-
-msgid "Notifications"
-msgstr "Notificacions"
-
-msgid "Round avatars"
-msgstr ""
-
-msgid "Remove trailing hashtags"
-msgstr ""
-
-msgid "Remove media links"
-msgstr ""
-
-msgid "Hide inappropriate content"
-msgstr ""
 
 msgid "No snippets configured."
 msgstr ""
@@ -1086,6 +1083,9 @@ msgstr "Creat"
 
 msgid "Subscribed to"
 msgstr "Subscrit a"
+
+#~ msgid "Actions"
+#~ msgstr "Accions"
 
 #, fuzzy, c-format
 #~ msgid "%s (%s) followers"

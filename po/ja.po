@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2017-11-12 23:35+0000\n"
 "Last-Translator: MTD TR <dev.mantendo@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/cawbird/cawbird/"
@@ -905,11 +905,23 @@ msgstr ""
 msgid "Interface"
 msgstr "インターフェイス"
 
+msgid "Round avatars"
+msgstr ""
+
+msgid "Remove trailing hashtags"
+msgstr ""
+
+msgid "Remove media links"
+msgstr ""
+
+msgid "Hide inappropriate content"
+msgstr ""
+
 msgid "On New Tweets"
 msgstr ""
 
-msgid "Actions"
-msgstr "アクション"
+msgid "Notifications"
+msgstr "通知"
 
 msgid "On New Mentions"
 msgstr ""
@@ -934,21 +946,6 @@ msgstr "25 件溜まったら"
 
 msgid "Stack 50"
 msgstr "50 件溜まったら"
-
-msgid "Notifications"
-msgstr "通知"
-
-msgid "Round avatars"
-msgstr ""
-
-msgid "Remove trailing hashtags"
-msgstr ""
-
-msgid "Remove media links"
-msgstr ""
-
-msgid "Hide inappropriate content"
-msgstr ""
 
 msgid "No snippets configured."
 msgstr ""
@@ -1084,6 +1081,9 @@ msgstr "作成"
 
 msgid "Subscribed to"
 msgstr "購読中"
+
+#~ msgid "Actions"
+#~ msgstr "アクション"
 
 #~ msgid "Add Image"
 #~ msgstr "画像を追加"

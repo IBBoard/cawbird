@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Spanish (Venezuela) (http://www.transifex.com/cawbird/cawbird/"
@@ -912,11 +912,23 @@ msgstr "Activación con doble clic"
 msgid "Interface"
 msgstr "Interfaz"
 
+msgid "Round avatars"
+msgstr "Redondear aavaataares"
+
+msgid "Remove trailing hashtags"
+msgstr "Eliminar trailing hashtags"
+
+msgid "Remove media links"
+msgstr "Eliminar enlaces de imagenes, videos y audios"
+
+msgid "Hide inappropriate content"
+msgstr ""
+
 msgid "On New Tweets"
 msgstr "En nuevos Tweets"
 
-msgid "Actions"
-msgstr "Acciones"
+msgid "Notifications"
+msgstr "Notificaciones"
 
 msgid "On New Mentions"
 msgstr "En nuevas menciones"
@@ -941,21 +953,6 @@ msgstr "Grupo de 25"
 
 msgid "Stack 50"
 msgstr "Grupo de 50"
-
-msgid "Notifications"
-msgstr "Notificaciones"
-
-msgid "Round avatars"
-msgstr "Redondear aavaataares"
-
-msgid "Remove trailing hashtags"
-msgstr "Eliminar trailing hashtags"
-
-msgid "Remove media links"
-msgstr "Eliminar enlaces de imagenes, videos y audios"
-
-msgid "Hide inappropriate content"
-msgstr ""
 
 msgid "No snippets configured."
 msgstr "No hay fragmentos configurados."
@@ -1091,6 +1088,9 @@ msgstr "Creado"
 
 msgid "Subscribed to"
 msgstr "Suscrito a"
+
+#~ msgid "Actions"
+#~ msgstr "Acciones"
 
 #, fuzzy, c-format
 #~ msgid "%s (%s) followers"

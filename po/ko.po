@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/cawbird/cawbird/"
@@ -904,11 +904,23 @@ msgstr "더블 클릭 활성화"
 msgid "Interface"
 msgstr "인터페이스"
 
+msgid "Round avatars"
+msgstr "둥근 아바타"
+
+msgid "Remove trailing hashtags"
+msgstr "추적하는 해쉬태그 삭제"
+
+msgid "Remove media links"
+msgstr "미디어 링크 삭제"
+
+msgid "Hide inappropriate content"
+msgstr "부적절한 컨텐츠 숨기기"
+
 msgid "On New Tweets"
 msgstr "새로운 트윗"
 
-msgid "Actions"
-msgstr "액션"
+msgid "Notifications"
+msgstr "알림"
 
 msgid "On New Mentions"
 msgstr "새로운 멘션"
@@ -933,21 +945,6 @@ msgstr "스택 25"
 
 msgid "Stack 50"
 msgstr "스택 50"
-
-msgid "Notifications"
-msgstr "알림"
-
-msgid "Round avatars"
-msgstr "둥근 아바타"
-
-msgid "Remove trailing hashtags"
-msgstr "추적하는 해쉬태그 삭제"
-
-msgid "Remove media links"
-msgstr "미디어 링크 삭제"
-
-msgid "Hide inappropriate content"
-msgstr "부적절한 컨텐츠 숨기기"
 
 msgid "No snippets configured."
 msgstr "스니펫이 구성되지 않음."
@@ -1083,6 +1080,9 @@ msgstr "만들어짐"
 
 msgid "Subscribed to"
 msgstr "을 구독함"
+
+#~ msgid "Actions"
+#~ msgstr "액션"
 
 #~ msgid "Add Image"
 #~ msgstr "이미지 추가"

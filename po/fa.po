@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Persian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -890,11 +890,23 @@ msgstr ""
 msgid "Interface"
 msgstr "رابط کاربری"
 
+msgid "Round avatars"
+msgstr ""
+
+msgid "Remove trailing hashtags"
+msgstr ""
+
+msgid "Remove media links"
+msgstr ""
+
+msgid "Hide inappropriate content"
+msgstr ""
+
 msgid "On New Tweets"
 msgstr ""
 
-msgid "Actions"
-msgstr ""
+msgid "Notifications"
+msgstr "اعلان ها"
 
 msgid "On New Mentions"
 msgstr ""
@@ -918,21 +930,6 @@ msgid "Stack 25"
 msgstr ""
 
 msgid "Stack 50"
-msgstr ""
-
-msgid "Notifications"
-msgstr "اعلان ها"
-
-msgid "Round avatars"
-msgstr ""
-
-msgid "Remove trailing hashtags"
-msgstr ""
-
-msgid "Remove media links"
-msgstr ""
-
-msgid "Hide inappropriate content"
 msgstr ""
 
 msgid "No snippets configured."

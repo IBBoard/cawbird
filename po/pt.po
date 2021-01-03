@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/cawbird/"
@@ -921,11 +921,23 @@ msgstr "Ativação do clique-duplo"
 msgid "Interface"
 msgstr "Interface"
 
+msgid "Round avatars"
+msgstr "Avatares redondos"
+
+msgid "Remove trailing hashtags"
+msgstr "Remover hashtags à direita"
+
+msgid "Remove media links"
+msgstr "Remover ligações de mídia"
+
+msgid "Hide inappropriate content"
+msgstr "Ocultar conteúdo impróprio"
+
 msgid "On New Tweets"
 msgstr "Em novos tweets"
 
-msgid "Actions"
-msgstr "Ações"
+msgid "Notifications"
+msgstr "Notificações"
 
 msgid "On New Mentions"
 msgstr "Em novas citações"
@@ -950,21 +962,6 @@ msgstr "Pilha 25"
 
 msgid "Stack 50"
 msgstr "Pilha 50"
-
-msgid "Notifications"
-msgstr "Notificações"
-
-msgid "Round avatars"
-msgstr "Avatares redondos"
-
-msgid "Remove trailing hashtags"
-msgstr "Remover hashtags à direita"
-
-msgid "Remove media links"
-msgstr "Remover ligações de mídia"
-
-msgid "Hide inappropriate content"
-msgstr "Ocultar conteúdo impróprio"
 
 msgid "No snippets configured."
 msgstr "Nenhum fragmento configurado."
@@ -1101,6 +1098,9 @@ msgstr "Criado"
 
 msgid "Subscribed to"
 msgstr "Subscrito"
+
+#~ msgid "Actions"
+#~ msgstr "Ações"
 
 #~ msgid "Add Image"
 #~ msgstr "Adicionar Imagem"

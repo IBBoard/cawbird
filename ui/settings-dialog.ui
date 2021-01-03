@@ -209,129 +209,6 @@
             <property name="name">interface</property>
           </packing>
         </child>
->>>>>>> master
-        <!-- Notification page -->
-        <child>
-          <object class="GtkGrid" id="notification_grid">
-            <property name="visible">1</property>
-            <property name="border-width">10</property>
-            <property name="row-spacing">6</property>
-            <property name="column-spacing">12</property>
-            <property name="column-homogeneous">1</property>
-            <child>
-              <object class="GtkLabel" id="label6">
-                <property name="visible">1</property>
-                <property name="halign">end</property>
-                <property name="xalign">1</property>
-                <property name="label" translatable="yes">On New Tweets</property>
-                <accessibility>
-                  <relation type="label-for" target="on_new_tweets_combobox"/>
-                </accessibility>
-              </object>
-              <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">1</property>
-                <property name="halign">start</property>
-                <property name="label" translatable="yes">Actions</property>
-                <attributes>
-                  <attribute name="weight" value="bold"/>
-                </attributes>
-              </object>
-              <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">0</property>
-                <property name="width">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label14">
-                <property name="visible">1</property>
-                <property name="xalign">1</property>
-                <property name="label" translatable="yes">On New Mentions</property>
-                <accessibility>
-                  <relation type="label-for" target="on_new_mentions_switch"/>
-                </accessibility>
-              </object>
-              <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label15">
-                <property name="visible">1</property>
-                <property name="xalign">1</property>
-                <property name="label" translatable="yes">On New Messages</property>
-                <accessibility>
-                  <relation type="label-for" target="on_new_dms_switch"/>
-                </accessibility>
-              </object>
-              <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSwitch" id="on_new_mentions_switch">
-                <property name="visible">1</property>
-                <property name="can-focus">1</property>
-                <property name="halign">start</property>
-                <accessibility>
-                  <relation type="labelled-by" target="label14"/>
-                </accessibility>
-              </object>
-              <packing>
-                <property name="left-attach">1</property>
-                <property name="top-attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSwitch" id="on_new_dms_switch">
-                <property name="visible">1</property>
-                <property name="can-focus">1</property>
-                <property name="halign">start</property>
-                <accessibility>
-                  <relation type="labelled-by" target="label15"/>
-                </accessibility>
-              </object>
-              <packing>
-                <property name="left-attach">1</property>
-                <property name="top-attach">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkComboBoxText" id="on_new_tweets_combobox">
-                <property name="visible">1</property>
-                <property name="halign">start</property>
-                <property name="active">0</property>
-                <items>
-                  <item id="Never" translatable="yes">Never</item>
-                  <item id="Every" translatable="yes">Every</item>
-                  <item id="Stack 5" translatable="yes">Stack 5</item>
-                  <item id="Stack 10" translatable="yes">Stack 10</item>
-                  <item id="Stack 25" translatable="yes">Stack 25</item>
-                  <item id="Stack 50" translatable="yes">Stack 50</item>
-                </items>
-                <accessibility>
-                  <relation type="labelled-by" target="label6"/>
-                </accessibility>
-              </object>
-              <packing>
-                <property name="left-attach">1</property>
-                <property name="top-attach">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="title" translatable="yes">Notifications</property>
-            <property name="name">notifications</property>
-          </packing>
-        </child>
         <!-- Tweets page -->
         <child>
           <object class="GtkGrid">
@@ -460,6 +337,115 @@
               <packing>
                 <property name="left-attach">1</property>
                 <property name="top-attach">4</property>
+              </packing>
+            </child><child>
+              <object class="GtkLabel" id="label6">
+                <property name="visible">1</property>
+                <property name="halign">end</property>
+                <property name="xalign">1</property>
+                <property name="label" translatable="yes">On New Tweets</property>
+                <accessibility>
+                  <relation type="label-for" target="on_new_tweets_combobox"/>
+                </accessibility>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">6</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">1</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">Notifications</property>
+                <property name="margin-top">8</property>
+                <property name="margin-left">10</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">5</property>
+                <property name="width">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label14">
+                <property name="visible">1</property>
+                <property name="xalign">1</property>
+                <property name="label" translatable="yes">On New Mentions</property>
+                <accessibility>
+                  <relation type="label-for" target="on_new_mentions_switch"/>
+                </accessibility>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">7</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label15">
+                <property name="visible">1</property>
+                <property name="xalign">1</property>
+                <property name="label" translatable="yes">On New Messages</property>
+                <accessibility>
+                  <relation type="label-for" target="on_new_dms_switch"/>
+                </accessibility>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">8</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="on_new_mentions_switch">
+                <property name="visible">1</property>
+                <property name="can-focus">1</property>
+                <property name="halign">start</property>
+                <accessibility>
+                  <relation type="labelled-by" target="label14"/>
+                </accessibility>
+              </object>
+              <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">7</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="on_new_dms_switch">
+                <property name="visible">1</property>
+                <property name="can-focus">1</property>
+                <property name="halign">start</property>
+                <accessibility>
+                  <relation type="labelled-by" target="label15"/>
+                </accessibility>
+              </object>
+              <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">8</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxText" id="on_new_tweets_combobox">
+                <property name="visible">1</property>
+                <property name="halign">start</property>
+                <property name="active">0</property>
+                <items>
+                  <item id="Never" translatable="yes">Never</item>
+                  <item id="Every" translatable="yes">Every</item>
+                  <item id="Stack 5" translatable="yes">Stack 5</item>
+                  <item id="Stack 10" translatable="yes">Stack 10</item>
+                  <item id="Stack 25" translatable="yes">Stack 25</item>
+                  <item id="Stack 50" translatable="yes">Stack 50</item>
+                </items>
+                <accessibility>
+                  <relation type="labelled-by" target="label6"/>
+                </accessibility>
+              </object>
+              <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">6</property>
               </packing>
             </child>
           </object>

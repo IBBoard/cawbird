@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-01 12:05+0000\n"
+"POT-Creation-Date: 2021-01-03 16:54+0000\n"
 "PO-Revision-Date: 2018-02-06 18:45+0000\n"
 "Last-Translator: Iris Ilexiris <iris.ilexiris@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/cawbird/cawbird/language/"
@@ -928,11 +928,23 @@ msgstr "Aktivigi per duoblan klakon"
 msgid "Interface"
 msgstr "Fasado"
 
+msgid "Round avatars"
+msgstr "Rondajn profilbildojn"
+
+msgid "Remove trailing hashtags"
+msgstr "Forigi malantaŭirajn haketojn"
+
+msgid "Remove media links"
+msgstr "Forigi retligojn por aŭdvidaĵoj"
+
+msgid "Hide inappropriate content"
+msgstr "Kaŝi malkonvenan enhavon"
+
 msgid "On New Tweets"
 msgstr "Kiam okazas novan tviton"
 
-msgid "Actions"
-msgstr "Agoj"
+msgid "Notifications"
+msgstr "Avizoj"
 
 msgid "On New Mentions"
 msgstr "Kiam okazas novan mencion"
@@ -957,21 +969,6 @@ msgstr "Stakos 25"
 
 msgid "Stack 50"
 msgstr "Stakos 50"
-
-msgid "Notifications"
-msgstr "Avizoj"
-
-msgid "Round avatars"
-msgstr "Rondajn profilbildojn"
-
-msgid "Remove trailing hashtags"
-msgstr "Forigi malantaŭirajn haketojn"
-
-msgid "Remove media links"
-msgstr "Forigi retligojn por aŭdvidaĵoj"
-
-msgid "Hide inappropriate content"
-msgstr "Kaŝi malkonvenan enhavon"
 
 msgid "No snippets configured."
 msgstr "Nenio kodaĵoj agordis."
@@ -1107,6 +1104,9 @@ msgstr "Kreita"
 
 msgid "Subscribed to"
 msgstr "Subskribis al"
+
+#~ msgid "Actions"
+#~ msgstr "Agoj"
 
 #~ msgid "Add Image"
 #~ msgstr "Aldoni bildon"
