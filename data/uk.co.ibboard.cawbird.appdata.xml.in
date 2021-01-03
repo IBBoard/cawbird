@@ -49,6 +49,30 @@
   <url type="translate">https://www.transifex.com/cawbird/cawbird/</url>
 
   <releases>
+    <release version="1.3.1" date="2021-01-03">
+      <p>Cawbird 1.3.1 fixes several gaps in the block/mute behaviour so that your experience is controlled from the start, as well
+      as including some media upload and mobile fixes and improvements.</aside></p>
+      <ul>
+        <li>Fixes:
+          <ul>
+            <li>Fix unblock and unmute wiping local cache of blocked/muted users</li>
+            <li>Load block/mute lists before downloading timeline/mentions to ensure we hide blocked/muted tweets at startup</li>
+            <li>Unblocking/unmuting now says "unblock" or "unmute" on the button instead of always saying "Unblock"</li>
+            <li>Fix media size checks so that videos don't fail because they're bigger than the image limit</li>
+            <li>Make a narrower user account list for narrow windows to avoid overflow and cropped "profile" button (#259)</li>
+            <li>Combine notification and tweet settings to allow narrower settings dialog for mobile</li>
+          </ul>
+        </li>
+        <li>Improvements:
+          <ul>
+            <li>Hide all tweets in profile view when blocking/muting a user (we shouldn't assume people won't look at the profile)</li>
+            <li>Backfill progressively larger batches of tweets for profiles in case Disable RTs is hiding too many tweets so that the view doesn't scroll</li>
+            <li>Provide a tooltip message for why a media upload failed (e.g. Twitter doesn't support video codec)</li>
+            <li>Updated Dutch, Danish and Italian translations</li>
+          </ul>
+        </li>
+      </ul>
+    </release>
     <release version="1.3" date="2020-12-31">
       <p>Cawbird version 1.3 is the "look after yourself" edition. We've got lots of features and fixes, but there are several key improvements to
       managing your interactions that should have been implemented/fixed sooner. Our priority is making Cawbird accessible and letting users
