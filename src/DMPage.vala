@@ -688,11 +688,11 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
       image_error_label.label = _("The selected video is too big. The maximum file size per video is %'d MB")
                                 .printf (Twitter.MAX_BYTES_PER_VIDEO / 1024 / 1024);
                                 image_error_label.visible = true;
-    } else if (!is_animated_gif && file_size > Twitter.MAX_BYTES_PER_IMAGE) {
+    } else if (is_image && !is_animated_gif && file_size > Twitter.MAX_BYTES_PER_IMAGE) {
       image_error_label.label = _("The selected image is too big. The maximum file size per image is %'d MB")
                                 .printf (Twitter.MAX_BYTES_PER_IMAGE / 1024 / 1024);
       image_error_label.visible = true;
-    } else if (is_animated_gif && file_size > Twitter.MAX_BYTES_PER_GIF) {
+    } else if (is_image && is_animated_gif && file_size > Twitter.MAX_BYTES_PER_GIF) {
       image_error_label.label = _("The selected GIF is too big. The maximum file size per GIF is %'d MB")
                                 .printf (Twitter.MAX_BYTES_PER_GIF / 1024 / 1024);
       image_error_label.visible = true;
