@@ -792,13 +792,24 @@ namespace TweetUtils {
         break;
       }
       else if (state == "failed") {
-        var error_code = processing_info.get_object_member("error").get_int_member("code");
+        var error = processing_info.get_object_member("error");
+        var error_code = error.get_int_member("code");
         string message;
         if (error_code == 1) {
           message = _("Invalid media file");
         }
+        // TODO: Add error code 3 - seen as "unsupported codec MPEG4" but could be more
         else {
-          message = _("Unknown error code %lld during upload").printf(error_code);
+          if (error.has_member("message")) {
+            message = error.get_string_member("message");
+          }
+          else if (error.has_member("name")) {
+            var error_name = error.get_string_member("name");            
+            message = _("Unknown error code %lld during upload: %s").printf(error_code, error_name);
+          }
+          else {
+            message = _("Unknown error code %lld during upload").printf(error_code);
+          }
         }
         media_upload.progress_complete(new GLib.Error.literal(TweetUtils.get_error_domain(), 0, message));
         return false;

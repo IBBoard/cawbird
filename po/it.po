@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-03 16:54+0000\n"
+"POT-Creation-Date: 2021-01-03 20:31+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>, 2021\n"
 "Language-Team: Italian (https://www.transifex.com/cawbird/teams/107135/it/)\n"
@@ -504,6 +504,10 @@ msgstr "File multimediale non valido"
 #, c-format
 msgid "Unknown error code %lld during upload"
 msgstr "Codice di errore sconosciuto %lld durante il caricamento"
+
+#, fuzzy, c-format
+msgid "Unknown error code %lld during upload: %s"
+msgstr "Codice di errore sconosciuto %lld durante il caricamento: %s"
 
 msgid "Now"
 msgstr "Adesso"
