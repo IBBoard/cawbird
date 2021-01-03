@@ -162,6 +162,7 @@ class ComposeImageManager : Gtk.Container {
     assert (index >= 0);
 
     aib.clicked.disconnect (reupload_image_cb);
+    aib.tooltip_text = null;
     this.image_reloaded (uploads.get(index));
   }
 
@@ -450,6 +451,7 @@ class ComposeImageManager : Gtk.Container {
           style_context.add_class ("image-error");
           style_context.remove_class ("image-success");
           btn.clicked.connect (reupload_image_cb);
+          btn.tooltip_text = error.message;
         }
         break;
       }
