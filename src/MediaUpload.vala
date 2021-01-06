@@ -24,7 +24,28 @@
     }
     public string filetype {
       get {
+#if MSWINDOWS
+        var filename = filepath.down();
+        // We can't trust Windows with mime types, it only understands extensions, so fudge something and hope for the best
+        // This time we have to re-implement mime types, but based on file extensions!
+        if (filename.has_suffix(".gif")) {
+          return "image/gif";
+        }
+        else if (filename.has_suffix(".jpg") || filename.has_suffix(".jpeg")) {
+          return "image/jpeg";
+        }
+        else if (filename.has_suffix(".webp")) {
+          return "image/webp";
+        }
+        else if (filename.has_suffix(".png")) {
+          return "image/png";
+        }
+        else {
+          return "video/mp4";
+        }
+#else
         return fileinfo.get_content_type ();
+#endif
       }
     }
     private string? cat;
