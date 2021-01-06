@@ -3,3 +3,4 @@ build/
 _build/
 flatpak/_build
 flatpak/.flatpak-builder
+valgrind*
