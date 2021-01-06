@@ -671,8 +671,15 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
                                           GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," +
                                           GLib.FileAttribute.STANDARD_SIZE, 0);
     var content_type = info.get_content_type();
+#if MSWINDOWS
+    // We can't trust Windows with mime types, it only understands extensions, so fudge something and hope for the best
+    var fname = filename.down();
+    var is_image = fname.has_suffix(".png") || fname.has_suffix(".gif") || fname.has_suffix(".jpg") || fname.has_suffix(".jpeg") || fname.has_suffix(".webp");
+    var is_video = !is_image;
+#else
     var is_video = content_type.has_prefix("video/");
     var is_image = content_type.has_prefix("image/");
+#endif
     var is_animated_gif = is_image && Utils.is_animated_gif(filename);
     var file_size = info.get_size();
 

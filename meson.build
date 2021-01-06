@@ -41,6 +41,7 @@ enable_video = get_option('video')
 enable_spellcheck = get_option('spellcheck')
 enable_examples = get_option('examples')
 enable_x11 = get_option('x11')
+use_windows_behaviour = get_option('mswindows')
 
 # Project arguments
 
@@ -76,6 +77,11 @@ endif
 if (enable_debug)
   warning('Debugging is enabled. Debug level logs will contain the full, plaintext content of ALL tweets and DMs.')
 endif
+
+if (use_windows_behaviour)
+  add_project_arguments('-D', 'MSWINDOWS', language: 'vala')
+endif
+
 
 cawbird_lib_sources = files([
   'src/Account.vala',
