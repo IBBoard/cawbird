@@ -682,6 +682,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     var file_size = info.get_size();
 
     if (!is_image && !is_video) {
+      debug("%s has content type %s", filename, content_type);
       image_error_label.label = _("Selected file is not an image or video.");
       image_error_label.visible = true;
     } else if (is_video && file_size > Twitter.MAX_BYTES_PER_VIDEO) {
