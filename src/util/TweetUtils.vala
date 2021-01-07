@@ -961,6 +961,18 @@ namespace TweetUtils {
   public void handle_media_click (Cb.Media[] media,
                                   MainWindow window,
                                   int        index) {
+#if ! VIDEO
+    if (media.length == 1 && media[0].is_video()) {
+      var url = media[0].url;
+      try {
+        Gtk.show_uri_on_window(window, url, Gdk.CURRENT_TIME);
+      }
+      catch (GLib.Error e) {
+        warning ("Unable to open %s: %s", url, e.message);
+      }
+      return;
+    }
+#endif
     Gdk.Display default_display = Gdk.Display.get_default();
     Gdk.Monitor current_monitor = default_display.get_monitor_at_window(window.get_window());
     Gdk.Rectangle workarea = current_monitor.get_workarea();
