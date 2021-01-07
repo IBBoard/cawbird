@@ -111,6 +111,7 @@ Cairo.Surface create_video_placeholder_surface ()
 
 Cairo.Surface? load_surface_for_video (string path)
 {
+#if VIDEO
   try {
     // Based on https://gitlab.freedesktop.org/gstreamer/gst-plugins-base/-/blob/master/tests/examples/snapshot/snapshot.c
     var playbin = Gst.parse_launch("uridecodebin uri=file://%s ! videoconvert ! videoscale ! appsink name=sink caps=\"video/x-raw,format=BGRx,pixel-aspect-ratio=1/1\"".printf(path));
@@ -149,6 +150,10 @@ Cairo.Surface? load_surface_for_video (string path)
     warning("Error creating thumbnail from video for %s: %s", path, e.message);
     return create_video_placeholder_surface();
   }
+#else
+  // Video support disabled
+  return create_video_placeholder_surface();
+#endif
 }
 
 
