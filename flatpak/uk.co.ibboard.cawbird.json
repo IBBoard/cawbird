@@ -86,6 +86,9 @@
     {
       "name":"cawbird",
       "buildsystem":"meson",
+      "config-opts": [
+        "--buildtype=debug"
+      ],
       "sources":[
         {
           "type":"dir",
