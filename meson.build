@@ -70,6 +70,9 @@ if (enable_x11)
   cb_deps += [dependency('x11')]
 endif
 
+if (enable_debug)
+  warning('Debugging is enabled. Debug level logs will contain the full, plaintext content of ALL tweets and DMs.')
+endif
 
 cawbird_lib_sources = files([
   'src/Account.vala',
