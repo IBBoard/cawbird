@@ -778,12 +778,3 @@ cb_user_stream_unregister (CbUserStream      *self,
         }
     }
 }
-
-void
-cb_user_stream_push_data (CbUserStream *self,
-                          const char   *data)
-{
-#if DEBUG
-  g_debug("Pushed data: %s", data);
-#endif
-}
