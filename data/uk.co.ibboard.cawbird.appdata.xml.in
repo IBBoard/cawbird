@@ -56,7 +56,7 @@
         <li>Fixes:
           <ul>
             <li>Make it clearer to third-party packagers (e.g. Flatpak and Snap) when they are building debug builds instead of release builds, which log the plain text content of all tweets and DMs to the console, which is then captured in the system log (#274)</li>
-            <li>Make it possible to build Cawbird without GStreamer video support (#273)</li>
+            <li>Make it possible to build Cawbird without GStreamer video support again (#273)</li>
           </ul>
         </li>
         <li>Improvements:
