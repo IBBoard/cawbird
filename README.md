@@ -1,4 +1,4 @@
-# Cawbird 1.3.1
+# Cawbird 1.3.2
 
 <a href="https://ibboard.co.uk/cawbird/#screenshots"><img src="./screenshot1.jpg" style="float:right; margin-left: 1em;" /></a>
 

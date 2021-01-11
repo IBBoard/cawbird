@@ -49,6 +49,30 @@
   <url type="translate">https://www.transifex.com/cawbird/cawbird/</url>
 
   <releases>
+    <release version="1.3.2" date="2021-01-11">
+      <p>Cawbird 1.3.2 is a maintenance release due to a privacy issue caused by third-party builds of Cawbird using "debug" builds.</p>
+      <p>Users of native distro packages and other packages that used release builds should not have been affected. We appologise for any inconvenience caused and continue to recommend that users use native packages where possible.</p>
+      <ul>
+        <li>Fixes:
+          <ul>
+            <li>Make it clearer to third-party packagers (e.g. Flatpak and Snap) when they are building debug builds instead of release builds, which log the plain text content of all tweets and DMs to the console, which is then captured in the system log (#274)</li>
+            <li>Make it possible to build Cawbird without GStreamer video support (#273)</li>
+          </ul>
+        </li>
+        <li>Improvements:
+          <ul>
+            <li>Swapped out `g_print` statements for `g_debug` and generally tidied up some debug logging (relates to #274)</li>
+            <li>Make videos open the browser when GStreamer support is disabled (related to #273)</li>
+            <li>Updated Russian translation (thanks to Даниил Пронин)</li>
+          </ul>
+        </li>
+        <li>Developer:
+          <ul>
+            <li>Fixed intermittent crash of `inlinedownloader` tests</li>
+          </ul>
+        </li>
+      </ul>
+    </release>
     <release version="1.3.1" date="2021-01-03">
       <p>Cawbird 1.3.1 fixes several gaps in the block/mute behaviour so that your experience is controlled from the start, as well
       as including some media upload and mobile fixes and improvements.</p>
