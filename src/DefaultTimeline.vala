@@ -144,9 +144,6 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
   }
 
   public virtual void on_join (int page_id, Cb.Bundle? args) {
-    if (STRESSTEST)
-      return;
-
     if (!initialized) {
       if (!Settings.auto_scroll_on_new_tweets ()) {
         /* we are technically not scrolling up, but due to missing content,

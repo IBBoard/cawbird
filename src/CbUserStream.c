@@ -138,22 +138,6 @@ cb_user_stream_init (CbUserStream *self)
   self->receivers = g_ptr_array_new ();
   self->restarting = FALSE;
   self->state = STATE_STOPPED;
-
-  if (self->stresstest)
-    {
-      self->proxy = oauth_proxy_new ("Vf9torDW2ZOw32DfhUtI9csL8",
-                                     "18BEr1mdDH46cJhw5mUMwHe2TiBExOopEDxFbPzfJrlnFuvZJ2",
-                                     "https://api.twitter.com/",
-                                     FALSE);
-    }
-  else
-    {
-      /* TODO: We should be getting these from the settings */
-      self->proxy = oauth_proxy_new ("Vf9torDW2ZOw32DfhUtI9csL8",
-                                     "18BEr1mdDH46cJhw5mUMwHe2TiBExOopEDxFbPzfJrlnFuvZJ2",
-                                     "https://api.twitter.com/",
-                                     FALSE);
-    }
   self->proxy_data_set = FALSE;
 
   self->network_monitor = g_network_monitor_get_default ();
@@ -189,12 +173,11 @@ cb_user_stream_class_init (CbUserStreamClass *klass)
 }
 
 CbUserStream *
-cb_user_stream_new (const char *account_name,
-                    gboolean    stresstest)
+cb_user_stream_new (const char *account_name, OAuthProxy *proxy)
 {
   CbUserStream *self = CB_USER_STREAM (g_object_new (CB_TYPE_USER_STREAM, NULL));
   self->account_name = g_strdup (account_name);
-  self->stresstest = stresstest;
+  self->proxy = REST_PROXY(proxy);
 
   g_debug ("Creating stream for %s", account_name);
 
@@ -748,8 +731,8 @@ cb_user_stream_set_proxy_data (CbUserStream *self,
                                const char   *token,
                                const char   *token_secret)
 {
-  oauth_proxy_set_token (OAUTH_PROXY (self->proxy), token);
-  oauth_proxy_set_token_secret (OAUTH_PROXY (self->proxy), token_secret);
+//  oauth_proxy_set_token (OAUTH_PROXY (self->proxy), token);
+//  oauth_proxy_set_token_secret (OAUTH_PROXY (self->proxy), token_secret);
 
   self->proxy_data_set = TRUE;
 }

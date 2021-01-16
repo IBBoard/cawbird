@@ -19,6 +19,7 @@
 #define __CB_USER_STREAM_H__
 
 #include <glib-object.h>
+#include <rest/oauth-proxy.h>
 #include <rest/rest-proxy.h>
 #include "CbMessageReceiver.h"
 #include "CbTypes.h"
@@ -65,13 +66,11 @@ struct _CbUserStream
   guint restarting : 1;
   guint proxy_data_set : 1;
   guint network_available: 1;
-
-  guint stresstest : 1;
 };
 typedef struct _CbUserStream      CbUserStream;
 
 CbUserStream * cb_user_stream_new            (const char *account_name,
-                                              gboolean    stresstest);
+                                              OAuthProxy *proxy);
 void           cb_user_stream_set_proxy_data (CbUserStream *self,
                                               const char   *token,
                                               const char   *token_secret);

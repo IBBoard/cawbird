@@ -93,15 +93,12 @@ public class Account : GLib.Object {
                                       Settings.get_consumer_secret (),
                                       "https://api.twitter.com/",
                                       false);
-    this.user_stream = new Cb.UserStream (this.screen_name, STRESSTEST);
-    this.user_stream.register (this.event_receiver);
     if (load_secrets) {
       init_database ();
       int n_rows = db.select ("common").cols ("token", "token_secret")
                                        .run ((vals) => {
         proxy.token = vals[0];
         proxy.token_secret = vals[1];
-        user_stream.set_proxy_data (proxy.token, proxy.token_secret);
         return false; //stop
       });
 
@@ -109,6 +106,8 @@ public class Account : GLib.Object {
         critical ("Could not load token{_secret} for user %s", this.screen_name);
       }
     }
+    this.user_stream = new Cb.UserStream (this.screen_name, proxy);
+    this.user_stream.register (this.event_receiver);
   }
 
   public void uninit () {

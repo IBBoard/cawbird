@@ -15,8 +15,6 @@
  *  along with cawbird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-bool STRESSTEST = false;
-
 public class Cawbird : Gtk.Application {
   public static int RESPONSIVE_LIMIT = 440;
   public static Sql.Database db;
@@ -111,7 +109,7 @@ public class Cawbird : Gtk.Application {
 
     snippet_manager = new Cb.SnippetManager (db.get_sqlite_db ());
 
-    OptionEntry[] options = new OptionEntry[7];
+    OptionEntry[] options = new OptionEntry[6];
     // TRANSLATORS: Description of the `--tweet` option for the command-line
     options[0] = {"tweet", 't', 0, OptionArg.STRING, null, _("Shows only the 'compose tweet' window for the given account, nothing else."), 
                   // TRANSLATORS: Used as the placeholder for the account name in the `--help` output
@@ -124,8 +122,7 @@ public class Cawbird : Gtk.Application {
     options[3] = {"print-startup-accounts", 'a', 0, OptionArg.NONE, null, _("Print configured startup accounts"), null};
     // TRANSLATORS: Description of the `--account` option for the command-line
     options[4] = {"account", 'c', 0, OptionArg.STRING, null, _("Open the window for the given account"), _("account-name")};
-    options[5] = {"stresstest", 'r', GLib.OptionFlags.HIDDEN, OptionArg.NONE, null, "Debugging only.", null};
-    options[6] = {null};
+    options[5] = {null};
     this.add_main_option_entries(options);
 #if VIDEO
     this.add_option_group (Gst.init_get_option_group ());
