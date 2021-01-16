@@ -15,6 +15,14 @@
 
   </enum>
 
+  <enum id="uk.co.ibboard.cawbird.tweet-scale">
+    <value nick="Normal" value="0" />
+    <value nick="Large" value="1" />
+    <value nick="X-Large" value="2" />
+    <value nick="XX-Large" value="3" />
+
+  </enum>
+
   <schema id="uk.co.ibboard.cawbird"
       path="/uk.co.ibboard.cawbird/"
       gettext-domain="cawbird">
@@ -113,6 +121,10 @@
     <key name="media-visibility" enum="uk.co.ibboard.cawbird.media-visibility">
       <default>"Show"</default>
       <summary>When to show media attached to tweets</summary>
+    </key>
+    <key name="tweet-scale" enum="uk.co.ibboard.cawbird.tweet-scale">
+      <default>"Normal"</default>
+      <summary>Scale factor for tweets in timelines</summary>
     </key>
   </schema>
 </schemalist>

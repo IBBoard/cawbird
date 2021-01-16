@@ -209,7 +209,10 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     this.insert_action_group ("tweet", this.actions);
 
     Settings.get ().changed["media-visibility"].connect (media_visiblity_changed_cb);
+    Settings.get ().changed["tweet-scale"].connect (set_tweet_text_scale);
     this.mm_widget.visible = (Settings.get_media_visiblity () != MediaVisibility.HIDE);
+
+    set_tweet_text_scale();
   }
 
   private void scroll_past_top(Gtk.ScrolledWindow parent, Gtk.ListBox list_box, int over_scroll) {
@@ -297,6 +300,16 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     }
 
     query_tweet_info ();
+  }
+
+  private void set_tweet_text_scale () {
+    // Use the larger of the old scale and the user's scale
+    // We don't multiply because 1.5 * XX-Large would be HUGE!
+    var scale = double.max(Settings.get_tweet_scale(), 1.5);
+    var new_attribs = new Pango.AttrList();
+    var scale_attr = Pango.attr_scale_new(scale);
+    new_attribs.insert((owned)scale_attr);
+    text_label.set_attributes(new_attribs);
   }
 
   private void load_user_avatar (string url) {

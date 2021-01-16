@@ -218,6 +218,44 @@
             <property name="row-spacing">6</property>
             <property name="margin-bottom">18</property>
             <child>
+              <object class="GtkComboBoxText" id="tweet_scale_combobox">
+                <property name="visible">1</property>
+                <property name="halign">start</property>
+                <property name="active">0</property>
+                <items>
+                  <!-- TRANSLATORS: 'Normal' font size combo box item in the settings -->
+                  <item id="Normal" translatable="yes">Normal</item>
+                  <!-- TRANSLATORS: 'Large' font size combo box item in the settings -->
+                  <item id="Large" translatable="yes">Large</item>
+                  <!-- TRANSLATORS: 'X-Large' font size combo box item in the settings -->
+                  <item id="X-Large" translatable="yes">X-Large</item>
+                  <!-- TRANSLATORS: 'XX-Large' font size combo box item in the settings -->
+                  <item id="XX-Large" translatable="yes">XX-Large</item>
+                </items>
+                <accessibility>
+                  <relation type="labelled-by" target="tweet_scale_label"/>
+                </accessibility>
+              </object>
+              <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="tweet_scale_label">
+                <property name="visible">1</property>
+                <property name="xalign">1</property>
+                <property name="label" translatable="yes">Tweet scale</property>
+                <accessibility>
+                  <relation type="label-for" target="tweet_scale_combobox"/>
+                </accessibility>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">1</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkListBox" id="sample_tweet_list">
                 <property name="visible">1</property>
                 <property name="selection-mode">none</property>
@@ -240,7 +278,7 @@
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">1</property>
+                <property name="top-attach">2</property>
               </packing>
             </child>
             <child>
@@ -253,7 +291,7 @@
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">1</property>
+                <property name="top-attach">2</property>
               </packing>
             </child>
             <child>
@@ -267,7 +305,7 @@
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">2</property>
+                <property name="top-attach">3</property>
               </packing>
             </child>
             <child>
@@ -281,7 +319,7 @@
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">2</property>
+                <property name="top-attach">3</property>
               </packing>
             </child>
             <child>
@@ -295,7 +333,7 @@
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">3</property>
+                <property name="top-attach">4</property>
               </packing>
             </child>
             <child>
@@ -309,7 +347,7 @@
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">3</property>
+                <property name="top-attach">4</property>
               </packing>
             </child>
             <child>
@@ -323,7 +361,7 @@
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">4</property>
+                <property name="top-attach">5</property>
               </packing>
             </child>
             <child>
@@ -336,7 +374,7 @@
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">4</property>
+                <property name="top-attach">5</property>
               </packing>
             </child><child>
               <object class="GtkLabel" id="label6">
@@ -350,7 +388,7 @@
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">6</property>
+                <property name="top-attach">7</property>
               </packing>
             </child>
             <child>
@@ -366,7 +404,7 @@
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">5</property>
+                <property name="top-attach">6</property>
                 <property name="width">2</property>
               </packing>
             </child>
@@ -381,7 +419,7 @@
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">7</property>
+                <property name="top-attach">8</property>
               </packing>
             </child>
             <child>
@@ -395,7 +433,7 @@
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">8</property>
+                <property name="top-attach">9</property>
               </packing>
             </child>
             <child>
@@ -409,7 +447,7 @@
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">7</property>
+                <property name="top-attach">8</property>
               </packing>
             </child>
             <child>
@@ -423,7 +461,7 @@
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">8</property>
+                <property name="top-attach">9</property>
               </packing>
             </child>
             <child>
@@ -445,7 +483,7 @@
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">6</property>
+                <property name="top-attach">7</property>
               </packing>
             </child>
           </object>

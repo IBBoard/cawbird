@@ -68,10 +68,19 @@ public class Settings : GLib.Object {
     return settings.get_double ("max-media-size");
   }
 
+  public static double get_tweet_scale() {
+    int scale_idx = settings.get_enum ("tweet-scale");
+    switch (scale_idx) {
+      case 3: return Pango.Scale.XX_LARGE;
+      case 2: return Pango.Scale.X_LARGE;
+      case 1: return Pango.Scale.LARGE;
+      default: return Pango.Scale.MEDIUM;
+    }
+  }
+
   public static void toggle_topbar_visible () {
     settings.set_boolean ("sidebar-visible", !settings.get_boolean ("sidebar-visible"));
   }
-
 
   public static string get_consumer_key () {
     return settings.get_string ("consumer-key");

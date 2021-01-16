@@ -196,7 +196,9 @@ class DMListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
 
     this.key_release_event.connect(key_released_cb);
     Settings.get ().changed["text-transform-flags"].connect(set_dm_text);
+    Settings.get ().changed["tweet-scale"].connect (set_dm_text_scale);
 
+    set_dm_text_scale();
     this.show ();
   }
 
@@ -246,6 +248,14 @@ class DMListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
       text_label.label = msg;
       text_label.visible = msg != "";
     }
+  }
+
+  private void set_dm_text_scale () {
+    var scale = Settings.get_tweet_scale();
+    var new_attribs = new Pango.AttrList();
+    var scale_attr = Pango.attr_scale_new(scale);
+    new_attribs.insert((owned)scale_attr);
+    text_label.set_attributes(new_attribs);
   }
 
   public void load_avatar (string avatar_url) {

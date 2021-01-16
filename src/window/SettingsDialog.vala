@@ -20,6 +20,8 @@ class SettingsDialog : Gtk.Window {
   [GtkChild]
   private Gtk.Switch on_new_mentions_switch;
   [GtkChild]
+  private Gtk.ComboBoxText tweet_scale_combobox;
+  [GtkChild]
   private Gtk.Switch round_avatar_switch;
   [GtkChild]
   private Gtk.Switch on_new_dms_switch;
@@ -81,6 +83,7 @@ class SettingsDialog : Gtk.Window {
     });
 
     // Tweets page
+    Settings.get ().bind ("tweet-scale", tweet_scale_combobox, "active-id", SettingsBindFlags.DEFAULT);
     Settings.get ().bind ("round-avatars", round_avatar_switch, "active",
         SettingsBindFlags.DEFAULT);
     Settings.get ().bind ("new-tweets-notify", on_new_tweets_combobox, "active-id",

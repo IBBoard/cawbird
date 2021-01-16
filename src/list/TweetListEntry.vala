@@ -253,10 +253,12 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     values_set = true;
 
     set_tweet_text();
+    set_tweet_text_scale();
     update_time_delta ();
 
     // TODO All these settings signal connections with lots of tweets could be costly...
     Settings.get ().changed["text-transform-flags"].connect (set_tweet_text);
+    Settings.get ().changed["tweet-scale"].connect (set_tweet_text_scale);
   }
 
   ~TweetListEntry () {
@@ -319,6 +321,21 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
         scroller.show();
       }
     }
+  }
+
+  private void set_tweet_text_scale () {
+    var scale = Settings.get_tweet_scale();
+    set_scale_attribute(text_label, scale);
+    if (tweet.quoted_tweet != null) {
+      set_scale_attribute(quote_label, scale);
+    }
+  }
+
+  private void set_scale_attribute (Gtk.Label label, double scale) {
+    var new_attribs = new Pango.AttrList();
+    var scale_attr = Pango.attr_scale_new(scale);
+    new_attribs.insert((owned)scale_attr);
+    label.set_attributes(new_attribs);
   }
 
   private void hide_nsfw_content_changed_cb () {
