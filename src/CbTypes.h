@@ -97,6 +97,7 @@ struct _CbMiniTweet
   gint64 created_at;
   guint display_range_start;
   CbUserIdentity author;
+  char *language;
   char *text;
   gint64 reply_id;
 

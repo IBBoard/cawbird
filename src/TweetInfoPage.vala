@@ -66,6 +66,10 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
   [GtkChild]
   private AvatarWidget avatar_image;
   [GtkChild]
+  private Gtk.Box translate_box;
+  [GtkChild]
+  private Gtk.Label translate_label;
+  [GtkChild]
   private Gtk.Label rt_label;
   [GtkChild]
   private Gtk.Image rt_image;
@@ -825,6 +829,28 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     screen_name_label.tooltip_text = screen_name;
 
     load_user_avatar (tweet.avatar_url);
+
+    var tweet_language = tweet.get_language();
+    var user_language = Utils.user_language();
+    
+    if (tweet_language != null && tweet_language != user_language) {
+      translate_box.show();
+      var buff = new StringBuilder ();
+      buff.append ("<span underline='none'><a href=\"translate:")
+          .append (tweet_language)
+          .append ("/")
+          .append (user_language)
+          .append ("/")
+          .append (GLib.Markup.escape_text(tweet.get_real_text()))
+          .append ("\">")
+          // TRANSLATORS: Insert your actual language here instead of English - e.g. "Ins Deutsche übersetzen" or "Traduire en français"
+          .append (_("Translate to English"))
+          .append ("</a></span>");
+      translate_label.label = buff.str;
+    }
+    else {
+      translate_box.hide();
+    }
 
     if (tweet.retweeted_tweet != null) {
       rt_label.show ();

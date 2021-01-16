@@ -224,6 +224,40 @@
                       </packing>
                     </child>
                     <child>
+                      <object class="GtkBox" id="translate_box">
+                        <property name="no-show-all">1</property>
+                        <child>
+                          <object class="GtkImage" id="translate_image">
+                            <property name="visible">1</property>
+                            <property name="halign">end</property>
+                            <property name="valign">baseline</property>
+                            <property name="margin-end">12</property>
+                            <property name="pixel-size">24</property>
+                            <property name="icon-name">cawbird-translate-symbolic</property>
+                            <property name="icon-size">1</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="translate_label">
+                            <property name="visible">1</property>
+                            <property name="halign">start</property>
+                            <property name="valign">baseline</property>
+                            <property name="margin-top">8</property>
+                            <property name="use-markup">1</property>
+                            <property name="ellipsize">end</property>
+                            <property name="xalign">0</property>
+                            <property name="track-visited-links">0</property>
+                            <signal name="activate-link" handler="link_activated_cb" swapped="no"/>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">7</property>
+                        <property name="width">8</property>
+                      </packing>
+                    </child>
+                    <child>
                       <object class="GtkBox">
                         <property name="visible">1</property>
                         <child>
@@ -259,7 +293,7 @@
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">7</property>
+                        <property name="top-attach">8</property>
                         <property name="width">8</property>
                       </packing>
                     </child>
@@ -276,7 +310,7 @@
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
-                        <property name="top-attach">8</property>
+                        <property name="top-attach">9</property>
                         <property name="width">3</property>
                       </packing>
                     </child>
@@ -293,7 +327,7 @@
                       </object>
                       <packing>
                         <property name="left-attach">3</property>
-                        <property name="top-attach">8</property>
+                        <property name="top-attach">9</property>
                       </packing>
                     </child>
                     <child>
@@ -318,7 +352,7 @@
                       </object>
                       <packing>
                         <property name="left-attach">4</property>
-                        <property name="top-attach">8</property>
+                        <property name="top-attach">9</property>
                       </packing>
                     </child>
                     <child>
@@ -343,7 +377,7 @@
                       </object>
                       <packing>
                         <property name="left-attach">5</property>
-                        <property name="top-attach">8</property>
+                        <property name="top-attach">9</property>
                       </packing>
                     </child>
                     <child>
@@ -368,7 +402,7 @@
                       </object>
                       <packing>
                         <property name="left-attach">6</property>
-                        <property name="top-attach">8</property>
+                        <property name="top-attach">9</property>
                       </packing>
                     </child>
                     <child>
@@ -396,7 +430,7 @@
                       </object>
                       <packing>
                         <property name="left-attach">7</property>
-                        <property name="top-attach">8</property>
+                        <property name="top-attach">9</property>
                       </packing>
                     </child>
                   </object>

@@ -105,6 +105,14 @@ cb_tweet_get_user_name (CbTweet *tweet)
   return tweet->source_tweet.author.user_name;
 }
 
+const char *
+cb_tweet_get_language (CbTweet *tweet) {
+  if (tweet->retweeted_tweet != NULL)
+    return tweet->retweeted_tweet->language;
+
+  return tweet->source_tweet.language;
+}
+
 CbMedia **
 cb_tweet_get_medias (CbTweet *tweet,
                      int     *n_medias)

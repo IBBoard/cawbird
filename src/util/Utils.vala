@@ -661,4 +661,17 @@ namespace Utils {
       return false;
     }
   }
+
+  public string user_language() {
+    var lang_var = GLib.Environment.get_variable ("LANG");
+    // Remove any trailing ".utf8" etc
+    var locale = lang_var.split(".", 2)[0];
+    // Trim the language_country down to just language
+    var user_lang = locale.split("_", 2)[0];
+    if (user_lang.length < 2) {
+      // User probably had "C", so assume English
+      user_lang = "en";
+    }
+    return user_lang;
+  }
 }

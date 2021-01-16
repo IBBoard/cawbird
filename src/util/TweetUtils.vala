@@ -924,6 +924,18 @@ namespace TweetUtils {
         return true;
       }
     }
+    else if (uri.has_prefix ("translate:")) {
+      var parts = uri.substring(10).split("/", 3);
+      var url = "https://translate.google.com/?op=translate&sl={SOURCE_LANG}&tl={TARGET_LANG}&text={CONTENT}";
+      url = url.replace("{SOURCE_LANG}", parts[0]).replace("{TARGET_LANG}", parts[1]).replace("{CONTENT}", GLib.Uri.escape_string(parts[2]));
+      try {
+        Gtk.show_uri_on_window(window, url, Gdk.CURRENT_TIME);
+        return true;
+      }
+      catch (Error e) {
+        Utils.show_error_dialog(e, window);
+      }
+    }
     return false;
   }
 

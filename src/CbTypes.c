@@ -81,6 +81,7 @@ cb_mini_tweet_free (CbMiniTweet *t)
   guint i;
 
   g_free (t->text);
+  g_free (t->language);
 
   for (i = 0; i < t->n_medias; i ++)
     g_object_unref (t->medias[i]);
@@ -108,6 +109,8 @@ cb_mini_tweet_copy (const CbMiniTweet *t1, CbMiniTweet *t2)
   cb_user_identity_copy (&t1->author, &t2->author);
   g_free (t2->text);
   t2->text = g_strdup (t1->text);
+  g_free (t2->language);
+  t2->language = g_strdup (t1->language);
 
   t2->n_entities = t1->n_entities;
   t2->entities = g_new0 (CbTextEntity, t2->n_entities);
@@ -174,6 +177,8 @@ cb_mini_tweet_parse (CbMiniTweet *t,
       t->text = g_strdup (tweet_text);
       t->display_range_start= 0;
     }
+
+  t->language = g_strdup(json_object_get_string_member (extended_object, "lang"));
 
   t->created_at = g_date_time_to_unix (time);
   cb_user_identity_parse (&t->author, json_object_get_object_member (obj, "user"));

@@ -162,6 +162,8 @@ namespace Cb {
       public unowned string get_screen_name ();
       public unowned string get_user_name ();
 
+      public unowned string get_language ();
+
       public bool has_inline_media ();
       public bool has_quoted_inline_media ();
       public void load_from_json (Json.Node node, int64 account_id, GLib.DateTime now);

@@ -107,6 +107,7 @@ gboolean         cb_tweet_has_inline_media (CbTweet   *tweet);
 gint64           cb_tweet_get_user_id      (CbTweet   *tweet);
 const char *     cb_tweet_get_screen_name  (CbTweet   *tweet);
 const char *     cb_tweet_get_user_name    (CbTweet   *tweet);
+const char *     cb_tweet_get_language     (CbTweet   *tweet);
 void             cb_tweet_load_from_json   (CbTweet   *tweet,
                                             JsonNode  *status_node,
                                             gint64     account_id,
