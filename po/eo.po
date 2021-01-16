@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-03 20:31+0000\n"
+"POT-Creation-Date: 2021-01-16 11:04+0000\n"
 "PO-Revision-Date: 2018-02-06 18:45+0000\n"
 "Last-Translator: Iris Ilexiris <iris.ilexiris@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/cawbird/cawbird/language/"
@@ -495,11 +495,11 @@ msgid "Invalid media file"
 msgstr ""
 
 #, c-format
-msgid "Unknown error code %lld during upload"
+msgid "Unknown error code %lld during upload: %s"
 msgstr ""
 
 #, c-format
-msgid "Unknown error code %lld during upload: %s"
+msgid "Unknown error code %lld during upload"
 msgstr ""
 
 msgid "Now"
@@ -931,6 +931,26 @@ msgstr "Aktivigi per duoblan klakon"
 
 msgid "Interface"
 msgstr "Fasado"
+
+#. TRANSLATORS: 'Normal' font size combo box item in the settings
+msgid "Normal"
+msgstr ""
+
+#. TRANSLATORS: 'Large' font size combo box item in the settings
+msgid "Large"
+msgstr ""
+
+#. TRANSLATORS: 'X-Large' font size combo box item in the settings
+msgid "X-Large"
+msgstr ""
+
+#. TRANSLATORS: 'XX-Large' font size combo box item in the settings
+msgid "XX-Large"
+msgstr ""
+
+#, fuzzy
+msgid "Tweet scale"
+msgstr "Tvitoj"
 
 msgid "Round avatars"
 msgstr "Rondajn profilbildojn"
