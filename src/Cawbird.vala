@@ -239,10 +239,6 @@ public class Cawbird : Gtk.Application {
     typeof (Cb.EmojiChooser).ensure ();
     typeof (ChildSizedScroller).ensure ();
 
-#if DEBUG
-    GLib.Environment.set_variable ("G_MESSAGES_DEBUG", "cawbird", true);
-#endif
-
     debug ("startup");
     // Setup gettext
     GLib.Intl.setlocale (GLib.LocaleCategory.ALL, Config.DATADIR + "/locale");
