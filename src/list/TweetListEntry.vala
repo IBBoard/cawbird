@@ -217,8 +217,12 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
     var quote_action = new GLib.SimpleAction("quote", null);
     quote_action.activate.connect(quote_activated);
+    var translate_action = new GLib.SimpleAction("translate", null);
+    translate_action.activate.connect(translate_activated);
+    translate_action.set_enabled(Utils.needs_translating(tweet));
     var non_destructive_actions = new GLib.SimpleActionGroup ();
     non_destructive_actions.add_action (quote_action);
+    non_destructive_actions.add_action (translate_action);
     this.insert_action_group ("tweet", non_destructive_actions);
     var delete_action = new GLib.SimpleAction("delete", null);
     delete_action.activate.connect(delete_activated);
@@ -488,6 +492,13 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
     if (shows_actions)
       toggle_mode ();
+  }
+
+  private void translate_activated () {
+    TweetUtils.activate_link(Utils.create_translate_url(tweet), main_window);
+    if (shows_actions) {
+      toggle_mode ();
+    }
   }
 
   private void reply_tweet_activated () {

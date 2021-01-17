@@ -6,6 +6,10 @@
         <attribute name="label" translatable="yes">Quote</attribute>
         <attribute name="action">tweet.quote</attribute>
       </item>
+      <item>
+        <attribute name="label" translatable="yes">Translate</attribute>
+        <attribute name="action">tweet.translate</attribute>
+      </item>
     </section>
     <section>
       <item>

@@ -677,4 +677,10 @@ namespace Utils {
   public string create_translate_url(Cb.Tweet tweet) {
     return "translate-%s:%s".printf(tweet.get_language(), GLib.Markup.escape_text(tweet.get_real_text()));
   }
+
+  public bool needs_translating (Cb.Tweet tweet) {
+    var tweet_language = tweet.get_language();
+    debug("%s needs translating? %s", tweet_language, tweet_language != null && tweet_language != get_user_language() ? "yes" : "no");
+    return tweet_language != null && tweet_language != get_user_language();
+  }
 }

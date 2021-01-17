@@ -830,10 +830,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
     load_user_avatar (tweet.avatar_url);
 
-    var tweet_language = tweet.get_language();
-    var user_language = Utils.get_user_language();
-    
-    if (tweet_language != null && tweet_language != user_language) {
+    if (Utils.needs_translating(tweet)) {
       translate_box.show();
       var buff = new StringBuilder ();
       buff.append ("<span underline='none'><a href=\"")
