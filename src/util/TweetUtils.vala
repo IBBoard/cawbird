@@ -924,10 +924,13 @@ namespace TweetUtils {
         return true;
       }
     }
-    else if (uri.has_prefix ("translate:")) {
-      var parts = uri.substring(10).split("/", 3);
+    else if (uri.has_prefix ("translate-")) {
+      var parts = uri.substring(10).split(":", 2);
+      var src_lang = parts[0];
+      var content = GLib.Uri.escape_string(parts[1]);
+      var target_lang = Utils.get_user_language();
       var url = "https://translate.google.com/?op=translate&sl={SOURCE_LANG}&tl={TARGET_LANG}&text={CONTENT}";
-      url = url.replace("{SOURCE_LANG}", parts[0]).replace("{TARGET_LANG}", parts[1]).replace("{CONTENT}", GLib.Uri.escape_string(parts[2]));
+      url = url.replace("{SOURCE_LANG}", src_lang).replace("{TARGET_LANG}", target_lang).replace("{CONTENT}", content);
       try {
         Gtk.show_uri_on_window(window, url, Gdk.CURRENT_TIME);
         return true;

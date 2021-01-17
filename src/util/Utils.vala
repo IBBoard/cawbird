@@ -662,7 +662,7 @@ namespace Utils {
     }
   }
 
-  public string user_language() {
+  public string get_user_language() {
     var langs = GLib.Intl.get_language_names();
     var lang = langs[0];
     // Remove any country information (e.g. en_GB → en)
@@ -672,5 +672,9 @@ namespace Utils {
       user_lang = "en";
     }
     return user_lang;
+  }
+
+  public string create_translate_url(Cb.Tweet tweet) {
+    return "translate-%s:%s".printf(tweet.get_language(), GLib.Markup.escape_text(tweet.get_real_text());
   }
 }
