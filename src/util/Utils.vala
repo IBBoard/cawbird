@@ -680,7 +680,6 @@ namespace Utils {
 
   public bool needs_translating (Cb.Tweet tweet) {
     var tweet_language = tweet.get_language();
-    debug("%s needs translating? %s", tweet_language, tweet_language != null && tweet_language != get_user_language() ? "yes" : "no");
     return tweet_language != null && tweet_language != get_user_language();
   }
 }
