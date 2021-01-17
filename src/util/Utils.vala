@@ -675,6 +675,6 @@ namespace Utils {
   }
 
   public string create_translate_url(Cb.Tweet tweet) {
-    return "translate-%s:%s".printf(tweet.get_language(), GLib.Markup.escape_text(tweet.get_real_text());
+    return "translate-%s:%s".printf(tweet.get_language(), GLib.Markup.escape_text(tweet.get_real_text()));
   }
 }

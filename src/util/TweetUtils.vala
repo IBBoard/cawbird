@@ -927,6 +927,9 @@ namespace TweetUtils {
     else if (uri.has_prefix ("translate-")) {
       var parts = uri.substring(10).split(":", 2);
       var src_lang = parts[0];
+      if (src_lang == "und") {
+        src_lang = "auto";
+      }
       var content = GLib.Uri.escape_string(parts[1]);
       var target_lang = Utils.get_user_language();
       var url = "https://translate.google.com/?op=translate&sl={SOURCE_LANG}&tl={TARGET_LANG}&text={CONTENT}";
