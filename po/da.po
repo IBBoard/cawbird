@@ -321,7 +321,7 @@ msgstr "Dette tweet er utilgængeligt"
 #. TRANSLATORS: Insert your actual language here instead of English - e.g.
 #. "Ins Deutsche übersetzen" or "Traduire en français"
 msgid "Translate to English"
-msgstr "Oversæt til Engelsk"
+msgstr "Oversæt til Dansk"
 
 msgid "Retweets"
 msgstr "Retweets"
