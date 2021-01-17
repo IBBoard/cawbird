@@ -213,25 +213,14 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="MultiMediaWidget" id="mm_widget">
-                        <property name="visible">true</property>
-                        <property name="margin-bottom">12</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">6</property>
-                        <property name="width">8</property>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="GtkBox" id="translate_box">
                         <property name="no-show-all">1</property>
                         <child>
                           <object class="GtkImage" id="translate_image">
                             <property name="visible">1</property>
                             <property name="halign">end</property>
-                            <property name="valign">baseline</property>
-                            <property name="margin-end">12</property>
+                            <property name="valign">center</property>
+                            <property name="margin-end">6</property>
                             <property name="pixel-size">24</property>
                             <property name="icon-name">cawbird-translate-symbolic</property>
                             <property name="icon-size">1</property>
@@ -243,6 +232,7 @@
                             <property name="halign">start</property>
                             <property name="valign">baseline</property>
                             <property name="margin-top">8</property>
+                            <property name="margin-bottom">8</property>
                             <property name="use-markup">1</property>
                             <property name="ellipsize">end</property>
                             <property name="xalign">0</property>
@@ -250,6 +240,17 @@
                             <signal name="activate-link" handler="link_activated_cb" swapped="no"/>
                           </object>
                         </child>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">6</property>
+                        <property name="width">8</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="MultiMediaWidget" id="mm_widget">
+                        <property name="visible">true</property>
+                        <property name="margin-bottom">12</property>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
