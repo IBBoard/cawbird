@@ -663,11 +663,10 @@ namespace Utils {
   }
 
   public string user_language() {
-    var lang_var = GLib.Environment.get_variable ("LANG");
-    // Remove any trailing ".utf8" etc
-    var locale = lang_var.split(".", 2)[0];
-    // Trim the language_country down to just language
-    var user_lang = locale.split("_", 2)[0];
+    var langs = GLib.Intl.get_language_names();
+    var lang = langs[0];
+    // Remove any country information (e.g. en_GB → en)
+    var user_lang = lang.split("_", 2)[0];
     if (user_lang.length < 2) {
       // User probably had "C", so assume English
       user_lang = "en";
