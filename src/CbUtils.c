@@ -581,6 +581,8 @@ cb_utils_load_threaded_async  (RestProxyCall       *call,
     g_debug ("REST: %s", s);
     g_free (s);
   }
+#else
+  g_debug("REST: %s %s", rest_proxy_call_get_method(call), rest_proxy_call_get_function(call));
 #endif
 
   rest_proxy_call_invoke_async (call, cancellable, call_done_cb, task);
