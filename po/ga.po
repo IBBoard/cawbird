@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-16 21:00+0000\n"
+"POT-Creation-Date: 2021-01-17 15:40+0000\n"
 "PO-Revision-Date: 2017-11-30 16:57+0000\n"
 "Last-Translator: Aoibhe Ní Ghnímh <aoibhe.agnew@gmail.com>\n"
 "Language-Team: Irish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -314,7 +314,7 @@ msgstr ""
 msgid "This tweet is unavailable"
 msgstr ""
 
-#. TRANSLATORS: Insert your actual language here instead of English - e.g. "Ins Deutsche übersetzen" or "Traduire en français"
+#. TRANSLATORS: Insert your *actual* language here instead of English - e.g. "Ins Deutsche übersetzen" or "Traduire en français"
 msgid "Translate to English"
 msgstr ""
 
@@ -1109,6 +1109,9 @@ msgid "Reply to tweet"
 msgstr ""
 
 msgid "More"
+msgstr ""
+
+msgid "Translate"
 msgstr ""
 
 msgid "Favorite"
