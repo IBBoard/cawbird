@@ -47,6 +47,10 @@ class SettingsDialog : Gtk.Window {
   private Gtk.ListBox snippet_list_box;
   [GtkChild]
   private Gtk.ComboBoxText media_visibility_combobox;
+  [GtkChild]
+  private Gtk.ComboBoxText translation_service_combobox;
+  [GtkChild]
+  private Gtk.Entry custom_translation_entry;
 
   private TweetListEntry sample_tweet_entry;
 
@@ -81,17 +85,24 @@ class SettingsDialog : Gtk.Window {
       }
       block_flag_emission = false;
     });
-
-    // Tweets page
-    Settings.get ().bind ("tweet-scale", tweet_scale_combobox, "active-id", SettingsBindFlags.DEFAULT);
-    Settings.get ().bind ("round-avatars", round_avatar_switch, "active",
-        SettingsBindFlags.DEFAULT);
     Settings.get ().bind ("new-tweets-notify", on_new_tweets_combobox, "active-id",
         SettingsBindFlags.DEFAULT);
     Settings.get ().bind ("new-mentions-notify", on_new_mentions_switch, "active",
         SettingsBindFlags.DEFAULT);
     Settings.get ().bind ("new-dms-notify", on_new_dms_switch, "active",
         SettingsBindFlags.DEFAULT);
+
+    // Tweets page
+    Settings.get ().bind ("tweet-scale", tweet_scale_combobox, "active-id", SettingsBindFlags.DEFAULT);
+    Settings.get ().bind ("round-avatars", round_avatar_switch, "active",
+        SettingsBindFlags.DEFAULT);
+    Settings.get ().bind ("translation-service", translation_service_combobox, "active-id", SettingsBindFlags.DEFAULT);
+    Settings.get ().changed["translation-service"].connect(() => {
+      set_custom_translation_sensitivity();
+    });
+    // TODO: Validate that it contains {SOURCE_LANG}, {TARGET_LANG} and {CONTENT}
+    Settings.get ().bind ("custom-translation-service", custom_translation_entry, "text", SettingsBindFlags.DEFAULT);
+    set_custom_translation_sensitivity();
 
     // Set up sample tweet {{{
     var sample_tweet = new Cb.Tweet ();
@@ -203,6 +214,10 @@ class SettingsDialog : Gtk.Window {
     d.set_transient_for (this);
     d.modal = true;
     d.show ();
+  }
+
+  private void set_custom_translation_sensitivity() {
+    custom_translation_entry.sensitive = Settings.get_translation_service() == TranslationService.CUSTOM;
   }
 
   private void snippet_updated_func (string? old_key, string? key, string? value) {

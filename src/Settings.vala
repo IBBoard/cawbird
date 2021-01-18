@@ -21,6 +21,13 @@ public enum MediaVisibility{
   HIDE_IN_TIMELINES   = 3
 }
 
+public enum TranslationService {
+  GOOGLE = 0,
+  BING = 1,
+  DEEPL = 2,
+  CUSTOM = 3
+}
+
 public class Settings : GLib.Object {
   private static GLib.Settings settings;
 
@@ -110,5 +117,27 @@ public class Settings : GLib.Object {
 
   public static MediaVisibility get_media_visiblity () {
     return (MediaVisibility)settings.get_enum ("media-visibility");
+  }
+
+  public static TranslationService get_translation_service() {
+    return (TranslationService)settings.get_enum("translation-service");
+  }
+
+  public static string get_custom_translation_service() {
+    return settings.get_string("custom-translation-service");
+  }
+
+  public static string get_translation_service_url() {
+    var translation_service = get_translation_service();
+    switch (translation_service) {
+      case TranslationService.GOOGLE:
+        return "https://translate.google.com/?op=translate&sl={SOURCE_LANG}&tl={TARGET_LANG}&text={CONTENT}";
+      case TranslationService.BING:
+        return "https://www.bing.com/translator/?from={SOURCE_LANG}&to={TARGET_LANG}&text={CONTENT}";
+      case TranslationService.DEEPL:
+        return "https://www.deepl.com/translator#{SOURCE_LANG}/{TARGET_LANG}/{CONTENT}";
+      default:
+        return get_custom_translation_service();
+    }
   }
 }

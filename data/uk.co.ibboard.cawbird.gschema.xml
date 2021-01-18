@@ -20,7 +20,13 @@
     <value nick="Large" value="1" />
     <value nick="X-Large" value="2" />
     <value nick="XX-Large" value="3" />
+  </enum>
 
+  <enum id="uk.co.ibboard.cawbird.translation-service">
+    <value nick="Google" value="0" />
+    <value nick="Bing" value="1" />
+    <value nick="DeepL" value="2" />
+    <value nick="Custom" value="3" />
   </enum>
 
   <schema id="uk.co.ibboard.cawbird"
@@ -125,6 +131,14 @@
     <key name="tweet-scale" enum="uk.co.ibboard.cawbird.tweet-scale">
       <default>"Normal"</default>
       <summary>Scale factor for tweets in timelines</summary>
+    </key>
+    <key name="translation-service" enum="uk.co.ibboard.cawbird.translation-service">
+      <default>"Google"</default>
+      <summary>Translation website to use</summary>
+    </key>
+    <key type="s" name="custom-translation-service">
+      <default>""</default>
+      <summary>Custom translation service URL using {SOURCE_LANG} for the source language code, {TARGET_LANG} for the target language code and {CONTENT} for the URI encoded tweet content</summary>
     </key>
   </schema>
 </schemalist>

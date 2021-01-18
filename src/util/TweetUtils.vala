@@ -932,7 +932,7 @@ namespace TweetUtils {
       }
       var content = GLib.Uri.escape_string(parts[1]);
       var target_lang = Utils.get_user_language();
-      var url = "https://translate.google.com/?op=translate&sl={SOURCE_LANG}&tl={TARGET_LANG}&text={CONTENT}";
+      var url = Settings.get_translation_service_url();
       url = url.replace("{SOURCE_LANG}", src_lang).replace("{TARGET_LANG}", target_lang).replace("{CONTENT}", content);
       try {
         Gtk.show_uri_on_window(window, url, Gdk.CURRENT_TIME);
