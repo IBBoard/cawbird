@@ -38,7 +38,10 @@ configure_file(
   install_dir: join_paths(get_option('datadir'), 'dbus-1/services')
 )
 
-gnome.compile_schemas(build_by_default: true)
+gnome.compile_schemas(
+  build_by_default: true,
+  depend_files: ['uk.co.ibboard.cawbird.gschema.xml']
+)
 
 # Install all application icons in one go
 install_subdir(
