@@ -29,6 +29,7 @@ public class MultiMediaWidget : Gtk.Box {
   construct {
     this.orientation = Gtk.Orientation.HORIZONTAL;
     this.homogeneous = true;
+    this.spacing = 2;
   }
 
   public MultiMediaWidget () {
