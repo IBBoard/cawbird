@@ -132,10 +132,11 @@ public class HomeTimeline : Cb.MessageReceiver, DefaultTimeline {
       return;
 
     // We never show any notifications if auto-scroll-on-new-tweet is enabled
-    // or if it's our tweet or an initial load
-    int stack_size = Settings.get_tweet_stack_count ();
-    if (t.get_user_id () == account.id || auto_scroll || !preload_is_complete)
+    // or if it's our tweet or an initial load, or if it's not a new tweet
+    if (t.get_user_id () == account.id || auto_scroll || !preload_is_complete || !is_new_unread)
       return;
+
+    int stack_size = Settings.get_tweet_stack_count ();
 
     if (stack_size == 1 && !auto_scroll) {
       string summary = "";
