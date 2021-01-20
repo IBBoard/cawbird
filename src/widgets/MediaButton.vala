@@ -243,7 +243,7 @@ private class MediaButton : Gtk.Widget {
 
       if (media.alt_text != null && media.alt_text != "") {
         Gtk.IconTheme icon_theme = Gtk.IconTheme.get_default();
-        int icon_size = 32;
+        int icon_size = 24;
         try {
           Gdk.Pixbuf pixbuf = icon_theme.load_icon_for_scale ("info", icon_size, this.get_scale_factor(), Gtk.IconLookupFlags.USE_BUILTIN);
           var icon = Gdk.cairo_surface_create_from_pixbuf (pixbuf, this.get_scale_factor(), null);
