@@ -251,7 +251,7 @@ private class MediaButton : Gtk.Widget {
         Gtk.IconTheme icon_theme = Gtk.IconTheme.get_default();
         int icon_size = 24;
         try {
-          Gdk.Pixbuf pixbuf = icon_theme.load_icon_for_scale ("info", icon_size, this.get_scale_factor(), Gtk.IconLookupFlags.USE_BUILTIN);
+          Gdk.Pixbuf pixbuf = icon_theme.load_icon_for_scale ("dialog-information", icon_size, this.get_scale_factor(), Gtk.IconLookupFlags.USE_BUILTIN);
           var icon = Gdk.cairo_surface_create_from_pixbuf (pixbuf, this.get_scale_factor(), null);
           ct.set_source_surface (icon, draw_x / scale, widget_height - icon_size * this.get_scale_factor());
           ct.paint();
