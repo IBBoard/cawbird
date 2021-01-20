@@ -207,7 +207,13 @@ private class MediaButton : Gtk.Widget {
       ct.save ();
       ct.rectangle (0, 0, widget_width, widget_height);
       ct.scale (scale, scale);
-      double draw_y = -Math.floor(((_media.thumb_height * scale) - draw_height) / 2);
+      double draw_y;
+      if (draw_height <= widget_height) {
+        draw_y = widget_height - draw_height;
+      }
+      else {
+        draw_y = -Math.floor(((_media.thumb_height * scale) - draw_height) / 2);
+      }
       ct.set_source_surface (media.surface, draw_x / scale, draw_y / scale);
       ct.paint_with_alpha (this.media_alpha);
       ct.restore ();
@@ -476,7 +482,8 @@ private class MediaButton : Gtk.Widget {
     if (this.get_realized ()) {
       this.get_draw_size (out draw_width, out draw_height, out scale);
       int draw_x = (alloc.width / 2) - (draw_width / 2);
-      this.event_window.move_resize (alloc.x + draw_x,     alloc.y,
+      int draw_y = alloc.height - draw_height;
+      this.event_window.move_resize (alloc.x + draw_x, alloc.y + draw_y,
                                      draw_width, draw_height);
     }
   }
