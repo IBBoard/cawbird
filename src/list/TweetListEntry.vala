@@ -304,25 +304,20 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     }
 
     text_label.label = tweet.get_trimmed_text (transform_flags);
+    if (text_label.label == "") {
+      scroller.hide();
+    }
+    else {
+      scroller.show();
+    }
+
     if (this.tweet.quoted_tweet != null) {
       this.quote_label.label = Cb.TextTransform.tweet (ref tweet.quoted_tweet, transform_flags, 0);
       if (quote_label.label == "") {
         quote_label.hide ();
       }
-    }
-
-    if (this.mm_widget != null) {
-      Gtk.Widget w = media_stack != null ? ((Gtk.Widget)media_stack) : ((Gtk.Widget)mm_widget);
-
-      // Move the media widget up (to overlap with avatar) if there's no text
-      // We don't do this for quoted images because there is no avatar
-      if (text_label.label == "") {
-        this.grid.child_set (w, "top-attach", 2);
-        scroller.hide();
-      }
       else {
-        this.grid.child_set (w, "top-attach", 3);
-        scroller.show();
+        quote_label.show();
       }
     }
   }
@@ -872,7 +867,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
           quote_grid.set ("margin-start", 6);
         }
       } else {
-        grid.child_set (avatar_image, "height", 3);
+        grid.child_set (avatar_image, "height", 5);
         grid.child_set (scroller, "left-attach", 2);
         grid.child_set (scroller, "width", 5);
         scroller.set ("margin-start", 0);
@@ -906,7 +901,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
   private void create_quote_grid (bool reply) {
     this.quote_grid = new Gtk.Grid ();
-    quote_grid.margin_top = 6;
+    quote_grid.margin_top = 12;
     quote_grid.margin_end = 6;
     quote_grid.get_style_context ().add_class ("quote");
 

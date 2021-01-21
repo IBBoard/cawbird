@@ -143,7 +143,7 @@
               <packing>
                 <property name="left-attach">0</property>
                 <property name="top-attach">0</property>
-                <property name="height">3</property>
+                <property name="height">5</property>
                 <property name="width">2</property>
               </packing>
             </child>
