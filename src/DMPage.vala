@@ -754,6 +754,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     action_stack.add (emoji_chooser);
 
     this.emoji_button = new Gtk.Button.with_label ("🐧");
+    emoji_button.set_tooltip_text(_("Insert Emoji"));
     emoji_button.get_accessible().set_name(_("Insert Emoji"));
     emoji_button.clicked.connect (() => {
       this.emoji_chooser.populate ();
