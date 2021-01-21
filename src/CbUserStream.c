@@ -196,6 +196,8 @@ stream_tweet (CbUserStream *self,
   json_generator_set_pretty (gen, FALSE);
   gchar *json_dump = json_generator_to_data (gen, NULL);
   g_debug ("Message with type %d on stream @%s: %s", message_type, self->account_name, json_dump);
+#else
+  g_debug ("Message with type %d on stream @%s", message_type, self->account_name);
 #endif
 
   if (message_type == CB_STREAM_MESSAGE_UNSUPPORTED) {
