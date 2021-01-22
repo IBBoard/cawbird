@@ -613,7 +613,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     emoji_chooser.show_all ();
     stack.add (emoji_chooser);
 
-    this.emoji_button = new Gtk.Button.with_label ("🐧");
+    this.emoji_button = new Gtk.Button.with_label ("😀");
     emoji_button.set_tooltip_text(_("Insert Emoji"));
     emoji_button.get_accessible().set_name(_("Insert Emoji"));
     emoji_button.clicked.connect (() => {
