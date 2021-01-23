@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>, 2021\n"
 "Language-Team: Italian (https://www.transifex.com/cawbird/teams/107135/it/)\n"
@@ -939,6 +939,36 @@ msgstr "Scorrimento automatico con nuovi tweet"
 msgid "Double-click activation"
 msgstr "Doppio-click per attivare"
 
+msgid "Notifications"
+msgstr "Notifiche"
+
+msgid "On New Tweets"
+msgstr "Per Nuovi Tweet"
+
+msgid "Never"
+msgstr "Mai"
+
+msgid "Every"
+msgstr "Sempre"
+
+msgid "Stack 5"
+msgstr "Ogni 5"
+
+msgid "Stack 10"
+msgstr "Ogni 10"
+
+msgid "Stack 25"
+msgstr "Ogni 25"
+
+msgid "Stack 50"
+msgstr "Ogni 50"
+
+msgid "On New Mentions"
+msgstr "Per Nuove Menzioni"
+
+msgid "On New Messages"
+msgstr "Per Nuovi Messaggi"
+
 msgid "Interface"
 msgstr "Interfaccia"
 
@@ -974,35 +1004,15 @@ msgstr "Rimuovi link multimediali"
 msgid "Hide inappropriate content"
 msgstr "Contenuto inappropriato"
 
-msgid "On New Tweets"
-msgstr "Per Nuovi Tweet"
+msgid "Translation"
+msgstr ""
 
-msgid "Notifications"
-msgstr "Notifiche"
+#, fuzzy
+msgid "Translation service"
+msgstr "Avvia servizio"
 
-msgid "On New Mentions"
-msgstr "Per Nuove Menzioni"
-
-msgid "On New Messages"
-msgstr "Per Nuovi Messaggi"
-
-msgid "Never"
-msgstr "Mai"
-
-msgid "Every"
-msgstr "Sempre"
-
-msgid "Stack 5"
-msgstr "Ogni 5"
-
-msgid "Stack 10"
-msgstr "Ogni 10"
-
-msgid "Stack 25"
-msgstr "Ogni 25"
-
-msgid "Stack 50"
-msgstr "Ogni 50"
+msgid "Custom translation URL"
+msgstr ""
 
 msgid "No snippets configured."
 msgstr "Nessuno snippet configurato."

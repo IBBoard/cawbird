@@ -90,6 +90,10 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
   private Gtk.RadioButton lists_button;
   [GtkChild]
   private Gtk.Label loading_error_label;
+  [GtkChild]
+  private Gtk.Box user_blocked_page;
+  [GtkChild]
+  private Gtk.Label user_blocked_label;
   private int64 user_id;
   private new string name;
   private string screen_name;
@@ -104,6 +108,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
   private bool following_loading = false;
   private JsonCursor? following_cursor = null;
   private GLib.SimpleActionGroup actions;
+  private bool override_block = false;
 
   public ProfilePage (int id, Account account) {
     this.id = id;
@@ -471,8 +476,11 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
 
 
   private async void load_tweets () {
-    if (account.blocked_or_muted (user_id)) {
+    if (account.blocked_or_muted (user_id) && !override_block) {
       return;
+    }
+    if ((!account.blocked_or_muted(user_id) || override_block) && user_stack.visible_child == user_blocked_page) {
+      user_stack.visible_child = tweet_list;
     }
     tweet_list.set_unempty ();
     tweets_loading = true;
@@ -753,12 +761,13 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
         //and didn't fetch enough in one go
         fill_tweet_list.begin();
       });
+      override_block = false;
+      show_tweet_list();
     } else {
       /* Still load the friendship since muted/blocked/etc. may have changed */
       load_friendship.begin ();
     }
     tweets_button.active = true;
-    //user_stack.visible_child = tweet_list;
   }
 
   public void on_leave () {
@@ -883,13 +892,22 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     tweet_list.hide_retweets_from(user_id, reason);
     tweet_list.set_placeholder_text(message);
     tweet_list.set_empty();
+    user_blocked_label.label = message;
+    user_stack.visible_child = user_blocked_page;
+    override_block = false;
   }
 
   private void show_tweets(Cb.TweetState reason) {
     tweet_list.show_tweets_from(user_id, reason);
     tweet_list.show_retweets_from(user_id, reason);
-    if (tweet_list.model.get_n_items() == 0) {
-      load_tweets.begin();
+    if (tweet_list.model.get_n_items() == 0 && (!account.blocked_or_muted(user_id) || override_block)) {
+      load_tweets.begin(() => {
+        if (override_block) {
+          // It's either this or adding a "flag mask" to a util function
+          tweet_list.show_tweets_from(user_id, reason);
+          tweet_list.show_retweets_from(user_id, reason);
+        }
+      });
     }
   }
 
@@ -1022,11 +1040,20 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     return root.get_object ().get_object_member ("target").get_int_member ("id");
   }
 
+  private void show_tweet_list() {
+    if (account.blocked_or_muted (user_id) && !override_block) {
+      user_stack.visible_child = user_blocked_page;
+    }
+    else {
+      user_stack.visible_child = tweet_list;
+    }
+  }
+
   [GtkCallback]
   private void tweets_button_toggled_cb (GLib.Object source) {
     if (((Gtk.RadioButton)source).active) {
       this.balance_next_upper_change (BOTTOM);
-      user_stack.visible_child = tweet_list;
+      show_tweet_list();
     }
   }
   [GtkCallback]
@@ -1060,6 +1087,18 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       }
       this.balance_next_upper_change (BOTTOM);
       user_stack.visible_child = user_lists;
+    }
+  }
+
+  [GtkCallback]
+  private void show_anyway_clicked(GLib.Object source) {
+    override_block = true;
+    user_stack.visible_child = tweet_list;
+    if (account.is_muted(user_id)) {
+      show_tweets(Cb.TweetState.HIDDEN_AUTHOR_MUTED);
+    }
+    if (account.is_blocked(user_id)) {
+      show_tweets(Cb.TweetState.HIDDEN_AUTHOR_BLOCKED);
     }
   }
 

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2018-02-09 06:34+0000\n"
 "Last-Translator: Kim Malmo <berencamlost@msn.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/cawbird/cawbird/"
@@ -926,6 +926,36 @@ msgstr "Rull automatisk ved nye tweets"
 msgid "Double-click activation"
 msgstr "Dobbeltklikk-trigging"
 
+msgid "Notifications"
+msgstr "Varslinger"
+
+msgid "On New Tweets"
+msgstr "Ved nye tweets"
+
+msgid "Never"
+msgstr "Aldri"
+
+msgid "Every"
+msgstr "Hver"
+
+msgid "Stack 5"
+msgstr "Stabel 5"
+
+msgid "Stack 10"
+msgstr "Stabel 10"
+
+msgid "Stack 25"
+msgstr "Stabel 25"
+
+msgid "Stack 50"
+msgstr "Stabel 50"
+
+msgid "On New Mentions"
+msgstr "Ved nye nevnelser"
+
+msgid "On New Messages"
+msgstr "Ved nye meldinger"
+
 msgid "Interface"
 msgstr "Grensesnitt"
 
@@ -961,35 +991,14 @@ msgstr "Fjern medielenker"
 msgid "Hide inappropriate content"
 msgstr "Skjul upassende innhold"
 
-msgid "On New Tweets"
-msgstr "Ved nye tweets"
+msgid "Translation"
+msgstr ""
 
-msgid "Notifications"
-msgstr "Varslinger"
+msgid "Translation service"
+msgstr ""
 
-msgid "On New Mentions"
-msgstr "Ved nye nevnelser"
-
-msgid "On New Messages"
-msgstr "Ved nye meldinger"
-
-msgid "Never"
-msgstr "Aldri"
-
-msgid "Every"
-msgstr "Hver"
-
-msgid "Stack 5"
-msgstr "Stabel 5"
-
-msgid "Stack 10"
-msgstr "Stabel 10"
-
-msgid "Stack 25"
-msgstr "Stabel 25"
-
-msgid "Stack 50"
-msgstr "Stabel 50"
+msgid "Custom translation URL"
+msgstr ""
 
 msgid "No snippets configured."
 msgstr "Ingen kodesnutter satt opp."

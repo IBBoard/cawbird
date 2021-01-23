@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Joan Ensesa <jensesa@protonmail.com>, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/cawbird/teams/107135/ca/)\n"
@@ -936,6 +936,36 @@ msgstr "Desplaça automàticament amb piulades noves"
 msgid "Double-click activation"
 msgstr "Activació de doble clic"
 
+msgid "Notifications"
+msgstr "Notificacions"
+
+msgid "On New Tweets"
+msgstr "Quan hi hagi piulades noves"
+
+msgid "Never"
+msgstr "Mai"
+
+msgid "Every"
+msgstr "Tots els"
+
+msgid "Stack 5"
+msgstr "Stack 5"
+
+msgid "Stack 10"
+msgstr "Stack 10"
+
+msgid "Stack 25"
+msgstr "Stack 25"
+
+msgid "Stack 50"
+msgstr "Stack 50"
+
+msgid "On New Mentions"
+msgstr "Quan hi hagi mencions noves"
+
+msgid "On New Messages"
+msgstr "Quan hi hagi missatges nous"
+
 msgid "Interface"
 msgstr "Interfície"
 
@@ -971,35 +1001,14 @@ msgstr "Elimina els enllaços"
 msgid "Hide inappropriate content"
 msgstr "Amaga el contingut inapropiat"
 
-msgid "On New Tweets"
-msgstr "Quan hi hagi piulades noves"
+msgid "Translation"
+msgstr ""
 
-msgid "Notifications"
-msgstr "Notificacions"
+msgid "Translation service"
+msgstr ""
 
-msgid "On New Mentions"
-msgstr "Quan hi hagi mencions noves"
-
-msgid "On New Messages"
-msgstr "Quan hi hagi missatges nous"
-
-msgid "Never"
-msgstr "Mai"
-
-msgid "Every"
-msgstr "Tots els"
-
-msgid "Stack 5"
-msgstr "Stack 5"
-
-msgid "Stack 10"
-msgstr "Stack 10"
-
-msgid "Stack 25"
-msgstr "Stack 25"
-
-msgid "Stack 50"
-msgstr "Stack 50"
+msgid "Custom translation URL"
+msgstr ""
 
 msgid "No snippets configured."
 msgstr "No s'han configurat els snippets"

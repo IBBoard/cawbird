@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -902,6 +902,36 @@ msgstr ""
 msgid "Double-click activation"
 msgstr ""
 
+msgid "Notifications"
+msgstr "Értesítések"
+
+msgid "On New Tweets"
+msgstr ""
+
+msgid "Never"
+msgstr "Soha"
+
+msgid "Every"
+msgstr "Minden"
+
+msgid "Stack 5"
+msgstr ""
+
+msgid "Stack 10"
+msgstr ""
+
+msgid "Stack 25"
+msgstr ""
+
+msgid "Stack 50"
+msgstr ""
+
+msgid "On New Mentions"
+msgstr ""
+
+msgid "On New Messages"
+msgstr ""
+
 msgid "Interface"
 msgstr ""
 
@@ -937,34 +967,13 @@ msgstr ""
 msgid "Hide inappropriate content"
 msgstr ""
 
-msgid "On New Tweets"
+msgid "Translation"
 msgstr ""
 
-msgid "Notifications"
-msgstr "Értesítések"
-
-msgid "On New Mentions"
+msgid "Translation service"
 msgstr ""
 
-msgid "On New Messages"
-msgstr ""
-
-msgid "Never"
-msgstr "Soha"
-
-msgid "Every"
-msgstr "Minden"
-
-msgid "Stack 5"
-msgstr ""
-
-msgid "Stack 10"
-msgstr ""
-
-msgid "Stack 25"
-msgstr ""
-
-msgid "Stack 50"
+msgid "Custom translation URL"
 msgstr ""
 
 msgid "No snippets configured."

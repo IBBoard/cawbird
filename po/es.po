@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -938,6 +938,36 @@ msgstr "Desplazar automaticamente al cargar nuevos tweets"
 msgid "Double-click activation"
 msgstr "Activación Doble-click"
 
+msgid "Notifications"
+msgstr "Notificaciones"
+
+msgid "On New Tweets"
+msgstr "Para tweets nuevos"
+
+msgid "Never"
+msgstr "Nunca"
+
+msgid "Every"
+msgstr "Todos"
+
+msgid "Stack 5"
+msgstr "Cada 5"
+
+msgid "Stack 10"
+msgstr "Cada 10"
+
+msgid "Stack 25"
+msgstr "Cada 25"
+
+msgid "Stack 50"
+msgstr "Cada 50"
+
+msgid "On New Mentions"
+msgstr "Para menciones nuevas"
+
+msgid "On New Messages"
+msgstr "Para mensajes nuevos"
+
 msgid "Interface"
 msgstr "Interfaz"
 
@@ -973,35 +1003,14 @@ msgstr "Eliminar enlaces"
 msgid "Hide inappropriate content"
 msgstr "Ocultar contenido que pueda herir la sensibilidad de algunas personas"
 
-msgid "On New Tweets"
-msgstr "Para tweets nuevos"
+msgid "Translation"
+msgstr ""
 
-msgid "Notifications"
-msgstr "Notificaciones"
+msgid "Translation service"
+msgstr ""
 
-msgid "On New Mentions"
-msgstr "Para menciones nuevas"
-
-msgid "On New Messages"
-msgstr "Para mensajes nuevos"
-
-msgid "Never"
-msgstr "Nunca"
-
-msgid "Every"
-msgstr "Todos"
-
-msgid "Stack 5"
-msgstr "Cada 5"
-
-msgid "Stack 10"
-msgstr "Cada 10"
-
-msgid "Stack 25"
-msgstr "Cada 25"
-
-msgid "Stack 50"
-msgstr "Cada 50"
+msgid "Custom translation URL"
+msgstr ""
 
 msgid "No snippets configured."
 msgstr "No hay fragmentos configurados"

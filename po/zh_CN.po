@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/cawbird/cawbird/"
@@ -910,6 +910,36 @@ msgstr "自动载入新推文"
 msgid "Double-click activation"
 msgstr "双击激活"
 
+msgid "Notifications"
+msgstr "通知"
+
+msgid "On New Tweets"
+msgstr "新推文"
+
+msgid "Never"
+msgstr "从不"
+
+msgid "Every"
+msgstr "间隔"
+
+msgid "Stack 5"
+msgstr "5 条"
+
+msgid "Stack 10"
+msgstr "10 条"
+
+msgid "Stack 25"
+msgstr "25 条"
+
+msgid "Stack 50"
+msgstr "50 条"
+
+msgid "On New Mentions"
+msgstr "新提及"
+
+msgid "On New Messages"
+msgstr "新消息"
+
 msgid "Interface"
 msgstr "外观"
 
@@ -945,35 +975,14 @@ msgstr "移除媒体链接"
 msgid "Hide inappropriate content"
 msgstr "隐藏不适宜内容"
 
-msgid "On New Tweets"
-msgstr "新推文"
+msgid "Translation"
+msgstr ""
 
-msgid "Notifications"
-msgstr "通知"
+msgid "Translation service"
+msgstr ""
 
-msgid "On New Mentions"
-msgstr "新提及"
-
-msgid "On New Messages"
-msgstr "新消息"
-
-msgid "Never"
-msgstr "从不"
-
-msgid "Every"
-msgstr "间隔"
-
-msgid "Stack 5"
-msgstr "5 条"
-
-msgid "Stack 10"
-msgstr "10 条"
-
-msgid "Stack 25"
-msgstr "25 条"
-
-msgid "Stack 50"
-msgstr "50 条"
+msgid "Custom translation URL"
+msgstr ""
 
 msgid "No snippets configured."
 msgstr "未配置任何插件"

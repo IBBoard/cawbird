@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Ammar K <ak.bahassan@gmail.com>, 2020\n"
 "Language-Team: Arabic (http://www.transifex.com/cawbird/cawbird/language/"
@@ -978,6 +978,36 @@ msgstr "التمرير التلقائي لالتغريدات الجديدة"
 msgid "Double-click activation"
 msgstr ""
 
+msgid "Notifications"
+msgstr "الإشعارات"
+
+msgid "On New Tweets"
+msgstr ""
+
+msgid "Never"
+msgstr "أبدا"
+
+msgid "Every"
+msgstr "كل"
+
+msgid "Stack 5"
+msgstr "تجميع 5"
+
+msgid "Stack 10"
+msgstr "تجميع 10"
+
+msgid "Stack 25"
+msgstr "تجميع 25"
+
+msgid "Stack 50"
+msgstr "تجميع 50"
+
+msgid "On New Mentions"
+msgstr ""
+
+msgid "On New Messages"
+msgstr ""
+
 msgid "Interface"
 msgstr "الواجهة"
 
@@ -1013,35 +1043,14 @@ msgstr "إزالة روابط الوسائط"
 msgid "Hide inappropriate content"
 msgstr "اخفي المحتوى الغير لائق"
 
-msgid "On New Tweets"
+msgid "Translation"
 msgstr ""
 
-msgid "Notifications"
-msgstr "الإشعارات"
-
-msgid "On New Mentions"
+msgid "Translation service"
 msgstr ""
 
-msgid "On New Messages"
+msgid "Custom translation URL"
 msgstr ""
-
-msgid "Never"
-msgstr "أبدا"
-
-msgid "Every"
-msgstr "كل"
-
-msgid "Stack 5"
-msgstr "تجميع 5"
-
-msgid "Stack 10"
-msgstr "تجميع 10"
-
-msgid "Stack 25"
-msgstr "تجميع 25"
-
-msgid "Stack 50"
-msgstr "تجميع 50"
 
 msgid "No snippets configured."
 msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/cawbird/cawbird/"
@@ -909,6 +909,36 @@ msgstr "새로운 트윗으로 자동 스크롤"
 msgid "Double-click activation"
 msgstr "더블 클릭 활성화"
 
+msgid "Notifications"
+msgstr "알림"
+
+msgid "On New Tweets"
+msgstr "새로운 트윗"
+
+msgid "Never"
+msgstr "절대 안함"
+
+msgid "Every"
+msgstr "매번"
+
+msgid "Stack 5"
+msgstr "스택 5"
+
+msgid "Stack 10"
+msgstr "스택 10"
+
+msgid "Stack 25"
+msgstr "스택 25"
+
+msgid "Stack 50"
+msgstr "스택 50"
+
+msgid "On New Mentions"
+msgstr "새로운 멘션"
+
+msgid "On New Messages"
+msgstr "새로운 메시지"
+
 msgid "Interface"
 msgstr "인터페이스"
 
@@ -944,35 +974,14 @@ msgstr "미디어 링크 삭제"
 msgid "Hide inappropriate content"
 msgstr "부적절한 컨텐츠 숨기기"
 
-msgid "On New Tweets"
-msgstr "새로운 트윗"
+msgid "Translation"
+msgstr ""
 
-msgid "Notifications"
-msgstr "알림"
+msgid "Translation service"
+msgstr ""
 
-msgid "On New Mentions"
-msgstr "새로운 멘션"
-
-msgid "On New Messages"
-msgstr "새로운 메시지"
-
-msgid "Never"
-msgstr "절대 안함"
-
-msgid "Every"
-msgstr "매번"
-
-msgid "Stack 5"
-msgstr "스택 5"
-
-msgid "Stack 10"
-msgstr "스택 10"
-
-msgid "Stack 25"
-msgstr "스택 25"
-
-msgid "Stack 50"
-msgstr "스택 50"
+msgid "Custom translation URL"
+msgstr ""
 
 msgid "No snippets configured."
 msgstr "스니펫이 구성되지 않음."

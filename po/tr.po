@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Turkish (Turkey) (http://www.transifex.com/cawbird/cawbird/"
@@ -909,6 +909,36 @@ msgstr "Yeni Tweetlerde Otomatik Kaydır"
 msgid "Double-click activation"
 msgstr "Etkinleştirmek İçin Çift Tıkla"
 
+msgid "Notifications"
+msgstr "Bildirimler"
+
+msgid "On New Tweets"
+msgstr "Yeni Tweetlerde"
+
+msgid "Never"
+msgstr "Asla"
+
+msgid "Every"
+msgstr "Her Zaman"
+
+msgid "Stack 5"
+msgstr "5 destek"
+
+msgid "Stack 10"
+msgstr "10 destek"
+
+msgid "Stack 25"
+msgstr "25 destek"
+
+msgid "Stack 50"
+msgstr "50 destek"
+
+msgid "On New Mentions"
+msgstr "Yeni Cevaplarda"
+
+msgid "On New Messages"
+msgstr "Yeni Mesajlarda"
+
 msgid "Interface"
 msgstr "Arayüz"
 
@@ -944,35 +974,14 @@ msgstr "Medya Linklerini Kaldır"
 msgid "Hide inappropriate content"
 msgstr ""
 
-msgid "On New Tweets"
-msgstr "Yeni Tweetlerde"
+msgid "Translation"
+msgstr ""
 
-msgid "Notifications"
-msgstr "Bildirimler"
+msgid "Translation service"
+msgstr ""
 
-msgid "On New Mentions"
-msgstr "Yeni Cevaplarda"
-
-msgid "On New Messages"
-msgstr "Yeni Mesajlarda"
-
-msgid "Never"
-msgstr "Asla"
-
-msgid "Every"
-msgstr "Her Zaman"
-
-msgid "Stack 5"
-msgstr "5 destek"
-
-msgid "Stack 10"
-msgstr "10 destek"
-
-msgid "Stack 25"
-msgstr "25 destek"
-
-msgid "Stack 50"
-msgstr "50 destek"
+msgid "Custom translation URL"
+msgstr ""
 
 msgid "No snippets configured."
 msgstr "Yapılandırılmış Parçalar Yok."

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2017-11-12 23:35+0000\n"
 "Last-Translator: MTD TR <dev.mantendo@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/cawbird/cawbird/"
@@ -910,6 +910,36 @@ msgstr ""
 msgid "Double-click activation"
 msgstr ""
 
+msgid "Notifications"
+msgstr "通知"
+
+msgid "On New Tweets"
+msgstr ""
+
+msgid "Never"
+msgstr "しない"
+
+msgid "Every"
+msgstr "全て"
+
+msgid "Stack 5"
+msgstr "5 件溜まったら"
+
+msgid "Stack 10"
+msgstr "10 件溜まったら"
+
+msgid "Stack 25"
+msgstr "25 件溜まったら"
+
+msgid "Stack 50"
+msgstr "50 件溜まったら"
+
+msgid "On New Mentions"
+msgstr ""
+
+msgid "On New Messages"
+msgstr ""
+
 msgid "Interface"
 msgstr "インターフェイス"
 
@@ -945,35 +975,14 @@ msgstr ""
 msgid "Hide inappropriate content"
 msgstr ""
 
-msgid "On New Tweets"
+msgid "Translation"
 msgstr ""
 
-msgid "Notifications"
-msgstr "通知"
-
-msgid "On New Mentions"
+msgid "Translation service"
 msgstr ""
 
-msgid "On New Messages"
+msgid "Custom translation URL"
 msgstr ""
-
-msgid "Never"
-msgstr "しない"
-
-msgid "Every"
-msgstr "全て"
-
-msgid "Stack 5"
-msgstr "5 件溜まったら"
-
-msgid "Stack 10"
-msgstr "10 件溜まったら"
-
-msgid "Stack 25"
-msgstr "25 件溜まったら"
-
-msgid "Stack 50"
-msgstr "50 件溜まったら"
 
 msgid "No snippets configured."
 msgstr ""

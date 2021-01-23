@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.com/cawbird/cawbird/"
@@ -928,6 +928,36 @@ msgstr "Derulare automată la tweeturi noi"
 msgid "Double-click activation"
 msgstr "Activare prin dublu click"
 
+msgid "Notifications"
+msgstr "Notificări"
+
+msgid "On New Tweets"
+msgstr "La tweeturi noi"
+
+msgid "Never"
+msgstr "Niciodată"
+
+msgid "Every"
+msgstr "Fiecare"
+
+msgid "Stack 5"
+msgstr "Câte 5"
+
+msgid "Stack 10"
+msgstr "Câte 10"
+
+msgid "Stack 25"
+msgstr "Câte 25"
+
+msgid "Stack 50"
+msgstr "Câte 50"
+
+msgid "On New Mentions"
+msgstr "La menţionări noi"
+
+msgid "On New Messages"
+msgstr "La mesaje noi"
+
 msgid "Interface"
 msgstr "Interfaţă"
 
@@ -963,35 +993,14 @@ msgstr "Şterge linkurile media"
 msgid "Hide inappropriate content"
 msgstr ""
 
-msgid "On New Tweets"
-msgstr "La tweeturi noi"
+msgid "Translation"
+msgstr ""
 
-msgid "Notifications"
-msgstr "Notificări"
+msgid "Translation service"
+msgstr ""
 
-msgid "On New Mentions"
-msgstr "La menţionări noi"
-
-msgid "On New Messages"
-msgstr "La mesaje noi"
-
-msgid "Never"
-msgstr "Niciodată"
-
-msgid "Every"
-msgstr "Fiecare"
-
-msgid "Stack 5"
-msgstr "Câte 5"
-
-msgid "Stack 10"
-msgstr "Câte 10"
-
-msgid "Stack 25"
-msgstr "Câte 25"
-
-msgid "Stack 50"
-msgstr "Câte 50"
+msgid "Custom translation URL"
+msgstr ""
 
 msgid "No snippets configured."
 msgstr "Nici un fragment de text configurat."

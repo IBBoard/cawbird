@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2017-11-20 17:05+0000\n"
 "Last-Translator: Slobodan Terzić <githzerai06@gmail.com>\n"
 "Language-Team: Serbian (Latin) (http://www.transifex.com/cawbird/cawbird/"
@@ -945,6 +945,36 @@ msgstr "Automatski klizaj pri novim tvitovima"
 msgid "Double-click activation"
 msgstr "Aktiviraj na dupli klik"
 
+msgid "Notifications"
+msgstr "Obaveštenja"
+
+msgid "On New Tweets"
+msgstr "Pri novim tvitovima"
+
+msgid "Never"
+msgstr "Nikada"
+
+msgid "Every"
+msgstr "Svaki put"
+
+msgid "Stack 5"
+msgstr "Sakupi 5"
+
+msgid "Stack 10"
+msgstr "Sakupi 10"
+
+msgid "Stack 25"
+msgstr "Sakup 25"
+
+msgid "Stack 50"
+msgstr "Sakupi 50"
+
+msgid "On New Mentions"
+msgstr "Pri novim spominjanjima"
+
+msgid "On New Messages"
+msgstr "Pri novim porukama"
+
 msgid "Interface"
 msgstr "Interfejs"
 
@@ -980,35 +1010,14 @@ msgstr "Ukloni multimedijalne veze"
 msgid "Hide inappropriate content"
 msgstr "Sakrij neprikladni sadržaj"
 
-msgid "On New Tweets"
-msgstr "Pri novim tvitovima"
+msgid "Translation"
+msgstr ""
 
-msgid "Notifications"
-msgstr "Obaveštenja"
+msgid "Translation service"
+msgstr ""
 
-msgid "On New Mentions"
-msgstr "Pri novim spominjanjima"
-
-msgid "On New Messages"
-msgstr "Pri novim porukama"
-
-msgid "Never"
-msgstr "Nikada"
-
-msgid "Every"
-msgstr "Svaki put"
-
-msgid "Stack 5"
-msgstr "Sakupi 5"
-
-msgid "Stack 10"
-msgstr "Sakupi 10"
-
-msgid "Stack 25"
-msgstr "Sakup 25"
-
-msgid "Stack 50"
-msgstr "Sakupi 50"
+msgid "Custom translation URL"
+msgstr ""
 
 msgid "No snippets configured."
 msgstr "Nema podešenih isečaka."

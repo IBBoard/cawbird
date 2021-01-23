@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2017-10-22 18:18+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -953,6 +953,36 @@ msgstr "Automatiškai slinkti, esant naujiems tauškalams"
 msgid "Double-click activation"
 msgstr "Aktyvavimas dvikarčiu spustelėjimu"
 
+msgid "Notifications"
+msgstr "Pranešimai"
+
+msgid "On New Tweets"
+msgstr "Esant naujiems tauškalams"
+
+msgid "Never"
+msgstr "Niekada"
+
+msgid "Every"
+msgstr "Kiekvienam"
+
+msgid "Stack 5"
+msgstr "Dėklui iš 5"
+
+msgid "Stack 10"
+msgstr "Dėklui iš 10"
+
+msgid "Stack 25"
+msgstr "Dėklui iš 25"
+
+msgid "Stack 50"
+msgstr "Dėklui iš 50"
+
+msgid "On New Mentions"
+msgstr "Esant naujiems paminėjimams"
+
+msgid "On New Messages"
+msgstr "Esant naujoms žinutėms"
+
 msgid "Interface"
 msgstr "Sąsaja"
 
@@ -988,35 +1018,14 @@ msgstr "Šalinti medijos nuorodas"
 msgid "Hide inappropriate content"
 msgstr "Slėpti netinkamą turinį"
 
-msgid "On New Tweets"
-msgstr "Esant naujiems tauškalams"
+msgid "Translation"
+msgstr ""
 
-msgid "Notifications"
-msgstr "Pranešimai"
+msgid "Translation service"
+msgstr ""
 
-msgid "On New Mentions"
-msgstr "Esant naujiems paminėjimams"
-
-msgid "On New Messages"
-msgstr "Esant naujoms žinutėms"
-
-msgid "Never"
-msgstr "Niekada"
-
-msgid "Every"
-msgstr "Kiekvienam"
-
-msgid "Stack 5"
-msgstr "Dėklui iš 5"
-
-msgid "Stack 10"
-msgstr "Dėklui iš 10"
-
-msgid "Stack 25"
-msgstr "Dėklui iš 25"
-
-msgid "Stack 50"
-msgstr "Dėklui iš 50"
+msgid "Custom translation URL"
+msgstr ""
 
 msgid "No snippets configured."
 msgstr "Nėra sukonfigūruotų iškarpų."

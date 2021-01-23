@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Ukrainian (Ukraine) (http://www.transifex.com/cawbird/cawbird/"
@@ -933,6 +933,36 @@ msgstr "Авто-скрол при появі нових твітів"
 msgid "Double-click activation"
 msgstr "Активація при подвійному кліку"
 
+msgid "Notifications"
+msgstr "Сповіщення"
+
+msgid "On New Tweets"
+msgstr "При отриманні нових твітів"
+
+msgid "Never"
+msgstr "Ніколи"
+
+msgid "Every"
+msgstr "Кожний"
+
+msgid "Stack 5"
+msgstr "По 5"
+
+msgid "Stack 10"
+msgstr "По 10"
+
+msgid "Stack 25"
+msgstr "По 25"
+
+msgid "Stack 50"
+msgstr "По 50"
+
+msgid "On New Mentions"
+msgstr "При нових отриманні нових згадок"
+
+msgid "On New Messages"
+msgstr "При отриманні нових повідомлень"
+
 msgid "Interface"
 msgstr "Інтерфейс"
 
@@ -968,35 +998,14 @@ msgstr "Прибрати посилання на медіа"
 msgid "Hide inappropriate content"
 msgstr "Сховати недопустимий контент"
 
-msgid "On New Tweets"
-msgstr "При отриманні нових твітів"
+msgid "Translation"
+msgstr ""
 
-msgid "Notifications"
-msgstr "Сповіщення"
+msgid "Translation service"
+msgstr ""
 
-msgid "On New Mentions"
-msgstr "При нових отриманні нових згадок"
-
-msgid "On New Messages"
-msgstr "При отриманні нових повідомлень"
-
-msgid "Never"
-msgstr "Ніколи"
-
-msgid "Every"
-msgstr "Кожний"
-
-msgid "Stack 5"
-msgstr "По 5"
-
-msgid "Stack 10"
-msgstr "По 10"
-
-msgid "Stack 25"
-msgstr "По 25"
-
-msgid "Stack 50"
-msgstr "По 50"
+msgid "Custom translation URL"
+msgstr ""
 
 msgid "No snippets configured."
 msgstr "Не сконфігуровано жодного сніпета"

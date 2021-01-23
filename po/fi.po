@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2017-10-22 17:13+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -930,6 +930,36 @@ msgstr "Vieritä automaattisesti uusien twiittien myötä"
 msgid "Double-click activation"
 msgstr "Kaksoisnapsautuksen aktivointi"
 
+msgid "Notifications"
+msgstr "Ilmoitukset"
+
+msgid "On New Tweets"
+msgstr "Uusissa twiiteissä"
+
+msgid "Never"
+msgstr "Ei koskaan"
+
+msgid "Every"
+msgstr "Joka"
+
+msgid "Stack 5"
+msgstr "5 pino"
+
+msgid "Stack 10"
+msgstr "10 pino"
+
+msgid "Stack 25"
+msgstr "25 pino"
+
+msgid "Stack 50"
+msgstr "50 pino"
+
+msgid "On New Mentions"
+msgstr "Uusissa maininnoissa"
+
+msgid "On New Messages"
+msgstr "Uusissa viesteissä"
+
 msgid "Interface"
 msgstr "Käyttöliittymä"
 
@@ -965,35 +995,14 @@ msgstr "Poista medialinkit"
 msgid "Hide inappropriate content"
 msgstr "Piilota asiaton sisältö"
 
-msgid "On New Tweets"
-msgstr "Uusissa twiiteissä"
+msgid "Translation"
+msgstr ""
 
-msgid "Notifications"
-msgstr "Ilmoitukset"
+msgid "Translation service"
+msgstr ""
 
-msgid "On New Mentions"
-msgstr "Uusissa maininnoissa"
-
-msgid "On New Messages"
-msgstr "Uusissa viesteissä"
-
-msgid "Never"
-msgstr "Ei koskaan"
-
-msgid "Every"
-msgstr "Joka"
-
-msgid "Stack 5"
-msgstr "5 pino"
-
-msgid "Stack 10"
-msgstr "10 pino"
-
-msgid "Stack 25"
-msgstr "25 pino"
-
-msgid "Stack 50"
-msgstr "50 pino"
+msgid "Custom translation URL"
+msgstr ""
 
 msgid "No snippets configured."
 msgstr "Tekstileikkeitä ei ole määritetty."

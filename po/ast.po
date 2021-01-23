@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2018-01-09 20:56+0000\n"
 "Last-Translator: Xuacu Saturio <xuacusk8@gmail.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -936,6 +936,36 @@ msgstr "Desplazamientu automáticu en tuits nuevos"
 msgid "Double-click activation"
 msgstr "Activación con clic doblu"
 
+msgid "Notifications"
+msgstr "Notificaciones"
+
+msgid "On New Tweets"
+msgstr "En tuits nuevos"
+
+msgid "Never"
+msgstr "Enxamás"
+
+msgid "Every"
+msgstr "Cada"
+
+msgid "Stack 5"
+msgstr "Pila de 5"
+
+msgid "Stack 10"
+msgstr "Pila de 10"
+
+msgid "Stack 25"
+msgstr "Pila de 25"
+
+msgid "Stack 50"
+msgstr "Pila de 50"
+
+msgid "On New Mentions"
+msgstr "En menciones nueves"
+
+msgid "On New Messages"
+msgstr "En mensaxes nuevos"
+
 msgid "Interface"
 msgstr "Interfaz"
 
@@ -971,35 +1001,14 @@ msgstr "Desaniciar los enllaces a multimedia"
 msgid "Hide inappropriate content"
 msgstr "Anubrir conteníu inapropiáu"
 
-msgid "On New Tweets"
-msgstr "En tuits nuevos"
+msgid "Translation"
+msgstr ""
 
-msgid "Notifications"
-msgstr "Notificaciones"
+msgid "Translation service"
+msgstr ""
 
-msgid "On New Mentions"
-msgstr "En menciones nueves"
-
-msgid "On New Messages"
-msgstr "En mensaxes nuevos"
-
-msgid "Never"
-msgstr "Enxamás"
-
-msgid "Every"
-msgstr "Cada"
-
-msgid "Stack 5"
-msgstr "Pila de 5"
-
-msgid "Stack 10"
-msgstr "Pila de 10"
-
-msgid "Stack 25"
-msgstr "Pila de 25"
-
-msgid "Stack 50"
-msgstr "Pila de 50"
+msgid "Custom translation URL"
+msgstr ""
 
 msgid "No snippets configured."
 msgstr "Nun hai fragmentos configuraos."

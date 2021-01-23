@@ -468,6 +468,35 @@
                 <property name="selection-mode">none</property>
               </object>
             </child>
+            <child>
+              <object class="GtkBox" id="user_blocked_page">
+                <property name="visible">1</property>
+                <property name="vexpand">true</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <property name="valign">center</property>
+                    <child>
+                      <object class="GtkLabel" id="user_blocked_label">
+                        <property name="visible">1</property>
+                        <property name="hexpand">1</property>
+                        <property name="margin">6</property>
+                        <property name="justify">center</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="halign">center</property>
+                        <property name="label" translatable="yes">Show anyway</property>
+                        <signal name="clicked" handler="show_anyway_clicked" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
           <packing>
             <property name="position">6</property>

@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Даниил Пронин <mail@grawl.ru>, 2021\n"
 "Language-Team: Russian (https://www.transifex.com/cawbird/teams/107135/ru/)\n"
@@ -961,6 +961,36 @@ msgstr "Автопрокрутка к новым твитам"
 msgid "Double-click activation"
 msgstr "Активация по двойному клику"
 
+msgid "Notifications"
+msgstr "Уведомления"
+
+msgid "On New Tweets"
+msgstr "К новым твитам"
+
+msgid "Never"
+msgstr "Никогда"
+
+msgid "Every"
+msgstr "Каждый"
+
+msgid "Stack 5"
+msgstr "Стек 5"
+
+msgid "Stack 10"
+msgstr "Стек 10"
+
+msgid "Stack 25"
+msgstr "Стек 25"
+
+msgid "Stack 50"
+msgstr "Стек 50"
+
+msgid "On New Mentions"
+msgstr "К новым упоминаниям"
+
+msgid "On New Messages"
+msgstr "К новым сообщениям"
+
 msgid "Interface"
 msgstr "Интерфейс"
 
@@ -996,35 +1026,15 @@ msgstr "Убрать ссылки на медиа"
 msgid "Hide inappropriate content"
 msgstr "Спрятать неуместное"
 
-msgid "On New Tweets"
-msgstr "К новым твитам"
+msgid "Translation"
+msgstr ""
 
-msgid "Notifications"
-msgstr "Уведомления"
+#, fuzzy
+msgid "Translation service"
+msgstr "Запустить службу"
 
-msgid "On New Mentions"
-msgstr "К новым упоминаниям"
-
-msgid "On New Messages"
-msgstr "К новым сообщениям"
-
-msgid "Never"
-msgstr "Никогда"
-
-msgid "Every"
-msgstr "Каждый"
-
-msgid "Stack 5"
-msgstr "Стек 5"
-
-msgid "Stack 10"
-msgstr "Стек 10"
-
-msgid "Stack 25"
-msgstr "Стек 25"
-
-msgid "Stack 50"
-msgstr "Стек 50"
+msgid "Custom translation URL"
+msgstr ""
 
 msgid "No snippets configured."
 msgstr "Настроенных сниппетов нет."

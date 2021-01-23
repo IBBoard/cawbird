@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2017-10-22 15:14+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -957,6 +957,36 @@ msgstr "Automatyczne przewijanie do nowych tweetów"
 msgid "Double-click activation"
 msgstr "Aktywacja podwójnym kliknięciem"
 
+msgid "Notifications"
+msgstr "Powiadomienia"
+
+msgid "On New Tweets"
+msgstr "Po otrzymaniu nowych tweetów"
+
+msgid "Never"
+msgstr "Nigdy"
+
+msgid "Every"
+msgstr "Każdy"
+
+msgid "Stack 5"
+msgstr "Co pięć"
+
+msgid "Stack 10"
+msgstr "Co dziesięć"
+
+msgid "Stack 25"
+msgstr "Co dwadzieścia pięć"
+
+msgid "Stack 50"
+msgstr "Co pięćdziesiąt"
+
+msgid "On New Mentions"
+msgstr "Po otrzymaniu nowych wzmianek"
+
+msgid "On New Messages"
+msgstr "Po otrzymaniu nowych wiadomości"
+
 msgid "Interface"
 msgstr "Interfejs"
 
@@ -992,35 +1022,14 @@ msgstr "Usuwanie odnośników do multimediów"
 msgid "Hide inappropriate content"
 msgstr "Ukrywanie nieodpowiednich treści"
 
-msgid "On New Tweets"
-msgstr "Po otrzymaniu nowych tweetów"
+msgid "Translation"
+msgstr ""
 
-msgid "Notifications"
-msgstr "Powiadomienia"
+msgid "Translation service"
+msgstr ""
 
-msgid "On New Mentions"
-msgstr "Po otrzymaniu nowych wzmianek"
-
-msgid "On New Messages"
-msgstr "Po otrzymaniu nowych wiadomości"
-
-msgid "Never"
-msgstr "Nigdy"
-
-msgid "Every"
-msgstr "Każdy"
-
-msgid "Stack 5"
-msgstr "Co pięć"
-
-msgid "Stack 10"
-msgstr "Co dziesięć"
-
-msgid "Stack 25"
-msgstr "Co dwadzieścia pięć"
-
-msgid "Stack 50"
-msgstr "Co pięćdziesiąt"
+msgid "Custom translation URL"
+msgstr ""
 
 msgid "No snippets configured."
 msgstr "Nie skonfigurowano żadnych wstawek."

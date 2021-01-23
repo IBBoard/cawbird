@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-17 15:40+0000\n"
+"POT-Creation-Date: 2021-01-23 15:19+0000\n"
 "PO-Revision-Date: 2018-02-06 18:45+0000\n"
 "Last-Translator: Iris Ilexiris <iris.ilexiris@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/cawbird/cawbird/language/"
@@ -933,6 +933,36 @@ msgstr "Rulumi automatan je novaj tvitoj"
 msgid "Double-click activation"
 msgstr "Aktivigi per duoblan klakon"
 
+msgid "Notifications"
+msgstr "Avizoj"
+
+msgid "On New Tweets"
+msgstr "Kiam okazas novan tviton"
+
+msgid "Never"
+msgstr "Neniam"
+
+msgid "Every"
+msgstr "Ĉia"
+
+msgid "Stack 5"
+msgstr "Stakos 5"
+
+msgid "Stack 10"
+msgstr "Stakos 10"
+
+msgid "Stack 25"
+msgstr "Stakos 25"
+
+msgid "Stack 50"
+msgstr "Stakos 50"
+
+msgid "On New Mentions"
+msgstr "Kiam okazas novan mencion"
+
+msgid "On New Messages"
+msgstr "Kiam okazas novan mesaĝon"
+
 msgid "Interface"
 msgstr "Fasado"
 
@@ -968,35 +998,14 @@ msgstr "Forigi retligojn por aŭdvidaĵoj"
 msgid "Hide inappropriate content"
 msgstr "Kaŝi malkonvenan enhavon"
 
-msgid "On New Tweets"
-msgstr "Kiam okazas novan tviton"
+msgid "Translation"
+msgstr ""
 
-msgid "Notifications"
-msgstr "Avizoj"
+msgid "Translation service"
+msgstr ""
 
-msgid "On New Mentions"
-msgstr "Kiam okazas novan mencion"
-
-msgid "On New Messages"
-msgstr "Kiam okazas novan mesaĝon"
-
-msgid "Never"
-msgstr "Neniam"
-
-msgid "Every"
-msgstr "Ĉia"
-
-msgid "Stack 5"
-msgstr "Stakos 5"
-
-msgid "Stack 10"
-msgstr "Stakos 10"
-
-msgid "Stack 25"
-msgstr "Stakos 25"
-
-msgid "Stack 50"
-msgstr "Stakos 50"
+msgid "Custom translation URL"
+msgstr ""
 
 msgid "No snippets configured."
 msgstr "Nenio kodaĵoj agordis."
