@@ -167,10 +167,12 @@ meson build
 ninja -C build
 ```
 
-Note that executing `build/cawbird` may result in the error:
+Note that executing `build/cawbird` may result in one of the following errors:
 
 ```Bash
 Settings schema 'uk.co.ibboard.cawbird' is not installed
+
+Settings schema 'uk.co.ibboard.cawbird' does not contain a key named 'foo'
 ```
 
 To fix this, use the schemas from the build directory:
