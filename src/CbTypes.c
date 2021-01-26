@@ -293,10 +293,6 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
 
   t->medias   = g_new0 (CbMedia*, media_count);
   t->entities = g_new0 (CbTextEntity, max_entities);
-  /*
-   * TODO: display_text and tooltip_text are often the same here, can we just set them to the
-   *       same value and only free one?
-   */
 
   /* URLS */
   for (i  = 0, p = json_array_get_length (urls); i < p; i ++)
