@@ -69,7 +69,8 @@ void url_with_ampersand () {
     original_text = "foo",
     display_text = "display_text",
     tooltip_text = "tooltip_text",
-    target       = "https://example.com/?param1&param2"
+    // Targets should already have ampersands escaped for consistency
+    target       = "https://example.com/?param1&amp;param2"
   };
 
   string source_text = "foo bar foo";

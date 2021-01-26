@@ -2717,6 +2717,116 @@ const string TWEET_MEDIA_ADDITIONAL_INFO_ALT_TEXT = """
 
 """;
 
+const string BUG305_DATA = """
+{
+  "created_at" : "Tue Jan 26 13:11:14 +0000 2021",
+  "id" : 1354054288310497280,
+  "id_str" : "1354054288310497280",
+  "full_text" : "... Done: https://t.co/H5aIluvWfC",
+  "truncated" : false,
+  "display_text_range" : [
+    0,
+    33
+  ],
+  "entities" : {
+    "hashtags" : [],
+    "symbols" : [],
+    "user_mentions" : [],
+    "urls" : [
+      {
+        "url" : "https://t.co/H5aIluvWfC",
+        "expanded_url" : "https://en.wikipedia.org/w/index.php?title=Ehud_Manor&type=revision&diff=1002880213&oldid=1000831694&diffmode=visual",
+        "display_url" : "en.wikipedia.org/w/index.php?ti…",
+        "indices" : [
+          10,
+          33
+        ]
+      }
+    ]
+  },
+  "source" : "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+  "in_reply_to_status_id" : 1353947764015689728,
+  "in_reply_to_status_id_str" : "1353947764015689728",
+  "in_reply_to_user_id" : 14172581,
+  "in_reply_to_user_id_str" : "14172581",
+  "in_reply_to_screen_name" : "aharoni",
+  "user" : {
+    "id" : 14172581,
+    "id_str" : "14172581",
+    "name" : "Amir 💉. Aharoni",
+    "screen_name" : "aharoni",
+    "location" : "Jerusalem, Israel",
+    "description" : "Most people don’t know English · ਸਹੀ ਰਸਤਾ ਵਖਰੇ ਲੋਕਾਂ ਲਈ ਵਖਰਾ ਹੈ। ਆਪਾਂ ਏਕਤਾ ਵਿਚ ਰਹਿਏ, ਜੈ ਜੈ। · Moscow, Haifa, Jerusalem, Music, Languages, Wikipedia · בלשן ובשלן",
+    "url" : "https://t.co/kOtJr0nvvs",
+    "entities" : {
+      "url" : {
+        "urls" : [
+          {
+            "url" : "https://t.co/kOtJr0nvvs",
+            "expanded_url" : "http://aharoni.wordpress.com/",
+            "display_url" : "aharoni.wordpress.com",
+            "indices" : [
+              0,
+              23
+            ]
+          }
+        ]
+      },
+      "description" : {
+        "urls" : []
+      }
+    },
+    "protected" : false,
+    "followers_count" : 3116,
+    "friends_count" : 4583,
+    "listed_count" : 76,
+    "created_at" : "Tue Mar 18 21:08:31 +0000 2008",
+    "favourites_count" : 9284,
+    "utc_offset" : null,
+    "time_zone" : null,
+    "geo_enabled" : true,
+    "verified" : false,
+    "statuses_count" : 20838,
+    "lang" : null,
+    "contributors_enabled" : false,
+    "is_translator" : true,
+    "is_translation_enabled" : false,
+    "profile_background_color" : "3B2E32",
+    "profile_background_image_url" : "http://abs.twimg.com/images/themes/theme11/bg.gif",
+    "profile_background_image_url_https" : "https://abs.twimg.com/images/themes/theme11/bg.gif",
+    "profile_background_tile" : true,
+    "profile_image_url" : "http://pbs.twimg.com/profile_images/51865575/amir-piano_normal.jpg",
+    "profile_image_url_https" : "https://pbs.twimg.com/profile_images/51865575/amir-piano_normal.jpg",
+    "profile_banner_url" : "https://pbs.twimg.com/profile_banners/14172581/1455356551",
+    "profile_image_extensions_alt_text" : null,
+    "profile_banner_extensions_alt_text" : null,
+    "profile_link_color" : "0D4FB3",
+    "profile_sidebar_border_color" : "2E2428",
+    "profile_sidebar_fill_color" : "261B1E",
+    "profile_text_color" : "FFE4D9",
+    "profile_use_background_image" : true,
+    "has_extended_profile" : true,
+    "default_profile" : false,
+    "default_profile_image" : false,
+    "following" : false,
+    "follow_request_sent" : false,
+    "notifications" : false,
+    "translator_type" : "moderator"
+  },
+  "geo" : null,
+  "coordinates" : null,
+  "place" : null,
+  "contributors" : null,
+  "is_quote_status" : false,
+  "retweet_count" : 0,
+  "favorite_count" : 4,
+  "favorited" : false,
+  "retweeted" : false,
+  "possibly_sensitive" : false,
+  "lang" : "en"
+}
+""";
+
 // """
 // }}}
 
@@ -3031,6 +3141,25 @@ void media_additional_info_alt_text () {
   assert (t.get_medias ()[0].alt_text == "Who says face masks have to be boring?\n\nMore on Aljazeera.com");
 }
 
+void bug305_double_encoded_url () {
+  var now = new GLib.DateTime.now_local ();
+  var t = new Cb.Tweet ();
+
+  var parser = new Json.Parser ();
+  try {
+    parser.load_from_data (BUG305_DATA);
+  } catch (GLib.Error e) {
+    critical (e.message);
+  }
+  var root = parser.get_root ();
+
+  t.load_from_json (root, 0, now);
+  assert(t.source_tweet.entities.length == 1);
+  debug(t.source_tweet.entities[0].target);
+  // Targets should be pre-escaped so that we don't have to remember to keep doing it while creating markup
+  assert(t.source_tweet.entities[0].target == "https://en.wikipedia.org/w/index.php?title=Ehud_Manor&amp;type=revision&amp;diff=1002880213&amp;oldid=1000831694&amp;diffmode=visual");
+}
+
 
 
 int main (string[] args) {
@@ -3054,6 +3183,7 @@ int main (string[] args) {
   GLib.Test.add_func ("/tweet-parsing/reply-id", reply_id);
   GLib.Test.add_func ("/tweet-parsing/media-alt-text", media_alt_text);
   GLib.Test.add_func ("/tweet-parsing/media-additional-info-alt-text", media_additional_info_alt_text);
+  GLib.Test.add_func ("/tweet-parsing/bug305-double-encoded-url", bug305_double_encoded_url);
 
   return GLib.Test.run ();
 }
