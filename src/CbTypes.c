@@ -178,7 +178,12 @@ cb_mini_tweet_parse (CbMiniTweet *t,
       t->display_range_start= 0;
     }
 
-  t->language = g_strdup(json_object_get_string_member (extended_object, "lang"));
+  if (json_object_has_member (extended_object, "lang")) {
+    t->language = g_strdup(json_object_get_string_member (extended_object, "lang"));
+  }
+  else {
+    t->language = g_strdup("und");
+  }
 
   t->created_at = g_date_time_to_unix (time);
   cb_user_identity_parse (&t->author, json_object_get_object_member (obj, "user"));
