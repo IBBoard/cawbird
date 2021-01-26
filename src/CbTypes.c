@@ -279,7 +279,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
           JsonObject *mention = json_node_get_object (json_array_get_element (user_mentions, i));
           t->reply_users[reply_index].id = json_object_get_int_member (mention, "id");
           t->reply_users[reply_index].screen_name = g_strdup (json_object_get_string_member (mention, "screen_name"));
-          t->reply_users[reply_index].user_name = g_strdup (json_object_get_string_member (mention, "name"));
+          t->reply_users[reply_index].user_name = cb_utils_escape_ampersands (json_object_get_string_member (mention, "name"));
           reply_index ++;
         }
     }
@@ -307,7 +307,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
       indices = json_object_get_array_member (url, "indices");
       t->entities[url_index].from = json_array_get_int_element (indices, 0);
       t->entities[url_index].to   = json_array_get_int_element (indices, 1);
-      t->entities[url_index].original_text = g_strdup (json_object_get_string_member (url, "url"));
+      t->entities[url_index].original_text = cb_utils_escape_ampersands (json_object_get_string_member (url, "url"));
       t->entities[url_index].display_text = cb_utils_escape_ampersands (json_object_get_string_member (url, "display_url"));
       t->entities[url_index].tooltip_text = cb_utils_escape_ampersands (expanded_url);
       t->entities[url_index].target = cb_utils_escape_ampersands (expanded_url);
@@ -382,7 +382,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
 
           t->entities[url_index].from = json_array_get_int_element (indices, 0);
           t->entities[url_index].to   = json_array_get_int_element (indices, 1);
-          t->entities[url_index].original_text = g_strdup (json_object_get_string_member (url, "url"));
+          t->entities[url_index].original_text = cb_utils_escape_ampersands (json_object_get_string_member (url, "url"));
           t->entities[url_index].display_text = cb_utils_escape_ampersands (json_object_get_string_member (url, "display_url"));
           t->entities[url_index].target = url_str;
 
@@ -411,11 +411,16 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                 {
                   t->medias[t->n_medias] = cb_media_new ();
                   t->medias[t->n_medias]->type = CB_MEDIA_TYPE_IMAGE;
-                  t->medias[t->n_medias]->url = g_strdup_printf ("%s:large", url);
-                  t->medias[t->n_medias]->target_url = g_strdup_printf ("%s:orig", url);
+                  char *tmp_url = g_strdup_printf ("%s:large", url);
+                  t->medias[t->n_medias]->url = cb_utils_escape_ampersands (tmp_url);
+                  g_free(tmp_url);
+                  tmp_url = g_strdup_printf ("%s:orig", url);
+                  t->medias[t->n_medias]->target_url = cb_utils_escape_ampersands (tmp_url);
+                  g_free(tmp_url);
+
                   if (json_object_has_member (media_obj, "ext_alt_text")) {
                     // Only "extended media" has alt text
-                    t->medias[t->n_medias]->alt_text = g_strdup (json_object_get_string_member (media_obj, "ext_alt_text"));
+                    t->medias[t->n_medias]->alt_text = cb_utils_escape_ampersands (json_object_get_string_member (media_obj, "ext_alt_text"));
                   }
 
                   if (json_object_has_member (media_obj, "sizes"))
@@ -425,7 +430,9 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
 
                       t->medias[t->n_medias]->thumb_width  = json_object_get_int_member (small, "w");
                       t->medias[t->n_medias]->thumb_height = json_object_get_int_member (small, "h");
-                      t->medias[t->n_medias]->thumb_url = g_strdup_printf ("%s:small", url);
+                      tmp_url = g_strdup_printf ("%s:small", url);
+                      t->medias[t->n_medias]->thumb_url = cb_utils_escape_ampersands (tmp_url);
+                      g_free(tmp_url);
 
                       // We'll show images at "large" size, and original size is available via the target URL
                       JsonObject *large = json_object_get_object_member (sizes, "large");
@@ -498,9 +505,9 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
               if (variant != NULL)
                 {                  
                   t->medias[t->n_medias] = cb_media_new ();
-                  t->medias[t->n_medias]->url = g_strdup (json_object_get_string_member (variant, "url"));
-                  t->medias[t->n_medias]->thumb_url = g_strdup (thumb_url);
-                  t->medias[t->n_medias]->target_url = target_url ? g_strdup(target_url) : NULL;
+                  t->medias[t->n_medias]->url = cb_utils_escape_ampersands (json_object_get_string_member (variant, "url"));
+                  t->medias[t->n_medias]->thumb_url = cb_utils_escape_ampersands (thumb_url);
+                  t->medias[t->n_medias]->target_url = target_url ? cb_utils_escape_ampersands (target_url) : NULL;
                   t->medias[t->n_medias]->type   = CB_MEDIA_TYPE_TWITTER_VIDEO;
                   t->medias[t->n_medias]->width  = width;
                   t->medias[t->n_medias]->height = height;
@@ -509,13 +516,15 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
 
                   if (json_object_has_member (media_obj, "ext_alt_text")) {
                     // Only "extended media" for GIFs has alt text. Videos never do.
-                    t->medias[t->n_medias]->alt_text = g_strdup (json_object_get_string_member (media_obj, "ext_alt_text"));
+                    t->medias[t->n_medias]->alt_text = cb_utils_escape_ampersands (json_object_get_string_member (media_obj, "ext_alt_text"));
                   }
                   
                   if (t->medias[t->n_medias]->alt_text == NULL && json_object_has_member (media_obj, "additional_media_info")) {
                     JsonObject *additional_media_info = json_object_get_object_member (media_obj, "additional_media_info");
                     if (json_object_has_member (additional_media_info, "title") && json_object_has_member (additional_media_info, "description")) {
-                      t->medias[t->n_medias]->alt_text = g_strstrip (g_strdup_printf ("%s\n\n%s", json_object_get_string_member (additional_media_info, "title"), json_object_get_string_member (additional_media_info, "description")));
+                      char *alt_text = g_strstrip (g_strdup_printf ("%s\n\n%s", json_object_get_string_member (additional_media_info, "title"), json_object_get_string_member (additional_media_info, "description")));
+                      t->medias[t->n_medias]->alt_text = cb_utils_escape_ampersands (alt_text);
+                      g_free(alt_text);
                     }
                   }
 

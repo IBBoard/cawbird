@@ -219,6 +219,9 @@ cb_utils_write_reply_text (const CbMiniTweet *t,
 char *
 cb_utils_escape_quotes (const char *in)
 {
+  if (in == NULL) {
+    return NULL;
+  }
   gsize bytes = strlen (in);
   gsize n_quotes = 0;
   const char *p = in;
@@ -276,6 +279,9 @@ cb_utils_escape_quotes (const char *in)
 char *
 cb_utils_escape_ampersands (const char *in)
 {
+  if (in == NULL) {
+    return NULL;
+  }
   gsize bytes = strlen (in);
   gsize n_ampersands = 0;
   const char *p = in;
