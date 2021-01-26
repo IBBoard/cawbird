@@ -313,20 +313,18 @@ cb_text_transform_text (const char   *text,
       else
         {
           g_string_append (str, "<span underline=\"none\">&#x2068;<a href=\"");
-          g_string_append (str, cb_utils_escape_ampersands(entity->target ? entity->target : entity->display_text));
+          g_string_append (str, entity->target ? entity->target : entity->display_text);
           g_string_append (str, "\"");
 
           if (entity->tooltip_text != NULL)
             {
-              char *c = cb_utils_escape_ampersands (entity->tooltip_text);
-              char *cc = cb_utils_escape_quotes (c);
+              char *title = cb_utils_escape_quotes (entity->tooltip_text);
 
               g_string_append (str, " title=\"");
-              g_string_append (str, cc);
+              g_string_append (str, title);
               g_string_append (str, "\"");
 
-              g_free (cc);
-              g_free (c);
+              g_free (title);
             }
 
           g_string_append (str, ">");
