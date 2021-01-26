@@ -318,13 +318,15 @@ cb_text_transform_text (const char   *text,
 
           if (entity->tooltip_text != NULL)
             {
-              char *title = cb_utils_escape_quotes (entity->tooltip_text);
+              char *title_tmp = cb_utils_escape_ampersands (entity->tooltip_text);
+              char *title_escaped = cb_utils_escape_quotes (title_tmp);
 
               g_string_append (str, " title=\"");
-              g_string_append (str, title);
+              g_string_append (str, title_escaped);
               g_string_append (str, "\"");
 
-              g_free (title);
+              g_free (title_escaped);
+              g_free (title_tmp);
             }
 
           g_string_append (str, ">");

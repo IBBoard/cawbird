@@ -68,7 +68,8 @@ void url_with_ampersand () {
     to   = 11,
     original_text = "foo",
     display_text = "display_text",
-    tooltip_text = "tooltip_text",
+    // Link entities have the full URL as the tooltip
+    tooltip_text = "https://example.com/?param1&amp;param2",
     // Targets should already have ampersands escaped for consistency
     target       = "https://example.com/?param1&amp;param2"
   };
@@ -79,8 +80,8 @@ void url_with_ampersand () {
                                          0,
                                          0,
                                          0);
-
   assert(result.contains("href=\"https://example.com/?param1&amp;param2\""));
+  assert(result.contains("title=\"https://example.com/?param1&amp;amp;param2\""));
 }
 
 
