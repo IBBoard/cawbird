@@ -2,11 +2,21 @@
 # Copyright (C) YEAR 2013-2018 Timm Bäder, 2018-2020 IBBoard
 # This file is distributed under the same license as the cawbird package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 # Translators:
-# IBBoard . <github@ibboard.co.uk>, 2021
+# Alex Baranov <albar@joybits.org>, 2016
+# Alexander <atrigub@gmail.com>, 2016
+# Andrew Makarov, 2015
+# Dmitry Kireev <dinimito@mail.ru>, 2015
+# Egor Erastov <egor.er24@gmail.com>, 2018
+# George - <usangeorg@ya.ru>, 2018
+# Ivlev Denis <ivlevdenis.ru@gmail.com>, 2015
+# Max Koloskov <mirrherow@gmail.com>, 2015
+# Mikhail Ivanov <mivanov@mirantis.com>, 2016
+# netforhack, 2015
+# Yevgeny Kvitchenko <kvit4.ko@gmail.com>, 2017
 # Даниил Пронин <mail@grawl.ru>, 2021
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -16,10 +26,10 @@ msgstr ""
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Даниил Пронин <mail@grawl.ru>, 2021\n"
 "Language-Team: Russian (https://www.transifex.com/cawbird/teams/107135/ru/)\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 msgid "Cawbird"
