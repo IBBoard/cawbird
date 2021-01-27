@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-23 15:19+0000\n"
+"POT-Creation-Date: 2021-01-27 20:08+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Indonesian (Indonesia) (http://www.transifex.com/cawbird/"
@@ -676,6 +676,14 @@ msgstr "Cuplikan mungkin tidak mengandung spasi"
 
 msgid "Snippet already exists"
 msgstr "Cuplikan sudah ada"
+
+#, c-format
+msgid ""
+"Translation URL must contain {SOURCE_LANG}, {TARGET_LANG} and {CONTENT} "
+"placeholders\n"
+"\n"
+"The URL \"%s\" will be used instead"
+msgstr ""
 
 msgid ""
 "Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"

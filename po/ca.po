@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-23 15:19+0000\n"
+"POT-Creation-Date: 2021-01-27 20:08+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Joan Ensesa <jensesa@protonmail.com>, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/cawbird/teams/107135/ca/)\n"
@@ -692,6 +692,14 @@ msgstr "El Snippet no ha de contenir espai en blanc"
 
 msgid "Snippet already exists"
 msgstr "El Snippet ja existeix"
+
+#, c-format
+msgid ""
+"Translation URL must contain {SOURCE_LANG}, {TARGET_LANG} and {CONTENT} "
+"placeholders\n"
+"\n"
+"The URL \"%s\" will be used instead"
+msgstr ""
 
 msgid ""
 "Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"

@@ -114,6 +114,17 @@ class SettingsDialog : Gtk.Window {
         Settings.set_custom_translation_service (text);
       }
     });
+    custom_translation_entry.focus_out_event.connect(() => {
+      if (custom_translation_entry.get_style_context().has_class("error")) {
+        var dialog = new Gtk.MessageDialog(this, Gtk.DialogFlags.MODAL, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK,
+                                            _("Translation URL must contain {SOURCE_LANG}, {TARGET_LANG} and {CONTENT} placeholders" + 
+                                              "\n\nThe URL \"%s\" will be used instead").printf(Settings.get_custom_translation_service()));
+        dialog.run();
+        dialog.destroy();
+        // Don't replace the text in case the user made a small typo
+      }
+      return Gdk.EVENT_PROPAGATE;
+    });
     set_custom_translation_sensitivity();
 
     // Set up sample tweet {{{
