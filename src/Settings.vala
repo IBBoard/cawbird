@@ -127,6 +127,11 @@ public class Settings : GLib.Object {
     return settings.get_string("custom-translation-service");
   }
 
+  public static void set_custom_translation_service(string new_url) {
+    // The custom translation service gets a setter because we can't do normal binding because we want to validate the input
+    settings.set_string("custom-translation-service", new_url);
+  }
+
   public static string get_translation_service_url() {
     var translation_service = get_translation_service();
     switch (translation_service) {

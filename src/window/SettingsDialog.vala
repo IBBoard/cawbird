@@ -100,8 +100,20 @@ class SettingsDialog : Gtk.Window {
     Settings.get ().changed["translation-service"].connect(() => {
       set_custom_translation_sensitivity();
     });
-    // TODO: Validate that it contains {SOURCE_LANG}, {TARGET_LANG} and {CONTENT}
-    Settings.get ().bind ("custom-translation-service", custom_translation_entry, "text", SettingsBindFlags.DEFAULT);
+
+    custom_translation_entry.text = Settings.get_custom_translation_service();
+    custom_translation_entry.changed.connect(() => {
+      var text = custom_translation_entry.text;
+      var style_context = custom_translation_entry.get_style_context();
+
+      if (!text.contains("{SOURCE_LANG}") || !text.contains("{TARGET_LANG}") || !text.contains("{CONTENT}")) {
+        style_context.add_class("error");
+      }
+      else {
+        style_context.remove_class("error");
+        Settings.set_custom_translation_service (text);
+      }
+    });
     set_custom_translation_sensitivity();
 
     // Set up sample tweet {{{
