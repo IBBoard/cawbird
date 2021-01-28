@@ -42,9 +42,11 @@
   padding: 0px;
   opacity: 0.9;
   box-shadow: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  border-top: 2px solid transparent;
+  border: 1px solid @borders;
+}
+
+.inline-media:backdrop {
+  border-color: @unfocused_borders;
 }
 
 .inline-media:hover {
