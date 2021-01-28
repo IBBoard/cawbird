@@ -28,19 +28,19 @@ namespace Dirs {
 
   public string corebird_config (string path) {
     if (corebird_config_dir == null) {
-      corebird_config_dir = _config (path, "corebird");
+      corebird_config_dir = _config ("corebird");
     }
     return corebird_config_dir + path;
   }
 
   public string config (string path) {
     if (config_dir == null) {
-      config_dir = _config (path, "cawbird");
+      config_dir = _config ("cawbird");
     }
     return config_dir + path;
   }
 
-  private string _config (string path, string app_name) {
+  private string _config (string app_name) {
     string dir = GLib.Environment.get_home_dir () + "/." + app_name + "/";
     if (!GLib.FileUtils.test (dir, GLib.FileTest.EXISTS)) {
       dir = GLib.Environment.get_user_config_dir () + "/" + app_name + "/";
