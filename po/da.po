@@ -2,13 +2,11 @@
 # Copyright (C) YEAR 2013-2018 Timm Bäder, 2018-2020 IBBoard
 # This file is distributed under the same license as the cawbird package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 # Translators:
-# Geert Wirken <geert@gwirken.nl>, 2014
-# Nathan Follens, 2017
-# Heimen Stoffels <vistausss@outlook.com>, 2014-2015, 2020
-# Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, 2020-2021
-#
+# IBBoard . <github@ibboard.co.uk>, 2021
+# Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, 2021
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -16,13 +14,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2021-02-10 20:11+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
-"Last-Translator: Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, "
-"2021\n"
+"Last-Translator: Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, 2021\n"
 "Language-Team: Danish (https://www.transifex.com/cawbird/teams/107135/da/)\n"
-"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Cawbird"
@@ -172,11 +169,9 @@ msgstr "Ny direkte besked fra %s"
 msgid "Direct Messages"
 msgstr "Direkte Beskeder"
 
-#, fuzzy
 msgid "Liked tweets timeline"
 msgstr "Favorit tidslinje"
 
-#, fuzzy
 msgid "Likes"
 msgstr "Favoritter"
 
@@ -1085,10 +1080,9 @@ msgctxt "shortcuts window"
 msgid "Retweet"
 msgstr "Retweet"
 
-#, fuzzy
 msgctxt "shortcuts window"
 msgid "Like"
-msgstr "Favorit"
+msgstr "Favoriser "
 
 msgctxt "shortcuts window"
 msgid "Reply"
@@ -1128,9 +1122,8 @@ msgstr "Citere"
 msgid "Retweet tweet"
 msgstr "Retweet tweet"
 
-#, fuzzy
 msgid "Like tweet"
-msgstr "Favorite tweet"
+msgstr "Favoriser tweet"
 
 msgid "Reply to tweet"
 msgstr "Svar tweet"
@@ -1141,9 +1134,8 @@ msgstr "Mere"
 msgid "Translate"
 msgstr "Oversæt"
 
-#, fuzzy
 msgid "Like"
-msgstr "Favorit"
+msgstr "Favoriser"
 
 msgid "Reply"
 msgstr "Svar"
