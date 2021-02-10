@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-27 20:08+0000\n"
+"POT-Creation-Date: 2021-02-10 20:11+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/cawbird/cawbird/"
@@ -159,10 +159,11 @@ msgid "Direct Messages"
 msgstr "다이렉트 메시지"
 
 #, fuzzy
-msgid "Favourites timeline"
+msgid "Liked tweets timeline"
 msgstr "트윗을 즐겨찾기"
 
-msgid "Favorites"
+#, fuzzy
+msgid "Likes"
 msgstr "즐겨찾기"
 
 msgid "Add new Filter"
@@ -1044,8 +1045,9 @@ msgctxt "shortcuts window"
 msgid "Retweet"
 msgstr "리트윗"
 
+#, fuzzy
 msgctxt "shortcuts window"
-msgid "Favorite"
+msgid "Like"
 msgstr "즐겨찾기"
 
 msgctxt "shortcuts window"
@@ -1086,7 +1088,8 @@ msgstr "인용"
 msgid "Retweet tweet"
 msgstr "트윗을 리트윗"
 
-msgid "Favorite tweet"
+#, fuzzy
+msgid "Like tweet"
 msgstr "트윗을 즐겨찾기"
 
 msgid "Reply to tweet"
@@ -1098,7 +1101,8 @@ msgstr "더 보기"
 msgid "Translate"
 msgstr ""
 
-msgid "Favorite"
+#, fuzzy
+msgid "Like"
 msgstr "즐겨찾기"
 
 msgid "Reply"

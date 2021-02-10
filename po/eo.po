@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-27 20:08+0000\n"
+"POT-Creation-Date: 2021-02-10 20:11+0000\n"
 "PO-Revision-Date: 2018-02-06 18:45+0000\n"
 "Last-Translator: Iris Ilexiris <iris.ilexiris@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/cawbird/cawbird/language/"
@@ -167,10 +167,11 @@ msgid "Direct Messages"
 msgstr "Tujmesaĝoj"
 
 #, fuzzy
-msgid "Favourites timeline"
+msgid "Liked tweets timeline"
 msgstr "Favorati tviton"
 
-msgid "Favorites"
+#, fuzzy
+msgid "Likes"
 msgstr "Favoratoj"
 
 msgid "Add new Filter"
@@ -1068,8 +1069,9 @@ msgctxt "shortcuts window"
 msgid "Retweet"
 msgstr "Retviti"
 
+#, fuzzy
 msgctxt "shortcuts window"
-msgid "Favorite"
+msgid "Like"
 msgstr "Favorati"
 
 msgctxt "shortcuts window"
@@ -1110,7 +1112,8 @@ msgstr "Citi"
 msgid "Retweet tweet"
 msgstr "Retviti tviton"
 
-msgid "Favorite tweet"
+#, fuzzy
+msgid "Like tweet"
 msgstr "Favorati tviton"
 
 msgid "Reply to tweet"
@@ -1122,7 +1125,8 @@ msgstr "Pli"
 msgid "Translate"
 msgstr ""
 
-msgid "Favorite"
+#, fuzzy
+msgid "Like"
 msgstr "Favorati"
 
 msgid "Reply"

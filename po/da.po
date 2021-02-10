@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-27 20:08+0000\n"
+"POT-Creation-Date: 2021-02-10 20:11+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, "
 "2021\n"
@@ -172,10 +172,12 @@ msgstr "Ny direkte besked fra %s"
 msgid "Direct Messages"
 msgstr "Direkte Beskeder"
 
-msgid "Favourites timeline"
+#, fuzzy
+msgid "Liked tweets timeline"
 msgstr "Favorit tidslinje"
 
-msgid "Favorites"
+#, fuzzy
+msgid "Likes"
 msgstr "Favoritter"
 
 msgid "Add new Filter"
@@ -1083,8 +1085,9 @@ msgctxt "shortcuts window"
 msgid "Retweet"
 msgstr "Retweet"
 
+#, fuzzy
 msgctxt "shortcuts window"
-msgid "Favorite"
+msgid "Like"
 msgstr "Favorit"
 
 msgctxt "shortcuts window"
@@ -1125,7 +1128,8 @@ msgstr "Citere"
 msgid "Retweet tweet"
 msgstr "Retweet tweet"
 
-msgid "Favorite tweet"
+#, fuzzy
+msgid "Like tweet"
 msgstr "Favorite tweet"
 
 msgid "Reply to tweet"
@@ -1137,7 +1141,8 @@ msgstr "Mere"
 msgid "Translate"
 msgstr "Oversæt"
 
-msgid "Favorite"
+#, fuzzy
+msgid "Like"
 msgstr "Favorit"
 
 msgid "Reply"

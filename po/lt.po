@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-27 20:08+0000\n"
+"POT-Creation-Date: 2021-02-10 20:11+0000\n"
 "PO-Revision-Date: 2017-10-22 18:18+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -171,10 +171,11 @@ msgid "Direct Messages"
 msgstr "Tiesioginės žinutės"
 
 #, fuzzy
-msgid "Favourites timeline"
+msgid "Liked tweets timeline"
 msgstr "Mėgstamas tauškalas"
 
-msgid "Favorites"
+#, fuzzy
+msgid "Likes"
 msgstr "Mėgstami"
 
 msgid "Add new Filter"
@@ -1088,8 +1089,9 @@ msgctxt "shortcuts window"
 msgid "Retweet"
 msgstr "Persiųsti"
 
+#, fuzzy
 msgctxt "shortcuts window"
-msgid "Favorite"
+msgid "Like"
 msgstr "Mėgstamas"
 
 msgctxt "shortcuts window"
@@ -1130,7 +1132,8 @@ msgstr "Cituoti"
 msgid "Retweet tweet"
 msgstr "Persiųsti tauškalą"
 
-msgid "Favorite tweet"
+#, fuzzy
+msgid "Like tweet"
 msgstr "Mėgstamas tauškalas"
 
 msgid "Reply to tweet"
@@ -1142,7 +1145,8 @@ msgstr "Daugiau"
 msgid "Translate"
 msgstr ""
 
-msgid "Favorite"
+#, fuzzy
+msgid "Like"
 msgstr "Mėgstamas"
 
 msgid "Reply"

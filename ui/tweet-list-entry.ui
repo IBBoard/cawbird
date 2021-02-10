@@ -63,7 +63,7 @@
                 <property name="visible">1</property>
                 <property name="relief">none</property>
                 <property name="valign">center</property>
-                <property name="tooltip-text" translatable="yes">Favorite</property>
+                <property name="tooltip-text" translatable="yes">Like</property>
                 <signal name="toggled" handler="favorite_button_toggled_cb"/>
                 <style>
                   <class name="dim-label"/>

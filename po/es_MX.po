@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-27 20:08+0000\n"
+"POT-Creation-Date: 2021-02-10 20:11+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/cawbird/cawbird/"
@@ -160,10 +160,11 @@ msgid "Direct Messages"
 msgstr "Mensajes Directos"
 
 #, fuzzy
-msgid "Favourites timeline"
+msgid "Liked tweets timeline"
 msgstr "Favorito"
 
-msgid "Favorites"
+#, fuzzy
+msgid "Likes"
 msgstr "Favoritos"
 
 msgid "Add new Filter"
@@ -1053,8 +1054,9 @@ msgctxt "shortcuts window"
 msgid "Retweet"
 msgstr "Retuiteado"
 
+#, fuzzy
 msgctxt "shortcuts window"
-msgid "Favorite"
+msgid "Like"
 msgstr "Favorito"
 
 msgctxt "shortcuts window"
@@ -1095,7 +1097,8 @@ msgstr "Citar"
 msgid "Retweet tweet"
 msgstr "Retuitear"
 
-msgid "Favorite tweet"
+#, fuzzy
+msgid "Like tweet"
 msgstr "Favorito"
 
 msgid "Reply to tweet"
@@ -1107,7 +1110,8 @@ msgstr "Más"
 msgid "Translate"
 msgstr ""
 
-msgid "Favorite"
+#, fuzzy
+msgid "Like"
 msgstr "Favorito"
 
 msgid "Reply"

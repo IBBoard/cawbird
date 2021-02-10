@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-27 20:08+0000\n"
+"POT-Creation-Date: 2021-02-10 20:11+0000\n"
 "PO-Revision-Date: 2017-11-12 23:35+0000\n"
 "Last-Translator: MTD TR <dev.mantendo@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/cawbird/cawbird/"
@@ -161,10 +161,11 @@ msgid "Direct Messages"
 msgstr "ダイレクトメッセージ"
 
 #, fuzzy
-msgid "Favourites timeline"
+msgid "Liked tweets timeline"
 msgstr "お気に入りに登録する"
 
-msgid "Favorites"
+#, fuzzy
+msgid "Likes"
 msgstr "お気に入り"
 
 msgid "Add new Filter"
@@ -1045,8 +1046,9 @@ msgctxt "shortcuts window"
 msgid "Retweet"
 msgstr "リツイート"
 
+#, fuzzy
 msgctxt "shortcuts window"
-msgid "Favorite"
+msgid "Like"
 msgstr "お気に入り"
 
 msgctxt "shortcuts window"
@@ -1087,7 +1089,8 @@ msgstr "引用する"
 msgid "Retweet tweet"
 msgstr "リツイートする"
 
-msgid "Favorite tweet"
+#, fuzzy
+msgid "Like tweet"
 msgstr "お気に入りに登録する"
 
 msgid "Reply to tweet"
@@ -1099,7 +1102,8 @@ msgstr "詳細"
 msgid "Translate"
 msgstr ""
 
-msgid "Favorite"
+#, fuzzy
+msgid "Like"
 msgstr "お気に入り"
 
 msgid "Reply"

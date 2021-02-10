@@ -360,7 +360,7 @@
                       <object class="GtkToggleButton" id="favorite_button">
                         <property name="visible">1</property>
                         <property name="valign">baseline</property>
-                        <property name="tooltip-text" translatable="yes">Favorite tweet</property>
+                        <property name="tooltip-text" translatable="yes">Like tweet</property>
                         <property name="relief">none</property>
                         <signal name="toggled" handler="favorite_button_toggled_cb" swapped="no"/>
                         <child>

@@ -24,7 +24,7 @@ class FavoritesTimeline : Cb.MessageReceiver, DefaultTimeline {
 
   protected override string accessibility_name {
     get {
-      return _("Favourites timeline");
+      return _("Liked tweets timeline");
     }
   }
 
@@ -85,10 +85,10 @@ class FavoritesTimeline : Cb.MessageReceiver, DefaultTimeline {
   }
 
   public override string get_title () {
-    return _("Favorites");
+    return _("Likes");
   }
 
   public override void create_radio_button (Gtk.RadioButton? group) {
-    radio_button = new BadgeRadioButton(group, "cawbird-favorite-symbolic", _("Favorites"));
+    radio_button = new BadgeRadioButton(group, "cawbird-favorite-symbolic", _("Likes"));
   }
 }

@@ -392,6 +392,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     Gtk.BindingEntry.add_signal (binding_set, Gdk.Key.d, 0, "delete-tweet", 0, null);
     Gtk.BindingEntry.add_signal (binding_set, Gdk.Key.t, 0, "retweet-tweet", 0, null);
     Gtk.BindingEntry.add_signal (binding_set, Gdk.Key.f, 0, "favorite-tweet", 0, null);
+    Gtk.BindingEntry.add_signal (binding_set, Gdk.Key.l, 0, "favorite-tweet", 0, null);
     Gtk.BindingEntry.add_signal (binding_set, Gdk.Key.q, 0, "quote-tweet", 0, null);
   }
 

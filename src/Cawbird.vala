@@ -272,7 +272,7 @@ public class Cawbird : Gtk.Application {
 
     // TweetInfoPage
     this.set_accels_for_action ("tweet.reply",    {"r"});
-    this.set_accels_for_action ("tweet.favorite", {"f"});
+    this.set_accels_for_action ("tweet.favorite", {"l", "f"});
 
     this.add_action_entries (app_entries, this);
 

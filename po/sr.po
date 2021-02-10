@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-27 20:08+0000\n"
+"POT-Creation-Date: 2021-02-10 20:11+0000\n"
 "PO-Revision-Date: 2017-11-19 08:34+0000\n"
 "Last-Translator: Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail."
 "com>\n"
@@ -170,10 +170,11 @@ msgid "Direct Messages"
 msgstr "Директне поруке"
 
 #, fuzzy
-msgid "Favourites timeline"
+msgid "Liked tweets timeline"
 msgstr "Означи твит омиљеним"
 
-msgid "Favorites"
+#, fuzzy
+msgid "Likes"
 msgstr "Омиљено"
 
 msgid "Add new Filter"
@@ -1083,8 +1084,9 @@ msgctxt "shortcuts window"
 msgid "Retweet"
 msgstr "Поново твитуј"
 
+#, fuzzy
 msgctxt "shortcuts window"
-msgid "Favorite"
+msgid "Like"
 msgstr "Означи као омиљено"
 
 msgctxt "shortcuts window"
@@ -1125,7 +1127,8 @@ msgstr "Цитирај"
 msgid "Retweet tweet"
 msgstr "Поново твитуј твит"
 
-msgid "Favorite tweet"
+#, fuzzy
+msgid "Like tweet"
 msgstr "Означи твит омиљеним"
 
 msgid "Reply to tweet"
@@ -1137,7 +1140,8 @@ msgstr "Више"
 msgid "Translate"
 msgstr ""
 
-msgid "Favorite"
+#, fuzzy
+msgid "Like"
 msgstr "Стави као омиљено"
 
 msgid "Reply"

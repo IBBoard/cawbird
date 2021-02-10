@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-01-27 20:08+0000\n"
+"POT-Creation-Date: 2021-02-10 20:11+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/cawbird/teams/107135/nl/)\n"
@@ -176,10 +176,12 @@ msgstr "Nieuw privébericht van %s"
 msgid "Direct Messages"
 msgstr "Privéberichten"
 
-msgid "Favourites timeline"
+#, fuzzy
+msgid "Liked tweets timeline"
 msgstr "Tijdlijn met vind-ik-leuks"
 
-msgid "Favorites"
+#, fuzzy
+msgid "Likes"
 msgstr "Vind-ik-leuks"
 
 msgid "Add new Filter"
@@ -1096,8 +1098,9 @@ msgctxt "shortcuts window"
 msgid "Retweet"
 msgstr "Retweeten"
 
+#, fuzzy
 msgctxt "shortcuts window"
-msgid "Favorite"
+msgid "Like"
 msgstr "Vind ik leuk"
 
 msgctxt "shortcuts window"
@@ -1138,7 +1141,8 @@ msgstr "Tweet citeren"
 msgid "Retweet tweet"
 msgstr "Tweet retweeten"
 
-msgid "Favorite tweet"
+#, fuzzy
+msgid "Like tweet"
 msgstr "Vind ik leuk"
 
 msgid "Reply to tweet"
@@ -1150,7 +1154,8 @@ msgstr "Meer"
 msgid "Translate"
 msgstr "Vertalen"
 
-msgid "Favorite"
+#, fuzzy
+msgid "Like"
 msgstr "Vind ik leuk"
 
 msgid "Reply"

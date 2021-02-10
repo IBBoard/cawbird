@@ -82,8 +82,8 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
-                <property name="accelerator">f</property>
-                <property name="title" translatable="yes" context="shortcuts window">Favorite</property>
+                <property name="accelerator">l</property>
+                <property name="title" translatable="yes" context="shortcuts window">Like</property>
               </object>
             </child>
             <child>

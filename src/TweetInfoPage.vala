@@ -948,7 +948,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
   private void update_rts_favs_labels () {
     rts_label.label = "<big><b>%'d</b></big> %s".printf (tweet.retweet_count, _("Retweets"));
-    favs_label.label = "<big><b>%'d</b></big> %s".printf (tweet.favorite_count, _("Favorites"));
+    favs_label.label = "<big><b>%'d</b></big> %s".printf (tweet.favorite_count, _("Likes"));
   }
 
   private void set_source_link (int64 id, string screen_name) {
