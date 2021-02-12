@@ -176,11 +176,9 @@ msgstr "Nieuw privébericht van %s"
 msgid "Direct Messages"
 msgstr "Privéberichten"
 
-#, fuzzy
 msgid "Liked tweets timeline"
-msgstr "Tijdlijn met vind-ik-leuks"
+msgstr "Vind-ik-leukstijdlijn"
 
-#, fuzzy
 msgid "Likes"
 msgstr "Vind-ik-leuks"
 
@@ -1098,7 +1096,6 @@ msgctxt "shortcuts window"
 msgid "Retweet"
 msgstr "Retweeten"
 
-#, fuzzy
 msgctxt "shortcuts window"
 msgid "Like"
 msgstr "Vind ik leuk"
@@ -1141,9 +1138,8 @@ msgstr "Tweet citeren"
 msgid "Retweet tweet"
 msgstr "Tweet retweeten"
 
-#, fuzzy
 msgid "Like tweet"
-msgstr "Vind ik leuk"
+msgstr "Tweet leuk vinden"
 
 msgid "Reply to tweet"
 msgstr "Tweet beantwoorden"
@@ -1154,7 +1150,6 @@ msgstr "Meer"
 msgid "Translate"
 msgstr "Vertalen"
 
-#, fuzzy
 msgid "Like"
 msgstr "Vind ik leuk"
 
