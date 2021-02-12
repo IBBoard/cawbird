@@ -172,11 +172,9 @@ msgstr "Ny direkte besked fra %s"
 msgid "Direct Messages"
 msgstr "Direkte Beskeder"
 
-#, fuzzy
 msgid "Liked tweets timeline"
 msgstr "Favorit tidslinje"
 
-#, fuzzy
 msgid "Likes"
 msgstr "Favoritter"
 
@@ -1085,10 +1083,9 @@ msgctxt "shortcuts window"
 msgid "Retweet"
 msgstr "Retweet"
 
-#, fuzzy
 msgctxt "shortcuts window"
 msgid "Like"
-msgstr "Favorit"
+msgstr "Favoriser "
 
 msgctxt "shortcuts window"
 msgid "Reply"
@@ -1128,9 +1125,8 @@ msgstr "Citere"
 msgid "Retweet tweet"
 msgstr "Retweet tweet"
 
-#, fuzzy
 msgid "Like tweet"
-msgstr "Favorite tweet"
+msgstr "Favoriser tweet"
 
 msgid "Reply to tweet"
 msgstr "Svar tweet"
@@ -1141,9 +1137,8 @@ msgstr "Mere"
 msgid "Translate"
 msgstr "Oversæt"
 
-#, fuzzy
 msgid "Like"
-msgstr "Favorit"
+msgstr "Favoriser"
 
 msgid "Reply"
 msgstr "Svar"
