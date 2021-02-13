@@ -930,7 +930,7 @@ namespace TweetUtils {
       if (src_lang == "und") {
         src_lang = "auto";
       }
-      var content = GLib.Uri.escape_string(parts[1]);
+      var content = parts[1];
       var target_lang = Utils.get_user_language();
       var url = Settings.get_translation_service_url();
       url = url.replace("{SOURCE_LANG}", src_lang).replace("{TARGET_LANG}", target_lang).replace("{CONTENT}", content);
