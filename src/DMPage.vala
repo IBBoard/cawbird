@@ -348,13 +348,8 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
 
     if (first_load) {
       /* The GTK+ version might not have this emoji data variant */
-      /* And we might not want to display our emoji picker if we're on a tiny screen (e.g. a phone) */
-      try {      
-        Gdk.Display default_display = Gdk.Display.get_default();
-        Gdk.Monitor current_monitor = default_display.get_monitor_at_window(parent.get_window());
-        Gdk.Rectangle workarea = current_monitor.get_workarea();
-        if (workarea.width >= Cawbird.RESPONSIVE_LIMIT &&
-            GLib.resources_get_info ("/org/gtk/libgtk/emoji/emoji.data",
+      try {
+        if (GLib.resources_get_info ("/org/gtk/libgtk/emoji/emoji.data",
                                      GLib.ResourceLookupFlags.NONE, null, null)) {
           setup_emoji_chooser ();
         }
