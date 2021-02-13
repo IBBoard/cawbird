@@ -421,19 +421,25 @@ static void
 setup_section (CbEmojiChooser *chooser,
                EmojiSection   *section,
                const char     *first,
-               gunichar        label)
+               gunichar        label,
+               const char     *icon_name)
 {
-  char text[14];
-  char *p;
   GtkAdjustment *adj;
 
   section->first = first;
-
+#if GTK_CHECK_VERSION(3, 23, 2)
+  GtkWidget *icon;
+  icon = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_SMALL_TOOLBAR);
+  gtk_button_set_image (GTK_BUTTON (section->button), icon);
+#else
+  char text[14];
+  char *p;
   p = text;
   p += g_unichar_to_utf8 (label, p);
   p += g_unichar_to_utf8 (0xfe0e, p);
   p[0] = 0;
   gtk_button_set_label (GTK_BUTTON (section->button), text);
+#endif
 
   adj = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (chooser->scrolled_window));
 
@@ -469,16 +475,16 @@ cb_emoji_chooser_init (CbEmojiChooser *self)
   adj = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (self->scrolled_window));
   g_signal_connect (adj, "value-changed", G_CALLBACK (adj_value_changed), self);
 
-  setup_section (self, &self->recent, NULL, 0x1f557);
-  setup_section (self, &self->people, "grinning face", 0x1f642);
-  setup_section (self, &self->body, "selfie", 0x1f44d);
-  setup_section (self, &self->nature, "monkey face", 0x1f337);
-  setup_section (self, &self->food, "grapes", 0x1f374);
-  setup_section (self, &self->travel, "globe showing Europe-Africa", 0x2708);
-  setup_section (self, &self->activities, "jack-o-lantern", 0x1f3c3);
-  setup_section (self, &self->objects, "muted speaker", 0x1f514);
-  setup_section (self, &self->symbols, "ATM sign", 0x2764);
-  setup_section (self, &self->flags, "chequered flag", 0x1f3f4);
+  setup_section (self, &self->recent, NULL, 0x1f557, "emoji-recent-symbolic");
+  setup_section (self, &self->people, "grinning face", 0x1f642, "emoji-people-symbolic");
+  setup_section (self, &self->body, "selfie", 0x1f44d, "emoji-body-symbolic");
+  setup_section (self, &self->nature, "monkey face", 0x1f337, "emoji-nature-symbolic");
+  setup_section (self, &self->food, "grapes", 0x1f374, "emoji-food-symbolic");
+  setup_section (self, &self->travel, "globe showing Europe-Africa", 0x2708, "emoji-travel-symbolic");
+  setup_section (self, &self->activities, "jack-o-lantern", 0x1f3c3, "emoji-activities-symbolic");
+  setup_section (self, &self->objects, "muted speaker", 0x1f514, "emoji-objects-symbolic");
+  setup_section (self, &self->symbols, "ATM sign", 0x2764, "emoji-symbols-symbolic");
+  setup_section (self, &self->flags, "chequered flag", 0x1f3f4, "emoji-flags-symbolic");
 
 
   /* We scroll to the top on show, so check the right button for the 1st time */
