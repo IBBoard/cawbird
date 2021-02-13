@@ -17,7 +17,7 @@
 
 [GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/compose-window.ui")]
 class ComposeTweetWindow : Gtk.ApplicationWindow {
-  const int DEFAULT_WIDTH = 450;
+  const int DEFAULT_WIDTH = 460;
   public enum Mode {
     NORMAL,
     REPLY,
