@@ -71,10 +71,6 @@ public class Settings : GLib.Object {
     return settings.get_string ("accel-" + accel_name);
   }
 
-  public static double max_media_size () {
-    return settings.get_double ("max-media-size");
-  }
-
   public static double get_tweet_scale() {
     int scale_idx = settings.get_enum ("tweet-scale");
     switch (scale_idx) {

@@ -63,10 +63,6 @@
     <key name="auto-scroll-on-new-tweets" type="b">
       <default>false</default>
     </key>
-    <key name="max-media-size" type="d">
-      <default>2.0</default>
-      <summary>Maximum size of inline media to download, in Megabytes.</summary>
-    </key>
     <key name="sidebar-visible" type="b">
       <default>true</default>
       <summary>Whether to show the topbar or not</summary>

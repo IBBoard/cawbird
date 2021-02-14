@@ -277,7 +277,6 @@ public class Settings : GLib.Object {
 	public static int get_tweet_stack_count ();
 	public static bool hide_nsfw_content ();
 	public static void init ();
-	public static double max_media_size ();
 	public static bool notify_new_dms ();
 	public static bool notify_new_mentions ();
 	public static void remove_text_transform_flag (Cb.TransformFlags flag);
