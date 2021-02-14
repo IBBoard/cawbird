@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-02-10 20:11+0000\n"
+"POT-Creation-Date: 2021-02-14 15:17+0000\n"
 "PO-Revision-Date: 2018-01-17 19:31+0000\n"
 "Last-Translator: HybridGlucose <a07051226@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/cawbird/cawbird/"
@@ -898,6 +898,25 @@ msgid "Following"
 msgstr "正在關注"
 
 msgid "Use dark theme"
+msgstr ""
+
+#, fuzzy
+msgid "Shortcut key"
+msgstr "快捷鍵"
+
+msgid "Alt"
+msgstr ""
+
+msgid "Ctrl"
+msgstr ""
+
+msgid "Shift"
+msgstr ""
+
+msgid "Super"
+msgstr ""
+
+msgid "Primary"
 msgstr ""
 
 msgid "Show inline media"

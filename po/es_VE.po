@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-02-10 20:11+0000\n"
+"POT-Creation-Date: 2021-02-14 15:17+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Spanish (Venezuela) (http://www.transifex.com/cawbird/cawbird/"
@@ -906,6 +906,24 @@ msgid "Following"
 msgstr "Siguiendo"
 
 msgid "Use dark theme"
+msgstr ""
+
+msgid "Shortcut key"
+msgstr ""
+
+msgid "Alt"
+msgstr ""
+
+msgid "Ctrl"
+msgstr ""
+
+msgid "Shift"
+msgstr ""
+
+msgid "Super"
+msgstr ""
+
+msgid "Primary"
 msgstr ""
 
 msgid "Show inline media"

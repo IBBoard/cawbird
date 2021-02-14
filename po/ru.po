@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-02-10 20:11+0000\n"
+"POT-Creation-Date: 2021-02-14 15:17+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Даниил Пронин <mail@grawl.ru>, 2021\n"
 "Language-Team: Russian (https://www.transifex.com/cawbird/teams/107135/ru/)\n"
@@ -952,6 +952,25 @@ msgstr "Подписан"
 
 msgid "Use dark theme"
 msgstr "Использовать тёмную тему"
+
+#, fuzzy
+msgid "Shortcut key"
+msgstr "Горячие клавиши"
+
+msgid "Alt"
+msgstr ""
+
+msgid "Ctrl"
+msgstr ""
+
+msgid "Shift"
+msgstr ""
+
+msgid "Super"
+msgstr ""
+
+msgid "Primary"
+msgstr ""
 
 msgid "Show inline media"
 msgstr "Показать встроенные медиа"

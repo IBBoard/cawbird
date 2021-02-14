@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-02-10 20:11+0000\n"
+"POT-Creation-Date: 2021-02-14 15:17+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Ammar K <ak.bahassan@gmail.com>, 2020\n"
 "Language-Team: Arabic (http://www.transifex.com/cawbird/cawbird/language/"
@@ -968,6 +968,25 @@ msgstr "يتتبع"
 
 msgid "Use dark theme"
 msgstr "إستخدام النمط المظلم"
+
+#, fuzzy
+msgid "Shortcut key"
+msgstr "اختصارات"
+
+msgid "Alt"
+msgstr ""
+
+msgid "Ctrl"
+msgstr ""
+
+msgid "Shift"
+msgstr ""
+
+msgid "Super"
+msgstr ""
+
+msgid "Primary"
+msgstr ""
 
 msgid "Show inline media"
 msgstr ""

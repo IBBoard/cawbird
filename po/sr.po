@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-02-10 20:11+0000\n"
+"POT-Creation-Date: 2021-02-14 15:17+0000\n"
 "PO-Revision-Date: 2017-11-19 08:34+0000\n"
 "Last-Translator: Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail."
 "com>\n"
@@ -936,6 +936,25 @@ msgid "Following"
 msgstr "Прати"
 
 msgid "Use dark theme"
+msgstr ""
+
+#, fuzzy
+msgid "Shortcut key"
+msgstr "Пречице"
+
+msgid "Alt"
+msgstr ""
+
+msgid "Ctrl"
+msgstr ""
+
+msgid "Shift"
+msgstr ""
+
+msgid "Super"
+msgstr ""
+
+msgid "Primary"
 msgstr ""
 
 msgid "Show inline media"
