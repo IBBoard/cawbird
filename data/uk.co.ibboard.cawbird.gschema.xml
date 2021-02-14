@@ -29,6 +29,14 @@
     <value nick="Custom" value="3" />
   </enum>
 
+  <enum id="uk.co.ibboard.cawbird.shortcut-key">
+    <value nick="Alt" value="0" />
+    <value nick="Ctrl" value="1" />
+    <value nick="Shift" value="2" />
+    <value nick="Super" value="3" />
+    <value nick="Primary" value="4" />
+  </enum>
+
   <schema id="uk.co.ibboard.cawbird"
       path="/uk.co.ibboard.cawbird/"
       gettext-domain="cawbird">
@@ -135,6 +143,10 @@
     <key type="s" name="custom-translation-service">
       <default>""</default>
       <summary>Custom translation service URL using {SOURCE_LANG} for the source language code, {TARGET_LANG} for the target language code and {CONTENT} for the URI encoded tweet content</summary>
+    </key>
+    <key name="shortcut-key" enum="uk.co.ibboard.cawbird.shortcut-key">
+      <default>"Alt"</default>
+      <summary>Key to use with 1…7/Left/Right for page switching</summary>
     </key>
   </schema>
 </schemalist>

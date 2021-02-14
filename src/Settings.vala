@@ -28,6 +28,14 @@ public enum TranslationService {
   CUSTOM = 3
 }
 
+public enum ShortcutKey {
+  ALT = 0,
+  CTRL = 1,
+  SHIFT = 2,
+  SUPER = 3,
+  PRIMARY = 4
+}
+
 public class Settings : GLib.Object {
   private static GLib.Settings settings;
 
@@ -139,6 +147,28 @@ public class Settings : GLib.Object {
         return "https://www.deepl.com/translator#{SOURCE_LANG}/{TARGET_LANG}/{CONTENT}";
       default:
         return get_custom_translation_service();
+    }
+  }
+
+  public static ShortcutKey get_shortcut_key() {
+    return (ShortcutKey)settings.get_enum("shortcut-key");
+  }
+
+  public static string get_shortcut_key_string() {
+    var shortcut_key = get_shortcut_key();
+    switch (shortcut_key) {
+      case ShortcutKey.ALT:
+        return "<ALT>";
+      case ShortcutKey.CTRL:
+        return "<CTRL>";
+      case ShortcutKey.SHIFT:
+        return "<SHIFT>";
+      case ShortcutKey.SUPER:
+        return "<SUPER>";
+      case ShortcutKey.PRIMARY:
+        return "<PRIMARY>";
+      default:
+        return "<ALT>";
     }
   }
 }

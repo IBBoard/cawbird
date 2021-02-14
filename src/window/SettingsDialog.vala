@@ -18,6 +18,8 @@
 [GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/settings-dialog.ui")]
 class SettingsDialog : Gtk.Window {
   [GtkChild]
+  private Gtk.ComboBoxText shortcut_key_combobox;
+  [GtkChild]
   private Gtk.Switch on_new_mentions_switch;
   [GtkChild]
   private Gtk.ComboBoxText tweet_scale_combobox;
@@ -62,6 +64,10 @@ class SettingsDialog : Gtk.Window {
     // Interface page
     auto_scroll_on_new_tweets_switch.notify["active"].connect (() => {
       on_new_tweets_combobox.sensitive = !auto_scroll_on_new_tweets_switch.active;
+    });
+    Settings.get ().bind ("shortcut-key", shortcut_key_combobox, "active-id", SettingsBindFlags.DEFAULT);
+    Settings.get ().changed["shortcut-key"].connect(() => {
+      ((Cawbird)get_application()).set_window_switching_accels();
     });
     Settings.get ().bind ("use-dark-theme", use_dark_theme_switch, "active", SettingsBindFlags.DEFAULT);
     use_dark_theme_switch.notify["active"].connect (() => {

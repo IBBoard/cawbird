@@ -255,20 +255,12 @@ public class Cawbird : Gtk.Application {
 
     this.set_accels_for_action ("win.compose-tweet", {Settings.get_accel ("compose-tweet")});
     this.set_accels_for_action ("win.toggle-topbar", {Settings.get_accel ("toggle-sidebar")});
-    this.set_accels_for_action ("win.switch-page(0)", {"<Alt>1"});
-    this.set_accels_for_action ("win.switch-page(1)", {"<Alt>2"});
-    this.set_accels_for_action ("win.switch-page(2)", {"<Alt>3"});
-    this.set_accels_for_action ("win.switch-page(3)", {"<Alt>4"});
-    this.set_accels_for_action ("win.switch-page(4)", {"<Alt>5"});
-    this.set_accels_for_action ("win.switch-page(5)", {"<Alt>6"});
-    this.set_accels_for_action ("win.switch-page(6)", {"<Alt>7"});
     this.set_accels_for_action ("app.show-settings", {Settings.get_accel ("show-settings")});
     this.set_accels_for_action ("app.quit", {"<Primary>Q"});
     this.set_accels_for_action ("app.show-shortcuts", {"<Primary>question", "<Primary>F1"});
     this.set_accels_for_action ("win.show-account-dialog", {Settings.get_accel ("show-account-dialog")});
     this.set_accels_for_action ("win.show-account-list", {Settings.get_accel ("show-account-list")});
-    this.set_accels_for_action ("win.previous", {"<Alt>Left", "Back"});
-    this.set_accels_for_action ("win.next", {"<Alt>Right", "Forward"});
+    this.set_window_switching_accels();
 
     // TweetInfoPage
     this.set_accels_for_action ("tweet.reply",    {"r"});
@@ -285,7 +277,19 @@ public class Cawbird : Gtk.Application {
     if (gtk_s.gtk_decoration_layout.contains ("menu")) {
       gtk_s.gtk_decoration_layout = gtk_s.gtk_decoration_layout.replace ("menu", "");
     }
+  }
 
+  public void set_window_switching_accels() {
+    var shortcut_key = Settings.get_shortcut_key_string();
+    this.set_accels_for_action ("win.switch-page(0)", {shortcut_key + "1"});
+    this.set_accels_for_action ("win.switch-page(1)", {shortcut_key + "2"});
+    this.set_accels_for_action ("win.switch-page(2)", {shortcut_key + "3"});
+    this.set_accels_for_action ("win.switch-page(3)", {shortcut_key + "4"});
+    this.set_accels_for_action ("win.switch-page(4)", {shortcut_key + "5"});
+    this.set_accels_for_action ("win.switch-page(5)", {shortcut_key + "6"});
+    this.set_accels_for_action ("win.switch-page(6)", {shortcut_key + "7"});
+    this.set_accels_for_action ("win.previous", {shortcut_key + "Left", "Back"});
+    this.set_accels_for_action ("win.next", {shortcut_key + "Right", "Forward"});
   }
 
   private void handle_shutdown () {
