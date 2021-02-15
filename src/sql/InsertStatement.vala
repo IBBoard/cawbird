@@ -75,7 +75,7 @@ namespace Sql {
       return db.last_insert_rowid ();
     }
 
-    public InsertStatement val (string col_name, string col_value) {
+    public InsertStatement val (string col_name, string? col_value) {
       if (bindings.length > 0)
         query_builder.append (", ");
       query_builder.append ("`").append (col_name).append ("`");
