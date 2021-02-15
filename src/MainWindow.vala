@@ -267,25 +267,12 @@ public class MainWindow : Gtk.ApplicationWindow {
       if (app_menu_button != null)
         app_menu_button.hide ();
 
-      Account acc_;
-      if (account == null)
-        acc_ = new Account (0, Account.DUMMY, "name");
-      else
-        acc_ = account;
-
-      this.account = acc_;
-
       this.title_label.label = "Cawbird";
       this.set_title ("Cawbird");
 
-      Account.add_account (acc_);
-      var create_widget = new AccountCreateWidget (acc_, cb, this);
-      create_widget.result_received.connect ((result, acc) => {
-        if (result) {
-          change_account (acc);
-        } else {
-          //Account.remove ("screen_name");
-        }
+      var create_widget = new AccountCreateWidget (cb, this);
+      create_widget.account_created.connect ((acc) => {
+        change_account (acc);
       });
       this.add (create_widget);
     }

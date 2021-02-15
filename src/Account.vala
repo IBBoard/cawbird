@@ -79,48 +79,36 @@ public class Account : GLib.Object {
   }
 
   /**
-   * Initializes the RestProxy object.
-   *
-   * @param load_secrets If set to true, the token and token_secret will be loaded
-   *                     from the account's database.
-   * @param force        If set to true, we will simply force to create a new
-   *                     RestProxy object.
+   * Initializes the RestProxy object with loaded secrets.
    */
-  public void init_proxy (bool load_secrets = true, bool force = false) {
-    if (proxy != null && !force)
+  public void init_proxy () {
+    if (proxy != null)
       return;
 
-    if (load_secrets) {
-      init_database ();
-      Cawbird.db.select ("accounts")
-                                    .cols ("consumer_key", "consumer_secret", "token", "token_secret")
-                                    .where_eqi ("id", id)
-                                    .run ((vals) => {
-        if (vals[0] != null) {
-          create_proxy(vals[2], vals[3], vals[0], vals[1]);
-        }
-        return false; //stop
+    init_database ();
+    Cawbird.db.select ("accounts")
+                                  .cols ("consumer_key", "consumer_secret", "token", "token_secret")
+                                  .where_eqi ("id", id)
+                                  .run ((vals) => {
+      if (vals[0] != null) {
+        create_proxy(vals[2], vals[3], vals[0], vals[1]);
+      }
+      return false; //stop
+    });
+
+    if (proxy == null) {
+      proxy_load_fallback = true;
+      db.select ("common").cols ("token", "token_secret")
+                                    .run((vals) => {
+        create_proxy(vals[0], vals[1]);
+        return false; // stop
       });
-
-      if (proxy == null) {
-        proxy_load_fallback = true;
-        db.select ("common").cols ("token", "token_secret")
-                                      .run((vals) => {
-          create_proxy(vals[0], vals[1]);
-          return false; // stop
-        });
-      }
-
-      if (proxy == null) {
-        critical ("Could not load token{_secret} for user %s", this.screen_name);
-      }
     }
-    else {
-      this.proxy = new Rest.OAuthProxy (Settings.get_consumer_key (),
-                                        Settings.get_consumer_secret (),
-                                        "https://api.twitter.com/",
-                                        false);
+
+    if (proxy == null) {
+      critical ("Could not load token{_secret} for user %s", this.screen_name);
     }
+
     this.user_stream = new Cb.UserStream (this.screen_name, proxy);
     this.user_stream.register (this.event_receiver);
   }
@@ -148,11 +136,22 @@ public class Account : GLib.Object {
    * Small:  accounts/ID_small.png
    */
   public void load_avatar () {
-    string small_path = Dirs.config (@"accounts/$(id)_small.png");
     string path = Dirs.config (@"accounts/$(id).png");
-    this.avatar_small = load_surface (small_path);
-    this.avatar       = load_surface (path);
-    info_changed (screen_name, name, avatar, avatar_small);
+    string small_path = Dirs.config (@"accounts/$(id)_small.png");
+
+    if (!GLib.FileUtils.test (path, GLib.FileTest.EXISTS) ||
+        !GLib.FileUtils.test (small_path,  GLib.FileTest.EXISTS)) {
+      update_avatar.begin(this.avatar_url, () => {
+        this.avatar       = load_surface (path);
+        this.avatar_small = load_surface (small_path);
+        info_changed (screen_name, name, avatar, avatar_small);
+      });
+    }
+    else {
+      this.avatar       = load_surface (path);
+      this.avatar_small = load_surface (small_path);
+      info_changed (screen_name, name, avatar, avatar_small);
+    }
   }
 
   public void set_new_avatar (Cairo.Surface new_avatar) {
@@ -179,24 +178,10 @@ public class Account : GLib.Object {
    * @param screen_name The screen name to use for the API call or null in
    *                    which case the ID will be used.
    */
-  public async void query_user_info_by_screen_name (string? screen_name = null) {
-    if (proxy == null)
-      error ("Proxy not initialized");
-
-    var call = proxy.new_call ();
-    call.set_function ("1.1/users/show.json");
-    call.set_method ("GET");
-    if (screen_name != null) {
-      call.add_param ("screen_name", screen_name);
-      this.screen_name = screen_name;
-    } else {
-      call.add_param ("user_id", this.id.to_string ());
-    }
-    call.add_param ("skip_status", "true");
-
-    Json.Node? root_node = null;
+  public async void query_user_info () {
+    UserInfo user_info;
     try {
-      root_node = yield Cb.Utils.load_threaded_async (call, null);
+      user_info = yield Twitter.get().get_own_user_info(proxy);
     } catch (GLib.Error e) {
       warning (e.message);
       return;
@@ -204,51 +189,28 @@ public class Account : GLib.Object {
 
     bool values_changed = false;
 
-    var root = root_node.get_object ();
-    this.id = root.get_int_member ("id");
-    if (this.name != root.get_string_member ("name")) {
-      this.name = root.get_string_member ("name");
+    this.id = user_info.id;
+    if (this.name != user_info.name) {
+      this.name = user_info.name;
       values_changed = true;
     }
-    if (this.screen_name != root.get_string_member ("screen_name")) {
+    if (this.screen_name != user_info.screen_name) {
       string old_screen_name = this.screen_name;
-      this.screen_name = root.get_string_member ("screen_name");
+      this.screen_name = user_info.screen_name;
       Utils.update_startup_account (old_screen_name, this.screen_name);
       values_changed = true;
     }
 
-    Json.Array desc_urls = root.get_object_member ("entities").get_object_member ("description")
-                                                              .get_array_member ("urls");
-    var urls = new Cb.TextEntity[desc_urls.get_length ()];
-    desc_urls.foreach_element ((arr, index, node) => {
-      Json.Object obj = node.get_object ();
-      Json.Array indices = obj.get_array_member ("indices");
-      urls[index] = Cb.TextEntity () {
-        from = (uint)indices.get_int_element (0),
-        to   = (uint)indices.get_int_element (1),
-        original_text = obj.get_string_member ("url"),
-        display_text = obj.get_string_member ("expanded_url"),
-        target = null
-      };
-    });
-    this.description = Cb.TextTransform.text (root.get_string_member ("description"),
-                                              urls,
-                                              Cb.TransformFlags.EXPAND_LINKS,
-                                              0, 0);
+    this.description = user_info.description;
 
 
-    if (root.has_member ("profile_banner_url"))
-      this.banner_url = root.get_string_member ("profile_banner_url");
+    this.banner_url = user_info.banner_url;
 
     /* Website URL */
-    if (root.get_object_member ("entities").has_member ("url")) {
-      this.website = root.get_object_member ("entities").get_object_member ("url")
-                     .get_array_member ("urls").get_object_element (0).get_string_member ("expanded_url");
-    } else
-      this.website = "";
+    this.website = user_info.website;
 
 
-    string avatar_url = root.get_string_member ("profile_image_url_https");
+    string avatar_url = user_info.avatar_url;
     values_changed |= yield update_avatar (avatar_url);
 
     if (values_changed || proxy_load_fallback) {
@@ -269,7 +231,7 @@ public class Account : GLib.Object {
       init_information.callback ();
     });
 
-    query_user_info_by_screen_name.begin (null, () => {
+    query_user_info.begin (() => {
       collect_obj.emit ();
     });
 
@@ -697,6 +659,31 @@ public class Account : GLib.Object {
     return accounts.length;
   }
 
+  private static Account construct_from_details(int64 id, string screen_name, string name, string avatar_url, int64 migrated) {
+    Account acc = new Account(id, screen_name, name);
+    acc.avatar_url = avatar_url;
+    acc.load_avatar();
+    acc.migration_date = migrated;
+    return acc;
+  }
+
+  public static Account create_account (UserInfo user_info, Rest.OAuthProxy proxy) {
+    var migrated = GLib.get_real_time ();
+    Cawbird.db.insert ("accounts").vali64 ("id", user_info.id)
+                                    .val ("screen_name", user_info.screen_name)
+                                    .val ("name", user_info.name)
+                                    .val ("avatar_url", user_info.avatar_url)
+                                    .val ("consumer_key", proxy.consumer_key)
+                                    .val ("consumer_secret", proxy.consumer_secret)
+                                    .val ("token", proxy.token)
+                                    .val ("token_secret", proxy.token_secret)
+                                    .vali64 ("migrated", migrated)
+                                    .run ();
+    Account acc = construct_from_details (user_info.id, user_info.screen_name, user_info.name, user_info.avatar_url, migrated);
+    Account.add_account(acc);
+    return acc;
+  }
+
   /**
    * Look up the accounts. Each account has a <id>.db in ~/.config/cawbird/accounts/
    * The accounts are initialized with only their screen_name and their ID.
@@ -705,10 +692,7 @@ public class Account : GLib.Object {
     assert (accounts == null);
     accounts = new GLib.GenericArray<Account> ();
     Cawbird.db.select ("accounts").cols ("id", "screen_name", "name", "avatar_url", "migrated").run ((vals) => {
-      Account acc = new Account (int64.parse(vals[0]), vals[1], vals[2]);
-      acc.avatar_url = vals[3];
-      acc.load_avatar ();
-      acc.migration_date = int64.parse(vals[4]);
+      Account acc = construct_from_details (int64.parse(vals[0]), vals[1], vals[2], vals[3], int64.parse(vals[4]));
       accounts.add (acc);
       return true;
     });

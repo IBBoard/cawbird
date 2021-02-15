@@ -316,7 +316,7 @@ public class Cawbird : Gtk.Application {
         return;
       }
       acc.init_proxy ();
-      acc.query_user_info_by_screen_name.begin ();
+      acc.query_user_info.begin ();
       var cw = new ComposeTweetWindow (null, acc, null,
                                        ComposeTweetWindow.Mode.NORMAL);
       cw.show ();
@@ -333,7 +333,7 @@ public class Cawbird : Gtk.Application {
       }
 
       acc.init_proxy ();
-      acc.query_user_info_by_screen_name.begin ();
+      acc.query_user_info.begin ();
       add_window_for_account (acc);
       return;
     }

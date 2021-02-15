@@ -203,7 +203,7 @@ public class Account : GLib.Object {
 	public void mute_id (int64 id);
 	public static unowned Account? query_account (string screen_name);
 	public static unowned Account? query_account_by_id (int64 id);
-	public async void query_user_info_by_screen_name (string? screen_name = null);
+	public async void query_user_info ();
 	public static void remove_account (string screen_name);
 	public void remove_disabled_rts_id (int64 user_id);
 	public void save_info ();

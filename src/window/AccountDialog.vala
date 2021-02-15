@@ -86,7 +86,7 @@ public class AccountDialog : Gtk.Window {
     if (account.proxy == null) {
       account_was_not_initied = true;
       account.init_proxy ();
-      account.query_user_info_by_screen_name.begin (null, (obj, res) => {
+      account.query_user_info.begin ((obj, res) => {
         set_transient_data (account.website, account.description);
       });
     }

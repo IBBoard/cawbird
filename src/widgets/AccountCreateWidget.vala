@@ -29,13 +29,12 @@ class AccountCreateWidget : Gtk.Box {
   private Gtk.Label info_label;
   [GtkChild]
   private Gtk.Stack content_stack;
-  private unowned Account acc;
+  private Rest.OAuthProxy proxy;
   private unowned Cawbird cawbird;
   private unowned MainWindow main_window;
-  public signal void result_received (bool result, Account acc);
+  public signal void account_created (Account acc);
 
-  public AccountCreateWidget (Account acc, Cawbird cawbird, MainWindow main_window) {
-    this.acc = acc;
+  public AccountCreateWidget (Cawbird cawbird, MainWindow main_window) {
     this.cawbird = cawbird;
     this.main_window = main_window;
     info_label.label = "%s <a href=\"https://twitter.com/signup\">%s</a>"
@@ -51,7 +50,7 @@ class AccountCreateWidget : Gtk.Box {
       return;
     }
     
-    string uri = "http://twitter.com/oauth/authorize?oauth_token=" + acc.proxy.get_token();
+    string uri = "http://twitter.com/oauth/authorize?oauth_token=" + proxy.get_token();
     debug ("Trying to open %s", uri);
 
     try {
@@ -65,9 +64,10 @@ class AccountCreateWidget : Gtk.Box {
   }
 
   public void open_pin_request_site () {
-    acc.init_proxy (false, true);
+    proxy = new Rest.OAuthProxy(Settings.get_consumer_key(), Settings.get_consumer_secret(), "https://api.twitter.com/", false);
+
     try {
-      if (!acc.proxy.request_token_async ("oauth/request_token", "oob", pin_request_cb, this)) {
+      if (!proxy.request_token_async ("oauth/request_token", "oob", pin_request_cb, this)) {
         show_error(_("Failed to retrieve request token"));
       }
     } catch(GLib.Error e) {
@@ -102,7 +102,7 @@ class AccountCreateWidget : Gtk.Box {
       return;
     }
 
-    var call = acc.proxy.new_call ();
+    var call = proxy.new_call ();
     call.set_function ("1.1/account/settings.json");
     call.set_method ("GET");
 
@@ -121,7 +121,6 @@ class AccountCreateWidget : Gtk.Box {
       debug ("Checking for %s", screen_name);
       Account? existing_account = Account.query_account (screen_name);
       if (existing_account != null) {
-        result_received (false, existing_account);
         critical ("Account is already in use");
         show_error (_("Account already in use"));
         pin_entry.sensitive = true;
@@ -130,26 +129,29 @@ class AccountCreateWidget : Gtk.Box {
         return;
       }
   
-      acc.query_user_info_by_screen_name.begin (screen_name, (obj, res) => {
-        acc.query_user_info_by_screen_name.end(res);
+      Twitter.get().get_own_user_info.begin (proxy, (obj, res) => {
+        UserInfo user_info;
+        try {
+          user_info = Twitter.get().get_own_user_info.end(res);
+        } catch (GLib.Error e) {
+          warning ("Could not get json data: %s", e.message);
+          return;
+        }
+        Account acc = Account.create_account(user_info, proxy);
         debug ("user info call");
         acc.init_database ();
+        acc.init_proxy ();
         acc.save_info();
-        acc.db.insert ("common")
-              .val ("token", acc.proxy.token)
-              .val ("token_secret", acc.proxy.token_secret)
-              .run ();
         acc.suppress_notifications();
-        acc.init_proxy (true, true);
         cawbird.account_added (acc);
-        result_received (true, acc);
+        account_created (acc);
       });
     });
   }
 
   private async void do_confirm () {
     try {
-      if (!acc.proxy.access_token_async ("oauth/access_token", pin_entry.get_text (), confirm_cb, this)) {
+      if (!proxy.access_token_async ("oauth/access_token", pin_entry.get_text (), confirm_cb, this)) {
         show_error(_("Failed to retrieve access token"));
       }
     } catch (GLib.Error e) {
@@ -166,13 +168,7 @@ class AccountCreateWidget : Gtk.Box {
 
   private void pin_changed_cb () {
     string text = pin_entry.get_text ();
-    bool confirm_possible = text.length > 0 && acc.proxy != null;
+    bool confirm_possible = text.length > 0 && proxy != null;
     confirm_button.sensitive = confirm_possible;
-  }
-
-  [GtkCallback]
-  private bool delete_event_cb () {
-    Account.remove_account (Account.DUMMY);
-    return false;
   }
 }
