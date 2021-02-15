@@ -40,6 +40,7 @@ public class Account : GLib.Object {
   public int64[] muted;
   public int64[] disabled_rts;
   public GLib.GenericArray<Cb.Filter> filters;
+  private bool proxy_load_fallback = false;
   public signal void info_changed (string screen_name, string name,
                                    Cairo.Surface avatar_small, Cairo.Surface avatar);
 
@@ -89,25 +90,48 @@ public class Account : GLib.Object {
     if (proxy != null && !force)
       return;
 
-    this.proxy = new Rest.OAuthProxy (Settings.get_consumer_key (),
-                                      Settings.get_consumer_secret (),
-                                      "https://api.twitter.com/",
-                                      false);
     if (load_secrets) {
       init_database ();
-      int n_rows = db.select ("common").cols ("token", "token_secret")
-                                       .run ((vals) => {
-        proxy.token = vals[0];
-        proxy.token_secret = vals[1];
+      Cawbird.db.select ("accounts")
+                                    .cols ("consumer_key", "consumer_secret", "token", "token_secret")
+                                    .where_eqi ("id", id)
+                                    .run ((vals) => {
+        if (vals[0] != null) {
+          create_proxy(vals[2], vals[3], vals[0], vals[1]);
+        }
         return false; //stop
       });
 
-      if (n_rows < 1) {
+      if (proxy == null) {
+        proxy_load_fallback = true;
+        db.select ("common").cols ("token", "token_secret")
+                                      .run((vals) => {
+          create_proxy(vals[0], vals[1]);
+          return false; // stop
+        });
+      }
+
+      if (proxy == null) {
         critical ("Could not load token{_secret} for user %s", this.screen_name);
       }
     }
+    else {
+      this.proxy = new Rest.OAuthProxy (Settings.get_consumer_key (),
+                                        Settings.get_consumer_secret (),
+                                        "https://api.twitter.com/",
+                                        false);
+    }
     this.user_stream = new Cb.UserStream (this.screen_name, proxy);
     this.user_stream.register (this.event_receiver);
+  }
+
+  private void create_proxy(string token, string token_secret, string? consumer_key = null, string? consumer_secret = null){
+    var use_default = consumer_key == null || consumer_secret == null;
+    var key = use_default ? Settings.get_consumer_key () : consumer_key;
+    var secret = use_default ? Settings.get_consumer_secret () : consumer_secret;
+    proxy = new Rest.OAuthProxy (key, secret, "https://api.twitter.com/", false);
+    proxy.token = token;
+    proxy.token_secret = token_secret;
   }
 
   public void uninit () {
@@ -227,7 +251,8 @@ public class Account : GLib.Object {
     string avatar_url = root.get_string_member ("profile_image_url_https");
     values_changed |= yield update_avatar (avatar_url);
 
-    if (values_changed) {
+    if (values_changed || proxy_load_fallback) {
+      proxy_load_fallback = false;
       if (this.db != null)
         this.save_info ();
 
@@ -364,6 +389,10 @@ public class Account : GLib.Object {
                                     .val ("screen_name", screen_name)
                                     .val ("name", name)
                                     .val ("avatar_url", avatar_url)
+                                    .val ("consumer_key", proxy.consumer_key)
+                                    .val ("consumer_secret", proxy.consumer_secret)
+                                    .val ("token", proxy.token)
+                                    .val ("token_secret", proxy.token_secret)
                                     .run ();
   }
 

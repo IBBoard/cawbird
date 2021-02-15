@@ -16,7 +16,7 @@
  */
 
 namespace Sql {
-  public const int    CAWBIRD_SQL_VERSION = 3;
+  public const int    CAWBIRD_SQL_VERSION = 4;
   public const string CAWBIRD_INIT_FILE = "/uk/co/ibboard/cawbird/sql/init/Create.%d.sql";
   public const int    ACCOUNTS_SQL_VERSION = 7;
   public const string ACCOUNTS_INIT_FILE = "/uk/co/ibboard/cawbird/sql/accounts/Create.%d.sql";
