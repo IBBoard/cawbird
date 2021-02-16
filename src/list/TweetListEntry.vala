@@ -178,10 +178,18 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
     favorite_button.active = tweet.is_flag_set (Cb.TweetState.FAVORITED);
     retweet_button.size_allocate.connect_after(() => {
-      // XXX: Grab focus after the button is show (if it has a size) to avoid
+      // XXX: Grab focus after the button is allocated (if it has a size) to avoid
       // grabbing focus before the widget is ready (which jumps us
       // to the top of the list)
-      if (retweet_button.get_allocated_width() > 1) {
+      if (retweet_button.visible && retweet_button.get_allocated_width() > 1) {
+        retweet_button.grab_focus();
+      }
+    });
+    grab_focus.connect_after(() => {
+      // XXX: Also grab focus when the list item gets focus
+      // because the size_allocate doesn't re-trigger when re-showing
+      // the button
+      if (action_box.visible && retweet_button.get_allocated_width() > 1) {
         retweet_button.grab_focus();
       }
     });
@@ -660,7 +668,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       grid.show();
       action_box.hide();
       this.activatable = true;
-      this.grab_focus();
     } else {
       // We can't use size groups because they only work when all elements are visible
       // So kludge an approximation with set_size_request on the action box (which will always be the shortest widget)
@@ -670,6 +677,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       grid.hide();
       this.activatable = false;
     }
+    this.grab_focus();
   }
 
 
