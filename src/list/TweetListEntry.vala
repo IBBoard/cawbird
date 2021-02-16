@@ -177,6 +177,14 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
                                  tweet.get_user_id () != account.id);
 
     favorite_button.active = tweet.is_flag_set (Cb.TweetState.FAVORITED);
+    retweet_button.size_allocate.connect_after(() => {
+      // XXX: Grab focus after the button is show (if it has a size) to avoid
+      // grabbing focus before the widget is ready (which jumps us
+      // to the top of the list)
+      if (retweet_button.get_allocated_width() > 1) {
+        retweet_button.grab_focus();
+      }
+    });
 
     tweet.state_changed.connect (state_changed_cb);
 
@@ -661,7 +669,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       action_box.show();
       grid.hide();
       this.activatable = false;
-      retweet_button.grab_focus();
     }
   }
 
