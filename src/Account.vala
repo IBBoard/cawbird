@@ -91,7 +91,7 @@ public class Account : GLib.Object {
                                   .where_eqi ("id", id)
                                   .run ((vals) => {
       if (vals[0] != null) {
-        create_proxy(vals[2], vals[3], vals[0], vals[1]);
+        create_proxy(vals[0], vals[1], vals[2], vals[3]);
       }
       return false; //stop
     });
@@ -100,7 +100,9 @@ public class Account : GLib.Object {
       proxy_load_fallback = true;
       db.select ("common").cols ("token", "token_secret")
                                     .run((vals) => {
-        create_proxy(vals[0], vals[1]);
+        create_proxy(Settings.get_consumer_key (Cawbird.old_consumer_k),
+                     Settings.get_consumer_secret (Cawbird.old_consumer_s),
+                     vals[0], vals[1]);
         return false; // stop
       });
     }
@@ -113,11 +115,8 @@ public class Account : GLib.Object {
     this.user_stream.register (this.event_receiver);
   }
 
-  private void create_proxy(string token, string token_secret, string? consumer_key = null, string? consumer_secret = null){
-    var use_default = consumer_key == null || consumer_secret == null;
-    var key = use_default ? Settings.get_consumer_key () : consumer_key;
-    var secret = use_default ? Settings.get_consumer_secret () : consumer_secret;
-    proxy = new Rest.OAuthProxy (key, secret, "https://api.twitter.com/", false);
+  private void create_proxy(string consumer_key, string consumer_secret, string token, string token_secret){
+    proxy = new Rest.OAuthProxy (consumer_key, consumer_secret, "https://api.twitter.com/", false);
     proxy.token = token;
     proxy.token_secret = token_secret;
   }

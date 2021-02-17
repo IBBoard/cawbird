@@ -106,11 +106,11 @@
       <summary>Size and position of the settings dialog</summary>
     </key>
     <key type="s" name="consumer-key">
-      <default>"Vf9torDW2ZOw32DfhUtI9csL8"</default>
+      <default>""</default>
       <summary>The application's oauth consumer key.</summary>
     </key>
     <key type="s" name="consumer-secret">
-      <default>"18BEr1mdDH46cJhw5mUMwHe2TiBExOopEDxFbPzfJrlnFuvZJ2"</default>
+      <default>""</default>
       <summary>The application's oauth consumer secret</summary>
     </key>
     <key type="b" name="round-avatars">

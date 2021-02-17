@@ -93,12 +93,14 @@ public class Settings : GLib.Object {
     settings.set_boolean ("sidebar-visible", !settings.get_boolean ("sidebar-visible"));
   }
 
-  public static string get_consumer_key () {
-    return settings.get_string ("consumer-key");
+  public static string get_consumer_key (string default_key = Cawbird.consumer_k) {
+    var override_key = settings.get_string ("consumer-key");
+    return override_key != "" ? override_key : default_key;
   }
 
-  public static string get_consumer_secret () {
-    return settings.get_string ("consumer-secret");
+  public static string get_consumer_secret (string default_secret = Cawbird.consumer_s) {
+    var override_secret = settings.get_string ("consumer-secret");
+    return override_secret != "" ? override_secret : default_secret;
   }
 
   public static void add_text_transform_flag (Cb.TransformFlags flag) {

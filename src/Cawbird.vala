@@ -27,6 +27,11 @@ public class Cawbird : Gtk.Application {
   private GLib.GenericArray<Account> active_accounts;
   private bool started_as_service = false;
 
+  public static string old_consumer_k;
+  public static string old_consumer_s;
+  public static string consumer_k;
+  public static string consumer_s;
+
   const GLib.ActionEntry[] app_entries = {
     {"show-settings",     show_settings_activated          },
     {"show-shortcuts",    show_shortcuts_activated         },
@@ -38,6 +43,23 @@ public class Cawbird : Gtk.Application {
     {"reply-to-tweet",    reply_to_tweet_activated, "(xx)" },
   };
 
+  static construct {
+    // Base64-encoding our tokens to make them less obvious to searches
+    // Original Cawbird tokens
+    old_consumer_k = (string)GLib.Base64.decode("VmY5dG9yRFcyWk93MzJEZmhVdEk5Y3NMOA==");
+    old_consumer_s = (string)GLib.Base64.decode("MThCRXIxbWRESDQ2Y0podzVtVU13SGUyVGlCRXhPb3BFRHhGYlB6ZkpybG5GdXZaSjI=");
+
+    try {
+      // Tokens for this build
+      var token_base64 = (string)GLib.resources_lookup_data ("/uk/co/ibboard/cawbird/data/consumer_k.dat", 0).get_data();
+      consumer_k = (string)GLib.Base64.decode(token_base64);
+      token_base64 = (string)GLib.resources_lookup_data ("/uk/co/ibboard/cawbird/data/consumer_s.dat", 0).get_data();
+      consumer_s = (string)GLib.Base64.decode((string)token_base64);
+    }
+    catch (GLib.Error e) {
+      critical("Invalid consumer tokens");
+    }
+  }
 
 
   public Cawbird () {

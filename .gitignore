@@ -4,3 +4,5 @@ _build/
 flatpak/_build
 flatpak/.flatpak-builder
 valgrind*
+data/consumer_k.dat
+data/consumer_s.dat
