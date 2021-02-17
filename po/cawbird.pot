@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-02-14 15:17+0000\n"
+"POT-Creation-Date: 2021-02-17 20:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -537,6 +537,13 @@ msgid "Failed to retrieve request token"
 msgstr ""
 
 msgid "Wrong PIN"
+msgstr ""
+
+#, c-format
+msgid ""
+"The account %s already exists with different keys.\n"
+"\n"
+"Replace it?"
 msgstr ""
 
 msgid "Account already in use"

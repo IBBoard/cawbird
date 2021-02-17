@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-02-14 15:17+0000\n"
+"POT-Creation-Date: 2021-02-17 20:13+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Joan Ensesa <jensesa@protonmail.com>, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/cawbird/teams/107135/ca/)\n"
@@ -567,6 +567,13 @@ msgstr ""
 
 msgid "Wrong PIN"
 msgstr "PIN incorrecte"
+
+#, c-format
+msgid ""
+"The account %s already exists with different keys.\n"
+"\n"
+"Replace it?"
+msgstr ""
 
 msgid "Account already in use"
 msgstr "Ja s'està utilitzant el compte"

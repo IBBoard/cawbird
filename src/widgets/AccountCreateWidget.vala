@@ -119,14 +119,32 @@ class AccountCreateWidget : Gtk.Box {
       Json.Object root = root_node.get_object ();
       string screen_name = root.get_string_member ("screen_name");
       debug ("Checking for %s", screen_name);
-      Account? existing_account = Account.query_account (screen_name);
-      if (existing_account != null) {
-        critical ("Account is already in use");
-        show_error (_("Account already in use"));
-        pin_entry.sensitive = true;
-        pin_entry.text = "";
-        request_pin_button.sensitive = true;
-        return;
+      Account? acc = Account.query_account (screen_name);
+      if (acc != null) {
+        bool proxies_match = proxy_values_match(proxy, acc.get_proxy_values());
+        bool override_acct = false;
+        if (!proxies_match) {
+          Gtk.MessageDialog replace_dialog = new Gtk.MessageDialog(main_window, Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                                                   Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO,
+                                                                   _("The account %s already exists with different keys.\n\nReplace it?"),
+                                                                   screen_name);
+          var result = replace_dialog.run();
+          replace_dialog.destroy();
+          override_acct = result == Gtk.ResponseType.YES;
+        }
+
+        if (!proxies_match && override_acct) {
+          Account.update_api_details(acc.id, proxy);
+          acc.proxy = proxy;
+        }
+        else {
+          critical ("Account is already in use");
+          show_error (_("Account already in use"));
+          pin_entry.sensitive = true;
+          pin_entry.text = "";
+          request_pin_button.sensitive = true;
+          return;
+        }
       }
   
       Twitter.get().get_own_user_info.begin (proxy, (obj, res) => {
@@ -137,7 +155,10 @@ class AccountCreateWidget : Gtk.Box {
           warning ("Could not get json data: %s", e.message);
           return;
         }
-        Account acc = Account.create_account(user_info, proxy);
+        if (acc == null) {
+          acc = Account.create_account(user_info, proxy);
+        }
+        // else we retrieved and updated an existing account earlier
         debug ("user info call");
         acc.init_database ();
         acc.init_proxy ();
@@ -147,6 +168,11 @@ class AccountCreateWidget : Gtk.Box {
         account_created (acc);
       });
     });
+  }
+
+  private bool proxy_values_match(Rest.OAuthProxy proxy, string[] proxy_values) {
+    return proxy.consumer_key == proxy_values[0] && proxy.consumer_secret == proxy_values[1]
+      && proxy.token == proxy_values[2] && proxy.token_secret == proxy_values[3];
   }
 
   private async void do_confirm () {

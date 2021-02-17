@@ -85,34 +85,39 @@ public class Account : GLib.Object {
     if (proxy != null)
       return;
 
-    init_database ();
-    Cawbird.db.select ("accounts")
-                                  .cols ("consumer_key", "consumer_secret", "token", "token_secret")
-                                  .where_eqi ("id", id)
-                                  .run ((vals) => {
-      if (vals[0] != null) {
-        create_proxy(vals[0], vals[1], vals[2], vals[3]);
-      }
-      return false; //stop
-    });
+    var proxy_values = get_proxy_values();
 
-    if (proxy == null) {
-      proxy_load_fallback = true;
-      db.select ("common").cols ("token", "token_secret")
-                                    .run((vals) => {
-        create_proxy(Settings.get_consumer_key (Cawbird.old_consumer_k),
-                     Settings.get_consumer_secret (Cawbird.old_consumer_s),
-                     vals[0], vals[1]);
-        return false; // stop
-      });
-    }
-
-    if (proxy == null) {
+    if (proxy_values.length != 4) {
       critical ("Could not load token{_secret} for user %s", this.screen_name);
     }
 
+    create_proxy(proxy_values[0], proxy_values[1], proxy_values[2], proxy_values[3]);
+
     this.user_stream = new Cb.UserStream (this.screen_name, proxy);
     this.user_stream.register (this.event_receiver);
+  }
+
+  public string[] get_proxy_values() {
+    var proxy_values = new string[0];
+    init_database ();
+    Cawbird.db.select ("accounts").cols ("consumer_key", "consumer_secret", "token", "token_secret")
+                                  .where_eqi ("id", id)
+                                  .run ((vals) => {
+      proxy_values = vals;
+      return false; //stop
+    });
+
+    if (proxy_values[0] == null) {
+      this.proxy_load_fallback = true;
+      db.select ("common").cols ("token", "token_secret")
+                                    .run((vals) => {
+        proxy_values = { Settings.get_consumer_key (Cawbird.old_consumer_k),
+                         Settings.get_consumer_secret (Cawbird.old_consumer_s),
+                         vals[0], vals[1] };
+        return false; // stop
+      });
+    }
+    return proxy_values;
   }
 
   private void create_proxy(string consumer_key, string consumer_secret, string token, string token_secret){
@@ -656,6 +661,15 @@ public class Account : GLib.Object {
       lookup_accounts ();
 
     return accounts.length;
+  }
+
+  public static void update_api_details(int64 id, Rest.OAuthProxy proxy) {
+    Cawbird.db.update ("accounts").val ("consumer_key", proxy.consumer_key)
+                                  .val ("consumer_secret", proxy.consumer_secret)
+                                  .val ("token", proxy.token)
+                                  .val ("token_secret", proxy.token_secret)
+                                  .where_eqi ("id", id)
+                                  .run ();
   }
 
   private static Account construct_from_details(int64 id, string screen_name, string name, string avatar_url, int64 migrated) {

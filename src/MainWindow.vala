@@ -272,7 +272,14 @@ public class MainWindow : Gtk.ApplicationWindow {
 
       var create_widget = new AccountCreateWidget (cb, this);
       create_widget.account_created.connect ((acc) => {
-        change_account (acc);
+        MainWindow? account_window = null;
+        if (cb.is_window_open_for_user_id (acc.id, out account_window)) {
+          account_window.present ();
+          this.dispose();
+        }
+        else {
+          change_account (acc);
+        }
       });
       this.add (create_widget);
     }

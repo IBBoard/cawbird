@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-02-14 15:17+0000\n"
+"POT-Creation-Date: 2021-02-17 20:13+0000\n"
 "PO-Revision-Date: 2017-11-19 08:34+0000\n"
 "Last-Translator: Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail."
 "com>\n"
@@ -573,6 +573,13 @@ msgstr ""
 
 msgid "Wrong PIN"
 msgstr "Погрешан ПИН"
+
+#, c-format
+msgid ""
+"The account %s already exists with different keys.\n"
+"\n"
+"Replace it?"
+msgstr ""
 
 msgid "Account already in use"
 msgstr "Налог се већ користи"
