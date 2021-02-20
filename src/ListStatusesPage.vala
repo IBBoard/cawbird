@@ -171,6 +171,7 @@ class ListStatusesPage : ScrollWidget, Cb.MessageReceiver, IPage {
       created_at_label.label = new GLib.DateTime.from_unix_local (created_at).format ("%x, %X");
       mode_label.label = Utils.capitalize (mode);
 
+      // TRANSLATORS: "%s" is the user's name for the list - e.g. "Contributors" when looking at https://twitter.com/i/lists/1285277968676331522
       var accessible_name = _("%s list tweets").printf(list_title);
       tweet_list.get_accessible().set_name(accessible_name);
       tweet_list.get_accessible().set_description(accessible_name);
