@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-02-17 20:13+0000\n"
+"POT-Creation-Date: 2021-02-20 10:46+0000\n"
 "PO-Revision-Date: 2017-10-22 15:14+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -205,6 +205,7 @@ msgstr[3] "%d nowych tweetów"
 msgid "Home"
 msgstr "Główna"
 
+#. TRANSLATORS: "%s" is the user's name for the list - e.g. "Contributors" when looking at https://twitter.com/i/lists/1285277968676331522
 #, fuzzy, c-format
 msgid "%s list tweets"
 msgstr "Użytkownik %s napisał tweet"
