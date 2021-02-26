@@ -195,7 +195,7 @@ msgstr "Loidhne-ama a dachaighe"
 
 #, c-format
 msgid "%s retweeted %s"
-msgstr "Rinn %s ath-thweetaigeadh air %s"
+msgstr "Rinn %s ath-thweeteadh air %s"
 
 #, c-format
 msgid "%s tweeted"
@@ -340,7 +340,7 @@ msgid "Translate to English"
 msgstr "Eadar-theangaich dhan Ghàidhlig"
 
 msgid "Retweets"
-msgstr "Air ath-thweetaigeadh"
+msgstr "Air ath-thweeteadh"
 
 msgid "Open in Browser"
 msgstr "Fosgail sa bhrabhsair"
@@ -365,7 +365,7 @@ msgstr "Sguab às"
 #. TRANSLATORS: replacements are name and handle (without the "@")
 #, c-format
 msgid "Retweeted by %s (@%s)"
-msgstr "Air ath-thweetaigeadh le %s (@%s)"
+msgstr "Air ath-thweeteadh le %s (@%s)"
 
 msgid "Are you sure you want to delete this tweet?"
 msgstr "A bheil thu cinnteach gu bheil thu airson an tweet seo a sguabadh às?"
@@ -506,7 +506,7 @@ msgstr ""
 "rùnach eile, chaidh an cunntas seo a ghlasadh rè seal."
 
 msgid "You have already retweeted this Tweet."
-msgstr "Rinn thu ath-thweetaigeadh air an tweet seo cheana."
+msgstr "Rinn thu ath-thweeteadh air an tweet seo cheana."
 
 msgid "You cannot send messages to this user."
 msgstr "Chan urrainn dhut teachdaireachd a chur dhan chleachdaiche seo."
@@ -980,7 +980,7 @@ msgid "Muted"
 msgstr "’Ga mhùchadh"
 
 msgid "Retweets disabled"
-msgstr "Tha ath-thweetaigeadh à comas"
+msgstr "Tha ath-thweeteadh à comas"
 
 msgid "More actions"
 msgstr "Barrachd ghnìomhan"
