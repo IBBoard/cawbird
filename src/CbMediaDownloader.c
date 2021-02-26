@@ -401,10 +401,19 @@ cb_media_downloader_load_threaded (CbMediaDownloader *downloader,
                   G_CALLBACK(update_media_progress), cancellable, &error, media);  
 
   if (error) {
-    g_warning ("Couldn't load pixbuf: %s (%s)", error->message, download_url);
-    mark_invalid (media);
+    g_info ("Couldn't load pixbuf, retrying: %s (%s)", error->message, download_url);
     g_error_free (error);
-    return;
+
+    load_media_url (download_url, task_data, &media->surface, &media->animation,
+                    media->consumer_key, media->consumer_secret, media->token, media->token_secret,
+                    G_CALLBACK(update_media_progress), cancellable, &error, media);
+
+    if (error) {
+      g_warning ("Couldn't load pixbuf: %s (%s)", error->message, download_url);
+      mark_invalid (media);
+      g_error_free (error);
+      return;
+    }
   }
 
   cb_media_loading_finished (media);
