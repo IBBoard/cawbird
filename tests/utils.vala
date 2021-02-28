@@ -183,6 +183,45 @@ void get_surrounded_cursor_mention_word () {
   assert(start_iter.get_offset() == 7);
   assert(end_iter.get_offset() == 15);
 }
+//680,527 70,55 => 0,1 @ 0.102941
+void test_calculate_draw_offset() {
+  int draw_x, draw_y;
+  double scale;
+  Utils.calculate_draw_offset(100, 100, 100, 100, out draw_x, out draw_y, out scale);
+  assert(draw_x == 0);
+  assert(draw_y == 0);
+  assert(scale == 1);
+  Utils.calculate_draw_offset(200, 200, 100, 100, out draw_x, out draw_y, out scale);
+  assert(draw_x == 0);
+  assert(draw_y == 0);
+  assert(scale == 0.5);
+  Utils.calculate_draw_offset(100, 100, 200, 200, out draw_x, out draw_y, out scale);
+  assert(draw_x == 50);
+  assert(draw_y == 100);
+  assert(scale == 1);
+  Utils.calculate_draw_offset(100, 400, 100, 100, out draw_x, out draw_y, out scale);
+  assert(draw_x == 0);
+  assert(draw_y == -150);
+  assert(scale == 1);
+  Utils.calculate_draw_offset(200, 400, 100, 100, out draw_x, out draw_y, out scale);
+  assert(draw_x == 0);
+  assert(draw_y == -50);
+  assert(scale == 0.5);
+  Utils.calculate_draw_offset(400, 100, 100, 100, out draw_x, out draw_y, out scale);
+  assert(draw_x == 0);
+  assert(draw_y == 75);
+  assert(scale == 0.25);
+  // Make sure we round so that we don't get -1px Y offsets
+  Utils.calculate_draw_offset(491, 680, 470, 650, out draw_x, out draw_y, out scale);
+  assert(draw_x == 0);
+  assert(draw_y == 0);
+  assert(scale == (470.0/491.0));
+  Utils.calculate_draw_offset(680, 527, 70, 55, out draw_x, out draw_y, out scale);
+  assert(draw_x == 0);
+  assert(draw_y == 0);
+  assert(scale == (70.0/680.0));
+  
+}
 
 int main (string[] args) {
   GLib.Test.init (ref args);
@@ -195,6 +234,7 @@ int main (string[] args) {
   GLib.Test.add_func ("/utils/get-unicode-cursor-mention-words", get_unicode_cursor_mention_word);
   GLib.Test.add_func ("/utils/get-punctuated-name-cursor-mention-words", get_punctuated_name_cursor_mention_word);
   GLib.Test.add_func ("/utils/get-surrounded-cursor-mention-words", get_surrounded_cursor_mention_word);
+  GLib.Test.add_func ("/utils/calculate-draw-offset", test_calculate_draw_offset);
 
   return GLib.Test.run ();
 }

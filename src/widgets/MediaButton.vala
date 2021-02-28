@@ -168,52 +168,24 @@ private class MediaButton : Gtk.Widget {
     this.add_tick_callback (fade_in_cb);
   }
 
-  private void get_draw_size (out int width,
-                              out int height,
-                              out double scale) {
-    if (this._media.thumb_width == -1 && this._media.thumb_height == -1) {
-      width  = 0;
-      height = 0;
-      scale  = 0.0;
-      return;
-    }
-
-    width = int.min (this._media.thumb_width, this.get_allocated_width ());
-    scale = this.get_allocated_width () / (double) this._media.thumb_width;
-
-    if (scale > 1) {
-      height = int.min (this._media.thumb_height, (int) Math.floor ((this.get_allocated_width () / 9.0) * 16));
-      scale = 1;
-    } else {
-      height = (int) Math.floor (double.min (this._media.thumb_height * scale, (this._media.thumb_width * scale / 9.0) * 16));
-    }
-  }
-
   public override bool draw (Cairo.Context ct) {
     int widget_width = get_allocated_width ();
     int widget_height = get_allocated_height ();
 
-
     /* Draw thumbnail */
     if (_media != null && _media.surface != null && _media.loaded) {
-
-
-      int draw_width, draw_height;
+      int draw_x, draw_y;
       double scale;
-      this.get_draw_size (out draw_width, out draw_height, out scale);
+      Utils.calculate_draw_offset (_media.thumb_width, _media.thumb_height,
+                                   get_allocated_width(), get_allocated_height(),
+                                   out draw_x, out draw_y, out scale);
 
-      int draw_x = (widget_width / 2) - (draw_width / 2);
+      var draw_width = get_allocated_width() - draw_x;
+      var draw_height = get_allocated_height() - draw_y;
 
       ct.save ();
       ct.rectangle (0, 0, widget_width, widget_height);
       ct.scale (scale, scale);
-      double draw_y;
-      if (draw_height <= widget_height) {
-        draw_y = widget_height - draw_height;
-      }
-      else {
-        draw_y = -Math.floor(((_media.thumb_height * scale) - draw_height) / 2);
-      }
       ct.set_source_surface (media.surface, draw_x / scale, draw_y / scale);
       ct.paint_with_alpha (this.media_alpha);
       ct.restore ();
@@ -223,6 +195,9 @@ private class MediaButton : Gtk.Widget {
        * If image got moved off the top, we cropped it. Indicate that.
        * Currently trying a gradient overlay top and bottom
        */
+       debug("%d,%d %d,%d => %d,%d @ %f", _media.thumb_width, _media.thumb_height,
+       get_allocated_width(), get_allocated_height(),
+        draw_x,  draw_y, scale);
       if (draw_y < 0) {
         Cairo.Pattern pattern = new Cairo.Pattern.linear (0.0, 0.0, 0, widget_height);
         pattern.add_color_stop_rgba (0.01, 0.3, 0.3, 0.3, 1);
@@ -348,7 +323,12 @@ private class MediaButton : Gtk.Widget {
       media_height = this._media.thumb_height;
     }
 
-    minimum = int.min (media_height, MAX_HEIGHT);
+    if (restrict_height) {
+      minimum = int.min (media_height, MAX_HEIGHT);
+    }
+    else {
+      minimum = media_height;
+    }
 
     natural = media_height;
   }
@@ -371,12 +351,14 @@ private class MediaButton : Gtk.Widget {
     
     int height = 0;
 
-    if (restrict_height) {
-      height = int.min (media_height, MAX_HEIGHT);
-    } else if (scale > 1) {
+    if (scale >= 1) {
       height = int.min (media_height, (int) Math.floor ((width / 9.0) * 16));
     } else {
       height = (int) Math.floor (double.min (media_height * scale, (media_width * scale / 9.0) * 16));
+    }
+
+    if (restrict_height) {
+      height = int.min (height, MAX_HEIGHT);
     }
 
     minimum = natural = height;
@@ -417,17 +399,12 @@ private class MediaButton : Gtk.Widget {
 
   public override void realize () {
     this.set_realized (true);
-    int draw_width;
-    int draw_height;
-    double scale;
-
-    this.get_draw_size (out draw_width, out draw_height, out scale);
 
     Gdk.WindowAttr attr = {};
     attr.x = 0;
     attr.y = 0;
-    attr.width = draw_width;
-    attr.height = draw_height;
+    attr.width = get_allocated_width();
+    attr.height = get_allocated_height();
     attr.window_type = Gdk.WindowType.CHILD;
     attr.visual = this.get_visual ();
     attr.wclass = Gdk.WindowWindowClass.INPUT_ONLY;
@@ -475,15 +452,16 @@ private class MediaButton : Gtk.Widget {
   public override void size_allocate (Gtk.Allocation alloc) {
     base.size_allocate (alloc);
 
-    int draw_width;
-    int draw_height;
-    double scale;
-
     if (this.get_realized ()) {
-      this.get_draw_size (out draw_width, out draw_height, out scale);
-      int draw_x = (alloc.width / 2) - (draw_width / 2);
-      int draw_y = alloc.height - draw_height;
-      this.event_window.move_resize (alloc.x + draw_x, alloc.y + draw_y,
+      int draw_x, draw_y;
+      double scale;
+      Utils.calculate_draw_offset (_media.thumb_width, _media.thumb_height,
+                                   get_allocated_width(), get_allocated_height(),
+                                   out draw_x, out draw_y, out scale);
+      
+      var draw_width = alloc.width - draw_x * 2;
+      var draw_height = alloc.height - draw_y;
+      this.event_window.move_resize (alloc.x + draw_x, alloc.y + int.max(0, draw_y),
                                      draw_width, draw_height);
     }
   }

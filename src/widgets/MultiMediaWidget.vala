@@ -75,6 +75,7 @@ public class MultiMediaWidget : Gtk.Box {
     var button = new MediaButton (null, this.restrict_height);
     button.set_data ("pos", index);
     button.window = this.window;
+    button.halign = Gtk.Align.CENTER;
     button.valign = Gtk.Align.END;
     media_buttons[index] = button;
 

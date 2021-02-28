@@ -683,4 +683,28 @@ namespace Utils {
     var tweet_language = tweet.get_language();
     return tweet_language != null && tweet_language != get_user_language();
   }
+
+  public void calculate_draw_offset (int img_width, int img_height,
+                                     int widget_width, int widget_height,
+                                     out int draw_x, out int draw_y, out double scale) {
+    if (img_width == -1 && img_height == -1) {
+      draw_x  = 0;
+      draw_y = 0;
+      scale  = 0.0;
+      return;
+    }
+
+    scale = double.min(1, widget_width / (double) img_width);
+    var scaled_height = (int)Math.ceil(img_height * scale);
+    
+    if (scaled_height <= widget_height) {
+      draw_y = widget_height - scaled_height;
+    }
+    else {
+      draw_y = (int)Math.floor((widget_height - scaled_height) / 2);
+    }
+
+    draw_x = int.max(0, (int)Math.round((widget_width - img_width * scale) / 2));
+    debug("%d %d => %d, %d, %f", widget_height, scaled_height, draw_x, draw_y, scale);
+  }
 }
