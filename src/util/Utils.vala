@@ -705,6 +705,5 @@ namespace Utils {
     }
 
     draw_x = int.max(0, (int)Math.round((widget_width - img_width * scale) / 2));
-    debug("%d %d => %d, %d, %f", widget_height, scaled_height, draw_x, draw_y, scale);
   }
 }

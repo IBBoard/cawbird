@@ -195,9 +195,6 @@ private class MediaButton : Gtk.Widget {
        * If image got moved off the top, we cropped it. Indicate that.
        * Currently trying a gradient overlay top and bottom
        */
-       debug("%d,%d %d,%d => %d,%d @ %f", _media.thumb_width, _media.thumb_height,
-       get_allocated_width(), get_allocated_height(),
-        draw_x,  draw_y, scale);
       if (draw_y < 0) {
         Cairo.Pattern pattern = new Cairo.Pattern.linear (0.0, 0.0, 0, widget_height);
         pattern.add_color_stop_rgba (0.01, 0.3, 0.3, 0.3, 1);
