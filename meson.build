@@ -243,6 +243,7 @@ executable(
   dependencies: cb_dep,
   include_directories: srcdir,
   vala_args: [
+    meson.source_root() + '/vapi/config.vapi',
     meson.source_root() + '/vapi/cawbird-internal.vapi',
     meson.source_root() + '/vapi/libtl.vapi',
   ],

@@ -262,14 +262,6 @@ public class Cawbird : Gtk.Application {
     typeof (ChildSizedScroller).ensure ();
 
     debug ("startup");
-    // Setup gettext
-    GLib.Intl.setlocale (GLib.LocaleCategory.ALL, Config.DATADIR + "/locale");
-    GLib.Intl.bindtextdomain (Config.GETTEXT_PACKAGE, null);
-    GLib.Intl.bind_textdomain_codeset (Config.GETTEXT_PACKAGE, "UTF-8");
-    GLib.Intl.textdomain (Config.GETTEXT_PACKAGE);
-
-
-
     Utils.load_custom_css ();
     Utils.load_custom_icons ();
     Utils.init_soup_session ();

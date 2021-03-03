@@ -23,6 +23,12 @@ int main (string[] args) {
   Gst.init (ref args);
 #endif
 
+  // Setup gettext
+  GLib.Intl.setlocale (GLib.LocaleCategory.ALL, "");
+  GLib.Intl.bindtextdomain (Config.GETTEXT_PACKAGE, null);
+  GLib.Intl.bind_textdomain_codeset (Config.GETTEXT_PACKAGE, "UTF-8");
+  GLib.Intl.textdomain (Config.GETTEXT_PACKAGE);
+
   //no initialisation of static fields :(
   Settings.init ();
   var cawbird = new Cawbird ();
