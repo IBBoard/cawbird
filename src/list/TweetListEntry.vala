@@ -743,7 +743,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   }
 
   public override void get_preferred_height_for_width (int width, out int min, out int nat) {
-    if ((width < Cawbird.RESPONSIVE_LIMIT) == (get_allocated_width() < Cawbird.RESPONSIVE_LIMIT)) {
+    if ((width < Cawbird.RESPONSIVE_LIMIT) == (get_allocated_width() < Cawbird.RESPONSIVE_LIMIT) && get_allocated_width() > 1 ) {
       // We're staying the same side of the limit, so let GTK do everything
       base.get_preferred_height_for_width(width, out min, out nat);
       return;
@@ -847,7 +847,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   }
 
   public override void size_allocate(Gtk.Allocation allocation) {
-    if ((allocation.width < Cawbird.RESPONSIVE_LIMIT) != (get_allocated_width() < Cawbird.RESPONSIVE_LIMIT) || get_allocated_width() == 1) {
+    if ((allocation.width < Cawbird.RESPONSIVE_LIMIT) != (get_allocated_width() < Cawbird.RESPONSIVE_LIMIT) || get_allocated_width() <= 1) {
       // We've crossed the threshold, so reallocate as appropriate
       if (allocation.width < Cawbird.RESPONSIVE_LIMIT) {
         grid.child_set (avatar_image, "height", 2);
