@@ -5,7 +5,7 @@ project('Cawbird', ['vala', 'c'],
         ])
 
 prefix = get_option('prefix')
-localedir = prefix / get_option ('localedir')
+localedir = prefix / get_option('localedir')
 
 gnome = import('gnome')
 srcdir = include_directories('src')
@@ -209,7 +209,11 @@ cb_resources = gnome.compile_resources(
 
 # config.h
 cdata = configuration_data()
-cdata.set_quoted ('LOCALEDIR', localedir)
+if get_option('localtextdomain')
+  cdata.set('LOCALEDIR', 'NULL')
+else
+  cdata.set_quoted ('LOCALEDIR', localedir)
+endif
 cdata.set_quoted ('GETTEXT_PACKAGE', 'cawbird')
 configure_file(
   #input : 'config.h.meson',

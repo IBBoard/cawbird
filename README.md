@@ -189,6 +189,8 @@ meson build
 ninja -C build
 ```
 
+If you want to test translations locally then you will also need to pass `-Dlocaltextdomain=true` to meson.
+
 Note that executing `build/cawbird` may result in one of the following errors:
 
 ```Bash
