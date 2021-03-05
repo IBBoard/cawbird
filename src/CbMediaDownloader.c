@@ -450,6 +450,22 @@ cb_media_downloader_load_async (CbMediaDownloader   *downloader,
   g_task_run_in_thread (task, load_in_thread);
 }
 
+void cb_media_downloader_reload_async (CbMediaDownloader   *downloader,
+                                       CbMedia             *media,
+                                       GAsyncReadyCallback  callback,
+                                       gpointer             user_data)
+{
+  g_return_if_fail (media->invalid);
+  media->loaded = FALSE;
+  media->invalid = FALSE;
+  media->percent_loaded = 0;
+  if (media->surface != NULL) {
+    cairo_surface_destroy (media->surface);
+    media->surface = NULL;
+  }
+  cb_media_downloader_load_async(downloader, media, callback, user_data);
+}
+
 static void
 update_media_hires_progress (SoupMessage *msg,
                        SoupBuffer  *chunk,

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-02-20 10:46+0000\n"
+"POT-Creation-Date: 2021-03-05 20:39+0000\n"
 "PO-Revision-Date: 2018-02-09 06:34+0000\n"
 "Last-Translator: Kim Malmo <berencamlost@msn.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/cawbird/cawbird/"
@@ -584,6 +584,9 @@ msgstr "Følg"
 
 msgid "Copy URL"
 msgstr "Kopier nettadresse"
+
+msgid "Reload image"
+msgstr ""
 
 msgid "Save as…"
 msgstr "Lagre som …"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-02-20 10:46+0000\n"
+"POT-Creation-Date: 2021-03-05 20:39+0000\n"
 "PO-Revision-Date: 2018-01-17 19:31+0000\n"
 "Last-Translator: HybridGlucose <a07051226@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/cawbird/cawbird/"
@@ -574,6 +574,9 @@ msgstr "跟隨"
 
 msgid "Copy URL"
 msgstr "複製網址"
+
+msgid "Reload image"
+msgstr ""
 
 msgid "Save as…"
 msgstr "儲存為..."

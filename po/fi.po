@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-02-20 10:46+0000\n"
+"POT-Creation-Date: 2021-03-05 20:39+0000\n"
 "PO-Revision-Date: 2017-10-22 17:13+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -586,6 +586,9 @@ msgstr "Seuraa"
 
 msgid "Copy URL"
 msgstr "Kopioi osoite"
+
+msgid "Reload image"
+msgstr ""
 
 msgid "Save as…"
 msgstr "Tallenna nimellä…"

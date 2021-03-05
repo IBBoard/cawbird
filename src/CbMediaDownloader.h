@@ -45,6 +45,10 @@ void                cb_media_downloader_load_async  (CbMediaDownloader   *downlo
                                                      CbMedia             *media,
                                                      GAsyncReadyCallback  callback,
                                                      gpointer             user_data);
+void                cb_media_downloader_reload_async  (CbMediaDownloader   *downloader,
+                                                       CbMedia             *media,
+                                                       GAsyncReadyCallback  callback,
+                                                       gpointer             user_data);
 void                cb_media_downloader_load_hires_async  (CbMediaDownloader   *downloader,
                                                            CbMedia             *media,
                                                            GAsyncReadyCallback  callback,

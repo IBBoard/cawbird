@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-02-20 10:46+0000\n"
+"POT-Creation-Date: 2021-03-05 20:39+0000\n"
 "PO-Revision-Date: 2017-11-12 23:35+0000\n"
 "Last-Translator: MTD TR <dev.mantendo@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/cawbird/cawbird/"
@@ -574,6 +574,9 @@ msgstr "フォロー"
 
 msgid "Copy URL"
 msgstr "URLをコピー"
+
+msgid "Reload image"
+msgstr ""
 
 msgid "Save as…"
 msgstr "名前を付けて保存"

@@ -108,17 +108,11 @@ public class MultiMediaWidget : Gtk.Box {
       return;
 
     if (source.invalid) {
-      for (int i = 0; i < media_count; i ++) {
-        if (media_buttons[i] != null && media_buttons[i].media == source) {
-          this.remove (media_buttons[i]);
-          media_buttons[i] = null;
-          if (!media_invalid_fired) {
-            media_invalid ();
-            media_invalid_fired = true;
-          }
-          return;
-        }
+      if (!media_invalid_fired) {
+        media_invalid ();
+        media_invalid_fired = true;
       }
+      return;
     }
 
     for (int i = 0; i < media_count; i ++) {

@@ -15,7 +15,7 @@
  *  along with cawbird.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-private class MediaButton : Gtk.Widget {
+private class MediaButton : Gtk.Bin {
   private const int PLAY_ICON_SIZE = 32;
   private const int MAX_HEIGHT     = 200;
   /* We use MIN_ constants in case the media has not yet been loaded */
@@ -24,6 +24,12 @@ private class MediaButton : Gtk.Widget {
   private Gdk.Window? event_window = null;
   private Cb.Media? _media = null;
   private static Cairo.Surface[] play_icons;
+  private bool is_m3u8 {
+    get { 
+      // Some URLs have query strings, so we can't just suffix
+      return _media.url.contains(".m3u8");
+    }
+  }
   public Cb.Media? media {
     get {
       return _media;
@@ -39,8 +45,7 @@ private class MediaButton : Gtk.Widget {
         } else {
           this.media_alpha = 1.0;
         }
-        bool is_m3u8 = _media.url.contains(".m3u8"); // Some URLs have query strings, so we can't just suffix
-        ((GLib.SimpleAction)actions.lookup_action ("save-as")).set_enabled (!is_m3u8);        
+        set_save_as_sensitivity();
         set_image_description();
         if (!is_m3u8 && !_media.requires_authentication()) {
           menu_model.append (_("Copy URL"), "media.copy-url");
@@ -92,6 +97,12 @@ private class MediaButton : Gtk.Widget {
 
   public MediaButton (Cb.Media? media, bool restrict_height = false) {
     this.restrict_height = restrict_height;
+    Gtk.Button reload_button = new Gtk.Button();
+    reload_button.label = _("Reload image");
+    reload_button.halign = Gtk.Align.CENTER;
+    reload_button.valign = Gtk.Align.CENTER;
+    this.add(reload_button);
+    reload_button.show();
     this.get_style_context ().add_class ("inline-media");
     actions = new GLib.SimpleActionGroup ();
     actions.add_action_entries (action_entries, this);
@@ -115,18 +126,19 @@ private class MediaButton : Gtk.Widget {
     set_image_description();
   }
 
+  private void reload_image() {
+    Cb.MediaDownloader.get_default().reload_async.begin(media);
+  }
+
   private void media_progress_cb () {
     this.queue_draw ();
 
     if (this._media.loaded) {
       if (!_media.invalid && _media.surface != null) {
         this.start_fade ();
-      } else {
-        /* Invalid media. */
-        this.hide ();
-        this.set_sensitive (false);
       }
 
+      set_save_as_sensitivity();
       this.queue_resize ();
     }
   }
@@ -172,8 +184,11 @@ private class MediaButton : Gtk.Widget {
     int widget_width = get_allocated_width ();
     int widget_height = get_allocated_height ();
 
-    /* Draw thumbnail */
-    if (_media != null && _media.surface != null && _media.loaded) {
+    if (_media != null && _media.invalid) {
+      base.draw(ct);
+    }
+    else if (_media != null && _media.surface != null && _media.loaded) {
+      /* Draw thumbnail */
       int draw_x, draw_y;
       double scale;
       Utils.calculate_draw_offset (_media.thumb_width, _media.thumb_height,
@@ -239,7 +254,6 @@ private class MediaButton : Gtk.Widget {
       if (this.has_visible_focus ()) {
         sc.render_focus (ct, draw_x + 2, 2, draw_width - 4, draw_height - 4);
       }
-
     } else {
       var sc = this.get_style_context ();
       double layout_x, layout_y;
@@ -250,7 +264,6 @@ private class MediaButton : Gtk.Widget {
       layout_y = (widget_height / 2.0) - (layout_h / Pango.SCALE / 2.0);
       sc.render_layout (ct, layout_x, layout_y, layout);
     }
-
 
     return Gdk.EVENT_PROPAGATE;
   }
@@ -459,7 +472,7 @@ private class MediaButton : Gtk.Widget {
       var draw_width = alloc.width - draw_x * 2;
       var draw_height = alloc.height - draw_y;
       this.event_window.move_resize (alloc.x + draw_x, alloc.y + int.max(0, draw_y),
-                                     draw_width, draw_height);
+                                      draw_width, draw_height);
     }
   }
 
@@ -516,17 +529,27 @@ private class MediaButton : Gtk.Widget {
       return;
 
     if (button == Gdk.BUTTON_PRIMARY) {
-      this.press_gesture.set_state (Gtk.EventSequenceState.CLAIMED);
-      double px = x / (double)this.get_allocated_width ();
-      double py = y / (double)this.get_allocated_height ();
-      this.clicked (this, px, py);
+      if (_media.invalid) {
+        reload_image();
+      }
+      else {
+        this.press_gesture.set_state (Gtk.EventSequenceState.CLAIMED);
+        double px = x / (double)this.get_allocated_width ();
+        double py = y / (double)this.get_allocated_height ();
+        this.clicked (this, px, py);
+      }
     }
   }
 
   public override bool key_press_event (Gdk.EventKey event) {
     if (event.keyval == Gdk.Key.Return ||
         event.keyval == Gdk.Key.KP_Enter) {
-      this.clicked (this, 0.5, 0.5);
+      if (_media.invalid) {
+        reload_image();
+      }
+      else {
+        this.clicked (this, 0.5, 0.5);
+      }
       return Gdk.EVENT_STOP;
     }
 
@@ -538,5 +561,9 @@ private class MediaButton : Gtk.Widget {
       this.set_tooltip_text(media.alt_text);
       this.get_accessible().set_description(media.alt_text ?? "");
     }
+  }
+
+  private void set_save_as_sensitivity() {
+    ((GLib.SimpleAction)actions.lookup_action ("save-as")).set_enabled (!_media.invalid && !is_m3u8);    
   }
 }

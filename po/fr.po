@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-02-20 10:46+0000\n"
+"POT-Creation-Date: 2021-03-05 20:39+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Mattherix <mattherix@protonmail.com>, 2020\n"
 "Language-Team: French (https://www.transifex.com/cawbird/teams/107135/fr/)\n"
@@ -609,6 +609,10 @@ msgstr "Suivre"
 
 msgid "Copy URL"
 msgstr "Copier l'URL"
+
+#, fuzzy
+msgid "Reload image"
+msgstr "Erreur lors du chargement de l'image"
 
 msgid "Save as…"
 msgstr "Enregistrer sous…"

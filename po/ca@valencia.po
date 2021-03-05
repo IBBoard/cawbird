@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-02-20 10:46+0000\n"
+"POT-Creation-Date: 2021-03-05 20:39+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/cawbird/cawbird/"
@@ -575,6 +575,9 @@ msgid "Follow"
 msgstr "Segueix"
 
 msgid "Copy URL"
+msgstr ""
+
+msgid "Reload image"
 msgstr ""
 
 msgid "Save as…"

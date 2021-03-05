@@ -2,24 +2,26 @@
 # Copyright (C) YEAR 2013-2018 Timm Bäder, 2018-2020 IBBoard
 # This file is distributed under the same license as the cawbird package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 # Translators:
 # GunChleoc, 2021
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-02-20 10:46+0000\n"
+"POT-Creation-Date: 2021-03-05 20:39+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: GunChleoc, 2021\n"
-"Language-Team: Gaelic, Scottish (https://www.transifex.com/cawbird/teams/107135/gd/)\n"
+"Language-Team: Gaelic, Scottish (https://www.transifex.com/cawbird/"
+"teams/107135/gd/)\n"
+"Language: gd\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: gd\n"
-"Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
+"(n > 2 && n < 20) ? 2 : 3;\n"
 
 msgid "Cawbird"
 msgstr "Cawbird"
@@ -28,16 +30,16 @@ msgid "Twitter Client"
 msgstr "Cliant Twitter"
 
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as"
-" Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as "
+"Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
-"’S e cliant Twitter stèidhichte air GTK+ tùsail a th’ ann an Cawbird a bheir"
-" bun-ghleusan dhut mar teachdaireachdan dìreach (DMs), brathan mu tweets is "
+"’S e cliant Twitter stèidhichte air GTK+ tùsail a th’ ann an Cawbird a bheir "
+"bun-ghleusan dhut mar teachdaireachdan dìreach (DMs), brathan mu tweets is "
 "seallaidhean còmhraidh."
 
 msgid ""
-"Additional features include local viewing of videos, multiple inline images,"
-" Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images, "
+"Lists, Filters, multiple accounts, etc."
 msgstr ""
 "Am measg nan gleusan eile, tha coimhead air videothan gu h-ionadail, iomadh "
 "dealbh am broinn na loidhne, liostaichean, criathragan, iomadh cunntas is "
@@ -65,8 +67,7 @@ msgstr "IBBoard"
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Cleachd Twitter am broinn aplacaid deasga àbhaisteach"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or
-#. localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;"
 
@@ -93,24 +94,19 @@ msgstr ""
 "Cha sheall e ach uinneag “Sgrìobh Tweet” dhan chunntas shònraichte gun dad "
 "sam bith eile."
 
-#. TRANSLATORS: Used as the placeholder for the account name in the `--help`
-#. output
+#. TRANSLATORS: Used as the placeholder for the account name in the `--help` output
 msgid "account-name"
 msgstr "ainm-cunntais"
 
-#. TRANSLATORS: Description of the `--start-service` option for the command-
-#. line
+#. TRANSLATORS: Description of the `--start-service` option for the command-line
 msgid "Start service"
 msgstr "Tòisich air an t-seirbheis"
 
-#. TRANSLATORS: Description of the `--stop-service` option for the command-
-#. line
+#. TRANSLATORS: Description of the `--stop-service` option for the command-line
 msgid "Stop service, if it has been started as a service"
-msgstr ""
-"Cuir crìoch air an t-seirbheis ma chaidh a thòiseachadh ’na sheirbheis"
+msgstr "Cuir crìoch air an t-seirbheis ma chaidh a thòiseachadh ’na sheirbheis"
 
-#. TRANSLATORS: Description of the `--print-startup-accounts` option for the
-#. command-line
+#. TRANSLATORS: Description of the `--print-startup-accounts` option for the command-line
 msgid "Print configured startup accounts"
 msgstr "Seall na cunntasan tòiseachaidh a chaidh a rèiteachadh"
 
@@ -212,8 +208,7 @@ msgstr[3] "%d tweet ùr!"
 msgid "Home"
 msgstr "Dachaigh"
 
-#. TRANSLATORS: "%s" is the user's name for the list - e.g. "Contributors"
-#. when looking at https://twitter.com/i/lists/1285277968676331522
+#. TRANSLATORS: "%s" is the user's name for the list - e.g. "Contributors" when looking at https://twitter.com/i/lists/1285277968676331522
 #, c-format
 msgid "%s list tweets"
 msgstr "Tweetaichean liosta %s"
@@ -270,20 +265,17 @@ msgstr[3] "A’ leantainn air %d cunntas"
 msgid "Location: %s"
 msgstr "Ionad: %s"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for profile
-#. timeline view
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
 #, c-format
 msgid "%s timeline"
 msgstr "An loidhne-ama aig %s"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of
-#. users following the user
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
 #, c-format
 msgid "%s followers"
 msgstr "An luchd-leantainn aig %s"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of
-#. users followed by the user
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
 #, c-format
 msgid "%s following"
 msgstr "A’ leantainn air %s"
@@ -334,8 +326,7 @@ msgstr "Chaidh an tweet seo fhalach leis an ùghdar"
 msgid "This tweet is unavailable"
 msgstr "Chan eil an tweet seo ri fhaighinn"
 
-#. TRANSLATORS: Insert your *actual* language here instead of English - e.g.
-#. "Ins Deutsche übersetzen" or "Traduire en français"
+#. TRANSLATORS: Insert your *actual* language here instead of English - e.g. "Ins Deutsche übersetzen" or "Traduire en français"
 msgid "Translate to English"
 msgstr "Eadar-theangaich dhan Ghàidhlig"
 
@@ -443,12 +434,10 @@ msgstr "Chan urrainn dhut leantainn air barrachd daoine aig an àm seo"
 
 msgid "Sorry, you are not authorized to see this status"
 msgstr ""
-"Tha sinn duilich ach chan eil ùghdarrachadh agad airson an staid seo "
-"fhaicinn"
+"Tha sinn duilich ach chan eil ùghdarrachadh agad airson an staid seo fhaicinn"
 
 msgid "User is over daily status update limit"
-msgstr ""
-"Chaidh an cleachdaiche thar crìoch làitheil nan ùrachaidhean air staid"
+msgstr "Chaidh an cleachdaiche thar crìoch làitheil nan ùrachaidhean air staid"
 
 msgid "Tweet needs to be a bit shorter."
 msgstr "Feumaidh an tweet a bhith beagan nas giorra."
@@ -458,8 +447,8 @@ msgstr "Tha an staid ’na dùblachadh"
 
 msgid "Owner must allow dms from anyone."
 msgstr ""
-"Feumaidh an seilbheadair teachdaireachdan dìreach a cheadachadh o dhuine sam"
-" bith."
+"Feumaidh an seilbheadair teachdaireachdan dìreach a cheadachadh o dhuine sam "
+"bith."
 
 msgid "Bad authentication data"
 msgstr "Droch-dhàta dearbhaidh"
@@ -499,8 +488,8 @@ msgid "A media id was not found."
 msgstr "Cha deach ID mheadhanan a lorg."
 
 msgid ""
-"To protect our users from spam and other malicious activity, this account is"
-" temporarily locked."
+"To protect our users from spam and other malicious activity, this account is "
+"temporarily locked."
 msgstr ""
 "Airson an luchd-cleachdaidh agad a dhìon o spama is gnìomhachdan droch-"
 "rùnach eile, chaidh an cunntas seo a ghlasadh rè seal."
@@ -535,8 +524,8 @@ msgstr "Aplacaid mhì-dhligheach / à rèim"
 
 msgid "The original Tweet author restricted who can reply to this Tweet."
 msgstr ""
-"Chuingich ùghdar an tweet tùsail cò dh’fhaodas freagairt a thoirt dhan tweet"
-" seo."
+"Chuingich ùghdar an tweet tùsail cò dh’fhaodas freagairt a thoirt dhan tweet "
+"seo."
 
 msgid "Invalid media file"
 msgstr "Faidhle meadhain mì-dhligheach"
@@ -578,23 +567,19 @@ msgstr[3] "%d uair a thìde air ais"
 msgid "%dh"
 msgstr "%du"
 
-#. TRANSLATORS: Full-text date format for tweets from this year - see
-#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B"
 msgstr "%e %B"
 
-#. TRANSLATORS: Short date format for tweets from this year - see
-#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b"
 msgstr "%e %b"
 
-#. TRANSLATORS: Full-text date format for tweets from previous years - see
-#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B %Y"
 msgstr "%e %B %Y"
 
-#. TRANSLATORS: Short date format for tweets from previous years - see
-#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b %Y"
 msgstr "%e %b %Y"
 
@@ -642,6 +627,10 @@ msgstr "Lean air"
 msgid "Copy URL"
 msgstr "Dèan lethbhreac dhen URL"
 
+#, fuzzy
+msgid "Reload image"
+msgstr "Dh’fhàillig le luchdadh %u dhealbh"
+
 msgid "Save as…"
 msgstr "Sàbhail mar…"
 
@@ -688,8 +677,7 @@ msgstr[2] "Dh’fhàillig le luchdadh %u dealbhan"
 msgstr[3] "Dh’fhàillig le luchdadh %u dealbh"
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
-#. <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -733,8 +721,7 @@ msgstr[1] "Tha %d charactar air fhàgail"
 msgstr[2] "Tha %d caractaran air fhàgail"
 msgstr[3] "Tha %d caractar air fhàgail"
 
-#. TRANSLATORS: Values are current image index (1-based) and total image
-#. count. Pluralisation is based on total image count.
+#. TRANSLATORS: Values are current image index (1-based) and total image count. Pluralisation is based on total image count.
 #. Should only be seen when image count is two or more.
 #, c-format
 msgid "Image %d of %d"
@@ -770,17 +757,18 @@ msgstr "Tha an snippet seo ann mu thràth"
 
 #, c-format
 msgid ""
-"Translation URL must contain {SOURCE_LANG}, {TARGET_LANG} and {CONTENT} placeholders\n"
+"Translation URL must contain {SOURCE_LANG}, {TARGET_LANG} and {CONTENT} "
+"placeholders\n"
 "\n"
 "The URL \"%s\" will be used instead"
 msgstr ""
-"Feumaidh glèidheadairean-àite {SOURCE_LANG}, {TARGET_LANG} agus {CONTENT} a bhith am broinn URL eadar-theangachaidh\n"
+"Feumaidh glèidheadairean-àite {SOURCE_LANG}, {TARGET_LANG} agus {CONTENT} a "
+"bhith am broinn URL eadar-theangachaidh\n"
 "\n"
 "Thèid URL “%s” a chleachdadh ’na àite"
 
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
-"#newisalwaysbetter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
 msgstr ""
 "Nach doir thu sùil air an tionndadh ùr seo dhe #Cawbird! \\ (•◡•) / #cool "
 "#newisalwaysbetter #gàidhlig"
@@ -801,8 +789,8 @@ msgid ""
 "To authenticate Cawbird, you need a PIN from twitter.com with the account "
 "you wish to add"
 msgstr ""
-"Airson Cawbird a dhearbhadh, feumaidh tu PIN fhaighinn o twitter.com leis a’"
-" chunntas a tha thu airson cur ris"
+"Airson Cawbird a dhearbhadh, feumaidh tu PIN fhaighinn o twitter.com leis a’ "
+"chunntas a tha thu airson cur ris"
 
 msgid "Request PIN"
 msgstr "Iarr PIN"
