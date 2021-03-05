@@ -32,7 +32,9 @@ static void
 cb_media_finalize (GObject *object)
 {
   CbMedia *media = CB_MEDIA (object);
-  cairo_surface_destroy (media->surface);
+  if (media->surface != NULL) {
+    cairo_surface_destroy (media->surface);
+  }
   if (media->surface_hires != NULL) {
     cairo_surface_destroy (media->surface_hires);
   }
