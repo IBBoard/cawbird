@@ -1,11 +1,6 @@
 i18n = import('i18n')
 fs = import('fs')
 
-assert(fs.exists('consumer_k.dat'), 'Requires consumer key - `data/consumer_k.dat`')
-assert(fs.size('consumer_k.dat') > 0, 'Requires consumer key - `data/consumer_k.dat`')
-assert(fs.exists('consumer_s.dat'), 'Requires consumer secret - `data/consumer_s.dat`')
-assert(fs.size('consumer_s.dat') > 0, 'Requires consumer secret - `data/consumer_s.dat`')
-
 install_data(
   'uk.co.ibboard.cawbird.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0', 'schemas')

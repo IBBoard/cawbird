@@ -208,6 +208,9 @@ cb_resources = gnome.compile_resources(
 )
 
 # config.h
+consumer_key = get_option('consumer_key_base64')
+consumer_secret = get_option('consumer_secret_base64')
+assert(consumer_key != '' and consumer_secret != '', 'Must specify `consumer_key_base64` and `consumer_secret_base64`')
 cdata = configuration_data()
 if get_option('localtextdomain')
   cdata.set('LOCALEDIR', 'NULL')
@@ -215,6 +218,8 @@ else
   cdata.set_quoted ('LOCALEDIR', localedir)
 endif
 cdata.set_quoted ('GETTEXT_PACKAGE', 'cawbird')
+cdata.set_quoted ('CONSUMER_KEY', consumer_key)
+cdata.set_quoted ('CONSUMER_SECRET', consumer_secret)
 configure_file(
   #input : 'config.h.meson',
   output: 'config.h',

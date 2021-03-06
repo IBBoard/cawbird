@@ -53,8 +53,6 @@
     <file>data/protected-account-large@2.png</file>
     <file>data/no_avatar.png</file>
     <file>data/no_banner.png</file>
-    <file>data/consumer_k.dat</file>
-    <file>data/consumer_s.dat</file>
     <file>ui/style.css</file>
     <file>sql/init/Create.1.sql</file>
     <file>sql/init/Create.2.sql</file>

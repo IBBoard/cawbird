@@ -51,10 +51,8 @@ public class Cawbird : Gtk.Application {
 
     try {
       // Tokens for this build
-      var token_base64 = (string)GLib.resources_lookup_data ("/uk/co/ibboard/cawbird/data/consumer_k.dat", 0).get_data();
-      consumer_k = (string)GLib.Base64.decode(token_base64);
-      token_base64 = (string)GLib.resources_lookup_data ("/uk/co/ibboard/cawbird/data/consumer_s.dat", 0).get_data();
-      consumer_s = (string)GLib.Base64.decode((string)token_base64);
+      consumer_k = (string)GLib.Base64.decode(Config.CONSUMER_KEY);
+      consumer_s = (string)GLib.Base64.decode(Config.CONSUMER_SECRET);
     }
     catch (GLib.Error e) {
       critical("Invalid consumer tokens");

@@ -2,4 +2,6 @@
 namespace Config {
 	public const string GETTEXT_PACKAGE;
 	public const string LOCALEDIR;
+	public const string CONSUMER_KEY;
+	public const string CONSUMER_SECRET;
 }

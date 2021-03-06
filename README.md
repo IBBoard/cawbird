@@ -164,28 +164,22 @@ Twitter clients need keys and secrets so that Twitter can go through the OAuth p
 with a standard set of values because that worked. As of June 2019, Twitter has been limiting *applications*
 (not just users - all users of the app in aggregate) to 100,000 calls to some endpoints ([docs](https://developer.twitter.com/en/docs/twitter-api/v1/tweets/timelines/api-reference/get-statuses-mentions_timeline)). As we poll every two minutes then this isn't many concurrent users.
 
-Cawbird has always supported custom keys through schema settings, but that wasn't convenient for software builds. Cawbird now
-supports:
+Cawbird has always supported custom keys through schema settings, but that wasn't convenient for software builds. Cawbird now supports:
   a) per-user tokens and secrets (so each user uses a different "app")
-  b) file-based configuration of the default token and secret at build time
+  b) configuration of the default token and secret at build time
 
-What this means for developers is that you need to supply `data/consumer_k.dat` and `data/consumer_s.dat` with the key and the secret respectively before the software will build. To stop them being trivially identifiable, we base64 encode them.
+What this means for developers is that you need to supply two build options with the key and the secret before the software will build. To stop them being trivially identifiable, we base64 encode them.
 
-To build your own application, register at https://developer.twitter.com/ and create an application. Copy the key and secret and run:
+To build your own application, register at https://developer.twitter.com/ and create an application. To base64 encode the keys you can run `echo -n "<value>" | base64`.
 
-```
-echo -n "<app key>" | base64 > data/consumer_k.dat
-echo -n "<app secret>" | base64 > data/consumer_s.dat
-```
-
-Alternatively, to continue using the default keys, copy the `data/consumer_{k,s}.example.dat` files.
+Alternatively, to continue using the default keys, use the values `VmY5dG9yRFcyWk93MzJEZmhVdEk5Y3NMOA==` and `MThCRXIxbWRESDQ2Y0podzVtVU13SGUyVGlCRXhPb3BFRHhGYlB6ZkpybG5GdXZaSjI=` respectively
 
 ### Compiling
 
 Cawbird uses the Meson build system rather than the more archaic autoconf/make combination. Building is as simple as:
 
 ```Bash
-meson build
+meson build -Dconsumer_key_base64=<your-base64-key> -Dconsumer_secret_base64=<your-base64-secret>
 ninja -C build
 ```
 
