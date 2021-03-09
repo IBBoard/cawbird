@@ -44,19 +44,34 @@ public class Cawbird : Gtk.Application {
   };
 
   static construct {
-    // Base64-encoding our tokens to make them less obvious to searches
-    // Original Cawbird tokens
-    old_consumer_k = (string)GLib.Base64.decode("VmY5dG9yRFcyWk93MzJEZmhVdEk5Y3NMOA==");
-    old_consumer_s = (string)GLib.Base64.decode("MThCRXIxbWRESDQ2Y0podzVtVU13SGUyVGlCRXhPb3BFRHhGYlB6ZkpybG5GdXZaSjI=");
-
     try {
+      // Base64-encoding our tokens to make them less obvious to searches
+      // Original Cawbird tokens
+      old_consumer_k = decode("VmY5dG9yRFcyWk93MzJEZmhVdEk5Y3NMOA==");
+      old_consumer_s = decode("MThCRXIxbWRESDQ2Y0podzVtVU13SGUyVGlCRXhPb3BFRHhGYlB6ZkpybG5GdXZaSjI=");
+
       // Tokens for this build
-      consumer_k = (string)GLib.Base64.decode(Config.CONSUMER_KEY);
-      consumer_s = (string)GLib.Base64.decode(Config.CONSUMER_SECRET);
+      consumer_k = decode(Config.CONSUMER_KEY);
+      consumer_s = decode(Config.CONSUMER_SECRET);
     }
     catch (GLib.Error e) {
-      critical("Invalid consumer tokens");
+      critical("Invalid consumer tokens: %s", e.message);
     }
+  }
+
+  private static string decode(string base64_string) throws GLib.Error {
+    var decoded = GLib.Base64.decode(base64_string);
+    foreach (var c in decoded) {
+      if (!(c == '+' || c == '/' || c == '='
+          || (c >= '0' && c <= '9')
+          || (c >= 'A' && c <= 'Z')
+          || (c >= 'a' && c <= 'z')
+        )) {
+          throw new GLib.Error(Quark.from_string("cawbird"), 64, "Bad character in decoded output of key/secret %s: %c", base64_string, c);
+      }
+    }
+    
+    return (string)decoded;
   }
 
 
