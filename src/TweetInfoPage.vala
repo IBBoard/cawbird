@@ -1018,6 +1018,10 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
    * @return The rebuilt #source_string that's valid pango markup
    */
   private string extract_source (string source_str) {
+    if (source_str == "") {
+      // TRANSLATORS: Used for the "via <client-name>" line in Tweet Info view when the client is blank
+      return _("an unknown client");
+    }
     int from, to;
     from = source_str.index_of_char ('"') + 1;
     to = source_str.index_of_char ('"', from);

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-03-05 20:39+0000\n"
+"POT-Creation-Date: 2021-03-11 19:25+0000\n"
 "PO-Revision-Date: 2018-01-17 19:31+0000\n"
 "Last-Translator: HybridGlucose <a07051226@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/cawbird/cawbird/"
@@ -318,6 +318,10 @@ msgstr "來源"
 
 msgid "Tweet Details"
 msgstr "推文詳細"
+
+#. TRANSLATORS: Used for the "via <client-name>" line in Tweet Info view when the client is blank
+msgid "an unknown client"
+msgstr ""
 
 #, c-format
 msgid "(%d unread)"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-03-05 20:39+0000\n"
+"POT-Creation-Date: 2021-03-11 19:25+0000\n"
 "PO-Revision-Date: 2017-11-19 08:34+0000\n"
 "Last-Translator: Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail."
 "com>\n"
@@ -337,6 +337,10 @@ msgstr "извор"
 
 msgid "Tweet Details"
 msgstr "појединости твита"
+
+#. TRANSLATORS: Used for the "via <client-name>" line in Tweet Info view when the client is blank
+msgid "an unknown client"
+msgstr ""
 
 #, c-format
 msgid "(%d unread)"
