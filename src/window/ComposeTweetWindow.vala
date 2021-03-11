@@ -521,7 +521,6 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
 
 
     if (!is_image && !is_video) {
-      debug("%s has content type %s", filename, content_type);
       stack.visible_child = image_error_grid;
       image_error_label.label = _("Selected file is not an image or video.");
       cancel_button.label = _("Back");
