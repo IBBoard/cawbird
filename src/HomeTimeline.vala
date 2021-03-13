@@ -48,6 +48,7 @@ public class HomeTimeline : Cb.MessageReceiver, DefaultTimeline {
     }
     else if (type == Cb.StreamMessageType.EVENT_FOLLOW) {
       show_tweets_from (root, Cb.TweetState.HIDDEN_UNFOLLOWED);
+      load_tweets_from_follow.begin (root);
     }
     else {
       base.stream_message_received (type, root);
@@ -156,6 +157,18 @@ public class HomeTimeline : Cb.MessageReceiver, DefaultTimeline {
       string summary = ngettext("%d new Tweet!",
                                 "%d new Tweets!", unread_count).printf (unread_count);
       account.notifications.send (summary, "");
+    }
+  }
+
+  private async void load_tweets_from_follow (Json.Node follow_root) {
+    var follow_id = get_user_id (follow_root);
+    try {
+      var root_array = yield UserUtils.load_user_timeline_by_id (account, follow_id, 200, tweet_list.model.min_id);
+      root_array.foreach_element((array, idx, node) => { add_tweet (node); });
+    }
+    catch (GLib.Error e) {
+      // If we can't load tweets then oh well, never mind
+      warning(e.message);
     }
   }
 

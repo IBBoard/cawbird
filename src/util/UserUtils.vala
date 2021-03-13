@@ -236,4 +236,49 @@ namespace UserUtils {
       throw err;
     }
   }
+
+  async Json.Array load_user_timeline_by_id(Account account, int64 user_id, int tweet_count, int64 since_id = -1, int64 max_id = -1) throws GLib.Error {
+    return yield load_user_timeline(account, "user_id", user_id.to_string(), tweet_count, since_id, max_id);
+  }
+
+  async Json.Array load_user_timeline_by_screen_name(Account account, string screen_name, int tweet_count, int64 since_id = -1, int64 max_id = -1) throws GLib.Error {
+    return yield load_user_timeline(account, "screen_name", screen_name, tweet_count, since_id, max_id);
+  }
+
+  private async Json.Array load_user_timeline(Account account, string field, string value, int tweet_count, int64 since_id, int64 max_id) throws GLib.Error {
+    var call = account.proxy.new_call ();
+    call.set_function ("1.1/statuses/user_timeline.json");
+    call.set_method ("GET");
+    call.add_param (field, value);
+    if (since_id > 0) {
+      call.add_param ("since_id", since_id.to_string());
+    }
+    if (max_id > 0) {
+      call.add_param ("max_id", max_id.to_string());
+    }
+    call.add_param ("count", tweet_count.to_string());
+    call.add_param ("contributor_details", "true");
+    call.add_param ("tweet_mode", "extended");
+    call.add_param ("include_my_retweet", "true");
+    call.add_param ("include_ext_alt_text", "true");
+
+    Json.Node? root = null;
+    Json.Array? array = null;
+    try {
+      root = yield Cb.Utils.load_threaded_async (call, null);
+      if (root != null) {
+        array = root.get_array();
+      }
+    } catch (GLib.Error e) {
+      if (e.domain == Rest.ProxyError.quark() && e.code == new Rest.ProxyError.SSL ("workaround").code) {
+        debug ("Reloading user timeline on SSL failure");
+        array = yield load_user_timeline(account, field, value, tweet_count, since_id, max_id);
+      }
+      else {
+        throw e;
+      }
+    }
+
+    return array ?? new Json.Array();
+  }
 }

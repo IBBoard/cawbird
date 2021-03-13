@@ -122,7 +122,7 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
     }
   }
 
-  private int64 get_user_id (Json.Node root) {
+  protected int64 get_user_id (Json.Node root) {
     return root.get_object ().get_object_member ("target").get_int_member ("id");
   }
 

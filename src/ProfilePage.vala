@@ -487,41 +487,24 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     }
     tweet_list.set_unempty ();
     tweets_loading = true;
-    int requested_tweet_count = 10;
-    var call = account.proxy.new_call ();
-    call.set_function ("1.1/statuses/user_timeline.json");
-    call.set_method ("GET");
-    if (user_id != 0)
-      call.add_param ("user_id", this.user_id.to_string ());
-    else
-      call.add_param ("screen_name", this.screen_name);
-    call.add_param ("count", requested_tweet_count.to_string ());
-    call.add_param ("contributor_details", "true");
-    call.add_param ("tweet_mode", "extended");
-    call.add_param ("include_my_retweet", "true");
-    call.add_param ("include_ext_alt_text", "true");
 
-
-    Json.Node? root = null;
+    Json.Array root_array;
+    
     try {
-      root = yield Cb.Utils.load_threaded_async (call, data_cancellable);
+      if (user_id != 0) {
+        root_array = yield UserUtils.load_user_timeline_by_id(account, user_id, 10);
+      }
+      else {
+        root_array = yield UserUtils.load_user_timeline_by_screen_name(account, screen_name, 10);
+      }
     } catch (GLib.Error e) {
       if (e.message != "Authorization Required") {
         warning (e.message);
       }
       tweet_list.set_empty ();
-
-      if (e.domain == Rest.ProxyError.quark() && e.code == new Rest.ProxyError.SSL ("workaround").code) {
-        debug ("Reloading user timeline on SSL failure");
-        load_tweets.begin ();
-      }
-
       return;
     }
 
-    if (root == null) return;
-
-    var root_array = root.get_array ();
     if (root_array.get_length () == 0) {
       tweet_list.set_empty ();
       return;
@@ -541,32 +524,22 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
 
     tweets_loading = true;
     int requested_tweet_count = 15 * count_multiplier;
-    var call = account.proxy.new_call ();
-    call.set_function ("1.1/statuses/user_timeline.json");
-    call.set_method ("GET");
-    if (user_id != 0)
-      call.add_param ("user_id", this.user_id.to_string ());
-    else
-      call.add_param ("screen_name", this.screen_name);
-    call.add_param ("count", requested_tweet_count.to_string ());
-    call.add_param ("contributor_details", "true");
-    call.add_param ("tweet_mode", "extended");
-    call.add_param ("include_my_retweet", "true");
-    call.add_param ("include_ext_alt_text", "true");
-    call.add_param ("max_id", (tweet_list.model.min_id - 1).to_string ());
+    
+    Json.Array root_array;
 
-    Json.Node? root = null;
     try {
-      root = yield Cb.Utils.load_threaded_async (call, data_cancellable);
+      if (user_id != 0) {
+        root_array = yield UserUtils.load_user_timeline_by_id(account, user_id, requested_tweet_count, -1, tweet_list.model.min_id);
+      }
+      else {
+        root_array = yield UserUtils.load_user_timeline_by_screen_name(account, screen_name, requested_tweet_count, -1, tweet_list.model.min_id);
+      }
     } catch (GLib.Error e) {
       warning (e.message);
       return;
     }
 
-    if (root == null) return;
-
-    var root_arr = root.get_array ();
-    TweetUtils.work_array (root_arr,
+    TweetUtils.work_array (root_array,
                            tweet_list,
                            account);
     tweets_loading = false;
