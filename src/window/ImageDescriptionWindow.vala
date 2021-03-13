@@ -53,7 +53,6 @@ class ImageDescriptionWindow : Gtk.Window {
     GLib.NetworkMonitor.get_default ().notify["network-available"].connect (update_save_button_sensitivity);
 
     description_text.buffer.changed.connect (() => {
-      update_character_count();
       update_save_button_sensitivity();
     });
 
@@ -72,21 +71,19 @@ class ImageDescriptionWindow : Gtk.Window {
     this.add_accel_group (ag);
 
     this.set_default_size (DEFAULT_WIDTH, (int)(DEFAULT_WIDTH / 1.5));
-    this.update_character_count();
+    this.update_save_button_sensitivity();
   }
 
   private void update_save_button_sensitivity () {
-    int length = (int)Tl.count_weighted_characters (description_text.buffer.text);
+    int length = (int)Tl.count_weighted_characters (description_text.buffer.text, false);
 
     if (length <= MAX_DESCRIPTION_LENGTH) {
       save_button.sensitive = GLib.NetworkMonitor.get_default ().network_available;
     } else {
       save_button.sensitive = false;
     }
-  }
 
-  private void update_character_count () {
-    var chars_remaining = MAX_DESCRIPTION_LENGTH - Tl.count_weighted_characters (description_text.buffer.text);
+    var chars_remaining = MAX_DESCRIPTION_LENGTH - length;
     length_label.label = chars_remaining.to_string();
     length_label.get_accessible().set_description(ngettext("%d character remaining", "%d characters remaining", chars_remaining).printf((int)chars_remaining));
   }
