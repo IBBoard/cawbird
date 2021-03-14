@@ -407,12 +407,8 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
                 {
                   t->medias[t->n_medias] = cb_media_new ();
                   t->medias[t->n_medias]->type = CB_MEDIA_TYPE_IMAGE;
-                  char *tmp_url = g_strdup_printf ("%s:large", url);
-                  t->medias[t->n_medias]->url = cb_utils_escape_ampersands (tmp_url);
-                  g_free(tmp_url);
-                  tmp_url = g_strdup_printf ("%s:orig", url);
-                  t->medias[t->n_medias]->target_url = cb_utils_escape_ampersands (tmp_url);
-                  g_free(tmp_url);
+                  t->medias[t->n_medias]->url = g_strdup_printf ("%s:large", url);
+                  t->medias[t->n_medias]->target_url = g_strdup_printf ("%s:orig", url);
 
                   if (json_object_has_member (media_obj, "ext_alt_text")) {
                     // Only "extended media" has alt text
@@ -426,9 +422,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
 
                       t->medias[t->n_medias]->thumb_width  = json_object_get_int_member (small, "w");
                       t->medias[t->n_medias]->thumb_height = json_object_get_int_member (small, "h");
-                      tmp_url = g_strdup_printf ("%s:small", url);
-                      t->medias[t->n_medias]->thumb_url = cb_utils_escape_ampersands (tmp_url);
-                      g_free(tmp_url);
+                      t->medias[t->n_medias]->thumb_url = g_strdup_printf ("%s:small", url);
 
                       // We'll show images at "large" size, and original size is available via the target URL
                       JsonObject *large = json_object_get_object_member (sizes, "large");
@@ -501,9 +495,9 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
               if (variant != NULL)
                 {                  
                   t->medias[t->n_medias] = cb_media_new ();
-                  t->medias[t->n_medias]->url = cb_utils_escape_ampersands (json_object_get_string_member (variant, "url"));
-                  t->medias[t->n_medias]->thumb_url = cb_utils_escape_ampersands (thumb_url);
-                  t->medias[t->n_medias]->target_url = target_url ? cb_utils_escape_ampersands (target_url) : NULL;
+                  t->medias[t->n_medias]->url = g_strdup(json_object_get_string_member (variant, "url"));
+                  t->medias[t->n_medias]->thumb_url = g_strdup (thumb_url);
+                  t->medias[t->n_medias]->target_url = target_url ? g_strdup (target_url) : NULL;
                   t->medias[t->n_medias]->type   = CB_MEDIA_TYPE_TWITTER_VIDEO;
                   t->medias[t->n_medias]->width  = width;
                   t->medias[t->n_medias]->height = height;
