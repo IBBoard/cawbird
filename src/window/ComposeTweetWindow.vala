@@ -85,8 +85,8 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     this.application = (Gtk.Application)GLib.Application.get_default ();
 
     this.cancellable = new GLib.Cancellable ();
-    var upload_proxy = new Rest.OAuthProxy (Settings.get_consumer_key (),
-                                            Settings.get_consumer_secret (),
+    var upload_proxy = new Rest.OAuthProxy (acc.proxy.consumer_key,
+                                            acc.proxy.consumer_secret,
                                             "https://upload.twitter.com/",
                                             false);
     upload_proxy.token = account.proxy.token;

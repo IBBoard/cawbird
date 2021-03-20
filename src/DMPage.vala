@@ -95,7 +95,15 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
       load_dms.begin();
     });
     compose_image_manager.max_images = 1;
-    compose_image_manager.proxy = account.proxy;
+
+    var upload_proxy = new Rest.OAuthProxy (account.proxy.consumer_key,
+                                            account.proxy.consumer_secret,
+                                            "https://upload.twitter.com/",
+                                            false);
+    upload_proxy.token = account.proxy.token;
+    upload_proxy.token_secret = account.proxy.token_secret;
+    compose_image_manager.proxy = upload_proxy;
+
     compose_image_manager.image_removed.connect ((uuid) => {
       media_upload = null;
       this.add_media_button.sensitive = true;
