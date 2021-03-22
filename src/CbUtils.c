@@ -172,32 +172,41 @@ cb_utils_write_reply_text (const CbMiniTweet *t,
 
   g_return_if_fail (t->reply_id != 0);
   g_return_if_fail (t->n_reply_users > 0);
-  CbUserIdentity firstUser, secondUser;
-  int reply_users = 0;
+  CbUserIdentity *firstUser = NULL;
+  CbUserIdentity *secondUser = NULL;
+  CbUserIdentity *author = NULL;
 
   for (int i = 0; i < t->n_reply_users; i++) {
-    CbUserIdentity user = t->reply_users[i];
-    if (user.id == t->author.id) {
+    CbUserIdentity *user = &t->reply_users[i];
+    if (user->id == t->author.id) {
+      author = user;
       continue;
-    }
-    if (reply_users == 0) {
+    } else if (firstUser == NULL) {
       firstUser = user;
-    } else if (reply_users == 1) {
+    } else if (secondUser == NULL) {
       secondUser = user;
+      // We found all the ones we need for text
+      break;
     }
-    reply_users++;
   }
 
-  if (reply_users <= 0)
-    return;
+  if (author != NULL) {
+    if (firstUser == NULL) {
+      firstUser = author;
+    }
+    else if (secondUser == NULL) {
+      secondUser = author;
+    }
+    // Else we've already got enough names
+  }
 
   /* TRANSLATORS: This is the start of a "Replying to" line in a tweet */
   g_string_append (str, _("Replying to"));
   g_string_append_c (str, ' ');
 
-  cb_utils_linkify_user (&firstUser, str);
+  cb_utils_linkify_user (firstUser, str);
 
-  if (reply_users == 2)
+  if (t->n_reply_users == 2)
     {
       g_string_append_c (str, ' ');
       /* TRANSLATORS: This gets appended to the "replying to" line
@@ -205,14 +214,14 @@ cb_utils_write_reply_text (const CbMiniTweet *t,
        * "and Bar" comes from this string. */
       g_string_append (str, _("and"));
       g_string_append_c (str, ' ');
-      cb_utils_linkify_user (&secondUser, str);
+      cb_utils_linkify_user (secondUser, str);
     }
-  else if (reply_users > 2)
+  else if (t->n_reply_users > 2)
     {
       g_string_append_c (str, ' ');
       /* TRANSLATORS: This gets appended to the "replying to" line
        * in a tweet */
-      g_string_append_printf (str, _("and %d others"), reply_users - 1);
+      g_string_append_printf (str, _("and %d others"), t->n_reply_users - 1);
     }
 }
 

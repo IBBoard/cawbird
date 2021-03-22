@@ -214,28 +214,6 @@
               </packing>
             </child>
             <child>
-              <object class="GtkImage" id="conversation_image">
-                <property name="no-show-all">1</property>
-                <property name="halign">end</property>
-                <property name="valign">center</property>
-                <property name="margin-end">6</property>
-                <property name="pixel-size">12</property>
-                <property name="icon-name">cawbird-conversation-symbolic</property>
-                <child internal-child="accessible">
-                  <object class="AtkObject" id="conversation_image-atkobject">
-                    <property name="AtkObject::accessible-name" translatable="yes">Reply</property>
-                  </object>
-                </child>
-                <style>
-                  <class name="dim-label"/>
-                </style>
-              </object>
-              <packing>
-                <property name="left-attach">5</property>
-                <property name="top-attach">0</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkLabel" id="time_delta_label">
                 <property name="visible">1</property>
                 <property name="halign">end</property>

@@ -888,7 +888,7 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
 
     if ((tweet.retweeted_tweet != null &&
          tweet.retweeted_tweet.reply_id != 0) ||
-        (tweet.source_tweet.reply_id != 0 && (tweet.quoted_tweet == null || tweet.source_tweet.reply_id != tweet.quoted_tweet.id))) {
+         tweet.source_tweet.reply_id != 0) {
       var author_id = (tweet.retweeted_tweet != null &&
          tweet.retweeted_tweet.reply_id != 0) ? tweet.retweeted_tweet.author.id : tweet.source_tweet.author.id;
       var reply_users = tweet.get_reply_users ();

@@ -32,8 +32,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   [GtkChild]
   private Gtk.Image rt_image;
   [GtkChild]
-  private Gtk.Image conversation_image;
-  [GtkChild]
   private Gtk.Image rt_status_image;
   [GtkChild]
   private Gtk.Image fav_status_image;
@@ -138,7 +136,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
     if ((tweet.retweeted_tweet != null &&
          tweet.retweeted_tweet.reply_id != 0) ||
-        (tweet.source_tweet.reply_id != 0 && (tweet.quoted_tweet == null || tweet.source_tweet.reply_id != tweet.quoted_tweet.id))) {
+         tweet.source_tweet.reply_id != 0) {
       var buff = new StringBuilder ();
 
       if (tweet.retweeted_tweet != null)
@@ -195,9 +193,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     });
 
     tweet.state_changed.connect (state_changed_cb);
-
-    conversation_image.visible = (tweet.source_tweet.reply_id != 0 ||
-      (tweet.retweeted_tweet != null && tweet.retweeted_tweet.reply_id != 0));
 
     if (tweet.has_inline_media ()) {
       this.create_media_widget (tweet.is_flag_set (Cb.TweetState.NSFW), out this.mm_widget, out this.media_stack);
