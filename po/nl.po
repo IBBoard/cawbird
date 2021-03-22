@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-03-11 19:25+0000\n"
+"POT-Creation-Date: 2021-03-22 19:52+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/cawbird/teams/107135/nl/)\n"
@@ -681,6 +681,9 @@ msgstr ""
 
 msgid "Quote tweet"
 msgstr "Tweet citeren"
+
+msgid "Keep tweet as draft?"
+msgstr ""
 
 msgid "Only one animated GIF file per tweet is allowed."
 msgstr "Er wordt slechts één gif-bestand per tweet toegestaan."

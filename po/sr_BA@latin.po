@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-03-11 19:25+0000\n"
+"POT-Creation-Date: 2021-03-22 19:52+0000\n"
 "PO-Revision-Date: 2017-11-20 17:05+0000\n"
 "Last-Translator: Slobodan Terzić <githzerai06@gmail.com>\n"
 "Language-Team: Serbian (Latin) (http://www.transifex.com/cawbird/cawbird/"
@@ -673,6 +673,9 @@ msgstr ""
 
 msgid "Quote tweet"
 msgstr "Citiraj tvit"
+
+msgid "Keep tweet as draft?"
+msgstr ""
 
 #, fuzzy
 msgid "Only one animated GIF file per tweet is allowed."

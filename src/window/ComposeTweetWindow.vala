@@ -447,9 +447,19 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       Gtk.TextIter start, end;
       tweet_text.buffer.get_bounds (out start, out end);
       string text = tweet_text.buffer.get_text (start, end, true);
+      bool save_tweet = false;
 
       if (text != "" || compose_image_manager.n_images > 0) {
-          save_last_tweet ();
+        // TRANSLATORS: A dialog message with Yes/No options when the user closes the "compose tweet" window with content still in the dialog
+        var dialog = new Gtk.MessageDialog (this, Gtk.DialogFlags.DESTROY_WITH_PARENT,  Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, _("Keep tweet as draft?"));
+        dialog.set_default_response(Gtk.ResponseType.YES);
+        var result = dialog.run();
+        dialog.destroy();
+        save_tweet = result != Gtk.ResponseType.NO;
+      }
+      
+      if (save_tweet) {
+        save_last_tweet ();
       }
       else {
         clear_last_tweet ();
