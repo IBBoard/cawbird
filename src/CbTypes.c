@@ -266,7 +266,7 @@ cb_mini_tweet_parse_entities (CbMiniTweet *t,
         {
           t->reply_users[0].id = reply_to_user_id;
           t->reply_users[0].screen_name = g_strdup (json_object_get_string_member (status, "in_reply_to_screen_name"));
-          t->reply_users[0].user_name = g_strdup ("");
+          t->reply_users[0].user_name = (reply_to_user_id == t->author.id) ? g_strdup(t->author.user_name) : g_strdup ("");
           reply_index = 1;
         }
 
