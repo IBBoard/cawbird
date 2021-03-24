@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-03-22 19:52+0000\n"
+"POT-Creation-Date: 2021-03-24 19:52+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>, 2021\n"
 "Language-Team: Italian (https://www.transifex.com/cawbird/teams/107135/it/)\n"
@@ -73,22 +73,6 @@ msgstr "Usa Twitter come una normale applicazione desktop"
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "Twitter;"
-
-#. TRANSLATORS: This is the start of a "Replying to" line in a tweet
-msgid "Replying to"
-msgstr "Rispondendo a"
-
-#. TRANSLATORS: This gets appended to the "replying to" line
-#. * in a tweet. Example: "Replying to Foo and Bar" where
-#. * "and Bar" comes from this string.
-msgid "and"
-msgstr "e"
-
-#. TRANSLATORS: This gets appended to the "replying to" line
-#. * in a tweet
-#, c-format
-msgid "and %d others"
-msgstr "e %d altri"
 
 #. TRANSLATORS: Description of the `--tweet` option for the command-line
 msgid ""
@@ -561,6 +545,22 @@ msgstr "%e %B %Y"
 msgid "%e %b %Y"
 msgstr "%e %b %Y"
 
+#, fuzzy, c-format
+msgid "Replying to %s"
+msgstr "Rispondendo a %s"
+
+#. TRANSLATORS: Note: "…and 1 other" should never be used because it will use the "Replying to X and Y" string
+#, fuzzy, c-format
+msgid "Replying to %s and %d other"
+msgid_plural "Replying to %s and %d others"
+msgstr[0] "Rispondendo a %s e %d altri"
+msgstr[1] "Rispondendo a %s e %d altri"
+
+#. TRANSLATORS: The first %s is a list of one or more comma-separated user names, and the second %s is the last username in the list
+#, fuzzy, c-format
+msgid "Replying to %s and %s"
+msgstr "Rispondendo a %s e %s"
+
 msgid "Don't have a Twitter account yet?"
 msgstr "Non hai ancora un account Twitter?"
 
@@ -678,6 +678,7 @@ msgstr ""
 msgid "Quote tweet"
 msgstr "Cita il tweet"
 
+#. TRANSLATORS: A dialog message with Yes/No options when the user closes the "compose tweet" window with content still in the dialog
 msgid "Keep tweet as draft?"
 msgstr ""
 
@@ -1203,6 +1204,12 @@ msgstr "Creato"
 
 msgid "Subscribed to"
 msgstr "Sottoscritto a"
+
+#~ msgid "Replying to"
+#~ msgstr "Rispondendo a"
+
+#~ msgid "and"
+#~ msgstr "e"
 
 #~ msgid "Actions"
 #~ msgstr "Azioni"

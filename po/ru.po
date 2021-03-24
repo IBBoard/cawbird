@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-03-22 19:52+0000\n"
+"POT-Creation-Date: 2021-03-24 19:52+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Даниил Пронин <mail@grawl.ru>, 2021\n"
 "Language-Team: Russian (https://www.transifex.com/cawbird/teams/107135/ru/)\n"
@@ -79,22 +79,6 @@ msgstr "Пользуйтесь Твиттером как обычным прил
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;"
-
-#. TRANSLATORS: This is the start of a "Replying to" line in a tweet
-msgid "Replying to"
-msgstr "Отвечает на твит"
-
-#. TRANSLATORS: This gets appended to the "replying to" line
-#. * in a tweet. Example: "Replying to Foo and Bar" where
-#. * "and Bar" comes from this string.
-msgid "and"
-msgstr "и"
-
-#. TRANSLATORS: This gets appended to the "replying to" line
-#. * in a tweet
-#, c-format
-msgid "and %d others"
-msgstr "и %d других"
 
 #. TRANSLATORS: Description of the `--tweet` option for the command-line
 msgid ""
@@ -574,6 +558,24 @@ msgstr "%e %B %Y"
 msgid "%e %b %Y"
 msgstr "%e %b %Y"
 
+#, fuzzy, c-format
+msgid "Replying to %s"
+msgstr "Отвечает на твит"
+
+#. TRANSLATORS: Note: "…and 1 other" should never be used because it will use the "Replying to X and Y" string
+#, fuzzy, c-format
+msgid "Replying to %s and %d other"
+msgid_plural "Replying to %s and %d others"
+msgstr[0] "и %d других"
+msgstr[1] "и %d других"
+msgstr[2] "и %d других"
+msgstr[3] "и %d других"
+
+#. TRANSLATORS: The first %s is a list of one or more comma-separated user names, and the second %s is the last username in the list
+#, fuzzy, c-format
+msgid "Replying to %s and %s"
+msgstr "Отвечает на твит"
+
 msgid "Don't have a Twitter account yet?"
 msgstr "Ещё нет профиля в Твиттере?"
 
@@ -697,6 +699,7 @@ msgstr ""
 msgid "Quote tweet"
 msgstr "Цитировать твит"
 
+#. TRANSLATORS: A dialog message with Yes/No options when the user closes the "compose tweet" window with content still in the dialog
 msgid "Keep tweet as draft?"
 msgstr ""
 
@@ -1221,3 +1224,9 @@ msgstr "Создан"
 
 msgid "Subscribed to"
 msgstr "Подписан"
+
+#~ msgid "Replying to"
+#~ msgstr "Отвечает на твит"
+
+#~ msgid "and"
+#~ msgstr "и"

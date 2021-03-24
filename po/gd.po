@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-03-22 19:52+0000\n"
+"POT-Creation-Date: 2021-03-24 19:52+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: GunChleoc, 2021\n"
 "Language-Team: Gaelic, Scottish (https://www.transifex.com/cawbird/"
@@ -70,22 +70,6 @@ msgstr "Cleachd Twitter am broinn aplacaid deasga àbhaisteach"
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;"
-
-#. TRANSLATORS: This is the start of a "Replying to" line in a tweet
-msgid "Replying to"
-msgstr "Air freagairt gu"
-
-#. TRANSLATORS: This gets appended to the "replying to" line
-#. * in a tweet. Example: "Replying to Foo and Bar" where
-#. * "and Bar" comes from this string.
-msgid "and"
-msgstr "agus"
-
-#. TRANSLATORS: This gets appended to the "replying to" line
-#. * in a tweet
-#, c-format
-msgid "and %d others"
-msgstr "agus %d eile"
 
 #. TRANSLATORS: Description of the `--tweet` option for the command-line
 msgid ""
@@ -587,6 +571,24 @@ msgstr "%e %B %Y"
 msgid "%e %b %Y"
 msgstr "%e %b %Y"
 
+#, fuzzy, c-format
+msgid "Replying to %s"
+msgstr "Air freagairt gu %s"
+
+#. TRANSLATORS: Note: "…and 1 other" should never be used because it will use the "Replying to X and Y" string
+#, fuzzy, c-format
+msgid "Replying to %s and %d other"
+msgid_plural "Replying to %s and %d others"
+msgstr[0] "Air freagairt gu %s agus %d eile"
+msgstr[1] "Air freagairt gu %s agus %d eile"
+msgstr[2] "Air freagairt gu %s agus %d eile"
+msgstr[3] "Air freagairt gu %s agus %d eile"
+
+#. TRANSLATORS: The first %s is a list of one or more comma-separated user names, and the second %s is the last username in the list
+#, fuzzy, c-format
+msgid "Replying to %s and %s"
+msgstr "Air freagairt gu %s agus %s"
+
 msgid "Don't have a Twitter account yet?"
 msgstr "Nach eil cunntas Twitter agad fhathast?"
 
@@ -713,6 +715,7 @@ msgstr ""
 msgid "Quote tweet"
 msgstr "Dèan iomradh dhen tweet"
 
+#. TRANSLATORS: A dialog message with Yes/No options when the user closes the "compose tweet" window with content still in the dialog
 msgid "Keep tweet as draft?"
 msgstr ""
 
@@ -1242,3 +1245,9 @@ msgstr "Air a chruthachadh"
 
 msgid "Subscribed to"
 msgstr "Air fho-sgrìobhadh air"
+
+#~ msgid "Replying to"
+#~ msgstr "Air freagairt gu"
+
+#~ msgid "and"
+#~ msgstr "agus"

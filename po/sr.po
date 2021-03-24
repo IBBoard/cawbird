@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-03-22 19:52+0000\n"
+"POT-Creation-Date: 2021-03-24 19:52+0000\n"
 "PO-Revision-Date: 2017-11-19 08:34+0000\n"
 "Last-Translator: Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail."
 "com>\n"
@@ -64,22 +64,6 @@ msgstr "Користите Твитер помоћу обичног рачуна
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;tviter;твитер;"
-
-#. TRANSLATORS: This is the start of a "Replying to" line in a tweet
-msgid "Replying to"
-msgstr "Одговор за"
-
-#. TRANSLATORS: This gets appended to the "replying to" line
-#. * in a tweet. Example: "Replying to Foo and Bar" where
-#. * "and Bar" comes from this string.
-msgid "and"
-msgstr "и"
-
-#. TRANSLATORS: This gets appended to the "replying to" line
-#. * in a tweet
-#, c-format
-msgid "and %d others"
-msgstr "и %d других"
 
 #. TRANSLATORS: Description of the `--tweet` option for the command-line
 msgid ""
@@ -563,6 +547,23 @@ msgstr ""
 msgid "%e %b %Y"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "Replying to %s"
+msgstr "Одговор за %s"
+
+#. TRANSLATORS: Note: "…and 1 other" should never be used because it will use the "Replying to X and Y" string
+#, fuzzy, c-format
+msgid "Replying to %s and %d other"
+msgid_plural "Replying to %s and %d others"
+msgstr[0] "Одговор за %s и %d других"
+msgstr[1] "Одговор за %s и %d других"
+msgstr[2] "Одговор за %s и %d других"
+
+#. TRANSLATORS: The first %s is a list of one or more comma-separated user names, and the second %s is the last username in the list
+#, fuzzy, c-format
+msgid "Replying to %s and %s"
+msgstr "Одговор за %s и %s"
+
 msgid "Don't have a Twitter account yet?"
 msgstr "Још немате Твитер налог?"
 
@@ -676,6 +677,7 @@ msgstr ""
 msgid "Quote tweet"
 msgstr "Цитирај твит"
 
+#. TRANSLATORS: A dialog message with Yes/No options when the user closes the "compose tweet" window with content still in the dialog
 msgid "Keep tweet as draft?"
 msgstr ""
 
@@ -1208,6 +1210,12 @@ msgstr "Направи"
 
 msgid "Subscribed to"
 msgstr "Претплаћен(а) на"
+
+#~ msgid "Replying to"
+#~ msgstr "Одговор за"
+
+#~ msgid "and"
+#~ msgstr "и"
 
 #~ msgid "Actions"
 #~ msgstr "Радње"

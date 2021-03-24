@@ -134,22 +134,14 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       rt_label.get_accessible().set_name(rt_by);
     }
 
-    if ((tweet.retweeted_tweet != null &&
-         tweet.retweeted_tweet.reply_id != 0) ||
-         tweet.source_tweet.reply_id != 0) {
-      var buff = new StringBuilder ();
+    var reply_users = tweet.get_reply_users();
 
-      if (tweet.retweeted_tweet != null)
-        Cb.Utils.write_reply_text (ref tweet.retweeted_tweet, buff);
-      else
-        Cb.Utils.write_reply_text (ref tweet.source_tweet, buff);
-
-      if (buff.str != "") {
-        reply_label.label = buff.str;
-        reply_label.show ();
-      } else {
-        reply_label.hide ();
-      }
+    if (reply_users.length > 0) {
+      var author_id = (tweet.retweeted_tweet != null) ? tweet.retweeted_tweet.author.id : tweet.source_tweet.author.id;
+      reply_label.label = Utils.build_reply_to_string(reply_users, author_id);
+      reply_label.show ();
+    } else {
+      reply_label.hide ();
     }
 
     if (tweet.quoted_tweet != null) {
@@ -157,16 +149,13 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       var quoted_screen_name = "@" + tweet.quoted_tweet.author.screen_name;
       quote_name.set_markup ("%s  &#x2068;%s&#x2069;".printf(Utils.linkify_user (tweet.quoted_tweet.author, true), quoted_screen_name));
       quote_name.tooltip_text = "%s \u2068%s\u2069".printf(tweet.quoted_tweet.author.user_name, quoted_screen_name);
-      if (tweet.quoted_tweet.reply_id != 0) {
-        var buff = new GLib.StringBuilder ();
-        Cb.Utils.write_reply_text (ref tweet.quoted_tweet, buff);
+      var quoted_reply_users = tweet.quoted_tweet.reply_users;
 
-        if (buff.str != "") {
-          quote_reply_label.label = buff.str;
-          quote_reply_label.show ();
-        } else {
-          quote_reply_label.hide ();
-        }
+      if (quoted_reply_users.length != 0) {
+        quote_reply_label.label = Utils.build_reply_to_string(quoted_reply_users, tweet.quoted_tweet.author.id);
+        quote_reply_label.show ();
+      } else {
+        quote_reply_label.hide ();
       }
     }
 

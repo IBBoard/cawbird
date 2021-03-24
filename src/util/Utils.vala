@@ -580,8 +580,15 @@ namespace Utils {
     yield;
   }
 
+  public string linkify_screen_name (Cb.UserIdentity user) {
+    return linkify_identity(user, "@%s".printf(user.screen_name));
+  }
+
   public string linkify_user (Cb.UserIdentity user, bool boldify = false) {
-    var username = GLib.Markup.escape_text(user.user_name);
+    return linkify_identity (user, GLib.Markup.escape_text(user.user_name), boldify);
+  }
+
+  private string linkify_identity (Cb.UserIdentity user, string display_text, bool boldify = false) {
     var buff = new StringBuilder ();
     if (boldify) {
       buff.append("<b>");
@@ -591,9 +598,9 @@ namespace Utils {
         .append ("/@")
         .append (user.screen_name)
         .append ("\" title=\"")
-        .append (GLib.Markup.escape_text(username))
+        .append (GLib.Markup.escape_text(GLib.Markup.escape_text(user.user_name))) // Double escape because it needs to be valid escaped markup
         .append ("\">")
-        .append (username)
+        .append (display_text)
         .append ("</a></span>");
     if (boldify) {
       buff.append("</b>");
@@ -705,5 +712,50 @@ namespace Utils {
     }
 
     draw_x = int.max(0, (int)Math.round((widget_width - img_width * scale) / 2));
+  }
+
+  // FIXME: Still getting some invalid unicode
+  public string build_reply_to_string(Cb.UserIdentity[] reply_users, int64 author_id, bool and_others = true) {
+    int user_count = reply_users.length;
+
+    if (user_count == 1) {
+      return _("Replying to %s").printf(linkify_screen_name(reply_users[0]));
+    }
+    else if (user_count > 2 && and_others) {
+      Cb.UserIdentity? user = null;
+      Cb.UserIdentity reply_user;
+
+      // Find the first user who isn't the author, because that's more interesting
+      for (int i = 0; i < user_count; i++) {
+        reply_user = reply_users[i];
+        if (reply_user.id != author_id) {
+          user = reply_user;
+          break;
+        }
+      }
+
+      if (user == null) {
+        // SHOULD NEVER HAPPEN! We've got at least three users, so they shouldn't all be the author!
+        // But be safe, just in case.
+        user = reply_users[0];
+      }
+
+      // TRANSLATORS: Note: "…and 1 other" should never be used because it will use the "Replying to X and Y" string
+      return ngettext("Replying to %s and %d other", "Replying to %s and %d others", user_count - 1).printf(linkify_screen_name(user), user_count - 1);
+    }
+    else {
+      int last_idx = user_count - 1;
+      // It would be nice to use our map() function here but we get "not a supported generic type argument"
+      // error: ‘CB_TYPE_USER_IDENTITY’ undeclared (first use in this function); did you mean ‘CB_TYPE_USER_COUNTER’?
+      string[] user_strings = new string[user_count];
+
+      for (int i = 0; i < user_count; i ++) {
+        user_strings[i] = linkify_screen_name(reply_users[i]);
+      }
+
+      var user_list = user_strings[0:last_idx];
+      // TRANSLATORS: The first %s is a list of one or more comma-separated user names, and the second %s is the last username in the list
+      return _("Replying to %s and %s").printf(string.joinv(", ", user_list), user_strings[last_idx]);
+    }
   }
 }

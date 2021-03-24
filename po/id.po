@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-03-22 19:52+0000\n"
+"POT-Creation-Date: 2021-03-24 19:52+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Indonesian (Indonesia) (http://www.transifex.com/cawbird/"
@@ -64,22 +64,6 @@ msgstr "Gunakan Twitter dari aplikasi desktop normal"
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;"
-
-#. TRANSLATORS: This is the start of a "Replying to" line in a tweet
-msgid "Replying to"
-msgstr "Membalas ke"
-
-#. TRANSLATORS: This gets appended to the "replying to" line
-#. * in a tweet. Example: "Replying to Foo and Bar" where
-#. * "and Bar" comes from this string.
-msgid "and"
-msgstr "dan"
-
-#. TRANSLATORS: This gets appended to the "replying to" line
-#. * in a tweet
-#, c-format
-msgid "and %d others"
-msgstr "dan 1%d lainnya"
 
 #. TRANSLATORS: Description of the `--tweet` option for the command-line
 msgid ""
@@ -546,6 +530,21 @@ msgstr ""
 msgid "%e %b %Y"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "Replying to %s"
+msgstr "Membalas ke %s"
+
+#. TRANSLATORS: Note: "…and 1 other" should never be used because it will use the "Replying to X and Y" string
+#, fuzzy, c-format
+msgid "Replying to %s and %d other"
+msgid_plural "Replying to %s and %d others"
+msgstr[0] "Membalas ke %s dan 1%d lainnya"
+
+#. TRANSLATORS: The first %s is a list of one or more comma-separated user names, and the second %s is the last username in the list
+#, fuzzy, c-format
+msgid "Replying to %s and %s"
+msgstr "Membalas ke %s dan %s"
+
 msgid "Don't have a Twitter account yet?"
 msgstr "Belum mempunyai akun Twitter?"
 
@@ -653,6 +652,7 @@ msgstr ""
 msgid "Quote tweet"
 msgstr "Kutip tweet"
 
+#. TRANSLATORS: A dialog message with Yes/No options when the user closes the "compose tweet" window with content still in the dialog
 msgid "Keep tweet as draft?"
 msgstr ""
 
@@ -1183,6 +1183,12 @@ msgstr "Dibuat"
 
 msgid "Subscribed to"
 msgstr "Berlangganan ke"
+
+#~ msgid "Replying to"
+#~ msgstr "Membalas ke"
+
+#~ msgid "and"
+#~ msgstr "dan"
 
 #~ msgid "Actions"
 #~ msgstr "Aksi"

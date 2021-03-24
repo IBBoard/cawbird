@@ -165,66 +165,6 @@ cb_utils_linkify_user (const CbUserIdentity *user,
   g_string_append (str, "</a></span>");
 }
 
-void
-cb_utils_write_reply_text (const CbMiniTweet *t,
-                           GString           *str)
-{
-
-  g_return_if_fail (t->reply_id != 0);
-  g_return_if_fail (t->n_reply_users > 0);
-  CbUserIdentity *firstUser = NULL;
-  CbUserIdentity *secondUser = NULL;
-  CbUserIdentity *author = NULL;
-
-  for (int i = 0; i < t->n_reply_users; i++) {
-    CbUserIdentity *user = &t->reply_users[i];
-    if (user->id == t->author.id) {
-      author = user;
-      continue;
-    } else if (firstUser == NULL) {
-      firstUser = user;
-    } else if (secondUser == NULL) {
-      secondUser = user;
-      // We found all the ones we need for text
-      break;
-    }
-  }
-
-  if (author != NULL) {
-    if (firstUser == NULL) {
-      firstUser = author;
-    }
-    else if (secondUser == NULL) {
-      secondUser = author;
-    }
-    // Else we've already got enough names
-  }
-
-  /* TRANSLATORS: This is the start of a "Replying to" line in a tweet */
-  g_string_append (str, _("Replying to"));
-  g_string_append_c (str, ' ');
-
-  cb_utils_linkify_user (firstUser, str);
-
-  if (t->n_reply_users == 2)
-    {
-      g_string_append_c (str, ' ');
-      /* TRANSLATORS: This gets appended to the "replying to" line
-       * in a tweet. Example: "Replying to Foo and Bar" where
-       * "and Bar" comes from this string. */
-      g_string_append (str, _("and"));
-      g_string_append_c (str, ' ');
-      cb_utils_linkify_user (secondUser, str);
-    }
-  else if (t->n_reply_users > 2)
-    {
-      g_string_append_c (str, ' ');
-      /* TRANSLATORS: This gets appended to the "replying to" line
-       * in a tweet */
-      g_string_append_printf (str, _("and %d others"), t->n_reply_users - 1);
-    }
-}
-
 char *
 cb_utils_escape_quotes (const char *in)
 {

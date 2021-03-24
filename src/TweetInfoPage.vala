@@ -889,42 +889,12 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     if ((tweet.retweeted_tweet != null &&
          tweet.retweeted_tweet.reply_id != 0) ||
          tweet.source_tweet.reply_id != 0) {
-      var author_id = (tweet.retweeted_tweet != null &&
-         tweet.retweeted_tweet.reply_id != 0) ? tweet.retweeted_tweet.author.id : tweet.source_tweet.author.id;
+      var author_id = (tweet.retweeted_tweet != null) ? tweet.retweeted_tweet.author.id : tweet.source_tweet.author.id;
       var reply_users = tweet.get_reply_users ();
-      for (int i = 0; i < reply_users.length; i ++) {
-        if (reply_users[i].id == author_id) {
-          var author = reply_users[i];
-          // Move the author to the end to deprioritise them.
-          // This lets us indicate self-replies in TweetInfoView while also showing
-          // more useful information first for multi-user threads
-          reply_users.move(i+1, i, reply_users.length - i - 1);
-          reply_users[reply_users.length - 1] = author;
-          break;
-        }
-      }
 
       if (reply_users.length > 0) {
         reply_box.show ();
-        var buff = new StringBuilder ();
-        buff.append (_("Replying to"));
-        buff.append_c (' ');
-        Cb.Utils.linkify_user (ref reply_users[0], buff);
-
-        for (int i = 1; i < reply_users.length - 1; i ++) {
-          buff.append (", ");
-          Cb.Utils.linkify_user (ref reply_users[i], buff);
-        }
-
-        if (reply_users.length > 1) {
-          /* Last one */
-          buff.append_c (' ')
-              .append (_("and"))
-              .append_c (' ');
-          Cb.Utils.linkify_user (ref reply_users[reply_users.length - 1], buff);
-        }
-
-        reply_label.label = buff.str;
+        reply_label.label = Utils.build_reply_to_string(reply_users, author_id, false);
       } else {
         reply_box.hide ();
       }
