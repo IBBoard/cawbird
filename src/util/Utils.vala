@@ -714,7 +714,6 @@ namespace Utils {
     draw_x = int.max(0, (int)Math.round((widget_width - img_width * scale) / 2));
   }
 
-  // FIXME: Still getting some invalid unicode
   public string build_reply_to_string(Cb.UserIdentity[] reply_users, int64 author_id, bool and_others = true) {
     int user_count = reply_users.length;
 
