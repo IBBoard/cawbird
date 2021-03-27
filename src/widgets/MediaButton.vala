@@ -276,9 +276,7 @@ private class MediaButton : Gtk.Bin {
 
   private void open_in_browser_activated (GLib.SimpleAction a, GLib.Variant? v) {
     try {
-      Gtk.show_uri (Gdk.Screen.get_default (),
-                    media.target_url ?? media.url,
-                    Gtk.get_current_event_time ());
+      Gtk.show_uri_on_window ((Gtk.Window)get_toplevel(), media.target_url ?? media.url, Gtk.get_current_event_time ());
     } catch (GLib.Error e) {
       critical (e.message);
     }
@@ -501,7 +499,6 @@ private class MediaButton : Gtk.Bin {
                                    double y) {
     Gdk.EventSequence sequence = this.press_gesture.get_current_sequence ();
     Gdk.Event event = this.press_gesture.get_last_event (sequence);
-    uint button = this.press_gesture.get_current_button ();
 
     if (this._media == null)
       return;
@@ -514,7 +511,7 @@ private class MediaButton : Gtk.Bin {
         this.menu.attach_to_widget (this, null);
       }
       menu.show_all ();
-      menu.popup (null, null, null, button, Gtk.get_current_event_time ());
+      menu.popup_at_pointer (event);
     }
   }
 
