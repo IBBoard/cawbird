@@ -2,10 +2,10 @@
 # Copyright (C) YEAR 2013-2018 Timm Bäder, 2018-2020 IBBoard
 # This file is distributed under the same license as the cawbird package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 # Translators:
 # GunChleoc, 2021
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -14,14 +14,12 @@ msgstr ""
 "POT-Creation-Date: 2021-03-24 19:52+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: GunChleoc, 2021\n"
-"Language-Team: Gaelic, Scottish (https://www.transifex.com/cawbird/"
-"teams/107135/gd/)\n"
-"Language: gd\n"
+"Language-Team: Gaelic, Scottish (https://www.transifex.com/cawbird/teams/107135/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
-"(n > 2 && n < 20) ? 2 : 3;\n"
+"Language: gd\n"
+"Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
 
 msgid "Cawbird"
 msgstr "Cawbird"
@@ -589,23 +587,25 @@ msgstr "%e %B %Y"
 msgid "%e %b %Y"
 msgstr "%e %b %Y"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Replying to %s"
-msgstr "Air freagairt gu %s"
+msgstr "A’ freagairt dha %s"
 
-#. TRANSLATORS: Note: "…and 1 other" should never be used because it will use the "Replying to X and Y" string
-#, fuzzy, c-format
+#. TRANSLATORS: Note: "…and 1 other" should never be used because it will use
+#. the "Replying to X and Y" string
+#, c-format
 msgid "Replying to %s and %d other"
 msgid_plural "Replying to %s and %d others"
-msgstr[0] "Air freagairt gu %s agus %d eile"
-msgstr[1] "Air freagairt gu %s agus %d eile"
-msgstr[2] "Air freagairt gu %s agus %d eile"
-msgstr[3] "Air freagairt gu %s agus %d eile"
+msgstr[0] "A’ freagairt dha %s ’s %d eile"
+msgstr[1] "A’ freagairt dha %s ’s %d eile"
+msgstr[2] "A’ freagairt dha %s ’s %d eile"
+msgstr[3] "A’ freagairt dha %s ’s %d eile"
 
-#. TRANSLATORS: The first %s is a list of one or more comma-separated user names, and the second %s is the last username in the list
-#, fuzzy, c-format
+#. TRANSLATORS: The first %s is a list of one or more comma-separated user
+#. names, and the second %s is the last username in the list
+#, c-format
 msgid "Replying to %s and %s"
-msgstr "Air freagairt gu %s agus %s"
+msgstr "A’ freagairt dha %s ’s %s"
 
 msgid "Don't have a Twitter account yet?"
 msgstr "Nach eil cunntas Twitter agad fhathast?"
@@ -733,7 +733,8 @@ msgstr ""
 msgid "Quote tweet"
 msgstr "Dèan iomradh dhen tweet"
 
-#. TRANSLATORS: A dialog message with Yes/No options when the user closes the "compose tweet" window with content still in the dialog
+#. TRANSLATORS: A dialog message with Yes/No options when the user closes the
+#. "compose tweet" window with content still in the dialog
 msgid "Keep tweet as draft?"
 msgstr "A bheil thu airson dreachd dhen Tweet a chumail?"
 
@@ -1263,9 +1264,3 @@ msgstr "Air a chruthachadh"
 
 msgid "Subscribed to"
 msgstr "Air fho-sgrìobhadh air"
-
-#~ msgid "Replying to"
-#~ msgstr "Air freagairt gu"
-
-#~ msgid "and"
-#~ msgstr "agus"
