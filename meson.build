@@ -5,7 +5,7 @@ project('Cawbird', ['vala', 'c'],
         ])
 
 prefix = get_option('prefix')
-localedir = prefix / get_option('localedir')
+localedir = join_paths(prefix, get_option('localedir'))
 
 gnome = import('gnome')
 srcdir = include_directories('src')
