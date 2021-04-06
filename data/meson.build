@@ -1,5 +1,4 @@
 i18n = import('i18n')
-fs = import('fs')
 
 install_data(
   'uk.co.ibboard.cawbird.gschema.xml',
