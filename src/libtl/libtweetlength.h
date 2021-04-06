@@ -39,13 +39,20 @@ typedef enum {
   TL_ENT_WHITESPACE = 5,
 } TlEntityType;
 
+enum {
+  COUNT_BASIC,
+  COUNT_SHORT_URLS,
+  COUNT_COMPACT
+} TlCountType;
+
 gsize      tl_count_characters            (const char *input);
 gsize      tl_count_characters_n          (const char *input,
                                            gsize       length_in_bytes);
 gsize      tl_count_weighted_characters   (const char *input,
-                                           gboolean use_short_link);
+                                           guint       count_mode);
 gsize      tl_count_weighted_characters_n (const char *input,
-                                           gsize       length_in_bytes);
+                                           gsize       length_in_bytes,
+                                           gboolean    compact_emoji);
 TlEntity * tl_extract_entities            (const char *input,
                                            gsize      *out_n_entities,
                                            gsize      *out_text_length);
