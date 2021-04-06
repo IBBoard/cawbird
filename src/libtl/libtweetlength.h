@@ -39,7 +39,7 @@ typedef enum {
   TL_ENT_WHITESPACE = 5,
 } TlEntityType;
 
-enum {
+typedef enum {
   COUNT_BASIC,
   COUNT_SHORT_URLS,
   COUNT_COMPACT
