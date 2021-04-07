@@ -589,23 +589,25 @@ msgstr "%e %B %Y"
 msgid "%e %b %Y"
 msgstr "%e %b %Y"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Replying to %s"
-msgstr "Air freagairt gu %s"
+msgstr "A’ freagairt dha %s"
 
-#. TRANSLATORS: Note: "…and 1 other" should never be used because it will use the "Replying to X and Y" string
-#, fuzzy, c-format
+#. TRANSLATORS: Note: "…and 1 other" should never be used because it will use
+#. the "Replying to X and Y" string
+#, c-format
 msgid "Replying to %s and %d other"
 msgid_plural "Replying to %s and %d others"
-msgstr[0] "Air freagairt gu %s agus %d eile"
-msgstr[1] "Air freagairt gu %s agus %d eile"
-msgstr[2] "Air freagairt gu %s agus %d eile"
-msgstr[3] "Air freagairt gu %s agus %d eile"
+msgstr[0] "A’ freagairt dha %s ’s %d eile"
+msgstr[1] "A’ freagairt dha %s ’s %d eile"
+msgstr[2] "A’ freagairt dha %s ’s %d eile"
+msgstr[3] "A’ freagairt dha %s ’s %d eile"
 
-#. TRANSLATORS: The first %s is a list of one or more comma-separated user names, and the second %s is the last username in the list
-#, fuzzy, c-format
+#. TRANSLATORS: The first %s is a list of one or more comma-separated user
+#. names, and the second %s is the last username in the list
+#, c-format
 msgid "Replying to %s and %s"
-msgstr "Air freagairt gu %s agus %s"
+msgstr "A’ freagairt dha %s ’s %s"
 
 msgid "Don't have a Twitter account yet?"
 msgstr "Nach eil cunntas Twitter agad fhathast?"
@@ -733,7 +735,8 @@ msgstr ""
 msgid "Quote tweet"
 msgstr "Dèan iomradh dhen tweet"
 
-#. TRANSLATORS: A dialog message with Yes/No options when the user closes the "compose tweet" window with content still in the dialog
+#. TRANSLATORS: A dialog message with Yes/No options when the user closes the
+#. "compose tweet" window with content still in the dialog
 msgid "Keep tweet as draft?"
 msgstr "A bheil thu airson dreachd dhen Tweet a chumail?"
 
@@ -1263,9 +1266,3 @@ msgstr "Air a chruthachadh"
 
 msgid "Subscribed to"
 msgstr "Air fho-sgrìobhadh air"
-
-#~ msgid "Replying to"
-#~ msgstr "Air freagairt gu"
-
-#~ msgid "and"
-#~ msgstr "agus"
