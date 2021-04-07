@@ -25,7 +25,12 @@ int main (string[] args) {
 
   // Setup gettext
   GLib.Intl.setlocale (GLib.LocaleCategory.ALL, "");
-  GLib.Intl.bindtextdomain (Config.GETTEXT_PACKAGE, Config.LOCALEDIR);
+  if (Config.LOCALEDIR != null) {
+    GLib.Intl.bindtextdomain (Config.GETTEXT_PACKAGE, Config.LOCALEDIR);
+  }
+  else {
+    GLib.Intl.bindtextdomain (Config.GETTEXT_PACKAGE, GLib.Environment.get_variable("PWD") + "/po/");
+  }
   GLib.Intl.bind_textdomain_codeset (Config.GETTEXT_PACKAGE, "UTF-8");
   GLib.Intl.textdomain (Config.GETTEXT_PACKAGE);
 

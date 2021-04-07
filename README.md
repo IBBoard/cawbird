@@ -183,7 +183,13 @@ meson build -Dconsumer_key_base64=<your-base64-key> -Dconsumer_secret_base64=<yo
 ninja -C build
 ```
 
-If you want to test translations locally then you will also need to pass `-Dlocaltextdomain=true` to meson.
+If you want to test translations locally then you will also need to:
+
+* pass `-Dlocaltextdomain=true` to meson
+* run `ninja -C build cawbird-gmo` to generate the binary `.mo` translations
+* run `for file in po/*.gmo; do mkdir -p "${file/.gmo}/LC_MESSAGES/"; cp $file "${file/.gmo}/LC_MESSAGES/cawbird.mo"; done` to put the `.mo` files in the expected places
+* run `pushd build; ./cawbird; popd` to run Cawbird from the build directory
+  * to test a different language, run `cd build; LANGUAGE=aa_BB ./cawbird` with the appropriate language code
 
 Note that executing `build/cawbird` may result in one of the following errors:
 
