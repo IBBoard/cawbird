@@ -9,7 +9,7 @@
   <template class="FilterListEntry" parent="GtkListBoxRow">
     <property name="visible">1</property>
     <property name="can-focus">1</property>
-    <property name="tooltip-text" translatable="Yes">Click to edit</property>
+    <property name="tooltip-text" translatable="yes">Click to edit</property>
     <child>
       <object class="GtkRevealer" id="revealer">
         <property name="visible">1</property>
@@ -49,7 +49,7 @@
                     <property name="valign">center</property>
                     <property name="relief">none</property>
                     <property name="can-focus">1</property>
-                    <property name="tooltip-text" translatable="Yes">Remove this Filter</property>
+                    <property name="tooltip-text" translatable="yes">Remove this Filter</property>
                     <style>
                       <class name="image-button"/>
                     </style>

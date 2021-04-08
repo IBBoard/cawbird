@@ -63,7 +63,7 @@
           <object class="GtkLabel">
             <property name="no-show-all">1</property>
             <property name="visible">1</property>
-            <property name="label" translatable="Yes">You can block users in their profile</property>
+            <property name="label" translatable="yes">You can block users in their profile</property>
             <property name="wrap">1</property>
             <property name="justify">center</property>
             <property name="margin-start">25</property>

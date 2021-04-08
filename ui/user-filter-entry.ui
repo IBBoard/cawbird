@@ -81,7 +81,7 @@
                     <property name="valign">center</property>
                     <property name="relief">none</property>
                     <property name="can-focus">1</property>
-                    <property name="tooltip-text" translatable="Yes">Remove this Filter</property>
+                    <property name="tooltip-text" translatable="yes">Remove this Filter</property>
                     <signal name="clicked" handler="menu_button_clicked_cb"/>
                     <style>
                       <class name="image-button"/>

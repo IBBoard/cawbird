@@ -39,7 +39,7 @@
               <object class="GtkLabel" id="label1">
                 <property name="visible">1</property>
                 <property name="halign">start</property>
-                <property name="label" translatable="Yes">Regular Expression:</property>
+                <property name="label" translatable="yes">Regular Expression:</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
@@ -64,7 +64,7 @@
                 <property name="visible">1</property>
                 <property name="margin-top">6</property>
                 <property name="halign">start</property>
-                <property name="label" translatable="Yes">Test:</property>
+                <property name="label" translatable="yes">Test:</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>

@@ -38,7 +38,7 @@
             <child>
               <object class="GtkLabel" id="app_category_label">
                 <property name="visible">1</property>
-                <property name="label" translatable="Yes">Cawbird</property>
+                <property name="label" translatable="yes">Cawbird</property>
                 <property name="halign">start</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
@@ -123,7 +123,7 @@
             <child>
               <object class="GtkLabel" id="timeline_category_label">
                 <property name="visible">1</property>
-                <property name="label" translatable="Yes">Timelines</property>
+                <property name="label" translatable="yes">Timelines</property>
                 <property name="halign">start</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
