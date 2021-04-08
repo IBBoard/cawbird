@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-03-24 19:52+0000\n"
+"POT-Creation-Date: 2021-04-08 14:19+0100\n"
 "PO-Revision-Date: 2017-11-20 17:05+0000\n"
 "Last-Translator: Slobodan Terzić <githzerai06@gmail.com>\n"
 "Language-Team: Serbian (Latin) (http://www.transifex.com/cawbird/cawbird/"
@@ -841,6 +841,12 @@ msgstr ""
 msgid "Show favorite images"
 msgstr "Prikaži omiljene slike"
 
+msgid "Click to edit"
+msgstr ""
+
+msgid "Remove this Filter"
+msgstr ""
+
 #, fuzzy
 msgid "Filtered terms"
 msgstr "Filteri"
@@ -848,6 +854,9 @@ msgstr "Filteri"
 #, fuzzy
 msgid "Filtered users"
 msgstr "Filteri"
+
+msgid "You can block users in their profile"
+msgstr ""
 
 msgid "Users"
 msgstr "Korisnici"
@@ -903,6 +912,12 @@ msgstr "Izađi"
 
 msgid "Add New Filter"
 msgstr "Dodaj novi filter"
+
+msgid "Regular Expression:"
+msgstr ""
+
+msgid "Test:"
+msgstr ""
 
 msgid "Add New Snippet"
 msgstr "Dodaj novi isečak"
@@ -974,6 +989,10 @@ msgstr ""
 
 msgid "Primary"
 msgstr ""
+
+#, fuzzy
+msgid "Timelines"
+msgstr "Sakrij sa vremenske linije"
 
 msgid "Show inline media"
 msgstr "Prikaži ugnežđeni sadržaj"

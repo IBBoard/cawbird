@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-03-24 19:52+0000\n"
+"POT-Creation-Date: 2021-04-08 14:19+0100\n"
 "PO-Revision-Date: 2018-02-09 06:34+0000\n"
 "Last-Translator: Kim Malmo <berencamlost@msn.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/cawbird/cawbird/"
@@ -821,6 +821,12 @@ msgstr ""
 msgid "Show favorite images"
 msgstr "Vis favorittbilder"
 
+msgid "Click to edit"
+msgstr ""
+
+msgid "Remove this Filter"
+msgstr ""
+
 #, fuzzy
 msgid "Filtered terms"
 msgstr "Filtre"
@@ -828,6 +834,9 @@ msgstr "Filtre"
 #, fuzzy
 msgid "Filtered users"
 msgstr "Filtre"
+
+msgid "You can block users in their profile"
+msgstr ""
 
 msgid "Users"
 msgstr "Brukere"
@@ -883,6 +892,12 @@ msgstr "Avslutt"
 
 msgid "Add New Filter"
 msgstr "Legg til nytt filter"
+
+msgid "Regular Expression:"
+msgstr ""
+
+msgid "Test:"
+msgstr ""
 
 msgid "Add New Snippet"
 msgstr "Legg til ny kodesnut"
@@ -954,6 +969,10 @@ msgstr ""
 
 msgid "Primary"
 msgstr ""
+
+#, fuzzy
+msgid "Timelines"
+msgstr "Skjul fra tidslinje"
 
 msgid "Show inline media"
 msgstr "Vis multimedier"

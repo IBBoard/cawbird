@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-03-24 19:52+0000\n"
+"POT-Creation-Date: 2021-04-08 14:19+0100\n"
 "PO-Revision-Date: 2018-01-17 19:31+0000\n"
 "Last-Translator: HybridGlucose <a07051226@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/cawbird/cawbird/"
@@ -803,6 +803,12 @@ msgstr ""
 msgid "Show favorite images"
 msgstr "顯示加入常用的媒體"
 
+msgid "Click to edit"
+msgstr ""
+
+msgid "Remove this Filter"
+msgstr ""
+
 #, fuzzy
 msgid "Filtered terms"
 msgstr "過濾器"
@@ -810,6 +816,9 @@ msgstr "過濾器"
 #, fuzzy
 msgid "Filtered users"
 msgstr "過濾器"
+
+msgid "You can block users in their profile"
+msgstr ""
 
 msgid "Users"
 msgstr "帳戶"
@@ -865,6 +874,12 @@ msgstr "離開"
 
 msgid "Add New Filter"
 msgstr "新增過濾器"
+
+msgid "Regular Expression:"
+msgstr ""
+
+msgid "Test:"
+msgstr ""
 
 msgid "Add New Snippet"
 msgstr "新增片語"
@@ -936,6 +951,10 @@ msgstr ""
 
 msgid "Primary"
 msgstr ""
+
+#, fuzzy
+msgid "Timelines"
+msgstr "在時間軸上隱藏"
 
 msgid "Show inline media"
 msgstr "顯示推文中媒體"

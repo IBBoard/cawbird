@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-03-24 19:52+0000\n"
+"POT-Creation-Date: 2021-04-08 14:19+0100\n"
 "PO-Revision-Date: 2017-11-30 16:57+0000\n"
 "Last-Translator: Aoibhe Ní Ghnímh <aoibhe.agnew@gmail.com>\n"
 "Language-Team: Irish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -844,10 +844,19 @@ msgstr ""
 msgid "Show favorite images"
 msgstr ""
 
+msgid "Click to edit"
+msgstr ""
+
+msgid "Remove this Filter"
+msgstr ""
+
 msgid "Filtered terms"
 msgstr ""
 
 msgid "Filtered users"
+msgstr ""
+
+msgid "You can block users in their profile"
 msgstr ""
 
 msgid "Users"
@@ -902,6 +911,12 @@ msgid "Quit"
 msgstr ""
 
 msgid "Add New Filter"
+msgstr ""
+
+msgid "Regular Expression:"
+msgstr ""
+
+msgid "Test:"
 msgstr ""
 
 msgid "Add New Snippet"
@@ -972,6 +987,10 @@ msgstr ""
 
 msgid "Primary"
 msgstr ""
+
+#, fuzzy
+msgid "Timelines"
+msgstr "Croíthe"
 
 msgid "Show inline media"
 msgstr ""

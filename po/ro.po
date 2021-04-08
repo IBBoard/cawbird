@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-03-24 19:52+0000\n"
+"POT-Creation-Date: 2021-04-08 14:19+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.com/cawbird/cawbird/"
@@ -827,10 +827,19 @@ msgstr ""
 msgid "Show favorite images"
 msgstr ""
 
+msgid "Click to edit"
+msgstr ""
+
+msgid "Remove this Filter"
+msgstr ""
+
 msgid "Filtered terms"
 msgstr ""
 
 msgid "Filtered users"
+msgstr ""
+
+msgid "You can block users in their profile"
 msgstr ""
 
 msgid "Users"
@@ -886,6 +895,12 @@ msgstr "Închide"
 
 msgid "Add New Filter"
 msgstr "Adaugă un filtru nou"
+
+msgid "Regular Expression:"
+msgstr ""
+
+msgid "Test:"
+msgstr ""
 
 msgid "Add New Snippet"
 msgstr "Adaugă un nou fragment de text"
@@ -956,6 +971,10 @@ msgstr ""
 
 msgid "Primary"
 msgstr ""
+
+#, fuzzy
+msgid "Timelines"
+msgstr "Menţionări"
 
 msgid "Show inline media"
 msgstr ""

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-03-24 19:52+0000\n"
+"POT-Creation-Date: 2021-04-08 14:19+0100\n"
 "PO-Revision-Date: 2017-11-12 23:35+0000\n"
 "Last-Translator: MTD TR <dev.mantendo@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/cawbird/cawbird/"
@@ -805,6 +805,12 @@ msgstr ""
 msgid "Show favorite images"
 msgstr ""
 
+msgid "Click to edit"
+msgstr ""
+
+msgid "Remove this Filter"
+msgstr ""
+
 #, fuzzy
 msgid "Filtered terms"
 msgstr "フィルター"
@@ -812,6 +818,9 @@ msgstr "フィルター"
 #, fuzzy
 msgid "Filtered users"
 msgstr "フィルター"
+
+msgid "You can block users in their profile"
+msgstr ""
 
 msgid "Users"
 msgstr "ユーザー"
@@ -865,6 +874,12 @@ msgid "Quit"
 msgstr "終了"
 
 msgid "Add New Filter"
+msgstr ""
+
+msgid "Regular Expression:"
+msgstr ""
+
+msgid "Test:"
 msgstr ""
 
 msgid "Add New Snippet"
@@ -937,6 +952,10 @@ msgstr ""
 
 msgid "Primary"
 msgstr ""
+
+#, fuzzy
+msgid "Timelines"
+msgstr "メンション"
 
 msgid "Show inline media"
 msgstr ""

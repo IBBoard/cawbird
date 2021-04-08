@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-03-24 19:52+0000\n"
+"POT-Creation-Date: 2021-04-08 14:19+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Даниил Пронин <mail@grawl.ru>, 2021\n"
 "Language-Team: Russian (https://www.transifex.com/cawbird/teams/107135/ru/)\n"
@@ -864,11 +864,20 @@ msgstr "Добавить медиа"
 msgid "Show favorite images"
 msgstr "Показать избранные изображения"
 
+msgid "Click to edit"
+msgstr ""
+
+msgid "Remove this Filter"
+msgstr ""
+
 msgid "Filtered terms"
 msgstr "Отфильтрованные темы"
 
 msgid "Filtered users"
 msgstr "Отфильтрованные пользователи"
+
+msgid "You can block users in their profile"
+msgstr ""
 
 msgid "Users"
 msgstr "Пользователи"
@@ -923,6 +932,12 @@ msgstr "Выход"
 
 msgid "Add New Filter"
 msgstr "Добавить новый фильтр"
+
+msgid "Regular Expression:"
+msgstr ""
+
+msgid "Test:"
+msgstr ""
 
 msgid "Add New Snippet"
 msgstr "Добавить новый сниппет"
@@ -993,6 +1008,10 @@ msgstr ""
 
 msgid "Primary"
 msgstr ""
+
+#, fuzzy
+msgid "Timelines"
+msgstr "Лента %s"
 
 msgid "Show inline media"
 msgstr "Показать встроенные медиа"

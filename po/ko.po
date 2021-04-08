@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-03-24 19:52+0000\n"
+"POT-Creation-Date: 2021-04-08 14:19+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/cawbird/cawbird/"
@@ -803,6 +803,12 @@ msgstr ""
 msgid "Show favorite images"
 msgstr ""
 
+msgid "Click to edit"
+msgstr ""
+
+msgid "Remove this Filter"
+msgstr ""
+
 #, fuzzy
 msgid "Filtered terms"
 msgstr "필터"
@@ -810,6 +816,9 @@ msgstr "필터"
 #, fuzzy
 msgid "Filtered users"
 msgstr "필터"
+
+msgid "You can block users in their profile"
+msgstr ""
 
 msgid "Users"
 msgstr "사용자"
@@ -865,6 +874,12 @@ msgstr "종료"
 
 msgid "Add New Filter"
 msgstr "새로운 필터 추가"
+
+msgid "Regular Expression:"
+msgstr ""
+
+msgid "Test:"
+msgstr ""
 
 msgid "Add New Snippet"
 msgstr "새로운 스니펫 추가"
@@ -936,6 +951,10 @@ msgstr ""
 
 msgid "Primary"
 msgstr ""
+
+#, fuzzy
+msgid "Timelines"
+msgstr "타임라인에서 가리기"
 
 msgid "Show inline media"
 msgstr "인라인 미디어 보기"
