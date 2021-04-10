@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-08 14:19+0100\n"
+"POT-Creation-Date: 2021-04-10 09:40+0100\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Indonesian (Indonesia) (http://www.transifex.com/cawbird/"
@@ -583,6 +583,16 @@ msgstr "Batal mengikuti"
 msgid "Follow"
 msgstr "Mengikuti"
 
+msgid "Loading…"
+msgstr "Sedang memuatkan..."
+
+#, fuzzy
+msgid "No entries found"
+msgstr "User tidak ditemukan"
+
+msgid "Retry"
+msgstr "Coba lagi"
+
 msgid "Copy URL"
 msgstr "Salin URL"
 
@@ -737,9 +747,6 @@ msgstr "Masukkan PIN dari twitter.com dibawah ini:"
 
 msgid "PIN"
 msgstr "PIN"
-
-msgid "Retry"
-msgstr "Coba lagi"
 
 msgid "Confirm"
 msgstr "Konfirmasi"
@@ -1221,9 +1228,6 @@ msgstr "Berlangganan ke"
 
 #~ msgid "List"
 #~ msgstr "Daftar"
-
-#~ msgid "Loading…"
-#~ msgstr "Sedang memuatkan..."
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

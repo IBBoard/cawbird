@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-08 14:19+0100\n"
+"POT-Creation-Date: 2021-04-10 09:40+0100\n"
 "PO-Revision-Date: 2017-10-22 18:18+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -605,6 +605,16 @@ msgstr "Nustoti sekti"
 msgid "Follow"
 msgstr "Sekti"
 
+msgid "Loading…"
+msgstr "Įkeliama…"
+
+#, fuzzy
+msgid "No entries found"
+msgstr "Naudotojų nerasta"
+
+msgid "Retry"
+msgstr "Pakartoti"
+
 msgid "Copy URL"
 msgstr "Kopijuoti URL"
 
@@ -771,9 +781,6 @@ msgstr "Žemiau įveskite PIN iš twitter.com:"
 
 msgid "PIN"
 msgstr "PIN"
-
-msgid "Retry"
-msgstr "Pakartoti"
 
 msgid "Confirm"
 msgstr "Patvirtinti"
@@ -1253,9 +1260,6 @@ msgstr "Jūsų prenumeratos"
 
 #~ msgid "List"
 #~ msgstr "Sąrašas"
-
-#~ msgid "Loading…"
-#~ msgstr "Įkeliama…"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

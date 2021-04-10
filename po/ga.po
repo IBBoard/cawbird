@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-08 14:19+0100\n"
+"POT-Creation-Date: 2021-04-10 09:40+0100\n"
 "PO-Revision-Date: 2017-11-30 16:57+0000\n"
 "Last-Translator: Aoibhe Ní Ghnímh <aoibhe.agnew@gmail.com>\n"
 "Language-Team: Irish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -599,6 +599,15 @@ msgstr "Á Leanúint"
 msgid "Follow"
 msgstr "Lean"
 
+msgid "Loading…"
+msgstr ""
+
+msgid "No entries found"
+msgstr ""
+
+msgid "Retry"
+msgstr ""
+
 msgid "Copy URL"
 msgstr ""
 
@@ -767,9 +776,6 @@ msgid "Enter PIN from twitter.com below:"
 msgstr ""
 
 msgid "PIN"
-msgstr ""
-
-msgid "Retry"
 msgstr ""
 
 msgid "Confirm"

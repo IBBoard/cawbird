@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-08 14:19+0100\n"
+"POT-Creation-Date: 2021-04-10 09:40+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Даниил Пронин <mail@grawl.ru>, 2021\n"
 "Language-Team: Russian (https://www.transifex.com/cawbird/teams/107135/ru/)\n"
@@ -614,6 +614,16 @@ msgstr "Отписаться"
 msgid "Follow"
 msgstr "Подписаться"
 
+msgid "Loading…"
+msgstr ""
+
+#, fuzzy
+msgid "No entries found"
+msgstr "Пользователи не найдены"
+
+msgid "Retry"
+msgstr "Повтор"
+
 msgid "Copy URL"
 msgstr "Копировать URL"
 
@@ -788,9 +798,6 @@ msgstr "Введите PIN-код с twitter.com ниже:"
 
 msgid "PIN"
 msgstr "PIN-код"
-
-msgid "Retry"
-msgstr "Повтор"
 
 msgid "Confirm"
 msgstr "Подтвердить"

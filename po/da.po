@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-08 14:19+0100\n"
+"POT-Creation-Date: 2021-04-10 09:40+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, "
 "2021\n"
@@ -592,6 +592,16 @@ msgstr "Følg ikke"
 msgid "Follow"
 msgstr "Følg"
 
+msgid "Loading…"
+msgstr ""
+
+#, fuzzy
+msgid "No entries found"
+msgstr "Ingen brugere fundet"
+
+msgid "Retry"
+msgstr "Prøv igen"
+
 msgid "Copy URL"
 msgstr "Kopiere URL"
 
@@ -760,9 +770,6 @@ msgstr "Indtast PIN fra twitter.com herunder:"
 
 msgid "PIN"
 msgstr "PIN"
-
-msgid "Retry"
-msgstr "Prøv igen"
 
 msgid "Confirm"
 msgstr "Bekræft"

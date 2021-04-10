@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-08 14:19+0100\n"
+"POT-Creation-Date: 2021-04-10 09:40+0100\n"
 "PO-Revision-Date: 2018-01-17 19:31+0000\n"
 "Last-Translator: HybridGlucose <a07051226@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/cawbird/cawbird/"
@@ -575,6 +575,16 @@ msgstr "取消跟隨"
 msgid "Follow"
 msgstr "跟隨"
 
+msgid "Loading…"
+msgstr "載入中..."
+
+#, fuzzy
+msgid "No entries found"
+msgstr "沒有找到用戶"
+
+msgid "Retry"
+msgstr "重試"
+
 msgid "Copy URL"
 msgstr "複製網址"
 
@@ -725,9 +735,6 @@ msgstr "在下方輸入 twitter.com 所提供的 PIN ："
 
 msgid "PIN"
 msgstr "PIN"
-
-msgid "Retry"
-msgstr "重試"
 
 msgid "Confirm"
 msgstr "確認"
@@ -1207,9 +1214,6 @@ msgstr "訂閱的"
 
 #~ msgid "List"
 #~ msgstr "列表"
-
-#~ msgid "Loading…"
-#~ msgstr "載入中..."
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-08 14:19+0100\n"
+"POT-Creation-Date: 2021-04-10 09:40+0100\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Ammar K <ak.bahassan@gmail.com>, 2020\n"
 "Language-Team: Arabic (http://www.transifex.com/cawbird/cawbird/language/"
@@ -622,6 +622,16 @@ msgstr "إلغاء التتبُع"
 msgid "Follow"
 msgstr "تَتبٌع"
 
+msgid "Loading…"
+msgstr "…يحمّل"
+
+#, fuzzy
+msgid "No entries found"
+msgstr "لم يتم العثور على مستخدمين"
+
+msgid "Retry"
+msgstr "إعادة المحاولة"
+
 msgid "Copy URL"
 msgstr "نسخ الرابط"
 
@@ -799,9 +809,6 @@ msgstr ""
 
 msgid "PIN"
 msgstr ""
-
-msgid "Retry"
-msgstr "إعادة المحاولة"
 
 msgid "Confirm"
 msgstr "تأكيد"
@@ -1281,6 +1288,3 @@ msgstr "مشترك في"
 
 #~ msgid "List"
 #~ msgstr "قائمة"
-
-#~ msgid "Loading…"
-#~ msgstr "…يحمّل"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-08 14:19+0100\n"
+"POT-Creation-Date: 2021-04-10 09:40+0100\n"
 "PO-Revision-Date: 2017-10-22 17:13+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/cawbird/cawbird/language/"
@@ -588,6 +588,16 @@ msgstr "Lopeta seuraaminen"
 msgid "Follow"
 msgstr "Seuraa"
 
+msgid "Loading…"
+msgstr "Ladataan…"
+
+#, fuzzy
+msgid "No entries found"
+msgstr "Käyttäjiä ei löytynyt"
+
+msgid "Retry"
+msgstr "Yritä uudelleen"
+
 msgid "Copy URL"
 msgstr "Kopioi osoite"
 
@@ -747,9 +757,6 @@ msgstr "Kirjoita PIN twitter.comista alapuolelle:"
 
 msgid "PIN"
 msgstr "PIN"
-
-msgid "Retry"
-msgstr "Yritä uudelleen"
 
 msgid "Confirm"
 msgstr "Vahvista"
@@ -1230,9 +1237,6 @@ msgstr "Tilannut"
 
 #~ msgid "List"
 #~ msgstr "Lista"
-
-#~ msgid "Loading…"
-#~ msgstr "Ladataan…"
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-08 14:19+0100\n"
+"POT-Creation-Date: 2021-04-10 09:40+0100\n"
 "PO-Revision-Date: 2018-01-09 20:56+0000\n"
 "Last-Translator: Xuacu Saturio <xuacusk8@gmail.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/cawbird/cawbird/language/"
@@ -594,6 +594,16 @@ msgstr "Dexar de siguir"
 msgid "Follow"
 msgstr "Siguir"
 
+msgid "Loading…"
+msgstr "Cargando..."
+
+#, fuzzy
+msgid "No entries found"
+msgstr "Nun s'alcontraron usuarios"
+
+msgid "Retry"
+msgstr "Reintentar"
+
 msgid "Copy URL"
 msgstr "Copiar URL"
 
@@ -753,9 +763,6 @@ msgstr "Escribe abaxo'l PIN de twitter.com:"
 
 msgid "PIN"
 msgstr "PIN"
-
-msgid "Retry"
-msgstr "Reintentar"
 
 msgid "Confirm"
 msgstr "Confirmar"
@@ -1235,9 +1242,6 @@ msgstr "Soscribise a"
 
 #~ msgid "List"
 #~ msgstr "Llista"
-
-#~ msgid "Loading…"
-#~ msgstr "Cargando..."
 
 #~ msgid "uk.co.ibboard.cawbird"
 #~ msgstr "uk.co.ibboard.cawbird"
