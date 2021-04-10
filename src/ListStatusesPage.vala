@@ -170,7 +170,7 @@ class ListStatusesPage : ScrollWidget, Cb.MessageReceiver, IPage {
       members_label.label = "%'d".printf (n_members);
       subscribers_label.label = "%'d".printf (n_subscribers);
       created_at_label.label = new GLib.DateTime.from_unix_local (created_at).format ("%x, %X");
-      mode_label.label = Utils.capitalize (mode);
+      set_mode_label(mode);
 
       // TRANSLATORS: "%s" is the user's name for the list - e.g. "Contributors" when looking at https://twitter.com/i/lists/1285277968676331522
       var accessible_name = _("%s list tweets").printf(list_title);
@@ -260,6 +260,10 @@ class ListStatusesPage : ScrollWidget, Cb.MessageReceiver, IPage {
     loading = false;
   }
 
+  private void set_mode_label(string mode) {
+    mode_label.label = mode == "private" ? _("Private") : _("Public");
+  }
+
   [GtkCallback]
   private void edit_button_clicked_cb () {
     title_stack.visible_child = title_entry;
@@ -270,7 +274,7 @@ class ListStatusesPage : ScrollWidget, Cb.MessageReceiver, IPage {
 
     title_entry.text = title_label.label;
     description_entry.text = description_label.label;
-    mode_combo_box.active_id = mode_label.label;
+    mode_combo_box.active_id = mode_label.label == _("Private") ? "private" : "public";
   }
 
   [GtkCallback]
@@ -287,7 +291,7 @@ class ListStatusesPage : ScrollWidget, Cb.MessageReceiver, IPage {
     // Make everything go back to normal
     title_label.label = title_entry.get_text();
     description_label.label = description_entry.text;
-    mode_label.label = mode_combo_box.active_id;
+    set_mode_label(mode_combo_box.active_id);
     cancel_button_clicked_cb ();
     edit_button.sensitive = false;
     delete_button.sensitive = false;
@@ -296,7 +300,7 @@ class ListStatusesPage : ScrollWidget, Cb.MessageReceiver, IPage {
     call.set_method ("POST");
     call.add_param ("list_id", list_id.to_string ());
     call.add_param ("name", title_label.label);
-    call.add_param ("mode", mode_label.label.down ());
+    call.add_param ("mode", mode_combo_box.active_id);
     call.add_param ("description", description_label.label);
     main_window.set_window_title (this.get_title ());
 

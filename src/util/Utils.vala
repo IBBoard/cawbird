@@ -492,14 +492,6 @@ namespace Utils {
     SOUP_SESSION = new Soup.Session ();
   }
 
-  string capitalize (string s) {
-    string back = s;
-    if (s.get_char (0).islower ()) {
-      back = s.get_char (0).toupper ().to_string () + s.substring (1);
-    }
-    return back;
-  }
-
   /**
    * Checks if @value is existing in @node and if it is, non-null.
    *
