@@ -135,7 +135,10 @@ class SettingsDialog : Gtk.Window {
 
     // Set up sample tweet {{{
     var sample_tweet = new Cb.Tweet ();
+    // Not actually the same tweet, but it's our first one!
+    sample_tweet.id = 1158028807959396353;
     sample_tweet.source_tweet = Cb.MiniTweet();
+    sample_tweet.source_tweet.created_at = new GLib.DateTime.now_local().add_minutes(-42).to_unix();
     sample_tweet.source_tweet.author = Cb.UserIdentity() {
       id = 12,
       screen_name = "cawbirdclient",
@@ -173,7 +176,9 @@ class SettingsDialog : Gtk.Window {
           original_text = match,
           display_text = match,
           tooltip_text = match,
-          target       = "foobar"
+          // This should be null, but that adds a "Block #hashtag" menu item that we don't want
+          // in the settings dialog
+          target       = match
         };
 
         match_info.next ();
