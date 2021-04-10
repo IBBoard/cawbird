@@ -159,7 +159,7 @@ class SettingsDialog : Gtk.Window {
       bool matched = regex.match (sample_text, 0, out match_info);
       assert (matched);
 
-      sample_tweet.source_tweet.entities = new Cb.TextEntity[3];
+      Cb.TextEntity[] hashtags = {};
 
       int i = 0;
       while (match_info.matches ()) {
@@ -167,7 +167,7 @@ class SettingsDialog : Gtk.Window {
         int from, to;
         match_info.fetch_pos (0, out from, out to);
         string match = match_info.fetch (0);
-        sample_tweet.source_tweet.entities[i] = Cb.TextEntity () {
+        hashtags += Cb.TextEntity () {
           from = sample_text.char_count (from),
           to   = sample_text.char_count (to),
           original_text = match,
@@ -179,6 +179,8 @@ class SettingsDialog : Gtk.Window {
         match_info.next ();
         i ++;
       }
+
+      sample_tweet.source_tweet.entities = hashtags;
     } catch (GLib.RegexError e) {
       critical (e.message);
     }
