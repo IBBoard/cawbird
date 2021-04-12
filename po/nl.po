@@ -1116,7 +1116,7 @@ msgid "DeepL"
 msgstr "DeepL"
 
 msgid "Custom"
-msgstr "Aangepastn"
+msgstr "Aangepast"
 
 msgid "Custom translation URL"
 msgstr "Aangepaste vertaal-url"
