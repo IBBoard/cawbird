@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-10 09:40+0100\n"
+"POT-Creation-Date: 2021-04-12 19:16+0100\n"
 "PO-Revision-Date: 2017-12-22 02:49+0000\n"
 "Last-Translator: antiparvos\n"
 "Language-Team: Galician (http://www.transifex.com/cawbird/cawbird/language/"
@@ -184,6 +184,12 @@ msgstr "Inicio"
 #, fuzzy, c-format
 msgid "%s list tweets"
 msgstr "%s chiou"
+
+msgid "Private"
+msgstr "Privada"
+
+msgid "Public"
+msgstr "Pública"
 
 msgid "Lists"
 msgstr "Listaxes"
@@ -877,12 +883,6 @@ msgstr "Editar"
 msgid "Mode:"
 msgstr "Modo:"
 
-msgid "Private"
-msgstr "Privada"
-
-msgid "Public"
-msgstr "Pública"
-
 msgid "Description"
 msgstr "Descrición"
 
@@ -1069,6 +1069,18 @@ msgid "Translation"
 msgstr ""
 
 msgid "Translation service"
+msgstr ""
+
+msgid "Google"
+msgstr ""
+
+msgid "Bing"
+msgstr ""
+
+msgid "DeepL"
+msgstr ""
+
+msgid "Custom"
 msgstr ""
 
 msgid "Custom translation URL"

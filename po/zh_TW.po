@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-10 09:40+0100\n"
+"POT-Creation-Date: 2021-04-12 19:16+0100\n"
 "PO-Revision-Date: 2018-01-17 19:31+0000\n"
 "Last-Translator: HybridGlucose <a07051226@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/cawbird/cawbird/"
@@ -180,6 +180,12 @@ msgstr "主頁"
 #, fuzzy, c-format
 msgid "%s list tweets"
 msgstr "%s 推文了"
+
+msgid "Private"
+msgstr "私人"
+
+msgid "Public"
+msgstr "公開"
 
 msgid "Lists"
 msgstr "列表"
@@ -858,12 +864,6 @@ msgstr "編輯"
 msgid "Mode:"
 msgstr "隱私："
 
-msgid "Private"
-msgstr "私人"
-
-msgid "Public"
-msgstr "公開"
-
 msgid "Description"
 msgstr "描述"
 
@@ -1050,6 +1050,18 @@ msgid "Translation"
 msgstr ""
 
 msgid "Translation service"
+msgstr ""
+
+msgid "Google"
+msgstr ""
+
+msgid "Bing"
+msgstr ""
+
+msgid "DeepL"
+msgstr ""
+
+msgid "Custom"
 msgstr ""
 
 msgid "Custom translation URL"

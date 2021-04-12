@@ -567,10 +567,10 @@
                 <property name="halign">start</property>
                 <property name="active">0</property>
                 <items>
-                  <item id="Google">Google</item>
-                  <item id="Bing">Bing</item>
-                  <item id="DeepL">DeepL</item>
-                  <item id="Custom">Custom</item>
+                  <item id="Google" translatable="yes">Google</item>
+                  <item id="Bing" translatable="yes">Bing</item>
+                  <item id="DeepL" translatable="yes">DeepL</item>
+                  <item id="Custom" translatable="yes">Custom</item>
                 </items>
                 <accessibility>
                   <relation type="labelled-by" target="label_translation_service"/>
