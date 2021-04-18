@@ -121,7 +121,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     }
     avatar_image.verified = tweet.is_flag_set (Cb.TweetState.VERIFIED);
     avatar_image.protected_account = tweet.is_flag_set (Cb.TweetState.PROTECTED);
-    
+
     if (tweet.retweeted_tweet != null) {
       var rt_author = tweet.source_tweet.author;
       rt_label.show ();
@@ -154,9 +154,10 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       if (quoted_reply_users.length != 0) {
         quote_reply_label.label = Utils.build_reply_to_string(quoted_reply_users, tweet.quoted_tweet.author.id);
         quote_reply_label.show ();
-      } else {
+      } else if (quote_reply_label != null) {
         quote_reply_label.hide ();
       }
+      // Else it hasn't been created because it wasn't a reply
     }
 
     retweet_button.active    =   tweet.is_flag_set (Cb.TweetState.RETWEETED);
@@ -725,7 +726,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       var button = new Gtk.Button.with_label (_("Show anyway"));
       button.halign = Gtk.Align.CENTER;
       button.valign = Gtk.Align.CENTER;
-      button.clicked.connect (() => { 
+      button.clicked.connect (() => {
         _media_stack.visible_child = _mm_widget;
       });
       box.add (button);
