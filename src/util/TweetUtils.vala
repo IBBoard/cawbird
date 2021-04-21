@@ -100,7 +100,7 @@ namespace TweetUtils {
       //case 68: return _("The Twitter REST API v1 is no longer active. Please migrate to API v1.1."); // We're never going to go back to v1.0!
       //case 87: return _("Client is not permitted to perform this action."); // We shouldn't have UI for the not permitted tasks
       case 88: return _("Rate limit exceeded");
-      case 89: return _("Invalid or expired token"); // 
+      case 89: return _("Invalid or expired token"); //
       //case 93: return _("This application is not allowed to access or delete your direct messages"); // We request the DM permission
       //case 99: return _("Unable to verify your credentials."); // Not relevant to posting
       case 109: return _("The specified user is not a subscriber of this list."); // Not listed in the docs
@@ -184,7 +184,7 @@ namespace TweetUtils {
         tweet = new Cb.Tweet ();
         tweet.load_from_json (parser.get_root (), account.id, now);
         get_tweet.callback ();
-      } catch (GLib.Error e) {        
+      } catch (GLib.Error e) {
         err = failed_request_to_error (call, e);
         get_tweet.callback ();
         return;
@@ -402,7 +402,7 @@ namespace TweetUtils {
       // We are already in the right state, so we didn't change it
       return false;
     }
-    
+
     var call = account.proxy.new_call ();
     call.set_method ("POST");
     if (status)
@@ -804,7 +804,7 @@ namespace TweetUtils {
             message = error.get_string_member("message");
           }
           else if (error.has_member("name")) {
-            var error_name = error.get_string_member("name");            
+            var error_name = error.get_string_member("name");
             message = _("Unknown error code %lld during upload: %s").printf(error_code, error_name);
           }
           else {
@@ -936,6 +936,17 @@ namespace TweetUtils {
       url = url.replace("{SOURCE_LANG}", src_lang).replace("{TARGET_LANG}", target_lang).replace("{CONTENT}", content);
       try {
         Gtk.show_uri_on_window(window, url, Gdk.CURRENT_TIME);
+        return true;
+      }
+      catch (Error e) {
+        Utils.show_error_dialog(e, window);
+      }
+    }
+    else {
+      try {
+        // XXX This is an ugly workaround for a deeper problem that we don't understand yet.
+        // It may have unexpected side-effects
+        Gtk.show_uri_on_window(window, uri.replace("%2F", "/").replace("%2f", "/"), Gdk.CURRENT_TIME);
         return true;
       }
       catch (Error e) {
