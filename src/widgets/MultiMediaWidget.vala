@@ -17,7 +17,16 @@
 
 public class MultiMediaWidget : Gtk.Box {
   public const int MAX_HEIGHT = 180;
-  public bool restrict_height = false;
+  private bool __restrict_height = false;
+  public bool restrict_height{
+    get {
+      return this.__restrict_height;
+    }
+    set {
+      this.__restrict_height = value;
+      this.set_size_request(-1, value ? MAX_HEIGHT : -1);
+    }
+  }
   public unowned Gtk.Window window;
   private MediaButton[] media_buttons;
   private int media_count = 0;
