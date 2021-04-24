@@ -27,8 +27,15 @@ class ChildSizedScroller : Gtk.ScrolledWindow {
             min = int.max (m, min);
             nat = int.max (n, nat);
         }
-        minimum = min;
-        natural = nat;
+        int max = this.get_max_content_height();
+        if (max > 0) {
+            minimum = int.min(max, min);
+            natural = int.min(max, nat);
+        }
+        else {
+            minimum = min;
+            natural = nat;
+        }
     }
 
     public override void get_preferred_height (out int minimum,
@@ -41,8 +48,15 @@ class ChildSizedScroller : Gtk.ScrolledWindow {
             min = int.max (m, min);
             nat = int.max (n, nat);
         }
-        minimum = min;
-        natural = nat;
+        int max = this.get_max_content_height();
+        if (max > 0) {
+            minimum = int.min(max, min);
+            natural = int.min(max, nat);
+        }
+        else {
+            minimum = min;
+            natural = nat;
+        }
     }
 
     // Don't override get_preferred_width because we specifically *don't* want
