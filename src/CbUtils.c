@@ -365,8 +365,14 @@ cb_utils_parse_date (const char *_in)
         break;
     }
 
-
+#if GLIB_CHECK_VERSION(2, 68, 0)
+  time_zone = g_time_zone_new_identifier (in + 20);
+  if (!time_zone) {
+    time_zone = g_time_zone_new_utc ();
+  }
+#else
   time_zone = g_time_zone_new (in + 20);
+#endif
 
   result = g_date_time_new (time_zone,
                             year,
