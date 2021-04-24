@@ -54,61 +54,61 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
   private GLib.Cancellable? cancellable = null;
 
   [GtkChild]
-  private Gtk.Grid grid;
+  private unowned Gtk.Grid grid;
   [GtkChild]
-  private Gtk.Box main_box;
+  private unowned Gtk.Box main_box;
   [GtkChild]
-  private Gtk.Box lower_content;
+  private unowned Gtk.Box lower_content;
   [GtkChild]
-  private MultiMediaWidget mm_widget;
+  private unowned MultiMediaWidget mm_widget;
   [GtkChild]
-  private Gtk.Label text_label;
+  private unowned Gtk.Label text_label;
   [GtkChild]
-  private TextButton name_button;
+  private unowned TextButton name_button;
   [GtkChild]
-  private Gtk.Label screen_name_label;
+  private unowned Gtk.Label screen_name_label;
   [GtkChild]
-  private AvatarWidget avatar_image;
+  private unowned AvatarWidget avatar_image;
   [GtkChild]
-  private Gtk.Box translate_box;
+  private unowned Gtk.Box translate_box;
   [GtkChild]
-  private Gtk.Label translate_label;
+  private unowned Gtk.Label translate_label;
   [GtkChild]
-  private Gtk.Label rt_label;
+  private unowned Gtk.Label rt_label;
   [GtkChild]
-  private Gtk.Image rt_image;
+  private unowned Gtk.Image rt_image;
   [GtkChild]
-  private Gtk.Label rts_label;
+  private unowned Gtk.Label rts_label;
   [GtkChild]
-  private Gtk.Label favs_label;
+  private unowned Gtk.Label favs_label;
   [GtkChild]
-  private TweetListBox replied_to_list_box;
+  private unowned TweetListBox replied_to_list_box;
   [GtkChild]
-  private TweetListBox replies_list_box;
+  private unowned TweetListBox replies_list_box;
   [GtkChild]
-  private TweetListBox self_replies_list_box;
+  private unowned TweetListBox self_replies_list_box;
   [GtkChild]
-  private TweetListBox mentioned_replies_list_box;
+  private unowned TweetListBox mentioned_replies_list_box;
   [GtkChild]
-  private Gtk.ToggleButton favorite_button;
+  private unowned Gtk.ToggleButton favorite_button;
   [GtkChild]
-  private Gtk.ToggleButton retweet_button;
+  private unowned Gtk.ToggleButton retweet_button;
   [GtkChild]
-  private Gtk.MenuButton menu_button;
+  private unowned Gtk.MenuButton menu_button;
   [GtkChild]
-  private Gtk.Label time_label;
+  private unowned Gtk.Label time_label;
   [GtkChild]
-  private Gtk.Label source_label;
+  private unowned Gtk.Label source_label;
   [GtkChild]
-  private Gtk.Stack main_stack;
+  private unowned Gtk.Stack main_stack;
   [GtkChild]
-  private Gtk.Label missing_tweet_label;
+  private unowned Gtk.Label missing_tweet_label;
   [GtkChild]
-  private Gtk.Label error_label;
+  private unowned Gtk.Label error_label;
   [GtkChild]
-  private Gtk.Label reply_label;
+  private unowned Gtk.Label reply_label;
   [GtkChild]
-  private Gtk.Box reply_box;
+  private unowned Gtk.Box reply_box;
 
   public TweetInfoPage (int id, Account account) {
     this.id = id;

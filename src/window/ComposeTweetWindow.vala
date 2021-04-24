@@ -24,43 +24,43 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     QUOTE
   }
   [GtkChild]
-  private AvatarWidget avatar_image;
+  private unowned AvatarWidget avatar_image;
   [GtkChild]
-  private Gtk.Grid content_grid;
+  private unowned Gtk.Grid content_grid;
   [GtkChild]
-  private CompletionTextView tweet_text;
+  private unowned CompletionTextView tweet_text;
   [GtkChild]
-  private Gtk.Label length_label;
+  private unowned Gtk.Label length_label;
   [GtkChild]
-  private Gtk.Button send_button;
+  private unowned Gtk.Button send_button;
   [GtkChild]
-  private Gtk.Spinner title_spinner;
+  private unowned Gtk.Spinner title_spinner;
   [GtkChild]
-  private Gtk.Label title_label;
+  private unowned Gtk.Label title_label;
   [GtkChild]
-  private Gtk.Stack title_stack;
+  private unowned Gtk.Stack title_stack;
   [GtkChild]
-  private ComposeImageManager compose_image_manager;
+  private unowned ComposeImageManager compose_image_manager;
   [GtkChild]
-  private Gtk.Button add_media_button;
+  private unowned Gtk.Button add_media_button;
   [GtkChild]
-  private Gtk.Stack stack;
+  private unowned Gtk.Stack stack;
   [GtkChild]
-  private Gtk.Grid image_error_grid;
+  private unowned Gtk.Grid image_error_grid;
   [GtkChild]
-  private Gtk.Label image_error_label;
+  private unowned Gtk.Label image_error_label;
   [GtkChild]
-  private Gtk.Button cancel_button;
+  private unowned Gtk.Button cancel_button;
   [GtkChild]
-  private FavImageView fav_image_view;
+  private unowned FavImageView fav_image_view;
   [GtkChild]
-  private Gtk.Button fav_image_button;
+  private unowned Gtk.Button fav_image_button;
   [GtkChild]
-  private Gtk.Revealer completion_revealer;
+  private unowned Gtk.Revealer completion_revealer;
   [GtkChild]
-  private Gtk.ListBox completion_list;
+  private unowned Gtk.ListBox completion_list;
   [GtkChild]
-  private Gtk.Box add_button_box;
+  private unowned Gtk.Box add_button_box;
   private Cb.EmojiChooser? emoji_chooser = null;
   private Gtk.Button? emoji_button = null;
   private unowned Account account;

@@ -18,21 +18,21 @@
 [GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/user-filter-entry.ui")]
 class UserFilterEntry : Gtk.ListBoxRow, Cb.TwitterItem {
   [GtkChild]
-  private Gtk.Label name_label;
+  private unowned Gtk.Label name_label;
   [GtkChild]
-  private Gtk.Label screen_name_label;
+  private unowned Gtk.Label screen_name_label;
   [GtkChild]
-  private AvatarWidget avatar_image;
+  private unowned AvatarWidget avatar_image;
   [GtkChild]
-  private Gtk.Stack stack;
+  private unowned Gtk.Stack stack;
   [GtkChild]
-  private Gtk.Box delete_box;
+  private unowned Gtk.Box delete_box;
   [GtkChild]
-  private Gtk.Grid grid;
+  private unowned Gtk.Grid grid;
   [GtkChild]
-  private Gtk.Revealer revealer;
+  private unowned Gtk.Revealer revealer;
   [GtkChild]
-  private Gtk.Button delete_button;
+  private unowned Gtk.Button delete_button;
 
   public new string name {
     set {

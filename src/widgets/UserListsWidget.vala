@@ -18,25 +18,25 @@
 [GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/user-lists-widget.ui")]
 class UserListsWidget : Gtk.Box {
   [GtkChild]
-  private Gtk.Label user_list_label;
+  private unowned Gtk.Label user_list_label;
   [GtkChild]
-  private Gtk.ListBox user_list_box;
+  private unowned Gtk.ListBox user_list_box;
   [GtkChild]
-  private Gtk.Frame user_list_frame;
+  private unowned Gtk.Frame user_list_frame;
   [GtkChild]
-  private Gtk.Label subscribed_list_label;
+  private unowned Gtk.Label subscribed_list_label;
   [GtkChild]
-  private Gtk.ListBox subscribed_list_box;
+  private unowned Gtk.ListBox subscribed_list_box;
   [GtkChild]
-  private Gtk.Frame subscribed_list_frame;
+  private unowned Gtk.Frame subscribed_list_frame;
   [GtkChild]
-  private NewListEntry new_list_entry;
+  private unowned NewListEntry new_list_entry;
   [GtkChild]
-  private Gtk.Revealer user_lists_revealer;
+  private unowned Gtk.Revealer user_lists_revealer;
   [GtkChild]
-  private Gtk.Separator upper_separator;
+  private unowned Gtk.Separator upper_separator;
   [GtkChild]
-  private Gtk.ListBox new_list_box;
+  private unowned Gtk.ListBox new_list_box;
 
   public unowned MainWindow main_window { get; set; }
   public unowned Account account        { get; set; }

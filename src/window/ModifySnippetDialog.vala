@@ -18,15 +18,15 @@
 [GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/modify-snippet-dialog.ui")]
 class ModifySnippetDialog : Gtk.Dialog {
   [GtkChild]
-  private Gtk.Entry key_entry;
+  private unowned Gtk.Entry key_entry;
   [GtkChild]
-  private Gtk.Entry value_entry;
+  private unowned Gtk.Entry value_entry;
   [GtkChild]
-  private Gtk.Label error_label;
+  private unowned Gtk.Label error_label;
   [GtkChild]
-  private Gtk.Button save_button;
+  private unowned Gtk.Button save_button;
   [GtkChild]
-  private Gtk.Button delete_button;
+  private unowned Gtk.Button delete_button;
   private string? old_key = null;
 
   public signal void snippet_updated (string? old_key, string? key, string? value);

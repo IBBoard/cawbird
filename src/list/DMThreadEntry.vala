@@ -18,15 +18,15 @@
 [GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/dm-thread-entry.ui")]
 class DMThreadEntry : Gtk.ListBoxRow {
   [GtkChild]
-  private Gtk.Label name_label;
+  private unowned Gtk.Label name_label;
   [GtkChild]
-  private Gtk.Label screen_name_label;
+  private unowned Gtk.Label screen_name_label;
   [GtkChild]
-  private Gtk.Label last_message_label;
+  private unowned Gtk.Label last_message_label;
   [GtkChild]
-  private AvatarWidget avatar_image;
+  private unowned AvatarWidget avatar_image;
   [GtkChild]
-  private Gtk.Label unread_count_label;
+  private unowned Gtk.Label unread_count_label;
   public int64 user_id;
   public new string name {
     get {

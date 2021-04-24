@@ -17,13 +17,13 @@
 [GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/modify-filter-dialog.ui")]
 class ModifyFilterDialog : Gtk.Dialog {
   [GtkChild]
-  private Gtk.Entry regex_entry;
+  private unowned Gtk.Entry regex_entry;
   [GtkChild]
-  private Gtk.Label regex_status_label;
+  private unowned Gtk.Label regex_status_label;
   [GtkChild]
-  private Gtk.TextView regex_test_text;
+  private unowned Gtk.TextView regex_test_text;
   [GtkChild]
-  private Gtk.Button save_button;
+  private unowned Gtk.Button save_button;
 
   private GLib.Regex regex;
   private unowned Account account;

@@ -18,17 +18,17 @@
 [GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/user-list-entry.ui")]
 class UserListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
   [GtkChild]
-  private Gtk.Label name_label;
+  private unowned Gtk.Label name_label;
   [GtkChild]
-  private Gtk.Label screen_name_label;
+  private unowned Gtk.Label screen_name_label;
   [GtkChild]
-  private AvatarWidget avatar_image;
+  private unowned AvatarWidget avatar_image;
   [GtkChild]
-  private Gtk.Button settings_button;
+  private unowned Gtk.Button settings_button;
   [GtkChild]
-  private Gtk.Button new_window_button;
+  private unowned Gtk.Button new_window_button;
   [GtkChild]
-  private Gtk.Button profile_button;
+  private unowned Gtk.Button profile_button;
 
   public new string name {
     set {

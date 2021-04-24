@@ -32,31 +32,31 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
   public unowned Account account;
   public int id                             { get; set; }
   [GtkChild]
-  private Gtk.Button send_button;
+  private unowned Gtk.Button send_button;
   [GtkChild]
-  private CompletionTextView text_view;
+  private unowned CompletionTextView text_view;
   [GtkChild]
-  private Gtk.ListBox messages_list;
+  private unowned Gtk.ListBox messages_list;
   [GtkChild]
-  private ScrollWidget scroll_widget;
+  private unowned ScrollWidget scroll_widget;
   [GtkChild]
-  private Gtk.Stack action_stack;
+  private unowned Gtk.Stack action_stack;
   [GtkChild]
-  private Gtk.Box reply_box;
+  private unowned Gtk.Box reply_box;
   [GtkChild]
-  private Gtk.Button delete_button;
+  private unowned Gtk.Button delete_button;
   [GtkChild]
-  private ComposeImageManager compose_image_manager;
+  private unowned ComposeImageManager compose_image_manager;
   [GtkChild]
-  private Gtk.Button add_media_button;
+  private unowned Gtk.Button add_media_button;
   [GtkChild]
-  private FavImageView fav_image_view;
+  private unowned FavImageView fav_image_view;
   [GtkChild]
-  private Gtk.Button fav_image_button;
+  private unowned Gtk.Button fav_image_button;
   [GtkChild]
-  private Gtk.Box add_button_box;
+  private unowned Gtk.Box add_button_box;
   [GtkChild]
-  private Gtk.Label image_error_label;
+  private unowned Gtk.Label image_error_label;
   private Cb.EmojiChooser? emoji_chooser = null;
   private Gtk.Button? emoji_button = null;
   private GLib.Cancellable? cancellable;

@@ -26,7 +26,7 @@ public class ListListEntry : Gtk.ListBoxRow {
   }
 
   [GtkChild]
-  private Gtk.Label title_label;
+  private unowned Gtk.Label title_label;
   public string title {
     set {
       title_label.label = value;
@@ -37,7 +37,7 @@ public class ListListEntry : Gtk.ListBoxRow {
   }
 
   [GtkChild]
-  private Gtk.Label description_label;
+  private unowned Gtk.Label description_label;
   public string description {
     set {
       description_label.label = value;
@@ -48,7 +48,7 @@ public class ListListEntry : Gtk.ListBoxRow {
   }
 
   [GtkChild]
-  private Gtk.Label name_label;
+  private unowned Gtk.Label name_label;
   public new string name {
     set {
       name_label.label = normalize_name (value);
@@ -59,13 +59,13 @@ public class ListListEntry : Gtk.ListBoxRow {
   }
 
   [GtkChild]
-  private Gtk.Stack stack;
+  private unowned Gtk.Stack stack;
   [GtkChild]
-  private Gtk.Button subscribe_button;
+  private unowned Gtk.Button subscribe_button;
   [GtkChild]
-  private Gtk.Button unsubscribe_button;
+  private unowned Gtk.Button unsubscribe_button;
   [GtkChild]
-  private Gtk.Button delete_button;
+  private unowned Gtk.Button delete_button;
 
 
   public int64 id;

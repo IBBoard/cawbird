@@ -44,59 +44,59 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
   public int id { get; set; }
 
   [GtkChild]
-  private AspectImage banner_image;
+  private unowned AspectImage banner_image;
   [GtkChild]
-  private AvatarWidget avatar_image;
+  private unowned AvatarWidget avatar_image;
   [GtkChild]
-  private Gtk.Label name_label;
+  private unowned Gtk.Label name_label;
   [GtkChild]
-  private Gtk.Label screen_name_label;
+  private unowned Gtk.Label screen_name_label;
   [GtkChild]
-  private Gtk.Label description_label;
+  private unowned Gtk.Label description_label;
   [GtkChild]
-  private Gtk.Label url_label;
+  private unowned Gtk.Label url_label;
   [GtkChild]
-  private Gtk.Label tweets_label;
+  private unowned Gtk.Label tweets_label;
   [GtkChild]
-  private Gtk.Label following_label;
+  private unowned Gtk.Label following_label;
   [GtkChild]
-  private Gtk.Label followers_label;
+  private unowned Gtk.Label followers_label;
   [GtkChild]
-  private Gtk.Label location_label;
+  private unowned Gtk.Label location_label;
   [GtkChild]
-  private FollowButton follow_button;
+  private unowned FollowButton follow_button;
   [GtkChild]
-  private TweetListBox tweet_list;
+  private unowned TweetListBox tweet_list;
   [GtkChild]
-  private TweetListBox followers_list;
+  private unowned TweetListBox followers_list;
   [GtkChild]
-  private TweetListBox following_list;
+  private unowned TweetListBox following_list;
   [GtkChild]
-  private Gtk.Spinner progress_spinner;
+  private unowned Gtk.Spinner progress_spinner;
   [GtkChild]
-  private Gtk.Label follows_you_label;
+  private unowned Gtk.Label follows_you_label;
   [GtkChild]
-  private UserListsWidget user_lists;
+  private unowned UserListsWidget user_lists;
   [GtkChild]
-  private Gtk.Stack user_stack;
+  private unowned Gtk.Stack user_stack;
   [GtkChild]
-  private Gtk.MenuButton more_button;
+  private unowned Gtk.MenuButton more_button;
   [GtkChild]
-  private Gtk.Stack loading_stack;
+  private unowned Gtk.Stack loading_stack;
   [GtkChild]
-  private Gtk.RadioButton tweets_button;
+  private unowned Gtk.RadioButton tweets_button;
   [GtkChild]
-  private Gtk.RadioButton followers_button;
+  private unowned Gtk.RadioButton followers_button;
   [GtkChild]
-  private Gtk.RadioButton following_button;
+  private unowned Gtk.RadioButton following_button;
   [GtkChild]
-  private Gtk.RadioButton lists_button;
+  private unowned Gtk.RadioButton lists_button;
   [GtkChild]
-  private Gtk.Label loading_error_label;
+  private unowned Gtk.Label loading_error_label;
   [GtkChild]
-  private Gtk.Box user_blocked_page;
+  private unowned Gtk.Box user_blocked_page;
   [GtkChild]
-  private Gtk.Label user_blocked_label;
+  private unowned Gtk.Label user_blocked_label;
   private int64 user_id;
   private new string name;
   private string screen_name;

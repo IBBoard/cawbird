@@ -27,13 +27,13 @@ class FilterPage : Gtk.ScrolledWindow, IPage, Cb.MessageReceiver {
   public unowned Account account;
   private BadgeRadioButton radio_button;
   [GtkChild]
-  private Gtk.ListBox filter_list;
+  private unowned Gtk.ListBox filter_list;
   [GtkChild]
-  private Gtk.ListBox user_list;
+  private unowned Gtk.ListBox user_list;
   [GtkChild]
-  private Gtk.Frame user_list_frame;
+  private unowned Gtk.Frame user_list_frame;
   [GtkChild]
-  private Gtk.Revealer user_list_revealer;
+  private unowned Gtk.Revealer user_list_revealer;
   private bool filters_loaded = false;
   private bool users_loaded = false;
 

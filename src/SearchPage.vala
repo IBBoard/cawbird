@@ -34,19 +34,19 @@ class SearchPage : IPage, Cb.MessageReceiver, Gtk.Box {
   }
 
   [GtkChild]
-  private Gtk.SearchEntry search_entry;
+  private unowned Gtk.SearchEntry search_entry;
   [GtkChild]
-  private Gtk.Button search_button;
+  private unowned Gtk.Button search_button;
   [GtkChild]
-  private TweetListBox tweet_list;
+  private unowned TweetListBox tweet_list;
   [GtkChild]
-  private ListBox user_list;
+  private unowned ListBox user_list;
   [GtkChild]
-  private Gtk.Label users_header;
+  private unowned Gtk.Label users_header;
   [GtkChild]
-  private Gtk.Label tweets_header;
+  private unowned Gtk.Label tweets_header;
   [GtkChild]
-  private ScrollWidget scroll_widget;
+  private unowned ScrollWidget scroll_widget;
   private Gtk.RadioButton radio_button;
   private GLib.Cancellable? cancellable = null;
   private LoadMoreEntry load_more_entry = new LoadMoreEntry ();

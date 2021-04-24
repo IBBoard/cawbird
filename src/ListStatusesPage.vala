@@ -40,47 +40,47 @@ class ListStatusesPage : ScrollWidget, Cb.MessageReceiver, IPage {
   private int64 list_id;
   private uint tweet_remove_timeout = 0;
   [GtkChild]
-  private TweetListBox tweet_list;
+  private unowned TweetListBox tweet_list;
   [GtkChild]
-  private Gtk.MenuButton delete_button;
+  private unowned Gtk.MenuButton delete_button;
   [GtkChild]
-  private Gtk.Button edit_button;
+  private unowned Gtk.Button edit_button;
   [GtkChild]
-  private Gtk.Label description_label;
+  private unowned Gtk.Label description_label;
   [GtkChild]
-  private Gtk.Label title_label;
+  private unowned Gtk.Label title_label;
   [GtkChild]
-  private Gtk.Label creator_label;
+  private unowned Gtk.Label creator_label;
   [GtkChild]
-  private Gtk.Label subscribers_label;
+  private unowned Gtk.Label subscribers_label;
   [GtkChild]
-  private Gtk.Label members_label;
+  private unowned Gtk.Label members_label;
   [GtkChild]
-  private Gtk.Label created_at_label;
+  private unowned Gtk.Label created_at_label;
   [GtkChild]
-  private Gtk.Stack title_stack;
+  private unowned Gtk.Stack title_stack;
   [GtkChild]
-  private Gtk.Entry title_entry;
+  private unowned Gtk.Entry title_entry;
   [GtkChild]
-  private Gtk.Stack description_stack;
+  private unowned Gtk.Stack description_stack;
   [GtkChild]
-  private Gtk.Entry description_entry;
+  private unowned Gtk.Entry description_entry;
   [GtkChild]
-  private Gtk.Stack delete_stack;
+  private unowned Gtk.Stack delete_stack;
   [GtkChild]
-  private Gtk.Button cancel_button;
+  private unowned Gtk.Button cancel_button;
   [GtkChild]
-  private Gtk.Stack edit_stack;
+  private unowned Gtk.Stack edit_stack;
   [GtkChild]
-  private Gtk.Button save_button;
+  private unowned Gtk.Button save_button;
   [GtkChild]
-  private Gtk.Stack mode_stack;
+  private unowned Gtk.Stack mode_stack;
   [GtkChild]
-  private Gtk.Label mode_label;
+  private unowned Gtk.Label mode_label;
   [GtkChild]
-  private Gtk.ComboBoxText mode_combo_box;
+  private unowned Gtk.ComboBoxText mode_combo_box;
   [GtkChild]
-  private Gtk.Button refresh_button;
+  private unowned Gtk.Button refresh_button;
   private bool loading = false;
 
 

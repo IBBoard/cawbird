@@ -18,41 +18,41 @@
 [GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/settings-dialog.ui")]
 class SettingsDialog : Gtk.Window {
   [GtkChild]
-  private Gtk.ComboBoxText shortcut_key_combobox;
+  private unowned Gtk.ComboBoxText shortcut_key_combobox;
   [GtkChild]
-  private Gtk.Switch on_new_mentions_switch;
+  private unowned Gtk.Switch on_new_mentions_switch;
   [GtkChild]
-  private Gtk.ComboBoxText tweet_scale_combobox;
+  private unowned Gtk.ComboBoxText tweet_scale_combobox;
   [GtkChild]
-  private Gtk.Switch round_avatar_switch;
+  private unowned Gtk.Switch round_avatar_switch;
   [GtkChild]
-  private Gtk.Switch on_new_dms_switch;
+  private unowned Gtk.Switch on_new_dms_switch;
   [GtkChild]
-  private Gtk.ComboBoxText on_new_tweets_combobox;
+  private unowned Gtk.ComboBoxText on_new_tweets_combobox;
   [GtkChild]
-  private Gtk.Switch auto_scroll_on_new_tweets_switch;
+  private unowned Gtk.Switch auto_scroll_on_new_tweets_switch;
   [GtkChild]
-  private Gtk.Stack main_stack;
+  private unowned Gtk.Stack main_stack;
   [GtkChild]
-  private Gtk.Switch use_dark_theme_switch;
+  private unowned Gtk.Switch use_dark_theme_switch;
   [GtkChild]
-  private Gtk.Switch double_click_activation_switch;
+  private unowned Gtk.Switch double_click_activation_switch;
   [GtkChild]
-  private Gtk.ListBox sample_tweet_list;
+  private unowned Gtk.ListBox sample_tweet_list;
   [GtkChild]
-  private Gtk.Switch remove_trailing_hashtags_switch;
+  private unowned Gtk.Switch remove_trailing_hashtags_switch;
   [GtkChild]
-  private Gtk.Switch remove_media_links_switch;
+  private unowned Gtk.Switch remove_media_links_switch;
   [GtkChild]
-  private Gtk.Switch hide_nsfw_content_switch;
+  private unowned Gtk.Switch hide_nsfw_content_switch;
   [GtkChild]
-  private Gtk.ListBox snippet_list_box;
+  private unowned Gtk.ListBox snippet_list_box;
   [GtkChild]
-  private Gtk.ComboBoxText media_visibility_combobox;
+  private unowned Gtk.ComboBoxText media_visibility_combobox;
   [GtkChild]
-  private Gtk.ComboBoxText translation_service_combobox;
+  private unowned Gtk.ComboBoxText translation_service_combobox;
   [GtkChild]
-  private Gtk.Entry custom_translation_entry;
+  private unowned Gtk.Entry custom_translation_entry;
 
   private TweetListEntry sample_tweet_entry;
 

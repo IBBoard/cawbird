@@ -19,13 +19,13 @@
 class StartConversationEntry : Gtk.ListBoxRow {
   private const int MAX_RESULTS = 7;
   [GtkChild]
-  private Gtk.Revealer revealer;
+  private unowned Gtk.Revealer revealer;
   [GtkChild]
-  private ReplyEntry name_entry;
+  private unowned ReplyEntry name_entry;
   [GtkChild]
-  private Gtk.Stack go_stack;
+  private unowned Gtk.Stack go_stack;
   [GtkChild]
-  private Gtk.Spinner go_spinner;
+  private unowned Gtk.Spinner go_spinner;
 
   private UserCompletion user_completion;
   private Gtk.Window completion_window;

@@ -17,15 +17,15 @@
 [GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/filter-list-entry.ui")]
 class FilterListEntry : Gtk.ListBoxRow {
   [GtkChild]
-  private Gtk.Label content_label;
+  private unowned Gtk.Label content_label;
   [GtkChild]
-  private Gtk.Revealer revealer;
+  private unowned Gtk.Revealer revealer;
   [GtkChild]
-  private Gtk.Stack stack;
+  private unowned Gtk.Stack stack;
   [GtkChild]
-  private Gtk.Grid normal_box;
+  private unowned Gtk.Grid normal_box;
   [GtkChild]
-  private Gtk.Box delete_box;
+  private unowned Gtk.Box delete_box;
 
   private unowned Cb.Filter _filter;
   public unowned Cb.Filter filter {

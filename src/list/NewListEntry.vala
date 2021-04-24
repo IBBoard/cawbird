@@ -18,17 +18,17 @@
 [GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/new-list-entry.ui")]
 class NewListEntry : Gtk.ListBoxRow {
   [GtkChild]
-  private Gtk.Box create_box;
+  private unowned Gtk.Box create_box;
   [GtkChild]
-  private Gtk.Grid grid;
+  private unowned Gtk.Grid grid;
   [GtkChild]
-  private Gtk.Label list_name_label;
+  private unowned Gtk.Label list_name_label;
   [GtkChild]
-  private Gtk.Entry list_name_entry;
+  private unowned Gtk.Entry list_name_entry;
   [GtkChild]
-  private Gtk.Revealer revealer;
+  private unowned Gtk.Revealer revealer;
   [GtkChild]
-  private Gtk.Button create_list_button;
+  private unowned Gtk.Button create_list_button;
 
   public signal void create_activated (string list_name);
 

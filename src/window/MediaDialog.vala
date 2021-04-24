@@ -18,15 +18,15 @@
 [GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/media-dialog.ui")]
 class MediaDialog : Gtk.Window {
   [GtkChild]
-  private Gtk.Frame frame;
+  private unowned Gtk.Frame frame;
   [GtkChild]
-  private Gtk.Revealer next_revealer;
+  private unowned Gtk.Revealer next_revealer;
   [GtkChild]
-  private Gtk.Revealer previous_revealer;
+  private unowned Gtk.Revealer previous_revealer;
   [GtkChild]
-  private Gtk.Revealer media_count_revealer;
+  private unowned Gtk.Revealer media_count_revealer;
   [GtkChild]
-  private Gtk.Label media_count;
+  private unowned Gtk.Label media_count;
   private unowned Cb.Media[] media;
   private int cur_index = 0;
   private Gtk.GestureMultiPress button_gesture;

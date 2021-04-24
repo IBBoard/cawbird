@@ -21,29 +21,29 @@ public class AccountDialog : Gtk.Window {
   private const string PAGE_NORMAL = "normal";
   private const string PAGE_DELETE = "delete";
   [GtkChild]
-  private Gtk.Entry name_entry;
+  private unowned Gtk.Entry name_entry;
   [GtkChild]
-  private AvatarBannerWidget avatar_banner_widget;
+  private unowned AvatarBannerWidget avatar_banner_widget;
   [GtkChild]
-  private Gtk.Stack delete_stack;
+  private unowned Gtk.Stack delete_stack;
   [GtkChild]
-  private Gtk.Switch autostart_switch;
+  private unowned Gtk.Switch autostart_switch;
   [GtkChild]
-  private Gtk.Entry website_entry;
+  private unowned Gtk.Entry website_entry;
   [GtkChild]
-  private CompletionTextView description_text_view;
+  private unowned CompletionTextView description_text_view;
   [GtkChild]
-  private CropWidget crop_widget;
+  private unowned CropWidget crop_widget;
   [GtkChild]
-  private Gtk.Stack content_stack;
+  private unowned Gtk.Stack content_stack;
   [GtkChild]
-  private Gtk.Box info_box;
+  private unowned Gtk.Box info_box;
   [GtkChild]
-  private Gtk.Label error_label;
+  private unowned Gtk.Label error_label;
   [GtkChild]
-  private Gtk.Button save_button;
+  private unowned Gtk.Button save_button;
   [GtkChild]
-  private Gtk.Label description_length_label;
+  private unowned Gtk.Label description_length_label;
 
   private unowned Account account;
   private string old_user_name;

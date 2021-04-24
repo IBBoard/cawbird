@@ -18,17 +18,17 @@
 [GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/account-create-widget.ui")]
 class AccountCreateWidget : Gtk.Box {
   [GtkChild]
-  private Gtk.Entry pin_entry;
+  private unowned Gtk.Entry pin_entry;
   [GtkChild]
-  private Gtk.Label error_label;
+  private unowned Gtk.Label error_label;
   [GtkChild]
-  private Gtk.Button confirm_button;
+  private unowned Gtk.Button confirm_button;
   [GtkChild]
-  private Gtk.Button request_pin_button;
+  private unowned Gtk.Button request_pin_button;
   [GtkChild]
-  private Gtk.Label info_label;
+  private unowned Gtk.Label info_label;
   [GtkChild]
-  private Gtk.Stack content_stack;
+  private unowned Gtk.Stack content_stack;
   private Rest.OAuthProxy proxy;
   private unowned Cawbird cawbird;
   private unowned MainWindow main_window;

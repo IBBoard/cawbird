@@ -18,33 +18,33 @@
 [GtkTemplate (ui = "/uk/co/ibboard/cawbird/ui/tweet-list-entry.ui")]
 public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   [GtkChild]
-  private Gtk.Label name_label;
+  private unowned Gtk.Label name_label;
   [GtkChild]
-  private Gtk.Label time_delta_label;
+  private unowned Gtk.Label time_delta_label;
   [GtkChild]
-  private AvatarWidget avatar_image;
+  private unowned AvatarWidget avatar_image;
   [GtkChild]
-  private ChildSizedScroller scroller;
+  private unowned ChildSizedScroller scroller;
   [GtkChild]
-  private Gtk.Label text_label;
+  private unowned Gtk.Label text_label;
   [GtkChild]
-  private Gtk.Label rt_label;
+  private unowned Gtk.Label rt_label;
   [GtkChild]
-  private Gtk.Image rt_image;
+  private unowned Gtk.Image rt_image;
   [GtkChild]
-  private Gtk.Image rt_status_image;
+  private unowned Gtk.Image rt_status_image;
   [GtkChild]
-  private Gtk.Image fav_status_image;
+  private unowned Gtk.Image fav_status_image;
   [GtkChild]
-  private DoubleTapButton retweet_button;
+  private unowned DoubleTapButton retweet_button;
   [GtkChild]
-  private Gtk.ToggleButton favorite_button;
+  private unowned Gtk.ToggleButton favorite_button;
   [GtkChild]
-  private Gtk.Grid grid;
+  private unowned Gtk.Grid grid;
   [GtkChild]
-  private Gtk.Box action_box;
+  private unowned Gtk.Box action_box;
   [GtkChild]
-  private Gtk.Label reply_label;
+  private unowned Gtk.Label reply_label;
 
   /* Conditionally created widgets... */
   private Gtk.Label? quote_label = null;

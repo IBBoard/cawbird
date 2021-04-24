@@ -23,19 +23,19 @@ class ImageDescriptionWindow : Gtk.Window {
   public signal void description_updated(int64 media_id, string description);
 
   [GtkChild]
-  private ResizableImage image;
+  private unowned ResizableImage image;
   [GtkChild]
-  private Gtk.TextView description_text;
+  private unowned Gtk.TextView description_text;
   [GtkChild]
-  private Gtk.Label length_label;
+  private unowned Gtk.Label length_label;
   [GtkChild]
-  private Gtk.Button save_button;
+  private unowned Gtk.Button save_button;
   [GtkChild]
-  private Gtk.Spinner title_spinner;
+  private unowned Gtk.Spinner title_spinner;
   [GtkChild]
-  private Gtk.Label title_label;
+  private unowned Gtk.Label title_label;
   [GtkChild]
-  private Gtk.Stack title_stack;
+  private unowned Gtk.Stack title_stack;
   
   private Rest.OAuthProxy proxy;
   private GLib.Cancellable? cancellable;
