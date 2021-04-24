@@ -255,6 +255,10 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
     values_set = true;
 
+    if (restrict_height) {
+      scroller.set_max_content_height(600);
+    }
+
     set_tweet_text();
     set_tweet_text_scale();
     update_time_delta ();
