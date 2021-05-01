@@ -18,9 +18,11 @@ These packages are currently available for:
   * openSUSE Tumbleweed
   * openSUSE Leap 15.1
   * openSUSE Leap 15.2
+  * openSUSE Leap 15.3
 * Fedora
   * Fedora 32
   * Fedora 33
+  * Fedora 34
   * Fedora Rawhide
 * CentOS
   * CentOS 7
@@ -29,6 +31,7 @@ These packages are currently available for:
   * Ubuntu 18.04 (Bionic Beaver)
   * Ubuntu 20.04 (Focal Fossa)
   * Ubuntu 20.10 (Groovy Gorilla)
+  * Ubuntu 21.04 (Hirstue Hippo)
 * Debian
   * 10 (Buster)
   * Testing
