@@ -141,6 +141,7 @@ Previously, the following issues have occurred that were outside of our control:
 * Due to a [bug in GnuTLS](https://gitlab.com/gnutls/gnutls/issues/841#note_225110002), Cawbird has suffered from occasional TLS errors. This has been handled under [Cawbird bug 9](https://github.com/IBBoard/cawbird/issues/9) and GnuTLS have released a fix for the underlying problem
 * Due to a [bug in GStreamer 1.16.1](https://github.com/IBBoard/cawbird/pull/42#issuecomment-539437887), Cawbird suffered from glitchy audio and video when playing media. This has now been fixed in GStreamer
 * Some combination of GStreamer, GTK and the Video Acceleration API (VAAPI) on some Intel chips can [cause corruption of videos](https://github.com/IBBoard/cawbird/issues/279). This is an [old and on-going problem](https://github.com/baedert/corebird/issues/540). Removing `gstreamer-vaapi` or equivalent resolves the problem.
+* "Fragment downloading has failed consecutive times" messages from GStreamer appear to be due to changes in GStreamer's `adaptivedemux` code that are [fixed in v1.18.1](https://gstreamer.freedesktop.org/releases/1.18/#1.18.2)
 
 ## Translations
 
