@@ -1,4 +1,4 @@
-# Cawbird 1.3.2
+# Cawbird 1.4
 
 <a href="https://ibboard.co.uk/cawbird/#screenshots"><img src="./screenshot1.jpg" style="float:right; margin-left: 1em;" /></a>
 
@@ -16,7 +16,6 @@ These packages are currently available for:
 
 * openSUSE
   * openSUSE Tumbleweed
-  * openSUSE Leap 15.1
   * openSUSE Leap 15.2
   * openSUSE Leap 15.3
 * Fedora

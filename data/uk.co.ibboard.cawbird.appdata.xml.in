@@ -49,6 +49,44 @@
   <url type="translate">https://www.transifex.com/cawbird/cawbird/</url>
 
   <releases>
+    <release version="1.4" date="2021-05-01">
+      <p>It has been a while in the making, but Cawbird 1.4 adds lots of features and improves our internationalisation.</p>
+      <ul>
+        <li>Fixes:
+          <ul>
+            <li>Fixed repeat notifications due to message overlap (which we do to avoid missing messages!) (#292)</li>
+            <li>Fixed handling of links with ampersands in them (#305)</li>
+            <li>Fixed handling of Twitter video URLs with ampersands in them (#338)</li>
+            <li>Fixed cropping of tweets in timelines, particularly in narrow windows (#296)</li>
+            <li>Fixed handling of translations so that it works in environments like Flatpak (#297)</li>
+          </ul>
+        </li>
+        <li>Improvements:
+          <ul>
+            <li>Added Normal/Large/X-Large/XX-Large text sizes (#33)</li>
+            <li>Added "Translate Content" option to tweets with option of using Google, Bing, DeepL or custom providers (#161)</li>
+            <li>Better counting of ZWJ emoji - Cawbird now passes Twitter's own compliance tests (#114)</li>
+            <li>Added Scottish Gaelic translations (thanks to @gaidheileamail1)</li>
+            <li>All strings in the UI are now translatable (#351, #362)</li>
+            <li>Add a confirmation to delete draft tweet on Cancel (#340)</li>
+            <li>Made threaded tweets more obvious by including "Reply to" line for self-reply threads in timeline (#339)</li>
+            <li>Tweets are now added to your timeline when you follow a user (and hidden when you unfollow them) (#19)</li>
+            <li>Improved rendering lag when focussing and unfocussing Cawbird (#204)</li>
+            <li>Improved spacing and alignment of images and added a border to define edges (#290, #306)</li>
+            <li>Added the ability to temporarily show a blocked or muted account (#299)</li>
+            <li>Reduced the size of the info icon for the image description notification to avoid it obscuring too much of the image (#294)</li>
+            <li>Swapped to using the 😀 smiley for emoji input rather than 🐧 to be consistent with other applications and platforms (#298)</li>
+          </ul>
+        </li>
+        <li>Developer:
+          <ul>
+            <li>Make it easier to build Cawbird with custom Twitter secrets so that distro builds don't consume the new (June 2019) 100,000 requests per day per app limits (#310)</li>
+            <li>Added an option to use local translation files rather than the system ones, for debugging without installation</li>
+            <li>Added a `-Dmswindows=true` config flag to allow builds that work with Windows's broken "mimetypes are just file extensions" behaviour</li>
+          </ul>
+        </li>
+      </ul>
+    </release>
     <release version="1.3.2" date="2021-01-11">
       <p>Cawbird 1.3.2 is a maintenance release due to a privacy issue caused by third-party builds of Cawbird using "debug" builds.</p>
       <p>Users of native distro packages and other packages that used release builds should not have been affected. We appologise for any inconvenience caused and continue to recommend that users use native packages where possible.</p>
