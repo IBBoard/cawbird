@@ -87,7 +87,9 @@
       "name":"cawbird",
       "buildsystem":"meson",
       "config-opts": [
-        "--buildtype=debug"
+        "--buildtype=debug",
+        "-Dconsumer_key_base64=a1hVdm9YWGY0WnkxOUNKczlEVDBHRGVYcQ=="
+        "-Dconsumer_secret_base64=Y2ZxS3F0cHNkanp6Q0hzeTEzY2pHSmpxMlNta3Fvd2VWdDZoVzY3cXFyNnVrV2xPc2k="
       ],
       "sources":[
         {
