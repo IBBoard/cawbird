@@ -21,7 +21,7 @@ These packages are currently available for:
 * Fedora
   * Fedora 32
   * Fedora 33
-  * Fedora 34
+  * Fedora 34https://github.com/ibboard/cawbird/
   * Fedora Rawhide
 * CentOS
   * CentOS 7
@@ -59,7 +59,6 @@ The following distros currently have their own official packages:
 * [Cawbird Snap](https://snapcraft.io/cawbird) on Snapcraft.io
 * [Cawbird Flatpak](https://flathub.org/apps/details/uk.co.ibboard.cawbird) on Flathub.org
 * Arch Linux (AUR):
-  * [Cawbird (stable)](https://aur.archlinux.org/packages/cawbird)
   * [Cawbird-git](https://aur.archlinux.org/packages/cawbird-git)
 
 ### Dependencies
