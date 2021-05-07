@@ -165,18 +165,24 @@ It is recommended that you backup `~/.config/cawbird` before running Cawbird-Uns
 ### Preparation
 
 Twitter clients need keys and secrets so that Twitter can go through the OAuth process. Cawbird used to ship
-with a standard set of values because that worked. As of June 2019, Twitter has been limiting *applications*
-(not just users - all users of the app in aggregate) to 100,000 calls to some endpoints ([docs](https://developer.twitter.com/en/docs/twitter-api/v1/tweets/timelines/api-reference/get-statuses-mentions_timeline)). As we poll every two minutes then this isn't many concurrent users.
+with a standard set of  but has always supported custom keys through schema settings. However, that wasn't convenient for software builds. Cawbird now supports:
 
-Cawbird has always supported custom keys through schema settings, but that wasn't convenient for software builds. Cawbird now supports:
-  a) per-user tokens and secrets (so each user uses a different "app")
-  b) configuration of the default token and secret at build time
+a) per-user tokens and secrets (so each user uses a different "app")
+
+b) configuration of the default token and secret at build time
 
 What this means for developers is that you need to supply two build options with the key and the secret before the software will build. To stop them being trivially identifiable, we base64 encode them.
 
-To build your own application, register at https://developer.twitter.com/ and create an application. To base64 encode the keys you can run `echo -n "<value>" | base64`.
+If you wish to build your own "micro-fork" of the application then register at [developer.twitter.com](https://developer.twitter.com/) and create an application. To base64 encode the keys you can run `echo -n "<value>" | base64`.
 
-Alternatively, to continue using the default keys, use the values `VmY5dG9yRFcyWk93MzJEZmhVdEk5Y3NMOA==` and `MThCRXIxbWRESDQ2Y0podzVtVU13SGUyVGlCRXhPb3BFRHhGYlB6ZkpybG5GdXZaSjI=` respectively
+Reasons you may wish to micro-fork Cawbird:
+
+* You want to package a modified version with your own patches (as IBBoard used to do with Corebird)
+* You want to appear retro and use the old Corebird keys to confuse people
+* You want to check whether you're getting hit by Twitter limiting *applications*
+(not just users - all users of the app in aggregate) to 100,000 calls to some endpoints ([docs](https://developer.twitter.com/en/docs/twitter-api/v1/tweets/timelines/api-reference/get-statuses-mentions_timeline))
+
+Alternatively you can continue using the default keys by using the values `VmY5dG9yRFcyWk93MzJEZmhVdEk5Y3NMOA==` and `MThCRXIxbWRESDQ2Y0podzVtVU13SGUyVGlCRXhPb3BFRHhGYlB6ZkpybG5GdXZaSjI=` respectively.
 
 ### Compiling
 
