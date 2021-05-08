@@ -109,6 +109,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
       this.add_media_button.sensitive = true;
       this.fav_image_button.sensitive = true;
       this.compose_image_manager.hide ();
+      set_send_sensitive_state();
     });
     compose_image_manager.image_reloaded.connect ((upload) => {
       if (upload.cancellable != null) {
@@ -564,7 +565,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
 
   private void set_send_sensitive_state() {
     uint text_length = text_view.buffer.text.length;
-    send_button.sensitive = ((text_length > 0 && media_upload == null) || (media_upload != null && media_upload.is_uploaded())) && !image_error_label.visible;
+    send_button.sensitive = (text_length > 0 && media_upload == null) || (media_upload != null && media_upload.is_uploaded());
   }
 
   private bool has_checked_items () {
