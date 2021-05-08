@@ -49,6 +49,9 @@
   <url type="translate">https://www.transifex.com/cawbird/cawbird/</url>
 
   <releases>
+    <release version="1.4.1" date="2021-05-08">
+      <p>Hotfix to correct "Send" button state issues for direct messages</p>
+    </release>
     <release version="1.4" date="2021-05-01">
       <p>It has been a while in the making, but Cawbird 1.4 adds lots of features and improves our internationalisation.</p>
       <ul>
