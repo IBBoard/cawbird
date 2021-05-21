@@ -288,7 +288,7 @@ msgstr[0] "%d abonné"
 msgstr[1] "%d abonnés"
 
 msgid "No tweets found"
-msgstr "Pas de tweet trouvez"
+msgstr "Pas de tweet trouvé"
 
 msgid "No users found"
 msgstr "Aucun utilisateur trouvé"
