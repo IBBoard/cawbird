@@ -166,7 +166,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
 
     /* The GTK+ version might not have this emoji data variant */
     try {
-      if (GLib.resources_get_info ("/org/gtk/libgtk/emoji/emoji.data",
+      if (GLib.resources_get_info ("/org/gtk/libgtk/emoji/en.data",
                                    GLib.ResourceLookupFlags.NONE, null, null)) {
         setup_emoji_chooser ();
       }
