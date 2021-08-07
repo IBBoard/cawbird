@@ -164,15 +164,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     var image_target_list = new Gtk.TargetList (null);
     image_target_list.add_text_targets (0);
 
-    /* The GTK+ version might not have this emoji data variant */
-    try {
-      if (GLib.resources_get_info ("/org/gtk/libgtk/emoji/en.data",
-                                   GLib.ResourceLookupFlags.NONE, null, null)) {
-        setup_emoji_chooser ();
-      }
-    } catch (GLib.Error e) {
-      // Ignore, just don't show the emoji chooser
-    }
+    setup_emoji_chooser ();
 
     this.set_default_size (DEFAULT_WIDTH, (int)(DEFAULT_WIDTH / 2.5));
   }

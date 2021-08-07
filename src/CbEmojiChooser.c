@@ -592,7 +592,7 @@ cb_emoji_chooser_try_init (CbEmojiChooser *self)
 
   if (schema == NULL)
     {
-      g_message ("Emoji chooser: Schema not found");
+      g_warning ("Emoji chooser: Schema not found");
       return FALSE;
     }
 
@@ -607,33 +607,52 @@ cb_emoji_chooser_try_init (CbEmojiChooser *self)
 
   if (!recent_in_correct_format)
     {
-      g_message ("Emoji chooser: Recent variant in wrong format");
+      g_warning ("Emoji chooser: Recent variant in wrong format");
       return FALSE;
     }
 
-  bytes = g_resources_lookup_data ("/org/gtk/libgtk/emoji/en.data", 0, NULL);
+  bytes = g_resources_lookup_data ("/org/gtk/libgtk/emoji/emoji.data", 0, NULL);
+
+  if (bytes == NULL) {
+    g_debug("Trying newer emoji data");
+    const char *lang;
+    char q[10];
+    char* path;
+
+    // Newer GTK has language-specific emoji data
+    lang = pango_language_to_string (gtk_get_default_language ());
+    if (strchr (lang, '-')) {
+      int i;
+      for (i = 0; lang[i] != '-' && i < 9; i++) {
+        q[i] = lang[i];
+      }
+      q[i] = '\0';
+      lang = q;
+    }
+
+    path = g_strconcat ("/org/gtk/libgtk/emoji/", lang, ".data", NULL);
+    bytes = g_resources_lookup_data (path, 0, NULL);
+
+    if (bytes == NULL && !g_strcmp0(lang, "en")) {
+      g_debug("Could not find emoji/%s.data. Falling back to emoji/en.data", lang);
+      bytes = g_resources_lookup_data ("/org/gtk/libgtk/emoji/en.data", 0, NULL);
+    }
+    else {
+      g_debug("Using emoji/%s.data resource", lang);
+    }
+  }
+  else {
+    g_debug("Using old emoji.data resource");
+  }
 
   if (bytes == NULL)
     {
-      g_message ("Emoji chooser: resources not available");
+      g_warning ("Emoji chooser: resources not available");
       return FALSE;
     }
 
-  checksum = g_compute_checksum_for_bytes (G_CHECKSUM_SHA1, bytes);
-
-  // XXX This is a slightly ugly way to make sure that the g_variant_type structure hasn't changed.
-  // If the emoji button disappears, it's probably because this changed.
-  // There must be a better way! But we are in C…
-  correct_checksum = strcmp (checksum, EMOJI_DATA_CHECKSUM1) == 0 || strcmp(checksum, EMOJI_DATA_CHECKSUM2) == 0
-                     || strcmp (checksum, EMOJI_DATA_CHECKSUM3) == 0;
-  if (!correct_checksum)
-    {
-      g_warning ("Emoji chooser: checksum mismatch. %s != %s && %s != %s && %s != %s", checksum, EMOJI_DATA_CHECKSUM1, checksum, EMOJI_DATA_CHECKSUM2, checksum, EMOJI_DATA_CHECKSUM3);
-      g_free (checksum);
-      g_bytes_unref (bytes);
-      return FALSE;
-    }
-  g_free (checksum);
+  // We used to checksum values, but that's not viable with multi-lingual resources because
+  // there are too many valid values!
 
   self->data = g_variant_ref_sink (g_variant_new_from_bytes (G_VARIANT_TYPE ("a(auss)"),
                                                              bytes, TRUE));

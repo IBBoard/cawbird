@@ -373,16 +373,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
       return;
 
     if (first_load) {
-      /* The GTK+ version might not have this emoji data variant */
-      try {
-        if (GLib.resources_get_info ("/org/gtk/libgtk/emoji/emoji.data",
-                                     GLib.ResourceLookupFlags.NONE, null, null)) {
-          setup_emoji_chooser ();
-        }
-      } catch (GLib.Error e) {
-        // Ignore, just don't show the emoji chooser
-      }
-
+      setup_emoji_chooser ();
       first_load = false;
     }
 
