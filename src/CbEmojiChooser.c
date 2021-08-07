@@ -24,13 +24,6 @@
 
 #define EMOJI_PER_ROW 7
 
-/* From 2017-10-18 */
-#define EMOJI_DATA_CHECKSUM1 "2ad33472d280d83737884a0e60a9236793653111"
-/* From 2020-04-13 */
-#define EMOJI_DATA_CHECKSUM2 "4b36b4fcdb73ef96cf5111f269ccbb26cad6d437"
-/* From July 2021 */
-#define EMOJI_DATA_CHECKSUM3 "8db477bd363473a32f96d144f7842d9e2aef59a6"
-
 enum {
   EMOJI_PICKED,
   LAST_SIGNAL
@@ -580,10 +573,8 @@ gboolean
 cb_emoji_chooser_try_init (CbEmojiChooser *self)
 {
   GBytes *bytes;
-  char *checksum;
   GVariant *settings_test;
   gboolean recent_in_correct_format = FALSE;
-  gboolean correct_checksum = FALSE;
   GSettingsSchemaSource *schema_source;
   GSettingsSchema *schema;
 
