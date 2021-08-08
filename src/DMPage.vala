@@ -243,6 +243,23 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
           display_text = mention_screen_name
         };
       });
+
+      if (entities.length > 1) {
+        var swapped = false;
+
+        do {
+          swapped = false;
+          for (int i = 0; i < entities.length - 1; i++) {
+            int j = i + 1;
+            if (entities[j].from < entities[i].from) {
+              Cb.TextEntity tmp = entities[i];
+              entities[i] = entities[j];
+              entities[j] = tmp;
+              swapped = true;
+            }
+          }
+        } while (swapped);
+      }
     }
     else {
       entities = new Cb.TextEntity[0];
