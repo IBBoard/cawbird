@@ -16,7 +16,6 @@
  */
 
 public class Account : GLib.Object {
-  public const string DUMMY = "screen_name";
   public int64 id;
   public int64 migration_date;
   public bool suppress_dm_notifications;

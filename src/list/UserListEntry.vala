@@ -111,13 +111,13 @@ class UserListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
     var cb = (Cawbird) GLib.Application.get_default ();
     cb.window_added.connect ((window) => {
       if (window is MainWindow) {
-        update_window_button_sensitivity (window, false);
+        update_window_button_sensitivity ((MainWindow)window, false);
       }
     });
 
     cb.window_removed.connect ((window) => {
       if (window is MainWindow) {
-        update_window_button_sensitivity (window, true);
+        update_window_button_sensitivity ((MainWindow)window, true);
       }
     });
 
@@ -154,8 +154,8 @@ class UserListEntry : Gtk.ListBoxRow, Cb.TwitterItem {
     this.last_timediff = span;
   }
 
-  private void update_window_button_sensitivity (Gtk.Window window, bool new_value) {
-    if (((MainWindow)window).account.screen_name == this.account.screen_name) {
+  private void update_window_button_sensitivity (MainWindow window, bool new_value) {
+    if (window.account != null && window.account.screen_name == this.account.screen_name) {
       new_window_button.sensitive = new_value;
     }
   }

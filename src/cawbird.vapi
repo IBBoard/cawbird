@@ -182,7 +182,6 @@ public class Account : GLib.Object {
 	public Cb.UserCounter user_counter;
 	public Cb.UserStream user_stream;
 	public string? website;
-	public const string DUMMY;
 	public Account (int64 id, string screen_name, string name);
 	public static void add_account (Account acc);
 	public void add_disabled_rts_id (int64 user_id);

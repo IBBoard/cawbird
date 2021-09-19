@@ -275,7 +275,8 @@ public class AccountDialog : Gtk.Window {
     foreach (Gtk.Window win in windows) {
       if (win is MainWindow) {
         n_main_windows ++;
-        if (((MainWindow)win).account.id == this.account.id) {
+        MainWindow main_win = (MainWindow)win;
+        if (main_win.account != null && main_win.account.id == this.account.id) {
           account_window = win;
         }
       }
@@ -297,7 +298,7 @@ public class AccountDialog : Gtk.Window {
 
         for (uint i = 0; i < Account.get_n (); i ++) {
           var acct = Account.get_nth (i);
-          if (acct.screen_name == Account.DUMMY || acct.screen_name == account.screen_name) {
+          if (acct.screen_name == account.screen_name) {
             continue;
           }
           else if (acct.screen_name == startup_acct) {

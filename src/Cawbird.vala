@@ -70,7 +70,7 @@ public class Cawbird : Gtk.Application {
           throw new GLib.Error(Quark.from_string("cawbird"), 64, "Bad character in decoded output of key/secret %s: %c", base64_string, c);
       }
     }
-    
+
     return (string)decoded;
   }
 
@@ -122,10 +122,10 @@ public class Cawbird : Gtk.Application {
       if (!has_favs) {
         // No current favourites - transfer any old ones
         var corebird_favourites_path = Dirs.corebird_config ("image-favorites/");
-        
+
         if (GLib.FileUtils.test (corebird_favourites_path, GLib.FileTest.EXISTS)) {
           var corebird_favourites_dir = GLib.Dir.open (corebird_favourites_path);
-          
+
           while ((name = corebird_favourites_dir.read_name ()) != null) {
             GLib.File old_file = File.new_for_path (Path.build_filename (corebird_favourites_path, name));
             GLib.File new_file = File.new_for_path (Path.build_filename (favourites_path, name));
@@ -146,7 +146,7 @@ public class Cawbird : Gtk.Application {
 
     OptionEntry[] options = new OptionEntry[6];
     // TRANSLATORS: Description of the `--tweet` option for the command-line
-    options[0] = {"tweet", 't', 0, OptionArg.STRING, null, _("Shows only the 'compose tweet' window for the given account, nothing else."), 
+    options[0] = {"tweet", 't', 0, OptionArg.STRING, null, _("Shows only the 'compose tweet' window for the given account, nothing else."),
                   // TRANSLATORS: Used as the placeholder for the account name in the `--help` output
                   _("account-name") };
     // TRANSLATORS: Description of the `--start-service` option for the command-line
@@ -198,7 +198,7 @@ public class Cawbird : Gtk.Application {
       }
       return 0;
     } else if (options.lookup("tweet", "s", ref name)) {
-      open_startup_windows (name, null);        
+      open_startup_windows (name, null);
       return 0;
     }
     else if (options.lookup("account", "s", ref name)) {
@@ -395,7 +395,8 @@ public class Cawbird : Gtk.Application {
         }
       }
       /* If we did not open any window at all since all windows for every account
-         in the startups-account array were already open, just open a new window with a null account */
+         in the startups-account array were already open, just open a new window with a null account
+         (unless the null account window already exists) */
       if (!opened_window) {
         if (n_accounts > 0) {
           /* Check if *any* of the configured accounts (not just startup-accounts)
@@ -408,10 +409,12 @@ public class Cawbird : Gtk.Application {
             }
           }
         }
-        foreach (Gtk.Window w in this.get_windows ())
-          if (((MainWindow)w).account.screen_name == Account.DUMMY) {
+        foreach (Gtk.Window w in this.get_windows ()) {
+          MainWindow main_win = (MainWindow)w;
+          if (main_win.account == null) {
             return;
           }
+        }
 
         var m = new MainWindow (this, null);
         add_window (m);
@@ -463,8 +466,9 @@ public class Cawbird : Gtk.Application {
     unowned GLib.List<Gtk.Window> windows = this.get_windows ();
     foreach (Gtk.Window win in windows) {
       if (win is MainWindow) {
-        if (((MainWindow)win).account.screen_name == screen_name) {
-          window = (MainWindow)win;
+        MainWindow main_win = (MainWindow)win;
+        if (main_win.account != null && main_win.account.screen_name == screen_name) {
+          window = main_win;
           return true;
         }
       }
@@ -478,8 +482,9 @@ public class Cawbird : Gtk.Application {
     unowned GLib.List<Gtk.Window> windows = this.get_windows ();
     foreach (Gtk.Window win in windows) {
       if (win is MainWindow) {
-        if (((MainWindow)win).account.id == user_id) {
-          window = (MainWindow)win;
+        MainWindow main_win = (MainWindow)win;
+        if (main_win.account != null && main_win.account.id == user_id) {
+          window = main_win;
           return true;
         }
       }

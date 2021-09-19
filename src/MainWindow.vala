@@ -135,8 +135,6 @@ public class MainWindow : Gtk.ApplicationWindow {
 
     for (uint i = 0; i < Account.get_n (); i ++) {
       var acc = Account.get_nth (i);
-      if (acc.screen_name == Account.DUMMY)
-          continue;
       var e = new UserListEntry.from_account (acc);
       e.show_settings = true;
       e.action_clicked.connect (() => {
@@ -225,7 +223,7 @@ public class MainWindow : Gtk.ApplicationWindow {
 
     Cawbird cb = (Cawbird) GLib.Application.get_default ();
 
-    if (account != null && account.screen_name != Account.DUMMY) {
+    if (account != null) {
       header_box.show ();
       main_widget = new MainWidget (account, this, cb);
       main_widget.show_all ();
@@ -281,8 +279,7 @@ public class MainWindow : Gtk.ApplicationWindow {
   private void account_row_activated_cb (Gtk.ListBoxRow row) {
     if (row is AddListEntry) {
       account_popover.popdown ();
-      Account dummy_acc = new Account (0, Account.DUMMY, "name");
-      var window = new MainWindow (application, dummy_acc);
+      var window = new MainWindow (application, null);
       get_application ().add_window (window);
       window.show_all ();
       return;
@@ -327,8 +324,7 @@ public class MainWindow : Gtk.ApplicationWindow {
   }
 
   private void show_hide_compose_window () {
-    if (this.account == null ||
-        this.account.screen_name == Account.DUMMY)
+    if (this.account == null)
       return;
 
     if (compose_tweet_window == null) {
@@ -357,16 +353,14 @@ public class MainWindow : Gtk.ApplicationWindow {
   }
 
   private void previous (GLib.SimpleAction a, GLib.Variant? param) {
-    if (this.account == null ||
-        this.account.screen_name == Account.DUMMY)
+    if (this.account == null)
       return;
 
     main_widget.switch_page (Page.PREVIOUS);
   }
 
   private void next (GLib.SimpleAction a, GLib.Variant? param) {
-    if (this.account == null ||
-        this.account.screen_name == Account.DUMMY)
+    if (this.account == null)
       return;
 
     main_widget.switch_page (Page.NEXT);
@@ -374,8 +368,7 @@ public class MainWindow : Gtk.ApplicationWindow {
 
   /* result of the show-account-dialog GAction */
   private void show_account_dialog () {
-    if (this.account == null ||
-        this.account.screen_name == Account.DUMMY)
+    if (this.account == null)
       return;
 
     var dialog = new AccountDialog (this.account);
@@ -386,7 +379,7 @@ public class MainWindow : Gtk.ApplicationWindow {
 
   /* for show-account-list GAction */
   private void show_account_list () {
-    if (this.account != null && this.account.screen_name != Account.DUMMY) {
+    if (this.account != null) {
       this.account_popover.popup ();
     }
   }
@@ -428,9 +421,7 @@ public class MainWindow : Gtk.ApplicationWindow {
 
     int n_main_windows = 0;
     foreach (Gtk.Window win in ws)
-      if (win is MainWindow &&
-          ((MainWindow) win).account != null &&
-          ((MainWindow) win).account.screen_name != Account.DUMMY)
+      if (win is MainWindow && ((MainWindow) win).account != null)
         n_main_windows ++;
 
 
@@ -457,8 +448,7 @@ public class MainWindow : Gtk.ApplicationWindow {
    *
    */
   private void load_geometry () {
-    if (account == null || account.screen_name == Account.DUMMY) {
-      debug ("Could not load geometry, account == null");
+    if (account == null) {
       return;
     }
     GLib.Variant win_geom = Settings.get ().get_value ("window-geometry");
