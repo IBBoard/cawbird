@@ -49,6 +49,22 @@
   <url type="translate">https://www.transifex.com/cawbird/cawbird/</url>
 
   <releases>
+    <release version="1.4.2" date="2021-09-19">
+      <p>Cawbird 1.4.2 is a maintenance release with two crash fixes and updated translations.</p>
+      <ul>
+        <li>Fixes:
+          <ul>
+            <li>Fixed crash when opening DMs if one of the DMs had entities defined out of order in the JSON (#391)</li>
+            <li>Fixed crash when first creating an account due to null account object (#399)</li>
+          </ul>
+        </li>
+        <li>Improvements:
+          <ul>
+            <li>Updated French and English translations</li>
+          </ul>
+        </li>
+      </ul>
+    </release>
     <release version="1.4.1" date="2021-05-08">
       <p>Hotfix to correct "Send" button state issues for direct messages</p>
     </release>
