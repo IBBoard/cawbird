@@ -1,7 +1,7 @@
 {
   "app-id":"uk.co.ibboard.cawbird",
   "runtime":"org.gnome.Platform",
-  "runtime-version":"3.38",
+  "runtime-version":"master",
   "sdk":"org.gnome.Sdk",
   "command":"cawbird",
   "desktop-file-name-prefix":"(Development) ",
@@ -88,7 +88,7 @@
       "buildsystem":"meson",
       "config-opts": [
         "--buildtype=debug",
-        "-Dconsumer_key_base64=a1hVdm9YWGY0WnkxOUNKczlEVDBHRGVYcQ=="
+        "-Dconsumer_key_base64=a1hVdm9YWGY0WnkxOUNKczlEVDBHRGVYcQ==",
         "-Dconsumer_secret_base64=Y2ZxS3F0cHNkanp6Q0hzeTEzY2pHSmpxMlNta3Fvd2VWdDZoVzY3cXFyNnVrV2xPc2k="
       ],
       "sources":[
