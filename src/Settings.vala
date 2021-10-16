@@ -41,6 +41,18 @@ public class Settings : GLib.Object {
 
   public static void init(){
     settings = new GLib.Settings("uk.co.ibboard.cawbird");
+    if (settings.get_value("window-geometry").iterator().n_children() == 0) {
+      info("Transferring old GSchema settings");
+      var old_settings = new GLib.Settings.with_path("uk.co.ibboard.cawbird.core", "/uk.co.ibboard.cawbird/");
+      foreach (string key in old_settings.settings_schema.list_keys()) {
+        var old_value = old_settings.get_value(key);
+        var default_value = old_settings.get_default_value(key);
+        if (!old_value.equal(default_value)) {
+          debug("Transferring value for %s", key);
+          settings.set_value(key, old_settings.get_value(key));
+        }
+      }
+    }
   }
 
   public static new GLib.Settings get () {
