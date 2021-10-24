@@ -50,6 +50,7 @@ public class Settings : GLib.Object {
         if (!old_value.equal(default_value)) {
           debug("Transferring value for %s", key);
           settings.set_value(key, old_settings.get_value(key));
+          old_settings.reset(key);
         }
       }
     }
