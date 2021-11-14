@@ -113,6 +113,8 @@ Cawbird has also been unable to implement the following features because Twitter
 
 * Notification of Likes, RTs, quote tweets and any other interaction that appears in the "All" tab of twitter.com's Notifications but not in "Mentions"
   * No API is available for other notifications, only a [mentions API](https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-mentions_timeline)
+* Lists of who liked a specific tweet
+  * No API is available, only a list of which tweets a user has liked
 * DMs to Groups
   * Twitter's API only supports one-to-one DMs
   * Twitter explicitly [closed a request for this API](https://twitterdevfeedback.uservoice.com/forums/921790-twitter-developer-labs/suggestions/37689256-allow-access-to-dm-group-conversations-via-twitter) as "not a priority"
