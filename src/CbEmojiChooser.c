@@ -624,7 +624,7 @@ cb_emoji_chooser_try_init (CbEmojiChooser *self)
     path = g_strconcat ("/org/gtk/libgtk/emoji/", lang, ".data", NULL);
     bytes = g_resources_lookup_data (path, 0, NULL);
 
-    if (bytes == NULL && !g_strcmp0(lang, "en")) {
+    if (bytes == NULL && g_strcmp0(lang, "en") != 0) {
       g_debug("Could not find emoji/%s.data. Falling back to emoji/en.data", lang);
       bytes = g_resources_lookup_data ("/org/gtk/libgtk/emoji/en.data", 0, NULL);
     }
