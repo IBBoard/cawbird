@@ -461,16 +461,7 @@ private class MediaButton : Gtk.Bin {
     base.size_allocate (alloc);
 
     if (this.get_realized ()) {
-      int draw_x, draw_y;
-      double scale;
-      Utils.calculate_draw_offset (_media.thumb_width, _media.thumb_height,
-                                   get_allocated_width(), get_allocated_height(),
-                                   out draw_x, out draw_y, out scale);
-      
-      var draw_width = alloc.width - draw_x * 2;
-      var draw_height = alloc.height - draw_y;
-      this.event_window.move_resize (alloc.x + draw_x, alloc.y + int.max(0, draw_y),
-                                      draw_width, draw_height);
+      this.event_window.move_resize (alloc.x, alloc.y, alloc.width, alloc.height);
     }
   }
 
