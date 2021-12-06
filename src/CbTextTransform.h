@@ -31,7 +31,7 @@ typedef enum {
 
 char *cb_text_transform_tweet (const CbMiniTweet *tweet,
                                guint              flags,
-                               guint64            quote_id);
+                               char              *quote_url);
 
 
 char *cb_text_transform_text  (const char   *text,
@@ -39,7 +39,7 @@ char *cb_text_transform_text  (const char   *text,
                                gsize         n_entities,
                                guint         flags,
                                gsize         n_medias,
-                               gint64        quote_id,
+                               char         *quote_url,
                                guint         display_range_start);
 
 char *cb_text_transform_fix_encoding (const char *text);

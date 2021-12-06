@@ -72,6 +72,7 @@ struct _CbTweet
   CbMiniTweet source_tweet;
   CbMiniTweet *retweeted_tweet;
   CbMiniTweet *quoted_tweet;
+  char *quoted_tweet_url;
   char *avatar_url;
   gint64 my_retweet;
   char *notification_id;

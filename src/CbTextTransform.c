@@ -25,14 +25,14 @@
 char *
 cb_text_transform_tweet (const CbMiniTweet *tweet,
                          guint              flags,
-                         guint64            quote_id)
+                         char              *quote_url)
 {
   return cb_text_transform_text (tweet->text,
                                  tweet->entities,
                                  tweet->n_entities,
                                  flags,
                                  tweet->n_medias,
-                                 quote_id,
+                                 quote_url,
                                  tweet->display_range_start);
 }
 
@@ -52,18 +52,11 @@ is_link (const char *s)
 }
 
 static inline gboolean
-is_quote_link (const CbTextEntity *e, gint64 quote_id)
+is_quote_link (const CbTextEntity *e, char *quote_url)
 {
-  char *suffix = g_strdup_printf ("/status/%" G_GINT64_FORMAT, quote_id);
-  gboolean ql;
-
-  ql = (e->target != NULL) &&
-       (g_str_has_prefix (e->target, "https://twitter.com/") &&
-        g_str_has_suffix (e->target, suffix));
-
-  g_free (suffix);
-
-  return ql;
+  // FIXME: We're now showing both, so we broke something!
+  g_debug("%s == %s ?", e->target, quote_url);
+  return (e->target != NULL) && g_strcmp0(e->target, quote_url) == 0;
 }
 
 static inline gboolean
@@ -176,7 +169,7 @@ cb_text_transform_text (const char   *text,
                         gsize         n_entities,
                         guint         flags,
                         gsize         n_medias,
-                        gint64        quote_id,
+                        char         *quote_url,
                         guint         display_range_start)
 {
   GString *str;
@@ -297,7 +290,7 @@ cb_text_transform_text (const char   *text,
 
       if (((flags & CB_TEXT_TRANSFORM_REMOVE_MEDIA_LINKS) > 0 &&
            is_media_url (entity->target, entity->display_text, n_medias)) ||
-          (quote_id != 0 && is_quote_link (entity, quote_id)))
+          (quote_url != NULL && is_quote_link (entity, quote_url)))
         {
           last_end = entity_to;
           continue;

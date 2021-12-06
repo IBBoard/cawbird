@@ -252,6 +252,8 @@ cb_tweet_load_from_json (CbTweet   *tweet,
     {
       JsonObject *quote = json_object_get_object_member (status, "quoted_status");
       tweet->quoted_tweet = g_malloc (sizeof (CbMiniTweet));
+      JsonObject *permalink = json_object_get_object_member(status, "quoted_status_permalink");
+      tweet->quoted_tweet_url = g_strdup(json_object_get_string_member(permalink, "expanded"));
       cb_mini_tweet_init (tweet->quoted_tweet);
       cb_mini_tweet_parse (tweet->quoted_tweet, quote);
       cb_mini_tweet_parse_entities (tweet->quoted_tweet, quote);
@@ -390,24 +392,20 @@ cb_tweet_get_formatted_text (CbTweet *tweet)
   g_return_val_if_fail (CB_IS_TWEET (tweet), NULL);
 
   if (tweet->retweeted_tweet != NULL)
-    return cb_text_transform_tweet (tweet->retweeted_tweet, 0, 0);
+    return cb_text_transform_tweet (tweet->retweeted_tweet, 0, NULL);
   else
-    return cb_text_transform_tweet (&tweet->source_tweet, 0, 0);
+    return cb_text_transform_tweet (&tweet->source_tweet, 0, NULL);
 }
 
 char *
 cb_tweet_get_trimmed_text (CbTweet *tweet, guint transform_flags)
 {
-  gint64 quote_id;
-
   g_return_val_if_fail (CB_IS_TWEET (tweet), NULL);
 
-  quote_id = tweet->quoted_tweet != NULL ? tweet->quoted_tweet->id : 0;
-
   if (tweet->retweeted_tweet != NULL)
-    return cb_text_transform_tweet (tweet->retweeted_tweet, transform_flags, quote_id);
+    return cb_text_transform_tweet (tweet->retweeted_tweet, transform_flags, tweet->quoted_tweet_url);
   else
-    return cb_text_transform_tweet (&tweet->source_tweet, transform_flags, quote_id);
+    return cb_text_transform_tweet (&tweet->source_tweet, transform_flags, tweet->quoted_tweet_url);
 }
 
 char *
@@ -416,9 +414,9 @@ cb_tweet_get_real_text (CbTweet *tweet)
   g_return_val_if_fail (CB_IS_TWEET (tweet), NULL);
 
   if (tweet->retweeted_tweet != NULL)
-    return cb_text_transform_tweet (tweet->retweeted_tweet, CB_TEXT_TRANSFORM_EXPAND_LINKS, 0);
+    return cb_text_transform_tweet (tweet->retweeted_tweet, CB_TEXT_TRANSFORM_EXPAND_LINKS, NULL);
   else
-    return cb_text_transform_tweet (&tweet->source_tweet, CB_TEXT_TRANSFORM_EXPAND_LINKS, 0);
+    return cb_text_transform_tweet (&tweet->source_tweet, CB_TEXT_TRANSFORM_EXPAND_LINKS, NULL);
 }
 
 char *
@@ -432,9 +430,9 @@ cb_tweet_get_filter_text (CbTweet *tweet)
   string = g_string_new (0);
 
   if (tweet->retweeted_tweet != NULL)
-    text = cb_text_transform_tweet (tweet->retweeted_tweet, CB_TEXT_TRANSFORM_EXPAND_LINKS, 0);
+    text = cb_text_transform_tweet (tweet->retweeted_tweet, CB_TEXT_TRANSFORM_EXPAND_LINKS, NULL);
   else
-    text = cb_text_transform_tweet (&tweet->source_tweet, CB_TEXT_TRANSFORM_EXPAND_LINKS ,0);
+    text = cb_text_transform_tweet (&tweet->source_tweet, CB_TEXT_TRANSFORM_EXPAND_LINKS, NULL);
 
   g_string_append (string, text);
   g_free (text);
@@ -535,6 +533,7 @@ cb_tweet_finalize (GObject *object)
     {
       cb_mini_tweet_free (tweet->quoted_tweet);
       g_free (tweet->quoted_tweet);
+      g_free (tweet->quoted_tweet_url);
     }
 
 #ifdef DEBUG
