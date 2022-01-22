@@ -54,8 +54,6 @@ is_link (const char *s)
 static inline gboolean
 is_quote_link (const CbTextEntity *e, char *quote_url)
 {
-  // FIXME: We're now showing both, so we broke something!
-  g_debug("%s == %s ?", e->target, quote_url);
   return (e->target != NULL) && g_strcmp0(e->target, quote_url) == 0;
 }
 
