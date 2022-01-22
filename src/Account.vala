@@ -495,6 +495,7 @@ public class Account : GLib.Object {
   public void block_id (int64 id) {
     this.blocked.resize (this.blocked.length + 1);
     this.blocked[this.blocked.length - 1] = id;
+    debug ("Added block for %lld at index %d", id, this.blocked.length - 1);
   }
 
   public void unblock_id (int64 id) {
@@ -559,10 +560,13 @@ public class Account : GLib.Object {
   }
 
   public bool is_blocked (int64 user_id) {
-    foreach (int64 id in this.blocked)
-      if (id == user_id)
+    for (int i = 0; i < this.blocked.length; i++) {
+      if (this.blocked[i] == user_id) {
+        debug("User %lld is blocked (idx %d)", user_id, i);
         return true;
-
+      }
+    }
+    debug("User %lld is not blocked", user_id);
     return false;
   }
 
