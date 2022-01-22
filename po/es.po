@@ -4,7 +4,14 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# IBBoard . <github@ibboard.co.uk>, 2020
+# Alejandro Moreno <amorenocuquerella@gmail.com>, 2016
+# auroszx <auros.andres@gmail.com>, 2014
+# baedert <mail@baedert.org>, 2016
+# Carlos C Soto <eclipxe13@gmail.com>, 2015
+# Guillem Arias <gariasfa7@alumnes.ub.edu>, 2016
+# Jose G. Jimenez S. <josegjimenez@gmail.com>, 2014-2015
+# Jose Manuel Calero Gonzalez <nosfe1984@gmail.com>, 2014-2015
+# Sebastian Reyes <sebaslander@gmail.com>, 2016
 # Óscar Fernández Díaz <oscfdezdz@tuta.io>, 2021
 # Sergio Varela <sergitroll9@gmail.com>, 2022
 # 
@@ -17,10 +24,10 @@ msgstr ""
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Sergio Varela <sergitroll9@gmail.com>, 2022\n"
 "Language-Team: Spanish (https://www.transifex.com/cawbird/teams/107135/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Cawbird"
