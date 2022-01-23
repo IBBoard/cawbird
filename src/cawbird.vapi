@@ -206,10 +206,10 @@ public class Account : GLib.Object {
 	public static void remove_account (string screen_name);
 	public void remove_disabled_rts_id (int64 user_id);
 	public void save_info ();
-	public void set_blocked (Json.Array blocked_array);
+	public void add_blocked (Json.Array blocked_array);
 	public void set_disabled_rts (Json.Array disabled_rts_array);
 	public void set_friends (Json.Array friends_array);
-	public void set_muted (Json.Array muted_array);
+	public void add_muted (Json.Array muted_array);
 	public void set_new_avatar (Cairo.Surface new_avatar);
 	public void unblock_id (int64 id);
 	public void unfollow_id (int64 user_id);

@@ -51,6 +51,10 @@ public class Account : GLib.Object {
     this.filters = new GLib.GenericArray<Cb.Filter> ();
     this.event_receiver = new UserEventReceiver (this);
     this.notifications = new NotificationManager (this);
+    this.friends = new int64[0];
+    this.blocked = new int64[0];
+    this.muted = new int64[0];
+    this.disabled_rts = new int64[0];
   }
 
   /**
@@ -238,34 +242,74 @@ public class Account : GLib.Object {
       collect_obj.emit ();
     });
 
-    load_id_array.begin (collect_obj, "1.1/friendships/no_retweets/ids.json", true, (obj, res) => {
+    load_id_array.begin (collect_obj, "1.1/friendships/no_retweets/ids.json", (obj, res) => {
+      // "No Retweets" is a one-shot unpaged list
       Json.Array? arr = load_id_array.end (res);
       if (arr != null) {
         this.set_disabled_rts (arr);
         collect_obj.emit ();
       }
     });
-    load_id_array.begin (collect_obj, "1.1/blocks/ids.json", false, (obj, res) => {
-      Json.Array? arr = load_id_array.end (res);
-      if (arr != null) {
-        this.set_blocked (arr);
-        collect_obj.emit ();
-      }
-    });
-    load_id_array.begin (collect_obj, "1.1/mutes/users/ids.json", false, (obj, res) => {
-      Json.Array? arr = load_id_array.end (res);
-      if (arr != null) {
-        this.set_muted (arr);
-        collect_obj.emit ();
-      }
-    });
+    load_blocked.begin(collect_obj);
+    load_muted.begin(collect_obj);
 
     yield;
   }
 
+  private async void load_blocked(Collect collect_obj, int64 cursor = -1){
+    load_pageable_id_array.begin (collect_obj, "1.1/blocks/ids.json", cursor, (obj, res) => {
+      Json.Object? json_obj = load_pageable_id_array.end (res);
+      if (json_obj != null) {
+        Json.Array? arr = json_obj.get_array_member ("ids");
+        this.add_blocked (arr);
+        if (!json_obj.has_member ("next_cursor") || json_obj.get_int_member ("next_cursor") <= 0) {
+          collect_obj.emit ();
+        }
+        else {
+          load_blocked.begin(collect_obj, json_obj.get_int_member ("next_cursor"));
+        }
+      }
+    });
+  }
+
+  private async void load_muted(Collect collect_obj, int64 cursor = -1){
+    load_pageable_id_array.begin (collect_obj, "1.1/mutes/users/ids.json", cursor, (obj, res) => {
+      Json.Object? json_obj = load_pageable_id_array.end (res);
+      if (json_obj != null) {
+        Json.Array? arr = json_obj.get_array_member ("ids");
+        this.add_muted (arr);
+        if (!json_obj.has_member ("next_cursor") || json_obj.get_int_member ("next_cursor") <= 0) {
+          collect_obj.emit ();
+        }
+        else {
+          load_muted.begin(collect_obj, json_obj.get_int_member ("next_cursor"));
+        }
+      }
+    });
+  }
+
+  private async Json.Object? load_pageable_id_array (Collect collect_obj,
+                                                     string  function,
+                                                     int64 cursor) {
+    var call = this.proxy.new_call ();
+    call.set_function (function);
+    call.add_param("cursor", "%lld".printf(cursor));
+    call.set_method ("GET");
+
+    Json.Node? root = null;
+    try {
+      root = yield Cb.Utils.load_threaded_async (call, null);
+    } catch (GLib.Error e) {
+      warning (e.message);
+      collect_obj.emit ();
+      return null;
+    }
+
+    return root.get_object ();
+  }
+
   private async Json.Array? load_id_array (Collect collect_obj,
-                                           string  function,
-                                           bool    direct) {
+                                           string  function) {
     var call = this.proxy.new_call ();
     call.set_function (function);
     call.set_method ("GET");
@@ -279,10 +323,7 @@ public class Account : GLib.Object {
       return null;
     }
 
-    if (direct)
-      return root.get_array ();
-    else
-      return root.get_object ().get_array_member ("ids");
+    return root.get_array ();
   }
 
   /**
@@ -453,11 +494,13 @@ public class Account : GLib.Object {
     this.friends = new_friends;
   }
 
-  public void set_muted (Json.Array muted_array) {
-    this.muted = new int64[muted_array.get_length ()];
-    debug ("Add %d muted ids", this.muted.length);
-    for (int i = 0; i < this.muted.length; i ++) {
-      this.muted[i] = muted_array.get_int_element (i);
+  public void add_muted (Json.Array muted_array) {
+    int old_length = this.muted.length;
+    uint add_length = muted_array.get_length();
+    this.muted.resize (old_length + (int)add_length);
+    debug ("Add %u muted ids to existing %d", add_length, this.muted.length);
+    for (uint i = 0; i < add_length; i ++) {
+      this.muted[old_length + i] = muted_array.get_int_element (i);
     }
   }
 
@@ -484,11 +527,13 @@ public class Account : GLib.Object {
     this.muted = new_muted;
   }
 
-  public void set_blocked (Json.Array blocked_array) {
-    this.blocked = new int64[blocked_array.get_length ()];
-    debug ("Add %d blocked ids", this.blocked.length);
-    for (int i = 0; i < this.blocked.length; i ++) {
-      this.blocked[i] = blocked_array.get_int_element (i);
+  public void add_blocked (Json.Array blocked_array) {
+    int old_length = this.blocked.length;
+    uint add_length = blocked_array.get_length();
+    this.blocked.resize (old_length + (int)add_length);
+    debug ("Add %u blocked ids to existing %d", add_length, this.blocked.length);
+    for (uint i = 0; i < add_length; i ++) {
+      this.blocked[old_length + i] = blocked_array.get_int_element (i);
     }
   }
 
