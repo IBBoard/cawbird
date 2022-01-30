@@ -6,6 +6,7 @@ Comment=Use Twitter from within a normal desktop application
 Keywords=twitter;
 Exec=cawbird
 Type=Application
+StartupNotify=true
 # TRANSLATORS: Do NOT translate or transliterate this text (this is an icon file name)!
 Icon=uk.co.ibboard.cawbird
 Categories=Network;GTK;
