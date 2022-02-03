@@ -250,10 +250,10 @@ cb_tweet_load_from_json (CbTweet   *tweet,
 
   if (json_object_has_member (status, "quoted_status"))
     {
-      JsonObject *quote = json_object_get_object_member (status, "quoted_status");
-      tweet->quoted_tweet = g_malloc (sizeof (CbMiniTweet));
       JsonObject *permalink = json_object_get_object_member(status, "quoted_status_permalink");
       tweet->quoted_tweet_url = g_strdup(json_object_get_string_member(permalink, "expanded"));
+      JsonObject *quote = json_object_get_object_member (status, "quoted_status");
+      tweet->quoted_tweet = g_malloc (sizeof (CbMiniTweet));
       cb_mini_tweet_init (tweet->quoted_tweet);
       cb_mini_tweet_parse (tweet->quoted_tweet, quote);
       cb_mini_tweet_parse_entities (tweet->quoted_tweet, quote);
@@ -264,6 +264,8 @@ cb_tweet_load_from_json (CbTweet   *tweet,
     }
   else if (tweet->retweeted_tweet != NULL &&
            json_object_has_member (json_object_get_object_member (status, "retweeted_status"), "quoted_status")) {
+      JsonObject *permalink = json_object_get_object_member(status, "quoted_status_permalink");
+      tweet->quoted_tweet_url = g_strdup(json_object_get_string_member(permalink, "expanded"));
       JsonObject *quote = json_object_get_object_member (json_object_get_object_member (status, "retweeted_status"),
                                                          "quoted_status");
 
