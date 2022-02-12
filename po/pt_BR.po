@@ -4,7 +4,14 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# IBBoard . <github@ibboard.co.uk>, 2020
+# Evertton de Lima <e.everttonlima@gmail.com>, 2015
+# Mauro Pereira Junior <mauropereirajr@gmail.com>, 2015
+# Salomão Carneiro de Brito <salomaocar@gmail.com>, 2015
+# x_root <anonimo1w@hotmail.com>, 2015
+# Ricardo Borges Jr. <ricardoborges.jr@gmail.com>, 2015-2017
+# Luderson Costa <luderson@gmail.com>, 2016
+# Anders Bateva <andersbateva@gmail.com>, 2016
+# Vanderlei Ventura <vanderleiventura82@gmail.com>, 2018
 # Thales Ruan Silva <thales.i.o.b@gmail.com>, 2021
 # nosklo, 2022
 # 
@@ -17,10 +24,10 @@ msgstr ""
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: nosklo, 2022\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/cawbird/teams/107135/pt_BR/)\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Cawbird"
