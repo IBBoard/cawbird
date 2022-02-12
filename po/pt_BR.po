@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR 2013-2018 Timm Bäder, 2018-2020 IBBoard
 # This file is distributed under the same license as the cawbird package.
-# 
+#
 # Translators:
 # Evertton de Lima <e.everttonlima@gmail.com>, 2015
 # Mauro Pereira Junior <mauropereirajr@gmail.com>, 2015
@@ -13,7 +13,7 @@
 # Vanderlei Ventura <vanderleiventura82@gmail.com>, 2018
 # Thales Ruan Silva <thales.i.o.b@gmail.com>, 2021
 # nosklo, 2022
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
