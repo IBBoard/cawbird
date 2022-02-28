@@ -43,7 +43,9 @@ namespace Dirs {
   private string _config (string app_name) {
     string dir = GLib.Environment.get_home_dir () + "/." + app_name + "/";
     if (!GLib.FileUtils.test (dir, GLib.FileTest.EXISTS)) {
-      dir = GLib.Environment.get_user_config_dir () + "/" + app_name + "/";
+      string user_config_dir = GLib.Environment.get_user_config_dir ();
+      create_folder (user_config_dir);
+      dir = user_config_dir + "/" + app_name + "/";
     }
     return dir;
   }
