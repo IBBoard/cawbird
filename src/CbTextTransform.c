@@ -252,7 +252,8 @@ cb_text_transform_text (const char   *text,
         entity_exists = g_ascii_strcasecmp(original_text_no_hash, entity_text_no_hash) == 0;
       }
       else {
-        entity_exists = g_ascii_strcasecmp(entity->original_text, entity_text) == 0;
+        entity_exists = g_ascii_strcasecmp(entity->original_text, entity_text) == 0 // Most links and media
+          || g_ascii_strcasecmp(entity->display_text, entity_text) == 0; // "Learn More" links in withheld tweets
       }
 
       if (!entity_exists) {
