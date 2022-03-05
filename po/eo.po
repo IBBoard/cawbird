@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-12 19:16+0100\n"
+"POT-Creation-Date: 2022-03-05 15:27+0000\n"
 "PO-Revision-Date: 2018-02-06 18:45+0000\n"
 "Last-Translator: Iris Ilexiris <iris.ilexiris@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/cawbird/cawbird/language/"
@@ -221,6 +221,9 @@ msgstr "Mencioj"
 
 msgid "Suspended Account"
 msgstr "Ĉi tiu konto ĉesita"
+
+msgid "Withheld account"
+msgstr ""
 
 msgid "Protected profile"
 msgstr "Karakterizon malpublikita"
@@ -1200,6 +1203,10 @@ msgstr "Pli"
 
 msgid "Translate"
 msgstr ""
+
+#, fuzzy
+msgid "Retweet"
+msgstr "Retviti"
 
 #, fuzzy
 msgid "Like"

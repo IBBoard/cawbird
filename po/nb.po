@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-12 19:16+0100\n"
+"POT-Creation-Date: 2022-03-05 15:27+0000\n"
 "PO-Revision-Date: 2018-02-09 06:34+0000\n"
 "Last-Translator: Kim Malmo <berencamlost@msn.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/cawbird/cawbird/"
@@ -216,6 +216,9 @@ msgstr "Nevnelser"
 
 msgid "Suspended Account"
 msgstr "Suspendert konto"
+
+msgid "Withheld account"
+msgstr ""
 
 msgid "Protected profile"
 msgstr "Beskyttet profil"
@@ -1193,6 +1196,10 @@ msgstr "Mer"
 
 msgid "Translate"
 msgstr ""
+
+#, fuzzy
+msgid "Retweet"
+msgstr "Retweet"
 
 #, fuzzy
 msgid "Like"

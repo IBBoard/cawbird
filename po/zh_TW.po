@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-12 19:16+0100\n"
+"POT-Creation-Date: 2022-03-05 15:27+0000\n"
 "PO-Revision-Date: 2018-01-17 19:31+0000\n"
 "Last-Translator: HybridGlucose <a07051226@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/cawbird/cawbird/"
@@ -212,6 +212,9 @@ msgstr "提及"
 
 msgid "Suspended Account"
 msgstr "被暫時停用的帳戶"
+
+msgid "Withheld account"
+msgstr ""
 
 msgid "Protected profile"
 msgstr "受保護的個人檔案"
@@ -1175,6 +1178,10 @@ msgstr "更多"
 
 msgid "Translate"
 msgstr ""
+
+#, fuzzy
+msgid "Retweet"
+msgstr "轉推"
 
 #, fuzzy
 msgid "Like"

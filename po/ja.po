@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-12 19:16+0100\n"
+"POT-Creation-Date: 2022-03-05 15:27+0000\n"
 "PO-Revision-Date: 2017-11-12 23:35+0000\n"
 "Last-Translator: MTD TR <dev.mantendo@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/cawbird/cawbird/"
@@ -213,6 +213,9 @@ msgstr "メンション"
 
 msgid "Suspended Account"
 msgstr "凍結されたアカウント"
+
+msgid "Withheld account"
+msgstr ""
 
 msgid "Protected profile"
 msgstr "非公開プロフィール"
@@ -1176,6 +1179,10 @@ msgstr "詳細"
 
 msgid "Translate"
 msgstr ""
+
+#, fuzzy
+msgid "Retweet"
+msgstr "リツイート"
 
 #, fuzzy
 msgid "Like"

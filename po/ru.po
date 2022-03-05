@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-12 19:16+0100\n"
+"POT-Creation-Date: 2022-03-05 15:27+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Даниил Пронин <mail@grawl.ru>, 2021\n"
 "Language-Team: Russian (https://www.transifex.com/cawbird/teams/107135/ru/)\n"
@@ -231,6 +231,9 @@ msgstr "Упоминания"
 
 msgid "Suspended Account"
 msgstr "Заблокированный профиль"
+
+msgid "Withheld account"
+msgstr ""
 
 msgid "Protected profile"
 msgstr "Защищённый профиль"
@@ -1231,6 +1234,10 @@ msgstr "Ещё"
 
 msgid "Translate"
 msgstr "Перевести"
+
+#, fuzzy
+msgid "Retweet"
+msgstr "Ретвит"
 
 #, fuzzy
 msgid "Like"

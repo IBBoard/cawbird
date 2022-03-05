@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-12 19:16+0100\n"
+"POT-Creation-Date: 2022-03-05 15:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -201,6 +201,9 @@ msgid "Mentions"
 msgstr ""
 
 msgid "Suspended Account"
+msgstr ""
+
+msgid "Withheld account"
 msgstr ""
 
 msgid "Protected profile"
@@ -1157,6 +1160,9 @@ msgid "More"
 msgstr ""
 
 msgid "Translate"
+msgstr ""
+
+msgid "Retweet"
 msgstr ""
 
 msgid "Like"

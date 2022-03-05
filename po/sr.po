@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-12 19:16+0100\n"
+"POT-Creation-Date: 2022-03-05 15:27+0000\n"
 "PO-Revision-Date: 2017-11-19 08:34+0000\n"
 "Last-Translator: Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail."
 "com>\n"
@@ -225,6 +225,9 @@ msgstr "Спомињања"
 
 msgid "Suspended Account"
 msgstr "Обустављени налог"
+
+msgid "Withheld account"
+msgstr ""
 
 msgid "Protected profile"
 msgstr "Заштићен профил"
@@ -1216,6 +1219,10 @@ msgstr "Више"
 
 msgid "Translate"
 msgstr ""
+
+#, fuzzy
+msgid "Retweet"
+msgstr "Поново твитуј"
 
 #, fuzzy
 msgid "Like"

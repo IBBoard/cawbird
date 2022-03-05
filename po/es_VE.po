@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
-"POT-Creation-Date: 2021-04-12 19:16+0100\n"
+"POT-Creation-Date: 2022-03-05 15:27+0000\n"
 "PO-Revision-Date: 2017-10-22 10:08+0000\n"
 "Last-Translator: baedert <mail@baedert.org>\n"
 "Language-Team: Spanish (Venezuela) (http://www.transifex.com/cawbird/cawbird/"
@@ -212,6 +212,9 @@ msgid "Mentions"
 msgstr "Menciones"
 
 msgid "Suspended Account"
+msgstr ""
+
+msgid "Withheld account"
 msgstr ""
 
 msgid "Protected profile"
@@ -1182,6 +1185,10 @@ msgstr "Más"
 
 msgid "Translate"
 msgstr ""
+
+#, fuzzy
+msgid "Retweet"
+msgstr "Retweets"
 
 #, fuzzy
 msgid "Like"
