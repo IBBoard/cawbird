@@ -857,6 +857,11 @@ namespace TweetUtils {
   async Gdk.Pixbuf? download_avatar (string avatar_url, int size = 48,
                                      GLib.Cancellable? cancellable = null) throws GLib.Error {
     Gdk.Pixbuf? avatar = null;
+
+    if (avatar_url.length <= 0) {
+      return null;
+    }
+
     var msg     = new Soup.Message ("GET", avatar_url);
     if (cancellable != null)
       cancellable.cancelled.connect (() => { SOUP_SESSION.cancel_message (msg, Soup.Status.CANCELLED); });

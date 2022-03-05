@@ -46,6 +46,7 @@ public class Twitter : GLib.Object {
   public const int short_url_length       = 23;
   public const int max_media_per_upload   = 4;
   public static Cairo.Surface no_avatar;
+  public static Cairo.Surface null_avatar;
   public static Gdk.Pixbuf no_banner;
   private Cb.AvatarCache avatar_cache;
   private GLib.HashTable<int64?, Json.Node> user_json_cache;
@@ -54,6 +55,11 @@ public class Twitter : GLib.Object {
     try {
       Twitter.no_avatar = Gdk.cairo_surface_create_from_pixbuf (
                                new Gdk.Pixbuf.from_resource ("/uk/co/ibboard/cawbird/data/no_avatar.png"),
+                               1,
+                               null);
+
+      Twitter.null_avatar = Gdk.cairo_surface_create_from_pixbuf (
+                               new Gdk.Pixbuf.from_resource ("/uk/co/ibboard/cawbird/data/null_avatar.png"),
                                1,
                                null);
       Twitter.no_banner = new Gdk.Pixbuf.from_resource ("/uk/co/ibboard/cawbird/data/no_banner.png");
@@ -74,7 +80,8 @@ public class Twitter : GLib.Object {
   }
 
   public bool has_avatar (int64 user_id) {
-    return (get_cached_avatar (user_id) != Twitter.no_avatar);
+    var avatar = get_cached_avatar (user_id);
+    return (avatar != Twitter.no_avatar && avatar != Twitter.null_avatar);
   }
 
   public Cairo.Surface get_cached_avatar (int64 user_id) {
@@ -161,8 +168,7 @@ public class Twitter : GLib.Object {
     assert (user_id > 0);
     bool has_key = false;
     Cairo.Surface? a = this.avatar_cache.get_surface_for_id (user_id, out has_key);
-
-    bool new_url = a == Twitter.no_avatar &&
+    bool new_url = (a == Twitter.no_avatar || a == Twitter.null_avatar) &&
                         url != this.avatar_cache.get_url_for_id (user_id);
 
     if (a != null && !new_url) {
@@ -192,7 +198,7 @@ public class Twitter : GLib.Object {
       Cairo.Surface s;
       // E.g. in the 404 case...
       if (avatar == null)
-        s = Twitter.no_avatar;
+        s = url.length > 0 ? Twitter.no_avatar : Twitter.null_avatar;
       else
         s = Gdk.cairo_surface_create_from_pixbuf (avatar, 1, null);
 

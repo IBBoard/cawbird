@@ -295,14 +295,15 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       try {
         var pixbuf = TweetUtils.download_avatar.end (res);
         if (pixbuf == null) {
-          surface = scale_surface ((Cairo.ImageSurface)Twitter.no_avatar,
+          var avatar_surface = avatar_url.length > 0 ? Twitter.no_avatar : Twitter.null_avatar;
+          surface = scale_surface ((Cairo.ImageSurface)avatar_surface,
                                    100, 100);
         } else {
           surface = Gdk.cairo_surface_create_from_pixbuf (pixbuf, scale, null);
         }
       } catch (GLib.Error e) {
         warning (e.message);
-        surface = Twitter.no_avatar;
+        surface = avatar_url.length > 0 ? Twitter.no_avatar : Twitter.null_avatar;
       }
       avatar_image.surface = surface;
       progress_spinner.stop ();
