@@ -431,6 +431,10 @@ class SearchPage : IPage, Cb.MessageReceiver, Gtk.Box {
       var entry = new UserListEntry ();
       string avatar_url = user_obj.get_string_member ("profile_image_url_https");
 
+      if (user_obj.has_member ("withheld_scope") && user_obj.get_string_member("withheld_scope") == "user") {
+        avatar_url = "WITHHELD";
+      }
+
       if (this.get_scale_factor () >= 2)
         avatar_url = avatar_url.replace ("_normal", "_bigger");
 
@@ -465,8 +469,8 @@ class SearchPage : IPage, Cb.MessageReceiver, Gtk.Box {
         return;
       }
 
+      tweet_list.set_empty ();
       if (tweets.length <= 0) {
-        tweet_list.set_empty ();
         tweet_list.get_placeholder().show();
       }
 

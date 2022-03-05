@@ -112,6 +112,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
   private JsonCursor? following_cursor = null;
   private GLib.SimpleActionGroup actions;
   private bool override_block = false;
+  private bool is_withheld = false;
 
   public ProfilePage (int id, Account account) {
     this.id = id;
@@ -281,6 +282,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     var root = root_node.get_object();
     int64 id = root.get_int_member ("id");
     this.user_id = id;
+    is_withheld = root.get_array_member("withheld_in_countries").get_length() > 0;
 
     string avatar_url = root.get_string_member("profile_image_url_https");
     int scale = this.get_scale_factor ();
@@ -288,27 +290,34 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     /* Always load the 200x200 px version even in loDPI since there's no 100x100px version */
     avatar_url = avatar_url.replace ("_normal", "_200x200");
 
-    // We don't use our AvatarCache here because this (100×100) avatar is only
-    // ever loaded here.
-    TweetUtils.download_avatar.begin (avatar_url, 100 * scale, data_cancellable, (obj, res) => {
-      Cairo.Surface surface;
-      try {
-        var pixbuf = TweetUtils.download_avatar.end (res);
-        if (pixbuf == null) {
-          var avatar_surface = avatar_url.length > 0 ? Twitter.no_avatar : Twitter.null_avatar;
-          surface = scale_surface ((Cairo.ImageSurface)avatar_surface,
-                                   100, 100);
-        } else {
-          surface = Gdk.cairo_surface_create_from_pixbuf (pixbuf, scale, null);
-        }
-      } catch (GLib.Error e) {
-        warning (e.message);
-        surface = avatar_url.length > 0 ? Twitter.no_avatar : Twitter.null_avatar;
-      }
-      avatar_image.surface = surface;
+    if (is_withheld) {
+      avatar_image.surface = scale_surface ((Cairo.ImageSurface)Twitter.withheld_avatar, 100, 100);
       progress_spinner.stop ();
       loading_stack.visible_child_name = "data";
-    });
+    }
+    else {
+      // We don't use our AvatarCache here because this (100×100) avatar is only
+      // ever loaded here.
+      TweetUtils.download_avatar.begin (avatar_url, 100 * scale, data_cancellable, (obj, res) => {
+        Cairo.Surface surface;
+        try {
+          var pixbuf = TweetUtils.download_avatar.end (res);
+          if (pixbuf == null) {
+            var avatar_surface = avatar_url.length > 0 ? Twitter.no_avatar : Twitter.null_avatar;
+            surface = scale_surface ((Cairo.ImageSurface)avatar_surface,
+                                    100, 100);
+          } else {
+            surface = Gdk.cairo_surface_create_from_pixbuf (pixbuf, scale, null);
+          }
+        } catch (GLib.Error e) {
+          warning (e.message);
+          surface = avatar_url.length > 0 ? Twitter.no_avatar : Twitter.null_avatar;
+        }
+        avatar_image.surface = surface;
+        progress_spinner.stop ();
+        loading_stack.visible_child_name = "data";
+      });
+    }
 
     string name        = root.get_string_member("name").strip ();
     string screen_name = root.get_string_member("screen_name");
@@ -322,7 +331,10 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     bool has_url       = root.get_object_member("entities").has_member("url");
     bool verified      = root.get_boolean_member ("verified");
     bool protected_user = root.get_boolean_member ("protected");
-    if (protected_user) {
+    if (is_withheld) {
+      tweet_list.set_placeholder_text(_("Withheld account"));
+    }
+    else if (protected_user) {
       tweet_list.set_placeholder_text (_("Protected profile"));
     }
 
@@ -483,6 +495,9 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     if (account.blocked_or_muted (user_id) && !override_block) {
       return;
     }
+    if (is_withheld) {
+      return;
+    }
     if ((!account.blocked_or_muted(user_id) || override_block) && user_stack.visible_child == user_blocked_page) {
       user_stack.visible_child = tweet_list;
     }
@@ -513,6 +528,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
     TweetUtils.work_array (root_array,
                            tweet_list,
                            account);
+    tweet_list.set_empty ();
     tweets_loading = false;
   }
 
@@ -521,6 +537,9 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
       return;
 
     if (user_stack.visible_child != tweet_list)
+      return;
+
+    if (is_withheld)
       return;
 
     tweets_loading = true;

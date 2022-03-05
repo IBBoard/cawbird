@@ -324,6 +324,11 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     string avatar_url;
     int scale = this.get_scale_factor ();
 
+    if (this.tweet.is_withheld()) {
+      avatar_image.surface = scale_surface ((Cairo.ImageSurface)Twitter.withheld_avatar, 73, 73);;
+      return;
+    }
+
     if (scale == 1)
       avatar_url = url.replace ("_normal", "_bigger");
     else

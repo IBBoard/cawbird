@@ -680,7 +680,7 @@ namespace Utils {
 
   public bool needs_translating (Cb.Tweet tweet) {
     var tweet_language = tweet.get_language();
-    return tweet_language != null && tweet_language != get_user_language();
+    return tweet_language != null && tweet_language != get_user_language() && !tweet.is_withheld ();
   }
 
   public void calculate_draw_offset (int img_width, int img_height,

@@ -45,19 +45,23 @@ typedef enum
   CB_TWEET_STATE_HIDDEN_AUTHOR_MUTED      = 1 << 8,
   /** Hidden because the author of a retweet is muted */
   CB_TWEET_STATE_HIDDEN_RETWEETER_MUTED   = 1 << 9,
+  /** Hidden because Twitter hid the user for legal reasons */
+  CB_TWEET_STATE_WITHHELD_USER     = 1 << 10,
+  /** Hidden because Twitter hid the tweet for legal reasons*/
+  CB_TWEET_STATE_WITHHELD_TWEET    = 1 << 11,
 
   /* The authenticating user retweeted this tweet */
-  CB_TWEET_STATE_RETWEETED                = 1 << 10,
+  CB_TWEET_STATE_RETWEETED                = 1 << 12,
   /* The authenticating user favorited this tweet */
-  CB_TWEET_STATE_FAVORITED                = 1 << 11,
+  CB_TWEET_STATE_FAVORITED                = 1 << 13,
   /* This tweet has been deleted by its author */
-  CB_TWEET_STATE_DELETED                  = 1 << 12,
+  CB_TWEET_STATE_DELETED                  = 1 << 14,
   /* The author of this tweet is verified */
-  CB_TWEET_STATE_VERIFIED                 = 1 << 13,
+  CB_TWEET_STATE_VERIFIED                 = 1 << 15,
   /* The author of this tweet is protected */
-  CB_TWEET_STATE_PROTECTED                = 1 << 14,
+  CB_TWEET_STATE_PROTECTED                = 1 << 16,
   /* At least one media attached to this tweet is marked sensitive */
-  CB_TWEET_STATE_NSFW                     = 1 << 15
+  CB_TWEET_STATE_NSFW                     = 1 << 17
 } CbTweetState;
 
 
@@ -94,6 +98,7 @@ G_DECLARE_FINAL_TYPE (CbTweet, cb_tweet, CB, TWEET, GObject);
 CbTweet *        cb_tweet_new (void);
 
 gboolean         cb_tweet_is_hidden       (CbTweet *tweet);
+gboolean         cb_tweet_is_withheld     (CbTweet *tweet);
 gboolean         cb_tweet_is_reply        (CbTweet *tweet);
 CbUserIdentity * cb_tweet_get_reply_users (CbTweet *tweet,
                                            guint   *n_reply_users);

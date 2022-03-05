@@ -192,6 +192,7 @@ namespace Cb {
 
       public signal void state_changed();
       public bool is_hidden ();
+      public bool is_withheld ();
       public string? notification_id;
 
       public bool get_seen ();
@@ -216,6 +217,8 @@ namespace Cb {
       HIDDEN_RETWEETER_BLOCKED,
       HIDDEN_AUTHOR_MUTED,
       HIDDEN_RETWEETER_MUTED,
+      WITHHELD_USER,
+      WITHHELD_TWEET,
 
       RETWEETED,
       FAVORITED,

@@ -47,6 +47,7 @@ public class Twitter : GLib.Object {
   public const int max_media_per_upload   = 4;
   public static Cairo.Surface no_avatar;
   public static Cairo.Surface null_avatar;
+  public static Cairo.Surface withheld_avatar;
   public static Gdk.Pixbuf no_banner;
   private Cb.AvatarCache avatar_cache;
   private GLib.HashTable<int64?, Json.Node> user_json_cache;
@@ -57,9 +58,12 @@ public class Twitter : GLib.Object {
                                new Gdk.Pixbuf.from_resource ("/uk/co/ibboard/cawbird/data/no_avatar.png"),
                                1,
                                null);
-
       Twitter.null_avatar = Gdk.cairo_surface_create_from_pixbuf (
                                new Gdk.Pixbuf.from_resource ("/uk/co/ibboard/cawbird/data/null_avatar.png"),
+                               1,
+                               null);
+      Twitter.withheld_avatar = Gdk.cairo_surface_create_from_pixbuf (
+                               new Gdk.Pixbuf.from_resource ("/uk/co/ibboard/cawbird/data/withheld_avatar.png"),
                                1,
                                null);
       Twitter.no_banner = new Gdk.Pixbuf.from_resource ("/uk/co/ibboard/cawbird/data/no_banner.png");
@@ -81,7 +85,7 @@ public class Twitter : GLib.Object {
 
   public bool has_avatar (int64 user_id) {
     var avatar = get_cached_avatar (user_id);
-    return (avatar != Twitter.no_avatar && avatar != Twitter.null_avatar);
+    return (avatar != Twitter.no_avatar && avatar != Twitter.null_avatar && avatar != Twitter.withheld_avatar);
   }
 
   public Cairo.Surface get_cached_avatar (int64 user_id) {
@@ -127,10 +131,16 @@ public class Twitter : GLib.Object {
 
     this.avatar_cache.add (user_id, null, null);
 
-    string avatar_url = yield this.get_user_string_member (account, user_id, "profile_image_url_https");
+    string[] fields = {"profile_image_url_https", "withheld_context"};
+    string?[] field_values = yield this.get_user_string_members (account, user_id, fields);
+    string? avatar_url = field_values[0];
+    bool withheld = field_values[1] != null;
 
-    if (avatar_url == null) {
-      return null;
+    if (withheld) {
+      return Twitter.withheld_avatar;
+    }
+    else if (avatar_url == null) {
+      return Twitter.null_avatar;
     }
 
     this.avatar_cache.set_url (user_id, avatar_url);
@@ -168,14 +178,17 @@ public class Twitter : GLib.Object {
     assert (user_id > 0);
     bool has_key = false;
     Cairo.Surface? a = this.avatar_cache.get_surface_for_id (user_id, out has_key);
-    bool new_url = (a == Twitter.no_avatar || a == Twitter.null_avatar) &&
+    bool new_url = (a == Twitter.no_avatar || a == Twitter.null_avatar || a == Twitter.withheld_avatar) &&
                         url != this.avatar_cache.get_url_for_id (user_id);
 
     if (a != null && !new_url) {
       return a;
     }
 
-    if (has_key && !new_url && !force_download) {
+    if (url == "WITHHELD") {
+      return Twitter.withheld_avatar;
+    }
+    else if (has_key && !new_url && !force_download) {
       // wait until the avatar has finished downloading
       ulong handler_id = 0;
       handler_id = this.avatar_downloaded[user_id.to_string ()].connect ((ava) => {
@@ -230,6 +243,22 @@ public class Twitter : GLib.Object {
       username = user_json.get_object ().get_string_member (field_name);
     }
     return username;
+  }
+
+  private async string?[] get_user_string_members (Account account, int64 user_id, string[] field_names) {
+    Json.Node? user_json = yield get_user_json_by_id (account.proxy, user_id);
+    string?[] values = new string[field_names.length];
+    if (user_json != null) {
+      Json.Object user_obj = user_json.get_object ();
+      int i = 0;
+      foreach (string field_name in field_names) {
+        if (user_obj.has_member(field_name)) {
+          values[i] = user_obj.get_string_member (field_name);
+        }
+        i++;
+      }
+    }
+    return values;
   }
 
   private async Json.Node? get_user_json_by_id (Rest.OAuthProxy proxy, int64 user_id) {

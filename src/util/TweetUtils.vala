@@ -858,7 +858,7 @@ namespace TweetUtils {
                                      GLib.Cancellable? cancellable = null) throws GLib.Error {
     Gdk.Pixbuf? avatar = null;
 
-    if (avatar_url.length <= 0) {
+    if (avatar_url.length <= 0 || avatar_url == "WITHHELD") {
       return null;
     }
 

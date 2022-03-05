@@ -54,6 +54,7 @@
     <file>data/no_avatar.png</file>
     <file>data/null_avatar.png</file>
     <file>data/no_banner.png</file>
+    <file>data/withheld_avatar.png</file>
     <file>ui/style.css</file>
     <file>sql/init/Create.1.sql</file>
     <file>sql/init/Create.2.sql</file>
