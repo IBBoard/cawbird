@@ -219,7 +219,10 @@ cb_tweet_load_from_json (CbTweet   *tweet,
   tweet->retweet_count = (guint) json_object_get_int_member (status, "retweet_count");
   tweet->favorite_count = (guint) json_object_get_int_member (status, "favorite_count");
 
-  const char *withheld_scope = json_object_get_string_member_with_default(status, "withheld_scope", NULL);
+  const char *withheld_scope = NULL;
+  if (json_object_has_member(status, "withheld_scope")) {
+    withheld_scope = json_object_get_string_member(status, "withheld_scope");
+  }
 
   if (g_strcmp0(withheld_scope, "user") == 0) {
     cb_tweet_set_flag(tweet, CB_TWEET_STATE_WITHHELD_USER);
