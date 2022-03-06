@@ -773,6 +773,7 @@ class ProfilePage : ScrollWidget, IPage, Cb.MessageReceiver {
   }
 
   private void reset_data () {
+    is_withheld = false;
     name_label.label = " ";
     screen_name_label.label = " ";
     description_label.label = " ";
