@@ -88,8 +88,7 @@ msgstr "Start service"
 msgid "Stop service, if it has been started as a service"
 msgstr "Stop service, hvis den er startet som en service"
 
-#. TRANSLATORS: Description of the `--print-startup-accounts` option for the
-#. command-line
+#. TRANSLATORS: Description of the `--print-startup-accounts` option for the command-line
 msgid "Print configured startup accounts"
 msgstr "Print konfigureret opstarts konti"
 
@@ -321,8 +320,7 @@ msgstr "Kilde"
 msgid "Tweet Details"
 msgstr "Tweet Detaljer"
 
-#. TRANSLATORS: Used for the "via <client-name>" line in Tweet Info view when
-#. the client is blank
+#. TRANSLATORS: Used for the "via <client-name>" line in Tweet Info view when the client is blank
 msgid "an unknown client"
 msgstr "en ukendt klient"
 
@@ -557,8 +555,7 @@ msgid_plural "Replying to %s and %d others"
 msgstr[0] "Svare %s og %d yderligere"
 msgstr[1] "Svare %s og %d yderligere"
 
-#. TRANSLATORS: The first %s is a list of one or more comma-separated user
-#. names, and the second %s is the last username in the list
+#. TRANSLATORS: The first %s is a list of one or more comma-separated user names, and the second %s is the last username in the list
 #, c-format
 msgid "Replying to %s and %s"
 msgstr "Svare %s og %s"
