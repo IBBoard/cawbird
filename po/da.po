@@ -7,7 +7,7 @@
 # Geert Wirken <geert@gwirken.nl>, 2014
 # Nathan Follens, 2017
 # Heimen Stoffels <vistausss@outlook.com>, 2014-2015, 2020
-# Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, 2020-2021
+# Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, 2020-2022
 #
 #, fuzzy
 msgid ""
@@ -17,7 +17,7 @@ msgstr ""
 "POT-Creation-Date: 2022-03-05 15:27+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: Mads Damgaard Mortensen <madsdamgaardmortensen@yahoo.dk>, "
-"2021\n"
+"2022\n"
 "Language-Team: Danish (https://www.transifex.com/cawbird/teams/107135/da/)\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -220,7 +220,7 @@ msgid "Suspended Account"
 msgstr "Suspenderet Konto"
 
 msgid "Withheld account"
-msgstr ""
+msgstr "Tilbageholdt konto"
 
 msgid "Protected profile"
 msgstr "Låst profil"
@@ -1202,7 +1202,6 @@ msgstr "Mere"
 msgid "Translate"
 msgstr "Oversæt"
 
-#, fuzzy
 msgid "Retweet"
 msgstr "Retweet"
 
