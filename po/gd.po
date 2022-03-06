@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # Translators:
-# GunChleoc, 2021
+# GunChleoc, 2021-2022
 #
 #, fuzzy
 msgid ""
@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2022-03-05 15:27+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
-"Last-Translator: GunChleoc, 2021\n"
+"Last-Translator: GunChleoc, 2022\n"
 "Language-Team: Gaelic, Scottish (https://www.transifex.com/cawbird/"
 "teams/107135/gd/)\n"
 "Language: gd\n"
@@ -229,7 +229,7 @@ msgid "Suspended Account"
 msgstr "Cunntas à rèim"
 
 msgid "Withheld account"
-msgstr ""
+msgstr "Cunntas ’ga chuail air ais"
 
 msgid "Protected profile"
 msgstr "Pròifil dhìonta"
@@ -1254,9 +1254,8 @@ msgstr "Barrachd"
 msgid "Translate"
 msgstr "Eadar-theangaich"
 
-#, fuzzy
 msgid "Retweet"
-msgstr "Dèan ath-thweet"
+msgstr "Ath-thweet"
 
 msgid "Like"
 msgstr "’S toigh leam seo"
