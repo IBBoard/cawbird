@@ -88,8 +88,7 @@ msgstr "Tòisich air an t-seirbheis"
 
 #. TRANSLATORS: Description of the `--stop-service` option for the command-line
 msgid "Stop service, if it has been started as a service"
-msgstr ""
-"Cuir crìoch air an t-seirbheis ma chaidh a thòiseachadh ’na sheirbheis"
+msgstr "Cuir crìoch air an t-seirbheis ma chaidh a thòiseachadh ’na sheirbheis"
 
 #. TRANSLATORS: Description of the `--print-startup-accounts` option for the command-line
 msgid "Print configured startup accounts"
@@ -336,8 +335,7 @@ msgstr "Tùs"
 msgid "Tweet Details"
 msgstr "Mion-fhiosrachadh a’ tweet"
 
-#. TRANSLATORS: Used for the "via <client-name>" line in Tweet Info view when
-#. the client is blank
+#. TRANSLATORS: Used for the "via <client-name>" line in Tweet Info view when the client is blank
 msgid "an unknown client"
 msgstr "cliant nach aithne dhuinn"
 
@@ -734,8 +732,7 @@ msgstr ""
 msgid "Quote tweet"
 msgstr "Dèan iomradh dhen tweet"
 
-#. TRANSLATORS: A dialog message with Yes/No options when the user closes the
-#. "compose tweet" window with content still in the dialog
+#. TRANSLATORS: A dialog message with Yes/No options when the user closes the "compose tweet" window with content still in the dialog
 msgid "Keep tweet as draft?"
 msgstr "A bheil thu airson dreachd dhen Tweet a chumail?"
 
@@ -751,8 +748,7 @@ msgstr[1] "Tha %d charactar air fhàgail"
 msgstr[2] "Tha %d caractaran air fhàgail"
 msgstr[3] "Tha %d caractar air fhàgail"
 
-#. TRANSLATORS: Values are current image index (1-based) and total image
-#. count. Pluralisation is based on total image count.
+#. TRANSLATORS: Values are current image index (1-based) and total image count. Pluralisation is based on total image count.
 #. Should only be seen when image count is two or more.
 #, c-format
 msgid "Image %d of %d"
