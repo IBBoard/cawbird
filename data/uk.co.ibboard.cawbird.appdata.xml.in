@@ -49,6 +49,40 @@
   <url type="translate">https://www.transifex.com/cawbird/cawbird/</url>
 
   <releases>
+    <release version="1.5" date="2022-03-18">
+      <p>Building on the "look after yourself" message in v1.3 and the inclusive internationalisation in v1.4,
+        Cawbird 1.5 is being released in the context of the increasing importance of combatting disinformation
+        following Putin's atrocities in Ukraine.</p>
+      <ul>
+        <li>New features:
+          <ul>
+            <li>Cleanly and clearly handle "witheld" accounts, and hide witheld tweets (#428)</li>
+            <li>Added a button to "reload image" for any images that fail to load (#244)</li>
+          </ul>
+        </li>
+        <li>Fixes:
+          <ul>
+            <li>Capture events so that "reload image" doesn't go to tweet view in single-click activation mode (#439)</li>
+            <li>Fix emoji chooser in non-English locales (thanks to @jtojnar)</li>
+            <li>Remove link to quoted tweet from timeline display (#406)</li>
+            <li>Support paging of blocked profiles so that users with lots of blocks don't see unwanted content, or get crashes on blocking</li>
+          </ul>
+        </li>
+        <li>Improvements:
+          <ul>
+            <li>Focus returns to the text input box after inserting an emoji (#427)</li>
+            <li>Update Danish, Dutch, Gaelic, Brazilian Portuguese and Spanish translations</li>
+          </ul>
+        </li>
+        <li>Developer:
+          <ul>
+            <li>Don't assume that <code>~/.config</code> exists (thanks to @a-wai)</li>
+            <li>Use slashes in dconf path instead of dots (#402)</li>
+            <li>Updated Gnome runtime in Flatpak dev build</li>
+          </ul>
+        </li>
+      </ul>
+    </release>
     <release version="1.4.2" date="2021-09-19">
       <p>Cawbird 1.4.2 is a maintenance release with two crash fixes, an emoji fix and updated translations.</p>
       <ul>

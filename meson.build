@@ -1,5 +1,5 @@
 project('Cawbird', ['vala', 'c'],
-        version: '1.4.2',
+        version: '1.5',
         default_options: [
           'buildtype=debug'
         ])
