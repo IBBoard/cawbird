@@ -767,6 +767,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     emoji_chooser.emoji_picked.connect ((text) => {
       this.text_view.insert_at_cursor (text);
       action_stack.visible_child = reply_box;
+      reply_box.grab_focus ();
     });
     emoji_chooser.show_all ();
     action_stack.add (emoji_chooser);
