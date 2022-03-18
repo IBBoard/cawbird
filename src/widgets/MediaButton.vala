@@ -517,11 +517,11 @@ private class MediaButton : Gtk.Bin {
       return;
 
     if (button == Gdk.BUTTON_PRIMARY) {
+      this.press_gesture.set_state (Gtk.EventSequenceState.CLAIMED);
       if (_media.invalid) {
         reload_image();
       }
       else {
-        this.press_gesture.set_state (Gtk.EventSequenceState.CLAIMED);
         double px = x / (double)this.get_allocated_width ();
         double py = y / (double)this.get_allocated_height ();
         this.clicked (this, px, py);
