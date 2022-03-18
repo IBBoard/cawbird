@@ -66,10 +66,12 @@
             <li>Fix emoji chooser in non-English locales (thanks to @jtojnar)</li>
             <li>Remove link to quoted tweet from timeline display (#406)</li>
             <li>Support paging of blocked profiles so that users with lots of blocks don't see unwanted content, or get crashes on blocking</li>
+            <li>Fix overly long click zone for cropped images</li>
           </ul>
         </li>
         <li>Improvements:
           <ul>
+            <li>Set <code>StartupNotify=true</code> in desktop file to improve desktop integration, especially on mobile (thanks to @AlexMitter)</li>
             <li>Focus returns to the text input box after inserting an emoji (#427)</li>
             <li>Update Danish, Dutch, Gaelic, Brazilian Portuguese and Spanish translations</li>
           </ul>
