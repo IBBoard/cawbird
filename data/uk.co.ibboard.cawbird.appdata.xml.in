@@ -71,14 +71,14 @@
         </li>
         <li>Improvements:
           <ul>
-            <li>Set <code>StartupNotify=true</code> in desktop file to improve desktop integration, especially on mobile (thanks to @AlexMitter)</li>
+            <li>Set `StartupNotify=true` in desktop file to improve desktop integration, especially on mobile (thanks to @AlexMitter)</li>
             <li>Focus returns to the text input box after inserting an emoji (#427)</li>
             <li>Update Danish, Dutch, Gaelic, Brazilian Portuguese and Spanish translations</li>
           </ul>
         </li>
         <li>Developer:
           <ul>
-            <li>Don't assume that <code>~/.config</code> exists (thanks to @a-wai)</li>
+            <li>Don't assume that `~/.config` exists (thanks to @a-wai)</li>
             <li>Use slashes in dconf path instead of dots (#402)</li>
             <li>Updated Gnome runtime in Flatpak dev build</li>
           </ul>
