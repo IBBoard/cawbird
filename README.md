@@ -247,9 +247,9 @@ If you pass `-Dvideo=false` to the Meson script, you don't need any gstreamer de
 
 ## Copyright
 
-Cawbird is released under the GPL v3 - see [COPYING](./COPYING) for more details.
+Cawbird is released under the GPL v3 (or later) - see [COPYING](./COPYING) for more details.
 
-The [video fallback image](data/symbolic/apps/cawbird-video-placeholder.svg) is a Creative Commons "CC BY" licensed work [by Iris Li](https://thenounproject.com/term/film-reel/20395/).
+The [video fallback image](data/symbolic/apps/cawbird-video-placeholder.svg) is a Creative Commons "CC-BY-3.0" licensed work [by Iris Li](https://thenounproject.com/term/film-reel/20395/).
 
 ## Footnotes
 
