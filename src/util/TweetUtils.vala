@@ -39,7 +39,7 @@ namespace TweetUtils {
     }
 
     unowned string json = call.get_payload();
-    debug("Failed request payload: %s", json)
+    debug("Failed request payload: %s", json);
 
     try {
       // TODO: The Utils function used to have the following to handle multiple errors:
@@ -455,7 +455,7 @@ namespace TweetUtils {
         return;
       }
       unowned string back = call.get_payload();
-      debug("Returned RT: %s", back)
+      debug("Returned RT: %s", back);
       var parser = new Json.Parser ();
       try {
         parser.load_from_data (back);
