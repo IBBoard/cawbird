@@ -30,6 +30,7 @@ namespace TweetUtils {
    * {"errors":[{"message":"Sorry, that page does not exist","code":34}]}
    */
   public GLib.Error failed_request_to_error (Rest.ProxyCall call, GLib.Error e) {
+    debug("Failed request code: %d", e.code);
     if (e.code < 100) {
       // Special case for _handle_error_from_message in rest-proxy-call.c
       // All libsoup errors are below the HTTP response code range
@@ -38,6 +39,7 @@ namespace TweetUtils {
     }
 
     unowned string json = call.get_payload();
+    debug("Failed request payload: %s", json)
 
     try {
       // TODO: The Utils function used to have the following to handle multiple errors:
@@ -350,10 +352,14 @@ namespace TweetUtils {
     }
 
     var call = account.proxy.new_call();
-    if (status)
+    if (status) {
+      debug("Liking %s", tweet.id.to_string());
       call.set_function ("1.1/favorites/create.json");
-    else
+    }
+    else {
+      debug("Unliking %s", tweet.id.to_string());
       call.set_function ("1.1/favorites/destroy.json");
+    }
 
     call.set_method ("POST");
     call.add_param ("id", tweet.id.to_string ());
@@ -362,7 +368,9 @@ namespace TweetUtils {
     GLib.Error? err = null;
     call.invoke_async.begin (null, (obj, res) => {
       try {
+        debug("invoke_async returned");
         call.invoke_async.end (res);
+        debug("invoke_async ended");
       } catch (GLib.Error e) {
         var tmp_error = failed_request_to_error (call, e);
         // If we can handle it cleanly, pretend it worked
@@ -405,10 +413,14 @@ namespace TweetUtils {
     
     var call = account.proxy.new_call ();
     call.set_method ("POST");
-    if (status)
+    if (status) {
+      debug("RTing %s", tweet.id.to_string());
       call.set_function (@"1.1/statuses/retweet/$(tweet.id).json");
-    else
+    }
+    else {
+      debug("UnRTing %s", tweet.id.to_string());
       call.set_function (@"1.1/statuses/unretweet/$(tweet.my_retweet).json");
+    }
     call.add_param ("tweet_mode", "extended");
     call.add_param ("include_my_retweet", "true");
     call.add_param ("include_ext_alt_text", "true");
@@ -417,7 +429,9 @@ namespace TweetUtils {
     GLib.Error? err = null;
     call.invoke_async.begin (null, (obj, res) => {
       try{
+        debug("invoke_async returned");
         call.invoke_async.end (res);
+        debug("invoke_async ended");
       } catch (GLib.Error e) {
         var tmp_error = failed_request_to_error (call, e);
         // If we can handle it cleanly, pretend it worked
@@ -441,6 +455,7 @@ namespace TweetUtils {
         return;
       }
       unowned string back = call.get_payload();
+      debug("Returned RT: %s", back)
       var parser = new Json.Parser ();
       try {
         parser.load_from_data (back);
