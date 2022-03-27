@@ -14,6 +14,7 @@
 # Sebastian Reyes <sebaslander@gmail.com>, 2016
 # Óscar Fernández Díaz <oscfdezdz@tuta.io>, 2021
 # Sergio Varela <sergitroll9@gmail.com>, 2022
+# Óscar Fernández Díaz <oscfdezdz@tuta.io>, 2022
 #
 #, fuzzy
 msgid ""
@@ -22,7 +23,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2022-03-05 15:27+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
-"Last-Translator: Sergio Varela <sergitroll9@gmail.com>, 2022\n"
+"Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>, 2022\n"
 "Language-Team: Spanish (https://www.transifex.com/cawbird/teams/107135/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -186,8 +187,8 @@ msgstr "%s tuiteado"
 #, c-format
 msgid "%d new Tweet!"
 msgid_plural "%d new Tweets!"
-msgstr[0] "¡%d nuevo tuit!"
-msgstr[1] "¡%d nuevos tuits!"
+msgstr[0] "¡%d tuit nuevo!"
+msgstr[1] "¡%d tuits nuevos!"
 
 msgid "Home"
 msgstr "Inicio"
@@ -229,7 +230,7 @@ msgid "Suspended Account"
 msgstr "Cuenta suspendida"
 
 msgid "Withheld account"
-msgstr ""
+msgstr "Cuenta suspendida"
 
 msgid "Protected profile"
 msgstr "perfil protegido"
@@ -759,7 +760,7 @@ msgstr ""
 msgid ""
 "Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
 msgstr ""
-"¡Ey, revisa esta nueva versión de #Codebird! \\ (•◡•) / #cool "
+"¡Ey, revisa esta nueva versión de #Cawbird! \\ (•◡•) / #cool "
 "#newisalwaysbetter"
 
 msgid "Add to or Remove User From List"
@@ -1213,7 +1214,6 @@ msgstr "Mas"
 msgid "Translate"
 msgstr "Traducir"
 
-#, fuzzy
 msgid "Retweet"
 msgstr "Retuitear"
 
