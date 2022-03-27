@@ -136,8 +136,8 @@ msgstr ""
 #, c-format
 msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
 msgstr ""
-"El GIF seleccionado es demasiado grande. El tamaño máximo de archivo por GIF"
-" es de %'d MB"
+"El GIF seleccionado es demasiado grande. El tamaño máximo de archivo por GIF "
+"es de %'d MB"
 
 msgid "Insert Emoji"
 msgstr "Insertar emoji"
@@ -567,8 +567,7 @@ msgid_plural "Replying to %s and %d others"
 msgstr[0] "Respondiendo a %s y a otros %d"
 msgstr[1] "Respondiendo a %s y a otros %d"
 
-#. TRANSLATORS: The first %s is a list of one or more comma-separated user
-#. names, and the second %s is the last username in the list
+#. TRANSLATORS: The first %s is a list of one or more comma-separated user names, and the second %s is the last username in the list
 #, c-format
 msgid "Replying to %s and %s"
 msgstr "Respondiendo a %s y %s"
