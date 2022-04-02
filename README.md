@@ -49,6 +49,8 @@ The following distros currently have their own official packages:
   * `pacman -Syu cawbird`
 * [Fedora (30+)](https://apps.fedoraproject.org/packages/cawbird)
   * `sudo dnf install cawbird`
+* [Gentoo](https://packages.gentoo.org/packages/net-im/cawbird)
+  * `emerge net-im/cawbird`
 * [Guix](https://guix.gnu.org/en/packages/cawbird-1.4.1/)
   * `guix install cawbird`
 * [NixOS (19.09+)](https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/cawbird/default.nix)
