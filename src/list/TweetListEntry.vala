@@ -24,8 +24,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   [GtkChild]
   private unowned AvatarWidget avatar_image;
   [GtkChild]
-  private unowned ChildSizedScroller scroller;
-  [GtkChild]
   private unowned Gtk.Label text_label;
   [GtkChild]
   private unowned Gtk.Label rt_label;
@@ -255,10 +253,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
     values_set = true;
 
-    if (restrict_height) {
-      scroller.set_max_content_height(600);
-    }
-
     set_tweet_text();
     set_tweet_text_scale();
     update_time_delta ();
@@ -308,10 +302,10 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
 
     text_label.label = tweet.get_trimmed_text (transform_flags);
     if (text_label.label == "") {
-      scroller.hide();
+      text_label.hide();
     }
     else {
-      scroller.show();
+      text_label.show();
     }
 
     if (this.tweet.quoted_tweet != null) {
@@ -358,6 +352,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   }
 
   private void media_clicked_cb (Cb.Media m, int index, double px, double py) {
+    debug("Media clicked");
     TweetUtils.handle_media_click (this.tweet.get_medias (), this.main_window, index);
   }
 
@@ -808,7 +803,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       width += 6;
     }
 
-    scroller.get_preferred_height_for_width(width, out child_min, out child_nat);
+    text_label.get_preferred_height_for_width(width, out child_min, out child_nat);
     min += child_min;
     nat += child_nat;
 
@@ -871,9 +866,9 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       // We've crossed the threshold, so reallocate as appropriate
       if (new_size_is_responsive) {
         grid.child_set (avatar_image, "height", 2);
-        grid.child_set (scroller, "left-attach", 0);
-        grid.child_set (scroller, "width", 7);
-        scroller.set ("margin-start", 6);
+        grid.child_set (text_label, "left-attach", 0);
+        grid.child_set (text_label, "width", 7);
+        text_label.set ("margin-start", 6);
         grid.child_set (rt_image, "left-attach", 0);
         grid.child_set (rt_label, "left-attach", 1);
         if (mm_widget != null) {
@@ -889,9 +884,9 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
         }
       } else {
         grid.child_set (avatar_image, "height", 5);
-        grid.child_set (scroller, "left-attach", 2);
-        grid.child_set (scroller, "width", 5);
-        scroller.set ("margin-start", 0);
+        grid.child_set (text_label, "left-attach", 2);
+        grid.child_set (text_label, "width", 5);
+        text_label.set ("margin-start", 0);
         grid.child_set (rt_image, "left-attach", 1);
         grid.child_set (rt_label, "left-attach", 2);
         if (mm_widget != null) {

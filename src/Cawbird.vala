@@ -272,7 +272,6 @@ public class Cawbird : Gtk.Application {
     typeof (LazyMenuButton).ensure ();
     typeof (FavImageView).ensure ();
     typeof (Cb.EmojiChooser).ensure ();
-    typeof (ChildSizedScroller).ensure ();
 
     debug ("startup");
     Utils.load_custom_css ();
