@@ -18,6 +18,7 @@
 
 struct TwitterList {
   int64 id;
+  string title;
   string name;
   string description;
   string mode;
