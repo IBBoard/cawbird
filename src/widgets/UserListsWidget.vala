@@ -315,6 +315,7 @@ class UserListsWidget : Gtk.Box {
       assert (w is ListListEntry);
       var lle = (ListListEntry) w;
       lists[i].id = lle.id;
+      lists[i].title = lle.title;
       lists[i].name = lle.name;
       lists[i].description = lle.description;
       lists[i].mode = lle.mode;
