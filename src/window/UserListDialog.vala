@@ -79,7 +79,7 @@ class UserListDialog : Gtk.Dialog {
     lists_page.get_user_lists.begin ((obj, res) => {
       TwitterList[] lists = lists_page.get_user_lists.end (res);
       foreach (unowned TwitterList list in lists) {
-        var l = new ListUserEntry (list.name, list.description);
+        var l = new ListUserEntry (list.title, list.name, list.description);
         l.id = list.id;
         if (list.n_members >= 500)
           l.disable ();
@@ -194,14 +194,14 @@ class ListUserEntry : Gtk.ListBoxRow {
     }
   }
 
-  public ListUserEntry (string list_name, string description) {
+  public ListUserEntry (string title, string list_name, string description) {
     var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 12);
     box.margin = 6;
     added_checkbox.valign = Gtk.Align.CENTER;
     added_checkbox.margin_start = 6;
     box.pack_start (added_checkbox, false, false);
     var box2 = new Gtk.Box (Gtk.Orientation.VERTICAL, 3);
-    var label = new Gtk.Label ("<b>" + list_name + "</b>");
+    var label = new Gtk.Label ("<b>" + title + "</b> " + list_name);
     label.use_markup = true;
     label.halign = Gtk.Align.START;
     box2.pack_start (label, true, false);
