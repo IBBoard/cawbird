@@ -253,6 +253,10 @@ Cawbird is released under the GPL v3 (or later) - see [COPYING](./COPYING) for m
 
 The [video fallback image](data/symbolic/apps/cawbird-video-placeholder.svg) is a Creative Commons "CC-BY-3.0" licensed work [by Iris Li](https://thenounproject.com/term/film-reel/20395/).
 
+## Social Media
+* [@CawbirdClient on Twitter](https://twitter.com/cawbirdclient)
+* <a rel="me" href="https://mastodon.social/@cawbird">@Cawbird on Mastodon.social</a>
+
 ## Footnotes
 
 <a name="footnote1"></a>1: [home:IBBoard:desktop](https://build.opensuse.org/project/show/home:IBBoard:desktop)
