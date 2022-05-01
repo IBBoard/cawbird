@@ -83,6 +83,7 @@
     private File file;
     private FileInfo fileinfo;
     private bool dm;
+    private bool delete_on_success;
     public int64 filesize {
       get {
         return fileinfo.get_size();
@@ -104,13 +105,19 @@
     public signal void progress_complete(GLib.Error? error = null);
     public signal void media_id_assigned();
   
-    public MediaUpload(string filepath, bool for_dm = false) throws GLib.Error {
+    public MediaUpload(string filepath, bool for_dm = false, bool delete_on_success = false) throws GLib.Error {
       id = GLib.Uuid.string_random();
       file = File.new_for_path(filepath);
       fileinfo = file.query_info(GLib.FileAttribute.STANDARD_TYPE + "," +
                                  GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," +
                                  GLib.FileAttribute.STANDARD_SIZE, 0);
       dm = for_dm;
+      this.delete_on_success = delete_on_success;
+      if (delete_on_success) {
+        progress_complete.connect(() => {
+          file.delete_async.begin(10, null);
+        });
+      }
       cancellable = new GLib.Cancellable();
     }
   
