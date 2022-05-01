@@ -121,22 +121,9 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     });
     tweet_text.paste_clipboard.connect(() => {
       var clipboard = get_clipboard(Gdk.SELECTION_CLIPBOARD);
-      var contents = clipboard.wait_for_image();
-      if (contents != null) {
-        if (this.compose_image_manager.full) {
-          return;
-        }
-        string ext = "jpeg";
-        try {
-          FileIOStream io_stream;
-          File tmp_file = File.new_tmp("cawbird-XXXXXX.%s".printf(ext), out io_stream);
-          contents.save_to_stream(io_stream.output_stream, ext, null);
-          load_image(tmp_file.get_path(), true);
-        }
-        catch (GLib.Error e) {
-          // TODO: Work out which errors we can distinguish and tell the user about
-          error (e.message);
-        }
+
+      if (clipboard.wait_is_image_available ()) {
+        process_image_clipboard(clipboard);
       }
       // Else it is text and we can let it happen
     });
@@ -193,6 +180,63 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
   public override void show () {
     base.show();
     load_images.begin();
+  }
+
+  private void process_image_clipboard(Gtk.Clipboard clipboard) {
+    var contents = clipboard.wait_for_image();
+    if (contents == null) {
+      Utils.show_error_dialog_with_message (_("Image disappeared from clipboard while pasting"), main_window);
+      return;
+    }
+    if (this.compose_image_manager.full) {
+      return;
+    }
+
+    string ext = "jpeg";
+    string arg_1 = "quality";
+    // Try not to degrade quality too much, but don't make files huge
+    string arg_2 = "95";
+
+    if (contents.has_alpha) {
+      var uses_alpha = false;
+      var width = contents.get_width();
+      var height = contents.get_height();
+      var row_stride = contents.get_rowstride();
+      var channels = contents.get_n_channels ();
+      var alpha_offset = channels - 1;
+      uint8[] bytes = contents.get_pixels_with_length ();
+
+      for (int row = 0; row < height; row++) {
+        var row_offset = row *  row_stride;
+        for (int col = 0; col < width; col++) {
+          var col_offset = col * channels;
+          if (bytes[row_offset + col_offset + alpha_offset] < 255) {
+            uses_alpha = true;
+            break;
+          }
+        }
+        if (uses_alpha) {
+          break;
+        }
+      }
+
+      if (uses_alpha) {
+        ext = "png";
+        arg_1 = null;
+        arg_2 = null;
+      }
+    }
+
+    try {
+      FileIOStream io_stream;
+      File tmp_file = File.new_tmp("cawbird-XXXXXX.%s".printf(ext), out io_stream);
+      contents.save_to_stream(io_stream.output_stream, ext, null, arg_1, arg_2);
+      load_image(tmp_file.get_path(), true);
+    }
+    catch (GLib.Error e) {
+      // TODO: Work out which errors we can distinguish and tell the user about
+      error (e.message);
+    }
   }
 
   private async void load_images () {
