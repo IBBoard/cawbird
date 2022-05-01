@@ -119,6 +119,27 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     tweet_text.hide_completion.connect (() => {
       completion_revealer.reveal_child = false;
     });
+    tweet_text.paste_clipboard.connect(() => {
+      var clipboard = get_clipboard(Gdk.SELECTION_CLIPBOARD);
+      var contents = clipboard.wait_for_image();
+      if (contents != null) {
+        if (this.compose_image_manager.full) {
+          return;
+        }
+        string ext = "jpeg";
+        try {
+          FileIOStream io_stream;
+          File tmp_file = File.new_tmp("cawbird-XXXXXX.%s".printf(ext), out io_stream);
+          contents.save_to_stream(io_stream.output_stream, ext, null);
+          load_image(tmp_file.get_path(), true);
+        }
+        catch (GLib.Error e) {
+          // TODO: Work out which errors we can distinguish and tell the user about
+          error (e.message);
+        }
+      }
+      // Else it is text and we can let it happen
+    });
 
     Gtk.AccelGroup ag = new Gtk.AccelGroup ();
     ag.connect (Gdk.Key.Escape, 0, Gtk.AccelFlags.LOCKED, escape_pressed_cb);
@@ -508,7 +529,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     update_send_button_sensitivity ();
   }
 
-  private void load_image (string filename) throws GLib.Error {
+  private void load_image (string filename, bool is_temp_file = false) throws GLib.Error {
     debug ("Loading %s", filename);
 
     /* Get file size */
@@ -560,7 +581,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       send_button.sensitive = false;
     } else {
       this.compose_image_manager.show ();
-      var media_upload = new MediaUpload(filename, false);
+      var media_upload = new MediaUpload(filename, false, is_temp_file);
       this.compose_image_manager.load_media (media_upload);
       TweetUtils.upload_media.begin (media_upload, account, cancellable);
       if (this.compose_image_manager.n_images > 0) {
