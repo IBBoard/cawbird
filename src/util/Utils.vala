@@ -330,6 +330,10 @@ namespace Utils {
       warning ("Exception %s:%d: %s", e.domain.to_string(), e.code, e.message);
     }
 
+    show_error_dialog_with_message(message, transient_for);
+  }
+
+  void show_error_dialog_with_message(string message, Gtk.Window? transient_for = null) {
     var dialog = new Gtk.MessageDialog (transient_for, Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                         Gtk.MessageType.ERROR, Gtk.ButtonsType.OK,
                                         "%s", message);
