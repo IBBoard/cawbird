@@ -58,7 +58,7 @@
           }
           else if (filetype == "image/gif") {
             // Animated GIFs are "blah_gif" but static GIFs are "blah_image"
-            if (Utils.is_animated_gif(filepath)) {
+            if (Utils.is_animated_gif(file)) {
               cat = "%s_gif".printf(prefix);
             }
             else {
@@ -105,9 +105,9 @@
     public signal void progress_complete(GLib.Error? error = null);
     public signal void media_id_assigned();
   
-    public MediaUpload(string filepath, bool for_dm = false, bool delete_on_success = false) throws GLib.Error {
+    public MediaUpload(File file, bool for_dm = false, bool delete_on_success = false) throws GLib.Error {
       id = GLib.Uuid.string_random();
-      file = File.new_for_path(filepath);
+      this.file = file;
       fileinfo = file.query_info(GLib.FileAttribute.STANDARD_TYPE + "," +
                                  GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," +
                                  GLib.FileAttribute.STANDARD_SIZE, 0);
