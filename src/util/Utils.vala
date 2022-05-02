@@ -754,4 +754,47 @@ namespace Utils {
       return _("Replying to %s and %s").printf(string.joinv(", ", user_list), user_strings[last_idx]);
     }
   }
+
+  public File pixbuf_to_temp_file(Gdk.Pixbuf contents) throws Error {
+    string ext = "jpeg";
+    string arg_1 = "quality";
+    // Try not to degrade quality too much, but don't make files huge
+    string arg_2 = "95";
+
+    if (contents.has_alpha) {
+      var uses_alpha = false;
+      var width = contents.get_width();
+      var height = contents.get_height();
+      var row_stride = contents.get_rowstride();
+      var channels = contents.get_n_channels ();
+      var alpha_offset = channels - 1;
+      uint8[] bytes = contents.get_pixels_with_length ();
+
+      for (int row = 0; row < height; row++) {
+        var row_offset = row *  row_stride;
+        for (int col = 0; col < width; col++) {
+          var col_offset = col * channels;
+          if (bytes[row_offset + col_offset + alpha_offset] < 255) {
+            uses_alpha = true;
+            break;
+          }
+        }
+        if (uses_alpha) {
+          break;
+        }
+      }
+
+      if (uses_alpha) {
+        ext = "png";
+        arg_1 = null;
+        arg_2 = null;
+      }
+    }
+
+    FileIOStream io_stream;
+    File tmp_file = File.new_tmp("cawbird-XXXXXX.%s".printf(ext), out io_stream);
+    contents.save_to_stream(io_stream.output_stream, ext, null, arg_1, arg_2);
+
+    return tmp_file;
+  }
 }

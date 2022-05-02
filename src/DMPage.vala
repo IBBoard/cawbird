@@ -117,7 +117,21 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
       }
       TweetUtils.upload_media.begin (upload, account, null);
       set_send_sensitive_state();
-    });  
+    });
+
+    text_view.paste_clipboard.connect(() => {
+      var clipboard = get_clipboard(Gdk.SELECTION_CLIPBOARD);
+
+      if (clipboard.wait_is_image_available ()) {
+        process_image_clipboard(clipboard);
+        Signal.stop_emission_by_name (text_view, "paste-clipboard");
+      }
+      else if (clipboard.wait_is_uris_available ()) {
+        process_uri_clipboard(clipboard);
+        Signal.stop_emission_by_name (text_view, "paste-clipboard");
+      }
+      // Else it is text and we can let it happen
+    });
   }
 
   public void stream_message_received (Cb.StreamMessageType type, Json.Node root) {
@@ -670,7 +684,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     if (filechooser.run () == Gtk.ResponseType.ACCEPT) {
       var filename = filechooser.get_filename ();
       try {
-        load_image (filename);
+        load_image_from_path(filename);
       }
       catch (GLib.Error e) {
         // TODO: Proper error checking/reporting
@@ -681,9 +695,52 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     }
   }
 
-  private void load_image (string filename) throws GLib.Error {
-    /* Get file size */
+  private void process_image_clipboard(Gtk.Clipboard clipboard) {
+    var contents = clipboard.wait_for_image();
+    if (contents == null) {
+      Utils.show_error_dialog_with_message (_("Image disappeared from clipboard while pasting"), main_window);
+      return;
+    }
+    if (this.compose_image_manager.full) {
+      return;
+    }
+
+    try {
+      load_image (Utils.pixbuf_to_temp_file (contents), true);
+    }
+    catch (GLib.Error e) {
+      // TODO: Work out which errors we can distinguish and tell the user about
+      error (e.message);
+    }
+  }
+
+  private void process_uri_clipboard(Gtk.Clipboard clipboard) {
+    string[] uris = clipboard.wait_for_uris ();
+    // DMs can only take one item, and we only get here if there were URIs in the clipboard
+    // So we can safely assume that item 0 exists
+    try {
+      load_image_from_uri (uris[0]);
+    }
+    catch (GLib.Error e) {
+      // TODO: Work out which errors we can distinguish and tell the user about
+      error (e.message);
+    }
+  }
+
+  private void load_image_from_path (string filename) throws GLib.Error {
+    debug ("Loading path %s", filename);
+
     var file = GLib.File.new_for_path (filename);
+    load_image(file);
+  }
+
+  private void load_image_from_uri(string uri) throws GLib.Error {
+    debug("Loading URI %s", uri);
+    var file = GLib.File.new_for_uri (uri);
+    load_image(file);
+  }
+
+  private void load_image (File file, bool is_temp_file = false) throws GLib.Error {
     GLib.FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_TYPE + "," +
                                           GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," +
                                           GLib.FileAttribute.STANDARD_SIZE, 0);
@@ -716,7 +773,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
                                 .printf (Twitter.MAX_BYTES_PER_GIF / 1024 / 1024);
       image_error_label.visible = true;
     } else {
-      media_upload = new MediaUpload(file, true);
+      media_upload = new MediaUpload(file, true, is_temp_file);
       media_upload.progress_complete.connect((err) => {
         if (err != null) {
           Utils.show_error_dialog(err, this.main_window);
@@ -744,7 +801,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
   [GtkCallback]
   public void favorite_image_selected_cb (string path) {
     try {
-      load_image (path);
+      load_image_from_path(path);
       action_stack.visible_child = reply_box;
     }
     catch (GLib.Error e) {
