@@ -124,6 +124,11 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
 
       if (clipboard.wait_is_image_available ()) {
         process_image_clipboard(clipboard);
+        Signal.stop_emission_by_name (tweet_text, "paste-clipboard");
+      }
+      else if (clipboard.wait_is_uris_available ()) {
+        process_uri_clipboard(clipboard);
+        Signal.stop_emission_by_name (tweet_text, "paste-clipboard");
       }
       // Else it is text and we can let it happen
     });
@@ -231,11 +236,26 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       FileIOStream io_stream;
       File tmp_file = File.new_tmp("cawbird-XXXXXX.%s".printf(ext), out io_stream);
       contents.save_to_stream(io_stream.output_stream, ext, null, arg_1, arg_2);
-      load_image(tmp_file.get_path(), true);
+      load_image (tmp_file, true);
     }
     catch (GLib.Error e) {
       // TODO: Work out which errors we can distinguish and tell the user about
       error (e.message);
+    }
+  }
+
+  private void process_uri_clipboard(Gtk.Clipboard clipboard) {
+    string[] uris = clipboard.wait_for_uris ();
+    foreach (string uri in uris) {
+      try {
+        if (!load_image_from_uri (uri)) {
+          break;
+        }
+      }
+      catch (GLib.Error e) {
+        // TODO: Work out which errors we can distinguish and tell the user about
+        error (e.message);
+      }
     }
   }
 
@@ -247,7 +267,9 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
 
       if (image_path != null && image_path.length > 0){
         try {
-          load_image (image_path);
+          if (!load_image_from_path(image_path)) {
+            failed_paths += image_path;
+          }
         }
         catch (GLib.Error e) {
           failed_paths += image_path;
@@ -560,7 +582,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     if (filechooser.run () == Gtk.ResponseType.ACCEPT) {
       var filename = filechooser.get_filename ();
       try {
-        load_image (filename);
+        load_image_from_path(filename);
       }
       catch (GLib.Error e) {
         // TODO: Proper error checking/reporting
@@ -573,11 +595,24 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     update_send_button_sensitivity ();
   }
 
-  private void load_image (string filename, bool is_temp_file = false) throws GLib.Error {
-    debug ("Loading %s", filename);
+  private bool load_image_from_path (string filename) throws GLib.Error {
+    debug ("Loading path %s", filename);
 
-    /* Get file size */
     var file = GLib.File.new_for_path (filename);
+    return load_image(file);
+  }
+
+  private bool load_image_from_uri(string uri) throws GLib.Error {
+    debug("Loading URI %s", uri);
+    var file = GLib.File.new_for_uri (uri);
+    return load_image(file);
+  }
+
+  private bool load_image (GLib.File file, bool is_temp_file = false) throws GLib.Error {
+    if (compose_image_manager.full) {
+      return false;
+    }
+
     GLib.FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_TYPE + "," +
                                           GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," +
                                           GLib.FileAttribute.STANDARD_SIZE, 0);
@@ -591,9 +626,10 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
     var is_video = content_type.has_prefix("video/");
     var is_image = content_type.has_prefix("image/");
 #endif
-    var is_animated_gif = is_image && Utils.is_animated_gif(filename);
+    var is_animated_gif = is_image && Utils.is_animated_gif(file);
     var file_size = info.get_size();
 
+    var is_valid = false;
 
     if (!is_image && !is_video) {
       stack.visible_child = image_error_grid;
@@ -624,8 +660,9 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       cancel_button.label = _("Back");
       send_button.sensitive = false;
     } else {
+      is_valid = true;
       this.compose_image_manager.show ();
-      var media_upload = new MediaUpload(filename, false, is_temp_file);
+      var media_upload = new MediaUpload(file, false, is_temp_file);
       this.compose_image_manager.load_media (media_upload);
       TweetUtils.upload_media.begin (media_upload, account, cancellable);
       if (this.compose_image_manager.n_images > 0) {
@@ -637,6 +674,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
       }
       update_send_button_sensitivity ();
     }
+    return is_valid;
   }
 
   [GtkCallback]
@@ -650,7 +688,7 @@ class ComposeTweetWindow : Gtk.ApplicationWindow {
   public void favorite_image_selected_cb (string path) {
     cancel_clicked ();
     try {
-      load_image (path);
+      load_image_from_path (path);
     }
     catch (GLib.Error e) {
       // TODO: Proper error checking/reporting

@@ -697,7 +697,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
     var is_video = content_type.has_prefix("video/");
     var is_image = content_type.has_prefix("image/");
 #endif
-    var is_animated_gif = is_image && Utils.is_animated_gif(filename);
+    var is_animated_gif = is_image && Utils.is_animated_gif(file);
     var file_size = info.get_size();
 
     if (!is_image && !is_video) {
@@ -716,7 +716,7 @@ class DMPage : IPage, Cb.MessageReceiver, Gtk.Box {
                                 .printf (Twitter.MAX_BYTES_PER_GIF / 1024 / 1024);
       image_error_label.visible = true;
     } else {
-      media_upload = new MediaUpload(filename, true);
+      media_upload = new MediaUpload(file, true);
       media_upload.progress_complete.connect((err) => {
         if (err != null) {
           Utils.show_error_dialog(err, this.main_window);

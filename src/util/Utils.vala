@@ -649,7 +649,8 @@ namespace Utils {
     return Gdk.EVENT_PROPAGATE;
   }
 
-  public bool is_animated_gif(string filepath) {
+  public bool is_animated_gif(File file) {
+    string filepath = file.get_path();
     if (filepath.has_suffix(".gif")) {
       // Be lazy and light-weight and assume GIFs are ".gif" rather than doing proper type checking
       try {
