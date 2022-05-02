@@ -769,10 +769,12 @@ namespace Utils {
       var channels = contents.get_n_channels ();
       var alpha_offset = channels - 1;
       uint8[] bytes = contents.get_pixels_with_length ();
+      var step_size = (width <= 256 || height <= 256) ? 1 : 7;
 
-      for (int row = 0; row < height; row++) {
+      for (int row = 0; row < height; row += step_size) {
         var row_offset = row *  row_stride;
-        for (int col = 0; col < width; col++) {
+        var col_start = step_size == 1 ? 0 : (int)(Math.round(row / step_size) % step_size);
+        for (int col = col_start; col < width; col += step_size) {
           var col_offset = col * channels;
           if (bytes[row_offset + col_offset + alpha_offset] < 255) {
             uses_alpha = true;
