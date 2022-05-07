@@ -40,7 +40,7 @@ public class Settings : GLib.Object {
   private static GLib.Settings settings;
 
   public static void init(){
-    settings = new GLib.Settings("uk.co.ibboard.cawbird");
+    settings = new GLib.Settings.with_path("uk.co.ibboard.cawbird.core", "/uk/co/ibboard/cawbird/");
     if (settings.get_value("window-geometry").iterator().n_children() == 0) {
       info("Transferring old GSchema settings");
       var old_settings = new GLib.Settings.with_path("uk.co.ibboard.cawbird.core", "/uk.co.ibboard.cawbird/");

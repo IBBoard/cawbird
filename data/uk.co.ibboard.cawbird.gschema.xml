@@ -147,6 +147,18 @@
     </key>
   </schema>
 
+  <!--
+    We use an extended schema here to allow us to reload old values with the wrong (dotted) path
+    so that we can transfer them.
+
+    We can't just re-load the main schema because you can't `with_path()` a schema with a path.
+
+    However, it does mean that we have to use `with_path()` on the main load as well because otherwise
+    we lose change notifications because the key is in uk.co.ibboard.cawbird.core and not in
+    the uk.co.ibboard.cawbird schema.
+
+    https://gitlab.gnome.org/GNOME/glib/-/blob/96279325/gio/gsettings.c#L445
+  -->
   <schema id="uk.co.ibboard.cawbird"
       path="/uk/co/ibboard/cawbird/"
       gettext-domain="cawbird"
