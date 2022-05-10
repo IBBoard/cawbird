@@ -190,7 +190,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       mm_widget.set_all_media (tweet.get_medias ());
       mm_widget.media_clicked.connect (media_clicked_cb);
       mm_widget.media_invalid.connect (media_invalid_cb);
-      mm_widget.window = main_window;
     }
 
     if (tweet.has_quoted_inline_media ()) {
@@ -202,7 +201,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       quoted_mm_widget.set_all_media (tweet.get_quoted_medias ());
       quoted_mm_widget.media_clicked.connect (quoted_media_clicked_cb);
       quoted_mm_widget.media_invalid.connect (quoted_media_invalid_cb);
-      quoted_mm_widget.window = main_window;
     }
 
     if (tweet.has_inline_media () || tweet.has_quoted_inline_media ()) {

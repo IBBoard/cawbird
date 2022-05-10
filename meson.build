@@ -153,6 +153,7 @@ cawbird_lib_sources = files([
   'src/widgets/LazyMenuButton.vala',
   'src/widgets/ListBox.vala',
   'src/widgets/MediaButton.vala',
+  'src/widgets/MediaButtonSurface.vala',
   'src/widgets/MultiMediaWidget.vala',
   'src/widgets/PixbufButton.vala',
   'src/widgets/ResizableImage.vala',
