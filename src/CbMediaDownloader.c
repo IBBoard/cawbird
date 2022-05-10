@@ -457,6 +457,7 @@ void cb_media_downloader_reload_async (CbMediaDownloader   *downloader,
 {
   g_return_if_fail (media->invalid);
   media->loaded = FALSE;
+  media->loaded_hires = FALSE;
   media->invalid = FALSE;
   media->percent_loaded = 0;
   if (media->surface != NULL) {

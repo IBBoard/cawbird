@@ -30,6 +30,7 @@ src/widgets/FavImageView.vala
 src/widgets/FollowButton.vala
 src/widgets/ListBox.vala
 src/widgets/MediaButton.vala
+src/widgets/MediaButtonSurface.vala
 src/widgets/PixbufButton.vala
 src/widgets/TweetListBox.vala
 src/window/AccountDialog.vala

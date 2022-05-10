@@ -27,7 +27,6 @@ public class MultiMediaWidget : Gtk.Box {
       this.set_size_request(-1, value ? MAX_HEIGHT : -1);
     }
   }
-  public unowned Gtk.Window window;
   private MediaButton[] media_buttons;
   private int media_count = 0;
 
@@ -81,17 +80,13 @@ public class MultiMediaWidget : Gtk.Box {
     if (media.loaded && media.invalid)
       return;
 
-    var button = new MediaButton (null, this.restrict_height);
+    var button = new MediaButton (media, this.restrict_height);
     button.set_data ("pos", index);
-    button.window = this.window;
     button.halign = Gtk.Align.CENTER;
     button.valign = Gtk.Align.END;
     media_buttons[index] = button;
 
-    if (media.loaded) {
-      media_buttons[index].media = media;
-    } else {
-      media_buttons[index].media = media;
+    if (!media.loaded) {
       media.progress.connect (media_loaded_cb);
 
       if (!media.loading && this.visible) {
