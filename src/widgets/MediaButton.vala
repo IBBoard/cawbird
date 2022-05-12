@@ -205,4 +205,8 @@ private class MediaButton : Gtk.Bin {
   private void set_save_as_sensitivity() {
     ((GLib.SimpleAction)actions.lookup_action ("save-as")).set_enabled (!_media.invalid && !is_m3u8);
   }
+
+  public override Gtk.SizeRequestMode get_request_mode () {
+    return Gtk.SizeRequestMode.HEIGHT_FOR_WIDTH;
+  }
 }
