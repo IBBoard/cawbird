@@ -244,7 +244,6 @@
       }
 
       natural = media_height;
-      debug("Preferred height: %d, %d", natural, minimum);
     }
 
     public override void get_preferred_height_for_width (int width,
@@ -276,7 +275,6 @@
       }
 
       minimum = natural = height;
-      debug("Preferred height for width %d: %d, %d", width, natural, minimum);
     }
 
     public override void get_preferred_width_for_height (int height,
@@ -297,7 +295,6 @@
       int width = int.min (media_width, max_width);
       minimum = MIN_WIDTH;
       natural = int.max (width, minimum);
-      debug("Preferred width for height %d: %d, %d", height, natural, minimum);
     }
 
     public override void get_preferred_width (out int minimum,
@@ -311,7 +308,6 @@
 
       minimum = int.min (media_width, MIN_WIDTH);
       natural = media_width;
-      debug("Preferred width: %d, %d", natural, minimum);
     }
 
     public override void realize () {
