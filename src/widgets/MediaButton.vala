@@ -80,7 +80,6 @@ private class MediaButton : Gtk.Bin {
     menu_model.append (_("Save as…"), "media.save-as");
 
     this.media = media;
-    // XXX: Don't create until media is set?
     button_surface = new MediaButtonSurface (this.media, restrict_height);
     button_surface.clicked.connect((surface, x, y) => {
       this.clicked(this, x, y);
