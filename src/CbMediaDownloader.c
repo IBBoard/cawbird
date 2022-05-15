@@ -194,50 +194,19 @@ static void
 cb_media_downloader_get_instagram_url (CbMediaDownloader *downloader,
                                        LoadingData       *task_data)
 {
-  CbMedia     *media = task_data->media;
-  SoupMessage *msg = soup_message_new ("GET", media->url);
-  GRegex      *medium_regex;
-  GRegex      *url_regex;
-  GMatchInfo  *match_info;
+  CbMedia *media = task_data->media;
+  GRegex *regex;
+  GMatchInfo *match_info;
+
+  regex = g_regex_new ("https?://(?:www.)?instagr(?:.am|am.com)/p/([a-zA-Z0-9-]+)(?:/|$)", 0, 0, NULL);
+  g_regex_match (regex, media->url, 0, &match_info);
+  media->thumb_url = g_strdup_printf("https://instagram.com/p/%s/media/?size=m", g_match_info_fetch (match_info, 1));
+  // Full size image will be *up to* 1080px wide, with the same proportions as the thumbnail
+  media->url = g_strdup_printf("https://instagram.com/p/%s/media/?size=l", g_match_info_fetch (match_info, 1));
 
 
-  soup_session_send_message (task_data->soup_session, msg);
-  if (msg->status_code != SOUP_STATUS_OK)
-    {
-      g_object_unref (msg);
-      media->url = NULL;
-      return;
-    }
-
-  medium_regex = g_regex_new ("<meta name=\"medium\" content=\"video\" />", 0, 0, NULL);
-  g_regex_match (medium_regex, (const char *)msg->response_body->data, 0, &match_info);
-
-  if (g_match_info_get_match_count (match_info) > 0)
-    {
-      g_match_info_free (match_info);
-
-      /* Video! */
-      url_regex = g_regex_new ("<meta property=\"og:video\" content=\"(.*?)\"", 0, 0, NULL);
-      g_regex_match (url_regex, (const char *)msg->response_body->data, 0, &match_info);
-      media->url = g_match_info_fetch (match_info, 1);
-      g_regex_unref (url_regex);
-
-      media->type = CB_MEDIA_TYPE_INSTAGRAM_VIDEO;
-    }
-
+  g_regex_unref (regex);
   g_match_info_free (match_info);
-
-  url_regex = g_regex_new ("<meta property=\"og:image\" content=\"(.*?)\"", 0, 0, NULL);
-  g_regex_match (url_regex, (const char*)msg->response_body->data, 0, &match_info);
-
-  media->thumb_url = g_match_info_fetch (match_info, 1);
-  g_free (media->target_url);
-  media->target_url = g_strdup (media->thumb_url);
-
-  g_regex_unref (url_regex);
-  g_regex_unref (medium_regex);
-  g_match_info_free (match_info);
-  g_object_unref (msg);
 }
 
 static void
@@ -356,7 +325,7 @@ cb_media_downloader_load_threaded (CbMediaDownloader *downloader,
 
   /* For these, we first need to download some html and get the real
      URL of the image we want to display */
-  if (g_str_has_prefix (url, "instagr.am") ||
+  if (g_str_has_prefix (url, "instagr.am/p/") ||
       g_str_has_prefix (url, "instagram.com/p/"))
     {
       cb_media_downloader_get_instagram_url (downloader, task_data);
@@ -600,7 +569,7 @@ is_media_candidate (const char *url)
 {
   url = canonicalize_url (url);
 
-  return g_str_has_prefix (url, "instagr.am") ||
+  return g_str_has_prefix (url, "instagr.am/p/") ||
          g_str_has_prefix (url, "instagram.com/p/") ||
         (g_str_has_prefix (url, "i.imgur.com") && !g_str_has_suffix (url, "gifv")) ||
          g_str_has_prefix (url, "d.pr/i/") ||
