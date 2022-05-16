@@ -101,7 +101,7 @@ private class MediaButton : Gtk.Bin {
 
   private void media_progress_cb () {
     if (this._media.loaded) {
-      if (this._media.invalid) {
+      if (this._media.invalid && !this._media.permanent_invalid) {
         Gtk.Button reload_button = new Gtk.Button();
         reload_button.label = _("Reload image");
         reload_button.halign = Gtk.Align.CENTER;

@@ -51,9 +51,10 @@ cb_media_downloader_get_default (void)
 }
 
 static void
-mark_invalid (CbMedia *media)
+mark_invalid (CbMedia *media, guint error_code)
 {
   media->invalid = TRUE;
+  media->permanent_invalid = SOUP_STATUS_IS_CLIENT_ERROR(error_code);
   media->loaded  = TRUE;
   media->loading = FALSE;
   media->loaded_hires = TRUE;
@@ -198,7 +199,7 @@ cb_media_downloader_get_instagram_url (CbMediaDownloader *downloader,
   GRegex *regex;
   GMatchInfo *match_info;
 
-  regex = g_regex_new ("https?://(?:www.)?instagr(?:.am|am.com)/p/([a-zA-Z0-9-]+)(?:/|$)", 0, 0, NULL);
+  regex = g_regex_new ("https?://(?:www.)?instagr(?:.am|am.com)/p/([a-zA-Z0-9_-]+)(?:/|$)", 0, 0, NULL);
   g_regex_match (regex, media->url, 0, &match_info);
   media->thumb_url = g_strdup_printf("https://instagram.com/p/%s/media/?size=m", g_match_info_fetch (match_info, 1));
   // Full size image will be *up to* 1080px wide, with the same proportions as the thumbnail
@@ -221,7 +222,7 @@ cb_media_downloader_load_twitter_video (CbMediaDownloader *downloader,
   soup_session_send_message (task_data->soup_session, msg);
   if (msg->status_code != SOUP_STATUS_OK)
     {
-      mark_invalid (media);
+      mark_invalid (media, msg->status_code);
       g_object_unref (msg);
       return;
     }
@@ -276,8 +277,8 @@ cb_media_downloader_load_real_url (CbMediaDownloader *downloader,
   soup_session_send_message (task_data->soup_session, msg);
   if (msg->status_code != SOUP_STATUS_OK)
     {
-      /* Will mark it invalid later */
       media->url = NULL;
+      mark_invalid (media, msg->status_code);
       g_object_unref (msg);
       return;
     }
@@ -353,10 +354,9 @@ cb_media_downloader_load_threaded (CbMediaDownloader *downloader,
                                          "<meta property=\"og:image\"\\s+content=\"(.*?)\"", 1);
     }
 
-  if (media->url == NULL)
+  if (media->invalid)
     {
       g_warning ("Media is invalid. (url %s)", url);
-      mark_invalid (media);
       return;
     }
 
@@ -371,7 +371,7 @@ cb_media_downloader_load_threaded (CbMediaDownloader *downloader,
 
   if (error) {
     g_warning ("Couldn't load pixbuf: %s (%s)", error->message, download_url);
-    mark_invalid (media);
+    mark_invalid (media, error->code);
     g_error_free (error);
     return;
   }

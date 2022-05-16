@@ -19,7 +19,9 @@
     private const int PLAY_ICON_SIZE = 32;
     private const int MAX_HEIGHT     = 200;
     /* We use MIN_ constants in case the media has not yet been loaded */
-    private const int MIN_WIDTH      = 40;
+    private const int ICON_SIZE      = 48;
+    private const int MIN_WIDTH      = ICON_SIZE;
+    private const int MIN_HEIGHT     = ICON_SIZE;
     private Gdk.Window? event_window = null;
     private Cb.Media? _media = null;
     private static Cairo.Surface[] play_icons;
@@ -140,7 +142,20 @@
       int widget_height = get_allocated_height ();
 
       if (_media != null && _media.invalid) {
-        return base.draw(ct);
+        if (_media.permanent_invalid) {
+          Gtk.IconTheme icon_theme = Gtk.IconTheme.get_default();
+          try {
+            Gdk.Pixbuf pixbuf = icon_theme.load_icon_for_scale ("image-missing", ICON_SIZE, this.get_scale_factor(), Gtk.IconLookupFlags.USE_BUILTIN);
+            var icon = Gdk.cairo_surface_create_from_pixbuf (pixbuf, this.get_scale_factor(), null);
+            ct.set_source_surface (icon, 0, 0);
+            ct.paint();
+          } catch (GLib.Error e) {
+            warning(e.message);
+          }
+        }
+        else {
+          return base.draw(ct);
+        }
       }
       else if (_media != null && _media.surface != null && _media.loaded) {
         /* Draw thumbnail */
@@ -231,7 +246,7 @@
                                                out int natural) {
       int media_height;
       if (this._media == null || this._media.thumb_height == -1) {
-        media_height = 1;
+        media_height = MIN_HEIGHT;
       } else {
         media_height = this._media.thumb_height;
       }
@@ -254,7 +269,7 @@
 
       if (this._media == null || this._media.thumb_width == -1 || this._media.thumb_height == -1) {
         media_width = MIN_WIDTH;
-        media_height = MAX_HEIGHT;
+        media_height = MIN_HEIGHT;
       } else {
         media_width = this._media.thumb_width;
         media_height = this._media.thumb_height;
@@ -285,7 +300,7 @@
 
       if (this._media == null || this._media.thumb_width == -1 || this._media.thumb_height == -1) {
         media_width = MIN_WIDTH;
-        media_height = MAX_HEIGHT;
+        media_height = MIN_HEIGHT;
       } else {
         media_width = this._media.thumb_width;
         media_height = this._media.thumb_height;
@@ -301,7 +316,7 @@
                                               out int natural) {
       int media_width;
       if (this._media == null || this._media.thumb_width == -1) {
-        media_width = 1;
+        media_width = MIN_WIDTH;
       } else {
         media_width = this._media.thumb_width;
       }
@@ -397,7 +412,7 @@
       Gdk.Event event = this.press_gesture.get_last_event (sequence);
       uint button = this.press_gesture.get_current_button ();
 
-      if (this._media == null || event == null)
+      if (this._media == null || this._media.invalid || event == null)
         return;
 
       if (button == Gdk.BUTTON_PRIMARY) {
