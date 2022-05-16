@@ -62,6 +62,7 @@ namespace Cb {
     public bool loading_hires;
     public bool loaded_hires;
     public bool invalid;
+    public bool permanent_invalid;
     public string consumer_key;
     public string consumer_secret;
     public string token;

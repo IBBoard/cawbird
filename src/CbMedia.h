@@ -60,6 +60,7 @@ struct _CbMedia
   guint loading_hires: 1;
   guint loaded_hires : 1;
   guint invalid : 1;
+  guint permanent_invalid : 1;
   double percent_loaded;
   double percent_loaded_hires;
 
