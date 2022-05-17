@@ -350,7 +350,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   }
 
   private void media_clicked_cb (Cb.Media m, int index, double px, double py) {
-    debug("Media clicked");
     TweetUtils.handle_media_click (this.tweet.get_medias (), this.main_window, index);
   }
 
