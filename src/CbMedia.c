@@ -191,7 +191,7 @@ cb_media_loading_finished (CbMedia *media)
   media->loaded = TRUE;
   media->loading = FALSE;
 
-  if (media->height == media->thumb_height && media->width == media->thumb_width) {
+  if (media->url != NULL && media->thumb_url != NULL && g_strcmp0(media->url, media->thumb_url) == 0) {
     // There is no higher res to load so pretend we did.
     // The get_highest_res_surface() function then deals with what is available
     media->loaded_hires = TRUE;

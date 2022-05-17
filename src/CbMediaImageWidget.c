@@ -94,6 +94,28 @@ cb_media_image_widget_init (CbMediaImageWidget *self)
 }
 
 void
+set_window_size_request (CbMediaImageWidget *self, CbMedia *media) {
+  int win_width;
+  int win_height;
+
+  win_width = media->width;
+  win_height = media->height;
+
+  if (win_width > self->max_width)
+  {
+    win_width = self->max_width;
+  }
+
+  if (win_height > self->max_height)
+  {
+    win_height = self->max_height;
+  }
+
+  g_debug("Setting window size for %s to %d×%d (%d×%d)", media->url, win_width, win_height, media->width, media->height);
+  gtk_widget_set_size_request (GTK_WIDGET (self), win_width, win_height);
+}
+
+void
 hires_progress (CbMedia *media, gpointer user_data) {
   if (!media->loaded_hires) {
     return;
@@ -102,20 +124,22 @@ hires_progress (CbMedia *media, gpointer user_data) {
   gtk_image_set_from_surface (GTK_IMAGE (self->image), media->surface_hires);
   cairo_surface_destroy(self->image_surface);
   self->image_surface = NULL;
+  set_window_size_request(self, media);
 }
 
 GtkWidget *
 cb_media_image_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
 {
   CbMediaImageWidget *self;
-  int win_width;
-  int win_height;
 
   g_return_val_if_fail (CB_IS_MEDIA (media), NULL);
   g_return_val_if_fail (!media->invalid, NULL);
   g_return_val_if_fail (media->surface != NULL, NULL);
 
   self = CB_MEDIA_IMAGE_WIDGET (g_object_new (CB_TYPE_MEDIA_IMAGE_WIDGET, NULL));
+  //memcpy(&self->max_dimensions, &max_dimensions, sizeof(GdkRectangle));
+  self->max_width = max_dimensions->width;
+  self->max_height = max_dimensions->height;
 
   if (media->type == CB_MEDIA_TYPE_GIF) {
     gtk_image_set_from_animation (GTK_IMAGE (self->image), media->animation);
@@ -141,20 +165,7 @@ cb_media_image_widget_new (CbMedia *media, GdkRectangle *max_dimensions)
     }
   }
 
-  win_width = media->width;
-  win_height = media->height;
-
-  if (win_width > max_dimensions->width)
-  {
-    win_width = max_dimensions->width;
-  }
-
-  if (win_height > max_dimensions->height)
-  {
-    win_height = max_dimensions->height;
-  }
-
-  gtk_widget_set_size_request (GTK_WIDGET (self), win_width, win_height);
+  set_window_size_request(self, media);
   gtk_widget_set_tooltip_text (GTK_WIDGET (self), media->alt_text);
   atk_object_set_description(gtk_widget_get_accessible(GTK_WIDGET(self)), media->alt_text == NULL ? "" : media->alt_text);
 
