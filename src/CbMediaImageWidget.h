@@ -28,6 +28,8 @@ G_DECLARE_FINAL_TYPE (CbMediaImageWidget, cb_media_image_widget, CB, MEDIA_IMAGE
 struct _CbMediaImageWidget
 {
   GtkScrolledWindow parent_instance;
+  gint max_width;
+  gint max_height;
 
   GtkWidget *image;
   GtkGesture *drag_gesture;
