@@ -472,9 +472,6 @@ cb_media_downloader_load_hires_threaded (CbMediaDownloader *downloader,
     return;
   }
 
-  media->width = cairo_image_surface_get_width(media->surface_hires);
-  media->height = cairo_image_surface_get_height(media->surface_hires);
-
   cb_media_loading_hires_finished (media);
 }
 
