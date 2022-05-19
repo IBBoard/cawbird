@@ -176,17 +176,6 @@ cb_media_loading_finished (CbMedia *media)
   media->thumb_width   = cairo_image_surface_get_width(media->surface);
   media->thumb_height  = cairo_image_surface_get_height(media->surface);
 
-  // Take these sizes as full size if full size isn't set.
-  // This happens when loading third-party images which don't have
-  // Twitter's scaling variants.
-  if (media->width == -1) {
-    media->width = media->thumb_width;
-  }
-
-  if (media->height == -1) {
-    media->height = media->thumb_height;
-  }
-
   media->invalid = FALSE;
   media->loaded = TRUE;
   media->loading = FALSE;
@@ -195,6 +184,8 @@ cb_media_loading_finished (CbMedia *media)
     // There is no higher res to load so pretend we did.
     // The get_highest_res_surface() function then deals with what is available
     media->loaded_hires = TRUE;
+    media->width = media->thumb_width;
+    media->width = media->thumb_width;
   }
   else if (cb_media_is_video (media)) {
     // Video doesn't have a hires, it runs the URL through GStreamer, so pretend we loaded the hires image
@@ -245,6 +236,11 @@ void
 cb_media_loading_hires_finished (CbMedia *media)
 {
   g_return_if_fail (CB_IS_MEDIA (media));
+
+  if (media->surface_hires) {
+    media->width   = cairo_image_surface_get_width(media->surface_hires);
+    media->height  = cairo_image_surface_get_height(media->surface_hires);
+  }
 
   media->loaded_hires = TRUE;
   media->loading_hires = FALSE;
