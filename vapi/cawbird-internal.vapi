@@ -82,6 +82,7 @@ namespace Cb {
     public Cairo.ImageSurface? surface_hires;
     public Gdk.PixbufAnimation? animation;
     public signal void progress();
+    public signal void hires_progress();
 
     public Media();
     public bool is_video ();

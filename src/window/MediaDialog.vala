@@ -38,8 +38,15 @@ class MediaDialog : Gtk.Window {
     this.media = media;
     var downloader = Cb.MediaDownloader.get_default();
     foreach (Cb.Media m in media){
-      if (!m.loaded_hires && !m.loading_hires) {
-        downloader.load_hires_async.begin (m);
+      if (!m.loaded_hires) {
+        m.hires_progress.connect(() => {
+          if (m == media[cur_index] && m.loaded_hires) {
+            change_media(cur_index);
+          }
+        });
+        if (!m.loading_hires) {
+          downloader.load_hires_async.begin (m);
+        }
       }
     }
     this.cur_index = start_media_index;
@@ -69,7 +76,7 @@ class MediaDialog : Gtk.Window {
     /* Remove the current child */
     var cur_child = frame.get_child ();
     int cur_width = 0, cur_height = 0,
-        new_width, new_height;
+        new_width = 0, new_height = 0;
 
 
     if (frame.get_child () != null) {
@@ -83,14 +90,27 @@ class MediaDialog : Gtk.Window {
       new_widget = new Cb.MediaVideoWidget (media, max_dimensions);
       frame.add (new_widget);
       ((Cb.MediaVideoWidget)new_widget).start ();
-    } else {
+    }
+    else if (!media.loaded_hires && (media.width == -1 || media.height == -1)) {
+      // Images without high res where we don't know the size get a spinner so that
+      // we don't show a small thumbnail and then suddenly grow
+      new_widget = new Gtk.Spinner();
+      frame.add (new_widget);
+      ((Gtk.Spinner)new_widget).start();
+      new_width = 256;
+      new_height = 256;
+    }
+     else {
       new_widget = new Cb.MediaImageWidget (media, max_dimensions);
       frame.add (new_widget);
     }
 
     new_widget.show_all ();
 
-    new_widget.get_size_request (out new_width, out new_height);
+    if (new_width == 0 || new_height == 0) {
+      new_widget.get_size_request (out new_width, out new_height);
+    }
+
     if ((new_width != cur_width ||
         new_height != cur_height) && new_width > 0 && new_height > 0) {
       this.resize (new_width, new_height);
