@@ -84,8 +84,6 @@
       this.press_gesture.set_exclusive (true);
       this.press_gesture.set_button (0);
       this.press_gesture.released.connect (gesture_released_cb);
-      this.enter_notify_event.connect(Utils.set_pointer_on_mouseover);
-      this.leave_notify_event.connect(Utils.set_pointer_on_mouseover);
     }
 
     private void media_progress_cb () {
@@ -94,6 +92,8 @@
       if (this._media.loaded) {
         if (!_media.invalid && _media.surface != null) {
           this.start_fade ();
+          this.enter_notify_event.connect(Utils.set_pointer_on_mouseover);
+          this.leave_notify_event.connect(Utils.set_pointer_on_mouseover);
         }
 
         this.queue_resize ();
