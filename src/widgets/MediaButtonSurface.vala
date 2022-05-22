@@ -35,6 +35,7 @@
         }
         _media = value;
         if (value != null) {
+          set_image_description();
           if (!media.loaded) {
             _media.progress.connect (media_progress_cb);
           } else {
@@ -85,6 +86,8 @@
       this.press_gesture.set_exclusive (true);
       this.press_gesture.set_button (0);
       this.press_gesture.released.connect (gesture_released_cb);
+      this.set_accessible_role(Atk.Role.IMAGE);
+      set_image_description();
     }
 
     private void media_progress_cb () {
@@ -432,5 +435,12 @@
       }
 
       return Gdk.EVENT_PROPAGATE;
+    }
+
+    private void set_image_description() {
+      if (media != null) {
+        this.set_tooltip_text(media.alt_text);
+        this.get_accessible().set_description(media.alt_text ?? "");
+      }
     }
   }

@@ -37,7 +37,6 @@ private class MediaButton : Gtk.Bin {
           _media.progress.connect (media_progress_cb);
         }
         set_save_as_sensitivity();
-        set_image_description();
         if (!is_m3u8 && !_media.requires_authentication()) {
           menu_model.append (_("Copy URL"), "media.copy-url");
         }
@@ -91,7 +90,7 @@ private class MediaButton : Gtk.Bin {
     this.press_gesture.set_button (0);
     this.press_gesture.set_propagation_phase (Gtk.PropagationPhase.CAPTURE);
     this.press_gesture.pressed.connect (gesture_pressed_cb);
-    set_image_description();
+    this.key_release_event.connect(button_pressed_cb);
   }
 
   private void reload_image() {
@@ -183,20 +182,31 @@ private class MediaButton : Gtk.Bin {
 
     if (event.triggers_context_menu ()) {
       this.press_gesture.set_state (Gtk.EventSequenceState.CLAIMED);
-
-      if (this.menu == null) {
-        this.menu = new Gtk.Menu.from_model (menu_model);
-        this.menu.attach_to_widget (this, null);
-      }
-      menu.show_all ();
-      menu.popup_at_pointer (event);
+      show_menu(event);
     }
   }
 
-  private void set_image_description() {
-    if (media != null) {
-      this.set_tooltip_text(media.alt_text);
-      this.get_accessible().set_description(media.alt_text ?? "");
+  private bool button_pressed_cb (Gdk.EventKey event_key) {
+    uint keyval;
+    event_key.get_keyval (out keyval);
+    if (keyval == Gdk.Key.Menu) {
+      show_menu();
+      return Gdk.EVENT_STOP;
+    }
+    return Gdk.EVENT_PROPAGATE;
+  }
+
+  private void show_menu(Gdk.Event? event = null) {
+    if (this.menu == null) {
+      this.menu = new Gtk.Menu.from_model (menu_model);
+      this.menu.attach_to_widget (this, null);
+    }
+    menu.show_all ();
+    if (event != null) {
+      menu.popup_at_pointer (event);
+    }
+    else {
+      menu.popup_at_widget (this, Gdk.Gravity.CENTER, Gdk.Gravity.NORTH_WEST);
     }
   }
 
