@@ -65,6 +65,7 @@
     }
 
     construct {
+      this.set_can_focus (true);
       this.set_has_window (false);
     }
 
