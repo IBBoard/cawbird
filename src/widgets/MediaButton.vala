@@ -60,7 +60,6 @@ private class MediaButton : Gtk.Bin {
 
   construct {
     this.set_has_window (false);
-    this.set_can_focus (true);
   }
 
   ~MediaButton () {
