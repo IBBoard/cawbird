@@ -60,12 +60,18 @@ public class MultiMediaWidget : Gtk.Box {
   public void set_all_media (Cb.Media[] medias) {
     this.remove_all ();
     this.media_buttons = new MediaButton[medias.length];
+    var buttons_list = new List<Gtk.Widget>();
     this.media_count = medias.length;
 
     for (int i = 0; i < medias.length; i++) {
       assert (medias[i] != null);
       set_media (i, medias[i]);
+      buttons_list.append (media_buttons[i]);
     }
+
+    // We know this is deprecated, but GTK give *no* helpful information on how to emulate its
+    // behaviour with supported APIs - https://gitlab.gnome.org/GNOME/gtk/-/issues/1430
+    this.set_focus_chain(buttons_list);
   }
 
   private void remove_all () {
