@@ -147,20 +147,20 @@
                 <property name="width">2</property>
               </packing>
             </child>
-                <child>
-                  <object class="GtkLabel" id="name_label">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="receives-default">True</property>
-                    <property name="halign">start</property>
-                    <property name="valign">baseline</property>
-                    <property name="hexpand">1</property>
-                    <property name="margin-top">4</property>
-                    <property name="ellipsize">end</property>
-                    <signal name="activate-link" handler="link_activated_cb"/>
-                    <style>
-                      <class name="name"/>
-                    </style>
+            <child>
+              <object class="GtkLabel" id="name_label">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="halign">start</property>
+                <property name="valign">start</property>
+                <property name="hexpand">1</property>
+                <property name="margin-top">4</property>
+                <property name="ellipsize">end</property>
+                <signal name="activate-link" handler="link_activated_cb"/>
+                <style>
+                  <class name="name"/>
+                </style>
               </object>
               <packing>
                 <property name="left-attach">2</property>
@@ -170,7 +170,8 @@
             <child>
               <object class="GtkImage" id="fav_status_image">
                 <property name="halign">end</property>
-                <property name="valign">center</property>
+                <property name="valign">start</property>
+                <property name="ypad">4</property>
                 <property name="margin-end">6</property>
                 <property name="margin-top">4</property>
                 <property name="pixel-size">12</property>
@@ -193,7 +194,8 @@
             <child>
               <object class="GtkImage" id="rt_status_image">
                 <property name="halign">end</property>
-                <property name="valign">center</property>
+                <property name="valign">start</property>
+                <property name="ypad">4</property>
                 <property name="margin-end">6</property>
                 <property name="margin-top">4</property>
                 <property name="pixel-size">12</property>
@@ -217,7 +219,7 @@
               <object class="GtkLabel" id="time_delta_label">
                 <property name="visible">1</property>
                 <property name="halign">end</property>
-                <property name="valign">baseline</property>
+                <property name="valign">start</property>
                 <property name="margin-top">4</property>
                 <property name="lines">0</property>
                 <property name="use-markup">1</property>
@@ -231,6 +233,8 @@
               <object class="GtkLabel" id="reply_label">
                 <property name="visible">0</property>
                 <property name="halign">start</property>
+                <property name="valign">start</property>
+                <property name="vexpand">1</property>
                 <property name="xalign">0</property>
                 <property name="use-markup">1</property>
                 <property name="wrap">1</property>
@@ -257,6 +261,7 @@
                 <property name="vexpand">1</property>
                 <property name="xalign">0</property>
                 <property name="yalign">0</property>
+                <property name="valign">start</property>
                 <property name="use-markup">1</property>
                 <property name="wrap">1</property>
                 <property name="wrap-mode">word-char</property>

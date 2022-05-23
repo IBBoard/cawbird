@@ -796,8 +796,6 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
       // All the other widgets don't fill the column under the avatar, so reduce the width
       // that they calculate from
       width -= avatar_width;
-      // But pretend it is a little wider because they still have their margins until allocation
-      width += 6;
     }
 
     text_label.get_preferred_height_for_width(width, out child_min, out child_nat);
