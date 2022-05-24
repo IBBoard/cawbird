@@ -373,6 +373,20 @@
   <provides>
     <binary>cawbird</binary>
   </provides>
+  <requires>
+    <display_length compare="ge">320</display_length>
+    <display_length compare="ge">xsmall</display_length>
+  </requires>
+  <recommends>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <!--
+      Note: We actually <supports> touch, but Gnome Software doesn't support that
+      until they implement https://gitlab.gnome.org/GNOME/gnome-software/-/issues/1774
+    -->
+    <control>touch</control>
+  </recommends>
+
 
   <content_rating type="oars-1.1">
     <content_attribute id="social-chat">moderate</content_attribute>
