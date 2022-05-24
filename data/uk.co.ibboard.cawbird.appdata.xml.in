@@ -49,326 +49,280 @@
   <url type="translate">https://www.transifex.com/cawbird/cawbird/</url>
 
   <releases>
-    <release version="1.5" date="2022-03-18">
+    <release version="1.5" date="2022-03-18"><description>
       <p>Building on the "look after yourself" message in v1.3 and the inclusive internationalisation in v1.4,
         Cawbird 1.5 is being released in the context of the increasing importance of combatting disinformation
         following Putin's atrocities in Ukraine.</p>
+      <p>New features:</p>
       <ul>
-        <li>New features:
-          <ul>
-            <li>Cleanly and clearly handle "witheld" accounts, and hide witheld tweets (#428)</li>
-            <li>Added a button to "reload image" for any images that fail to load (#244)</li>
-          </ul>
-        </li>
-        <li>Fixes:
-          <ul>
-            <li>Capture events so that "reload image" doesn't go to tweet view in single-click activation mode (#439)</li>
-            <li>Fix emoji chooser in non-English locales (thanks to @jtojnar)</li>
-            <li>Remove link to quoted tweet from timeline display (#406)</li>
-            <li>Support paging of blocked profiles so that users with lots of blocks don't see unwanted content, or get crashes on blocking</li>
-            <li>Fix overly long click zone for cropped images</li>
-          </ul>
-        </li>
-        <li>Improvements:
-          <ul>
-            <li>Set `StartupNotify=true` in desktop file to improve desktop integration, especially on mobile (thanks to @AlexMitter)</li>
-            <li>Focus returns to the text input box after inserting an emoji (#427)</li>
-            <li>Update Danish, Dutch, Gaelic, Brazilian Portuguese and Spanish translations</li>
-          </ul>
-        </li>
-        <li>Developer:
-          <ul>
-            <li>Don't assume that `~/.config` exists (thanks to @a-wai)</li>
-            <li>Use slashes in dconf path instead of dots (#402)</li>
-            <li>Updated Gnome runtime in Flatpak dev build</li>
-          </ul>
-        </li>
+        <li>Cleanly and clearly handle "witheld" accounts, and hide witheld tweets (#428)</li>
+        <li>Added a button to "reload image" for any images that fail to load (#244)</li>
       </ul>
-    </release>
-    <release version="1.4.2" date="2021-09-19">
+      <p>Fixes:</p>
+      <ul>
+        <li>Capture events so that "reload image" doesn't go to tweet view in single-click activation mode (#439)</li>
+        <li>Fix emoji chooser in non-English locales (thanks to @jtojnar)</li>
+        <li>Remove link to quoted tweet from timeline display (#406)</li>
+        <li>Support paging of blocked profiles so that users with lots of blocks don't see unwanted content, or get crashes on blocking</li>
+        <li>Fix overly long click zone for cropped images</li>
+      </ul>
+      <p>Improvements:</p>
+      <ul>
+        <li>Set `StartupNotify=true` in desktop file to improve desktop integration, especially on mobile (thanks to @AlexMitter)</li>
+        <li>Focus returns to the text input box after inserting an emoji (#427)</li>
+        <li>Update Danish, Dutch, Gaelic, Brazilian Portuguese and Spanish translations</li>
+      </ul>
+      <p>Developer:</p>
+      <ul>
+        <li>Don't assume that `~/.config` exists (thanks to @a-wai)</li>
+        <li>Use slashes in dconf path instead of dots (#402)</li>
+        <li>Updated Gnome runtime in Flatpak dev build</li>
+      </ul>
+    </description></release>
+    <release version="1.4.2" date="2021-09-19"><description>
       <p>Cawbird 1.4.2 is a maintenance release with two crash fixes, an emoji fix and updated translations.</p>
+      <p>Fixes:</p>
       <ul>
-        <li>Fixes:
-          <ul>
-            <li>Fixed crash when opening DMs if one of the DMs had entities defined out of order in the JSON (#391)</li>
-            <li>Fixed crash when first creating an account due to null account object (#399)</li>
-            <li>Alter emoji data checking to support changes with recent GTK 3.24 versions (#392)</li>
-          </ul>
-        </li>
-        <li>Improvements:
-          <ul>
-            <li>Updated French and English translations</li>
-          </ul>
-        </li>
+        <li>Fixed crash when opening DMs if one of the DMs had entities defined out of order in the JSON (#391)</li>
+        <li>Fixed crash when first creating an account due to null account object (#399)</li>
+        <li>Alter emoji data checking to support changes with recent GTK 3.24 versions (#392)</li>
       </ul>
-    </release>
-    <release version="1.4.1" date="2021-05-08">
+      <p>Improvements:</p>
+      <ul>
+        <li>Updated French and English translations</li>
+      </ul>
+    </description></release>
+    <release version="1.4.1" date="2021-05-08"><description>
       <p>Hotfix to correct "Send" button state issues for direct messages</p>
-    </release>
-    <release version="1.4" date="2021-05-01">
+    </description></release>
+    <release version="1.4" date="2021-05-01"><description>
       <p>It has been a while in the making, but Cawbird 1.4 adds lots of features and improves our internationalisation.</p>
+      <p>Fixes:</p>
       <ul>
-        <li>Fixes:
-          <ul>
-            <li>Fixed repeat notifications due to message overlap (which we do to avoid missing messages!) (#292)</li>
-            <li>Fixed handling of links with ampersands in them (#305)</li>
-            <li>Fixed handling of Twitter video URLs with ampersands in them (#338)</li>
-            <li>Fixed cropping of tweets in timelines, particularly in narrow windows (#296)</li>
-            <li>Fixed handling of translations so that it works in environments like Flatpak (#297)</li>
-          </ul>
-        </li>
-        <li>Improvements:
-          <ul>
-            <li>Added Normal/Large/X-Large/XX-Large text sizes (#33)</li>
-            <li>Added "Translate Content" option to tweets with option of using Google, Bing, DeepL or custom providers (#161)</li>
-            <li>Better counting of ZWJ emoji - Cawbird now passes Twitter's own compliance tests (#114)</li>
-            <li>Added Scottish Gaelic translations (thanks to @gaidheileamail1)</li>
-            <li>All strings in the UI are now translatable (#351, #362)</li>
-            <li>Add a confirmation to delete draft tweet on Cancel (#340)</li>
-            <li>Made threaded tweets more obvious by including "Reply to" line for self-reply threads in timeline (#339)</li>
-            <li>Tweets are now added to your timeline when you follow a user (and hidden when you unfollow them) (#19)</li>
-            <li>Improved rendering lag when focussing and unfocussing Cawbird (#204)</li>
-            <li>Improved spacing and alignment of images and added a border to define edges (#290, #306)</li>
-            <li>Added the ability to temporarily show a blocked or muted account (#299)</li>
-            <li>Reduced the size of the info icon for the image description notification to avoid it obscuring too much of the image (#294)</li>
-            <li>Swapped to using the 😀 smiley for emoji input rather than 🐧 to be consistent with other applications and platforms (#298)</li>
-          </ul>
-        </li>
-        <li>Developer:
-          <ul>
-            <li>Make it easier to build Cawbird with custom Twitter secrets so that distro builds don't consume the new (June 2019) 100,000 requests per day per app limits (#310)</li>
-            <li>Added an option to use local translation files rather than the system ones, for debugging without installation</li>
-            <li>Added a `-Dmswindows=true` config flag to allow builds that work with Windows's broken "mimetypes are just file extensions" behaviour</li>
-          </ul>
-        </li>
+        <li>Fixed repeat notifications due to message overlap (which we do to avoid missing messages!) (#292)</li>
+        <li>Fixed handling of links with ampersands in them (#305)</li>
+        <li>Fixed handling of Twitter video URLs with ampersands in them (#338)</li>
+        <li>Fixed cropping of tweets in timelines, particularly in narrow windows (#296)</li>
+        <li>Fixed handling of translations so that it works in environments like Flatpak (#297)</li>
       </ul>
-    </release>
-    <release version="1.3.2" date="2021-01-11">
+      <p>Improvements:</p>
+      <ul>
+        <li>Added Normal/Large/X-Large/XX-Large text sizes (#33)</li>
+        <li>Added "Translate Content" option to tweets with option of using Google, Bing, DeepL or custom providers (#161)</li>
+        <li>Better counting of ZWJ emoji - Cawbird now passes Twitter's own compliance tests (#114)</li>
+        <li>Added Scottish Gaelic translations (thanks to @gaidheileamail1)</li>
+        <li>All strings in the UI are now translatable (#351, #362)</li>
+        <li>Add a confirmation to delete draft tweet on Cancel (#340)</li>
+        <li>Made threaded tweets more obvious by including "Reply to" line for self-reply threads in timeline (#339)</li>
+        <li>Tweets are now added to your timeline when you follow a user (and hidden when you unfollow them) (#19)</li>
+        <li>Improved rendering lag when focussing and unfocussing Cawbird (#204)</li>
+        <li>Improved spacing and alignment of images and added a border to define edges (#290, #306)</li>
+        <li>Added the ability to temporarily show a blocked or muted account (#299)</li>
+        <li>Reduced the size of the info icon for the image description notification to avoid it obscuring too much of the image (#294)</li>
+        <li>Swapped to using the 😀 smiley for emoji input rather than 🐧 to be consistent with other applications and platforms (#298)</li>
+      </ul>
+      <p>Developer:</p>
+      <ul>
+        <li>Make it easier to build Cawbird with custom Twitter secrets so that distro builds don't consume the new (June 2019) 100,000 requests per day per app limits (#310)</li>
+        <li>Added an option to use local translation files rather than the system ones, for debugging without installation</li>
+        <li>Added a `-Dmswindows=true` config flag to allow builds that work with Windows's broken "mimetypes are just file extensions" behaviour</li>
+      </ul>
+    </description></release>
+    <release version="1.3.2" date="2021-01-11"><description>
       <p>Cawbird 1.3.2 is a maintenance release due to a privacy issue caused by third-party builds of Cawbird using "debug" builds.</p>
       <p>Users of native distro packages and other packages that used release builds should not have been affected. We appologise for any inconvenience caused and continue to recommend that users use native packages where possible.</p>
+      <p>Fixes:</p>
       <ul>
-        <li>Fixes:
-          <ul>
-            <li>Make it clearer to third-party packagers (e.g. Flatpak and Snap) when they are building debug builds instead of release builds, which log the plain text content of all tweets and DMs to the console, which is then captured in the system log (#274)</li>
-            <li>Make it possible to build Cawbird without GStreamer video support again (#273)</li>
-          </ul>
-        </li>
-        <li>Improvements:
-          <ul>
-            <li>Swapped out `g_print` statements for `g_debug` and generally tidied up some debug logging (relates to #274)</li>
-            <li>Make videos open the browser when GStreamer support is disabled (related to #273)</li>
-            <li>Updated Russian translation (thanks to Даниил Пронин)</li>
-          </ul>
-        </li>
-        <li>Developer:
-          <ul>
-            <li>Fixed intermittent crash of `inlinedownloader` tests</li>
-          </ul>
-        </li>
+        <li>Make it clearer to third-party packagers (e.g. Flatpak and Snap) when they are building debug builds instead of release builds, which log the plain text content of all tweets and DMs to the console, which is then captured in the system log (#274)</li>
+        <li>Make it possible to build Cawbird without GStreamer video support again (#273)</li>
       </ul>
-    </release>
-    <release version="1.3.1" date="2021-01-03">
+      <p>Improvements:</p>
+      <ul>
+        <li>Swapped out `g_print` statements for `g_debug` and generally tidied up some debug logging (relates to #274)</li>
+        <li>Make videos open the browser when GStreamer support is disabled (related to #273)</li>
+        <li>Updated Russian translation (thanks to Даниил Пронин)</li>
+      </ul>
+      <p>Developer:</p>
+      <ul>
+        <li>Fixed intermittent crash of `inlinedownloader` tests</li>
+      </ul>
+    </description></release>
+    <release version="1.3.1" date="2021-01-03"><description>
       <p>Cawbird 1.3.1 fixes several gaps in the block/mute behaviour so that your experience is controlled from the start, as well
       as including some media upload and mobile fixes and improvements.</p>
+      <p>Fixes:</p>
       <ul>
-        <li>Fixes:
-          <ul>
-            <li>Fix unblock and unmute wiping local cache of blocked/muted users</li>
-            <li>Load block/mute lists before downloading timeline/mentions to ensure we hide blocked/muted tweets at startup</li>
-            <li>Unblocking/unmuting now says "unblock" or "unmute" on the button instead of always saying "Unblock"</li>
-            <li>Fix media size checks so that videos don't fail because they're bigger than the image limit</li>
-            <li>Make a narrower user account list for narrow windows to avoid overflow and cropped "profile" button (#259)</li>
-            <li>Combine notification and tweet settings to allow narrower settings dialog for mobile</li>
-          </ul>
-        </li>
-        <li>Improvements:
-          <ul>
-            <li>Hide all tweets in profile view when blocking/muting a user (we shouldn't assume people won't look at the profile)</li>
-            <li>Backfill progressively larger batches of tweets for profiles in case Disable RTs is hiding too many tweets so that the view doesn't scroll</li>
-            <li>Provide a tooltip message for why a media upload failed (e.g. Twitter doesn't support video codec)</li>
-            <li>Updated Dutch, Danish and Italian translations</li>
-          </ul>
-        </li>
+        <li>Fix unblock and unmute wiping local cache of blocked/muted users</li>
+        <li>Load block/mute lists before downloading timeline/mentions to ensure we hide blocked/muted tweets at startup</li>
+        <li>Unblocking/unmuting now says "unblock" or "unmute" on the button instead of always saying "Unblock"</li>
+        <li>Fix media size checks so that videos don't fail because they're bigger than the image limit</li>
+        <li>Make a narrower user account list for narrow windows to avoid overflow and cropped "profile" button (#259)</li>
+        <li>Combine notification and tweet settings to allow narrower settings dialog for mobile</li>
       </ul>
-    </release>
-    <release version="1.3" date="2020-12-31">
+      <p>Improvements:</p>
+      <ul>
+        <li>Hide all tweets in profile view when blocking/muting a user (we shouldn't assume people won't look at the profile)</li>
+        <li>Backfill progressively larger batches of tweets for profiles in case Disable RTs is hiding too many tweets so that the view doesn't scroll</li>
+        <li>Provide a tooltip message for why a media upload failed (e.g. Twitter doesn't support video codec)</li>
+        <li>Updated Dutch, Danish and Italian translations</li>
+      </ul>
+    </description></release>
+    <release version="1.3" date="2020-12-31"><description>
       <p>Cawbird version 1.3 is the "look after yourself" edition. We've got lots of features and fixes, but there are several key improvements to
       managing your interactions that should have been implemented/fixed sooner. Our priority is making Cawbird accessible and letting users
       control their experience on Twitter.</p>
+      <p>Improvements:</p>
       <ul>
-        <li>Improvements:
-          <ul>
-            <li>Apply filtering across all feeds (including search)</li>
-            <li>Apply changes to filtering, muting, blocking and hiding RTs across all feeds instantly</li>
-            <li>Allow the filtering of mentioned @-handles</li>
-            <li>Load media in DMs and linkify users and hashtags (#12)</li>
-            <li>Added ability to send media in DMs (#14)</li>
-            <li>Added ability to delete DMs (#7)</li>
-            <li>Load older DMs (#3)</li>
-            <li>Add ability to upload videos and larger animated GIFs (#248)</li>
-            <li>Use HTTPS avatars throughout</li>
-            <li>Translations: Dutch and Danish (complete), Italian and French (updated)</li>
-          </ul>
-        </li>
-        <li>Design changes:
-          <ul>
-            <li>More accessible approach to loading "replied to" tweets (#164)</li>
-            <li>Improved user completion behaviour and interaction with user completion list</li>
-            <li>Added outline to media upload indicator to make it clearer on light images</li>
-            <li>Remove whitespace around tweets (e.g. when user has new lines and then a quoted URL or media that we're displaying)</li>
-            <li>Allow Compose view to shrink to narrower screens (e.g. for PinePhone) (#212)</li>
-          </ul>
-        </li>
-        <li>Fixes:
-          <ul>
-            <li>Fix DM load order</li>
-            <li>Fix missing "reply" icon by providing our own (#208)</li>
-            <li>Fixed crashes when playing video (#123)</li>
-            <li>Avoid a crash when returned JSON is invalid (#200)</li>
-            <li>Fixed widget height calculations for responsive and non-responsive views (#202)</li>
-            <li>Fixed layout when starting in responsive width</li>
-            <li>Avoid an unnecessary request for tweets when loading timelines</li>
-            <li>Fixed completion query for known users</li>
-            <li>Fixed various run-time and compiler warnings</li>
-            <li>Fixed handling of command-line parameters (#246)</li>
-          </ul>
-        </li>
-        <li>Developer:
-          <ul>
-            <li>Added "appdata" build config to allow building on platforms without AppStream (#35)</li>
-            <li>Changed Meson configuration and instructions to allow running dev version without installing</li>
-          </ul>
-        </li>
+        <li>Apply filtering across all feeds (including search)</li>
+        <li>Apply changes to filtering, muting, blocking and hiding RTs across all feeds instantly</li>
+        <li>Allow the filtering of mentioned @-handles</li>
+        <li>Load media in DMs and linkify users and hashtags (#12)</li>
+        <li>Added ability to send media in DMs (#14)</li>
+        <li>Added ability to delete DMs (#7)</li>
+        <li>Load older DMs (#3)</li>
+        <li>Add ability to upload videos and larger animated GIFs (#248)</li>
+        <li>Use HTTPS avatars throughout</li>
       </ul>
-    </release>
-    <release version="1.2.1" date="2020-09-20">
+      <p>Translations:</p>
+      <ul>
+        <li>Dutch and Danish (complete)</li>
+        <li>Italian and French (updated)</li>
+      </ul>
+      <p>Design changes:</p>
+      <ul>
+        <li>More accessible approach to loading "replied to" tweets (#164)</li>
+        <li>Improved user completion behaviour and interaction with user completion list</li>
+        <li>Added outline to media upload indicator to make it clearer on light images</li>
+        <li>Remove whitespace around tweets (e.g. when user has new lines and then a quoted URL or media that we're displaying)</li>
+        <li>Allow Compose view to shrink to narrower screens (e.g. for PinePhone) (#212)</li>
+      </ul>
+      <p>Fixes:</p>
+      <ul>
+        <li>Fix DM load order</li>
+        <li>Fix missing "reply" icon by providing our own (#208)</li>
+        <li>Fixed crashes when playing video (#123)</li>
+        <li>Avoid a crash when returned JSON is invalid (#200)</li>
+        <li>Fixed widget height calculations for responsive and non-responsive views (#202)</li>
+        <li>Fixed layout when starting in responsive width</li>
+        <li>Avoid an unnecessary request for tweets when loading timelines</li>
+        <li>Fixed completion query for known users</li>
+        <li>Fixed various run-time and compiler warnings</li>
+        <li>Fixed handling of command-line parameters (#246)</li>
+      </ul>
+      <p>Developer:</p>
+      <ul>
+        <li>Added "appdata" build config to allow building on platforms without AppStream (#35)</li>
+        <li>Changed Meson configuration and instructions to allow running dev version without installing</li>
+      </ul>
+    </description></release>
+    <release version="1.2.1" date="2020-09-20"><description>
       <p>Changes in Cawbird 1.2.1:</p>
+      <p>Bug fixes:</p>
       <ul>
-        <li>Bug fixes:
-          <ul>
-            <li>Fix crashes when images do not load correctly (#195)</li>
-            <li>Fix crashes when high-res image loads after dialog closes (#196) thanks to @lucaswerkmeister</li>
-          </ul>
-        </li>
-        <li>Improvements:
-          <ul>
-            <li>Improve rendering of @-handles in mixed right-to-left/left-to-right text (#194)</li>
-          </ul>
-        </li>
+        <li>Fix crashes when images do not load correctly (#195)</li>
+        <li>Fix crashes when high-res image loads after dialog closes (#196) thanks to @lucaswerkmeister</li>
       </ul>
-    </release>
-    <release version="1.2.0" date="2020-09-05">
+      <p>Improvements:</p>
+      <ul>
+        <li>Improve rendering of @-handles in mixed right-to-left/left-to-right text (#194)</li>
+      </ul>
+    </description></release>
+    <release version="1.2.0" date="2020-09-05"><description>
       <p>Changes in Cawbird 1.2.0:</p>
+      <p>Improvements:</p>
       <ul>
-        <li>Improvements:
-          <ul>
-            <li>Resolved major accessibility issue with timelines and improved other bits of accessibility by naming/describing widgets (#143)</li>
-            <li>Added ability to read descriptions on images (#11)</li>
-            <li>Added ability to add descriptions to images when posting (#10)</li>
-            <li>Reduced notifications when first logging in (#137)</li>
-            <li>Window can now be reduced to a narrower width and has a "responsive" layout for tweets (#57)</li>
-            <li>Reduce memory usage by loading smaller (600px) thumbnails and only loading images on demand (#142). Also reduces bandwidth use (especially with images disabled)</li>
-            <li>Let image sets loop back to start, and show progress through images (#172)</li>
-            <li>Made "Replying to" on Tweet info page list all users (including self-reply) so that it is more obvious when the tweet is part of a thread (#158)</li>
-            <li>Reworked @-mention completion so that it works with multilingual text</li>
-            <li>Adjust "media link removal" behaviour so that we still show the link when image loading is disabled so that users know there is media</li>
-            <li>Stopped shipping librest and started using system version</li>
-            <li>Made account removal less "scary" - now removes rather than deleting account</li>
-            <li>Improved consistency of progress status while searching</li>
-            <li>Updated Danish translation (thanks @mads5408) and Dutch translation (thanks @Vistaus) to 100% coverage</li>
-          </ul>
-        </li>
-        <li>Bug fixes:
-          <ul>
-            <li>Update handling of top-level domains to resolve character counting mismatch (#64)</li>
-            <li>Handle repeated attachment of the same image with the same path (#34)</li>
-            <li>Fix scrolling back to older tweets in thread on some platforms (#164)</li>
-            <li>Fixed @-mention completion not handling underscores</li>
-            <li>Fixed a crash when removing the currently open account</li>
-            <li>Fixed a usability issue where removing an account with multiple other accounts available showed the "Add account" interface with no account selector instead of showing another account</li>
-            <li>Fixed show/hide bug for media in quoted tweets</li>
-            <li>Put other users's lists in the correct place (created or subscribed)</li>
-            <li>Fixed builds on platforms without an implicit `#include &lt;string.h&gt;`</li>
-          </ul>
-        </li>
+        <li>Resolved major accessibility issue with timelines and improved other bits of accessibility by naming/describing widgets (#143)</li>
+        <li>Added ability to read descriptions on images (#11)</li>
+        <li>Added ability to add descriptions to images when posting (#10)</li>
+        <li>Reduced notifications when first logging in (#137)</li>
+        <li>Window can now be reduced to a narrower width and has a "responsive" layout for tweets (#57)</li>
+        <li>Reduce memory usage by loading smaller (600px) thumbnails and only loading images on demand (#142). Also reduces bandwidth use (especially with images disabled)</li>
+        <li>Let image sets loop back to start, and show progress through images (#172)</li>
+        <li>Made "Replying to" on Tweet info page list all users (including self-reply) so that it is more obvious when the tweet is part of a thread (#158)</li>
+        <li>Reworked @-mention completion so that it works with multilingual text</li>
+        <li>Adjust "media link removal" behaviour so that we still show the link when image loading is disabled so that users know there is media</li>
+        <li>Stopped shipping librest and started using system version</li>
+        <li>Made account removal less "scary" - now removes rather than deleting account</li>
+        <li>Improved consistency of progress status while searching</li>
+        <li>Updated Danish translation (thanks @mads5408) and Dutch translation (thanks @Vistaus) to 100% coverage</li>
       </ul>
-    </release>
-    <release version="1.1.0" date="2020-05-31">
+      <p>Bug fixes:</p>
+      <ul>
+        <li>Update handling of top-level domains to resolve character counting mismatch (#64)</li>
+        <li>Handle repeated attachment of the same image with the same path (#34)</li>
+        <li>Fix scrolling back to older tweets in thread on some platforms (#164)</li>
+        <li>Fixed @-mention completion not handling underscores</li>
+        <li>Fixed a crash when removing the currently open account</li>
+        <li>Fixed a usability issue where removing an account with multiple other accounts available showed the "Add account" interface with no account selector instead of showing another account</li>
+        <li>Fixed show/hide bug for media in quoted tweets</li>
+        <li>Put other users's lists in the correct place (created or subscribed)</li>
+        <li>Fixed builds on platforms without an implicit `#include &lt;string.h&gt;`</li>
+      </ul>
+    </description></release>
+    <release version="1.1.0" date="2020-05-31"><description>
       <p>Changes in Cawbird 1.1.0:</p>
+      <p>Improvements:</p>
       <ul>
-        <li>Improvements:
-          <ul>
-            <li>Moved tweet replies below tweet in detailed view, so it now matches the layour of almost all other clients (#16)</li>
-            <li>Improved tweet threading (#17):
-              <ul>
-                <li>Now tries to build entire self-reply thread above *and* below the tweet</li>
-                <li>Sorts all self-replies first, then mentioned replies, then other replies</li>
-                <li>Shows more than five replies</li>
-                <li>Added RT marker to detailed tweet view</li>
-                <li>Reduce number of requests to Twitter API when moving up and down a thread</li>
-              </ul>
-            </li>
-            <li>Added overlap to timeline tweet fetching to significantly reduce the likelihood of missing tweets due to "eventual consistency" of Twitter servers (#147)</li>
-            <li>Updated Danish translation (thanks @mads5408) and Dutch translation (thanks @Vistaus) to 100% coverage and increased coverage of Arabic translation (thanks @Ammar_Khaled and @Raayib)</li>
-          </ul>
+        <li>Moved tweet replies below tweet in detailed view, so it now matches the layour of almost all other clients (#16)</li>
+        <li>Improved tweet threading (#17):
+                Now tries to build entire self-reply thread above *and* below the tweet;
+                Sorts all self-replies first, then mentioned replies, then other replies;
+                Shows more than five replies;
+                Added RT marker to detailed tweet view; and
+                Reduce number of requests to Twitter API when moving up and down a thread.
         </li>
-        <li>Bug fixes:
-          <ul>
-            <li>Links in direct messages remain clickable after closing and opening (#13)</li>
-            <li>Added support for updated GTK Emoji data (#148 - backported into official v1.0.5 builds)</li>
-            <li>Fixed an SQL error when trying to complete names in tweets</li>
-          </ul>
-        </li>
-        <li>UI changes:
-          <ul>
-            <li>Hidden and deleted tweets in threads no longer trigger error dialogs (#138 and #153)</li>
-            <li>Timestamps on direct messages now update (#30)</li>
-            <li>Fix keyboard navigation in detailed tweet view (#145)</li>
-            <li>Debug builds can dump tweet JSON and details from Tweet Info page (#26)</li>
-            <li>List name is now shown as window title (#135)</li>
-            <li>List now uses actual title, not unique URL-name</li>
-            <li>List of lists now updates (with caching)</li>
-            <li>Tweets in searches now show like/favourite status</li>
-            <li>Added translation strings for new "limited reply" tweets</li>
-            <li>Handle "operation cancelled" 'error' so that users don't see a dialog when clicking back too quickly</li>
-          </ul>
-        </li>
+        <li>Added overlap to timeline tweet fetching to significantly reduce the likelihood of missing tweets due to "eventual consistency" of Twitter servers (#147)</li>
+        <li>Updated Danish translation (thanks @mads5408) and Dutch translation (thanks @Vistaus) to 100% coverage and increased coverage of Arabic translation (thanks @Ammar_Khaled and @Raayib)</li>
       </ul>
-    </release>
-    <release version="1.0.5" date="2020-04-08">
+      <p>Bug fixes:</p>
+      <ul>
+        <li>Links in direct messages remain clickable after closing and opening (#13)</li>
+        <li>Added support for updated GTK Emoji data (#148 - backported into official v1.0.5 builds)</li>
+        <li>Fixed an SQL error when trying to complete names in tweets</li>
+      </ul>
+      <p>UI changes:</p>
+      <ul>
+        <li>Hidden and deleted tweets in threads no longer trigger error dialogs (#138 and #153)</li>
+        <li>Timestamps on direct messages now update (#30)</li>
+        <li>Fix keyboard navigation in detailed tweet view (#145)</li>
+        <li>Debug builds can dump tweet JSON and details from Tweet Info page (#26)</li>
+        <li>List name is now shown as window title (#135)</li>
+        <li>List now uses actual title, not unique URL-name</li>
+        <li>List of lists now updates (with caching)</li>
+        <li>Tweets in searches now show like/favourite status</li>
+        <li>Added translation strings for new "limited reply" tweets</li>
+        <li>Handle "operation cancelled" 'error' so that users don't see a dialog when clicking back too quickly</li>
+      </ul>
+    </description></release>
+    <release version="1.0.5" date="2020-04-08"><description>
       <p>Changes in Cawbird 1.0.5:</p>
+      <p>Improvements:</p>
       <ul>
-        <li>Improvements:
-          <ul>
-            <li>Made Cawbird translatable through Transifex! (#47)</li>
-            <li>Added new Danish translation (thanks @mads5408), updated Catalan (thanks @joensgi), Dutch (thanks @Vistaus), and Italian (thanks @albanobattistella)</li>
-            <li>Improved image scaling to handle portrait monitors (#59)</li>
-          </ul>
-        </li>
-        <li>Bug fixes:
-          <ul>
-            <li>Fixed parsing/display of some old tweets with bad encoding (#69)</li>
-            <li>Fixed URL encoding issues in user profiles breaking URL display (#78)</li>
-            <li>Removed case-sensitive filtering of @-handle in mentions so all mentions now show (#81)</li>
-            <li>Fixed segfault on CentOS 8 due to a bug in how RHEL/CentOS patch a glib function for FIPS compliance (#82)</li>
-          </ul>
-        </li>
-        <li>UI changes:
-          <ul>
-            <li>Added dark mode toggle in settings (#67)</li>
-            <li>Improved error messages so that they're not just "Forbidden" or "Not Found" (#8, #41)</li>
-            <li>Protected accounts are now marked with a padlock (#18)</li>
-            <li>Made tweet timestamps into links to twitter.com (#129)</li>
-            <li>Added @-handle next to display name for retweets (#20)</li>
-            <li>Un-dimmed some labels to improve accessibility (#80)</li>
-            <li>Added tooltips for usernames, @-handles and Twitter client names (#87, #120)</li>
-            <li>DM composition area can now be resized (#72)</li>
-            <li>Tidied up CSS to remove warnings (#5)</li>
-          </ul>
-        </li>
+        <li>Made Cawbird translatable through Transifex! (#47)</li>
+        <li>Added new Danish translation (thanks @mads5408), updated Catalan (thanks @joensgi), Dutch (thanks @Vistaus), and Italian (thanks @albanobattistella)</li>
+        <li>Improved image scaling to handle portrait monitors (#59)</li>
       </ul>
-    </release>
-    <release version="1.0.4" date="2020-01-12">
+      <p>Bug fixes:</p>
+      <ul>
+        <li>Fixed parsing/display of some old tweets with bad encoding (#69)</li>
+        <li>Fixed URL encoding issues in user profiles breaking URL display (#78)</li>
+        <li>Removed case-sensitive filtering of @-handle in mentions so all mentions now show (#81)</li>
+        <li>Fixed segfault on CentOS 8 due to a bug in how RHEL/CentOS patch a glib function for FIPS compliance (#82)</li>
+      </ul>
+      <p>UI changes:</p>
+      <ul>
+        <li>Added dark mode toggle in settings (#67)</li>
+        <li>Improved error messages so that they're not just "Forbidden" or "Not Found" (#8, #41)</li>
+        <li>Protected accounts are now marked with a padlock (#18)</li>
+        <li>Made tweet timestamps into links to twitter.com (#129)</li>
+        <li>Added @-handle next to display name for retweets (#20)</li>
+        <li>Un-dimmed some labels to improve accessibility (#80)</li>
+        <li>Added tooltips for usernames, @-handles and Twitter client names (#87, #120)</li>
+        <li>DM composition area can now be resized (#72)</li>
+        <li>Tidied up CSS to remove warnings (#5)</li>
+      </ul>
+    </description></release>
+    <release version="1.0.4" date="2020-01-12"><description>
       <p>Changes in Cawbird 1.0.4:</p>
       <ul>
         <li>Reduce bespoke themeing and make the main bar use native colours</li>
@@ -378,16 +332,16 @@
         <li>Update Italian translation (thanks to @albanobattistella)</li>
         <li>Completed Flatpak build (thanks to @p1u3o)</li>
       </ul>
-    </release>
-    <release version="1.0.3" date="2019-10-20">
+    </description></release>
+    <release version="1.0.3" date="2019-10-20"><description>
       <p>Changes in Cawbird 1.0.3:</p>
       <ul>
         <li>Handle tweet media separatelty from quoted tweet media - now displays quote with image reply!</li>
         <li>Fix silently handled tweet parsing errors from RT syncing changes</li>
         <li>Tidy up README</li>
       </ul>
-    </release>
-    <release version="1.0.2" date="2019-10-05">
+    </description></release>
+    <release version="1.0.2" date="2019-10-05"><description>
       <p>Changes in Cawbird 1.0.2:</p>
       <ul>
         <li>Handle TLS errors that we're getting from Twitter and GnuTLS</li>
@@ -396,16 +350,16 @@
         <li>Fix building on newer versions of Vala (thanks to @lucaswerkmeister)</li>
         <li>Make image click positioning behaviour consistent</li>
       </ul>
-    </release>
-    <release version="1.0.1" date="2019-08-31">
+    </description></release>
+    <release version="1.0.1" date="2019-08-31"><description>
       <p>Changes in Cawbird 1.0.1:</p>
       <ul>
         <li>Fix search with non-alphanumeric characters</li>
         <li>Redesign logo in a Tango style</li>
         <li>Migrates DMs, filters and snippets from old Corebird accounts</li>
       </ul>
-    </release>
-    <release version="1.0" date="2019-08-04">
+    </description></release>
+    <release version="1.0" date="2019-08-04"><description>
       <p>Changes in Cawbird 1.0:</p>
       <ul>
         <li>First release after forking from Corebird</li>
@@ -413,7 +367,7 @@
         <li>Incorporates UI tweaks and customisations</li>
         <li>Fixes source links for New Twitter web interface changes</li>
       </ul>
-    </release>
+    </description></release>
   </releases>
 
   <provides>
