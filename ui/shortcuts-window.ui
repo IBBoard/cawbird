@@ -66,6 +66,13 @@
                 <property name="title" translatable="yes" context="shortcuts window">Go to nth page</property>
               </object>
             </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">1</property>
+                <property name="accelerator">&lt;Primary&gt;R</property>
+                <property name="title" translatable="yes" context="shortcuts window">Refresh timeline</property>
+              </object>
+            </child>
           </object>
         </child>
         <child>

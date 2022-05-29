@@ -288,6 +288,9 @@ public class Cawbird : Gtk.Application {
     this.set_accels_for_action ("win.show-account-list", {Settings.get_accel ("show-account-list")});
     this.set_window_switching_accels();
 
+    // Timelines
+    this.set_accels_for_action ("timeline.refresh", {"<Primary>R", "F5"});
+
     // TweetInfoPage
     this.set_accels_for_action ("tweet.reply",    {"r"});
     this.set_accels_for_action ("tweet.favorite", {"l", "f"});

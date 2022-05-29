@@ -49,6 +49,12 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
   protected bool preload_is_complete = false;
   protected abstract string accessibility_name { get; }
 
+  private GLib.SimpleActionGroup actions;
+  private const GLib.ActionEntry[] action_entries = {
+    {"refresh", refresh_timeline },
+  };
+  private int64 last_refresh = 0;
+
 
   protected DefaultTimeline (int id) {
     this.id = id;
@@ -81,7 +87,24 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
       this.load_newest ();
     });
 
+    this.actions = new GLib.SimpleActionGroup ();
+    this.actions.add_action_entries (action_entries, this);
+    this.insert_action_group ("timeline", this.actions);
+
     this.hexpand = true;
+  }
+
+  private void refresh_timeline() {
+    var now = new GLib.DateTime.now().to_unix();
+    var time_since_last_refresh = now - last_refresh;
+    if (time_since_last_refresh < 60) {
+      debug("Skipping refresh of %s - only refreshed %lld seconds ago", this.get_type().name(), time_since_last_refresh);
+      return;
+    }
+    last_refresh = now;
+    debug("Refreshing %s", this.get_type().name());
+    this.tweet_list.model.clear();
+    this.load_older ();
   }
 
   protected bool handle_core_stream_messages (Cb.StreamMessageType type, Json.Node root) {
