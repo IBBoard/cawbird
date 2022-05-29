@@ -613,7 +613,13 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
       try {
         root = Cb.Utils.load_threaded_async.end (res);
       } catch (GLib.Error e) {
-        error_label.label = "%s: %s".printf (_("Could not show tweet"), e.message);
+        if (e.code == 404) {
+          error_label.label = _("This tweet is unavailable");
+          TweetUtils.inject_deletion (tweet_id, account);
+        }
+        else {
+          error_label.label = "%s: %s".printf (_("Could not show tweet"), e.message);
+        }
         main_stack.visible_child = error_label;
         return;
       }
@@ -1052,6 +1058,22 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
         /* TODO: We should probably remove this page with this bundle form the
                  history, even if it's not the currently visible page */
         debug ("Current tweet with id %s deleted!", tweet_id.to_string ());
+
+        var dialog = new Gtk.MessageDialog (this.main_window, Gtk.DialogFlags.DESTROY_WITH_PARENT,
+          Gtk.MessageType.ERROR, Gtk.ButtonsType.OK,
+          "%s", _("This tweet is unavailable"));
+
+        dialog.set_modal (true);
+
+        /* Hacky way to get the label selectable */
+        ((Gtk.Label)(((Gtk.Container)dialog.get_message_area ()).get_children ().nth_data (0))).set_selectable (true);
+
+        dialog.response.connect ((id) => {
+        if (id == Gtk.ResponseType.OK)
+        dialog.destroy ();
+        });
+
+        dialog.run ();
         this.main_window.main_widget.remove_current_page ();
       }
     } else if (type == Cb.StreamMessageType.EVENT_FAVORITE) {
