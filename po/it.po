@@ -12,7 +12,7 @@
 # ScardracS <marco.scardovi95@gmail.com>, 2020
 # Dieg 0 <dieg0sky008@gmail.com>, 2020
 # Albano Battistella <albano_battistella@hotmail.com>, 2019-2022
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
