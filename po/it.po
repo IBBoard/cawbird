@@ -11,7 +11,7 @@
 # Tassoman, 2017
 # ScardracS <marco.scardovi95@gmail.com>, 2020
 # Dieg 0 <dieg0sky008@gmail.com>, 2020
-# Albano Battistella <albano_battistella@hotmail.com>, 2019-2021
+# Albano Battistella <albano_battistella@hotmail.com>, 2019-2022
 #
 #, fuzzy
 msgid ""
@@ -20,13 +20,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2022-03-05 15:27+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
-"Last-Translator: albanobattistella <albano_battistella@hotmail.com>, 2021\n"
+"Last-Translator: albanobattistella <albano_battistella@hotmail.com>, 2022\n"
 "Language-Team: Italian (https://www.transifex.com/cawbird/teams/107135/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "Cawbird"
 msgstr "Cawbird"
@@ -150,6 +150,7 @@ msgid "%d new Message from %s"
 msgid_plural "%d new Messages from %s"
 msgstr[0] "%d nuovo messaggio da %s"
 msgstr[1] "%d nuovi messaggi da %s"
+msgstr[2] "%d nuovi messaggi da %s"
 
 #, c-format
 msgid "New direct message from %s"
@@ -158,13 +159,11 @@ msgstr "Nuovo messaggio diretto da %s"
 msgid "Direct Messages"
 msgstr "Messaggi diretti"
 
-#, fuzzy
 msgid "Liked tweets timeline"
-msgstr "Timeline dei favoriti"
+msgstr "Cronologia dei tweet piaciuti"
 
-#, fuzzy
 msgid "Likes"
-msgstr "Preferiti"
+msgstr "Mi piace"
 
 msgid "Add new Filter"
 msgstr "Aggiungi un nuovo filtro"
@@ -188,6 +187,7 @@ msgid "%d new Tweet!"
 msgid_plural "%d new Tweets!"
 msgstr[0] "%d nuovo Twett!"
 msgstr[1] "%d nuovi Tweet!"
+msgstr[2] "%d nuovi Tweet!"
 
 msgid "Home"
 msgstr "Home"
@@ -229,7 +229,7 @@ msgid "Suspended Account"
 msgstr "Account sospeso"
 
 msgid "Withheld account"
-msgstr ""
+msgstr "Account trattenuto"
 
 msgid "Protected profile"
 msgstr "Profilo protetto"
@@ -243,12 +243,14 @@ msgid "%d tweet"
 msgid_plural "%d tweets"
 msgstr[0] "%d tweet"
 msgstr[1] "%d tweets"
+msgstr[2] "%d tweets"
 
 #, c-format
 msgid "Following %d account"
 msgid_plural "Following %d accounts"
 msgstr[0] "%d account seguito"
 msgstr[1] "%d account seguiti"
+msgstr[2] "%d account seguiti"
 
 #, c-format
 msgid "Location: %s"
@@ -283,6 +285,7 @@ msgid "%d follower"
 msgid_plural "%d followers"
 msgstr[0] "%d follower"
 msgstr[1] "%d followers"
+msgstr[2] "%d followers"
 
 msgid "No tweets found"
 msgstr "Nessun tweet trovato"
@@ -315,7 +318,7 @@ msgstr "Questo tweet non è disponibile"
 
 #. TRANSLATORS: Insert your *actual* language here instead of English - e.g. "Ins Deutsche übersetzen" or "Traduire en français"
 msgid "Translate to English"
-msgstr ""
+msgstr "Tradurre in Italiano"
 
 msgid "Retweets"
 msgstr "Retweet"
@@ -331,13 +334,14 @@ msgstr "Dettagli tweet"
 
 #. TRANSLATORS: Used for the "via <client-name>" line in Tweet Info view when the client is blank
 msgid "an unknown client"
-msgstr ""
+msgstr "un client sconosciuto"
 
 #, c-format
 msgid "(%d unread)"
 msgid_plural "(%d unread)"
 msgstr[0] "(%d non letto)"
 msgstr[1] "(%d non letti)"
+msgstr[2] "(%d non letti)"
 
 msgid "Delete"
 msgstr "Elimina"
@@ -505,7 +509,7 @@ msgstr ""
 msgid "Invalid media file"
 msgstr "File multimediale non valido"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown error code %lld during upload: %s"
 msgstr "Codice di errore sconosciuto %lld durante il caricamento: %s"
 
@@ -521,6 +525,7 @@ msgid "%d minute ago"
 msgid_plural "%d minutes ago"
 msgstr[0] "%d minuto fa"
 msgstr[1] "%d minuti fa"
+msgstr[2] "%d minuti fa"
 
 #. TRANSLATORS: short-form "x minutes ago"
 #, c-format
@@ -532,6 +537,7 @@ msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d ora fa"
 msgstr[1] "%d ore fa"
+msgstr[2] "%d ore fa"
 
 #. TRANSLATORS: short-form "x hours ago"
 #, c-format
@@ -554,21 +560,22 @@ msgstr "%e %B %Y"
 msgid "%e %b %Y"
 msgstr "%e %b %Y"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Replying to %s"
 msgstr "Rispondendo a %s"
 
 #. TRANSLATORS: Note: "…and 1 other" should never be used because it will use the "Replying to X and Y" string
-#, fuzzy, c-format
+#, c-format
 msgid "Replying to %s and %d other"
 msgid_plural "Replying to %s and %d others"
-msgstr[0] "Rispondendo a %s e %d altri"
-msgstr[1] "Rispondendo a %s e %d altri"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #. TRANSLATORS: The first %s is a list of one or more comma-separated user names, and the second %s is the last username in the list
-#, fuzzy, c-format
+#, c-format
 msgid "Replying to %s and %s"
-msgstr "Rispondendo a %s e %s"
+msgstr "Rispondi a %s e %s"
 
 msgid "Don't have a Twitter account yet?"
 msgstr "Non hai ancora un account Twitter?"
@@ -592,6 +599,9 @@ msgid ""
 "\n"
 "Replace it?"
 msgstr ""
+"L' account %s esiste già con chiavi diverse.\n"
+"\n"
+"Sostituirlo?"
 
 msgid "Account already in use"
 msgstr "Account già in uso"
@@ -609,11 +619,10 @@ msgid "Follow"
 msgstr "Segui"
 
 msgid "Loading…"
-msgstr ""
+msgstr "Caricamento in corso…"
 
-#, fuzzy
 msgid "No entries found"
-msgstr "Nessun utente"
+msgstr "Nessuna voce trovata"
 
 msgid "Retry"
 msgstr "Riprova"
@@ -621,9 +630,8 @@ msgstr "Riprova"
 msgid "Copy URL"
 msgstr "Copia URL"
 
-#, fuzzy
 msgid "Reload image"
-msgstr "Impossibile caricare l'immagine"
+msgstr "Ricarica l'immagine"
 
 msgid "Save as…"
 msgstr "Salva come..."
@@ -648,12 +656,14 @@ msgid "Minimum width: %d pixel"
 msgid_plural "Minimum width: %d pixels"
 msgstr[0] "Larghezza minima: %d pixel"
 msgstr[1] "Larghezze minime: %d pixel"
+msgstr[2] "Larghezze minime: %d pixel"
 
 #, c-format
 msgid "Minimum height: %d pixel"
 msgid_plural "Minimum height: %d pixels"
 msgstr[0] "Altezza minima: %d pixel"
 msgstr[1] "Altezze minime: %d pixel"
+msgstr[2] "Altezze minime: %d pixel"
 
 msgid "Pick"
 msgstr "Seleziona"
@@ -663,6 +673,7 @@ msgid "Failed to load image"
 msgid_plural "Failed to load %u images"
 msgstr[0] "Impossibile caricare l'immagine"
 msgstr[1] "Carcamento immagini %u fallito."
+msgstr[2] "Carcamento immagini %u fallito."
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
 #. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
@@ -699,7 +710,7 @@ msgstr "Cita il tweet"
 
 #. TRANSLATORS: A dialog message with Yes/No options when the user closes the "compose tweet" window with content still in the dialog
 msgid "Keep tweet as draft?"
-msgstr ""
+msgstr "Mantenere il tweet come bozza?"
 
 msgid "Only one animated GIF file per tweet is allowed."
 msgstr "È consentito un solo file GIF animato per tweet."
@@ -709,6 +720,7 @@ msgid "%d character remaining"
 msgid_plural "%d characters remaining"
 msgstr[0] "%d lettera rimasta"
 msgstr[1] "%d lettere rimaste"
+msgstr[2] "%d lettere rimaste"
 
 #. TRANSLATORS: Values are current image index (1-based) and total image count. Pluralisation is based on total image count.
 #. Should only be seen when image count is two or more.
@@ -717,6 +729,7 @@ msgid "Image %d of %d"
 msgid_plural "Image %d of %d"
 msgstr[0] "Immagine %d su %d"
 msgstr[1] "Immagine %d su %d"
+msgstr[2] "Immagine %d su %d"
 
 msgid "Modify Filter"
 msgstr "Modifica filtro"
@@ -749,6 +762,9 @@ msgid ""
 "\n"
 "The URL \"%s\" will be used instead"
 msgstr ""
+"L'URL di traduzione deve contenere {SOURCE_LANG}, {TARGET_LANG} e {CONTENT} segnaposti\n"
+"\n"
+"L' URL \"%s\"verrà invece utilizzato"
 
 msgid ""
 "Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
@@ -857,10 +873,10 @@ msgid "Show favorite images"
 msgstr "Mostra le immagini preferite"
 
 msgid "Click to edit"
-msgstr ""
+msgstr "Clicca per modificare"
 
 msgid "Remove this Filter"
-msgstr ""
+msgstr "Rimuovi questo filtro"
 
 msgid "Filtered terms"
 msgstr "Parole filtrate"
@@ -869,7 +885,7 @@ msgid "Filtered users"
 msgstr "Utenti filtrati"
 
 msgid "You can block users in their profile"
-msgstr ""
+msgstr "Puoi bloccare gli utenti nel loro profilo"
 
 msgid "Users"
 msgstr "Utenti"
@@ -920,10 +936,10 @@ msgid "Add New Filter"
 msgstr "Aggiungi nuovo filtro"
 
 msgid "Regular Expression:"
-msgstr ""
+msgstr "Espressione regolare:"
 
 msgid "Test:"
-msgstr ""
+msgstr "Test:"
 
 msgid "Add New Snippet"
 msgstr "Aggiungi un nuovo snippet"
@@ -976,28 +992,26 @@ msgstr "Following"
 msgid "Use dark theme"
 msgstr "Usa il tema scuro"
 
-#, fuzzy
 msgid "Shortcut key"
-msgstr "Scorciatoie"
+msgstr "Tasto di scelta rapida"
 
 msgid "Alt"
-msgstr ""
+msgstr "Alt "
 
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 msgid "Super"
-msgstr ""
+msgstr "Super"
 
 msgid "Primary"
-msgstr ""
+msgstr "Primario"
 
-#, fuzzy
 msgid "Timelines"
-msgstr "Timeline di %s"
+msgstr "Cronologie"
 
 msgid "Show inline media"
 msgstr "Mostrare i media contenuti"
@@ -1052,23 +1066,22 @@ msgstr "Interfaccia"
 
 #. TRANSLATORS: 'Normal' font size combo box item in the settings
 msgid "Normal"
-msgstr ""
+msgstr "Normale"
 
 #. TRANSLATORS: 'Large' font size combo box item in the settings
 msgid "Large"
-msgstr ""
+msgstr "Grande"
 
 #. TRANSLATORS: 'X-Large' font size combo box item in the settings
 msgid "X-Large"
-msgstr ""
+msgstr "Molto grande"
 
 #. TRANSLATORS: 'XX-Large' font size combo box item in the settings
 msgid "XX-Large"
-msgstr ""
+msgstr "Grandissimo"
 
-#, fuzzy
 msgid "Tweet scale"
-msgstr "Tweet"
+msgstr "Scala dei tweet"
 
 msgid "Round avatars"
 msgstr "Avatar arrotondati"
@@ -1083,26 +1096,25 @@ msgid "Hide inappropriate content"
 msgstr "Contenuto inappropriato"
 
 msgid "Translation"
-msgstr ""
+msgstr "Traduzione"
 
-#, fuzzy
 msgid "Translation service"
-msgstr "Avvia servizio"
+msgstr "Servizio di traduzione"
 
 msgid "Google"
-msgstr ""
+msgstr "Google"
 
 msgid "Bing"
-msgstr ""
+msgstr "Bing"
 
 msgid "DeepL"
-msgstr ""
+msgstr "DeepL"
 
 msgid "Custom"
-msgstr ""
+msgstr "Personalizzato"
 
 msgid "Custom translation URL"
-msgstr ""
+msgstr "URL di traduzione personalizzato"
 
 msgid "No snippets configured."
 msgstr "Nessuno snippet configurato."
@@ -1159,10 +1171,9 @@ msgctxt "shortcuts window"
 msgid "Retweet"
 msgstr "Retweet"
 
-#, fuzzy
 msgctxt "shortcuts window"
 msgid "Like"
-msgstr "Preferito"
+msgstr "Mi piace"
 
 msgctxt "shortcuts window"
 msgid "Reply"
@@ -1202,9 +1213,8 @@ msgstr "Cita"
 msgid "Retweet tweet"
 msgstr "Ritwitta il tweet"
 
-#, fuzzy
 msgid "Like tweet"
-msgstr "Tweet preferito"
+msgstr "Tweet mi piace"
 
 msgid "Reply to tweet"
 msgstr "Rispondi al tweet"
@@ -1213,13 +1223,11 @@ msgid "More"
 msgstr "Altro"
 
 msgid "Translate"
-msgstr ""
+msgstr "Tradurre"
 
-#, fuzzy
 msgid "Retweet"
-msgstr "Retweet"
+msgstr "Ritwitta"
 
-#, fuzzy
 msgid "Like"
 msgstr "Mi piace"
 
@@ -1249,12 +1257,3 @@ msgstr "Creato"
 
 msgid "Subscribed to"
 msgstr "Sottoscritto a"
-
-#~ msgid "Replying to"
-#~ msgstr "Rispondendo a"
-
-#~ msgid "and"
-#~ msgstr "e"
-
-#~ msgid "Actions"
-#~ msgstr "Azioni"
