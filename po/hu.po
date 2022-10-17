@@ -74,8 +74,7 @@ msgid ""
 "Shows only the 'compose tweet' window for the given account, nothing else."
 msgstr ""
 
-#. TRANSLATORS: Used as the placeholder for the account name in the `--help`
-#. output
+#. TRANSLATORS: Used as the placeholder for the account name in the `--help` output
 msgid "account-name"
 msgstr "Fiók neve"
 
