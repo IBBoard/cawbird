@@ -329,7 +329,7 @@ msgstr "Ce tweet n'est pas disponible"
 
 #. TRANSLATORS: Insert your *actual* language here instead of English - e.g. "Ins Deutsche übersetzen" or "Traduire en français"
 msgid "Translate to English"
-msgstr "Traduire en anglais"
+msgstr "Traduire en français"
 
 msgid "Retweets"
 msgstr "Retweets"
