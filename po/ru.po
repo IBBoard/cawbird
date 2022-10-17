@@ -2,21 +2,12 @@
 # Copyright (C) YEAR 2013-2018 Timm Bäder, 2018-2020 IBBoard
 # This file is distributed under the same license as the cawbird package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 # Translators:
-# Alex Baranov <albar@joybits.org>, 2016
-# Alexander <atrigub@gmail.com>, 2016
-# Andrew Makarov, 2015
-# Dmitry Kireev <dinimito@mail.ru>, 2015
-# Egor Erastov <egor.er24@gmail.com>, 2018
-# George - <usangeorg@ya.ru>, 2018
-# Ivlev Denis <ivlevdenis.ru@gmail.com>, 2015
-# Max Koloskov <mirrherow@gmail.com>, 2015
-# Mikhail Ivanov <mivanov@mirantis.com>, 2016
-# netforhack, 2015
-# Yevgeny Kvitchenko <kvit4.ko@gmail.com>, 2017
 # Даниил Пронин <mail@grawl.ru>, 2021
-#
+# Caarmi, 2021
+# IBBoard . <github@ibboard.co.uk>, 2022
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -24,15 +15,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2022-03-05 15:27+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
-"Last-Translator: Даниил Пронин <mail@grawl.ru>, 2021\n"
+"Last-Translator: IBBoard . <github@ibboard.co.uk>, 2022\n"
 "Language-Team: Russian (https://www.transifex.com/cawbird/teams/107135/ru/)\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 msgid "Cawbird"
 msgstr "Cawbird"
@@ -41,15 +30,15 @@ msgid "Twitter Client"
 msgstr "Клиент для Твиттера"
 
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as "
-"Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
 "Cawbird это клиент для Твиттера в оболочке GTK+, который умеет отправлять "
 "личные сообщения, уведомления и личные сообщения в беседах."
 
 msgid ""
-"Additional features include local viewing of videos, multiple inline images, "
-"Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images,"
+" Lists, Filters, multiple accounts, etc."
 msgstr ""
 "Также можно: смотреть видео и изображения, настраивать списки и фильтры, "
 "несколько профилей и т.д."
@@ -76,7 +65,8 @@ msgstr "IBBoard"
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Пользуйтесь Твиттером как обычным приложением"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;"
 
@@ -86,19 +76,23 @@ msgid ""
 msgstr ""
 "Показываем только окно 'Написать твит' для этого профиля, и ничего больше."
 
-#. TRANSLATORS: Used as the placeholder for the account name in the `--help` output
+#. TRANSLATORS: Used as the placeholder for the account name in the `--help`
+#. output
 msgid "account-name"
 msgstr "account-name"
 
-#. TRANSLATORS: Description of the `--start-service` option for the command-line
+#. TRANSLATORS: Description of the `--start-service` option for the command-
+#. line
 msgid "Start service"
 msgstr "Запустить службу"
 
-#. TRANSLATORS: Description of the `--stop-service` option for the command-line
+#. TRANSLATORS: Description of the `--stop-service` option for the command-
+#. line
 msgid "Stop service, if it has been started as a service"
 msgstr "Остановить, если запущено как служба"
 
-#. TRANSLATORS: Description of the `--print-startup-accounts` option for the command-line
+#. TRANSLATORS: Description of the `--print-startup-accounts` option for the
+#. command-line
 msgid "Print configured startup accounts"
 msgstr "Напечатать настроенные профили автозапуска"
 
@@ -160,13 +154,11 @@ msgstr "Новое сообщение от %s"
 msgid "Direct Messages"
 msgstr "Личные сообщения"
 
-#, fuzzy
 msgid "Liked tweets timeline"
-msgstr "Лента избранного"
+msgstr ""
 
-#, fuzzy
 msgid "Likes"
-msgstr "Избранные"
+msgstr ""
 
 msgid "Add new Filter"
 msgstr "Добавить новый фильтр"
@@ -196,7 +188,8 @@ msgstr[3] "%d новых твитов!"
 msgid "Home"
 msgstr "Домой"
 
-#. TRANSLATORS: "%s" is the user's name for the list - e.g. "Contributors" when looking at https://twitter.com/i/lists/1285277968676331522
+#. TRANSLATORS: "%s" is the user's name for the list - e.g. "Contributors"
+#. when looking at https://twitter.com/i/lists/1285277968676331522
 #, c-format
 msgid "%s list tweets"
 msgstr "Твиты из списка %s"
@@ -262,17 +255,20 @@ msgstr[3] "Читает %d профилей"
 msgid "Location: %s"
 msgstr "Местоположение: %s"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile
+#. timeline view
 #, c-format
 msgid "%s timeline"
 msgstr "Лента %s"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of
+#. users following the user
 #, c-format
 msgid "%s followers"
 msgstr "%s подписчиков"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of
+#. users followed by the user
 #, c-format
 msgid "%s following"
 msgstr "%s читает"
@@ -323,7 +319,8 @@ msgstr "Этот твит скрыт его автором"
 msgid "This tweet is unavailable"
 msgstr "Этот твит недоступен"
 
-#. TRANSLATORS: Insert your *actual* language here instead of English - e.g. "Ins Deutsche übersetzen" or "Traduire en français"
+#. TRANSLATORS: Insert your *actual* language here instead of English - e.g.
+#. "Ins Deutsche übersetzen" or "Traduire en français"
 msgid "Translate to English"
 msgstr "Перевести на Русский"
 
@@ -339,9 +336,10 @@ msgstr "Источник"
 msgid "Tweet Details"
 msgstr "Подробности твита"
 
-#. TRANSLATORS: Used for the "via <client-name>" line in Tweet Info view when the client is blank
+#. TRANSLATORS: Used for the "via <client-name>" line in Tweet Info view when
+#. the client is blank
 msgid "an unknown client"
-msgstr ""
+msgstr "неизвестный клиент"
 
 #, c-format
 msgid "(%d unread)"
@@ -416,7 +414,8 @@ msgid "No status found with that ID."
 msgstr "Твит с таким ID не найден."
 
 msgid "You cannot send messages to users who are not following you."
-msgstr "Вы не можете отправить сообщение человеку, который на вас не подписан."
+msgstr ""
+"Вы не можете отправить сообщение человеку, который на вас не подписан."
 
 msgid "There was an error sending your message."
 msgstr "При отправке сообщения произошла ошибка."
@@ -477,8 +476,8 @@ msgid "A media id was not found."
 msgstr "ID медиафайла не найден."
 
 msgid ""
-"To protect our users from spam and other malicious activity, this account is "
-"temporarily locked."
+"To protect our users from spam and other malicious activity, this account is"
+" temporarily locked."
 msgstr ""
 "В целях защиты от спама и других подозрительных действий, этот профиль "
 "временно заблокирован."
@@ -551,39 +550,45 @@ msgstr[3] "%d часов назад"
 msgid "%dh"
 msgstr "%dч"
 
-#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from this year - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B"
 msgstr "%e %B"
 
-#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from this year - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b"
 msgstr "%e %b"
 
-#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from previous years - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B %Y"
 msgstr "%e %B %Y"
 
-#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from previous years - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b %Y"
 msgstr "%e %b %Y"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Replying to %s"
-msgstr "Отвечает на твит"
+msgstr "Ответ %s"
 
-#. TRANSLATORS: Note: "…and 1 other" should never be used because it will use the "Replying to X and Y" string
-#, fuzzy, c-format
+#. TRANSLATORS: Note: "…and 1 other" should never be used because it will use
+#. the "Replying to X and Y" string
+#, c-format
 msgid "Replying to %s and %d other"
 msgid_plural "Replying to %s and %d others"
-msgstr[0] "и %d других"
-msgstr[1] "и %d других"
-msgstr[2] "и %d других"
-msgstr[3] "и %d других"
+msgstr[0] "Ответ %s и еще %d людям"
+msgstr[1] "Ответ %s и еще %d людям"
+msgstr[2] "Ответ %s и еще %d людям"
+msgstr[3] "Ответ %s и еще %d людям"
 
-#. TRANSLATORS: The first %s is a list of one or more comma-separated user names, and the second %s is the last username in the list
-#, fuzzy, c-format
+#. TRANSLATORS: The first %s is a list of one or more comma-separated user
+#. names, and the second %s is the last username in the list
+#, c-format
 msgid "Replying to %s and %s"
-msgstr "Отвечает на твит"
+msgstr "Ответ %s и %s"
 
 msgid "Don't have a Twitter account yet?"
 msgstr "Ещё нет профиля в Твиттере?"
@@ -624,11 +629,10 @@ msgid "Follow"
 msgstr "Подписаться"
 
 msgid "Loading…"
-msgstr ""
+msgstr "Загрузка…"
 
-#, fuzzy
 msgid "No entries found"
-msgstr "Пользователи не найдены"
+msgstr "Нет записей"
 
 msgid "Retry"
 msgstr "Повтор"
@@ -636,9 +640,8 @@ msgstr "Повтор"
 msgid "Copy URL"
 msgstr "Копировать URL"
 
-#, fuzzy
 msgid "Reload image"
-msgstr "Не удалось загрузить изображение"
+msgstr ""
 
 msgid "Save as…"
 msgstr "Сохранить как…"
@@ -686,7 +689,8 @@ msgstr[2] "Не удалось загрузить %u изображений"
 msgstr[3] "Не удалось загрузить %u изображений"
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
+#. <path>, <path>"
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -718,7 +722,8 @@ msgstr ""
 msgid "Quote tweet"
 msgstr "Цитировать твит"
 
-#. TRANSLATORS: A dialog message with Yes/No options when the user closes the "compose tweet" window with content still in the dialog
+#. TRANSLATORS: A dialog message with Yes/No options when the user closes the
+#. "compose tweet" window with content still in the dialog
 msgid "Keep tweet as draft?"
 msgstr ""
 
@@ -733,7 +738,8 @@ msgstr[1] "%d знака осталось"
 msgstr[2] "%d знаков осталсь"
 msgstr[3] "%d знаков осталось"
 
-#. TRANSLATORS: Values are current image index (1-based) and total image count. Pluralisation is based on total image count.
+#. TRANSLATORS: Values are current image index (1-based) and total image
+#. count. Pluralisation is based on total image count.
 #. Should only be seen when image count is two or more.
 #, c-format
 msgid "Image %d of %d"
@@ -769,14 +775,14 @@ msgstr "Сниппет уже существует"
 
 #, c-format
 msgid ""
-"Translation URL must contain {SOURCE_LANG}, {TARGET_LANG} and {CONTENT} "
-"placeholders\n"
+"Translation URL must contain {SOURCE_LANG}, {TARGET_LANG} and {CONTENT} placeholders\n"
 "\n"
 "The URL \"%s\" will be used instead"
 msgstr ""
 
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
+"#newisalwaysbetter"
 msgstr ""
 "Привет, появилась новая версия #Cawbird! \\ (•◡•) / #cool #newisalwaysbetter"
 
@@ -884,7 +890,7 @@ msgid "Click to edit"
 msgstr ""
 
 msgid "Remove this Filter"
-msgstr ""
+msgstr "Удалить этот фильтр"
 
 msgid "Filtered terms"
 msgstr "Отфильтрованные темы"
@@ -944,10 +950,10 @@ msgid "Add New Filter"
 msgstr "Добавить новый фильтр"
 
 msgid "Regular Expression:"
-msgstr ""
+msgstr "Регулярное выражение:"
 
 msgid "Test:"
-msgstr ""
+msgstr "Проверка:"
 
 msgid "Add New Snippet"
 msgstr "Добавить новый сниппет"
@@ -1000,28 +1006,26 @@ msgstr "Подписан"
 msgid "Use dark theme"
 msgstr "Использовать тёмную тему"
 
-#, fuzzy
 msgid "Shortcut key"
-msgstr "Горячие клавиши"
+msgstr "Горячая клавиша"
 
 msgid "Alt"
-msgstr ""
+msgstr "Alt"
 
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 msgid "Super"
-msgstr ""
+msgstr "Super"
 
 msgid "Primary"
 msgstr ""
 
-#, fuzzy
 msgid "Timelines"
-msgstr "Лента %s"
+msgstr ""
 
 msgid "Show inline media"
 msgstr "Показать встроенные медиа"
@@ -1112,16 +1116,16 @@ msgid "Translation service"
 msgstr "Служба переводов"
 
 msgid "Google"
-msgstr ""
+msgstr "Google"
 
 msgid "Bing"
-msgstr ""
+msgstr "Bing"
 
 msgid "DeepL"
-msgstr ""
+msgstr "DeepL"
 
 msgid "Custom"
-msgstr ""
+msgstr "Другая"
 
 msgid "Custom translation URL"
 msgstr "Настроить ссылку для переводов"
@@ -1179,10 +1183,9 @@ msgctxt "shortcuts window"
 msgid "Retweet"
 msgstr "Ретвит"
 
-#, fuzzy
 msgctxt "shortcuts window"
 msgid "Like"
-msgstr "Избранные"
+msgstr ""
 
 msgctxt "shortcuts window"
 msgid "Reply"
@@ -1222,9 +1225,8 @@ msgstr "Цитата"
 msgid "Retweet tweet"
 msgstr "Ретвитнуть"
 
-#, fuzzy
 msgid "Like tweet"
-msgstr "В избранное"
+msgstr ""
 
 msgid "Reply to tweet"
 msgstr "Ответить"
@@ -1235,13 +1237,11 @@ msgstr "Ещё"
 msgid "Translate"
 msgstr "Перевести"
 
-#, fuzzy
 msgid "Retweet"
-msgstr "Ретвит"
+msgstr ""
 
-#, fuzzy
 msgid "Like"
-msgstr "В избранное"
+msgstr ""
 
 msgid "Reply"
 msgstr "Ответить"
@@ -1269,9 +1269,3 @@ msgstr "Создан"
 
 msgid "Subscribed to"
 msgstr "Подписан"
-
-#~ msgid "Replying to"
-#~ msgstr "Отвечает на твит"
-
-#~ msgid "and"
-#~ msgstr "и"
