@@ -1,23 +1,25 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Timm Bäder
+# Copyright (C) YEAR 2013-2018 Timm Bäder, 2018-2020 IBBoard
 # This file is distributed under the same license as the cawbird package.
-#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
 # Translators:
-# Kim Malmo <berencamlost@msn.com>, 2018
-# Åka Sikrom, 2016-2017
+# IBBoard . <github@ibboard.co.uk>, 2020
+# S.R. <rosteff@gmail.com>, 2021
+# 
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: cawbird\n"
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2022-03-05 15:27+0000\n"
-"PO-Revision-Date: 2018-02-09 06:34+0000\n"
-"Last-Translator: Kim Malmo <berencamlost@msn.com>\n"
-"Language-Team: Norwegian Bokmål (http://www.transifex.com/cawbird/cawbird/"
-"language/nb/)\n"
-"Language: nb\n"
+"PO-Revision-Date: 2020-02-05 20:32+0000\n"
+"Last-Translator: S.R. <rosteff@gmail.com>, 2021\n"
+"Language-Team: Norwegian Bokmål (https://www.transifex.com/cawbird/teams/107135/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Cawbird"
@@ -27,15 +29,15 @@ msgid "Twitter Client"
 msgstr "Twitter-klient"
 
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as "
-"Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as"
+" Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
 "Cawbird er en GTK+-basert Twitter-klient som tilbyr viktige funksjoner som "
 "direktemeldinger, tweet-varslinger og samtalevisning."
 
 msgid ""
-"Additional features include local viewing of videos, multiple inline images, "
-"Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images,"
+" Lists, Filters, multiple accounts, etc."
 msgstr ""
 "Du kan også se videoer, flerbilde-tweets, lister, filtre og bruke ulike "
 "kontoer samtidig i programmet."
@@ -53,6 +55,8 @@ msgid ""
 "Cawbird in different themes (Adwaita, Adwaita dark variant, High Contrast "
 "and Adwaita Dark Green)"
 msgstr ""
+"Cawbird i forskjellige temaer (Adwaita, Adwaita mørk variant, høy kontrast "
+"og Adwaita mørk grønn)"
 
 msgid "IBBoard"
 msgstr "IBBoard"
@@ -60,7 +64,8 @@ msgstr "IBBoard"
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Bruk Twitter som et vanlig skrivebordsprogram"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;"
 
@@ -68,35 +73,39 @@ msgstr "twitter;"
 msgid ""
 "Shows only the 'compose tweet' window for the given account, nothing else."
 msgstr ""
+"Viser kun det vinduet \"komponer tweet\" for den bestemte kontoen, ingenting"
+" annet."
 
-#. TRANSLATORS: Used as the placeholder for the account name in the `--help` output
+#. TRANSLATORS: Used as the placeholder for the account name in the `--help`
+#. output
 msgid "account-name"
-msgstr ""
+msgstr "konto-navn"
 
-#. TRANSLATORS: Description of the `--start-service` option for the command-line
+#. TRANSLATORS: Description of the `--start-service` option for the command-
+#. line
 msgid "Start service"
-msgstr ""
+msgstr "Start tjeneste"
 
-#. TRANSLATORS: Description of the `--stop-service` option for the command-line
+#. TRANSLATORS: Description of the `--stop-service` option for the command-
+#. line
 msgid "Stop service, if it has been started as a service"
-msgstr ""
+msgstr "Stopp tjenesten, hvis den har blitt startet som en tjeneste"
 
-#. TRANSLATORS: Description of the `--print-startup-accounts` option for the command-line
-#, fuzzy
+#. TRANSLATORS: Description of the `--print-startup-accounts` option for the
+#. command-line
 msgid "Print configured startup accounts"
-msgstr "Vis oppsatte kontoer"
+msgstr "Print konfigurerte oppstart kontoer"
 
 #. TRANSLATORS: Description of the `--account` option for the command-line
 msgid "Open the window for the given account"
-msgstr ""
+msgstr "Åpne vinduet for den gitte kontoen"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Direct messages with %s"
-msgstr "Direktemeldinger"
+msgstr "Direkte meldinger med %s"
 
-#, fuzzy
 msgid "Select Media"
-msgstr "Velg bild"
+msgstr "Velg Medie"
 
 msgid "Open"
 msgstr "Åpne"
@@ -104,33 +113,33 @@ msgstr "Åpne"
 msgid "Cancel"
 msgstr "Avbryt"
 
-#, fuzzy
 msgid "Selected file is not an image or video."
-msgstr "Valgte fil er ikke et bilde."
+msgstr "Den valgte filen er ikke et bilde eller en video."
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The selected video is too big. The maximum file size per video is %'d MB"
-msgstr "Valgt bilde er for stort. Maksimal filstørrelse per bilde er %'d MB"
+msgstr ""
+"Den valgte videoen er for stor. Den største filstørrelsen for hver video er "
+"%`d MB"
 
 #, c-format
 msgid ""
 "The selected image is too big. The maximum file size per image is %'d MB"
 msgstr "Valgt bilde er for stort. Maksimal filstørrelse per bilde er %'d MB"
 
-#, fuzzy, c-format
+#, c-format
 msgid "The selected GIF is too big. The maximum file size per GIF is %'d MB"
-msgstr "Valgt bilde er for stort. Maksimal filstørrelse per bilde er %'d MB"
+msgstr "Valgt GIF er for stor. Maks filstørrelse for hver  GIF er %`d  MB"
 
 msgid "Insert Emoji"
-msgstr ""
+msgstr "Sett inn Emoji"
 
 msgid "Direct Conversation"
 msgstr "Direktesamtale"
 
-#, fuzzy
 msgid "Direct message threads"
-msgstr "Direktemeldinger"
+msgstr "Direkte melding tråder"
 
 #, c-format
 msgid "%d new Message from %s"
@@ -145,13 +154,11 @@ msgstr "Ny direktemelding fra %s"
 msgid "Direct Messages"
 msgstr "Direktemeldinger"
 
-#, fuzzy
 msgid "Liked tweets timeline"
-msgstr "Merk tweet som favoritt"
+msgstr "likte tweet tidslinje"
 
-#, fuzzy
 msgid "Likes"
-msgstr "Favoritter"
+msgstr "Liker"
 
 msgid "Add new Filter"
 msgstr "Legg til nytt filter"
@@ -159,9 +166,8 @@ msgstr "Legg til nytt filter"
 msgid "Filters"
 msgstr "Filtre"
 
-#, fuzzy
 msgid "Home timeline"
-msgstr "Skjul fra tidslinje"
+msgstr "Hjem tidslinje"
 
 #, c-format
 msgid "%s retweeted %s"
@@ -180,10 +186,11 @@ msgstr[1] "%d nye tweets!"
 msgid "Home"
 msgstr "Hjem"
 
-#. TRANSLATORS: "%s" is the user's name for the list - e.g. "Contributors" when looking at https://twitter.com/i/lists/1285277968676331522
-#, fuzzy, c-format
+#. TRANSLATORS: "%s" is the user's name for the list - e.g. "Contributors"
+#. when looking at https://twitter.com/i/lists/1285277968676331522
+#, c-format
 msgid "%s list tweets"
-msgstr "%s tweetet"
+msgstr "1%s liste tweets"
 
 msgid "Private"
 msgstr "Privat"
@@ -203,9 +210,8 @@ msgstr "Skriv tweet"
 msgid "Add new Account"
 msgstr "Legg til ny konto"
 
-#, fuzzy
 msgid "Mentions timeline"
-msgstr "Skjul fra tidslinje"
+msgstr "Nevnt tidslinje"
 
 #, c-format
 msgid "%s mentioned %s"
@@ -227,85 +233,88 @@ msgstr "Beskyttet profil"
 msgid "Tweet to @%s"
 msgstr "Tweet til @%s"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%d tweet"
 msgid_plural "%d tweets"
-msgstr[0] "%s tweetet"
-msgstr[1] "%s tweetet"
+msgstr[0] ""
+msgstr[1] ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Following %d account"
 msgid_plural "Following %d accounts"
-msgstr[0] "Følger"
-msgstr[1] "Følger"
+msgstr[0] ""
+msgstr[1] ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Location: %s"
-msgstr "Varslinger"
+msgstr "Lokalasjon %s"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
-#, fuzzy, c-format
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile
+#. timeline view
+#, c-format
 msgid "%s timeline"
-msgstr "Skjul fra tidslinje"
+msgstr "%s tidslinje"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
-#, fuzzy, c-format
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of
+#. users following the user
+#, c-format
 msgid "%s followers"
-msgstr "Følgere"
+msgstr "%s følgere"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
-#, fuzzy, c-format
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of
+#. users followed by the user
+#, c-format
 msgid "%s following"
-msgstr "Følger"
+msgstr "%s følger"
 
 msgid "Protected Profile"
 msgstr "Beskyttet profil"
 
 msgid "User is blocked"
-msgstr ""
+msgstr "Bruker er blokkert"
 
 msgid "User is muted"
-msgstr ""
+msgstr "Bruker er på lydløs"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%d follower"
 msgid_plural "%d followers"
-msgstr[0] "Følgere"
-msgstr[1] "Følgere"
+msgstr[0] ""
+msgstr[1] ""
 
-#, fuzzy
 msgid "No tweets found"
-msgstr "Fant ingen elementer"
+msgstr "Ingen tweets funnet"
 
 msgid "No users found"
 msgstr "Fant ingen brukere"
 
 #, c-format
 msgid "Users matching \"%s\""
-msgstr ""
+msgstr "make brukere\"1%s\""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Tweets matching \"%s\""
-msgstr "Tweet til @%s"
+msgstr "make tweets\"%s\""
 
 msgid "Search"
 msgstr "Søk"
 
 msgid "Load More"
-msgstr ""
+msgstr "Last mer"
 
 msgid "Could not show tweet"
 msgstr "Klarte ikke å vise tweet"
 
 msgid "This tweet is hidden by the author"
-msgstr ""
+msgstr "Denne tweeten er gjemt av forfatter"
 
 msgid "This tweet is unavailable"
-msgstr ""
+msgstr "Denne tweeten er utilgjengelig"
 
-#. TRANSLATORS: Insert your *actual* language here instead of English - e.g. "Ins Deutsche übersetzen" or "Traduire en français"
+#. TRANSLATORS: Insert your *actual* language here instead of English - e.g.
+#. "Ins Deutsche übersetzen" or "Traduire en français"
 msgid "Translate to English"
-msgstr ""
+msgstr "Oversett til Engelsk"
 
 msgid "Retweets"
 msgstr "Retweets"
@@ -319,9 +328,10 @@ msgstr "Kilde"
 msgid "Tweet Details"
 msgstr "Tweet-detaljer"
 
-#. TRANSLATORS: Used for the "via <client-name>" line in Tweet Info view when the client is blank
+#. TRANSLATORS: Used for the "via <client-name>" line in Tweet Info view when
+#. the client is blank
 msgid "an unknown client"
-msgstr ""
+msgstr "en ukjent klient"
 
 #, c-format
 msgid "(%d unread)"
@@ -333,13 +343,12 @@ msgid "Delete"
 msgstr "Slett"
 
 #. TRANSLATORS: replacements are name and handle (without the "@")
-#, fuzzy, c-format
+#, c-format
 msgid "Retweeted by %s (@%s)"
-msgstr "Retweet"
+msgstr "Retweetet av 1%s (@1%s)"
 
-#, fuzzy
 msgid "Are you sure you want to delete this tweet?"
-msgstr "Er du sikker på at du vil slette denne kontoen?"
+msgstr "Er du sikker på at  du vil slette denne tweeten?"
 
 #, c-format
 msgid "Block %s"
@@ -351,154 +360,159 @@ msgstr "Denne tweet-en inneholder bilder som er merket som upassende"
 msgid "Show anyway"
 msgstr "Vis likevel"
 
-#, fuzzy
 msgid "Could not authenticate you"
-msgstr "Klarte ikke å åpne %s"
+msgstr "Kunne ikke autentisere deg"
 
 msgid "Sorry, that page does not exist"
-msgstr ""
+msgstr "Beklager, den siden finnes ikke"
 
-#, fuzzy
 msgid "User not found."
-msgstr "Fant ingen brukere"
+msgstr "Bruker ikke funnet."
 
 msgid "User has been suspended."
-msgstr ""
+msgstr "Bruker har blitt suspendert."
 
 msgid "Your account is suspended and is not permitted to access this feature"
-msgstr ""
+msgstr "Din konto er suspendert og er ikke tillatt adgang til inholdet"
 
 msgid "Rate limit exceeded"
-msgstr ""
+msgstr "Rate grense overtrått"
 
 msgid "Invalid or expired token"
-msgstr ""
+msgstr "Ugyldig eller utdatert token"
 
 msgid "The specified user is not a subscriber of this list."
-msgstr ""
+msgstr "Den spesifikke brukeren er ikke en abonnent av denne listen"
 
 msgid "The user you are trying to remove from the list is not a member."
-msgstr ""
+msgstr "Brukeren du prøver å fjerne fra listen er ikke et medlem."
 
 msgid "Account update failed: value is too long."
-msgstr ""
+msgstr "Konto oppdatering feilet: verdi er for lang."
 
 msgid "Over capacity"
-msgstr ""
+msgstr "Over kapasitet"
 
-#, fuzzy
 msgid "Internal error"
-msgstr "Grensesnitt"
+msgstr "Intern feil"
 
 msgid "You have already favorited this status."
-msgstr ""
+msgstr "Du har allerede favorisert denne statusen."
 
 msgid "No status found with that ID."
-msgstr ""
+msgstr "Ingen status funnet med denne ID."
 
 msgid "You cannot send messages to users who are not following you."
-msgstr ""
+msgstr "Du kan ikke sende meldinger til brukere som ikke følger deg."
 
 msgid "There was an error sending your message."
-msgstr ""
+msgstr "Det var en feil ved sending av din melding."
 
 msgid "You've already requested to follow this user."
-msgstr ""
+msgstr "Du har allerede bedt om å følge denne brukeren."
 
 msgid "You are unable to follow more people at this time"
-msgstr ""
+msgstr "Du kan ikke følge flere folk akkurat nå"
 
 msgid "Sorry, you are not authorized to see this status"
-msgstr ""
+msgstr "Beklager, du er ikke autorisert til å  se denne statusen "
 
 msgid "User is over daily status update limit"
-msgstr ""
+msgstr "Bruker er over daglig status oppdateringsgrense"
 
 msgid "Tweet needs to be a bit shorter."
-msgstr ""
+msgstr "Tweeten trenger å være litt kortere."
 
 msgid "Status is a duplicate"
-msgstr ""
+msgstr "Status er en duplikat"
 
 msgid "Owner must allow dms from anyone."
-msgstr ""
+msgstr "Bruker må tillate dms fra alle"
 
 msgid "Bad authentication data"
-msgstr ""
+msgstr "Svak autentifikasjon data"
 
 msgid "Your credentials do not allow access to this resource."
-msgstr ""
+msgstr "Din legitimasjon  tillates  ikke tilgang denne ressurs"
 
 msgid ""
 "This request looks like it might be automated. To protect our users from "
 "spam and other malicious activity, we can’t complete this action right now."
 msgstr ""
+"Det du ber om ser ut til å være automatisert. For å beskytte våre brukere "
+"fra spam og andre ondsinnede aktiviteter, kan vi ikke fullføre denne "
+"handlingen akkurat nå."
 
 msgid "User must verify login"
-msgstr ""
+msgstr "Bruker må verifisere innlogging "
 
 msgid "Application cannot perform write actions."
-msgstr ""
+msgstr "Applikasjonen kan ikke utføre skrive handling."
 
 msgid "You can’t mute yourself."
-msgstr ""
+msgstr "Du kan ikke gjøre deg selv lydløs."
 
 msgid "You are not muting the specified user."
-msgstr ""
+msgstr "Du har ikke satt lydløs på  spesifiserte brukeren."
 
 msgid "Animated GIFs are not allowed when uploading multiple images."
 msgstr ""
+"Animerte GIFs er ikke tillatt når det lastes opp flere bilder samtidig."
 
 msgid "The validation of media ids failed."
-msgstr ""
+msgstr "Validasjonen av medie idene feilet."
 
 msgid "A media id was not found."
-msgstr ""
+msgstr "En medie id ble ikke funnet."
 
 msgid ""
-"To protect our users from spam and other malicious activity, this account is "
-"temporarily locked."
+"To protect our users from spam and other malicious activity, this account is"
+" temporarily locked."
 msgstr ""
+"For å beskytte våre brukere fra spam og ondsinnet aktivitet, denne kontoen "
+"er midlertidig låst"
 
 msgid "You have already retweeted this Tweet."
-msgstr ""
+msgstr "Du har allerede retweetet denne Tweeten."
 
 msgid "You cannot send messages to this user."
-msgstr ""
+msgstr "Du kan ikke sende melding er til denne brukeren. "
 
 msgid "The text of your direct message is over the max character limit."
-msgstr ""
+msgstr "Teksten i din direktemelding er over maks bokstav  grense."
 
-#, fuzzy
 msgid "Subscription already exists."
-msgstr "Kodesnutt finnes allerede"
+msgstr "Abonnent finnes allerede."
 
 msgid ""
 "You attempted to reply to a Tweet that is deleted or not visible to you."
 msgstr ""
+"Du prøvde å svare på en tweet som er fjernet eller er ikke synlig for deg."
 
 msgid "The Tweet exceeds the number of allowed attachment types."
-msgstr ""
+msgstr "Tweeten overskred mengden av tillatte vedheng typer."
 
 msgid "The given URL is invalid."
-msgstr ""
+msgstr "Denne  URL er ikke gyldig."
 
 msgid "Invalid / suspended application"
-msgstr ""
+msgstr "Ugyldig / suspendert applikasjon"
 
 msgid "The original Tweet author restricted who can reply to this Tweet."
 msgstr ""
+"Den orginale tweet forfatteren har begrenset hvem som kan svare på denne "
+"tweeten. "
 
 msgid "Invalid media file"
-msgstr ""
+msgstr "Ugyldig mediefil"
 
 #, c-format
 msgid "Unknown error code %lld during upload: %s"
-msgstr ""
+msgstr "Ukjent feil kode %lld ved opplasting:%s"
 
 #, c-format
 msgid "Unknown error code %lld during upload"
-msgstr ""
+msgstr "Ukjent  feil kode %lld ved opplasting"
 
 msgid "Now"
 msgstr "Nå"
@@ -525,37 +539,43 @@ msgstr[1] ""
 msgid "%dh"
 msgstr "%dh"
 
-#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from this year - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B"
 msgstr ""
 
-#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from this year - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b"
 msgstr ""
 
-#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from previous years - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B %Y"
 msgstr ""
 
-#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from previous years - see
+#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b %Y"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Replying to %s"
-msgstr "Svarer %s"
+msgstr "Svarer til %s"
 
-#. TRANSLATORS: Note: "…and 1 other" should never be used because it will use the "Replying to X and Y" string
-#, fuzzy, c-format
+#. TRANSLATORS: Note: "…and 1 other" should never be used because it will use
+#. the "Replying to X and Y" string
+#, c-format
 msgid "Replying to %s and %d other"
 msgid_plural "Replying to %s and %d others"
-msgstr[0] "Svarer %s og %d andre"
-msgstr[1] "Svarer %s og %d andre"
+msgstr[0] ""
+msgstr[1] ""
 
-#. TRANSLATORS: The first %s is a list of one or more comma-separated user names, and the second %s is the last username in the list
-#, fuzzy, c-format
+#. TRANSLATORS: The first %s is a list of one or more comma-separated user
+#. names, and the second %s is the last username in the list
+#, c-format
 msgid "Replying to %s and %s"
-msgstr "Svarer %s og %s"
+msgstr ""
 
 msgid "Don't have a Twitter account yet?"
 msgstr "Har du ikke en Twitter-konto enda?"
@@ -587,7 +607,7 @@ msgid "Failed to retrieve access token"
 msgstr ""
 
 msgid "Select Image"
-msgstr "Velg bild"
+msgstr "Velg bilde"
 
 msgid "Unfollow"
 msgstr "Avfølg"
@@ -596,11 +616,10 @@ msgid "Follow"
 msgstr "Følg"
 
 msgid "Loading…"
-msgstr "Laster inn …"
+msgstr "Laster..."
 
-#, fuzzy
 msgid "No entries found"
-msgstr "Fant ingen brukere"
+msgstr "Ingen inganger funnet"
 
 msgid "Retry"
 msgstr "Prøv på nyt"
@@ -609,7 +628,7 @@ msgid "Copy URL"
 msgstr "Kopier nettadresse"
 
 msgid "Reload image"
-msgstr ""
+msgstr "Last bilde på nytt"
 
 msgid "Save as…"
 msgstr "Lagre som …"
@@ -651,10 +670,11 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
+#. <path>, <path>"
 #, c-format
 msgid "%s: %s"
-msgstr ""
+msgstr "%s:%s"
 
 msgid "Back"
 msgstr "Tilbake"
@@ -666,6 +686,9 @@ msgid ""
 "\n"
 "Save unsent tweet?"
 msgstr ""
+"Feilet å  få tak i sitert tweet1%s \n"
+"\n"
+"lagre usendt tweet?"
 
 #, c-format
 msgid ""
@@ -673,17 +696,20 @@ msgid ""
 "\n"
 "Save unsent tweet?"
 msgstr ""
+"Feilet å få tak i svar tweet 1%s\n"
+"\n"
+"lagre usendt tweet?"
 
 msgid "Quote tweet"
 msgstr "Siter tweet"
 
-#. TRANSLATORS: A dialog message with Yes/No options when the user closes the "compose tweet" window with content still in the dialog
+#. TRANSLATORS: A dialog message with Yes/No options when the user closes the
+#. "compose tweet" window with content still in the dialog
 msgid "Keep tweet as draft?"
-msgstr ""
+msgstr "Behold tweet som kladd"
 
-#, fuzzy
 msgid "Only one animated GIF file per tweet is allowed."
-msgstr "Du kan bare legge til én GIF-fil per tweet."
+msgstr "Kun en animert GIF fil per tweet er tillatt."
 
 #, c-format
 msgid "%d character remaining"
@@ -691,7 +717,8 @@ msgid_plural "%d characters remaining"
 msgstr[0] ""
 msgstr[1] ""
 
-#. TRANSLATORS: Values are current image index (1-based) and total image count. Pluralisation is based on total image count.
+#. TRANSLATORS: Values are current image index (1-based) and total image
+#. count. Pluralisation is based on total image count.
 #. Should only be seen when image count is two or more.
 #, c-format
 msgid "Image %d of %d"
@@ -725,15 +752,15 @@ msgstr "Kodesnutt finnes allerede"
 
 #, c-format
 msgid ""
-"Translation URL must contain {SOURCE_LANG}, {TARGET_LANG} and {CONTENT} "
-"placeholders\n"
+"Translation URL must contain {SOURCE_LANG}, {TARGET_LANG} and {CONTENT} placeholders\n"
 "\n"
 "The URL \"%s\" will be used instead"
 msgstr ""
 
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
-msgstr "Sjekk ut den nye versjonen av #Cawbird ! \\ (•◡•) / #cool"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
+"#newisalwaysbetter"
+msgstr "Hei, sjekk ut denne nye versjonen av #Cawbird ! \\ (•◡•) / #cool"
 
 msgid "Add to or Remove User From List"
 msgstr "Legg til eller fjern bruker fra liste"
@@ -778,88 +805,83 @@ msgstr "Nettside"
 msgid "Autostart"
 msgstr "Autostart"
 
-#, fuzzy
 msgid "Remove Account"
-msgstr "Slett"
+msgstr "Fjern konto"
 
-#, fuzzy
 msgid "Do you really want to remove this account?"
-msgstr "Er du sikker på at du vil slette denne kontoen?"
+msgstr "Vil du virkelig fjerne denne kontoen?"
 
 msgctxt "emoji category"
 msgid "Smileys & People"
-msgstr ""
+msgstr "Smilefjes og folk"
 
 msgctxt "emoji category"
 msgid "Body & Clothing"
-msgstr ""
+msgstr "Kropp og Bekledning"
 
 msgctxt "emoji category"
 msgid "Animals & Nature"
-msgstr ""
+msgstr "Dyr og Natur"
 
 msgctxt "emoji category"
 msgid "Food & Drink"
-msgstr ""
+msgstr "Mat og Drikke"
 
 msgctxt "emoji category"
 msgid "Travel & Places"
-msgstr ""
+msgstr "Reise og Steder"
 
 msgctxt "emoji category"
 msgid "Activities"
-msgstr ""
+msgstr "Aktiviteter"
 
 msgctxt "emoji category"
 msgid "Objects"
-msgstr ""
+msgstr "Gjenstander"
 
 msgctxt "emoji category"
 msgid "Symbols"
-msgstr ""
+msgstr "Symboler"
 
 msgctxt "emoji category"
 msgid "Flags"
-msgstr ""
+msgstr "Flagg"
 
 msgid "No Results Found"
-msgstr ""
+msgstr "Ingen resultat funnet"
 
 msgid "Try a different search"
-msgstr ""
+msgstr "Prøv et annet søk"
 
 msgid "Send"
 msgstr "Send"
 
 msgid "Add Media"
-msgstr ""
+msgstr "Legg til medie"
 
 msgid "Show favorite images"
 msgstr "Vis favorittbilder"
 
 msgid "Click to edit"
-msgstr ""
+msgstr "Kikk for å endre"
 
 msgid "Remove this Filter"
-msgstr ""
+msgstr "Fjern dette filteret"
 
-#, fuzzy
 msgid "Filtered terms"
-msgstr "Filtre"
+msgstr "Filtrerte vilkår"
 
-#, fuzzy
 msgid "Filtered users"
-msgstr "Filtre"
+msgstr "Filtrerte brukere"
 
 msgid "You can block users in their profile"
-msgstr ""
+msgstr "Du kan blokkere brukere i deres profil"
 
 msgid "Users"
 msgstr "Brukere"
 
-#, fuzzy
 msgid "Set image description"
-msgstr "Beskrivelse"
+msgstr "Sett bilde beskrivelse"
 
 msgid "Subscribe"
 msgstr "Abonner"
@@ -904,10 +926,10 @@ msgid "Add New Filter"
 msgstr "Legg til nytt filter"
 
 msgid "Regular Expression:"
-msgstr ""
+msgstr "regelmessig uttrykk"
 
 msgid "Test:"
-msgstr ""
+msgstr "Test:"
 
 msgid "Add New Snippet"
 msgstr "Legg til ny kodesnut"
@@ -942,9 +964,8 @@ msgstr "Skjult"
 msgid "Retweets disabled"
 msgstr "Retweets slått av"
 
-#, fuzzy
 msgid "More actions"
-msgstr "Nevnelser"
+msgstr "Flere handlinger"
 
 msgid "Follows you"
 msgstr "Følger deg"
@@ -959,30 +980,28 @@ msgid "Following"
 msgstr "Følger"
 
 msgid "Use dark theme"
-msgstr ""
+msgstr "Bruk mørkt tema"
 
-#, fuzzy
 msgid "Shortcut key"
-msgstr "Snarveier"
+msgstr "Snarevei nøkkel"
 
 msgid "Alt"
-msgstr ""
+msgstr "Alt"
 
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 msgid "Super"
-msgstr ""
+msgstr "Super"
 
 msgid "Primary"
-msgstr ""
+msgstr "Hoved"
 
-#, fuzzy
 msgid "Timelines"
-msgstr "Skjul fra tidslinje"
+msgstr "Tidslinjer"
 
 msgid "Show inline media"
 msgstr "Vis multimedier"
@@ -1037,23 +1056,22 @@ msgstr "Grensesnitt"
 
 #. TRANSLATORS: 'Normal' font size combo box item in the settings
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #. TRANSLATORS: 'Large' font size combo box item in the settings
 msgid "Large"
-msgstr ""
+msgstr "Stor"
 
 #. TRANSLATORS: 'X-Large' font size combo box item in the settings
 msgid "X-Large"
-msgstr ""
+msgstr "Ekstra stor"
 
 #. TRANSLATORS: 'XX-Large' font size combo box item in the settings
 msgid "XX-Large"
-msgstr ""
+msgstr "Eksta ekstra stor"
 
-#, fuzzy
 msgid "Tweet scale"
-msgstr "Tweets"
+msgstr "Tweet skala"
 
 msgid "Round avatars"
 msgstr "Runde profilbilder"
@@ -1068,25 +1086,25 @@ msgid "Hide inappropriate content"
 msgstr "Skjul upassende innhold"
 
 msgid "Translation"
-msgstr ""
+msgstr "Oversettelse"
 
 msgid "Translation service"
-msgstr ""
+msgstr "Oversettelse sevice"
 
 msgid "Google"
-msgstr ""
+msgstr "Google"
 
 msgid "Bing"
-msgstr ""
+msgstr "Bing"
 
 msgid "DeepL"
-msgstr ""
+msgstr "DeepL"
 
 msgid "Custom"
-msgstr ""
+msgstr "Tilpasset"
 
 msgid "Custom translation URL"
-msgstr ""
+msgstr "Tilpasset oversettelse URL"
 
 msgid "No snippets configured."
 msgstr "Ingen kodesnutter satt opp."
@@ -1141,10 +1159,9 @@ msgctxt "shortcuts window"
 msgid "Retweet"
 msgstr "Retweet"
 
-#, fuzzy
 msgctxt "shortcuts window"
 msgid "Like"
-msgstr "Favoritt"
+msgstr "Lik"
 
 msgctxt "shortcuts window"
 msgid "Reply"
@@ -1164,10 +1181,10 @@ msgstr "Slett"
 
 msgctxt "shortcuts window"
 msgid "Compose"
-msgstr ""
+msgstr "komponere"
 
 msgid "Show Emoji Chooser"
-msgstr ""
+msgstr "Vis Emoji velger"
 
 msgid "Start new conversation"
 msgstr "Start ny samtale"
@@ -1184,9 +1201,8 @@ msgstr "Siter"
 msgid "Retweet tweet"
 msgstr "Retweet tweet"
 
-#, fuzzy
 msgid "Like tweet"
-msgstr "Merk tweet som favoritt"
+msgstr "Lik tweet"
 
 msgid "Reply to tweet"
 msgstr "Svar på tweet"
@@ -1195,25 +1211,22 @@ msgid "More"
 msgstr "Mer"
 
 msgid "Translate"
+msgstr "Oversett"
+
+msgid "Retweet"
 msgstr ""
 
-#, fuzzy
-msgid "Retweet"
-msgstr "Retweet"
-
-#, fuzzy
 msgid "Like"
-msgstr "Favoritt"
+msgstr "Lik"
 
 msgid "Reply"
 msgstr "Svar"
 
 msgid "Liked"
-msgstr ""
+msgstr "Likt"
 
-#, fuzzy
 msgid "Retweeted"
-msgstr "Retweet"
+msgstr "Retweetet"
 
 msgid "Unblock"
 msgstr "Fjern blokkering"
@@ -1232,38 +1245,3 @@ msgstr "Laget"
 
 msgid "Subscribed to"
 msgstr "Abonnert på"
-
-#~ msgid "Replying to"
-#~ msgstr "Svarer"
-
-#~ msgid "and"
-#~ msgstr "og"
-
-#~ msgid "Actions"
-#~ msgstr "Handlinger"
-
-#~ msgid "Add Image"
-#~ msgstr "Legg til bild"
-
-#, fuzzy, c-format
-#~ msgid "%s (%s) followers"
-#~ msgstr "Følgere"
-
-#~ msgid "List"
-#~ msgstr "Liste"
-
-#~ msgid "uk.co.ibboard.cawbird"
-#~ msgstr "uk.co.ibboard.cawbird"
-
-#~ msgid ""
-#~ "Unauthorized. Most of the time, this means that there's something wrong "
-#~ "with the Twitter servers and you should try again later"
-#~ msgstr ""
-#~ "Ikke autentisert. Dette betyr som regel at det er noe galt med Twitter-"
-#~ "tjenerne. Prøv igjen senere"
-
-#~ msgid "Timm Bäder"
-#~ msgstr "Timm Bäder"
-
-#~ msgid "Could not load tweets"
-#~ msgstr "Klarte ikke å laste inn tweets"
