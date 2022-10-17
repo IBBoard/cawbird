@@ -16,6 +16,7 @@
 # netforhack, 2015
 # Yevgeny Kvitchenko <kvit4.ko@gmail.com>, 2017
 # Даниил Пронин <mail@grawl.ru>, 2021
+# Caarmi, 2021
 #
 #, fuzzy
 msgid ""
@@ -24,7 +25,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/ibboard/cawbird/issues/new\n"
 "POT-Creation-Date: 2022-03-05 15:27+0000\n"
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
-"Last-Translator: Даниил Пронин <mail@grawl.ru>, 2021\n"
+"Last-Translator: Caarmi, 2021\n"
 "Language-Team: Russian (https://www.transifex.com/cawbird/teams/107135/ru/)\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -160,13 +161,11 @@ msgstr "Новое сообщение от %s"
 msgid "Direct Messages"
 msgstr "Личные сообщения"
 
-#, fuzzy
 msgid "Liked tweets timeline"
-msgstr "Лента избранного"
+msgstr ""
 
-#, fuzzy
 msgid "Likes"
-msgstr "Избранные"
+msgstr ""
 
 msgid "Add new Filter"
 msgstr "Добавить новый фильтр"
@@ -341,7 +340,7 @@ msgstr "Подробности твита"
 
 #. TRANSLATORS: Used for the "via <client-name>" line in Tweet Info view when the client is blank
 msgid "an unknown client"
-msgstr ""
+msgstr "неизвестный клиент"
 
 #, c-format
 msgid "(%d unread)"
@@ -416,7 +415,8 @@ msgid "No status found with that ID."
 msgstr "Твит с таким ID не найден."
 
 msgid "You cannot send messages to users who are not following you."
-msgstr "Вы не можете отправить сообщение человеку, который на вас не подписан."
+msgstr ""
+"Вы не можете отправить сообщение человеку, который на вас не подписан."
 
 msgid "There was an error sending your message."
 msgstr "При отправке сообщения произошла ошибка."
@@ -567,23 +567,23 @@ msgstr "%e %B %Y"
 msgid "%e %b %Y"
 msgstr "%e %b %Y"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Replying to %s"
-msgstr "Отвечает на твит"
+msgstr "Ответ %s"
 
 #. TRANSLATORS: Note: "…and 1 other" should never be used because it will use the "Replying to X and Y" string
-#, fuzzy, c-format
+#, c-format
 msgid "Replying to %s and %d other"
 msgid_plural "Replying to %s and %d others"
-msgstr[0] "и %d других"
-msgstr[1] "и %d других"
-msgstr[2] "и %d других"
-msgstr[3] "и %d других"
+msgstr[0] "Ответ %s и еще %d людям"
+msgstr[1] "Ответ %s и еще %d людям"
+msgstr[2] "Ответ %s и еще %d людям"
+msgstr[3] "Ответ %s и еще %d людям"
 
 #. TRANSLATORS: The first %s is a list of one or more comma-separated user names, and the second %s is the last username in the list
-#, fuzzy, c-format
+#, c-format
 msgid "Replying to %s and %s"
-msgstr "Отвечает на твит"
+msgstr "Ответ %s и %s"
 
 msgid "Don't have a Twitter account yet?"
 msgstr "Ещё нет профиля в Твиттере?"
@@ -624,11 +624,10 @@ msgid "Follow"
 msgstr "Подписаться"
 
 msgid "Loading…"
-msgstr ""
+msgstr "Загрузка…"
 
-#, fuzzy
 msgid "No entries found"
-msgstr "Пользователи не найдены"
+msgstr "Нет записей"
 
 msgid "Retry"
 msgstr "Повтор"
@@ -636,9 +635,8 @@ msgstr "Повтор"
 msgid "Copy URL"
 msgstr "Копировать URL"
 
-#, fuzzy
 msgid "Reload image"
-msgstr "Не удалось загрузить изображение"
+msgstr ""
 
 msgid "Save as…"
 msgstr "Сохранить как…"
@@ -884,7 +882,7 @@ msgid "Click to edit"
 msgstr ""
 
 msgid "Remove this Filter"
-msgstr ""
+msgstr "Удалить этот фильтр"
 
 msgid "Filtered terms"
 msgstr "Отфильтрованные темы"
@@ -944,10 +942,10 @@ msgid "Add New Filter"
 msgstr "Добавить новый фильтр"
 
 msgid "Regular Expression:"
-msgstr ""
+msgstr "Регулярное выражение:"
 
 msgid "Test:"
-msgstr ""
+msgstr "Проверка:"
 
 msgid "Add New Snippet"
 msgstr "Добавить новый сниппет"
@@ -1000,28 +998,26 @@ msgstr "Подписан"
 msgid "Use dark theme"
 msgstr "Использовать тёмную тему"
 
-#, fuzzy
 msgid "Shortcut key"
-msgstr "Горячие клавиши"
+msgstr "Горячая клавиша"
 
 msgid "Alt"
-msgstr ""
+msgstr "Alt"
 
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 msgid "Super"
-msgstr ""
+msgstr "Super"
 
 msgid "Primary"
 msgstr ""
 
-#, fuzzy
 msgid "Timelines"
-msgstr "Лента %s"
+msgstr ""
 
 msgid "Show inline media"
 msgstr "Показать встроенные медиа"
@@ -1112,16 +1108,16 @@ msgid "Translation service"
 msgstr "Служба переводов"
 
 msgid "Google"
-msgstr ""
+msgstr "Google"
 
 msgid "Bing"
-msgstr ""
+msgstr "Bing"
 
 msgid "DeepL"
-msgstr ""
+msgstr "DeepL"
 
 msgid "Custom"
-msgstr ""
+msgstr "Другая"
 
 msgid "Custom translation URL"
 msgstr "Настроить ссылку для переводов"
@@ -1179,10 +1175,9 @@ msgctxt "shortcuts window"
 msgid "Retweet"
 msgstr "Ретвит"
 
-#, fuzzy
 msgctxt "shortcuts window"
 msgid "Like"
-msgstr "Избранные"
+msgstr ""
 
 msgctxt "shortcuts window"
 msgid "Reply"
@@ -1222,9 +1217,8 @@ msgstr "Цитата"
 msgid "Retweet tweet"
 msgstr "Ретвитнуть"
 
-#, fuzzy
 msgid "Like tweet"
-msgstr "В избранное"
+msgstr ""
 
 msgid "Reply to tweet"
 msgstr "Ответить"
@@ -1235,13 +1229,11 @@ msgstr "Ещё"
 msgid "Translate"
 msgstr "Перевести"
 
-#, fuzzy
 msgid "Retweet"
-msgstr "Ретвит"
+msgstr ""
 
-#, fuzzy
 msgid "Like"
-msgstr "В избранное"
+msgstr ""
 
 msgid "Reply"
 msgstr "Ответить"
@@ -1269,9 +1261,3 @@ msgstr "Создан"
 
 msgid "Subscribed to"
 msgstr "Подписан"
-
-#~ msgid "Replying to"
-#~ msgstr "Отвечает на твит"
-
-#~ msgid "and"
-#~ msgstr "и"
