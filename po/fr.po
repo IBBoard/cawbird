@@ -20,7 +20,7 @@
 # Stéphane PETRUS <stephane.petrus@posteo.net>, 2021
 # m bous, 2022
 # Irénée THIRION, 2022
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
