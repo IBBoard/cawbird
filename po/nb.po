@@ -2,11 +2,12 @@
 # Copyright (C) YEAR 2013-2018 Timm Bäder, 2018-2020 IBBoard
 # This file is distributed under the same license as the cawbird package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 # Translators:
-# IBBoard . <github@ibboard.co.uk>, 2020
+# Kim Malmo <berencamlost@msn.com>, 2018
+# Åka Sikrom, 2016-2017
 # S.R. <rosteff@gmail.com>, 2021
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -16,10 +17,10 @@ msgstr ""
 "PO-Revision-Date: 2020-02-05 20:32+0000\n"
 "Last-Translator: S.R. <rosteff@gmail.com>, 2021\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/cawbird/teams/107135/nb/)\n"
+"Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Cawbird"
@@ -29,15 +30,15 @@ msgid "Twitter Client"
 msgstr "Twitter-klient"
 
 msgid ""
-"Cawbird is a native GTK+ twitter client that provides vital features such as"
-" Direct Messages (DMs), tweet notifications, conversation views."
+"Cawbird is a native GTK+ twitter client that provides vital features such as "
+"Direct Messages (DMs), tweet notifications, conversation views."
 msgstr ""
 "Cawbird er en GTK+-basert Twitter-klient som tilbyr viktige funksjoner som "
 "direktemeldinger, tweet-varslinger og samtalevisning."
 
 msgid ""
-"Additional features include local viewing of videos, multiple inline images,"
-" Lists, Filters, multiple accounts, etc."
+"Additional features include local viewing of videos, multiple inline images, "
+"Lists, Filters, multiple accounts, etc."
 msgstr ""
 "Du kan også se videoer, flerbilde-tweets, lister, filtre og bruke ulike "
 "kontoer samtidig i programmet."
@@ -64,8 +65,7 @@ msgstr "IBBoard"
 msgid "Use Twitter from within a normal desktop application"
 msgstr "Bruk Twitter som et vanlig skrivebordsprogram"
 
-#. TRANSLATORS: Search terms to find this application. Do NOT translate or
-#. localize the semicolons! The list MUST also end with a semicolon!
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 msgid "twitter;"
 msgstr "twitter;"
 
@@ -76,23 +76,19 @@ msgstr ""
 "Viser kun det vinduet \"komponer tweet\" for den bestemte kontoen, ingenting"
 " annet."
 
-#. TRANSLATORS: Used as the placeholder for the account name in the `--help`
-#. output
+#. TRANSLATORS: Used as the placeholder for the account name in the `--help` output
 msgid "account-name"
 msgstr "konto-navn"
 
-#. TRANSLATORS: Description of the `--start-service` option for the command-
-#. line
+#. TRANSLATORS: Description of the `--start-service` option for the command-line
 msgid "Start service"
 msgstr "Start tjeneste"
 
-#. TRANSLATORS: Description of the `--stop-service` option for the command-
-#. line
+#. TRANSLATORS: Description of the `--stop-service` option for the command-line
 msgid "Stop service, if it has been started as a service"
 msgstr "Stopp tjenesten, hvis den har blitt startet som en tjeneste"
 
-#. TRANSLATORS: Description of the `--print-startup-accounts` option for the
-#. command-line
+#. TRANSLATORS: Description of the `--print-startup-accounts` option for the command-line
 msgid "Print configured startup accounts"
 msgstr "Print konfigurerte oppstart kontoer"
 
@@ -186,8 +182,7 @@ msgstr[1] "%d nye tweets!"
 msgid "Home"
 msgstr "Hjem"
 
-#. TRANSLATORS: "%s" is the user's name for the list - e.g. "Contributors"
-#. when looking at https://twitter.com/i/lists/1285277968676331522
+#. TRANSLATORS: "%s" is the user's name for the list - e.g. "Contributors" when looking at https://twitter.com/i/lists/1285277968676331522
 #, c-format
 msgid "%s list tweets"
 msgstr "1%s liste tweets"
@@ -249,20 +244,17 @@ msgstr[1] ""
 msgid "Location: %s"
 msgstr "Lokalasjon %s"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for profile
-#. timeline view
+#. TRANSLATORS: Value is user's name - used for accessibility text for profile timeline view
 #, c-format
 msgid "%s timeline"
 msgstr "%s tidslinje"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of
-#. users following the user
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users following the user
 #, c-format
 msgid "%s followers"
 msgstr "%s følgere"
 
-#. TRANSLATORS: Value is user's name - used for accessibility text for list of
-#. users followed by the user
+#. TRANSLATORS: Value is user's name - used for accessibility text for list of users followed by the user
 #, c-format
 msgid "%s following"
 msgstr "%s følger"
@@ -311,10 +303,9 @@ msgstr "Denne tweeten er gjemt av forfatter"
 msgid "This tweet is unavailable"
 msgstr "Denne tweeten er utilgjengelig"
 
-#. TRANSLATORS: Insert your *actual* language here instead of English - e.g.
-#. "Ins Deutsche übersetzen" or "Traduire en français"
+#. TRANSLATORS: Insert your *actual* language here instead of English - e.g. "Ins Deutsche übersetzen" or "Traduire en français"
 msgid "Translate to English"
-msgstr "Oversett til Engelsk"
+msgstr "Oversett til Norwegian Bokmål"
 
 msgid "Retweets"
 msgstr "Retweets"
@@ -328,8 +319,7 @@ msgstr "Kilde"
 msgid "Tweet Details"
 msgstr "Tweet-detaljer"
 
-#. TRANSLATORS: Used for the "via <client-name>" line in Tweet Info view when
-#. the client is blank
+#. TRANSLATORS: Used for the "via <client-name>" line in Tweet Info view when the client is blank
 msgid "an unknown client"
 msgstr "en ukjent klient"
 
@@ -466,8 +456,8 @@ msgid "A media id was not found."
 msgstr "En medie id ble ikke funnet."
 
 msgid ""
-"To protect our users from spam and other malicious activity, this account is"
-" temporarily locked."
+"To protect our users from spam and other malicious activity, this account is "
+"temporarily locked."
 msgstr ""
 "For å beskytte våre brukere fra spam og ondsinnet aktivitet, denne kontoen "
 "er midlertidig låst"
@@ -539,23 +529,19 @@ msgstr[1] ""
 msgid "%dh"
 msgstr "%dh"
 
-#. TRANSLATORS: Full-text date format for tweets from this year - see
-#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B"
 msgstr ""
 
-#. TRANSLATORS: Short date format for tweets from this year - see
-#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from this year - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b"
 msgstr ""
 
-#. TRANSLATORS: Full-text date format for tweets from previous years - see
-#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Full-text date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %B %Y"
 msgstr ""
 
-#. TRANSLATORS: Short date format for tweets from previous years - see
-#. https://valadoc.org/glib-2.0/GLib.DateTime.format.html
+#. TRANSLATORS: Short date format for tweets from previous years - see https://valadoc.org/glib-2.0/GLib.DateTime.format.html
 msgid "%e %b %Y"
 msgstr ""
 
@@ -563,16 +549,14 @@ msgstr ""
 msgid "Replying to %s"
 msgstr "Svarer til %s"
 
-#. TRANSLATORS: Note: "…and 1 other" should never be used because it will use
-#. the "Replying to X and Y" string
+#. TRANSLATORS: Note: "…and 1 other" should never be used because it will use the "Replying to X and Y" string
 #, c-format
 msgid "Replying to %s and %d other"
 msgid_plural "Replying to %s and %d others"
 msgstr[0] ""
 msgstr[1] ""
 
-#. TRANSLATORS: The first %s is a list of one or more comma-separated user
-#. names, and the second %s is the last username in the list
+#. TRANSLATORS: The first %s is a list of one or more comma-separated user names, and the second %s is the last username in the list
 #, c-format
 msgid "Replying to %s and %s"
 msgstr ""
@@ -670,8 +654,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. TRANSLATORS: Combine plural "Failed to load image" and list of failed paths
-#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>,
-#. <path>, <path>"
+#. to make "Failed to load image: <path>" or "Failed to load 3 images: <path>, <path>, <path>"
 #, c-format
 msgid "%s: %s"
 msgstr "%s:%s"
@@ -703,8 +686,7 @@ msgstr ""
 msgid "Quote tweet"
 msgstr "Siter tweet"
 
-#. TRANSLATORS: A dialog message with Yes/No options when the user closes the
-#. "compose tweet" window with content still in the dialog
+#. TRANSLATORS: A dialog message with Yes/No options when the user closes the "compose tweet" window with content still in the dialog
 msgid "Keep tweet as draft?"
 msgstr "Behold tweet som kladd"
 
@@ -717,8 +699,7 @@ msgid_plural "%d characters remaining"
 msgstr[0] ""
 msgstr[1] ""
 
-#. TRANSLATORS: Values are current image index (1-based) and total image
-#. count. Pluralisation is based on total image count.
+#. TRANSLATORS: Values are current image index (1-based) and total image count. Pluralisation is based on total image count.
 #. Should only be seen when image count is two or more.
 #, c-format
 msgid "Image %d of %d"
@@ -752,15 +733,15 @@ msgstr "Kodesnutt finnes allerede"
 
 #, c-format
 msgid ""
-"Translation URL must contain {SOURCE_LANG}, {TARGET_LANG} and {CONTENT} placeholders\n"
+"Translation URL must contain {SOURCE_LANG}, {TARGET_LANG} and {CONTENT} "
+"placeholders\n"
 "\n"
 "The URL \"%s\" will be used instead"
 msgstr ""
 
 msgid ""
-"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool "
-"#newisalwaysbetter"
-msgstr "Hei, sjekk ut denne nye versjonen av #Cawbird ! \\ (•◡•) / #cool"
+"Hey, check out this new #Cawbird version! \\ (•◡•) / #cool #newisalwaysbetter"
+msgstr "Hei, sjekk ut denne nye versjonen av #Cawbird ! \\ (•◡•) / #cool #newisalwaysbetter"
 
 msgid "Add to or Remove User From List"
 msgstr "Legg til eller fjern bruker fra liste"
