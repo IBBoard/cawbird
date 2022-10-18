@@ -185,7 +185,7 @@ cb_media_loading_finished (CbMedia *media)
     // The get_highest_res_surface() function then deals with what is available
     media->loaded_hires = TRUE;
     media->width = media->thumb_width;
-    media->width = media->thumb_width;
+    media->height = media->thumb_height;
   }
   else if (cb_media_is_video (media)) {
     // Video doesn't have a hires, it runs the URL through GStreamer, so pretend we loaded the hires image
