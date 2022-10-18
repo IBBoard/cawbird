@@ -91,6 +91,8 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   private signal void delete_tweet ();
   [Signal (action = true)]
   private signal void quote_tweet ();
+  [Signal (action = true)]
+  private signal void retweet_quote_tweet ();
 
   public TweetListEntry (Cb.Tweet    tweet,
                          MainWindow? main_window,
@@ -242,6 +244,9 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     retweet_tweet.connect (() => {
       retweet_button.tap ();
     });
+    retweet_quote_tweet.connect (() => {
+      retweet_action();
+    });
 
     if (tweet.is_flag_set (Cb.TweetState.FAVORITED))
       fav_status_image.show ();
@@ -389,6 +394,23 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     Gtk.BindingEntry.add_signal (binding_set, Gdk.Key.f, 0, "favorite-tweet", 0, null);
     Gtk.BindingEntry.add_signal (binding_set, Gdk.Key.l, 0, "favorite-tweet", 0, null);
     Gtk.BindingEntry.add_signal (binding_set, Gdk.Key.q, 0, "quote-tweet", 0, null);
+  }
+
+  private void retweet_action () {
+    var retweet = 1;
+    var quote = 2;
+    Gtk.Dialog dialog = new Gtk.Dialog.with_buttons(_("Retweet or quote tweet"), this.main_window,
+      Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+      _("Retweet"), retweet, _("Quote Tweet"), quote);
+    var response = dialog.run();
+    dialog.dispose();
+    if (response == retweet) {
+      retweet_button_toggled_cb ();
+    }
+    else if (response == quote) {
+      quote_activated ();
+    }
+    // Else it was cancelled
   }
 
   [GtkCallback]

@@ -30,7 +30,9 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     {"quote",    quote_activated   },
     {"reply",    reply_activated   },
     {"favorite", favorite_activated},
-    {"delete",   delete_activated  }
+    {"retweet",  retweet_button_toggled_cb },
+    {"delete",   delete_activated  },
+    {"open-media", open_media      }
   };
 
   public int unread_count { get {return 0;} }
@@ -493,6 +495,12 @@ class TweetInfoPage : IPage, ScrollWidget, Cb.MessageReceiver {
     if (cancellable != null) {
       cancellable.cancel ();
       cancellable = null;
+    }
+  }
+
+  private void open_media() {
+    if (tweet.has_inline_media ()) {
+      TweetUtils.handle_media_click (tweet.get_medias (), main_window, 0);
     }
   }
 

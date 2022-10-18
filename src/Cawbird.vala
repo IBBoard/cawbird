@@ -294,6 +294,9 @@ public class Cawbird : Gtk.Application {
     // TweetInfoPage
     this.set_accels_for_action ("tweet.reply",    {"r"});
     this.set_accels_for_action ("tweet.favorite", {"l", "f"});
+    this.set_accels_for_action ("tweet.retweet", {"t"});
+    this.set_accels_for_action ("tweet.quote", {"q"});
+    this.set_accels_for_action ("tweet.open-media", {"o"});
 
     this.add_action_entries (app_entries, this);
 
@@ -310,13 +313,14 @@ public class Cawbird : Gtk.Application {
 
   public void set_window_switching_accels() {
     var shortcut_key = Settings.get_shortcut_key_string();
-    this.set_accels_for_action ("win.switch-page(0)", {shortcut_key + "1"});
+    // Uses our numeric format and Twitter's shortcuts
+    this.set_accels_for_action ("win.switch-page(0)", {shortcut_key + "1", });
     this.set_accels_for_action ("win.switch-page(1)", {shortcut_key + "2"});
     this.set_accels_for_action ("win.switch-page(2)", {shortcut_key + "3"});
-    this.set_accels_for_action ("win.switch-page(3)", {shortcut_key + "4"});
+    this.set_accels_for_action ("win.switch-page(3)", {shortcut_key + "4", "m"});
     this.set_accels_for_action ("win.switch-page(4)", {shortcut_key + "5"});
     this.set_accels_for_action ("win.switch-page(5)", {shortcut_key + "6"});
-    this.set_accels_for_action ("win.switch-page(6)", {shortcut_key + "7"});
+    this.set_accels_for_action ("win.switch-page(6)", {shortcut_key + "7", "/"});
     this.set_accels_for_action ("win.previous", {shortcut_key + "Left", "Back"});
     this.set_accels_for_action ("win.next", {shortcut_key + "Right", "Forward"});
   }
