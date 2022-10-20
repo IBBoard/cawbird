@@ -320,7 +320,7 @@ public class Cawbird : Gtk.Application {
     this.set_accels_for_action ("win.switch-page(3)", {shortcut_key + "4", "m"});
     this.set_accels_for_action ("win.switch-page(4)", {shortcut_key + "5"});
     this.set_accels_for_action ("win.switch-page(5)", {shortcut_key + "6"});
-    this.set_accels_for_action ("win.switch-page(6)", {shortcut_key + "7", "/"});
+    this.set_accels_for_action ("win.switch-page(6)", {shortcut_key + "7", "slash"});
     this.set_accels_for_action ("win.previous", {shortcut_key + "Left", "Back"});
     this.set_accels_for_action ("win.next", {shortcut_key + "Right", "Forward"});
   }
