@@ -286,6 +286,8 @@ cb_media_downloader_load_real_url (CbMediaDownloader *downloader,
   regex = g_regex_new (regex_str1, 0, 0, NULL);
   g_regex_match (regex, (const char *)msg->response_body->data, 0, &match_info);
   media->thumb_url = g_match_info_fetch (match_info, match_index1);
+  // "Real" URL downloads don't actually have a thumbnail, so duplicate
+  media->url = g_strdup(media->thumb_url);
 
   g_regex_unref (regex);
   g_match_info_free (match_info);
