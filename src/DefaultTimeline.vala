@@ -95,7 +95,7 @@ public abstract class DefaultTimeline : ScrollWidget, IPage {
   }
 
   private void refresh_timeline() {
-    var now = new GLib.DateTime.now().to_unix();
+    var now = new GLib.DateTime.now_local().to_unix();
     var time_since_last_refresh = now - last_refresh;
     if (time_since_last_refresh < 60) {
       debug("Skipping refresh of %s - only refreshed %lld seconds ago", this.get_type().name(), time_since_last_refresh);
