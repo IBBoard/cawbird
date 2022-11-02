@@ -332,11 +332,14 @@
     public override void realize () {
       this.set_realized (true);
 
+      Gtk.Allocation allocation;
+      this.get_allocation (out allocation);
+
       Gdk.WindowAttr attr = {};
-      attr.x = 0;
-      attr.y = 0;
-      attr.width = get_allocated_width();
-      attr.height = get_allocated_height();
+      attr.x = allocation.x;
+      attr.y = allocation.y;
+      attr.width = allocation.width;
+      attr.height = allocation.height;
       attr.window_type = Gdk.WindowType.CHILD;
       attr.visual = this.get_visual ();
       attr.wclass = Gdk.WindowWindowClass.INPUT_ONLY;
