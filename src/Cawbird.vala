@@ -284,9 +284,8 @@ public class Cawbird : Gtk.Application {
     this.set_accels_for_action ("app.show-settings", {Settings.get_accel ("show-settings")});
     this.set_accels_for_action ("app.quit", {"<Primary>Q"});
     this.set_accels_for_action ("app.show-shortcuts", {"<Primary>question", "<Primary>F1"});
-    this.set_accels_for_action ("win.show-account-dialog", {Settings.get_accel ("show-account-dialog"), "S"});
     this.set_accels_for_action ("win.show-account-list", {Settings.get_accel ("show-account-list")});
-    this.set_window_switching_accels();
+    this.set_variable_accels();
 
     // Timelines
     this.set_accels_for_action ("timeline.refresh", {"<Primary>R", "F5"});
@@ -311,20 +310,22 @@ public class Cawbird : Gtk.Application {
     }
   }
 
-  public void set_window_switching_accels() {
+  public void set_variable_accels() {
     var shortcut_key = Settings.get_shortcut_key_string();
     // Uses our numeric format and a form of Twitter's shortcuts
     // Technically Twitter uses G and the letter in close succession, but GTK only
     // supports a single letter for accelerators.
     //
     // The main window handles the case when the user is in a text box to avoid them triggering while typing
-    this.set_accels_for_action ("win.switch-page(0)", {shortcut_key + "1", "H"});
-    this.set_accels_for_action ("win.switch-page(1)", {shortcut_key + "2", "R", "N"});
-    this.set_accels_for_action ("win.switch-page(2)", {shortcut_key + "3", "L"});
-    this.set_accels_for_action ("win.switch-page(3)", {shortcut_key + "4", "M"});
-    this.set_accels_for_action ("win.switch-page(4)", {shortcut_key + "5", "I"});
+
+    this.set_accels_for_action ("win.show-account-dialog", {Settings.get_accel ("show-account-dialog"), shortcut_key + "S"});
+    this.set_accels_for_action ("win.switch-page(0)", {shortcut_key + "1", shortcut_key + "H"});
+    this.set_accels_for_action ("win.switch-page(1)", {shortcut_key + "2", shortcut_key + "R", shortcut_key + "N"});
+    this.set_accels_for_action ("win.switch-page(2)", {shortcut_key + "3", shortcut_key + "L"});
+    this.set_accels_for_action ("win.switch-page(3)", {shortcut_key + "4", shortcut_key + "M"});
+    this.set_accels_for_action ("win.switch-page(4)", {shortcut_key + "5", shortcut_key + "I"});
     this.set_accels_for_action ("win.switch-page(5)", {shortcut_key + "6"});
-    this.set_accels_for_action ("win.switch-page(6)", {shortcut_key + "7", "slash"});
+    this.set_accels_for_action ("win.switch-page(6)", {shortcut_key + "7", shortcut_key + "slash"});
     this.set_accels_for_action ("win.previous", {shortcut_key + "Left", "Back"});
     this.set_accels_for_action ("win.next", {shortcut_key + "Right", "Forward"});
   }

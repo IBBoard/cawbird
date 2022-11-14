@@ -42,7 +42,6 @@ public class MainWindow : Gtk.ApplicationWindow {
   public unowned Account? account;
   private ComposeTweetWindow? compose_tweet_window = null;
   private Gtk.GestureMultiPress thumb_button_gesture;
-  private bool enable_input_conflicting_actions = true;
 
   public int cur_page_id {
     get {
@@ -185,10 +184,6 @@ public class MainWindow : Gtk.ApplicationWindow {
     thumb_button_gesture.set_button (0);
     thumb_button_gesture.set_propagation_phase (Gtk.PropagationPhase.CAPTURE);
     thumb_button_gesture.pressed.connect (thumb_button_pressed_cb);
-
-    this.set_focus.connect((focus_widget) => {
-      enable_input_conflicting_actions = !(focus_widget is Gtk.Entry || focus_widget is Gtk.TextView);
-    });
 
     load_geometry ();
   }
@@ -354,10 +349,6 @@ public class MainWindow : Gtk.ApplicationWindow {
    * for keyboard accelerators.
    */
   private void simple_switch_page (GLib.SimpleAction a, GLib.Variant? param) {
-    if (!enable_input_conflicting_actions) {
-      // Don't trigger when the user is typing
-      return;
-    }
     main_widget.switch_page (param.get_int32 ());
   }
 
@@ -379,9 +370,6 @@ public class MainWindow : Gtk.ApplicationWindow {
   private void show_account_dialog () {
     if (this.account == null)
       return;
-    if (!enable_input_conflicting_actions) {
-      return;
-    }
 
     var dialog = new AccountDialog (this.account);
     dialog.set_transient_for (this);

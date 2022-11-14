@@ -67,7 +67,7 @@ class SettingsDialog : Gtk.Window {
     });
     Settings.get ().bind ("shortcut-key", shortcut_key_combobox, "active-id", SettingsBindFlags.DEFAULT);
     Settings.get ().changed["shortcut-key"].connect(() => {
-      ((Cawbird)get_application()).set_window_switching_accels();
+      ((Cawbird)get_application()).set_variable_accels();
     });
     Settings.get ().bind ("use-dark-theme", use_dark_theme_switch, "active", SettingsBindFlags.DEFAULT);
     use_dark_theme_switch.notify["active"].connect (() => {
