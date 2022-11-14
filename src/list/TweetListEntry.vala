@@ -93,6 +93,8 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
   private signal void quote_tweet ();
   [Signal (action = true)]
   private signal void retweet_quote_tweet ();
+  [Signal (action = true)]
+  private signal void open_media();
 
   public TweetListEntry (Cb.Tweet    tweet,
                          MainWindow? main_window,
@@ -238,6 +240,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     reply_tweet.connect (reply_tweet_activated);
     delete_tweet.connect (delete_tweet_activated);
     quote_tweet.connect (quote_activated);
+    open_media.connect(open_media_activated);
     favorite_tweet.connect (() => {
       favorite_button.active = !favorite_button.active;
     });
@@ -362,6 +365,14 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     TweetUtils.handle_media_click (this.tweet.get_quoted_medias (), this.main_window, index);
   }
 
+  private void open_media_activated() {
+    if (tweet.has_inline_media ()) {
+      TweetUtils.handle_media_click (tweet.get_medias (), main_window, 0);
+    } else if (tweet.has_quoted_inline_media ()) {
+      TweetUtils.handle_media_click (tweet.get_quoted_medias (), main_window, 0);
+    }
+  }
+
   private void delete_tweet_activated () {
     if (tweet.get_user_id () != account.id)
       return; // Nope.
@@ -380,6 +391,9 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
             toggle_mode ();
           }
         }
+        else {
+          delete_first_activated = false;
+        }
       });
     } else
       delete_first_activated = true;
@@ -394,6 +408,7 @@ public class TweetListEntry : Cb.TwitterItem, Gtk.ListBoxRow {
     Gtk.BindingEntry.add_signal (binding_set, Gdk.Key.f, 0, "favorite-tweet", 0, null);
     Gtk.BindingEntry.add_signal (binding_set, Gdk.Key.l, 0, "favorite-tweet", 0, null);
     Gtk.BindingEntry.add_signal (binding_set, Gdk.Key.q, 0, "quote-tweet", 0, null);
+    Gtk.BindingEntry.add_signal (binding_set, Gdk.Key.o, 0, "open-media", 0, null);
   }
 
   private void retweet_action () {
