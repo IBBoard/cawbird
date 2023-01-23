@@ -1,10 +1,20 @@
 # Cawbird 1.5
 
+## DEPRECATION NOTICE
+
+⚠ As of January 2023, Cawbird for Twitter is no longer being developed ⚠
+
+This is because Twitter changed the Developer Agreement to prohibit "creating a substitute for Twitter Applications" and revoked our primary API keys around 20th January.
+
+The next generation of Cawbird will be a Mastodon client. Follow Cawbird Toot Point Oh (codename NewCaw) at https://github.com/CodedOre/NewCaw
+
+## Introduction
+
 <a href="https://ibboard.co.uk/cawbird/#screenshots"><img src="./screenshot1.jpg" style="float:right; margin-left: 1em;" /></a>
 
-[Cawbird](https://ibboard.co.uk/cawbird/) is a fork of the [Corebird](https://corebird.baedert.org/) Twitter client from Baedert, which became unsupported after Twitter disabled the streaming API.
+[Cawbird](https://ibboard.co.uk/cawbird/) ~~is~~ was a fork of the [Corebird](https://corebird.baedert.org/) Twitter client from Baedert, which became unsupported after Twitter disabled the streaming API.
 
-Cawbird works with the new APIs and includes a few fixes and modifications that have historically been patched in to IBBoard's custom Corebird build on his personal Open Build Service account<sup>[1](#footnote1)</sup>.
+Cawbird ~~works~~ worked with the new APIs and includes a few fixes and modifications that have historically been patched in to IBBoard's custom Corebird build on his personal Open Build Service account<sup>[1](#footnote1)</sup>.
 
 ## Packaging and installation
 
